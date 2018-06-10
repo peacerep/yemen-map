@@ -1,0 +1,6 @@
+day amount
+mon 12
+tues 13
+weds 24
+thurs 87
+fri 19
