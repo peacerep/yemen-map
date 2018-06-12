@@ -2,6 +2,8 @@ html, body {
   margin: 2;
   width: 100%;
   height: 100%;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
 }
 
 line {
@@ -9,8 +11,8 @@ line {
 }
 
 path {
-  stroke: green;
-  stroke-width: 2px;
+  stroke: black;
+  stroke-width: 1px;
   fill: none;
 }
 
@@ -25,8 +27,8 @@ g.tick line {
 }
 
 g.tick text {
-  font-size: 10px;
-  stroke: blue;
+  font-size: 14px;
+  stroke: #191919;
 }
 
 g.hidden line,
