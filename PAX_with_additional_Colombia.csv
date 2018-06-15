@@ -1,0 +1,755 @@
+﻿,AgtId,Con,Contp,Reg,Agt,Dat,Day,Month,Year,Status,Lgt,Agtp,Stage,StageSub,Part,ThrdPart,OthAgr,GCh,GChRhet,GChAntid,GChSubs,GChOth,GDis,GDisRhet,GDisAntid,GDisSubs,GDisOth,GAge,GAgeRhet,GAgeAntid,GAgeSubs,GAgeOth,GMig,GMigRhet,GMigAntid,GMigSubs,GMigOth,GRa,GRaRhet,GRaAntid,GRaSubs,GRaOth,GRe,GReRhet,GReAntid,GReSubs,GReOth,GInd,GIndRhet,GIndAntid,GIndSubs,GIndOth,GOth,GOthRhet,GOthAntid,GOthSubs,GOthOth,GRef,GRefRhet,GRefSubs,GRefOth,GSoc,GSocRhet,GSocAntid,GSocSubs,GSocOth,GeWom,GeMe,GeMeNu,GeMeOth,GeSo,GeFa,StDef,StGen,StCon,StSd,StRef,StSym,StInd,StUni,StBor,StXbor,Pol,PolGen,PolNewInd,PolNewTemp,ConRen,Cons,Ele,ElecComm,PolPar,Civso,Tral,Pubad,Polps,PpsSt,PpsSub,PpsEx,PpsOro,PpsOthPr,PpsVet,PpsAut,PpsInt,PpsOth,Terps,TpsSub,TpsLoc,TpsAut,TpsOth,Eps,EpsRes,EpsOth,Mps,MpsMe,MpsJt,MpsOth,HrGen,EqGen,HrDem,Prot,HrFra,HrfSp,HrfBor,HrfTinc,HrfOth,HrCp,CprLife,CprTort,CprEq,CprSlav,CprLib,CprDet,CprFmov,CprFspe,CprFass,CprTria,CprPriv,CprVote,CprReli,CprOth,HrSec,SerProp,SerWork,SerHeal,SerEdu,SerStdl,SerShel,SerSs,SerCult,SerOth,HrNi,HrNiMe,HrNiNe,HrNiOth,HrIi,HrIiMon,HrIiBod,HrIiOth,HrMob,HrDet,Med,MedGov,MedSubs,MedLog,MedOth,HrCit,CitGen,CitRights,CitDef,CitOth,JusCr,JusCrSp,JusCrSys,JusCrPow,JusEm,JusJu,JusPri,JusTra,Dev,NEC,NatRes,IntFu,Bus,Tax,TaxPo,TaxRef,TaxOth,Ban,CenBan,BanPers,BanInt,BanXb,LaRef,LaRefMan,LaRefRet,LaRefOth,LaNom,LaCH,LaCHTa,LaCHIt,LaCHPro,LaCHOth,LaEn,Wat,SsrGua,Ce,CeProv,CeGen,SsrPol,SsrArm,SsrDdr,DdrDemil,DdrProg,SsrInt,SsrPsf,SsrFf,Cor,SsrCrOcr,SsrDrugs,Terr,TjGen,TjAm,TjAmPro,TjSan,TjPower,TjCou,TjJaNc,TjJaIc,TjMech,TjPrire,TjVet,TjVic,TjMis,TjRep,TjRSym,TjRMa,TjNR,ImUN,ImOth,ImRef,ImPK,ImE,ImSrc,PeaceProcess,PeaceProcessN,UCDPc_code_old,conflict_id,In_other_UCDP,PAID_UCDP,PAM_ID,Date,Year,inclusion1,inclusion2,inclusion3,HumRiFrameALL,HumRiCivPolALL,HumRiSocEconALL,humanrightsALL,SecurityALL,Y-10,Y+10,Y-1,Y-2,Y-5,Y+1,Y+2,Y+5,IsLocationProvisional,Location1,IsGWNOprovisional,GWNO,ISONUM,ConShort,ISO3,Location2,GWNO2,ISONUM2,ConShort2,ISO3_2,WarNumCoW,WarNameCoW,yr,anypowersharing,anypowersharing_binom,Amnesty,TJ_bin,politicalps,territorialps,economicps,militaryps,womenandps,TJmechanism,Drugs,Corruption,Crime_Org_Crime
+95,145,Colombia,Government,Americas,Acuerdo de Los Pozos,09/02/2001,9,2,2001,Multiparty signed/agreed,2,Intra,Pre,Proc,"Signed:
+ANDR√âS PASTRANA ARANGO, FARC-EP
+MANUEL MARULANDA V√âLEZ, Presidente de la Rep√∫blica",/,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,1,1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,1,0,0,0,0,1,1,Colombia III - Arango,108,92,289,NA,1.00E+12,NA,09/02/2001,2001,0,0,0,0,0,0,1,3,1991,2011,2000,1999,1996,2002,2003,2006,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2001,0,0,0,0,0,0,0,0,0,0,1,0,0
+96,146,Colombia,Government,Americas,Acuerdo entre Gobierno Nacional y las Autodefensas unidas de Colombia para la zona de Ubicaci√≥n en Tierralta (Acuerdo de F√°tima),13/05/2004,13,5,2004,Multiparty signed/agreed,5,Intra,SubPar,MultIss,"National Govt, AUC","Witness: For the OEA, MAPP/OEA support mission Sergio Caramagna
+For the Cath Church Monsenor Julio Cesar Vidal",NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,Colombia IV - Uribe,109,92,289,NA,NA,NA,13/05/2004,2004,2,2,2,0,0,0,0,4,1994,2014,2003,2002,1999,2005,2006,2009,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2004,0,0,0,0,0,0,0,0,0,0,0,0,0
+97,147,Colombia,Government,Americas,"Acuerdo para la Paz y la Convivencia Ciudadana, Gobierno Nacional, Departamental y Municipal y Melicias Populares del Pueblo y para el Pueblo, Milicias Independientes, de Valle de Aburra y Milicias Metropolitanas, de la Ciudad de Medellin",26/05/1994,26,5,1994,Multiparty signed/agreed,12,Intra,SubComp,FrAg,"Por el Gobierno Nacional: C√âSAR GAVIRIA TRUJILLO Presidente de la Rep√∫blica FABIO VILLEGAS RAM√çREZ Ministro de Gobierno JORGE ORLANDO MELO Consejero Presidencial para Medell√≠n y su Area Metropolitana LUIS ALFREDO RAMOS BOTERO Alcalde de Medell√≠n CARLOS EDUARDO JARAMILLO CASTILLO Consejero Presidencial para la Paz JUAN GOMEZ MART√çNEZ Gobernador de Antioquia
+
+Por las Milicias: Negociadores: CARLOS HERMAN CORREA HENAO ROBERTO EMILIO BEDOYA FERLY WEIMAR OROZCO MU√ëOZ Voceros: JAMES ORREGO GONZALO CASTA√ëO JOEL DE JESUS MAZO RAMIREZ HECTOR HERNANDO BENITEZ MORENO ARLES DE JESUS AGUIRRE ARLES RODRIGUEZ MORA",Testigo-Tutor: MONSE√ëOR HECTOR FABIO HENAO,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,1,0,0,0,0,0,0,0,3,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,3,0,1,0,1,0,0,0,0,0,0,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,26/05/1994,1994,0,0,3,0,0,0,4,5,1984,2004,1993,1992,1989,1995,1996,1999,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1994,1,1,1,0,0,1,0,0,0,0,0,0,0
+98,148,Colombia,Government,Americas,"Acuerdo Pol√≠tico Final, Gobierno Nacional - Frente Francisco Garnica de la Coordinadora Guerrillera",30/06/1994,30,6,1994,Multiparty signed/agreed,7,Intra,SubPar,MultIss,"For the national government:
+CESAR GAVIRIA TRUJILLO, President of the Republic
+CARLOS EDUARDO JARAMILLO, Presidential Peace Councillor
+FABIO VILLEGAS RAMIREZ, Minister of the Interior
+
+For FFG:
+LIBARDO ESCALANTE SIERRA
+HIERTA DIAZ
+JOSE FELIX PADILLA YEPES
+LIBARDO LEONES LANDERO","Witness: Monsenor Guillermo Vega, Conferencia Episcopal de Colombia",NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,2,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,3,0,1,0,1,0,0,0,0,0,0,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,1,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,30/06/1994,1994,0,0,0,0,0,0,0,4,1984,2004,1993,1992,1989,1995,1996,1999,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1994,1,1,1,0,0,1,0,0,0,0,0,0,0
+99,149,Colombia,Government,Americas,Acuerdo Final entre el Gobierno Nacional y el Ej√©rcito Popular de Liberaci√≥n ‚Äì EPL,15/02/1991,15,2,1991,Multiparty signed/agreed,16,Intra,SubComp,FrAg,"Por el Gobierno Nacional
+HUMBERTO DE LA CALLE LOMBANA
+Ministro de Gobierno JESUS A. BEJARANO AVILA
+Consejero Presidencial
+CARLOS EDUARDO JARAMILLO C.
+Asesor de la Consejer√≠a
+ALVARO HERNANDEZ V.
+Asesor de la Consejer√≠a
+TOMAS CONCHA SANZ
+Asesor de la Consejer√≠a GABRIEL RESTREPO FORERO
+Asesor de la Consejer√≠a
+GONZALO DE FRANCISCO ZAMBRANO
+Asesor de la Consejer√≠a
+
+Por el EPL
+JAIME FAJARDO Comisi√≥n Negociadora
+ANIBAL PALACIO Comisi√≥n Negociadora 
+LUIS FERNANDO PINEDA Comisi√≥n Negociadora 
+BERNARDO GUTI√âRREZ Comisi√≥n Negociadora 
+JAIRO MORALES Comisi√≥n Negociadora 
+MARCOS JARA Comisi√≥n Negociadora","Witnesses:
+Mose√±or GUILLERMO VEGA
+Conferencia Episcopal Colombiana
+Don MANUEL MEDINA
+Veedor por el Partido Socialista Obrero Espa√±ol Y la Internacional Socialista
+",NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,2,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,1,0,1,1,0,0,1,0,3,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,0,0,1,0,0,0,1,0,0,0,1,0,3,0,1,0,1,0,0,0,0,0,0,2,1,0,0,0,0,0,0,2,0,2,0,0,0,0,0,0,1,0,1,1,1,Colombia I - Gaviria,106,92,289,NA,1.00E+12,NA,15/02/1991,1991,0,0,5,1,0,0,9,5,1981,2001,1990,1989,1986,1992,1993,1996,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1991,0,0,1,0,0,0,0,0,0,0,0,0,0
+100,150,Colombia,Government,Americas,"Acuerdo Final: Gobierno  Nacional, Gobernaci√≥n de Antioquia y Alcald√≠a de Medell√≠n con el Movimiento Independiente Revolucionario-Comandos Armados MIR-COAR",29/07/1998,29,7,1998,Multiparty signed/agreed,15,Intra,SubComp,FrAg,"‚Ä¢    ERNESTO SAMPER PIZANO, President of the Republic
+‚Ä¢    ALFONSO L√ìPEZ CABALLERO, Minister of the Interior
+‚Ä¢    GILBERTO ECHEVERRI MEJ√çA, Minister of National Defence
+‚Ä¢    DANIEL GARC√çA-PE√ëA, Office of the High Commissioner for Peace
+‚Ä¢    TOM√ÅS E. CONCHA SANZ, National Coordinator of the Reinsertion Programme
+‚Ä¢    PATRICIA PINEDA DE CASTRO, Manager of the Peace Fund
+‚Ä¢    IV√ÅN FELIPE PALACIO, Government Secretary of the Municipality of Medell√≠n
+‚Ä¢    JUAN GOMEZ MART√çNEZ, Mayor of Medell√≠n
+‚Ä¢    ALBERTO BUIIES, Governor of Antioquia
+‚Ä¢    LUIS F. QUIJANO MORENO, MIR‚ÄìCOAR negotiator
+‚Ä¢    √ÅLVARO RAM√çREZ RIVERA, MIR‚ÄìCOAR negotiator
+‚Ä¢    SANTIAGO QUIJANO MORENO, MIR‚ÄìCOAR spokesperson
+‚Ä¢    CARLOS M. ARENAS L√ìPEZ, MIR‚ÄìCOAR spokesperson","Padre Jorge Martinez, Process Observer.
+
+‚Ä¢    MANUEL CONDE ORELLANA, International Monitor
+",NA,3,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,1,0,1,0,0,0,0,0,0,3,1,0,0,0,0,0,0,0,0,0,2,2,1,0,0,0,0,0,0,1,1,Colombia II - Samper,107,92,289,NA,NA,NA,29/07/1998,1998,4,4,8,0,0,0,4,4,1988,2008,1997,1996,1993,1999,2000,2003,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1998,0,0,1,0,0,0,0,0,0,0,0,0,0
+101,151,Colombia,Government,Americas,"Acuerdo Final entre el Gobierno Nacional y el Movimieto Armado Quintin Lame, Campamento de Pueblo Nuevo Caldono-Cauca",27/05/1991,27,5,1991,Multiparty signed/agreed,13,Intra,SubComp,FrAg,"For the national government:
+JESUS ANTONIO BEJARANO, Peace Council
+CARLOS EDUARDO JARAMILLO C., Council Adviser
+ALVARO HERNANDEZ, Council Adviser
+TOMAS CONCHA S., Council Adviser
+HUMBERTO VERGARA P. Council Adviser
+GONZALO DE FRANCISCO Z., Council Adviser
+GABRIEL RESTREPO F., Council Adviser
+
+For MAQL:
+Chief of staff:
+
+GILDARDO FERNANDEZ
+CARLOS ANDRADE
+RICARDO ROMERO
+RUBEN DARIO MONROY
+RICHARD SANCHEZ
+FRANKY GUERRERO
+
+Political leadership:
+LEONARDO ULCUE
+CIRO TIQUE
+IVAN QUINTERO
+FERNANDO MU√ëOZ
+GABRIEL MARTINEZ","International monitors:
+The World Council of Indigenous Peoples:
+DONALD ROJAS, President
+RODRIGO CONTRERAS
+
+The Spanish Human Rights Association:
+LUIS OTERO FERNANDEZ",NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,2,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,1,0,1,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,27/05/1991,1991,2,3,4,0,0,0,2,4,1981,2001,1990,1989,1986,1992,1993,1996,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1991,0,0,1,0,0,0,0,0,0,0,0,0,0
+102,152,Colombia,Government,Americas,"Acuerdo Final entre el Gobierno Nacional y el Partido Revolucionario de los Trabajadores, don Gabriel, Ovejas, Sucre",25/01/1991,25,1,1991,Multiparty signed/agreed,15,Intra,SubComp,FrAg,"On behalf of the national government:
+JESUS ANTONIO BEJARANO Presidential Council
+CARLOS EDUARDO JARAMILLO Council Adviser
+GONZALO DE FRANCISCO Council Adviser
+ALVARO HERN√ÅNDEZ Council Adviser
+GABRIEL RESTREPO Council Adviser
+TOMAS CONCHA SANZ Council Adviser
+
+On behalf or PRT:
+VALENTIN GONZALEZ
+SERGIO SIERRA
+PABLO RONCALLO
+RAFAEL GONZALEZ
+ERNESTO FALLA",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,1,0,0,0,0,0,0,0,3,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,2,2,2,0,1,0,1,0,0,0,0,0,0,2,1,0,0,0,0,0,2,1,0,2,2,0,0,0,0,0,0,0,0,1,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,25/01/1991,1991,2,2,5,0,0,0,4,7,1981,2001,1990,1989,1986,1992,1993,1996,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1991,0,0,1,0,0,0,0,0,0,1,0,0,0
+103,153,Colombia,Government,Americas,Acuerdo sobre el Acompa√±amiento Nacional e Internacional a la Mesa de Dialogo y Negociacion,07/02/2002,7,2,2002,Multiparty signed/agreed,4,Intra,Pre,Proc,"For the Government
+CAMILO GOMEZ, High Commissioner for Peace
+JUAN GABRIEL URIBE, Special Adviser
+MANUEL SALAZAR
+REINALDO BOTERO, Negotiator
+RICARDO CORREA, Negotiator
+
+For FARC‚ÄìEP:
+RAUL REYES, Spokesperson
+JOAQUIN GOMEZ, Spokesperson
+CARLOS ANTONIO LOZADA, Spokesperson
+SIMON TRINIDAD, Spokesperson
+ANDRES PARIS, Spokesperson","The agreement notes that the meeting was held in the presence of representatives of the Facilitating Commission, the Special Envoy of the Secretary General of the United Nations and the Catholic Church of Colombia.","Agreement of Caquetania on 2 May 1999
+Agreement of Los Pozos, in Communication No. 27, dated 9 March 2001
+Agreement on the Consensus Timeline for the Future of the Peace Process, 20 January 2002",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,Colombia III - Arango,108,92,289,NA,NA,NA,07/02/2002,2002,0,0,0,0,0,0,0,0,1992,2012,2001,2000,1997,2003,2004,2007,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2002,0,0,0,0,0,0,0,0,0,0,0,0,0
+104,154,Colombia,Government,Americas,Acuerdo de San Francisco de la Sombra para Concretar y Consolidar el Proceso de Paz,05/10/2001,5,10,2001,Multiparty signed/agreed,4,Intra,Pre,Proc,"For the national government:
+CAMILO G√ìMEZ ALZATE, High Commissioner for Peace
+JUAN GABRIEL URIBE, Special Adviser
+
+For FARC‚ÄìEP:
+MANUEL MARULANDA V√âLEZ, Commander in Chief of FARC‚ÄìEP
+RA√öL REYES, Spokesperson
+JOAQU√çN G√ìMEZ, Spokesperson
+SIM√ìN TRINIDAD, Spokesperson
+ANDR√âS PAR√çS, Spokesperson
+CARLOS ANTONIO LOZADA, Spokesperson
+JORGE BRICE√ëO, Commander
+IV√ÅN R√çOS, Commander",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,Colombia III - Arango,108,92,289,NA,NA,NA,05/10/2001,2001,0,0,0,0,0,0,1,4,1991,2011,2000,1999,1996,2002,2003,2006,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2001,0,0,0,0,0,0,0,0,0,0,0,0,0
+105,155,Colombia,Government,Americas,"Acuerdo de 'Agenda Comun por el Cambio hacia una Nueva Colombia', Gobierno Nacional-FARC-EP",06/05/1999,6,5,1999,Multiparty signed/agreed,4,Intra,Pre,Proc,"For the national government: VICTOR G. RICARDO; FABIO VALENCIA COSSIO; MAR√çA EMMA MEJ√çA V√âLEZ; NICANOR RESTREPO SANTAMAR√çA; RODOLFO ESPINOSA MEOLA
+For FARC: RA√öL REYES; JOAQU√çN G√ìMEZ; FABI√ÅN RAM√çREZ",NA,NA,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,1,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,Colombia III - Arango,108,92,289,NA,1.00E+12,NA,06/05/1999,1999,2,2,4,1,0,0,3,3,1989,2009,1998,1997,1994,2000,2001,2004,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1999,0,0,0,0,0,0,0,0,0,0,0,1,1
+106,156,Colombia,Government,Americas,Acuerdo de la Puerta del Cielo,15/07/1998,15,7,1998,Multiparty signed/agreed,6,Intra,Pre,PreMix,"Presented in the preamble as an agremement of: 
+civil society that is represented here, the National Liberation Army (Ej√©rcito de Liberaci√≥n Nacional, ELN) and the National Peace Committee,
+
+This agreement is signed by the following people on 15 July in W√ºrzburg, Germany.
+
+A√≠da Abello, Gustavo Alvarez Gardeaz√°bal, Hernando Angarita Figueredo, Pablo Beltr√°n, Ana Teresa Bernal, Jaime Bernal Cu√©llar, N√©lson Berrio, Jaime Alberto Cabal, Jaime Caicedo, C√©sar Carrillo, Monsignor Luis Augusto Castro, Jos√© Fernando Castro, Luis Eduardo Garz√≥n, Carlos Gaviria, Ana 
+Mercedes G√≥mez, Mario G√≥mez, Camilo Gonz√°lez Posso, Milton Hern√°ndez, Hernando Hern√°ndez, Gabriel Izquierdo, Father Jorge Mart√≠nez, Eugnio Marulanda, Alfredo Molano, V√≠ctor Moncayo, Samuel Moreno, Antonio Pic√≥n, Sabas Pretelt de la Vega, Javier Dar√≠o Restrepo, Jos√© No√© Rios, Maria Isabel Rueda, Carlos Alberto Ruiz, Fransisco Santos, Juan Manuel Santos, Eduardo Uma√±a Luna, Le√≥n Valencia, Alejo Vargas, Ju√°n V√°squez, Luis Carlos Villegas, Jorge Visbal",Presented in preamble as an agreement 'facilitated' by: Episcopalian Conference of Germany and Colombia',NA,3,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,0,2,0,0,1,0,1,1,1,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,2,1,0,0,0,0,0,0,0,1,0,0,0,0,0,2,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0,1,1,Colombia II - Samper,107,92,289,NA,NA,NA,15/07/1998,1998,5,6,9,1,5,0,10,3,1988,2008,1997,1996,1993,1999,2000,2003,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1998,0,0,0,1,0,0,0,0,0,0,0,0,0
+107,157,Colombia,Government,Americas,Acuerdo de Cronograma de Consenso para el Futuro del Proceso de Paz,20/01/2002,20,1,2002,Multiparty signed/agreed,6,Intra,Pre,Proc,The National Government and the FARC-EP,"in the presence of the International Facilitation Commission, the United Nations and the Catholic Church,",NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,Colombia III - Arango,108,92,289,NA,NA,NA,20/01/2002,2002,0,0,0,0,0,0,0,3,1992,2012,2001,2000,1997,2003,2004,2007,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2002,0,0,0,0,0,0,0,0,0,0,0,0,0
+108,158,Colombia,Government,Americas,Acuerdo de Crave Norte: Gobierno Nactional - CGSB,17/05/1991,17,5,1991,Multiparty signed/agreed,2,Intra,Pre,Proc,"On behalf of the national government:
+Andr√©s Gonz√°lez D√≠az Deputy Minister of the Interior
+Carlos Eduardo Jaramillo Peace Council
+On behalf of the Sim√≥n Bol√≠var Guerrilla Coordinator:
+Luc√≠a Gonz√°lez Daniel Aldana Mutis Miguel Su√°rez Piragua",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,3,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,17/05/1991,1991,0,0,0,0,0,0,0,1,1981,2001,1990,1989,1986,1992,1993,1996,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1991,0,0,0,0,0,0,0,0,0,0,0,0,0
+109,159,Colombia,Government,Americas,Acuerdo por Colombia entre el Gobierno Colombiano y el Ej√©rcito de Liberaci√≥n Nacional (ELN): Reiniciar el Di√°logo con uns Agenda de Transici√≥n,24/11/2001,24,11,2001,Multiparty signed/agreed,2,Intra,Pre,Proc,"National Govt, National Liberation Army (ELN)",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,24/11/2001,2001,0,0,1,0,0,0,0,2,1991,2011,2000,1999,1996,2002,2003,2006,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2001,0,0,0,0,0,0,0,0,0,0,0,0,0
+110,160,Colombia,Government,Americas,"Communicado FARC-Gobierno del viaje a Europa, 2 de marzo de 2000",02/03/2000,2,3,2000,Multiparty signed/agreed,6,Intra,Pre,PreMix,"For the National Government:
+Victor G. Ricardo, High Commission for Peace
+Luis Norberto Guerra, Vice-President, House of Representatives
+Fabio Valencia Cossio, Negotiator
+Camilo Gomez Alzate, Negotiator
+Juan Gabriel Uribe, Negotiator
+Miguel Pinedo Vidal, Thematic Committee
+Ciro Ramirez, Vice-Precident, House of Senate
+Luis Carlos Villegas, President of the National Business Association (Andi).
+
+For the FARC-EP:
+Raul Reyes, FARC-EP Spokesperson
+Joaquin Gomez, Negotiator
+Fabian Ramirez, Negotiator
+Ivan Rios, Technical Committee Coordinator
+Simon Trinidad, Technical Committee.
+Felipe Rincon, Technical Committee.
+Olga Lucia Marin, Technical Committee.",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,02/03/2000,2000,0,0,1,1,0,0,3,1,1990,2010,1999,1998,1995,2001,2002,2005,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2000,0,0,0,0,0,0,0,0,0,0,1,1,0
+111,161,Colombia,Government,Americas,"Communicado FARC-Gobierno del viaje a Europa, 23 de febrero de 2000",23/02/2000,23,2,2000,Multiparty signed/agreed,4,Intra,Pre,PreMix,"Por el Gobiemo Nacional: Victor G. Ricardo, Alto Comisionado para Ia Paz; Luis Norberto Guerra, Vicepresidente Camara de Representantes; Fabio Valencia Cossio, Negociador; Camilo Gomez Alzate, Negociador; Juan Gabriel Uribe, Negociador; Miguel Pinedo Vidal, Comite Tematico; Ciro Ramirez, Vicepresidente Senado; Luis Carlos Villegas, Presidente de la Andi.
+
+Por las FARC-EP: Raul Reyes, Vocero de las F ARC EP; Joaquin Gomez, Negociador; Fabian Ramirez, Negociador; Ivan Rios, Coordinador Comite Tematico; Simon Trinidad, Comite Tematico; Felipe Rincon, Comite Tematico; Olga Lucia Marin, Comision Internacional.",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,23/02/2000,2000,0,0,0,0,0,0,2,2,1990,2010,1999,1998,1995,2001,2002,2005,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2000,0,0,0,0,0,0,0,0,0,0,1,1,0
+112,162,Colombia,Government,Americas,Comunicado del Presidente Andres Pastrana y Manuel Marulanda de las FARC (Acuerdo de Caquetania),02/05/1999,2,5,1999,Multiparty signed/agreed,2,Intra,Imp,ImpMod,"Andr√©s Pastrana Arango, National Government
+Manuel Marulanda V√©lez, FARC",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,Colombia III - Arango,108,92,289,NA,NA,NA,02/05/1999,1999,0,0,0,0,0,0,1,0,1989,2009,1998,1997,1994,2000,2001,2004,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1999,0,0,0,0,0,0,0,0,0,0,0,0,0
+113,163,Colombia,Government,Americas,Political Constitution of Colombia,01/07/1991,1,7,1991,Multiparty signed/agreed,128,Intra,SubComp,FrCons,"National Constituent Assembly (Political Parties, Guerrilla Groups, Civil Society, Indigenous peoples)",NA,NA,3,0,0,1,0,3,1,0,1,0,0,0,0,0,0,0,0,0,0,0,3,1,1,1,0,3,0,1,1,0,3,0,0,1,0,0,0,0,0,0,1,0,1,0,2,0,0,0,1,1,0,0,0,0,1,1,1,1,1,0,1,0,0,1,1,3,0,1,1,0,3,3,3,1,1,1,3,2,1,0,0,1,1,0,0,0,0,3,0,1,1,1,3,1,0,0,0,0,0,1,1,3,1,3,1,1,1,0,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,3,0,1,0,0,0,0,0,0,1,3,0,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,1,3,0,1,0,1,1,0,1,0,1,1,0,1,0,1,1,1,1,0,1,1,1,0,0,0,2,3,2,1,0,0,0,0,0,0,0,0,0,1,0,0,1,3,1,1,3,0,0,3,0,1,0,1,1,0,0,0,0,0,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,01/07/1991,1991,18,19,26,3,12,7,29,7,1981,2001,1990,1989,1986,1992,1993,1996,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1991,8,1,1,0,1,1,1,0,1,1,0,0,0
+114,164,Colombia,Government,Americas,"Acuerdo entre los Comandos Ernesto Rojas y el Gobierno Nacional, Protocolo de Adhesion al Acuerdo de Paz del EPL",20/03/1992,20,3,1992,Multiparty signed/agreed,3,Intra,Imp,ExtPar,"Por el Gobierno Nacional
+GONZALO DE FRANCISCO
+Consejer√≠a para la Paz
+EDUARDO DIAZ URIBE
+Consejer√≠a para la Paz
+JOSE NOE RIOS
+Consejer√≠a para la Paz
+JHON GOMEZ MARTINEZ
+Director Programa Presidencial para la Reinserci√≥n
+Por los Comandos Ernesto Rojas
+ALEX CHACON
+HECTOR TANGARIFE","CARLOS ESPINOSA FACCIO LINCE
+Presidente del Senado de la Rep√∫blica
+Presb√≠tero FERNANDO GARC√çA
+Secretario Pastoral Social Conferencia Episcopal
+DAR√çO MEJ√çA
+ExConstituyente
+En la condici√≥n de reinsertados de EPL
+JAIRO DE J. ECHEVERRI MONTOYA.
+JOSE MORENO ROJAS.",NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,1,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,20/03/1992,1992,0,0,0,0,0,0,0,3,1982,2002,1991,1990,1987,1993,1994,1997,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1992,0,0,1,0,0,0,0,0,0,0,0,0,0
+115,165,Colombia,Government,Americas,"A Pesar de las Dificultades Logramos Hist√≥ricos Avances, Communicado no. 6 de la Mesa de Dialogos y Negociacion",19/12/1999,19,12,1999,Multiparty signed/agreed,3,Intra,Ren,Repre,"National Govt, FARC",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,19/12/1999,1999,1,1,1,0,0,0,1,0,1989,2009,1998,1997,1994,2000,2001,2004,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1999,0,0,0,0,0,0,0,0,0,0,0,0,0
+116,166,Colombia,Government,Americas,"Declaraci√≥n del Gobierno y la CGSB, Primera Ronda de Conversaciones (The Caracas Agenda)",06/06/1991,6,6,1991,Multiparty signed/agreed,3,Intra,Pre,PreMix,"National Govt, Simon Bolivar Guerilla Coordination Body (CGSB)",observers: list of names,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,06/06/1991,1991,0,0,1,0,0,0,3,3,1981,2001,1990,1989,1986,1992,1993,1996,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1991,0,0,0,0,0,0,0,0,0,0,0,0,0
+117,167,Colombia,Government,Americas,Sante Fe de Ralito Accord to contribute to peace in Colombia,15/07/2003,15,7,2003,Multiparty signed/agreed,2,Intra,Pre,PreMix,"National Govt, United Self-Defence Groups of Colombia (AUC)","Witnesses: Exploratory Commission for Peace (govt established body to hold talks with AUC), Catholic Church",NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,1,0,0,2,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,Colombia IV - Uribe,109,92,289,NA,NA,NA,15/07/2003,2003,0,0,0,0,0,0,1,4,1993,2013,2002,2001,1998,2004,2005,2008,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2003,0,0,0,0,0,0,0,0,0,0,1,0,0
+118,168,Colombia,Government,Americas,"Political Agreement between the National Government, the Political Parties, M-19 and the Catholic Church as Moral and Spiritual Guardian of the Process
+
+Spanish: Acuerdo Pol√≠tico entre el Gobierno Nacional, los Partidos Pol√≠ticos, el M-19, y la Iglesia Cat√≥lica en Calidad de Tutora Moral y Espiritual del Proceso",09/03/1990,9,3,1990,Multiparty signed/agreed,4,Intra,SubComp,FrAg,"National Govt, Political Parties, M-19",Catholic Church (signatory- moral and spiritual guardian); Rep of Socialist International (witness),NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,1,0,1,0,0,0,2,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,1,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,09/03/1990,1990,0,0,0,0,0,0,1,3,1980,2000,1989,1988,1985,1991,1992,1995,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1990,0,0,1,0,0,0,0,0,0,0,1,0,0
+119,170,Colombia,Government,Americas,Acuerdo entre el Gobierno Nacional y las FARC-EP (Acuerdo Humanitario),02/06/2001,2,6,2001,Multiparty signed/agreed,3,Intra,SubPar,Iss,"National Govt, FARC-EP",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,02/06/2001,2001,0,0,2,1,0,0,4,3,1991,2011,2000,1999,1996,2002,2003,2006,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2001,0,0,0,0,0,0,0,0,0,0,0,0,0
+120,171,Colombia,Government,Americas,"Declaracion de Viana, Gobierno Nacional-ELN, Acommpanamiento de la CCN y comon testigo del Gobierno de Espana",09/02/1998,9,2,1998,Multiparty signed/agreed,3,Intra,Pre,Proc,"This agreement is signed in the Palace of Viana in the city of Madrid, Spain, on 9 February 1998 by:
+JOS√â NO√â R√çOS and DANIEL GARC√çA PE√ëA for the Colombian government
+MILTON HERN√ÅNDEZ for central command and the leadership of ELN
+JUAN V√ÅSQUEZ for the International Front
+AUGUSTO RAM√çREZ OCAMPO and ANA MERCEDES G√ìMEZ for CCN","Witness for the Spanish government:
+Fernando M. Villalonga, Secretary of State for International Cooperation
+Eduardo Guti√©rrez S√°enz de Buruaga, Director General of Foreign Policy for Ibero-America",NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,Colombia II - Samper,107,92,289,NA,NA,NA,09/02/1998,1998,0,0,1,0,0,0,3,1,1988,2008,1997,1996,1993,1999,2000,2003,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1998,0,0,0,0,0,0,0,0,0,0,0,0,0
+121,172,Colombia,Government,Americas,Declaracion de Ginebra,25/07/2000,25,7,2000,Multiparty signed/agreed,3,Intra,Pre,Proc,Por el Gobierno colombiano: CAMILO G√ìMEZ ALZATE Alto Comisionado para la Paz Por el Ej√©rcito de Liberaci√≥n Nacional: ANTONIO GARC√çA,"'As witnesses': Cuban ambassador to Colombia, Spanish ambassador to Switzerland, Spanish ambassador to Colombia, Spanish UN delegate, Spanish rep to Latin America, Norwegian ambassador to Guatemala, Swiss ambassador to Colombia, ICRC",NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,25/07/2000,2000,0,0,1,0,0,0,0,1,1990,2010,1999,1998,1995,2001,2002,2005,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2000,0,0,0,0,0,0,0,0,0,0,0,0,0
+122,173,Colombia,Government,Americas,"Acuerdo Politico Final, Gobierno Nacional y Corriente de Renovacion Socialista",09/04/1994,9,4,1994,Multiparty signed/agreed,16,Intra,SubComp,FrAg,"Por el Gobierno Nacional
+CESAR GAVIRIA TRUJILLO Presidente de la Rep√∫blica
+CARLOS EDUARDO JARAMILLO Consejero Presidencial para la paz
+FABIO VILLEGAS RAM√çREZ Ministro de Gobierno
+Por la Corriente de Renovaci√≥n Socialista
+JOS√â ARISTIZABAL FERNANDO HERN√ÅNDEZ ADOLFO BULA",Testigo Tutor Presb√≠tero RAM√ìN GONZ√ÅLEZ MORA,NA,0,0,0,0,0,2,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,2,1,1,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,2,0,0,1,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,1,0,0,1,0,0,0,1,0,0,0,1,0,3,1,0,0,1,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,1,1,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,09/04/1994,1994,2,2,3,0,0,0,5,7,1984,2004,1993,1992,1989,1995,1996,1999,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1994,4,1,1,0,1,0,0,1,0,0,0,0,0
+123,174,Colombia,Government,Americas,Comunicado Publico: Declaracion de San Jose de Costa Rica,18/10/2000,18,10,2000,Multiparty signed/agreed,1,Intra,Pre,Proc,"Document not signed, but stated to be a declaration of a meeting of National Government, sectors of Civil Society, the ELN, and the International Community",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,18/10/2000,2000,0,0,0,0,0,0,1,0,1990,2010,1999,1998,1995,2001,2002,2005,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2000,0,0,0,0,0,0,0,0,0,0,0,0,0
+124,176,Colombia,Government,Americas,Communicado no. 5 de la Mesa de Dialogos y Negociacion,03/12/1999,3,12,1999,Multiparty signed/agreed,2,Intra,Pre,Proc,"National Govt, FARC",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,3,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,03/12/1999,1999,0,0,0,0,0,0,1,0,1989,2009,1998,1997,1994,2000,2001,2004,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1999,0,0,0,0,0,0,0,0,0,0,0,0,0
+125,177,Colombia,Government,Americas,Communicado no. 4 de la Mesa de Dialogos y Negociacion,20/11/1999,20,11,1999,Multiparty signed/agreed,2,Intra,Pre,Proc,"For the government:
+‚Ä¢    V√çCTOR G. RICARDO, High Commissioner for Peace
+‚Ä¢    CAMILO G√ìMEZ, Negotiator
+‚Ä¢    FABIO VALENCIA COSSIO, Negotiator
+‚Ä¢    PEDRO G√ìMEZ BARRERO, Negotiator
+‚Ä¢    JUAN GABRIEL URIBE, Negotiator
+‚Ä¢    GONZALO FORERO DELGADILLO, Negotiator
+‚Ä¢    N√âSTOR HUMBERTO MART√çNEZ, Coordinator of the Thematic Committee
+
+For the FARC:
+‚Ä¢    RA√öL REYES, Negotiator
+‚Ä¢    JOAQU√çN G√ìMEZ, Negotiator
+‚Ä¢    FABI√ÅN RAM√çREZ, Negotiator
+‚Ä¢    IV√ÅN R√çOS, Coordinator of the Thematic Committee
+",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,20/11/1999,1999,0,0,0,0,0,0,0,0,1989,2009,1998,1997,1994,2000,2001,2004,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1999,0,0,0,0,0,0,0,0,0,0,0,0,0
+126,178,Colombia,Government,Americas,"Acuerdo sobre las Audiencias P√∫blicas, Communicado no. 3 de la Mesa de Dialogos y Negociacion",05/11/1999,5,11,1999,Multiparty signed/agreed,6,Intra,Pre,Proc,"For the National Government:
+V√çCTOR G. RICARDO,High Commissioner
+CAMILO A. G√ìMEZ,Negotiator
+FABIO VALENCIA COSSIO,Negotiator
+PEDRO GOMEZ BARRERO,Negotiator
+JUAN GABRIEL URIBE,Negotiator
+GONZALO FORERO DELGADILLO,Negotiator
+NESTOR HUMBERTO MARTINEZ,Coordinator of the Thematic Committee
+MAURICIO C√ÅRDENAS,Thematic Comittee
+ANDR√âS GONZ√ÅLEZ D√çAZ,Thematic Comittee
+ARMANDO POM√ÅRICO,Thematic Comittee
+MIGUEL PINEDO VID AL,Thematic Comittee
+JUAN G√ìMEZ MART√çNEZ,Thematic Comittee
+JORGE G√ìMEZ DUARTE,Thematic Committee
+
+For the FARC-EP
+RA√öL REYES,Negotiator
+JOAQUIN GOMEZ,Negotiator
+FABI√ÅN RAM√çREZ,Negotiator
+IVAN RIOS, Coordinator of the Thematic Committee
+MARCO LE√ìN CALARC√Å,Thematic Committee
+PEDRO ALDANA,Thematic Committee
+ALBERTO MART√çNEZ, Thematic Committee
+SIM√ìN TRINIDAD, Thematic Committee
+FELIPE RINC√ìN, Thematic Committee
+JAIRO MART√çNEZ, Thematic Committee",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,05/11/1999,1999,0,0,0,0,0,0,1,0,1989,2009,1998,1997,1994,2000,2001,2004,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1999,0,0,0,0,0,0,0,0,0,0,0,0,0
+127,179,Colombia,Government,Americas,"Acuerdo sobre Metodolog√≠a, Communicado no. 2 de la Mesa de Dialogos y Negociacion",02/11/1999,2,11,1999,Multiparty signed/agreed,2,Intra,Pre,Proc,"National Govt, FARC",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,02/11/1999,1999,0,0,0,0,0,0,0,0,1989,2009,1998,1997,1994,2000,2001,2004,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1999,0,0,0,0,0,0,0,0,0,0,0,0,0
+128,180,Colombia,Government,Americas,"Acuerdo sobre Comunicados Conjuntos, Communicado no. 1 de la Mesa de Dialogos y Negociacion",25/10/1999,25,10,1999,Multiparty signed/agreed,2,Intra,Pre,Proc,"National Govt, FARC",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,25/10/1999,1999,0,0,0,0,0,0,1,0,1989,2009,1998,1997,1994,2000,2001,2004,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1999,0,0,0,0,0,0,0,0,0,0,0,0,0
+129,183,Colombia,Government,Americas,"Communicado FARC-Gobierno del viaje a Europa, 19 de febrero de 2000",19/02/2000,19,2,2000,Multiparty signed/agreed,2,Intra,Pre,PreMix,"National Govt, FARC",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,19/02/2000,2000,0,0,1,1,0,0,1,0,1990,2010,1999,1998,1995,2001,2002,2005,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2000,0,0,0,0,0,0,0,0,0,0,0,0,0
+130,184,Colombia,Other,Americas,Declaracion de Aguas Lindas,31/01/2001,31,1,2001,Multiparty signed/agreed,2,Intra,Pre,PreOth,"Signed:
+Gabriel Henao
+Fito Mu√±oz
+Carlos Mej√≠a
+Marcos Tulio Jim√©nez.
+
+(Representing peasant workers and farmworkers of the South of Bolivar in support of the peace process)",NA,NA,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,31/01/2001,2001,1,1,1,0,0,0,1,1,1991,2011,2000,1999,1996,2002,2003,2006,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2001,0,0,0,0,0,0,0,0,0,0,0,0,0
+640,786,Colombia,Government,Americas,"General Agreement for the Termination of the Conflict and the Construction of a Stable and Lasting Peace
+",26/08/2012,26,8,2012,Multiparty signed/agreed,3,Intra,Pre,PreMix,"1. Government of the Republic of Colombia
+2. Revolutionary Armed Forces of Colombia-People‚Äôs Army (FARC-EP)",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,2,1,0,0,0,1,0,1,0,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,1,1,Colombia V - Santos,110,92,289,NA,NA,NA,26/08/2012,2012,0,0,1,0,0,0,2,5,2002,2022,2011,2010,2007,2013,2014,2017,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2012,0,0,0,0,0,0,0,0,0,0,1,1,1
+660,812,Colombia,Government,Americas,Participac√≠on pol√≠tica: Apertura democr√°tica para construir la paz,06/11/2013,6,11,2013,Multiparty signed/agreed,25,Intra,SubPar,Iss,"The National Government; the FARC - EP.
+",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,1,0,2,0,0,1,0,3,0,0,1,0,3,0,0,1,0,3,0,1,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,1,3,1,0,1,2,1,1,0,1,0,0,0,0,0,2,1,1,0,0,0,0,0,0,0,0,0,1,2,3,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,3,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,0,0,0,0,0,1,Colombia V - Santos,110,92,289,NA,NA,NA,06/11/2013,2013,13,15,16,0,3,1,9,1,2003,2023,2012,2011,2008,2014,2015,2018,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2013,4,1,0,0,1,1,0,0,1,0,0,1,1
+663,815,Colombia,Government,Americas,Soluci√≥n al Problema de las Drogas Il√≠citas,16/05/2014,16,5,2014,Multiparty signed/agreed,26,Intra,SubPar,Iss,The National Government; the FARC - EP.,NA,NA,3,0,0,1,0,0,0,0,0,0,3,0,0,1,0,0,0,0,0,0,0,0,0,0,0,2,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,2,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,1,0,0,0,0,0,0,0,1,1,0,0,1,0,3,3,3,0,0,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia V - Santos,110,92,289,NA,NA,NA,16/05/2014,2014,9,10,11,0,1,1,5,5,2004,2024,2013,2012,2009,2015,2016,2019,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2014,0,0,1,0,0,0,0,0,0,0,1,1,1
+665,817,Colombia,Government,Americas,Hacia un Nuevo Campo Colombiano: Reforma Rural Integral,06/06/2014,6,6,2014,Multiparty signed/agreed,22,Intra,SubPar,Iss,"Delegates of Government of the Republic of Colombia (The National Government) and the Revolutionary Armed Forces of Colombia (FARC-EP)
+ 
+Los delegados del Gobierno de la Rep√∫blica de Colombia (el Gobierno Nacional) y las Fuerzas Armadas Revolucionarias de Colombia (FARC-EP)",NA,NA,3,1,0,1,0,2,0,0,1,0,3,1,0,1,0,0,0,0,0,0,3,1,0,1,0,0,0,0,0,0,3,1,0,1,0,3,0,0,1,0,1,0,1,0,0,0,0,0,0,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,3,0,1,0,0,0,0,0,0,1,1,1,0,0,1,1,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,2,0,1,0,1,1,0,0,0,0,0,1,Colombia V - Santos,110,92,289,NA,NA,NA,06/06/2014,2014,18,19,20,0,0,1,4,0,2004,2024,2013,2012,2009,2015,2016,2019,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2014,0,0,0,0,0,0,0,0,0,0,1,0,1
+671,827,Colombia,Government,Americas,Acuerdo entre el Gobierno y el Ejercito Revolucionario Guevarista (ERG),02/08/2008,2,8,2008,Multiparty signed/agreed,2,Intra,SubPar,MultIss,"Colombian National Government and the Guevarista Revolutionary Army (Ej√©rcito Revolucionario Guevarista, ERG).","Witnesses, Pastoral‚ÄìSocial Director, Diocese of Quibd√≥ and the Pastoral‚ÄìSocial Director, Diocese of Quibd√≥.",NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia IV - Uribe,109,92,289,NA,NA,NA,02/08/2008,2008,0,0,0,0,0,0,0,4,1998,2018,2007,2006,2003,2009,2010,2013,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2008,0,0,0,0,0,0,0,0,0,0,0,0,0
+748,919,Colombia,Government,Americas,Comunicado entre el Gobierno Nacional y el Frente Francisco Garnica,14/06/1994,14,6,1994,Multiparty signed/agreed,2,Intra,Pre,Proc,"For the national government:
+
+PA-X, Peace Agreement Access Tool (Translation ¬© University of Edinburgh)
+www.peaceagreements.org
+2
+‚Ä¢    CARLOS EDUARDO JARAMILLO C., Presidential Council for Peace
+‚Ä¢    GONZALO DE FRANCISCO Z., Peace Council Adviser
+‚Ä¢    RUB√âN DAR√çO RAM√çREZ, Peace Council Adviser
+For FFGCG:
+
+‚Ä¢    AGUST√çN ROJAS
+‚Ä¢    HERTA D√çAZ
+‚Ä¢    JUAN MIRANDA
+‚Ä¢    SILFREDO SANDINO
+","
+For the church:
+‚Ä¢    MONSIGNOR GUILLERMO VEGA, Colombian Episcopal Conference
+‚Ä¢    PRESBYTER JOS√â PE√ëA, Archdiocese of Cartagena
+",NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,14/06/1994,1994,0,0,0,0,0,0,0,2,1984,2004,1993,1992,1989,1995,1996,1999,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1994,0,0,0,0,0,0,0,0,0,0,0,0,0
+749,920,Colombia,Government,Americas,"Acuerdo Gobierno Nacional - Ej√©cito Popular de Liberacion, Pueblo Nuevo y Juan Jos√©",26/08/1990,26,8,1990,Multiparty signed/agreed,3,Intra,SubPar,Iss,"Por el Gobierno Nacional
+
+JES√öS ANTONIO BEJARANO
+Consejero Presidencial
+REYNALDO GARY
+
+Consejer√≠a
+CARLOS EDUARDO JARA MILLO
+Asesor Consejer√≠a TOMAS CONCHA S.
+Sec. Integraci√≥n Popular
+
+Por el Ej√©rcito Popular de Ltberaci√≥n
+
+BERNARDO GUTI√âRREZ
+Mando Central MARCOS JARA
+Comandante Estado Mayor Central
+AN√çBAL PALACIO
+Partido Comunista de Colombia (M-L)
+",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,26/08/1990,1990,0,0,1,0,0,0,0,3,1980,2000,1989,1988,1985,1991,1992,1995,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1990,0,0,0,0,0,0,0,0,0,0,0,0,0
+846,1034,Colombia,Government,Americas,Acuerdo para la Liberaci√≥n de los Delegados de la OEA / Agreement for the Liberation of detained OAS Delegates,01/11/1997,1,11,1997,Multiparty signed/agreed,2,Intra,SubPar,Iss,"Not signed but stated to be made by: Representatives of the government, the National Reconciliation Commission and the Antioquia Peace Facilitator, and the spokespeople for the National Liberation Army (Ej√©rcito de Liberaci√≥n Nacional, ELN), Francisco Gal√°n and Felipe Torres",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,Colombia II - Samper,107,92,289,NA,NA,NA,01/11/1997,1997,0,0,0,0,0,0,0,3,1987,2007,1996,1995,1992,1998,1999,2002,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1997,0,0,0,0,0,0,0,0,0,0,0,0,0
+894,1083,Colombia/Venezuela,Government,Americas,Declaraci√≥n de Principios y Mecanismo de Cooperaci√≥n entre Colombia y Venezuela,10/08/2010,10,8,2010,Multiparty signed/agreed,2,InterIntra,SubPar,Iss,President of the Republic of Colombia Juan Manuel Santos and the President of the Bolivarian Republic of Venezuela Hugo Ch√°vez Fr√≠as,NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia V - Santos,110,92,289,NA,NA,NA,10/08/2010,2010,0,0,0,0,0,0,0,0,2000,2020,2009,2008,2005,2011,2012,2015,0,Colombia,0,100,170,COL,COL,Venezuela,101,862,VEN,VEN,856,Eighth Colombia,2010,0,0,0,0,0,0,0,0,0,0,0,0,0
+896,1088,Colombia,Government,Americas,"Acuerdo entre el PCC M-L, EPL, Quint√≠n Lame y PRT y Partidos Pol√≠ticos Signatarios del Acuerdo Para la Constituyente",24/09/1990,24,9,1990,Multiparty signed/agreed,2,Intra,Pre,Prin,"Por el Movimiento de Salvacion Nacional: RODRIGO MARIN BERNAL. Por el Partido Social Conservador: DIEGO PARDO KOPPEL. Por la Alianza Democr√°tica M-19: DIEGO MONT√ëA CUELLAR, CAMILO GONZALEZ, JAMIE FAJARDO, OTTO √ëA√ëEZ. 
+
+Por el Mando Central del EPL, BERNARDO GUTiERREZ, OCTAVIO HERNANDEZ, CARLOS ALBERTO RESTREPO Y JAIRO MORALES. Por la direccion nacional del PRT: SERGIO SIERRA Y V√çCTOR CRUZ. Por el Estado Mayor del Quint√≠n Lame: LEONARDO ULCU√â, MAURICIO PAEZ. 
+
+Por el Partido Comunista Marxista-Leninista: JORGE OCAMPO Y RA√öL TEJADA",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,24/09/1990,1990,1,1,1,0,0,0,1,1,1980,2000,1989,1988,1985,1991,1992,1995,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1990,0,0,0,0,0,0,0,0,0,0,0,0,0
+897,1089,Colombia,Government,Americas,"Acuerdo Gobierno Nacional-EPL y PCC ‚Äì ML, Labores, Belmira, Antioquia",28/09/1990,28,9,1990,Multiparty signed/agreed,3,Intra,Pre,NA,"Por el Gobierno Nacional.
+JES√öS ANTONIO BEJARANO
+Consejero Presidencial
+CARLOS EDUARD(l JARAAliLLO
+Asesor Consejer√≠a
+REYNALDOGARY
+Asesor Consejer√≠a
+
+Por el EPL.
+BERNARDO GUTI√âRREZ
+Mando Central
+JAIRO MORALES
+Mando Central
+
+Por el PCC (M-L)
+AN√çBAL PALACIO",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,28/09/1990,1990,0,0,2,0,0,0,3,1,1980,2000,1989,1988,1985,1991,1992,1995,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1990,0,0,0,0,0,0,0,0,0,0,0,0,0
+898,1090,Colombia,Government,Americas,"Acuerdo, Normas Fundamentales de los Campamentos de Paz, EPL-Gobierno Nacional",10/10/1990,10,10,1990,Multiparty signed/agreed,2,Intra,Pre,Proc,"Por el Mando Central del EPL: BERNARDO GUTIERREZ
+Por la Consejeria Presidencial de Paz: JESUS ANTONIO BEJARANO A.",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,10/10/1990,1990,0,0,0,0,0,0,0,2,1980,2000,1989,1988,1985,1991,1992,1995,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1990,0,0,0,0,0,0,0,0,0,0,0,0,0
+899,1091,Colombia,Government,Americas,Acta de Compromiso entre el Gobierno Nacional y el EPL,10/01/1991,10,1,1991,Multiparty signed/agreed,5,Intra,Imp,ImpMod,"Memorandum which is not signed, but stated to be the document of the National Government and the EPL",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,0,3,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,1,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,10/01/1991,1991,0,0,1,0,0,0,0,4,1981,2001,1990,1989,1986,1992,1993,1996,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1991,0,0,0,0,0,0,0,0,0,0,0,0,0
+900,1092,Colombia,Government,Americas,"Declaraci√≥n del Gobierno Nacional y el PCC (ML) y el EPL, Juan Jos√©, C√≥rdoba",29/01/1991,29,1,1991,Multiparty signed/agreed,2,Intra,SubPar,MultIss,"For the EPL and the PCC - ML:
+JAIME FAJARDO LANDAETA
+DA R√çO ANTONIO MEJ√çA
+AN√çBAL PALACIO
+FERNANDO PINEDA
+BERNARDO GUTI√âRREZ
+MARCOS JARA
+DOMINGO ROJAS
+JYMY SALCEDO
+JAIME VELASQUEZ
+CAMILOSANTACRUZ
+SALOM√ìN BORGES
+For the Presidential Council
+JES√öS A. BEJARANO A.
+CARLOS EDUARDO JARA MILLO
+ALVARO HERNANDEZ
+TOMAS CONCHA SANZ","Agreement is not signed by, but is stated to have been agreed 'in the presence of': in the presence of Manuel Medina, representative of the Spanish Socialist Workers‚Äô Party (Partido Socialista Obrero Espa√±ol, PSOE) and Socialist International in his capacity as international monitor, Monsignor Flavio Calle, Bishop of Montel√≠bano and Monsignor Guillermo Vega of the Colombian Episcopal Conference, as representatives of the church and as moral tutors of the peace process, Monsignor Emilio Stehle special guest of the church, Senator Rodrigo Mar√≠n Bernal in representation of the National Salvation Movement and Member of Parliament Andr√©s L√≥pez,",NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,29/01/1991,1991,0,0,0,0,0,0,1,2,1981,2001,1990,1989,1986,1992,1993,1996,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1991,0,0,0,0,0,0,0,0,0,0,0,0,0
+901,1093,Colombia,Government,Americas,Acuerdo entre el Gobierno Nacional y el Ej√©rcito Popular de Liberaci√≥n,15/02/1991,15,2,1991,Multiparty signed/agreed,6,Intra,SubPar,MultIss,"Por el Gobierno Nacional:
+JES√öS ANTONIO BEJARANO AVILA Consejero Presidencia, CARLOS EDUARDO JARAMILLO Asesor de la Consejer√≠a TOMAS CONCHA Asesor de la Consejer√≠a ALVARO HERNANDEZ Asesor de la Consejer√≠a
+GABRIEL RESTREPO FORERO Asesor de la Consejer√≠a GONZALO DE FRANCISCO Asesor de la Consejer√≠a
+
+Por el EPL:
+JAIME FAJARDO Comisi√≥n Negociadora AN√çBAL PALACIO Comisi√≥n Negociadora FERNANDO PINEDA Comisi√≥n Negociadora
+BERNARDO GUTJ√âRREZ Comisi√≥n Negociadora JAIRO MORALES Comisi√≥n Negociadora MARCOS JARA Comisi√≥n Negociadora",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,2,1,0,0,1,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,1,0,0,0,0,0,0,0,3,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,1,0,1,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,15/02/1991,1991,0,0,3,1,0,0,7,3,1981,2001,1990,1989,1986,1992,1993,1996,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1991,1,1,1,0,1,0,0,0,0,0,0,0,0
+902,1094,Colombia,Government,Americas,"Declaraci√≥n Conjunta del Gobierno Nacional y el PRT, Don Gabriel, Ovejas, Sucre",28/12/1990,28,12,1990,Multiparty signed/agreed,2,Intra,Pre,PreMix,"Not signed but stated to be the document of:
+
+for the national
+government, Jes√∫s Antonio Bejarano A., of the Presidential Council for Reconciliation,
+Normalisation and Restoration, and Carlos Eduardo Jaramillo C., Gonzalo de Francisco, Tom√°s Concha, 
+√Ålvaro Hern√°ndez and Gabriel Restrepo, advisers to the Presidential Council; for the Revolutionary 
+Workers Party (Partido Revolucionario de los Trabajadores, PRT),
+leaders and commanders Valent√≠n Gonz√°lez, Sergio Sierra and Pablo Roncallo.
+",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,1,0,1,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,28/12/1990,1990,0,0,1,0,0,0,1,3,1980,2000,1989,1988,1985,1991,1992,1995,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1990,0,0,1,0,0,0,0,0,0,0,0,0,0
+903,1095,Colombia,Government,Americas,"Acuerdo General entre el Gobierno Nacional y el Partido Revolucionario de los Trabajadores, Don Gabriel, Ovejas, Sucre",28/12/1990,28,12,1990,Multiparty signed/agreed,3,Intra,SubPar,MultIss,"Por el Gobierno Nacional,
+HUMBERTO DE LA CALLE LOMBANA
+Ministro de Gobierno
+JES√öS ANTONIO BEJARANO
+Consejero Presidencial
+CARLOS EDUARDO JARA MILLO
+Asesor Consejer√≠a
+GONZALO DE FRANCISCO
+Asesor Consejer√≠a
+ALVARO HERNANDEZ
+Asesor Consejer√≠a
+GABRIEL RESTREPO
+Asesor Consejer√≠a
+
+Por el PRT,
+VALENTIN GONZALEZ
+SERGIO SIERRA
+PABLO RONCALLO
+RAFAEL GONzALEZ
+ERNESTO FALLA
+IVAN SUAREZ","Witness: Orlando Fals Borda, delegado a la ANC por la lista de la AD M-19",NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,0,1,0,1,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,1,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,28/12/1990,1990,0,0,3,0,0,0,2,7,1980,2000,1989,1988,1985,1991,1992,1995,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1990,0,0,1,0,0,0,0,0,0,0,0,0,0
+904,1096,Colombia,Government,Americas,"Acta Interna del Acuerdo entre el Gobierno y el PRT, Ovejas, Sucre",25/01/1991,25,1,1991,Multiparty signed/agreed,4,Intra,SubPar,MultIss,"Por el Gobierno Nacional:
+JES√öS ANTONIO BEJARANO Consejero Presidencial CARLOS EDUARDO JARAMILLO Asesor Consejer√≠a GONZALO DE FRANCISCO Asesor Consejer√≠a ALVARO HERNANDEZ Asesor Consejer√≠a GABRIEL RESTREPO Asesor Consejer√≠a T OMAS CONCHA SANZ Asesor Consejer√≠a
+
+Por el PRT:
+VALENT√çN GONZALEZ
+RAFAEL GONZALEZ
+PABLO RONCALLO
+SERGIO SIERRA
+ERNESTO FALLA
+IVAN SUAREZ",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,0,2,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,3,0,1,0,1,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,25/01/1991,1991,0,0,1,0,0,0,1,4,1981,2001,1990,1989,1986,1992,1993,1996,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1991,0,0,1,0,0,0,0,0,0,0,0,0,0
+905,1097,Colombia,Government,Americas,"Acuerdo entre el Gobierno Nacional y el Movimiento Armado Quint√≠n Lame, Cauca",14/09/1990,14,9,1990,Multiparty signed/agreed,2,Intra,Pre,PreMix,"Por el Gobierno Nacional
+JESUS ANTONIO BEJARANO
+Consejero Presidencial
+ALVARO HERNJ√çNDEZ V.
+Asesor
+CARLOS EDUARDO JARAMILLO
+Asesor
+
+Por el Quint√≠n Lame
+GILDARDO FERNJ√çNDEZ COMANDANTE GENERAL CIRO TIQUE
+Comisi√≥n Negociadora Q.L.
+",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,14/09/1990,1990,1,1,1,0,0,0,0,4,1980,2000,1989,1988,1985,1991,1992,1995,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1990,0,0,0,0,0,0,0,0,0,0,0,0,0
+906,1098,Colombia,Government,Americas,"Acuerdo entre la Consejer√≠a de Paz y la Comisi√≥n Negociadora del MAQL, Mesa de Togoima, P√°ez, Cauca",06/03/1991,6,3,1991,Multiparty signed/agreed,2,Intra,SubPar,MultIss,"Por el Gobierno Nacional:
+JES√öS ANTONIO BE]ARANO Consejero para la Paz
+CARLOS EDUARDO JARAMILLO
+Asesor Consejer√≠a
+√ÅLVARO HERN√ÅNDEZ
+Asesor Consejer√≠a
+HUMBERTO VERGARA PORTELA
+Asesor Consejer√≠a
+
+Por el Quintin Lame:
+GILDARDO FERN√ÅNDEZ
+CIRO TIQUE
+LEONARDO ULCUE
+CARLOS ANDRADE","JORGE MU√ëOZ FERN√ÅNDEZ
+Testigo, Caucanos por la Paz
+",NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,06/03/1991,1991,1,1,1,0,0,0,0,3,1981,2001,1990,1989,1986,1992,1993,1996,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1991,0,0,0,0,0,0,0,0,0,0,0,0,0
+907,1099,Colombia,Government,Americas,"Declaraci√≥n de la CGSB y la Comisi√≥n Exploratoria para la Paz, sobre el Di√°logo Directo, Uribe, Meta",21/10/1990,21,10,1990,Multiparty signed/agreed,2,Intra,Pre,Prin,"Exploratory commission (for the Government):
+√Ålvaro Leyva, Saulo Arboleada, Juan Gabriel Uribe, Monsignor Enrique Sarmiento, Roeberto Posada, Carlos Alonso Lucio, Jos√© No√© R√≠os.
+
+This declaration is co-signed by:
+Manuel Marulanda, Alfonso Cano, Ad√°n Izquierdo and Timole√≥n Jim√©nez (FARC); Pablo Tejada (UC-ELN); Francisco Caraballo (EPL)
+CGSB",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,21/10/1990,1990,0,0,0,0,0,0,0,1,1980,2000,1989,1988,1985,1991,1992,1995,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1990,0,0,0,0,0,0,0,0,0,0,0,0,0
+908,1100,Colombia,Government,Americas,"Comunicado Gobierno-CGSB, Finalizaci√≥n de la Primera Ronda de Conversaciones, Caracas",15/06/1991,15,6,1991,Multiparty signed/agreed,2,Intra,Pre,PreMix,"For the national government:
+JES√öS ANTONIO BEJARANO A., Presidential Council
+ANDR√âS GONZ√ÅLEZ D., Deputy Minister of the Interior
+CARLOS EDUARDO JARAMILLO C., Council Adviser
+HUMERTO VERGARA P., Council Adviser
+TOM√ÅS CONCHA S., Council Adviser
+
+For CGSB:
+ALFONSO CANO, FARC
+IV√ÅN M√ÅRQUEZ, FARC
+PABLO CATATUMBO, FARC
+GULLERMO ZULUAGA, FARC
+DANIEL ALDANA, FARC
+MIGUEL SU√ÅREZ, FARC
+ANDR√âS PAR√çS, FARC
+FRANCISCO GAL√ÅN, ELN
+LUC√çA CONZ√ÅLEZ, ELN
+DIEGO RUIZ, EPL
+ASDR√öBAL JIM√âNEZ, EPL",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,15/06/1991,1991,0,0,0,0,0,0,0,2,1981,2001,1990,1989,1986,1992,1993,1996,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1991,0,0,0,0,0,0,0,0,0,0,0,0,0
+909,1101,Colombia,Government,Americas,"Acuerdo sobre Veedur√≠as, Segunda Ronda de Conversaciones Gobierno-CGSB, Caracas",25/06/1991,25,6,1991,Multiparty signed/agreed,3,Intra,Pre,Conf,"Por el Gobierno Nacional:
+JES√öS ANTONIO BEJARANO A. Consejero Presidencial de Paz ANDR√âS GONZ√ÅLEZ D. Viceministro de Gobierno
+PA-X, Peace Agreement Access Tool (Translation ¬© University of Edinburgh)
+www.peaceagreements.org
+3
+CARLOS EDUARDO JARAMILLO C. Asesor de la Consejeria HUMBERTO VERGARA P. Asesor de Ia Consejeria TOM√ÅS CONCHA S. Asesor de Ia Consejeria ALVARO HERNANDEZ Asesor de la Consejer√≠a
+Por la Coordinadora Guerrillera Sim√≥n Bol√≠var
+ALFONSO CANO (FARC-EP) IV√ÅN M√ÅRQUEZ (FARC-EP) GUILLERMO ZULUAGA (FARC-EP) ANDR√âS PARIS (FARC-EP) PABLO CATATUMBO (FARC-EP) DANIEL ALDANA (FARC-EP) MIGUEL SU√ÅREZ (FARC-EP) FRANCISCO GAL√ÅN (UC-ELN) LUC√çA GONZ√ÅLEZ (UC-ELN) DIEGO RUIZ (EPL) ASDR√öBAL JIM√âNEZ (EPL)","Observatores presentes: √ÅLVARO V√ÅSQUEZ, NELSON BERR√çO, WILLIAM RAM√çREZ Y √ìSCAR REYES",NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,25/06/1991,1991,0,0,1,0,0,0,2,2,1981,2001,1990,1989,1986,1992,1993,1996,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1991,0,0,0,0,0,0,0,0,0,0,0,0,0
+910,1102,Colombia,Government,Americas,"Comunicado Conjunto, Gobierno-CGSB: Acuerdo de Garant√≠as para Traslados de la Comisi√≥n Negociadora CGSB, Santaf√© de Bogot√°-Caracas",19/07/1991,19,7,1991,Multiparty signed/agreed,2,Intra,Ren,Repre,"Por el Gobierno nacional:
+JESUS ANTONIO BEJARANO Consejero Presidencial CARLOS EDUARDO JARAMILLO Asesor de la Consejer√≠a TOMAS CONCHA Asesor de la Consejer√≠a HUMBERTO VERGARA
+Asesor de la Consejer√≠a ALVARO HERNANDEZ Asesor de la Consejer√≠a.
+
+Por la CGSB:
+ALFONSO CANO FARC-EP IV√ÅN M√ÅRQUEZ FARC -EP PABLO CATATUMBO FARC-EP ANDR√âS PARIS FARC-EP GUILLERMO ZULUAGA FARC EP DANIEL ALDANA FARC-EP MIGUEL SUAREZ FARC-EP FRANCISCO CALAN UC-ELN LUCIA GONZALEZ UC-ELN DIEGO RUIZ EPL ASDRUBAL JIMENEZ EPL",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,19/07/1991,1991,0,0,0,0,0,0,0,3,1981,2001,1990,1989,1986,1992,1993,1996,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1991,0,0,0,0,0,0,0,0,0,0,0,0,0
+911,1103,Colombia,Government,Americas,"Comunicado Gobierno-CGSB, Acuerdo sobre Sesiones Prensa, Vocer√≠as y Testigo Internacional, Tercera Ronda, Caracas",06/09/1991,6,9,1991,Multiparty signed/agreed,1,Intra,Pre,Proc,"Not signed by stated to be the document of representatives of the Colombian government and the Sim√≥n Bol√≠var Guerrilla Coordinating Board (Coordinadora Guerrillera Sim√≥n Bol√≠var, CGSB).",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,06/09/1991,1991,0,0,0,0,0,0,0,0,1981,2001,1990,1989,1986,1992,1993,1996,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1991,0,0,0,0,0,0,0,0,0,0,0,0,0
+912,1104,Colombia,Government,Americas,"Acta de Resumen, Reuniones entre el Gobierno de Colombia y la CGSB",10/11/1991,10,11,1991,Multiparty signed/agreed,3,Intra,Pre,Conf,"Por la Delegaci√≥n del Gobierno: JESUS A. BEJARANO A. Consejero Presidencial H√âCTOR RIVEROS S. Viceministro de Gobierno
+CARLOS JARAMILLO Asesor Consejeria de Paz HUMBERTO VERGARA Asesor Consejeria de Paz √ÅLVARO HERN√ÅNDEZ Asesor Consejeria de Paz TOM√ÅS CONCHA S. Asesor Consejer√≠a de Paz
+
+Por la delegaci√≥n de la CGSB:
+ALFONSO CANO, FARC-EP IV√ÅN M√ÅRQUEZ, FARC-EP PABLO CATA TUMBO, FARC-EP ANTONIO GARC√çA, UC-ELN FRANCISCO GAL√ÅN, UC-ELN DIEGO RUIZ, EPL","En presencia de los miembros de la Comisi√≥n Asesora para el Orden P√∫blico quienes rubrican la presente declaraci√≥n, doctors:
+HORACIO SERPA URIBE, OTTY PATI√ëO, GILBERTO VIEIRA, SAULO ARBOLEDA, JUAN GABRIEL URIBE, CARLOS RODADO N. Esta acta tambi√©n es rubricada por el Testigo Internacional, doctor EMILIO FIGUEREOO PLANCHART",NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,10/11/1991,1991,0,0,2,1,0,0,1,4,1981,2001,1990,1989,1986,1992,1993,1996,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1991,0,0,0,0,0,0,0,0,0,0,0,0,0
+913,1105,Colombia,Government,Americas,"Comunicado Conjunto de las Comisiones Negociadoras del Gobierno y la CGSB, Aplazamiento de las Conversaciones",07/02/1992,7,2,1992,Multiparty signed/agreed,1,Intra,Ren,Resub,"GOVERNMENT NEGOTIATING COMMISSION AND THE CGSB NEGOTIATING COMMISSION
+",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,07/02/1992,1992,0,0,0,0,0,0,0,0,1982,2002,1991,1990,1987,1993,1994,1997,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1992,0,0,0,0,0,0,0,0,0,0,0,0,0
+914,1106,Colombia,Government,Americas,"Comunicado de las Comisiones Negociadoras del Gobierno y la CGSB, Reinicio del Di√°logo en M√©xico",03/03/1992,3,3,1992,Multiparty signed/agreed,1,Intra,Ren,Repre,"Agreement is not signed, but stated to be an agreement of the National Government and the Gobierno Nacional, SIM√ìN BOL√çVAR GUERRILLA COORDINATING BOARD(CGSB)",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,03/03/1992,1992,0,0,0,0,0,0,0,3,1982,2002,1991,1990,1987,1993,1994,1997,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1992,0,0,0,0,0,0,0,0,0,0,0,0,0
+915,1107,Colombia,Government,Americas,"Comunicado, Comisiones Negociadoras del Gobierno y la CGSB, Agenda de Temas.",13/03/1992,13,3,1992,Multiparty signed/agreed,2,Intra,Pre,Proc,"Por el Gobierno nacional:
+HORACIO SERPA URIBE H√âCTOR RIVEROS SERRATO
+Por la Coordinadora Guerrillera Simon Bol√≠var:
+ALFONSO CANO IVAN MARQUEZ ANTONIO GARCIA DIEGO RUIZ
+PABLO CATATUMBO GUILLERMO ZULUAGA
+TOMAS LINCE
+ANDRES PARIS
+ASDRUBAL JIMENEZ
+
+",International witness: Sergio Romero Cuevas,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,13/03/1992,1992,0,0,1,0,0,0,1,2,1982,2002,1991,1990,1987,1993,1994,1997,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1992,0,0,0,0,0,0,0,0,0,0,0,0,0
+916,1108,Colombia,Government,Americas,"Declaraci√≥n Conjunta, Comisi√≥n de Paz de la C√°mara y CGSB, Tlaxcala",18/03/1992,18,3,1992,Multiparty signed/agreed,2,Intra,Pre,Prin,"House of Representatives peace delegation:
+‚Ä¢    Jorge Ariel Infante
+‚Ä¢    Dilia Estrada
+‚Ä¢    Ramiro Lucio
+‚Ä¢    Manuel Cepeda
+‚Ä¢    Alfonso L√≥pez Cossio
+‚Ä¢    Gilberto Fl√≥rez
+
+CGSB Negotiating commission:
+
+‚Ä¢    Alfonso Cano, FARC
+‚Ä¢    Iv√°n M√°rquez, FARC
+‚Ä¢    Pablo Catatumbo, FARC
+‚Ä¢    Guillermo Zuluaga, FARC
+‚Ä¢    Tomas Lince, FARC
+‚Ä¢    Andr√©s Par√≠s, FARC
+‚Ä¢    Antonio Garc√≠a, ELN
+‚Ä¢    Luis Carlos Guerrero, ELN
+‚Ä¢    Diego Ru√≠z, EPL
+‚Ä¢    Asdr√∫bal Jim√©nez, EPL
+",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,18/03/1992,1992,0,0,0,0,0,0,0,3,1982,2002,1991,1990,1987,1993,1994,1997,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1992,0,0,0,0,0,0,0,0,0,0,0,0,0
+917,1109,Colombia,Government,Americas,"Comunicado Conjunto, Gobierno-CGSB: Gobierno ofrece Garant√≠as y M√©xico apoya el Retorno de Negociadores de la CGSB, Bogot√°-Tlaxcala",29/06/1992,29,6,1992,Multiparty signed/agreed,2,Intra,Pre,Proc,"For the Colombian government:
+HORACIO SERPA URIBE, Presidential Council for Peace
+
+For CGSB:
+ALFONSO CANO
+IV√ÅN M√ÅRQUEZ","International witness:
+SERGIO ROMERO CUEVAS, Ambassador",NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,29/06/1992,1992,0,0,0,0,0,0,0,1,1982,2002,1991,1990,1987,1993,1994,1997,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1992,0,0,0,0,0,0,0,0,0,0,0,0,0
+918,1110,Colombia,Government,Americas,"Acuerdo General entre el Gobierno y la Corriente de Renovaci√≥n Socialista, Flor del Monte",14/01/1994,14,1,1994,Multiparty signed/agreed,2,Intra,Imp,ImpMod,"For the national government:
+CARLOS EDUARDO JARAMILLO CASTILLO, Presidential Peace Councillor
+JORGE GARC√çA GONZ√ÅLEZ, Deputy Minister of the Interior
+
+For CRS:
+JOS√â ARISTIZABAL
+FERNANDO HERN√ÅNDEZ","Witness:
+RAM√ìN GONZ√ÅLEZ MORA, Presbyter",NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,14/01/1994,1994,0,0,1,0,0,0,0,3,1984,2004,1993,1992,1989,1995,1996,1999,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1994,0,0,0,0,0,0,0,0,0,0,0,0,0
+919,1111,Colombia,Government,Americas,"Acuerdo Inicial entre el Gobierno Nacional, las Milicias Populares del Pueblo y para el Pueblo y las Milicias Populares Independientes del Valle de Aburr√°",15/02/1994,15,2,1994,Multiparty signed/agreed,7,Intra,Pre,PreMix,"Por el Gobierno: FABIO VILLEGAS RAM√çREZ Ministro de Gobierno CARLOS E. JARAMILLO CASTILLO Consejero Presidencia para la Paz JORGE ORLANDO MELO Consejero Presidencial para Medell√≠n y su Area Metropolitana CAMILO GRANADA Consejero Presidencial para la Seguridad Nacional JUAN G√ìMEZ MART√çNEZ Gobernador de Antioquia LUIS ALFREDO RAMOS BOTERO Alcalde de Medell√≠n
+TOM√ÅS CONCHA SANZ Jefe Programa de Reinserci√≥n
+Por las Milicias Populares del Pueblo y para el Pueblo:
+ARLES AGUIRRE ROBERTO EMILIO BEDOYA CARLOS CORREA
+
+Por las Milicias Popolares Independientes del Valle de Aburr√°:
+FERLY WIMAN OROZCO M. ARLES RODR√çGUEZ MORA H√âCTOR FABIO BENITEZ","Representante de la Iglesia:
+MONSE√ëOR H√âCTOR FABIO HENAO GAVIRIA Testigo-Tutor
+TESTIGOS:
+MARIO AGUDELO Esperanza Paz y Libertad ALEX UZUGA Esperanza Paz y Libertad Medell√≠n, Antioquia",NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,15/02/1994,1994,0,0,0,0,0,0,0,1,1984,2004,1993,1992,1989,1995,1996,1999,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1994,0,0,0,0,0,0,0,0,0,0,0,0,0
+920,1117,Colombia,Government,Americas,Primera Declaraci√≥n Conjunta Gobierno Nacional ‚Äì Movimiento Jaime Bateman Cay√≥n,01/10/1995,1,10,1995,Multiparty signed/agreed,2,Intra,Pre,Prin,"For the National Goverment,
+
+DANIEL GARC√çA-PE√ëA /ARAMILLO
+For the Movement Jaime Bateman Gayon,
+
+PA-X, Peace Agreement Access Tool (Translation ¬© University of Edinburgh)
+www.peaceagreements.org
+2
+JORGE ELI√âCER ZAPATA
+Spokeperson
+
+RUBEN S√ÅNCHEZ DAVID, ALEJO VARGAS VELASQUEZ,
+","For the Peace Facilitation Commission,
+MONSIGNOR ALBERTO GIRALDO JARAMILLO, MONSIGNOR H√âCTOR GUTI√âRREZ PAB√ìN, NUBY FERN√ÅNDEZ, ALFONSO 
+LIZARAZO, L/ BARDO OREJUELA D√çAZ, GERM√ÅN ROJAS NI√ëO
+House of Representatives Peace Commission
+JOSE MAYA GARCIA, YOLIMA ESPINOSA VERA.
+",NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia II - Samper,107,92,289,NA,NA,NA,01/10/1995,1995,0,0,1,0,0,0,0,0,1985,2005,1994,1993,1990,1996,1997,2000,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1995,0,0,0,0,0,0,0,0,0,0,0,0,0
+921,1118,Colombia,Government,Americas,Comunicado: Gobierno Nacional-MJBC: Definimos un √Årea de Distensi√≥n,27/12/1995,27,12,1995,Multiparty signed/agreed,2,Intra,Pre,Prin,"For the National Government: JOS√â NO√â R√çOS, ALFREDO MOLANO, ANDR√âS VARGAS.
+For the JBC Movement: Commandant ALONSO and Spokeperson JORGE EL/√âCER.
+","For the PEACE FACILITATION COMMISSION: MONSIGNOR H√âCTOR GUTI√âRREZ PAB√ìN,
+MONSIGNOR ALBERTO GIRA LOO /ARAMILLO, NUBY FERN√ÅNDEZ, LIBARDO OREJUELA,
+GERMAN ROJAS NI√ëO.
+",NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia II - Samper,107,92,289,NA,NA,NA,27/12/1995,1995,0,0,0,0,0,0,0,3,1985,2005,1994,1993,1990,1996,1997,2000,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1995,0,0,0,0,0,0,0,0,0,0,0,0,0
+922,1119,Colombia,Government,Americas,Compromisos sobre Retenes y Comisi√≥n Verificadora Gobierno Nacional ‚Äì MJBC,15/01/1996,15,1,1996,Multiparty signed/agreed,2,Intra,Pre,PreMix,"For the National Government: RUBEN SANCHEZ, ALFREDO MOLANO Y DANIEL GARCIA PE√ëA
+For the JAIME BATEMAN CAY√ìN MOVEMENT: JHON JAIRO R, JORGE P. JORGE ELIECER
+","For the Peace Facilitation Commission: NUBY FERNANDEZ
+",NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,Colombia II - Samper,107,92,289,NA,NA,NA,15/01/1996,1996,0,0,1,0,0,0,1,1,1986,2006,1995,1994,1991,1997,1998,2001,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1996,0,0,0,0,0,0,0,0,0,0,0,0,0
+923,1120,Colombia,Government,Americas,"Primer Acuerdo entre el Gobierno Nacional y el Movimiento Jaime Bateman Cay√≥n, Bases de la Negociaci√≥n",08/02/1996,8,2,1996,Multiparty signed/agreed,5,Intra,Pre,PreMix,"For the national government
+‚Ä¢    DANIEL GARC√çA PE√ëA JARAMILLO
+‚Ä¢    RUB√âN S√ÅNCHEZ DAVID
+‚Ä¢    ALFREDO MOLANO BRAVO
+
+For the Jaime Bateman Cay√≥n Movement:
+
+‚Ä¢    JHON JAIRO
+‚Ä¢    JORGE ELI√âCER ZAPATA
+","For the Peace Facilitation Commission:
+‚Ä¢    NUBI FERN√ÅNDEZ PERLAZA
+‚Ä¢    GERMAN ROJAS NI√ëO
+‚Ä¢    LIBARDO OREJUELA D√çAZ
+",NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,Colombia II - Samper,107,92,289,NA,NA,NA,08/02/1996,1996,2,2,3,0,0,0,1,2,1986,2006,1995,1994,1991,1997,1998,2001,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1996,0,0,0,0,0,0,0,0,0,0,0,0,0
+924,1121,Colombia,Government,Americas,Comunicado de las Comisiones Facilitadora y Verificadora del Proceso de Paz con el Movimiento Jaime Bateman Cay√≥n.,11/04/1996,11,4,1996,Multiparty signed/agreed,2,Intra,Pre,Conf,"Facilitating Commission
+Verification Commission
+",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,Colombia II - Samper,107,92,289,NA,NA,NA,11/04/1996,1996,0,0,1,0,0,0,0,2,1986,2006,1995,1994,1991,1997,1998,2001,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1996,0,0,0,0,0,0,0,0,0,0,0,0,0
+925,1122,Colombia,Government,Americas,"Acuerdo de Remolinos del Cagu√°n: Joaqu√≠n G√≥mez Fabi√°n Ram√≠rez Comandantes del Bloque Sur de las FARC-EP, Delegados del Gobierno Jos√© No√© R√≠os y Carlos Vicente de Roux, Delegados de la Cruz Roja y Monse√±or Luis Augusto Castro",03/06/1997,3,6,1997,Multiparty signed/agreed,2,Intra,SubPar,Iss,"Agreement states that it is signed by 10 people, copy does not have signatures but states the following to be involved.
+
+Joaqu√≠n G√≥mez Fabi√°n Ram√≠rez
+Comandantes del Bloque Sur de las FARC-EP, Delegados del Gobierno
+Jos√© No√© R√≠os y Carlos Vicente de Roux, Delegados de la Cruz Roja y
+Monse√±or Luis Augusto Castro
+
+",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,Colombia II - Samper,107,92,289,NA,NA,NA,03/06/1997,1997,0,1,1,0,0,0,0,4,1987,2007,1996,1995,1992,1998,1999,2002,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1997,0,0,0,0,0,0,0,0,0,0,0,0,0
+926,1124,Colombia,Government,Americas,Preacuerdo entre el Gobierno Nacional y el MIR-COAR,21/01/1997,21,1,1997,Multiparty signed/agreed,3,Intra,Pre,PreMix,"For the national government:
+HORACIO SERPA URIBE, Minister of the Interior
+DANIEL GARCIA-PE√ëA, Peace Commissioner
+TOM√ÅS CONCHA SANZ, Head of the Presidential Reinsertion Programme
+
+For MIR‚ÄìCOAR:
+LUIS FERNANDO QUIJANO MORENO
+ALVARO DE JES√öS RAM√çREZ RIVERA
+SANTIAGO QUIJANO MORENO
+CARLOS MARIO ARENAS L√ìPEZ",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,Colombia II - Samper,107,92,289,NA,NA,NA,21/01/1997,1997,0,0,1,0,0,0,2,1,1987,2007,1996,1995,1992,1998,1999,2002,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1997,0,0,0,0,0,0,0,0,0,0,0,0,0
+927,1126,Colombia,Government,Americas,Acuerdo de Conformaci√≥n del Frente Com√∫n por la Paz y Contra la Violencia,22/11/2000,22,11,2000,Unilateral document,4,Intra,Pre,Prin,"President of the Republic, President of Congress, Political parties",/,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,0,0,0,0,1,0,0,0,2,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,22/11/2000,2000,0,0,1,0,0,0,1,4,1990,2010,1999,1998,1995,2001,2002,2005,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2000,0,0,0,0,0,0,0,0,0,0,1,0,0
+928,1127,Colombia,Government,Americas,"Declaraci√≥n Conjunta, Gobierno Nacional y FARC-EP: Instalar la Mesa de Di√°logo",07/01/1999,7,1,1999,Multiparty signed/agreed,2,Intra,Pre,Prin,"For the national government:
+‚Ä¢ V√çCTOR G. RICARDO PI√ëEROS 
+
+For FARC‚ÄìEP, the spokespeople:
+‚Ä¢    RA√öL REYES
+‚Ä¢    JOAQU√çN G√ìMEZ
+‚Ä¢    FABI√ÅN RAM√çREZ",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,07/01/1999,1999,0,0,0,0,0,0,1,1,1989,2009,1998,1997,1994,2000,2001,2004,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1999,0,0,0,0,0,0,0,0,0,0,0,0,0
+929,1128,Colombia,Government,Americas,Comunicado N¬∞1: Mecanismo √önico de Informaci√≥n,09/01/1999,9,1,1999,Multiparty signed/agreed,2,Intra,Pre,Proc,"Gobierno Nacional, FARC-EP",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,09/01/1999,1999,0,0,0,0,0,0,0,0,1989,2009,1998,1997,1994,2000,2001,2004,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1999,0,0,0,0,0,0,0,0,0,0,0,0,0
+930,1129,Colombia,Government,Americas,Comunicado N¬∞3: Plan de Desarrollo Alternativo para La Sustituci√≥n de Cultivos Il√≠citos,25/01/1999,25,1,1999,Multiparty signed/agreed,2,Intra,Pre,Prin,"Gobierno Nacional, FARC-EP",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,25/01/1999,1999,0,0,0,0,0,0,1,0,1989,2009,1998,1997,1994,2000,2001,2004,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1999,0,0,0,0,0,0,0,0,0,0,1,0,0
+931,1130,Colombia,Government,Americas,"Acuerdo Partidos, Congreso, Gobierno y FARC: Pol√≠tica de Estado para la Paz y Lucha contra el Paramilitarismo",28/04/1999,28,4,1999,Multiparty signed/agreed,2,Intra,Pre,Prin,"MANUEL MARULANDA, FARC‚ÄìEP
+‚Ä¢    V√çCTOR G. RICARDO, High Commissioner for Peace
+‚Ä¢    HORACIO SERPA, Liberal Party
+‚Ä¢    ORNAR YEPES, Conservative Party
+‚Ä¢    NOEM√ç SAN√çN, S√≠ Colombia
+‚Ä¢    JAIME CAICEDO, Communist Party
+‚Ä¢    FABIO VALENCIA President of the Senate
+‚Ä¢    EMILIO MART√çNEZ, Liberal Renewal and President of the House
+‚Ä¢    RA√öL REYES, FARC‚ÄìEP spokesperson
+‚Ä¢    JOAQU√çN G√ìMEZ, FARC‚ÄìEP spokesperson
+‚Ä¢    FABI√ÅN RAM√çREZ, FARC‚ÄìEP spokesperson
+",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,28/04/1999,1999,0,0,0,0,0,0,1,1,1989,2009,1998,1997,1994,2000,2001,2004,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1999,0,0,0,0,0,0,0,0,0,0,0,0,0
+932,1131,Colombia,Government,Americas,Acuerdo sobre la Mesa Nacional de Negociaci√≥n y Comit√© Tem√°tico Nacional,06/05/1999,6,5,1999,Multiparty signed/agreed,2,Intra,Pre,PreMix,"For the national government: V√çCTOR G. RICARDO; FABIO VALENCIA COSSIO; MAR√çA EMMA MEJ√çA V√âLEZ; NICANOR RESTREPO SANTAMAR√çA; RODOLFO ESPINOSA ME√ìLA
+For FARC‚ÄìEP: RA√öL REYES; JOAQU√çN G√ìMEZ; FABI√ÅN RAM√çREZ",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,06/05/1999,1999,0,0,0,0,0,0,0,1,1989,2009,1998,1997,1994,2000,2001,2004,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1999,0,0,0,0,0,0,0,0,0,0,0,0,0
+933,1132,Colombia,Government,Americas,"Declaraci√≥n de Tregua Unilateral Durante Temporada de Fin den Ano, FARC-EP",20/12/1999,20,12,1999,Multiparty signed/agreed,2,Intra,Cea,Ceas,FARC-EP,/,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,20/12/1999,1999,0,0,0,0,0,0,1,4,1989,2009,1998,1997,1994,2000,2001,2004,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1999,0,0,0,0,0,0,0,0,0,0,0,0,0
+934,1133,Colombia,Government,Americas,"Metodolog√≠a y Tem√°tica para las Discusiones, Comunicado No. 8, Mesa Nacional de Di√°logos y Negociaci√≥n",28/01/2000,28,1,2000,Multiparty signed/agreed,4,Intra,Pre,Proc,"Gobierno Nacional, FARC-EP",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,28/01/2000,2000,0,0,2,1,0,0,3,0,1990,2010,1999,1998,1995,2001,2002,2005,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2000,0,0,0,0,0,0,0,0,0,0,1,0,1
+935,1134,Colombia,Government,Americas,"Reglamento de las Audiencias P√∫blicas, Comunicado No.10,  Mesa Nacional de Di√°logos y Negociaci√≥n",10/03/2000,10,3,2000,Multiparty signed/agreed,5,Intra,Pre,Proc,"For the national government:
+V√çCTOR G. RICARDO, High Commissioner for Peace
+CAMILO G√ìMEZ ALZATE, Negotiator
+FABIO VALENCIA COSSIO, Negotiator
+PEDRO G√ìMEZ BARRERO, Negotiator
+GONZALO FORERO DELGADILLO, Negotiator
+JUAN GABRIEL URIBE, Negotiator
+NESTOR HUMBERTO MART√çNEZ, Coordinator of the Thematic Committee.
+
+For FARC:
+RA√öL REYES, Negotiator
+JOAQU√çN G√ìMEZ, Negotiator
+FABI√ÅN RAM√çREZ, Negotiator
+IV√ÅN R√çOS, Coordinator of the Thematic Committee",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,10/03/2000,2000,0,0,0,0,0,0,1,0,1990,2010,1999,1998,1995,2001,2002,2005,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2000,0,0,0,0,0,0,0,0,0,0,0,0,0
+936,1135,Colombia,Government,Americas,"Acuerdo sobre la Discusi√≥n del Modelo de Desarrollo Econ√≥mico y Social, Comunicado No.9, Mesa Nacional de Di√°logos y Negociaci√≥n",10/03/2000,10,3,2000,Multiparty signed/agreed,2,Intra,Pre,Prin,"For the national government:
+V√çCTOR G. RICARDO, High Commissioner for Peace
+CAMILO G√ìMEZ √ÅLZATE, Spokesperson
+FABIO VALENCIA COSSIO, Spokesperson
+PEDRO G√ìMEZ BARRERO, Spokesperson
+JUAN GABRIEL URIBE, Spokesperson
+JOS√â GONZALO FORERO DELGADILLO, Spokesperson
+
+For FARC‚ÄìEP
+RA√öL REYES
+JOAQU√çN G√ìMEZ
+FABI√ÅN RAM√çREZ",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,10/03/2000,2000,0,0,0,0,0,0,1,0,1990,2010,1999,1998,1995,2001,2002,2005,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2000,0,0,0,0,0,0,0,0,0,0,0,0,0
+937,1136,Colombia,Government,Americas,"Intercambio de Propuestas sobre el Cese al Fuego, Comunicado No. 19, Mesa Nacional de Di√°logos y Negociaci√≥n",03/07/2000,3,7,2000,Multiparty signed/agreed,2,Intra,Pre,Proc,"Por el Gobierno Nacional: V√çCTOR G. RICARDO Alto Comisionado para In Paz
+Por las FARC-EP: Voceros: RA√öL REYES JOAQU√çN G√ìMEZ CARLOS ANTONIO LOZADA ANDR√âS PAR√çS",Negociadores: FABIO VALENCIA COSSIO PEDRO G√ìMEZ BARRERO JOS√â GONZALO FORERO DELGADILLO JUAN GABRIEL URIBE LUIS GUILLERMO GIRALDO ALFONSO L√ìPEZ CABALLERO MONSE√ëOR ALBERTO GIRALDO,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,03/07/2000,2000,0,0,0,0,0,0,0,2,1990,2010,1999,1998,1995,2001,2002,2005,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2000,0,0,0,0,0,0,0,0,0,0,0,0,0
+938,1137,Colombia,Government,Americas,"Respaldo de las Fuerzas Pol√≠ticas al Proceso de Paz, Comunicado No.21",03/08/2000,3,8,2000,Multiparty signed/agreed,3,Intra,Pre,Prin,"Political parties, FARC-EP, High Commissioner for Peace",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,03/08/2000,2000,0,0,1,0,0,0,1,3,1990,2010,1999,1998,1995,2001,2002,2005,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2000,0,0,0,0,0,0,0,0,0,0,0,0,0
+939,1138,Colombia,Government,Americas,"Reanudaci√≥n del Proceso, se crea Comisi√≥n Auxiliar de Casos Especiales, Comunicado No. 25, Mesa Nacional de Di√°logos y Negociaci√≥n",16/02/2001,16,2,2001,Multiparty signed/agreed,2,Intra,Ren,Repre,"For the national government:
+JUAN GABRIEL URIBE
+JOS√â GONZALO FORERO
+MONSIGNOR ALBERTO GIRALDO
+RAM√ìN DE LA TORRE
+LUIS GUILLERMO GIRALDO
+
+For FARC‚ÄìEP:
+JOAQU√çN G√ìMEZ
+SIM√ìN TRINIDAD
+ANDR√âS PAR√çS
+CARLOS ANTONIO LOZADA",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,16/02/2001,2001,0,0,0,0,0,0,0,2,1991,2011,2000,1999,1996,2002,2003,2006,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2001,0,0,0,0,0,0,0,0,0,0,0,0,0
+940,1139,Colombia,Government,Americas,"Declaraci√≥n de Pa√≠ses y Organismos Internacionales, Audiencia P√∫blica Internacional sobre Medio Ambiente y Cultivos Il√≠citos",30/06/2000,30,6,2000,Multiparty signed/agreed,2,InterIntra,Pre,Prin,"AUSTRIA, BELGIUM, BRAZIL, CANADA, COSTA RICA, DENMARK, FINLAND, FRANCE, GERMANY, ITALY, JAPAN, MEXICO, NETHERLANDS, NORWAY, PORTUGAL, SPAIN, SWEDEN, SWITZERLAND, UNITED KINGDOM, VATICAN CITY, VENEZUELA, THE SPECIAL ADVISER OF THE SECRETARY-GENERAL OF THE UNITED NATIONS FOR COLOMBIA AND THE EUROPEAN COMMISSION.",NA,NA,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,30/06/2000,2000,1,1,2,0,0,0,1,0,1990,2010,1999,1998,1995,2001,2002,2005,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2000,0,0,0,0,0,0,0,0,0,0,1,0,0
+941,1140,Colombia,Government,Americas,"Creaci√≥n de la Comisi√≥n Facilitadora, Grupo de Pa√≠ses Amigos y Organismos Internacionales, Comunicado No. 27, Mesa Nacional de Di√°logos y Negociaci√≥n",09/03/2001,9,3,2001,Multiparty signed/agreed,2,Intra,Pre,Proc,"For the national government:
+LUIS FERNANDO CRIALES
+JUAN GABRIEL URIBE
+JOS√â GONZALO FORERO
+MONSIGNOR ALBERTO GIRALDO
+RAM√ìN DE LA TORRE
+LUIS GUILLERMO GIRALDO
+
+For FARC‚ÄìEP:
+JOAQU√çN G√ìMEZ
+SIM√ìN TRINIDAD
+ANDR√âS PAR√çS
+CARLOS ANTONIO LOZADA",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,09/03/2001,2001,0,0,0,0,0,0,0,0,1991,2011,2000,1999,1996,2002,2003,2006,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2001,0,0,0,0,0,0,0,0,0,0,0,0,0
+942,1141,Colombia,Government,Americas,"Acuerdo sobre el Reglamento de la Comisi√≥n Facilitadora Internacional, Comunicado No. 28, Mesa Nacional de Di√°logos y Negociaci√≥n",05/04/2001,5,4,2001,Multiparty signed/agreed,2,Intra,Pre,Proc,"For the national government:
+LUIS FERNANDO CRIALES
+JUAN GABRIEL URIBE
+JOS√â GONZALO FORERO
+MONSIGNOR ALBERTO GIRALDO
+RAM√ìN DE LA TORRE
+LUlS GUILLERMO GIRALDO
+
+For FARC-EP:
+JOAQU√çN G√ìMEZ
+SIM√ìN TRINIDAD
+ANDR√âS PAR√çS
+CARLOS ANTONIO LOZADA",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,05/04/2001,2001,0,0,1,0,0,0,0,0,1991,2011,2000,1999,1996,2002,2003,2006,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2001,0,0,0,0,0,0,0,0,0,0,1,0,0
+943,1142,Colombia,Government,Americas,"Declaraci√≥n de los Pa√≠ses y Organismos Internacionales, Encuentro con la Mesa Nacional de Di√°logos y Negociaci√≥n: Apoyo a la Salida Pol√≠tica Negociada.",11/05/2001,11,5,2001,Multiparty signed/agreed,2,InterIntra,Pre,Proc,"AUSTRIA, BELGIUM, BRAZIL, CANADA, COSTA RICA, CHILE, CUBA, DENMARK, ECUADOR, FINLAND, FRANCE, GERMANY, ITALY, JAPAN, MEXICO, NETHERLANDS, NORWAY, PANAMA, PERU, PORTUGAL, SPAIN, SWEDEN, SWITZERLAND, UNITED KINGDOM, VENEZUELA AND THE VATICAN STATE, TOGETHER WITH THE SPECIAL REPRESENTATIVE OF THE SECRETARY-GENERAL OF THE UNITED NATIONS AND THE EUROPEAN COMMISSION.",/,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,11/05/2001,2001,0,0,1,0,0,0,0,1,1991,2011,2000,1999,1996,2002,2003,2006,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2001,0,0,0,0,0,0,0,0,0,0,1,0,0
+944,1144,Colombia,Government,Americas,"Acuerdo sobre Metodolog√≠a de Trabajo, Gobierno Nacional y FARC-EP",23/01/2002,23,1,2002,Multiparty signed/agreed,2,Intra,Pre,Proc,"For the national Government
+CAMILO G√ìMEZ
+JUaN GABRIEL URIBE
+REINALDO BOTERO
+RICARDO CORREA
+MANUEL SALAZAR
+
+For FARC‚ÄìEP
+RA√öL REYES
+JOAQU√çN G√ìMEZ
+ANDR√âS PAR√çS
+SIM√ìN TRINIDAD
+",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,23/01/2002,2002,0,0,0,0,0,0,0,0,1992,2012,2001,2000,1997,2003,2004,2007,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2002,0,0,0,0,0,0,0,0,0,0,0,0,0
+945,1145,Colombia,Government,Americas,"Acta de Acuerdo: Reuni√≥n Preparatoria Para la Convenci√≥n Nacional, Gobierno Nacional-ELN",08/10/1998,8,10,1998,Multiparty signed/agreed,6,Intra,Pre,PreMix,"For the national government:
+‚Ä¢ GONZALO DE FRANCISCO 
+
+For ELN:
+‚Ä¢    FRANCISCO GAL√ÅN
+‚Ä¢    FELIPE TORRES
+","Witnesses:
+‚Ä¢    FATHER JORGE MART√çNEZ
+‚Ä¢    ANTONIO PIC√ìN
+‚Ä¢    MARIO G√ìMEZ J.
+‚Ä¢    JUAN DIEGO GRANADOS S.
+‚Ä¢    PIERRE GASSMANN
+‚Ä¢    JAIME JARAMILLO PANESSO
+‚Ä¢    JORGE IGNACIO CASTA√ëO
+",NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,3,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,1,0,0,0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,Colombia III - Arango,108,92,289,NA,NA,NA,08/10/1998,1998,0,0,0,0,0,0,0,4,1988,2008,1997,1996,1993,1999,2000,2003,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1998,0,0,0,0,0,0,0,0,0,0,0,0,0
+946,1146,Colombia,Government,Americas,"Acuerdo sobre Reglamento para la Zona de Encuentro, Gobierno Nacional-ELN",14/12/2000,14,12,2000,Multiparty signed/agreed,7,Intra,Pre,Proc,Gobierno Nacional-ELN,NA,NA,2,0,0,1,0,0,0,0,0,0,2,0,0,1,0,0,0,0,0,0,0,0,0,0,0,2,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,3,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0,1,0,1,1,0,0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,1,0,1,0,0,0,2,0,0,0,0,0,1,0,2,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,14/12/2000,2000,6,7,12,2,2,1,8,5,1990,2010,1999,1998,1995,2001,2002,2005,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2000,0,0,0,0,0,0,0,0,0,0,1,1,0
+947,1148,Colombia,Government,Americas,Acta de la Reuni√≥n entre la Comisi√≥n Humanitaria del Gobierno y la Vocer√≠a del ELN: Gestiones Para Liberar a Todos los Secuestrados,10/06/1999,10,6,1999,Multiparty signed/agreed,2,Intra,Pre,Conf,"Gobierno Nacional, ELN",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,10/06/1999,1999,0,0,0,0,0,0,0,1,1989,2009,1998,1997,1994,2000,2001,2004,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1999,0,0,0,0,0,0,0,0,0,0,0,0,0
+948,1149,Colombia,Government,Americas,Acuerdo entre el Gobierno Nacional y el ELN: Compromiso y T√©rminos para que esta Guerrilla Libere a Civiles Retenidos,30/10/2000,30,10,2000,Multiparty signed/agreed,2,Intra,Pre,Conf,"Gobierno Nacional, ELN",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,Colombia III - Arango,108,92,289,NA,NA,NA,30/10/2000,2000,0,0,1,0,0,0,0,1,1990,2010,1999,1998,1995,2001,2002,2005,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2000,0,0,0,0,0,0,0,0,0,0,0,0,0
+949,1150,Colombia,Government,Americas,Acta de la Reuni√≥n Exploratoria Realizada entre el Gobierno Nacional y el ELN,26/07/2001,26,7,2001,Multiparty signed/agreed,2,Intra,Pre,PreMix,"Meeting attended by: Participants: Jorge Mario Eastman, Julio Londo√±o Paredes, Gustavo Villegas, √ìscar Santos, Milton Hern√°ndez, Arne Aasheim, Jaime Bernal Cu√©llar.",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,Colombia III - Arango,108,92,289,NA,NA,NA,26/07/2001,2001,0,0,0,0,0,0,0,2,1991,2011,2000,1999,1996,2002,2003,2006,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2001,0,0,0,0,0,0,0,0,0,0,0,0,0
+950,1151,Colombia,Government,Americas,"Declaraci√≥n de la Habana, Gobierno Nacional-ELN",15/12/2001,15,12,2001,Multiparty signed/agreed,3,Intra,Pre,PreMix,"For the national government:
+CAMILO G√ìMEZ
+RAMIRO VARGAS
+JULIO LONDO√ëO PAREDES
+
+For ELN:
+MILTON HERN√ÅNDEZ
+√ìSCAR SANTOS
+RAMIRO VARGAS",NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Colombia III - Arango,108,92,289,NA,NA,NA,15/12/2001,2001,0,0,1,1,0,0,3,2,1991,2011,2000,1999,1996,2002,2003,2006,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2001,0,0,0,0,0,0,0,0,0,0,1,0,0
+1093,1341,Colombia,Government,Americas,"Acuerdo Gobierno nacional-CRS, Flor del Monte",18/12/1993,18,12,1993,Multiparty signed/agreed,3,Intra,Pre,PreMix,"Por el Gobierno nacional FABI0 VILLEGAS RAMIREZ Ministro de Gobierno CARLOS EDUARDO JARAMILLO
+
+Por la Corriente de Renovacion Socialista GABRIEL BORIA JACINTO RUJZ","Consejero para la Paz Testigo Tutor MONSE√ëOR NEL BELTRAN Obispo de Sincelejo
+
+OBSERVADOR INTERNACIONAL JEAN DROSS Embajador Pa√≠ses Bajos ante el Gobierno de Colombia",NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,2,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,Colombia I - Gaviria,106,92,289,NA,NA,NA,18/12/1993,1993,0,0,1,0,0,0,0,5,1983,2003,1992,1991,1988,1994,1995,1998,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,1993,0,0,0,0,0,0,0,0,0,0,0,0,0
+1116,1368,Colombia,Government,Americas,"Joint Communiqu√© #62, Havana",17/10/2015,17,10,2015,Multiparty signed/agreed,4,Intra,SubPar,Iss,Colombian National Government; FARC ‚Äì EP;,NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,2,3,2,0,1,0,0,0,0,0,0,1,Colombia V - Santos,110,92,289,NA,NA,NA,17/10/2015,2015,0,0,0,0,0,0,0,0,2005,2025,2014,2013,2010,2016,2017,2020,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2015,0,0,0,0,0,0,0,0,0,1,0,0,0
+1117,1369,Colombia,Government,Americas,Joint Communiqu√© # 60 regarding the Agreement of the Creation of a Special Jurisdiction for Peace,23/09/2015,23,9,2015,Multiparty signed/agreed,2,Intra,SubPar,Iss,Government of the Republic of Colombia; the FARC-EP,NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,2,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,2,1,0,0,1,1,0,2,0,0,3,0,2,0,1,0,0,0,0,0,0,1,Colombia V - Santos,110,92,289,NA,NA,NA,23/09/2015,2015,0,1,4,1,0,0,1,1,2005,2025,2014,2013,2010,2016,2017,2020,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2015,0,0,1,0,0,0,0,0,0,1,0,0,0
+1122,1391,Colombia,Government,Americas,"Joint Communiqu√©, Havana, July 17, 2014",17/07/2014,17,7,2014,Multiparty signed/agreed,2,Intra,Pre,Proc,The agreement is a joint communication of the National Government and the FARC-EP,NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,2,0,0,0,0,1,0,0,0,1,0,1,Colombia V - Santos,110,92,289,NA,NA,NA,17/07/2014,2014,0,0,1,0,0,0,1,0,2004,2024,2013,2012,2009,2015,2016,2019,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2014,0,0,0,0,0,0,0,0,0,1,0,0,0
+1123,1392,Colombia,Government,Americas,"Joint Communiqu√©, Havana, August 5, 2014",05/08/2014,5,8,2014,Multiparty signed/agreed,5,Intra,SubPar,MultIss,The National Government; the FARC ‚Äì EP,NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,1,0,3,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,2,0,1,0,1,0,0,0,0,0,0,1,Colombia V - Santos,110,92,289,NA,NA,NA,05/08/2014,2014,6,7,8,0,0,0,1,2,2004,2024,2013,2012,2009,2015,2016,2019,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2014,0,0,0,0,0,0,0,0,0,1,0,0,0
+1124,1394,Colombia,Government,Americas,"Joint Communiqu√©, Havana, December 3, 2014",03/12/2014,3,12,2014,Multiparty signed/agreed,1,Intra,Pre,Proc,The National Government; the FARC-EP,NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,1,Colombia V - Santos,110,92,289,NA,NA,NA,03/12/2014,2014,0,1,1,0,0,0,0,0,2004,2024,2013,2012,2009,2015,2016,2019,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2014,0,0,0,0,0,0,0,0,0,0,0,0,0
+1125,1395,Colombia,Government,Americas,"Joint Communiqu√© #52, Havana",07/03/2015,7,3,2015,Multiparty signed/agreed,3,Intra,SubPar,Iss,The Government; the FARC ‚Äì EP,NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,Colombia V - Santos,110,92,289,NA,NA,NA,07/03/2015,2015,0,1,1,0,0,0,0,0,2005,2025,2014,2013,2010,2016,2017,2020,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2015,0,0,0,1,0,0,0,0,0,0,0,0,0
+1126,1396,Colombia,Government,Americas,"Joint Communiqu√© #53, Havana",27/03/2015,27,3,2015,Multiparty signed/agreed,1,Intra,Imp,ImpMod,The National Government; the FACR ‚Äì EP,NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,Colombia V - Santos,110,92,289,NA,NA,NA,27/03/2015,2015,0,1,1,0,0,0,0,1,2005,2025,2014,2013,2010,2016,2017,2020,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2015,0,0,0,0,0,0,0,0,0,0,0,0,0
+1127,1397,Colombia,Government,Americas,"Joint Communiqu√© #55, Havana",12/07/2015,12,7,2015,Multiparty signed/agreed,2,Intra,Pre,PreMix,The National Government; the FARC - EP,NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,Colombia V - Santos,110,92,289,NA,NA,NA,12/07/2015,2015,0,1,1,0,0,0,0,3,2005,2025,2014,2013,2010,2016,2017,2020,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2015,0,0,0,0,0,0,0,0,0,0,0,0,0
+1128,1398,Colombia,Government,Americas,Joint Report of the Dialogue Table between the Government and the Revolutionary Armed Forces of Colombia - People's Army,04/06/2015,4,6,2015,Multiparty signed/agreed,8,Intra,SubPar,Iss,"The Government of Colombia; the Revolutionary Armed Forces of Colombia ‚Äì People‚Äôs
+Army (FARC ‚Äì EP)",NA,NA,1,1,0,0,0,1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,3,1,0,1,0,3,0,0,1,0,2,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,0,3,0,0,3,0,0,0,0,1,0,0,0,0,1,1,Colombia V - Santos,110,92,289,NA,NA,NA,04/06/2015,2015,12,13,14,0,0,0,3,1,2005,2025,2014,2013,2010,2016,2017,2020,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2015,0,0,0,0,0,0,0,0,0,1,0,0,0
+1233,1543,Colombia,Government,Americas,"Acuerdo sobre Reglamento para la Verificacion de la Zona de Encuentro, Gobierno Nacional-ELN",14/12/2000,14,12,2000,Multiparty signed/agreed,3,Intra,Imp,ImpMod,The National Government; the National Liberation Army (ELN),NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,Colombia III - Arango,108,92,289,NA,NA,NA,14/12/2000,2000,0,0,0,0,0,0,0,0,1990,2010,1999,1998,1995,2001,2002,2005,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2000,0,0,0,0,0,0,0,0,0,0,0,0,0
+1237,1547,Colombia,Government,Americas,"Agreement on the Victims of Conflict, 'Comprehensive System for Truth, Justice, Reparation and Non-repitition, including the Special Jurisdiction for Peace; and Commitment on Human Rights",15/12/2015,15,12,2015,Multiparty signed/agreed,63,Intra,SubPar,Iss,"The national government, the FARC-EP",NA,NA,3,1,0,1,0,3,1,0,1,0,3,1,0,1,0,0,0,0,0,0,3,1,0,1,0,0,0,0,0,0,3,1,0,1,0,3,0,0,1,0,3,0,1,0,0,0,0,0,0,1,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,0,3,0,0,1,0,1,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,0,3,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,1,1,0,1,1,1,0,1,0,0,0,0,0,2,0,1,0,1,0,0,0,2,0,0,3,1,0,0,3,1,1,3,0,0,3,3,3,0,1,3,0,0,0,0,0,1,Colombia V - Santos,110,92,289,NA,NA,NA,15/12/2015,2015,21,23,28,1,3,0,10,3,2005,2025,2014,2013,2010,2016,2017,2020,0,Colombia,0,100,170,COL,COL,NA,NA,NA,NA,NA,856,Eighth Colombia,2015,0,0,1,0,0,0,0,0,0,1,1,0,0
