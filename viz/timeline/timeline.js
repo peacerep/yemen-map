@@ -32,8 +32,12 @@ d3.csv("data_countries.csv")
           svgtest.remove();
         }
 
-        var width = window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth; //950;
-        var height = window.innerHeight||document.documentElement.clientHeight||document.body.clientWidth; //500;
+        //var width = window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth; //950;
+        //var height = window.innerHeight||document.documentElement.clientHeight||document.body.clientWidth; //500;
+
+        var margin = {top: 20, right: 10, bottom: 20, left: 10}; //read clockwise from top
+        var width = 960 - margin.left - margin.right,
+            height = 500 - margin.top - margin.bottom; //defines w & h as inner dimensions of chart area
 
         var max = d3.max(data,function(d){ return d.AgtId; });
         var minDate = d3.min(data,function(d){ return d.Dat; });
@@ -52,9 +56,11 @@ d3.csv("data_countries.csv")
         var yAxis = d3.axisLeft(y);
         var xAxis = d3.axisBottom(x);
 
-        var svg = d3.select("body").append("svg").attr("height","100%").attr("width","100%");
+        var svg = d3.select("body").append("svg")
+            .attr("height", height + margin.top + margin.bottom)//"100%")
+            .attr("width", width + margin.left + margin.right)//"100%");
 
-        var margin = {left:50,right:50,top:40,bottom:0};
+        //var margin = {left:50,right:50,top:40,bottom:0};
 
         var chartGroup = svg.append("g")
                     .attr("transform","translate("+margin.left+","+margin.top+")");
