@@ -10,13 +10,16 @@
 //     *do something with the data*
 // }
 
-d3.select(window).on("resize");
+
 callFunction();
+
+d3.select(window).on("resize", callFunction);
+
 function callFunction() {
 
-  function dragged() {
-    d3.select(this).attr("transform","translate("+d3.event.x+","+d3.event.y+")"); // drags entire chart
-  }
+function dragged() {
+  d3.select(this).attr("transform","translate("+d3.event.x+","+d3.event.y+")"); // drags entire chart
+}
 
 var parseDate = d3.timeParse("%d/%m/%Y");
 
@@ -35,9 +38,11 @@ d3.csv("data_countries.csv")
         //var width = window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth; //950;
         //var height = window.innerHeight||document.documentElement.clientHeight||document.body.clientWidth; //500;
 
-        var margin = {top: 20, right: 10, bottom: 20, left: 10}; //read clockwise from top
-        var width = 960 - margin.left - margin.right,
-            height = 500 - margin.top - margin.bottom; //defines w & h as inner dimensions of chart area
+        var margin = {top: 20, right: 10, bottom: 20, left: 10} //read clockwise from top
+          , width = parseInt(d3.select("body").style("width"), 10) //960 - margin.left - margin.right,
+          , width = width - margin.left - margin.right
+          , height = 500 - margin.top - margin.bottom; //defines w & h as inner dimensions of chart area
+          //, percent = d3.format('%');
 
         var max = d3.max(data,function(d){ return d.AgtId; });
         var minDate = d3.min(data,function(d){ return d.Dat; });
@@ -78,10 +83,11 @@ d3.csv("data_countries.csv")
                    .attr("stroke","black")
                    .attr("cx",function(d) { return x(d.Dat); })
                    .attr("cy",height/2)
-                   .attr("r","5")
+                   .attr("r",width/26)
                    .on("mousemove",function(d){
                      this.style.fill = "steelblue"
                      tooltip.style("opacity","1")
+                       .style("background", "white")
                        .style("left",d3.event.pageX+"px")
                        .style("top",d3.event.pageY+"px");
                      //console.log(d3.event);
@@ -99,5 +105,4 @@ d3.csv("data_countries.csv")
                 .call(xAxis);
 
       });
-
 }
