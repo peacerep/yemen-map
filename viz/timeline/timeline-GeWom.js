@@ -1,5 +1,6 @@
 /*
 Timeline with years on x axis, day of year on y axis
+Agreements that do not address gender are colored GRAY
 */
 
 
@@ -108,7 +109,8 @@ d3.csv("PAX_with_additional_cleaning.csv")
                 .data(data)
                 .enter().append("rect")
                    .attr("class","agt")
-                   .attr("fill","black")
+                   // If an agreement addresses Gender, color it gray
+                   .attr("fill",function(d){ return d.GeWom == 1 ? "black" : "gray"; })  //"black")
                    .attr("stroke","white")
                    .attr("stroke-width","1px")
                    //.attr("d", function(d,i) { return agt(d.values); })
@@ -126,7 +128,7 @@ d3.csv("PAX_with_additional_cleaning.csv")
                      tooltip.html("<h5>Selected: "+d.Agt+"</h5> " +"<p><b>Date:</b> "+formatDate(d.Dat)+"<br/><b>Region:</b> "+d.Reg+"<br/><b>Country/Entity:</b> "+d.Con+"<br/><b>Status:</b> "+d.Status+"<br/><b>Type:</b> "+d.Agtp+"<br/><b>Stage:</b> "+d.Stage+"</p>");
                    })
                    .on("mouseout",function(d) {
-                     this.style.fill = "black"
+                     this.style.fill = (d.GeWom == 1 ? "black" : "gray")
                      tooltip.style("opacity","0")
                        .style("left",margin.left)  //("left",d3.event.pageX+"px")
                        .style("top",height+"px")
