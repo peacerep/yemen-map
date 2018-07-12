@@ -35,7 +35,7 @@ d3.csv("PAX_with_additional_cleaning.csv")
                               Agtp:d.Agtp,
                               Stage:d.Stage,
                               Agt:d.Agt,
-                              Gender: }; }) //price.trim().slice(1) - remove spaces, trim 1st character ($)
+                              GeWom: d.GeWom }; }) //price.trim().slice(1) - remove spaces, trim 1st character ($)
     .get(function(error,data){
 
         var tooltip = d3.select("body").append("div")
@@ -52,10 +52,17 @@ d3.csv("PAX_with_additional_cleaning.csv")
           , width = width - margin.left - margin.right
           , height = 600 - margin.top - margin.bottom; //defines w & h as inner dimensions of chart area
 
+        // Obtain the years (sorted chronologically) and number of agreements per year
         var yr_count_nest = d3.nest()
              .key(function(d) {return d.Year;}).sortKeys(d3.ascending)
              .rollup(function(leaves) {return leaves.length;})
              .entries(data);
+
+        // Group agts by whether or not they address gender
+        var geWom_nest = d3.nest()
+             .key(function(d) {return d.GeWom})
+             .entries(data);
+        console.log(geWom_nest);
 
         // Find the maximum number of agreements that occur in a single year
         var max = d3.max(yr_count_nest,function(d){ return d.value; });
@@ -80,12 +87,13 @@ d3.csv("PAX_with_additional_cleaning.csv")
                     .domain([0,365]) // 365 days in a year
                     .range([height,0]); // display space
         var x = d3.scaleTime()
-                    .domain([+minYear,(+maxYear+1)])  // data space
+                    .domain([parseYear(minYear),parseYear(+maxYear+1)])  // data space
                     .range([0,width]);  // display space
-        var yAxis = d3.axisLeft(y)
-             .ticks(12);  // LIST MONTHS
-        var xAxis = d3.axisBottom(x)
-             .tickValues(yearMap.keys());  // WHY AREN'T FULL 4 DIGIT YEARS APPEARING?
+        //var yAxis = d3.axisLeft(y)
+             //.ticks(12);  // LIST MONTHS
+        //var xAxis = d3.axisBottom(x);
+             //.tickValues(yearMap.keys())
+             //.tickFormat(d3.timeFormat("%Y"));  // WHY AREN'T FULL 4 DIGIT YEARS APPEARING?
 
         var svg = d3.select("body").select("#chart").append("svg")
             .attr("height", height + margin.top + margin.bottom)//"100%")
@@ -108,7 +116,7 @@ d3.csv("PAX_with_additional_cleaning.csv")
                    .attr("stroke","white")
                    .attr("stroke-width","1px")
                    //.attr("d", function(d,i) { return agt(d.values); })
-                   .attr("x",function(d){ return x(d.Year); })
+                   .attr("x",function(d){ return x(parseYear(d.Year)); })
                    .attr("y",function(d){ return y(d.Day); })
                    .attr("width",(width/(years.length))+"px")
                    .attr("height","5px") // TO DO: calculate height based on max # of agmts in single year
@@ -132,9 +140,9 @@ d3.csv("PAX_with_additional_cleaning.csv")
         chartGroup.append("g")
                 .attr("class","xaxis")
                 .attr("transform","translate(0,"+height+")")
-                .call(xAxis);
+                .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%Y")));
         chartGroup.append("g")
                 .attr("class", "yaxis")
-                .call(yAxis);
+                .call(d3.axisLeft(y));
       });
 }
