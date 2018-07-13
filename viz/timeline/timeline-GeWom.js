@@ -60,12 +60,6 @@ d3.csv("PAX_with_additional.csv")
              .rollup(function(leaves) {return leaves.length;})
              .entries(data);
 
-        // Group agts by whether or not they address gender
-        // var geWom_nest = d3.nest()
-        //      .key(function(d) {return d.GeWom})
-        //      .entries(data);
-        // console.log(geWom_nest);
-
         // Find the maximum number of agreements that occur in a single year
         var max = d3.max(yr_count_nest,function(d){ return d.value; });
 
@@ -133,6 +127,7 @@ d3.csv("PAX_with_additional.csv")
                        .style("top",height+"px")
                      this.style.fill = "black"
                    });
+
 
         // Draw axes
         chartGroup.append("g")

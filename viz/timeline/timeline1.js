@@ -40,6 +40,8 @@ d3.csv("PAX_with_additional.csv")
                               Agt:d.Agt }; })
       .get(function(error,data){
 
+        //d3.map(data,function(d,i,j){ console.log(d[j][i]); });
+
         var svg = d3.select("body").select("#chart").append("svg"),
           margin = {top: 20, right: 50, bottom: 20, left: 70}, //read clockwise from top
           width = +svg.attr("width") - margin.left - margin.right,
@@ -50,7 +52,8 @@ d3.csv("PAX_with_additional.csv")
             .key(function(d) {return (d.Year);}).sortKeys(d3.ascending)
             .key(function(d) {return formatMonth(d.Month);}).sortKeys(d3.ascending)
             .key(function(d) {return (d.Day);}).sortKeys(d3.ascending)
-            .entries(data);
+            //.entries(data);
+            .map(data);
         //console.log(time_nest);
         // var loc_nest = d3.nest()
         //     .key(function(d) {return d.Reg;})
@@ -62,6 +65,8 @@ d3.csv("PAX_with_additional.csv")
              .rollup(function(leaves) {return leaves.length;}) // leaf level replaced by value at parent level that indicates total # of leaves for that key
              .entries(data);
         //console.log(yr_count_nest);
+        var yearMap = d3.map(yr_count_nest,function(d){ return d.key; });
+        var years = yearMap.keys();
 
         // Find the maximum number of agreements that occur in a single year
         var maxAgts = d3.max(yr_count_nest,function(d){ return d.value; });
@@ -89,20 +94,33 @@ d3.csv("PAX_with_additional.csv")
                     .attr("transform","translate("+margin.left+","+margin.top+")");
 
 
-        chartGroup.append("g")
-          .selectAll("g")
+        chartGroup.selectAll("rect.agt")
           .data(data)
-          .enter().append("g")
-            .attr("transform",function(d){ return "translate(" + x(parseYear(d.Year)) + ",0)"; })
-          .selectAll("rect")
-             .data(function(d){ return time_nest.map(function(key, index){ return {key: key, yrIndex: index, value: d[key]}; }); })
-          .enter().append("rect")
-               .attr("x",function(d){ return x(d.key); })
-               .attr("y",function(d){ return y((height/2)+d.yrIndex); })
-               .attr("width","2px")
-               .attr("height",(height/2)/maxAgts) // TO DO: calculate height based on max # of agmts in single year
-               .attr("fill","black")
-               .attr("stroke","white");
+            .enter().append("rect")
+              .attr("class","agt")
+              .attr("fill","black")
+              .attr("stroke","white")
+              .attr("stroke-width","0.5px")
+              .attr("x",function(d){ return x(parseYear(d.Year)); })
+              .attr("y",function(d){ return y(parseDay(d.Day)); })
+              .attr("width",(width/(years.length))+"px")
+              .attr("height","2px") // TO DO: calculate height based on max # of agmts in single year
+              .on("mousemove",function(d){
+               //console.log(d.Agt);
+               this.style.fill = "steelblue"
+               tooltip.style("opacity","1")
+                 .style("left",margin.left)  //("left",d3.event.pageX+"px")
+                 .style("top",(margin.bottom)+140+"px")  //("top",d3.event.pageY+"px")
+                 .attr("class","tooltip")
+               // Display core agreement information (name, date, region, country/entity, status, type & stage)
+               tooltip.html("<h5>Selected: "+d.Agt+"</h5> " +"<p><b>Date:</b> "+formatDate(d.Dat)+"<br/><b>Region:</b> "+d.Reg+"<br/><b>Country/Entity:</b> "+d.Con+"<br/><b>Status:</b> "+d.Status+"<br/><b>Type:</b> "+d.Agtp+"<br/><b>Stage:</b> "+d.Stage+"</p>");
+              })
+              .on("mouseout",function(d) {
+               this.style.fill = "black"
+               tooltip.style("opacity","0")
+                 .style("left",margin.left)  //("left",d3.event.pageX+"px")
+                 .style("top",height+"px");
+              });
 
          chartGroup.append("g")
             .attr("class","x axis")

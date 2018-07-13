@@ -117,7 +117,7 @@ d3.csv("PAX_with_additional.csv")
                    .attr("width",(width/(years.length))+"px")
                    .attr("height","2px") // TO DO: calculate height based on max # of agmts in single year
                    .on("mousemove",function(d){
-                     console.log(d.Agt);
+                     //console.log(d.Agt);
                      this.style.fill = "steelblue"
                      tooltip.style("opacity","1")
                        .style("left",margin.left)  //("left",d3.event.pageX+"px")

@@ -32,17 +32,18 @@ function callFunction() {
   var formatYear = d3.timeFormat("%Y");
 
   d3.csv("PAX_with_additional.csv")
-      .row(function(d){ return {Year: d.Year,
-                                Day: +d.Day,
-                                Month: parseMonth(d.Month),
-                                Dat: parseDate(d.Dat),
-                                AgtId:Number(d.AgtId),
-                                Reg:d.Reg,
-                                Con:d.Con,
-                                Status:d.Status,
-                                Agtp:d.Agtp,
-                                Stage:d.Stage,
-                                Agt:d.Agt }; }) //price.trim().slice(1) - remove spaces, trim 1st character ($)
+      .row(function(d){ return {  Year: d.Year,
+                                  Day: +d.Day,
+                                  Month: parseMonth(d.Month),
+                                  Dat: parseDate(d.Dat),
+                                  AgtId:Number(d.AgtId),
+                                  Reg:d.Reg,
+                                  Con:d.Con,
+                                  Status:d.Status,
+                                  Agtp:d.Agtp,
+                                  Stage:d.Stage,
+                                  Agt:d.Agt,
+                                  GeWom: d.GeWom  }; })
       .get(function(error,data){
 
           var tooltip = d3.select("body").append("div")
@@ -74,6 +75,15 @@ function callFunction() {
               .key(function(d) {return d.Year;}).sortKeys(d3.ascending)
               .rollup(function(leaves) {return leaves.length;})
               .entries(data);  // access with indeces: yr_count_array[0] => object
+
+        // Determine agts that address women, girls and gender each year
+        var geWom_nest = d3.nest()
+            .key(function(d){ return d.Year; }).sortKeys(d3.ascending)
+            .key(function(d){ return d.GeWom; })
+            .entries(data);
+        d3.map(geWom_nest, function(d,i){ console.log(geWom_nest[i]); });
+
+//.attr("fill-opacity",function(d){ return d.GeWom == 1 ? "1" : "0.2"; })
 
         // console.log(years);
         // d3.map(years, function(d, i){ console.log(yr_count_object[years[i]]);});

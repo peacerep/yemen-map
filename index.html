@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <!-- for responsive web design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PA-X Timeline</title>
+
+    <link rel="stylesheet" type="text/css" href="viz/timeline/style.css">
+    <script type="text/javascript" src="viz/timeline/d3.v4.js"></script>
+  </head>
+  <body>
+    <div class="header">
+      <h1><a href="http://www.peaceagreements.org">Home</a></h1>
+      <h2>PA-X Timeline</h1>
+    </div>
+
+    <div class="top">
+      <div class="select">
+        <p>Select</p>
+
+        <!--<iframe src="select.html" id="select"></iframe>-->
+      </div>
+
+      <div id="chart" class="mini-timeline">
+          <!--reference to D3 script must be in body tags-->
+          <script type="text/javascript" src="timeline.js"></script>
+        <!--<iframe src="viz/timeline/index-t.html" id="mini-timeline"></iframe>-->
+      </div>
+    </div>
+
+    <div class="middle">
+      <div class="detail">
+        <p>Agreement Details</p>
+        <!--<iframe src="detail.html" id="detail"></iframe>-->
+      </div>
+
+      <div class="map">
+        <p>Map</p>
+        <!--<iframe src="index-m.html" id="map"></iframe>-->
+      </div>
+    </div>
+    <div class="vert-timelines">
+      <p>Vertical Timelines</p>
+      <!--<iframe src="index-t2.html" id="vert-timelines"></iframe>-->
+    </div>
+
+    <div class="footer">
+      <a href="http://www.politicalsettlements.org">Political Settlements Research Programme</a>&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="http://www.designinformatics.org">Centre for Design Informatics</a>
+    </div>
+  </body>
+
+</html>

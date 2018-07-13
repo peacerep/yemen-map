@@ -85,6 +85,55 @@ p {
   font-size: 15px;
 }
 
+.top {
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: flex-start;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.select {
+  flex: 15%;
+}
+.mini-timeline#chart {
+  flex: 85%
+}
+
+.middle {
+  display: flex;
+  flex-wrap: nowrap;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.detail {
+  flex: 15%;
+}
+.map {
+  flex: 85%;
+}
+
+.vert-timelines {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 1px;
+}
+.footer a {
+  font-weight: 50;
+  font-size: 10px;
+}
+
+/*
+CHART
+*/
+
 .col-10 line {
   stroke: red;
 }
