@@ -10,9 +10,9 @@ d3.select(window).on("resize", callFunction);
 
 function callFunction() {
 
-function dragged() {
-  d3.select(this).attr("transform","translate("+d3.event.x+","+d3.event.y+")"); // drags entire chart
-}
+// function dragged() {
+//   d3.select(this).attr("transform","translate("+d3.event.x+","+d3.event.y+")"); // drags entire chart
+// }
 
 var parseDate = d3.timeParse("%d/%m/%Y");
 //var parseMonth = d3.timeParse("%m");
@@ -24,7 +24,7 @@ var formatMonth = d3.timeFormat("%M");
 var formatDay = d3.timeFormat("%j");  // day of the year as decimal number
 var formatYear = d3.timeFormat("%Y");
 
-d3.csv("PAX_with_additional_cleaning.csv")
+d3.csv("PAX_with_additional.csv")
     .row(function(d){ return {Year: d.Year,
                               Day: formatDay(parseDate(d.Dat)),
                               Month: d.Month,
@@ -49,7 +49,7 @@ d3.csv("PAX_with_additional_cleaning.csv")
           svgtest.remove();
         }
 
-        var margin = {top: 20, right: 50, bottom: 20, left: 50} //read clockwise from top
+        var margin = {top: 20, right: 50, bottom: 20, left: 70} //read clockwise from top
           , width = parseInt(d3.select("body").style("width"), 10) //960 - margin.left - margin.right,
           , width = width - margin.left - margin.right
           , height = 600 - margin.top - margin.bottom; //defines w & h as inner dimensions of chart area
@@ -86,7 +86,7 @@ d3.csv("PAX_with_additional_cleaning.csv")
         // console.log(yr_count_nest.keys().sort());
 
         var y = d3.scaleLinear()
-                    .domain([0,365]) // 365 days in a year
+                    .domain([parseDay(0),parseDay(365)]) // 365 days in a year
                     .range([height,0]); // display space
         var x = d3.scaleTime()
                     .domain([parseYear(minYear),parseYear(+maxYear+1)])  // data space
@@ -99,10 +99,10 @@ d3.csv("PAX_with_additional_cleaning.csv")
         var chartGroup = svg.append("g")
                     .attr("transform","translate("+margin.left+","+margin.top+")");
 
-        svg.call(d3.zoom()
-          .on("zoom",function(){  //on: tell event, then tell function
-            chartGroup.attr("transform",d3.event.transform);
-        }));
+        // svg.call(d3.zoom()
+        //   .on("zoom",function(){  //on: tell event, then tell function
+        //     chartGroup.attr("transform",d3.event.transform);
+        // }));
 
         // Make one rectangle per agreement grouped by Year
         chartGroup.selectAll("rect.agt")
@@ -110,14 +110,14 @@ d3.csv("PAX_with_additional_cleaning.csv")
                 .enter().append("rect")
                    .attr("class","agt")
                    // If an agreement addresses Gender, color it gray
-                   .attr("fill",function(d){ return d.GeWom == 1 ? "black" : "gray"; })  //"black")
+                   .attr("fill","black")
                    .attr("stroke","white")
                    .attr("stroke-width","1px")
-                   //.attr("d", function(d,i) { return agt(d.values); })
+                   .attr("fill-opacity",function(d){ return d.GeWom == 1 ? "1" : "0.2"; })
                    .attr("x",function(d){ return x(parseYear(d.Year)); })
-                   .attr("y",function(d){ return y(d.Day); })
+                   .attr("y",function(d){ return y(parseDay(d.Day)); })
                    .attr("width",(width/(years.length))+"px")
-                   .attr("height","5px") // TO DO: calculate height based on max # of agmts in single year
+                   .attr("height","3px") // TO DO: calculate height based on max # of agmts in single year
                    .on("mousemove",function(d){
                      this.style.fill = "steelblue"
                      tooltip.style("opacity","1")
@@ -128,10 +128,10 @@ d3.csv("PAX_with_additional_cleaning.csv")
                      tooltip.html("<h5>Selected: "+d.Agt+"</h5> " +"<p><b>Date:</b> "+formatDate(d.Dat)+"<br/><b>Region:</b> "+d.Reg+"<br/><b>Country/Entity:</b> "+d.Con+"<br/><b>Status:</b> "+d.Status+"<br/><b>Type:</b> "+d.Agtp+"<br/><b>Stage:</b> "+d.Stage+"</p>");
                    })
                    .on("mouseout",function(d) {
-                     this.style.fill = (d.GeWom == 1 ? "black" : "gray")
                      tooltip.style("opacity","0")
                        .style("left",margin.left)  //("left",d3.event.pageX+"px")
                        .style("top",height+"px")
+                     this.style.fill = "black"
                    });
 
         // Draw axes
@@ -141,6 +141,7 @@ d3.csv("PAX_with_additional_cleaning.csv")
                 .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%Y")));
         chartGroup.append("g")
                 .attr("class", "yaxis")
-                .call(d3.axisLeft(y));
+                .call(d3.axisLeft(y).ticks(6).tickFormat(d3.timeFormat("%B")));
+                // WHY SO MANY REPEAT MONTHS WHEN SHOW 12?
       });
 }

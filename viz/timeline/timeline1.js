@@ -10,31 +10,25 @@ d3.select(window).on("resize", callFunction);
 function callFunction() {
 
 var parseDate = d3.timeParse("%d/%m/%Y");
-//var parseMonth = d3.timeParse("%m");
-//var parseDay = d3.timeParse(%d");
-//var parseYear = d3.timeParse("%Y");
+var parseMonth = d3.timeParse("%m");
+var parseDay = d3.timeParse("%d");
+var parseYear = d3.timeParse("%Y");
 
 var formatDate = d3.timeFormat("%d %B %Y");
 var formatMonth = d3.timeFormat("%m");
 var formatDay = d3.timeFormat("%d");  // %j day of the year as decimal number
 var formatYear = d3.timeFormat("%Y");
 
-var svg = d3.select("body").select("#chart").append("svg"),
-  margin = {top: 20, right: 50, bottom: 20, left: 10}, //read clockwise from top
-  width = +svg.attr("width") - margin.left - margin.right,
-  height = +svg.attr("height") - margin.top - margin.bottom, //defines w & h as inner dimensions of chart area
-  g = svg.append("g").attr("transform","translate(" + margin.left + "," + margin.top + ")");
+// var y = d3.scaleLinear()
+//             //.domain([0,(max*30)]) // data space - assume rects height of 30px...?
+//             .rangeRound([height,0]); // display space
+// var x = d3.scaleTime()
+//             //.domain([minDay,maxDay])  // data space
+//             .range([0,width]);  // display space
 
-var y = d3.scaleLinear()
-            //.domain([0,(max*30)]) // data space - assume rects height of 30px...?
-            .rangeRound([height,0]); // display space
-var x = d3.scaleTime()
-            //.domain([minDay,maxDay])  // data space
-            .range([0,width]);  // display space
-
-d3.csv("PAX_with_additional_cleaning.csv")
+d3.csv("PAX_with_additional.csv")
     .row(function(d){ return {Year: d.Year,
-                              Day: d.Day,
+                              Day: formatDay(parseDate(d.Dat)),
                               Month: d.Month,
                               Dat: parseDate(d.Dat),
                               AgtId:Number(d.AgtId),
@@ -46,11 +40,16 @@ d3.csv("PAX_with_additional_cleaning.csv")
                               Agt:d.Agt }; })
       .get(function(error,data){
 
+        var svg = d3.select("body").select("#chart").append("svg"),
+          margin = {top: 20, right: 50, bottom: 20, left: 70}, //read clockwise from top
+          width = +svg.attr("width") - margin.left - margin.right,
+          height = +svg.attr("height") - margin.top - margin.bottom; //defines w & h as inner dimensions of chart area
+
         // Create hierarchical arrays of agreements, grouping by time, location, categories, etc.
         var time_nest = d3.nest()
             .key(function(d) {return (d.Year);}).sortKeys(d3.ascending)
-            //.key(function(d) {return formatMonth(d.Month);}).sortKeys(d3.ascending)
-            //.key(function(d) {return (d.Day);}).sortKeys(d3.ascending)
+            .key(function(d) {return formatMonth(d.Month);}).sortKeys(d3.ascending)
+            .key(function(d) {return (d.Day);}).sortKeys(d3.ascending)
             .entries(data);
         //console.log(time_nest);
         // var loc_nest = d3.nest()
@@ -75,23 +74,26 @@ d3.csv("PAX_with_additional_cleaning.csv")
         var minDay = d3.min(data,function(d){ return (d.Dat); });
         var maxDay = d3.max(data,function(d){ return (d.Dat); });
 
-        x.domain(data.map(function(d){ return d.Year; }));
-        y.domain([0, maxAgts]);
+        var y = d3.scaleLinear()
+                    .domain([0,maxAgts]) // range of possible total agreements in a year
+                    .range([height,0]); // display space
+        var x = d3.scaleTime()
+                    .domain([parseYear(minYear),parseYear(+maxYear+1)])  // data space
+                    .range([0,width]);  // display space
 
-        g.append("g")
-           .attr("class","x axis")
-           .attr("transform","translate(0,"+height/2+")")
-           .call(d3.axisBottom(x));
+        var svg = d3.select("body").select("#chart").append("svg")
+            .attr("height", height + margin.top + margin.bottom)//"100%")
+            .attr("width", width + margin.left + margin.right);//"100%");
 
-        g.append("g")
-           .attr("class","y axis")
-           .call(d3.axisLeft(y));
+        var chartGroup = svg.append("g")
+                    .attr("transform","translate("+margin.left+","+margin.top+")");
 
-        g.append("g")
+
+        chartGroup.append("g")
           .selectAll("g")
           .data(data)
           .enter().append("g")
-            .attr("transform",function(d){ return "translate(" + x(d.Year) + ",0)"; })
+            .attr("transform",function(d){ return "translate(" + x(parseYear(d.Year)) + ",0)"; })
           .selectAll("rect")
              .data(function(d){ return time_nest.map(function(key, index){ return {key: key, yrIndex: index, value: d[key]}; }); })
           .enter().append("rect")
@@ -101,6 +103,15 @@ d3.csv("PAX_with_additional_cleaning.csv")
                .attr("height",(height/2)/maxAgts) // TO DO: calculate height based on max # of agmts in single year
                .attr("fill","black")
                .attr("stroke","white");
+
+         chartGroup.append("g")
+            .attr("class","x axis")
+            .attr("transform","translate(0,"+height/2+")")
+            .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%Y")));
+
+         chartGroup.append("g")
+            .attr("class","y axis")
+            .call(d3.axisLeft(y));
 
       // // Enable zooming in/out of chart in display space
       // svg.call(d3.zoom()
