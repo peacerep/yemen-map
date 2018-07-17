@@ -29,6 +29,46 @@ html {
   font-family: "Roboto", sans-serif;
 }
 
+/*
+Dropdown
+*/
+.dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 4px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  width: 400%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1; /*places dropdown in front of other elements*/
+}
+.dropdown-content a {
+  color:black;
+  padding: 3px 4px;
+  font-size: 10px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover{
+  background-color: #ddd;
+}
+.show {
+  display: block;
+}
+
 a {
   color: steelblue;
   text-decoration: none;
@@ -170,4 +210,5 @@ g.hidden path {
   padding-left: 20px;
   font-family: "Roboto", sans-serif;
   font-weight: 50;
+  z-index: -1;
 }
