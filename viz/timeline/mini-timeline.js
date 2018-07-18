@@ -1,5 +1,5 @@
 /*
-Timeline with agreements displayed continuously on y axis
+Mini timeline iFrame with agreements displayed continuously on y axis
 */
 
 // GENERAL DATA IMPORT PATTERN FOR D3 ("Convenience Methods")
@@ -32,17 +32,28 @@ function callFunction() {
   var formatYear = d3.timeFormat("%Y");
 
   d3.csv("PAX_with_additional.csv")
-      .row(function(d){ return {Year: parseYear(d.Year),
-                                Day: +d.Day,
-                                Month: parseMonth(d.Month),
-                                Dat: parseDate(d.Dat),
+      .row(function(d){ return {Year:+d.Year,
+                                Day:+d.Day,
+                                Month:+d.Month,
+                                Dat:parseDate(d.Dat),
                                 AgtId:Number(d.AgtId),
                                 Reg:d.Reg,
                                 Con:d.Con,
                                 Status:d.Status,
                                 Agtp:d.Agtp,
-                                Stage:d.Stage,
-                                Agt:d.Agt }; }) //price.trim().slice(1) - remove spaces, trim 1st character ($)
+                                Stage:d.Stage, // "Pre", "SubPar", "SubComp", "Imp", "Cea", "Other"
+                                StageSub:d.StageSub, // "FrCons"
+                                Agt:d.Agt,
+                                GeWom:d.GeWom, // 1 if topic of Women, girls and gender addressed; 0 if not
+                                Polps:d.Polps, // 1-3 indicating increasing level of detail given about Political Power sharing; 0 if none given
+                                Terps:d.Terps, // 1-3 indicating increasing level of detail given about Territorial Power sharing; 0 if none given
+                                Eps:d.Eps, // 1-3 indicating increasing level of detail given about Economic Power sharing; 0 if none given
+                                Mps:d.Mps, // 1-3 indicating increasing level of detail given about Political Power sharing; 0 if none given
+                                Pol:d.Pol, // 1-3 indicating increasing level of detail given about political institutions; 0 if none given
+                                HrGen:d.HrGen, // 1 if topic of human rights/rule of law addressed; 0 if not
+                                HrFra:d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
+                                TjMech:d.TjMech // 1-3 indicating increasing level of detail given about a body to deal with the past; 0 if none given
+                              }; })
       .get(function(error,data){
 
           var tooltip = d3.select("body").append("div")
@@ -54,7 +65,7 @@ function callFunction() {
             svgtest.remove();
           }
 
-          var margin = {top: 20, right: 50, bottom: 20, left: 10} //read clockwise from top
+          var margin = {top: 20, right: 10, bottom: 20, left: 10} //read clockwise from top
             , width = parseInt(d3.select("body").style("width"), 10)
             , width = width - margin.left - margin.right
             , height = 100 - margin.top - margin.bottom; //defines w & h as inner dimensions of chart area

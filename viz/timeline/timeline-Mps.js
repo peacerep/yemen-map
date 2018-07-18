@@ -50,7 +50,7 @@ function callFunction() {
                                 Pol:d.Pol, // 1-3 indicating increasing level of detail given about political institutions; 0 if none given
                                 HrGen:d.HrGen, // 1 if topic of human rights/rule of law addressed; 0 if not
                                 HrFra:d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
-                                TjMech:d.TjMech, // 1-3 indicating increasing level of detail given about a body to deal with the past; 0 if none given
+                                TjMech:d.TjMech // 1-3 indicating increasing level of detail given about a body to deal with the past; 0 if none given
                               }; })
       .get(function(error,data){
         data = data.filter(function(d){ return d.Mps > 0; });

@@ -7,16 +7,45 @@
 
     <title>Select Filters</title>
 
-    <link rel="stylesheet" type="text/css" href="viz/timeline/style.css">
+    <link rel="stylesheet" type="text/css" href="select-style.css">
     <script type="text/javascript" src="viz/timeline/d3.v4.js"></script>
+    <script type="text/javascript" src="select.js"></script>
   </head>
   <body>
-    <dl class="dropdown">
-      <dt>
-        <a href="#">
-          <span class="hida">Select</span><p class="multiSel"></p>
-        </a>
-      </dt>
+      <form>
+        <p>Select categories to filter the visualized agreements:</p>
+        <div class="selecter">
+          <input type="radio" id="all" name="filter" value="all">
+          <label for="All">All</label>
+          <br/>
+          <input type="radio" id="HrFra" name="filter" value="HrFra">
+          <label for="HrFra">Human Rights Framework</label>
+          <br/>
+          <input type="radio" id="HrGen" name="filter" value="HrGen">
+          <label for="HrGen">Human Rights/Rule of Law</label>
+          <br/>
+          <input type="radio" id="Pol" name="filter" value="HrGen">
+          <label for="Pol">Political Institutions</label>
+          <br/>
+          <input type="radio" id="Eps" name="filter" value="Eps">
+          <label for="Pol">Power Sharing: Economic</label>
+          <br/>
+          <input type="radio" id="Mps" name="filter" value="Mps">
+          <label for="Mps">Power Sharing: Military</label>
+          <br/>
+          <input type="radio" id="Polps" name="filter" value="Polps">
+          <label for="Polps">Power Sharing: Political</label>
+          <br/>
+          <input type="radio" id="Terps" name="filter" value="Terps">
+          <label for="Terps">Power Sharing: Territorial</label>
+          <br/>
+          <input type="radio" id="TjMech" name="filter" value="TjMech">
+          <label for="TjMech">Transitional Justice Past Mechanism</label>
+          <br/>
+          <input type="radio" id="GeWom" name="filter" value="GeWom">
+          <label for="GeWom">Women, Girls and Gender</label>
+       </div>
+    </div>
   </body>
 
 </html>
