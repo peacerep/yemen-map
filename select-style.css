@@ -10,7 +10,7 @@ form {
 form:hover {
   background-color: #f1f1f1;
 }
-p, label {
+p, a, label {
   color:black;
   /* padding: 3px 4px; */
   font-size: 12px;
@@ -18,4 +18,8 @@ p, label {
   display: inline;
   font-family: "Roboto", sans-serif;
   font-weight: 50;
+}
+
+a#Reset{
+  text-decoration: underline;
 }

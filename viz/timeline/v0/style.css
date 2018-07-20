@@ -37,10 +37,6 @@ a {
 iframe {
   border: none;
 }
-#vert-timelines, #map, #details {
-  border: solid;
-  border-width: thin;
-}
 
 h1 {
   font-weight: 800;
@@ -93,7 +89,6 @@ h5 {
 p {
   font-weight: 50;
   font-size: 15px;
-  padding-left: 20px;
 }
 
 #top {
@@ -103,7 +98,6 @@ p {
   flex: 15%;
   padding-left: 20px;
   padding-right: 20px;
-  margin: 10px;
 }
 /* .select {
   flex: 15%;
@@ -118,19 +112,17 @@ p {
   flex: 85%;
   padding-left: 20px;
   padding-right: 20px;
-  margin: 10px;
 }
-/* .detail {
+.detail {
   flex: 15%;
 }
 .map {
   flex: 85%;
-} */
+}
 
-#bottom {
+#vert-timelines {
   padding-left: 20px;
   padding-right: 20px;
-  margin: 10px;
 }
 
 #footer {

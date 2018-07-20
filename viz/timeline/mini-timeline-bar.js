@@ -14,39 +14,12 @@ Mini timeline iFrame with agreements displayed continuously on y axis
 //     *do something with the data*
 // }
 
-// Define one key/value pair per category (code) by which to filter which
-// agreements the timeline and map visualize, checking all paxfilters
-// (value = 1) upon page load so all agreements are visible
-var paxHrFra = window.localStorage.setItem("paxHrFra",1); // Human rights framework
-var paxHrGen = window.localStorage.setItem("paxHrGen",1);; // Human rights/Rule of law
-var paxMps = window.localStorage.setItem("paxPol",1); // Military power sharing
-var paxEps = window.localStorage.setItem("paxEps",1); // Economic power sharing
-var paxTerps = window.localStorage.setItem("paxMps",1); // Territorial power sharing
-var paxPolps = window.localStorage.setItem("paxPolps",1); // Political power sharing
-var paxPol = window.localStorage.setItem("paxTerps",1); // Political institutions
-var paxGeWom = window.localStorage.setItem("paxTjMech",1); // Women, girls and gender
-var paxTjMech = window.localStorage.setItem("paxGeWom",1); // Transitional justice past mechanism
 
 callFunction();
-d3.select(window).on("resize", callFunction);
-window.addEventListener("storage", callFunction);
 
-function getFilters(){
-  var locStor = window.localStorage;
-  paxHrFra = locStor.getItem("paxHrFra");
-  paxHrGen = locStor.getItem("paxHrGen");
-  paxMps = locStor.getItem("paxMps");
-  paxEps = locStor.getItem("paxEps");
-  paxTerps = locStor.getItem("paxTerps");
-  paxPolps = locStor.getItem("paxPolps");
-  paxPol = locStor.getItem("paxPol");
-  paxGeWom = locStor.getItem("paxGeWom");
-  paxTjMech = locStor.getItem("paxTjMech");
-};
+d3.select(window).on("resize", callFunction);
 
 function callFunction() {
-
-  getFilters();
 
   var parseDate = d3.timeParse("%d/%m/%Y");
   var parseMonth = d3.timeParse("%m");
@@ -83,19 +56,20 @@ function callFunction() {
                               }; })
       .get(function(error,data){
 
-          // var tooltip = d3.select("body").append("div")
-          //     .style("opacity","0")
-          //     .style("position","absolute");
+          var tooltip = d3.select("body").append("div")
+              .style("opacity","0")
+              .style("position","absolute");
 
           var svgtest = d3.select("body").select("svg");
           if (!svgtest.empty()) {
             svgtest.remove();
-          };
+          }
 
           var margin = {top: 20, right: 10, bottom: 20, left: 10}, //read clockwise from top
               width = parseInt(d3.select("body").style("width"), 10),
               width = width - margin.left - margin.right,
-              height = 100 - margin.top - margin.bottom; //defines w & h as inner dimensions of chart area
+              height = 100 - margin.top - margin.bottom, //defines w & h as inner dimensions of chart area
+              agtHeight = 30; // height of agreement rectangles on timeline
 
           var yr_count_nest = d3.nest()
                .key(function(d) {return formatYear(d.Year);}).sortKeys(d3.ascending)
@@ -118,12 +92,17 @@ function callFunction() {
           var minDay = d3.min(data,function(d){ return (d.Dat); });
           var maxDay = d3.max(data,function(d){ return (d.Dat); });
 
+          // Timeline axes
           var y = d3.scaleLinear()
-                      .domain([0,(max*30)]) // data space - assume rects height of 30px...?
+                      .domain([0,agtHeight]) // data space - assume rects height of 30px...?
                       .range([height,margin.bottom]); // display space
           var x = d3.scaleTime()
                       .domain([minDay,maxDay])  // data space
                       .range([margin.left,width]);  // display space
+          // Bar graph axis
+          var y1 = d3.scaleLinear()
+                      .domain([(agtHeight-2),max])
+                      .range([height,margin.bottom]);
           // var yAxis = d3.axisLeft(y);
           // var xAxis = d3.axisBottom(x)
           //     .ticks(30).tickFormat(d3.timeFormat("%Y"));
@@ -135,35 +114,22 @@ function callFunction() {
           var chartGroup = svg.append("g")
                       .attr("transform","translate("+margin.left+","+margin.top+")");
 
-          function newOpacity(d){
-            var opacity = 1;
-            if ((d.GeWom > 0) && (paxGeWom == 0)){ opacity = "0"; }
-            if ((d.HrFra > 0) && (paxHrFra == 0)){ opacity = "0"; }
-            if ((d.HrGen > 0) && (paxHrGen == 0)){ opacity = "0"; }
-            if ((d.Eps > 0) && (paxEps == 0)){ opacity = "0"; }
-            if ((d.Mps > 0) && (paxMps == 0)){ opacity = "0"; }
-            if ((d.Pol > 0) && (paxPol == 0)){ opacity = "0"; }
-            if ((d.Polps > 0) && (paxPolps == 0)){ opacity = "0"; }
-            if ((d.Terps > 0) && (paxTerps == 0)){ opacity = "0"; }
-            if ((d.TjMech > 0) && (paxTjMech == 0)){ opacity = "0"; }
-            return opacity;
-          };
-
-
+          /*
+          Timeline
+          */
           // Make one rectangle per agreement grouped by Year
           chartGroup.selectAll("rect.agt")
                   .data(data)
                   .enter().append("rect")
                      .attr("class","agt")
-                     .attr("id", "test")
                      .attr("fill","black")
                      .attr("stroke","white")
                      .attr("stroke-width","1px")
-                     .style("opacity", newOpacity)
+                     //.attr("d", function(d,i) { return agt(d.values); })
                      .attr("x",function(d){ return x(d.Dat); })
-                     .attr("y",function(d){ return ((height/2)-29)+"px"; })
-                     .attr("width","2px")
-                     .attr("height","30px");
+                     .attr("y",function(d){ return ((height/2)-(agtHeight-1))+"px"; })
+                     .attr("width","4px")
+                     .attr("height",agtHeight+"px"); // TO DO: calculate height based on max # of agmts in single year
                      // .on("mousemove",function(d){
                      //   this.style.fill = "steelblue"
                      //   tooltip.style("opacity","1")
@@ -179,12 +145,49 @@ function callFunction() {
                      //     .style("left",margin.left)  //("left",d3.event.pageX+"px")
                      //     .style("top",height+"px");
                      // });
-
-             // Draw axes
+             // Draw timeline axes
              chartGroup.append("g")
-                     .attr("class","xaxis")
+                     .attr("class","xaxis1")
                      .attr("transform","translate(0,"+height/2+")")
-                     .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%Y")));
+                     .call(d3.axisBottom(x1).tickFormat(d3.timeFormat("%Y")));
             // TO DO: MAKE 1ST & LAST TICK LABELS APPEAR
-      })
-  };
+
+            /*
+            Bar graph
+            */
+                chartGroup.selectAll("rect.count")
+                   .data(yr_count_array)
+                   .enter().append("rect")
+                     .attr("class","count")
+                     .attr("fill","black")
+                     .attr("stroke","white")
+                     .attr("stroke-width","0.5px")
+                     .attr("x",function(d){ return x(parseYear(d.key)); })
+                     .attr("y",function(d){ return ((height/2)+24)+"px"; })
+                     .attr("width",width/(years.length))
+                     .attr("height",function(d){ return d.value; })
+                     .on("mousemove",function(d){
+                       this.style.fill = "steelblue"
+                       tooltip.style("opacity","1")
+                         .style("left",margin.left)  //("left",d3.event.pageX+"px")
+                         .style("top",(margin.top + tooltipMargin)+"px")  //("top",d3.event.pageY+"px")
+                         .attr("class","tooltip");
+                       // Display core agreement information (name, date, region, country/entity, status, type & stage)
+                       tooltip.html("<h5>Total Peace Agreements in "+d.key+": "+d.value+"</h5>");
+                     })
+                     .on("mouseout",function(d) {
+                       this.style.fill = "black"
+                       tooltip.style("opacity","0")
+                         .style("left",margin.left)  //("left",d3.event.pageX+"px")
+                         .style("top",height+"px");
+                     });
+
+           /***********************************************************************/
+           // Draw bar graph axes
+           chartGroup.append("g")
+                   .attr("class","yaxis1")
+                   .attr("transform","translate(0,"+height/2+")")
+                   .call(d3.axisLeft(y1);
+          // TO DO: MAKE 1ST & LAST TICK LABELS APPEAR
+        });
+}
