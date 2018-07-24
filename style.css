@@ -178,11 +178,11 @@ Flexboxes
           flex: 83.33%;
 }
 #mini-t{
-  height:10%;
+  height:15%;
   flex-shrink:0;
 }
 #map{
-  height:90%;
+  height:85%;
 }
 
 footer {

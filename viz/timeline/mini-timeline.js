@@ -28,6 +28,10 @@ var paxGeWom = window.localStorage.setItem("paxTjMech",1); // Women, girls and g
 var paxTjMech = window.localStorage.setItem("paxGeWom",1); // Transitional justice past mechanism
 var paxTjMech = window.localStorage.setItem("paxOther",1); // Transitional justice past mechanism
 
+// var paxRule = window.localStorage.setItem("paxRule",1); // Selected ALL filter rule
+var paxANY = window.localStorage.setItem("paxANY",1); // Selected ANY filter rule
+var paxALL = window.localStorage.setItem("paxALL",0); // Selected ALL filter rule
+
 //window.localStorage.setItem("agtInfo", "Hover over an agreement to view its details.");
 
 callFunction();
@@ -36,6 +40,11 @@ window.addEventListener("storage", callFunction);
 
 function getFilters(){
   var locStor = window.localStorage;
+  // Filter rule
+  // paxRule = locStor.getItem("paxRule");
+  paxANY = locStor.getItem("paxANY");
+  paxALL = locStor.getItem("paxALL");
+  // Filter codes
   paxHrFra = locStor.getItem("paxHrFra");
   paxHrGen = locStor.getItem("paxHrGen");
   paxMps = locStor.getItem("paxMps");
@@ -68,17 +77,17 @@ function callFunction() {
   window.localStorage.setItem("paxagtp", agtp);
   window.localStorage.setItem("paxstage", stage);
 
-
+  // Date parsers & formatters
   var parseDate = d3.timeParse("%d/%m/%Y");
   var parseMonth = d3.timeParse("%m");
   var parseYear = d3.timeParse("%Y");
   var parseDay = d3.timeParse("%j");
-
   var formatDate = d3.timeFormat("%d %B %Y");
   var formatMonth = d3.timeFormat("%m");
   var formatDay = d3.timeFormat("%j");  // day of the year as decimal number
   var formatYear = d3.timeFormat("%Y");
 
+  // Obtain data
   d3.csv("PAX_with_additional.csv")
       .row(function(d){ return{ Year:+d.Year,
                                 Day:+d.Day,
@@ -112,15 +121,14 @@ function callFunction() {
           var margin = {top: 5, right: 5, bottom: 5, left: 5}, //read clockwise from top
               width = parseInt(d3.select("body").style("width"), 10),
               width = width - margin.left - margin.right,
-              height = 50 - margin.top - margin.bottom, //defines w & h as inner dimensions of chart area
+              height = 60 - margin.top - margin.bottom, //defines w & h as inner dimensions of chart area
               agtHeight = 30,
               xHeight = 15;
 
           var yr_count_nest = d3.nest()
                .key(function(d) {return formatYear(d.Year);}).sortKeys(d3.ascending)
                .rollup(function(leaves) {return leaves.length;})
-               //.entries(data);
-               .map(data);
+               .map(data);  //.entries(data);  //.object(data);
           // Create an array of years (non-repeating) in which agreements occur
           var years = yr_count_nest.keys();
 
@@ -161,17 +169,71 @@ function callFunction() {
 
           function newVisibility(d){
             var visibility = "visible";
-            if ((d.GeWom > 0) && (paxGeWom == 0)){ visibility = "hidden"; }
-            if ((d.HrFra > 0) && (paxHrFra == 0)){ visibility = "hidden"; }
-            if ((d.HrGen > 0) && (paxHrGen == 0)){ visibility = "hidden"; }
-            if ((d.Eps > 0) && (paxEps == 0)){ visibility = "hidden"; }
-            if ((d.Mps > 0) && (paxMps == 0)){ visibility = "hidden"; }
-            if ((d.Pol > 0) && (paxPol == 0)){ visibility = "hidden"; }
-            if ((d.Polps > 0) && (paxPolps == 0)){ visibility = "hidden"; }
-            if ((d.Terps > 0) && (paxTerps == 0)){ visibility = "hidden"; }
-            if ((d.TjMech > 0) && (paxTjMech == 0)){ visibility = "hidden"; }
-            if ((paxOther == 0) && (d.GeWom==0 && d.HrFra==0 && d.Eps==0 && d.Mps==0 && d.Pol==0 && d.Polps==0 && d.Terps==0 && d.TjMech==0)){ visibility = "hidden"; }
-            return visibility;
+            // HOW TO CHECK THAT AGT RECT LIES IN BOUNDS OF X AXIS???
+
+            // Visualize any agreement with at least one checked code
+            if (paxANY == 1 && paxALL == 0){ // visualize any agreement with ANY checked code
+              // visibility = "visible"
+              // (hide agreements that have any unchecked codes)
+              // (d.Code > 0 when HAS code, paxCode == 0 when filter UNCHECKED)
+              if ((d.GeWom > 0) && (paxGeWom == 0)){ visibility = "hidden"; }
+              if ((d.HrFra > 0) && (paxHrFra == 0)){ visibility = "hidden"; }
+              if ((d.HrGen > 0) && (paxHrGen == 0)){ visibility = "hidden"; }
+              if ((d.Eps > 0) && (paxEps == 0)){ visibility = "hidden"; }
+              if ((d.Mps > 0) && (paxMps == 0)){ visibility = "hidden"; }
+              if ((d.Pol > 0) && (paxPol == 0)){ visibility = "hidden"; }
+              if ((d.Polps > 0) && (paxPolps == 0)){ visibility = "hidden"; }
+              if ((d.Terps > 0) && (paxTerps == 0)){ visibility = "hidden"; }
+              if ((d.TjMech > 0) && (paxTjMech == 0)){ visibility = "hidden"; }
+              if ((paxOther == 0) && (d.GeWom==0 && d.HrFra==0 && d.Eps==0 &&
+                                      d.Mps==0 && d.Pol==0 && d.Polps==0 &&
+                                      d.Terps==0 && d.TjMech==0)){
+                                        visibility = "hidden";
+                                      }
+              // (if agreement has code and filter checked, remains visible)
+              return visibility;
+            }
+
+            // Only visualize an agreement if it has all checked codes
+            if (paxANY == 0 && paxALL == 1) {
+              // (display agreements that have all checked codes)
+              // if ALL filters checked...
+              if (paxGeWom == 1 && paxHrFra == 1 && paxHrGen == 1 &&
+                  paxEps == 1 && paxMps == 1 && paxPol == 1 && paxPolps == 1 &&
+                  paxTerps == 1 && paxTjMech == 1 && paxOther == 1)
+                  {
+                    if (d.GeWom>0 && d.HrFra>0 && d.Eps>0 && d.Mps>0 &&
+                        d.Pol>0 && d.Polps>0 && d.Terps>0 && d.TjMech>0)
+                    {
+                          return "visible";
+                    } else {
+                          return "hidden";
+                      }
+                  }
+              // if only OTHER filter checked...
+                if (paxGeWom == 0 && paxHrFra == 0 && paxHrGen == 0 &&
+                    paxEps == 0 && paxMps == 0 && paxPol == 0 && paxPolps == 0 &&
+                    paxTerps == 0 && paxTjMech == 0 && paxOther == 1)
+                    {
+                      if (d.GeWom==0 && d.HrFra==0 && d.Eps==0 && d.Mps==0 &&
+                          d.Pol==0 && d.Polps==0 && d.Terps==0 && d.TjMech==0)
+                      {
+                            return "visible";
+                      } else {
+                            return "hidden";
+                      }
+                    }
+                // hide agreements that do not have any one of the checked codes
+                if ((d.GeWom == 0) && (paxGeWom == 1)){ return "hidden"; }
+                if ((d.HrFra == 0) && (paxHrFra == 1)){ return "hidden"; }
+                if ((d.HrGen == 0) && (paxHrGen == 1)){ return "hidden"; }
+                if ((d.Eps == 0) && (paxEps == 1)){ return "hidden"; }
+                if ((d.Mps == 0) && (paxMps == 1)){ return "hidden"; }
+                if ((d.Pol == 0) && (paxPol == 1)){ return "hidden"; }
+                if ((d.Polps == 0) && (paxPolps == 1)){ return "hidden"; }
+                if ((d.Terps == 0) && (paxTerps == 1)){ return "hidden"; }
+                if ((d.TjMech == 0) && (paxTjMech == 1)){ return "hidden"; }
+            }
           };
 
           // Make one rectangle per agreement grouped by Year
@@ -184,9 +246,9 @@ function callFunction() {
                      .attr("stroke","#f1f1f1")
                      .attr("stroke-width","1px")
                      .style("opacity", "0.3")
-                     .style("visibility",newVisibility)
                      .attr("x",function(d){ return x(d.Dat); })
                      .attr("y",function(d){ return (height-xHeight-(agtHeight-1))+"px"; })
+                     .style("visibility",newVisibility)
                      .attr("width","2px")
                      .attr("height",agtHeight+"px");
 
@@ -227,7 +289,7 @@ function callFunction() {
                  });
 
              // Draw axes
-             var xAxis = d3.axisBottom(x).tickFormat(d3.timeFormat("%Y"));
+             var xAxis = d3.axisBottom(x).tickFormat(d3.timeFormat("%e %b %Y")).tickPadding([5]);
 
              var gX = chartGroup.append("g")
                   .attr("class","axis xaxis")

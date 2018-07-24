@@ -15,7 +15,14 @@ window.onload = function() {
       localStorage.setItem("paxTjMech",1);
       localStorage.setItem("paxGeWom",1);
       localStorage.setItem("paxOther",1);
-      console.log("Checked all paxfilters");
+
+      function check() {
+        document.getElementById("any").checked = true;
+        // document.getElementById("all").checked = false;
+      }
+      localStorage.setItem("paxANY",1);
+      localStorage.setItem("paxALL",0);
+      console.log("Selected ANY, checked all paxfilters");
 
       // Agreement details
       localStorage.setItem("agt", "Hover over an agreement to view its details.");
@@ -27,6 +34,23 @@ window.onload = function() {
       window.localStorage.setItem("paxstage", "");
     }
 
+    /*
+    Filter rules
+    */
+    document.getElementById("any").onclick = function(event) {
+        localStorage.setItem("paxANY",1);
+        localStorage.setItem("paxALL",0);
+        console.log("Selected ANY");
+    }
+    document.getElementById("all").onclick = function(event) {
+        localStorage.setItem("paxALL",1);
+        localStorage.setItem("paxANY",0);
+        console.log("Selected ALL");
+    }
+
+    /*
+    Code filters
+    */
     document.getElementById("HrFra").onclick = function(event) {
         if (localStorage.getItem("paxHrFra") == 0){
           localStorage.setItem("paxHrFra",1);
