@@ -104,25 +104,24 @@ function callFunction() {
                               }; })
       .get(function(error,data){
 
-          // var tooltip = d3.select("body").append("div")
-          //     .style("opacity","0")
-          //     .style("position","absolute");
-
           var svgtest = d3.select("body").select("svg");
           if (!svgtest.empty()) {
             svgtest.remove();
           };
 
-          var margin = {top: 20, right: 2, bottom: 20, left: 2}, //read clockwise from top
+          var margin = {top: 5, right: 5, bottom: 5, left: 5}, //read clockwise from top
               width = parseInt(d3.select("body").style("width"), 10),
               width = width - margin.left - margin.right,
-              height = 100 - margin.top - margin.bottom; //defines w & h as inner dimensions of chart area
+              height = 50 - margin.top - margin.bottom, //defines w & h as inner dimensions of chart area
+              agtHeight = 30,
+              xHeight = 15;
 
           var yr_count_nest = d3.nest()
                .key(function(d) {return formatYear(d.Year);}).sortKeys(d3.ascending)
                .rollup(function(leaves) {return leaves.length;})
                //.entries(data);
                .map(data);
+          // Create an array of years (non-repeating) in which agreements occur
           var years = yr_count_nest.keys();
 
           // Find the maximum number of agreements that occur in a single year
@@ -132,29 +131,33 @@ function callFunction() {
           var minYear = d3.min(yr_count_nest,function(d){ return d.key; });
           var maxYear = d3.max(yr_count_nest,function(d){ return d.key; });
 
-          // Create an array of years (non-repeating) in which agreements occur
-          //var yearMap = d3.map(yr_count_nest,function(d){ return d.key; });
-
           // Find the earliest & latest day of the year on which agreements are written
           var minDay = d3.min(data,function(d){ return (d.Dat); });
           var maxDay = d3.max(data,function(d){ return (d.Dat); });
+          // console.log(minDay);
+          // console.log(formatDate((minDay)));
+          // console.log(formatDay((minDay)));
+          // console.log(maxDay);
+          // console.log(formatDate((maxDay)));
+          // console.log(formatDay((maxDay)));
 
-          var y = d3.scaleLinear()
-                      .domain([0,(max*30)]) // data space - assume rects height of 30px...?
-                      .range([height,margin.bottom]); // display space
+          // MAKE SURE CAN SEE AGTS PUBLISHED ON SAME DAY
+          // WHY ARE AGTS DRAWN BEYOND ENDS OF AXIS?
           var x = d3.scaleTime()
                       .domain([minDay,maxDay])  // data space
                       .range([margin.left,width]);  // display space
-          // var yAxis = d3.axisLeft(y);
-          // var xAxis = d3.axisBottom(x)
-          //     .ticks(30).tickFormat(d3.timeFormat("%Y"));
 
           var svg = d3.select("body").select("#chart").append("svg")
               .attr("height", height + margin.top + margin.bottom)//"100%")
-              .attr("width", width + margin.left + margin.right);//"100%");
+              .attr("width", width + margin.left + margin.right)//"100%");
+              .call(d3.zoom()
+                        .scaleExtent([1,100]) // prevent zoom out, restrict zoom in
+                        .translateExtent([ [0, 0], [width,height]]) // restrict panning (<- & ->)
+                        .on("zoom",zoom));
 
           var chartGroup = svg.append("g")
-                      .attr("transform","translate("+margin.left+","+margin.top+")");
+                      .attr("class","chartGroup") //
+                      .attr("transform","translate("+margin.left+","+margin.top+")") //;
 
           function newVisibility(d){
             var visibility = "visible";
@@ -171,71 +174,75 @@ function callFunction() {
             return visibility;
           };
 
-          // MAKE ZOOM ON X AXIS ONLY
-          // svg.call(d3.zoom()
-          //   .on("zoom",function(){  //on: tell event, then tell function
-          //     chartGroup.attr("transform",d3.event.transform);
-          // }));
-
-
           // Make one rectangle per agreement grouped by Year
-          chartGroup.selectAll("rect.agt")
+          var rects = chartGroup.selectAll("rect.agt")
                   .data(data)
                   .enter().append("rect")
                      .attr("class","agt")
-                     .attr("id", "test")
+                     .attr("id", "rects")
                      .attr("fill","black")
                      .attr("stroke","#f1f1f1")
                      .attr("stroke-width","1px")
                      .style("opacity", "0.3")
                      .style("visibility",newVisibility)
                      .attr("x",function(d){ return x(d.Dat); })
-                     .attr("y",function(d){ return ((height/2)-29)+"px"; })
+                     .attr("y",function(d){ return (height-xHeight-(agtHeight-1))+"px"; })
                      .attr("width","2px")
-                     .attr("height","30px")
-                     .on("mousemove",function(d){
-                       if (this.style.opacity != "0"){
-                         //console.log(d.Agt);
-                         this.style.fill = "#dc00ff";
-                         this.style.stroke = "#dc00ff";
-                         this.style.opactiy = "1";
-                         // Core agreement information (name, date, region, country/entity, status, type & stage)
-                         agt = d.Agt;
-                         dat = formatDate(d.Dat);
-                         reg = d.Reg;
-                         con = d.Con;
-                         status = d.Status;
-                         agtp = d.Agtp;
-                         stage = d.Stage;
-                         window.localStorage.setItem("paxagt", agt);
-                         window.localStorage.setItem("paxdat", dat);
-                         window.localStorage.setItem("paxreg", reg);
-                         window.localStorage.setItem("paxcon", con);
-                         window.localStorage.setItem("paxstatus", status);
-                         window.localStorage.setItem("paxagtp", agtp);
-                         window.localStorage.setItem("paxstage", stage);
-                         //console.log(window.localStorage.getItem("agtInfo"));
-                       }
-                     })
-                     .on("mouseout",function(d) {
-                       this.style.fill = "black"
-                       this.style.stroke = "#f1f1f1";
-                       this.style.opacity = "0.3";
-                       window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
-                       window.localStorage.setItem("paxdat", "");
-                       window.localStorage.setItem("paxreg", "");
-                       window.localStorage.setItem("paxcon", "");
-                       window.localStorage.setItem("paxstatus", "");
-                       window.localStorage.setItem("paxagtp", "");
-                       window.localStorage.setItem("paxstage", "");
-                       //console.log(window.localStorage.getItem("agtInfo"));
-                     });
+                     .attr("height",agtHeight+"px");
+
+            rects.on("mousemove",function(d){
+                   if (this.style.opacity != "0"){
+                     //console.log(d.Agt);
+                     this.style.fill = "#dc00ff";
+                     this.style.stroke = "#dc00ff";
+                     this.style.opactiy = "1";
+                     // Core agreement information (name, date, region, country/entity, status, type & stage)
+                     agt = d.Agt;
+                     dat = formatDate(d.Dat);
+                     reg = d.Reg;
+                     con = d.Con;
+                     status = d.Status;
+                     agtp = d.Agtp;
+                     stage = d.Stage;
+                     window.localStorage.setItem("paxagt", agt);
+                     window.localStorage.setItem("paxdat", dat);
+                     window.localStorage.setItem("paxreg", reg);
+                     window.localStorage.setItem("paxcon", con);
+                     window.localStorage.setItem("paxstatus", status);
+                     window.localStorage.setItem("paxagtp", agtp);
+                     window.localStorage.setItem("paxstage", stage);
+                   }
+                 });
+            rects.on("mouseout",function(d) {
+                   this.style.fill = "black"
+                   this.style.stroke = "#f1f1f1";
+                   this.style.opacity = "0.3";
+                   window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
+                   window.localStorage.setItem("paxdat", "");
+                   window.localStorage.setItem("paxreg", "");
+                   window.localStorage.setItem("paxcon", "");
+                   window.localStorage.setItem("paxstatus", "");
+                   window.localStorage.setItem("paxagtp", "");
+                   window.localStorage.setItem("paxstage", "");
+                 });
 
              // Draw axes
-             chartGroup.append("g")
-                     .attr("class","xaxis")
-                     .attr("transform","translate(0,"+height/2+")")
-                     .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%Y")));
-            // TO DO: MAKE 1ST & LAST TICK LABELS APPEAR
-      })
-  };
+             var xAxis = d3.axisBottom(x).tickFormat(d3.timeFormat("%Y"));
+
+             var gX = chartGroup.append("g")
+                  .attr("class","axis xaxis")
+                  .attr("transform","translate(0,"+(height-xHeight)+")")
+                  .call(xAxis);
+
+            function zoom() {
+              gX.transition()
+              .duration(50)
+              .call(xAxis.scale(d3.event.transform.rescaleX(x)));
+
+              var newX = d3.event.transform.rescaleX(x);
+              rects.attr("x",function(d){ return newX(d.Dat); });
+            }
+
+      }) // end of .get(error,data)
+
+  }; // end of callFunction()

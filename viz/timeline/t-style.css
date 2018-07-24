@@ -83,6 +83,11 @@ p {
 /*
 CHART
 */
+#chart{
+  height: 15%;
+  display: flex;
+  flex-shrink:0;
+}
 #chart.col-9 g.tick line {
   stroke: black;
 }
@@ -90,6 +95,12 @@ CHART
 #chart.col-9 g.tick text {
   font-size: 12px;
   font-weight: lighter;
+}
+
+.zoom {
+  cursor: zoom-in,zoom-out;
+  fill:none;
+  pointer-events: all;
 }
 
 /* .tooltip {

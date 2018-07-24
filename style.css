@@ -23,7 +23,6 @@
 
 html {
   margin: 2;
-  /* padding-right: 20px; */
   float: left;
   font-family: "Roboto", sans-serif;
 }
@@ -158,7 +157,7 @@ Flexboxes
           flex: 16.66%;
 }
 #right {
-  /* height: 95%; */
+  height: 100%;
   display: flex;
   flex-wrap: nowrap;
   padding: 0px;
@@ -178,6 +177,14 @@ Flexboxes
       -ms-flex: 83.33%;
           flex: 83.33%;
 }
+#mini-t{
+  height:10%;
+  flex-shrink:0;
+}
+#map{
+  height:90%;
+}
+
 footer {
   display: flex;
   flex-wrap: wrap;
