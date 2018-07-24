@@ -1,16 +1,19 @@
 /*
 Style for Select iFrame
 */
-form {
-  background-color: #ffffff;
-  color: white;
-  /* padding: 4px; */
-  border: none;
+html, body {
+  height: 95%;
 }
-form:hover {
+.agt:hover {
   background-color: #f1f1f1;
 }
-p, a, label {
+.selecter:hover {
+  background-color: #f1f1f1;
+  /* border: solid;
+  border-color: black;
+  border-width: 0.5px; */
+}
+a, label, input {
   color:black;
   /* padding: 3px 4px; */
   font-size: 12px;
@@ -22,4 +25,55 @@ p, a, label {
 
 a#Reset{
   text-decoration: underline;
+}
+
+#agt{
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top:10px;
+  padding-top: 2px;
+  padding-bottom: 25px;
+}
+svg {
+  display: flex;
+  flex-wrap: wrap;
+  display: -webkit-flex;
+  display:    -moz-flex;
+  display:     -ms-flex;
+  display:         flex;
+
+  -webkit-flex-direction: column;
+     -moz-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+
+          -webkit-flex: 16.66%;
+             -moz-flex: 16.66%;
+              -ms-flex: 16.66%;
+                  flex: 16.66%;
+}
+
+g {
+  display: flex;
+  flex-wrap: wrap;
+  display: -webkit-flex;
+  display:    -moz-flex;
+  display:     -ms-flex;
+  display:         flex;
+
+  -webkit-flex-direction: column;
+     -moz-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+
+          -webkit-flex: 16.66%;
+             -moz-flex: 16.66%;
+              -ms-flex: 16.66%;
+                  flex: 16.66%;
+
+}
+foreignObject {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: 50;
 }

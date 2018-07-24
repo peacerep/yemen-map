@@ -1,9 +1,10 @@
 /* Filtering agreements by category
-and storing paxfilters in local storage
+   Storing paxfilters in local storage
 */
 window.onload = function() {
 
     document.getElementById("Reset").onclick = function(event) {
+      // Code filters
       localStorage.setItem("paxHrFra",1);
       localStorage.setItem("paxHrGen",1);
       localStorage.setItem("paxPol",1);
@@ -13,7 +14,17 @@ window.onload = function() {
       localStorage.setItem("paxTerps",1);
       localStorage.setItem("paxTjMech",1);
       localStorage.setItem("paxGeWom",1);
+      localStorage.setItem("paxOther",1);
       console.log("Checked all paxfilters");
+
+      // Agreement details
+      localStorage.setItem("agt", "Hover over an agreement to view its details.");
+      window.localStorage.setItem("paxdat", "");
+      window.localStorage.setItem("paxreg", "");
+      window.localStorage.setItem("paxcon", "");
+      window.localStorage.setItem("paxstatus", "");
+      window.localStorage.setItem("paxagtp", "");
+      window.localStorage.setItem("paxstage", "");
     }
 
     document.getElementById("HrFra").onclick = function(event) {
@@ -99,6 +110,17 @@ window.onload = function() {
         console.log(localStorage.getItem("paxGeWom"));
       }
     }
+    document.getElementById("other").onclick = function(event) {
+      if (localStorage.getItem("paxOther") == 0){
+        localStorage.setItem("paxOther",1);
+        console.log("Checked other");
+        console.log(localStorage.getItem("paxOther"));
+      } else {
+        localStorage.setItem("paxOther",0);
+        console.log("Unchecked other");
+        console.log(localStorage.getItem("paxOther"));
+      }
+    }
 
     if (window.performance) {
       if (performance.navigation.TYPE_RELOAD) {
@@ -120,6 +142,16 @@ window.onload = function() {
         document.getElementById("TjMech").checked = true;
         localStorage.setItem("paxGeWom",1);
         document.getElementById("GeWom").checked = true;
+        localStorage.setItem("paxOther",1);
+        document.getElementById("other").checked = true;
+
+        localStorage.setItem("agt", "Hover over an agreement to view its details.");
+        window.localStorage.setItem("paxdat", "");
+        window.localStorage.setItem("paxreg", "");
+        window.localStorage.setItem("paxcon", "");
+        window.localStorage.setItem("paxstatus", "");
+        window.localStorage.setItem("paxagtp", "");
+        window.localStorage.setItem("paxstage", "");
       }
     }
 

@@ -26,6 +26,9 @@ var paxPolps = window.localStorage.setItem("paxPolps",1); // Political power sha
 var paxPol = window.localStorage.setItem("paxTerps",1); // Political institutions
 var paxGeWom = window.localStorage.setItem("paxTjMech",1); // Women, girls and gender
 var paxTjMech = window.localStorage.setItem("paxGeWom",1); // Transitional justice past mechanism
+var paxTjMech = window.localStorage.setItem("paxOther",1); // Transitional justice past mechanism
+
+//window.localStorage.setItem("agtInfo", "Hover over an agreement to view its details.");
 
 callFunction();
 d3.select(window).on("resize", callFunction);
@@ -42,11 +45,29 @@ function getFilters(){
   paxPol = locStor.getItem("paxPol");
   paxGeWom = locStor.getItem("paxGeWom");
   paxTjMech = locStor.getItem("paxTjMech");
+  paxOther = locStor.getItem("paxOther");
 };
 
 function callFunction() {
 
   getFilters();
+
+  // Agreement information to display upon hover
+  var agt = "Hover over an agreement to view its details.",
+      dat = "",
+      reg = "",
+      con = "",
+      status = "",
+      agtp = "",
+      stage = "";
+  window.localStorage.setItem("paxagt", agt);
+  window.localStorage.setItem("paxdat", dat);
+  window.localStorage.setItem("paxreg", reg);
+  window.localStorage.setItem("paxcon", con);
+  window.localStorage.setItem("paxstatus", status);
+  window.localStorage.setItem("paxagtp", agtp);
+  window.localStorage.setItem("paxstage", stage);
+
 
   var parseDate = d3.timeParse("%d/%m/%Y");
   var parseMonth = d3.timeParse("%m");
@@ -92,7 +113,7 @@ function callFunction() {
             svgtest.remove();
           };
 
-          var margin = {top: 20, right: 10, bottom: 20, left: 10}, //read clockwise from top
+          var margin = {top: 20, right: 2, bottom: 20, left: 2}, //read clockwise from top
               width = parseInt(d3.select("body").style("width"), 10),
               width = width - margin.left - margin.right,
               height = 100 - margin.top - margin.bottom; //defines w & h as inner dimensions of chart area
@@ -135,19 +156,26 @@ function callFunction() {
           var chartGroup = svg.append("g")
                       .attr("transform","translate("+margin.left+","+margin.top+")");
 
-          function newOpacity(d){
-            var opacity = 1;
-            if ((d.GeWom > 0) && (paxGeWom == 0)){ opacity = "0"; }
-            if ((d.HrFra > 0) && (paxHrFra == 0)){ opacity = "0"; }
-            if ((d.HrGen > 0) && (paxHrGen == 0)){ opacity = "0"; }
-            if ((d.Eps > 0) && (paxEps == 0)){ opacity = "0"; }
-            if ((d.Mps > 0) && (paxMps == 0)){ opacity = "0"; }
-            if ((d.Pol > 0) && (paxPol == 0)){ opacity = "0"; }
-            if ((d.Polps > 0) && (paxPolps == 0)){ opacity = "0"; }
-            if ((d.Terps > 0) && (paxTerps == 0)){ opacity = "0"; }
-            if ((d.TjMech > 0) && (paxTjMech == 0)){ opacity = "0"; }
-            return opacity;
+          function newVisibility(d){
+            var visibility = "visible";
+            if ((d.GeWom > 0) && (paxGeWom == 0)){ visibility = "hidden"; }
+            if ((d.HrFra > 0) && (paxHrFra == 0)){ visibility = "hidden"; }
+            if ((d.HrGen > 0) && (paxHrGen == 0)){ visibility = "hidden"; }
+            if ((d.Eps > 0) && (paxEps == 0)){ visibility = "hidden"; }
+            if ((d.Mps > 0) && (paxMps == 0)){ visibility = "hidden"; }
+            if ((d.Pol > 0) && (paxPol == 0)){ visibility = "hidden"; }
+            if ((d.Polps > 0) && (paxPolps == 0)){ visibility = "hidden"; }
+            if ((d.Terps > 0) && (paxTerps == 0)){ visibility = "hidden"; }
+            if ((d.TjMech > 0) && (paxTjMech == 0)){ visibility = "hidden"; }
+            if ((paxOther == 0) && (d.GeWom==0 && d.HrFra==0 && d.Eps==0 && d.Mps==0 && d.Pol==0 && d.Polps==0 && d.Terps==0 && d.TjMech==0)){ visibility = "hidden"; }
+            return visibility;
           };
+
+          // MAKE ZOOM ON X AXIS ONLY
+          // svg.call(d3.zoom()
+          //   .on("zoom",function(){  //on: tell event, then tell function
+          //     chartGroup.attr("transform",d3.event.transform);
+          // }));
 
 
           // Make one rectangle per agreement grouped by Year
@@ -157,28 +185,51 @@ function callFunction() {
                      .attr("class","agt")
                      .attr("id", "test")
                      .attr("fill","black")
-                     .attr("stroke","white")
+                     .attr("stroke","#f1f1f1")
                      .attr("stroke-width","1px")
-                     .style("opacity", newOpacity)
+                     .style("opacity", "0.3")
+                     .style("visibility",newVisibility)
                      .attr("x",function(d){ return x(d.Dat); })
                      .attr("y",function(d){ return ((height/2)-29)+"px"; })
                      .attr("width","2px")
-                     .attr("height","30px");
-                     // .on("mousemove",function(d){
-                     //   this.style.fill = "steelblue"
-                     //   tooltip.style("opacity","1")
-                     //     .style("left",margin.left)  //("left",d3.event.pageX+"px")
-                     //     .style("top",(margin.top + 140)+"px")  //("top",d3.event.pageY+"px")
-                     //     .attr("class","tooltip");
-                     //   // Display core agreement information (name, date, region, country/entity, status, type & stage)
-                     //   tooltip.html("<h5>"+d.Agt+"</h5> " +"<p><b>Date:</b> "+formatDate(d.Dat)+"<br/><b>Region:</b> "+d.Reg+"<br/><b>Country/Entity:</b> "+d.Con+"<br/><b>Status:</b> "+d.Status+"<br/><b>Type:</b> "+d.Agtp+"<br/><b>Stage:</b> "+d.Stage+"</p>");
-                     // })
-                     // .on("mouseout",function(d) {
-                     //   this.style.fill = "black"
-                     //   tooltip.style("opacity","0")
-                     //     .style("left",margin.left)  //("left",d3.event.pageX+"px")
-                     //     .style("top",height+"px");
-                     // });
+                     .attr("height","30px")
+                     .on("mousemove",function(d){
+                       if (this.style.opacity != "0"){
+                         //console.log(d.Agt);
+                         this.style.fill = "#dc00ff";
+                         this.style.stroke = "#dc00ff";
+                         this.style.opactiy = "1";
+                         // Core agreement information (name, date, region, country/entity, status, type & stage)
+                         agt = d.Agt;
+                         dat = formatDate(d.Dat);
+                         reg = d.Reg;
+                         con = d.Con;
+                         status = d.Status;
+                         agtp = d.Agtp;
+                         stage = d.Stage;
+                         window.localStorage.setItem("paxagt", agt);
+                         window.localStorage.setItem("paxdat", dat);
+                         window.localStorage.setItem("paxreg", reg);
+                         window.localStorage.setItem("paxcon", con);
+                         window.localStorage.setItem("paxstatus", status);
+                         window.localStorage.setItem("paxagtp", agtp);
+                         window.localStorage.setItem("paxstage", stage);
+                         //console.log(window.localStorage.getItem("agtInfo"));
+                       }
+                     })
+                     .on("mouseout",function(d) {
+                       this.style.fill = "black"
+                       this.style.stroke = "#f1f1f1";
+                       this.style.opacity = "0.3";
+                       window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
+                       window.localStorage.setItem("paxdat", "");
+                       window.localStorage.setItem("paxreg", "");
+                       window.localStorage.setItem("paxcon", "");
+                       window.localStorage.setItem("paxstatus", "");
+                       window.localStorage.setItem("paxagtp", "");
+                       window.localStorage.setItem("paxstage", "");
+                       //console.log(window.localStorage.getItem("agtInfo"));
+                     });
 
              // Draw axes
              chartGroup.append("g")
