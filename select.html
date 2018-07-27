@@ -10,50 +10,75 @@
     <link rel="stylesheet" type="text/css" href="select-style.css">
     <script type="text/javascript" src="viz/timeline/d3.v4.js"></script>
     <script type="text/javascript" src="select.js"></script>
+    <script type="text/javascript" src="ConDropdown.js"></script>
   </head>
   <body>
 
         <div class="selecter">
-          <p>Visualize each agreement that has:</p>
-          <br/>
-          <input type="radio" id="any" name="filterRule" value="any" checked="checked">
-          <label for="any"><b>ANY</b> checked code</label>
-          <br/>
-          <input type="radio" id="all" name="filterRule" value="all">
-          <label for="all"><b>ALL</b> checked codes</label>
+          <a href="select.html" id="Reset"><label for="Reset">Reset</label></a>
           <br/><br/>
-          &nbsp;<a href="select.html" id="Reset"><label for="Reset">Reset</label></a>
-          <br/>
-          <input type="checkbox" id="HrFra" name="filter" value=1 checked>
-          <label for="HrFra">Human Rights Framework</label>
-          <br/>
-          <input type="checkbox" id="HrGen" name="filter" value=1 checked>
-          <label for="HrGen">Human Rights/Rule of Law</label>
-          <br/>
-          <input type="checkbox" id="Pol" name="filter" value=1 checked>
-          <label for="Pol">Political Institutions</label>
-          <br/>
-          <input type="checkbox" id="Eps" name="filter" value=1 checked>
-          <label for="Pol">Power Sharing: Economic</label>
-          <br/>
-          <input type="checkbox" id="Mps" name="filter" value=1 checked>
-          <label for="Mps">Power Sharing: Military</label>
-          <br/>
-          <input type="checkbox" id="Polps" name="filter" value=1 checked>
-          <label for="Polps">Power Sharing: Political</label>
-          <br/>
-          <input type="checkbox" id="Terps" name="filter" value=1 checked>
-          <label for="Terps">Power Sharing: Territorial</label>
-          <br/>
-          <input type="checkbox" id="TjMech" name="filter" value=1 checked>
-          <label for="TjMech">Transitional Justice Past Mechanism</label>
-          <br/>
-          <input type="checkbox" id="GeWom" name="filter" value=1 checked>
-          <label for="GeWom">Women, Girls and Gender</label>
-          <br/>
-          <input type="checkbox" id="other" name="filter" value=1 checked>
-          <label for="other">Other</label>
-       </div>
+
+          <p>Visualize agreements from:</p>
+          <div id="dropdown" class="dropdown">
+            <button onclick="ConFunction()" class="dropbtn">Click to select country/entity</button>
+            <div id="ConDropdown" class="ConContent">
+              <input type="text" placeholder="Search..." id="ConInput" onkeyup="filterConFunction()">
+
+              <a href="#AllCon" id="SelectAllCons">Select All</a>&nbsp;&nbsp;<a href="#NoCon" id="DeselectAllCons">Deselect All</a>
+              <br/>
+              <!-- <input type="checkbox" id="Colombia" name="Con" value="Colombia">
+              <label for="Colombia">Colombia</label>
+              <br/>
+              <input type="checkbox" id="NorthernIreland" name="Con" value="Northern Ireland">
+              <label for="NorthernIreland">Northern Ireland</label>
+              <br/> -->
+            </div>
+          </div>
+
+          <br/><br/>
+          <!-- <div class="rule"> -->
+            <p>Visualize each agreement that has:</p>
+            <br/>
+            <input type="radio" id="any" name="filterRule" value="any" checked="checked">
+            <label for="any"><b>ANY</b> checked code</label>
+            <br/>
+            <input type="radio" id="all" name="filterRule" value="all">
+            <label for="all"><b>ALL</b> checked codes</label>
+          <!-- </div>
+          <div class="filter"> -->
+        <!-- CREATE LINKS FOR SELECT/DESELECT ALL -->
+            <br/><br/>
+            &nbsp;<a href="#" id="SelectAllCodes">Select All</a>&nbsp;&nbsp;<a href="#" id="DeselectAllCodes">Deselect All</a>
+            <br/>
+
+            <input type="checkbox" id="HrFra" name="filter" value=1 checked>
+            <label for="HrFra">Human Rights Framework</label>
+            <br/>
+            <input type="checkbox" id="HrGen" name="filter" value=1 checked>
+            <label for="HrGen">Human Rights/Rule of Law</label>
+            <br/>
+            <input type="checkbox" id="Pol" name="filter" value=1 checked>
+            <label for="Pol">Political Institutions</label>
+            <br/>
+            <input type="checkbox" id="Eps" name="filter" value=1 checked>
+            <label for="Pol">Power Sharing: Economic</label>
+            <br/>
+            <input type="checkbox" id="Mps" name="filter" value=1 checked>
+            <label for="Mps">Power Sharing: Military</label>
+            <br/>
+            <input type="checkbox" id="Polps" name="filter" value=1 checked>
+            <label for="Polps">Power Sharing: Political</label>
+            <br/>
+            <input type="checkbox" id="Terps" name="filter" value=1 checked>
+            <label for="Terps">Power Sharing: Territorial</label>
+            <br/>
+            <input type="checkbox" id="TjMech" name="filter" value=1 checked>
+            <label for="TjMech">Transitional Justice Past Mechanism</label>
+            <br/>
+            <input type="checkbox" id="GeWom" name="filter" value=1 checked>
+            <label for="GeWom">Women, Girls and Gender</label>
+          </div>
+       <!-- </div> -->
 
        <br/>
        <label for="agtInfo"><b>Agreement Details:</b></label>

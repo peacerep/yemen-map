@@ -1,18 +1,14 @@
 /*
 Style for Select iFrame
 */
+html {
+  background-color: #c4c4c4;
+}
+
 html, body {
   height: 95%;
 }
-.agt:hover {
-  background-color: #f1f1f1;
-}
-.selecter:hover {
-  background-color: #f1f1f1;
-  /* border: solid;
-  border-color: black;
-  border-width: 0.5px; */
-}
+
 p, a, label, input {
   color:black;
   /* padding: 3px 4px; */
@@ -20,20 +16,13 @@ p, a, label, input {
   text-decoration: none;
   display: inline;
   font-family: "Roboto", sans-serif;
-  font-weight: 50;
+  font-weight: normal;
 }
 
-a#Reset{
+a {
   text-decoration: underline;
 }
 
-#agt{
-  padding-left: 5px;
-  padding-right: 5px;
-  margin-top:10px;
-  padding-top: 2px;
-  padding-bottom: 25px;
-}
 svg {
   display: flex;
   flex-wrap: wrap;
@@ -75,5 +64,72 @@ g {
 foreignObject {
   font-family: "Roboto", sans-serif;
   font-size: 12px;
-  font-weight: 50;
+  font-weight: normal;
+}
+
+/*
+Country/Entity Dropbown
+*/
+.dropbtn {
+  background-color: #209dff;
+  color: #ffffff;
+  padding: 10px;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: lighter;
+  font-style: oblique;
+  border: none;
+  cursor: pointer;
+}
+#ConInput{
+  /* border-box: box-sizing; */
+  background-color: #f1f1f1;
+  font-size: 12px;
+  padding: 4px;
+  border: none;
+  margin: 2px;
+  min-width: 180px;
+  /* border-bottom: 1px solid #ddd; */
+  /* border-width: 100%; */
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.ConContent {
+  display: none;
+  position: absolute;
+  background-color: #ddd;
+  min-width: 190px;
+  overflow: auto;
+  max-height: 200px;
+  padding: 4px;
+  z-index: 1;
+}
+.ConContent input#ConInput {
+  color: #000000;
+  font-weight: lighter;
+  padding: 4px;
+  text-decoration: none;
+  display: inline;
+}
+.ConContent input {
+  color: #000000;
+  font-weight: bold;
+  padding: 4px;
+  text-decoration: none;
+  display: inline;
+}
+.ConContent label, a {
+  color: #000000;
+  font-weight: normal;
+  padding: 4px;
+  display: inline;
+}
+.ConContent input:hover, .ConContent label:hover {
+  /* background-color: #ffffff; */
+  font-weight: bolder;
+}
+.showConContent {
+  display: block;
 }

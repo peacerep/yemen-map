@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  shape-rendering: crispEdges;
 }
 
 [class*="col-"]{
@@ -28,13 +29,13 @@ html {
   float: left;
   font-family: "Roboto", sans-serif;
 }
-
+/*
 html:hover, svg:hover, g:hover, #chart:hover {
   background-color: #f1f1f1;
-  /* border: solid;
+  border: solid;
   border-color: black;
-  border-width: 0.5px; */
-}
+  border-width: 0.5px;
+} */
 
 svg, g, rect.agt, g.tick {
   shape-rendering: crispEdges;

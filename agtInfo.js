@@ -20,7 +20,7 @@ function callInfoFunction() {
 
   var agtInfo = "<em>"+agt+"</em>"+"<br/><br/>"+dat+"<br/>"+reg+"<br/>"+con+"<br/>"+status+"<br/>"+agtp+"<br/>"+stage;
 
-  var margin = {top: 160, right: 2, bottom: 30, left: 2}, //read clockwise from top
+  var margin = {top: 160, right: 10, bottom: 30, left: 10}, //read clockwise from top
       width = parseInt(d3.select("body").style("width"), 10),
       width = width - margin.left - margin.right,
       height = parseInt(d3.select(".selecter").style("height"), 10); // + margin.top; //- margin.bottom; //defines w & h as inner dimensions of chart area

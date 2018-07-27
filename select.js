@@ -1,56 +1,67 @@
 /* Filtering agreements by category
    Storing paxfilters in local storage
 */
+
 window.onload = function() {
-
-    document.getElementById("Reset").onclick = function(event) {
-      // Code filters
-      localStorage.setItem("paxHrFra",1);
-      localStorage.setItem("paxHrGen",1);
-      localStorage.setItem("paxPol",1);
-      localStorage.setItem("paxEps",1);
-      localStorage.setItem("paxMps",1);
-      localStorage.setItem("paxPolps",1);
-      localStorage.setItem("paxTerps",1);
-      localStorage.setItem("paxTjMech",1);
-      localStorage.setItem("paxGeWom",1);
-      localStorage.setItem("paxOther",1);
-
-      function check() {
-        document.getElementById("any").checked = true;
-        // document.getElementById("all").checked = false;
-      }
-      localStorage.setItem("paxANY",1);
-      localStorage.setItem("paxALL",0);
-      console.log("Selected ANY, checked all paxfilters");
-
-      // Agreement details
-      localStorage.setItem("agt", "Hover over an agreement to view its details.");
-      window.localStorage.setItem("paxdat", "");
-      window.localStorage.setItem("paxreg", "");
-      window.localStorage.setItem("paxcon", "");
-      window.localStorage.setItem("paxstatus", "");
-      window.localStorage.setItem("paxagtp", "");
-      window.localStorage.setItem("paxstage", "");
-    }
+    /*
+    Set deafults
+    */
+    storeCheckedFilters(); // Record code filters in localStorage
+    paxFilterCheck(); // Check all code filters
+    storeBlankAgtDetails();// Empty agreement details in localStorage
+    paxRuleAny(); // Pick code filter rule ANY
+    storeAllCons(); // Display all agreements for every country/entity
 
     /*
-    Filter rules
+    Listeners
     */
+    document.getElementById("Reset").onclick = function(event) {
+      paxRuleAny(); // Set default filter rules
+      storeCheckedFilters(); // Set default code filters
+      storeBlankAgtDetails(); // Set default agreement details
+      storeAllCons(); // Set default country/entity display (show all))
+    }
+
+    // Country/entity listeners
+    document.getElementById("DeselectAllCons").onclick = function(event) {
+      removeAllCons();
+    }
+    document.getElementById("SelectAllCons").onclick = function(event) {
+      storeAllCons();
+    }
+    // document.getElementById("ConDropdown").onclick = function(event) {
+    //   var paxCons = document.getElementsByName("Con").value;
+    //   var toAdd = [];
+    //   for (i = 0; i < paxCons.length; i++) {
+    //     paxCons[i].onclick = function(event) {
+    //       if (paxCons[i].checked) {
+    //         toAdd += [paxCons[i].value];  // record every checked country/entity
+    //       }
+    //     }
+    //   }
+    //   localStorage.setItem("paxCon", JSON.stringify(toAdd));
+    //   console.log("paxCon: "+JSON.parse(localStorage.getItem("paxCon")));
+    // }
+
+    // Filter rule listeners
     document.getElementById("any").onclick = function(event) {
-        localStorage.setItem("paxANY",1);
-        localStorage.setItem("paxALL",0);
-        console.log("Selected ANY");
+        paxRuleAny();
     }
     document.getElementById("all").onclick = function(event) {
-        localStorage.setItem("paxALL",1);
-        localStorage.setItem("paxANY",0);
-        console.log("Selected ALL");
+        paxRuleAll();
     }
 
-    /*
-    Code filters
-    */
+    // Code filter listeners
+    document.getElementById("DeselectAllCodes").onclick = function(event) {
+      storeUncheckedFilters();
+      paxFilterUncheck();
+      storeBlankAgtDetails();
+    }
+    document.getElementById("SelectAllCodes").onclick = function(event) {
+      storeCheckedFilters();
+      paxFilterCheck();
+      storeBlankAgtDetails();
+    }
     document.getElementById("HrFra").onclick = function(event) {
         if (localStorage.getItem("paxHrFra") == 0){
           localStorage.setItem("paxHrFra",1);
@@ -134,49 +145,95 @@ window.onload = function() {
         console.log(localStorage.getItem("paxGeWom"));
       }
     }
-    document.getElementById("other").onclick = function(event) {
-      if (localStorage.getItem("paxOther") == 0){
-        localStorage.setItem("paxOther",1);
-        console.log("Checked other");
-        console.log(localStorage.getItem("paxOther"));
-      } else {
-        localStorage.setItem("paxOther",0);
-        console.log("Unchecked other");
-        console.log(localStorage.getItem("paxOther"));
-      }
-    }
-
+    // Page refresh listener
     if (window.performance) {
       if (performance.navigation.TYPE_RELOAD) {
-        localStorage.setItem("paxHrFra",1);
-        document.getElementById("HrFra").checked = true;
-        localStorage.setItem("paxHrGen",1);
-        document.getElementById("HrGen").checked = true;
-        localStorage.setItem("paxPol",1);
-        document.getElementById("Pol").checked = true;
-        localStorage.setItem("paxEps",1);
-        document.getElementById("Eps").checked = true;
-        localStorage.setItem("paxMps",1);
-        document.getElementById("Mps").checked = true;
-        localStorage.setItem("paxPolps",1);
-        document.getElementById("Polps").checked = true;
-        localStorage.setItem("paxTerps",1);
-        document.getElementById("Terps").checked = true;
-        localStorage.setItem("paxTjMech",1);
-        document.getElementById("TjMech").checked = true;
-        localStorage.setItem("paxGeWom",1);
-        document.getElementById("GeWom").checked = true;
-        localStorage.setItem("paxOther",1);
-        document.getElementById("other").checked = true;
-
-        localStorage.setItem("agt", "Hover over an agreement to view its details.");
-        window.localStorage.setItem("paxdat", "");
-        window.localStorage.setItem("paxreg", "");
-        window.localStorage.setItem("paxcon", "");
-        window.localStorage.setItem("paxstatus", "");
-        window.localStorage.setItem("paxagtp", "");
-        window.localStorage.setItem("paxstage", "");
+        storeCheckedFilters(); // Record code filters in localStorage
+        paxFilterCheck(); // Check all code filters
+        storeBlankAgtDetails();// Empty agreement details in localStorage
+        paxRuleAny(); // Pick code filter rule ANY
+        storeAllCons(); // Display all agreements for every country/entity
       }
     }
+}
 
+function paxRuleAny() {
+  document.getElementById("any").checked = true;
+  localStorage.setItem("paxANY",1);
+  localStorage.setItem("paxALL",0);
+  console.log("Selected ANY")
+}
+function paxRuleAll() {
+  document.getElementById("all").checked = true;
+  localStorage.setItem("paxANY",0);
+  localStorage.setItem("paxALL",1);
+  console.log("Selected ALL")
+}
+function paxFilterUncheck() {
+  var filters = document.getElementsByName("filter")
+  for (i = 0; i < filters.length; i++) {
+    filters[i].checked = false;
+  }
+  console.log("Unchecked all code filters");
+}
+function paxFilterCheck() {
+  var filters = document.getElementsByName("filter")
+  for (i = 0; i < filters.length; i++) {
+    filters[i].checked = true;
+  }
+  console.log("Checked all code filters");
+}
+function storeCheckedFilters() {
+  localStorage.setItem("paxHrFra",1);
+  localStorage.setItem("paxHrGen",1);
+  localStorage.setItem("paxPol",1);
+  localStorage.setItem("paxEps",1);
+  localStorage.setItem("paxMps",1);
+  localStorage.setItem("paxPolps",1);
+  localStorage.setItem("paxTerps",1);
+  localStorage.setItem("paxTjMech",1);
+  localStorage.setItem("paxGeWom",1);
+}
+function storeUncheckedFilters() {
+  localStorage.setItem("paxHrFra",0);
+  localStorage.setItem("paxHrGen",0);
+  localStorage.setItem("paxPol",0);
+  localStorage.setItem("paxEps",0);
+  localStorage.setItem("paxMps",0);
+  localStorage.setItem("paxPolps",0);
+  localStorage.setItem("paxTerps",0);
+  localStorage.setItem("paxTjMech",0);
+  localStorage.setItem("paxGeWom",0);
+}
+function storeBlankAgtDetails() {
+  localStorage.setItem("agt", "Hover over an agreement to view its details.");
+  window.localStorage.setItem("paxdat", "");
+  window.localStorage.setItem("paxreg", "");
+  window.localStorage.setItem("paxcon", "");
+  window.localStorage.setItem("paxstatus", "");
+  window.localStorage.setItem("paxagtp", "");
+  window.localStorage.setItem("paxstage", "");  // Set one message for start time, one for end time, codes, regions, countries - each msg as json object so can have list or single
+}
+
+function storeAllCons() {
+  var paxCon = "All";
+  // var div = document.getElementById("ConDropdown");
+  var Cons = document.getElementsByName("Con");
+  for (i = 0; i < Cons.length; i++) {
+    Cons[i].checked = true;
+    console.log(Cons[i].value);
+  }
+  localStorage.setItem("paxCon", JSON.stringify(paxCon)); // retrieve with JSON.parse(localStorage.getItem("paxCon"));
+  console.log("Showing agreements for every country/entity.");
+  // console.log("Parsed: "+JSON.parse(localStorage.getItem("paxCon")));
+}
+function removeAllCons() {
+  var paxCon = "";
+  // var div = document.getElementById("ConDropdown");
+  var Cons = document.getElementsByName("Con");
+  for (i = 0; i < Cons.length; i++){
+    Cons[i].checked = false;
+  }
+  localStorage.setItem("paxCon", JSON.stringify(paxCon)); // retrieve with JSON.parse(localStorage.getItem("paxCon"));
+  console.log("Showing agreements for no country/entity.");
 }

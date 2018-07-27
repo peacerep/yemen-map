@@ -26,11 +26,13 @@ var paxPolps = window.localStorage.setItem("paxPolps",1); // Political power sha
 var paxPol = window.localStorage.setItem("paxTerps",1); // Political institutions
 var paxGeWom = window.localStorage.setItem("paxTjMech",1); // Women, girls and gender
 var paxTjMech = window.localStorage.setItem("paxGeWom",1); // Transitional justice past mechanism
-var paxTjMech = window.localStorage.setItem("paxOther",1); // Transitional justice past mechanism
 
 // var paxRule = window.localStorage.setItem("paxRule",1); // Selected ALL filter rule
 var paxANY = window.localStorage.setItem("paxANY",1); // Selected ANY filter rule
 var paxALL = window.localStorage.setItem("paxALL",0); // Selected ALL filter rule
+
+var paxCon = window.localStorage.setItem("paxCon", JSON.stringify("All"));
+window.localStorage.setItem("paxConList",false);
 
 //window.localStorage.setItem("agtInfo", "Hover over an agreement to view its details.");
 
@@ -54,7 +56,6 @@ function getFilters(){
   paxPol = locStor.getItem("paxPol");
   paxGeWom = locStor.getItem("paxGeWom");
   paxTjMech = locStor.getItem("paxTjMech");
-  paxOther = locStor.getItem("paxOther");
 };
 
 function callFunction() {
@@ -125,9 +126,19 @@ function callFunction() {
               agtHeight = 30,
               xHeight = 15;
 
+          // Group agreements by country/entity
+          var con_count_nest = d3.nest()
+                .key(function(d){ return d.Con; }).sortKeys(d3.ascending)
+                .map(data);
+          // Create an array with every country/entity (non-repeating) in which agreements occur
+          var cons = con_count_nest.keys();
+          window.localStorage.setItem("paxConList",JSON.stringify(cons));
+          // console.log("paxConList: "+JSON.parse(window.localStorage.getItem("paxConList")));
+
+          // Group agreements by year
           var yr_count_nest = d3.nest()
-               .key(function(d) {return formatYear(d.Year);}).sortKeys(d3.ascending)
-               .rollup(function(leaves) {return leaves.length;})
+               .key(function(d){ return formatYear(d.Year); }).sortKeys(d3.ascending)
+               .rollup(function(leaves){ return leaves.length; })
                .map(data);  //.entries(data);  //.object(data);
           // Create an array of years (non-repeating) in which agreements occur
           var years = yr_count_nest.keys();
@@ -167,74 +178,52 @@ function callFunction() {
                       .attr("class","chartGroup") //
                       .attr("transform","translate("+margin.left+","+margin.top+")") //;
 
+
+
           function newVisibility(d){
             var visibility = "visible";
             // HOW TO CHECK THAT AGT RECT LIES IN BOUNDS OF X AXIS???
 
-            // Visualize any agreement with at least one checked code
-            if (paxANY == 1 && paxALL == 0){ // visualize any agreement with ANY checked code
-              // visibility = "visible"
-              // (hide agreements that have any unchecked codes)
-              // (d.Code > 0 when HAS code, paxCode == 0 when filter UNCHECKED)
-              if ((d.GeWom > 0) && (paxGeWom == 0)){ visibility = "hidden"; }
-              if ((d.HrFra > 0) && (paxHrFra == 0)){ visibility = "hidden"; }
-              if ((d.HrGen > 0) && (paxHrGen == 0)){ visibility = "hidden"; }
-              if ((d.Eps > 0) && (paxEps == 0)){ visibility = "hidden"; }
-              if ((d.Mps > 0) && (paxMps == 0)){ visibility = "hidden"; }
-              if ((d.Pol > 0) && (paxPol == 0)){ visibility = "hidden"; }
-              if ((d.Polps > 0) && (paxPolps == 0)){ visibility = "hidden"; }
-              if ((d.Terps > 0) && (paxTerps == 0)){ visibility = "hidden"; }
-              if ((d.TjMech > 0) && (paxTjMech == 0)){ visibility = "hidden"; }
-              if ((paxOther == 0) && (d.GeWom==0 && d.HrFra==0 && d.Eps==0 &&
-                                      d.Mps==0 && d.Pol==0 && d.Polps==0 &&
-                                      d.Terps==0 && d.TjMech==0)){
-                                        visibility = "hidden";
-                                      }
-              // (if agreement has code and filter checked, remains visible)
-              return visibility;
+            // Hide agreements from any deselected country/entity
+            // if (paxCon == ""){
+            //   return "hidden";
+            // } else {
+            //      if (d.Con is not in paxCon) {
+            //         return "hidden";
+            //      }
+            // }
+
+            var codeFilters = [paxGeWom, paxHrFra, paxHrGen, paxEps, paxMps, paxPol, paxPolps, paxPol, paxTerps, paxTjMech];
+            var agmtCodes = [d.GeWom, d.HrFra, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech];
+
+            // Hide any agreement without at least one checked code
+            if (paxANY == 1 && paxALL == 0){
+              var matchCount = []
+              var filterCount = 0;
+              for (i = 0; i < codeFilters.length; i++){
+                if (codeFilters[i] == 1){
+                  filterCount += 1;
+                  if (agmtCodes[i] == 0) {
+                    matchCount += 1;
+                  }
+                }
+              } if (matchCount == filterCount){
+                return "hidden";
+              }
             }
 
-            // Only visualize an agreement if it has all checked codes
+
+            // Hide any agreement without all checked codes
             if (paxANY == 0 && paxALL == 1) {
-              // (display agreements that have all checked codes)
-              // if ALL filters checked...
-              if (paxGeWom == 1 && paxHrFra == 1 && paxHrGen == 1 &&
-                  paxEps == 1 && paxMps == 1 && paxPol == 1 && paxPolps == 1 &&
-                  paxTerps == 1 && paxTjMech == 1 && paxOther == 1)
-                  {
-                    if (d.GeWom>0 && d.HrFra>0 && d.Eps>0 && d.Mps>0 &&
-                        d.Pol>0 && d.Polps>0 && d.Terps>0 && d.TjMech>0)
-                    {
-                          return "visible";
-                    } else {
-                          return "hidden";
-                      }
-                  }
-              // if only OTHER filter checked...
-                if (paxGeWom == 0 && paxHrFra == 0 && paxHrGen == 0 &&
-                    paxEps == 0 && paxMps == 0 && paxPol == 0 && paxPolps == 0 &&
-                    paxTerps == 0 && paxTjMech == 0 && paxOther == 1)
-                    {
-                      if (d.GeWom==0 && d.HrFra==0 && d.Eps==0 && d.Mps==0 &&
-                          d.Pol==0 && d.Polps==0 && d.Terps==0 && d.TjMech==0)
-                      {
-                            return "visible";
-                      } else {
-                            return "hidden";
-                      }
-                    }
-                // hide agreements that do not have any one of the checked codes
-                if ((d.GeWom == 0) && (paxGeWom == 1)){ return "hidden"; }
-                if ((d.HrFra == 0) && (paxHrFra == 1)){ return "hidden"; }
-                if ((d.HrGen == 0) && (paxHrGen == 1)){ return "hidden"; }
-                if ((d.Eps == 0) && (paxEps == 1)){ return "hidden"; }
-                if ((d.Mps == 0) && (paxMps == 1)){ return "hidden"; }
-                if ((d.Pol == 0) && (paxPol == 1)){ return "hidden"; }
-                if ((d.Polps == 0) && (paxPolps == 1)){ return "hidden"; }
-                if ((d.Terps == 0) && (paxTerps == 1)){ return "hidden"; }
-                if ((d.TjMech == 0) && (paxTjMech == 1)){ return "hidden"; }
+              for (i=0; i < codeFilters.length; i++){
+                if ((codeFilters[i] == 1) && (agmtCodes[i] == 0)) {
+                  return "hidden";
+                }
+              }
             }
           };
+
+
 
           // Make one rectangle per agreement grouped by Year
           var rects = chartGroup.selectAll("rect.agt")
@@ -243,9 +232,9 @@ function callFunction() {
                      .attr("class","agt")
                      .attr("id", "rects")
                      .attr("fill","black")
-                     .attr("stroke","#f1f1f1")
+                     .attr("stroke","#c4c4c4")  // same as html background-color
                      .attr("stroke-width","1px")
-                     .style("opacity", "0.3")
+                     .style("opacity", "1")
                      .attr("x",function(d){ return x(d.Dat); })
                      .attr("y",function(d){ return (height-xHeight-(agtHeight-1))+"px"; })
                      .style("visibility",newVisibility)
@@ -255,9 +244,8 @@ function callFunction() {
             rects.on("mousemove",function(d){
                    if (this.style.opacity != "0"){
                      //console.log(d.Agt);
-                     this.style.fill = "#dc00ff";
-                     this.style.stroke = "#dc00ff";
-                     this.style.opactiy = "1";
+                     this.style.fill = "#ffffff";
+                     this.style.stroke = "#ffffff";
                      // Core agreement information (name, date, region, country/entity, status, type & stage)
                      agt = d.Agt;
                      dat = formatDate(d.Dat);
@@ -277,8 +265,7 @@ function callFunction() {
                  });
             rects.on("mouseout",function(d) {
                    this.style.fill = "black"
-                   this.style.stroke = "#f1f1f1";
-                   this.style.opacity = "0.3";
+                   this.style.stroke = "#c4c4c4";
                    window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
                    window.localStorage.setItem("paxdat", "");
                    window.localStorage.setItem("paxreg", "");

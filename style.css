@@ -1,13 +1,15 @@
+/*
+Flexbox column setup
+*/
 * {
   box-sizing: border-box;
+  shape-rendering: crispEdges;
 }
-
 [class*="col-"]{
   float: left;
   height: 100%;
   /* padding-left: 10px; */
 }
-
 .col-1 {width: 8.33%;}
 .col-2 {width: 16.66%;}
 .col-3 {width:25%;}
@@ -21,36 +23,20 @@
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
 
+/*
+Content
+*/
 html {
   margin: 2;
   float: left;
   font-family: "Roboto", sans-serif;
+  background-color: #c4c4c4;
 }
-
 html, body {
   width: 100%;
   height: 100%;
   margin:0;
 }
-
-a {
-  color: steelblue;
-  text-decoration: none;
-}
-
-iframe {
-  border: none;
-}
-
-#vert-timelines p, #map p {
-  padding: 10px;
-}
-#vert-timelines:hover, #map:hover {
-  /* border: solid;
-  border-width: 0.5px; */
-  background-color: #f1f1f1;
-}
-
 .header {
   color: #000000;
   padding-left: 20px;
@@ -60,34 +46,43 @@ iframe {
   margin-bottom: 20px;
   height: 160px;
 }
-
 hr {
   display: block;
   margin-left: 0px;
   margin-right: 15px;
   margin-top: 20px;
   margin-bottom: 20px;
-  border-top: 1px solid #bfbfbf;
-  border-bottom: 1px solid #ffffff;
+  border-top: 1px solid #707070;
+  border-bottom: 1px solid #b7b7b7;
   padding-right:20px;
+}
+iframe {
+  border: none;
+}
+#vert-timelines p, #map p {
+  padding: 10px;
 }
 
 /*
 Text
 */
 h1 {
-  font-weight: 800;
+  font-weight: bolder;
   font-size: 10px;
   color: steelblue;
 }
 h2 {
-  font-weight: 800;
+  font-weight: normal;
   font-size: 15px;
 }
 p {
-  font-weight: 50;
+  font-weight: normal;
   font-size: 12px;
   padding-left: 0px;
+}
+a {
+  color: #005796; /*#b5e1ff;*/
+  text-decoration: none;
 }
 
 /*
@@ -144,7 +139,9 @@ Flexboxes
           flex: 1 1 auto;
 
 }
+
 #left {
+  height: 100%;
   display: flex;
   flex-wrap: nowrap;
   align-content: flex-start;
@@ -160,6 +157,8 @@ Flexboxes
   height: 100%;
   display: flex;
   flex-wrap: nowrap;
+  /* min-height: -webkit-min-content; */
+  overflow: auto;
   padding: 0px;
   padding-right: 20px;
   display: -webkit-flex;
@@ -177,12 +176,20 @@ Flexboxes
       -ms-flex: 83.33%;
           flex: 83.33%;
 }
+
 #mini-t{
   height:15%;
+  /* min-height: -webkit-min-content; */
   flex-shrink:0;
 }
 #map{
   height:85%;
+  min-height: -webkit-min-content;
+}
+#vert-timelines {
+  /* height:85%; */
+  padding-bottom: 30px;
+  min-height: -webkit-min-content;
 }
 
 footer {
@@ -195,7 +202,7 @@ footer {
   bottom: 0;
   height: 30px;
   width: 100%;
-  background-color: #ffffff;
+  background-color: #c4c4c4;
 }
 footer a {
   font-weight: 50;
