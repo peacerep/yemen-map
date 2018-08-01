@@ -85,6 +85,8 @@ function callFunction() {
   var formatDay = d3.timeFormat("%j");  // day of the year as decimal number
   var formatYear = d3.timeFormat("%Y");
 
+  var clicked = false; // keep track of whether an agreement on timeline has been clicked
+
   // Obtain data
   d3.csv("PAX_with_additional.csv")
       .row(function(d){ return{ Year:+d.Year,
@@ -209,8 +211,6 @@ function callFunction() {
             }
           };
 
-
-
           // Make one rectangle per agreement grouped by Year
           var rects = chartGroup.selectAll("rect.agt")
                   .data(data)
@@ -226,9 +226,8 @@ function callFunction() {
                      .style("visibility",newVisibility)
                      .attr("width","2px")
                      .attr("height",agtHeight+"px");
-
             rects.on("mousemove",function(d){
-                   if (this.style.opacity != "0"){
+                   if ((this.style.opacity != "0") && (clicked == false)){
                      //console.log(d.Agt);
                      this.style.fill = "#ffffff";
                      this.style.stroke = "#ffffff";
@@ -250,22 +249,62 @@ function callFunction() {
                    }
                  });
             rects.on("mouseout",function(d) {
-                   this.style.fill = "black"
-                   this.style.stroke = "#c4c4c4";
-                   window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
-                   window.localStorage.setItem("paxdat", "");
-                   window.localStorage.setItem("paxreg", "");
-                   window.localStorage.setItem("paxcon", "");
-                   window.localStorage.setItem("paxstatus", "");
-                   window.localStorage.setItem("paxagtp", "");
-                   window.localStorage.setItem("paxstage", "");
-                 });
+              if (clicked == false){
+                this.style.fill = "black"
+                this.style.stroke = "#c4c4c4";
+                window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
+                window.localStorage.setItem("paxdat", "");
+                window.localStorage.setItem("paxreg", "");
+                window.localStorage.setItem("paxcon", "");
+                window.localStorage.setItem("paxstatus", "");
+                window.localStorage.setItem("paxagtp", "");
+                window.localStorage.setItem("paxstage", "");
+              }
+            });
+            rects.on("click", function(d){
+              if (clicked == false){
+                clicked = true;
+              } else {
+                clicked = false;
+              }
+              console.log(clicked);
+              if ((this.style.opacity != "0") && (clicked == false)){
+                this.style.fill = "black"
+                this.style.stroke = "#c4c4c4";
+                window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
+                window.localStorage.setItem("paxdat", "");
+                window.localStorage.setItem("paxreg", "");
+                window.localStorage.setItem("paxcon", "");
+                window.localStorage.setItem("paxstatus", "");
+                window.localStorage.setItem("paxagtp", "");
+                window.localStorage.setItem("paxstage", "");
+              }
+              if ((this.style.opacity != "0") && (clicked == true)){
+                this.style.fill = "#ffffff";
+                this.style.stroke = "#ffffff";
+                // Core agreement information (name, date, region, country/entity, status, type & stage)
+                agt = d.Agt;
+                dat = formatDate(d.Dat);
+                reg = d.Reg;
+                con = d.Con;
+                status = d.Status;
+                agtp = d.Agtp;
+                stage = d.Stage;
+                window.localStorage.setItem("paxagt", agt);
+                window.localStorage.setItem("paxdat", dat);
+                window.localStorage.setItem("paxreg", reg);
+                window.localStorage.setItem("paxcon", con);
+                window.localStorage.setItem("paxstatus", status);
+                window.localStorage.setItem("paxagtp", agtp);
+                window.localStorage.setItem("paxstage", stage);
+              }
+            });
 
              // Draw axes
              var xAxis = d3.axisBottom(x).tickFormat(d3.timeFormat("%e %b %Y")).tickPadding([5]);
 
              var gX = chartGroup.append("g")
-                  .attr("class","axis xaxis")
+                  .attr("class","xaxis")
                   .attr("transform","translate(0,"+(height-xHeight)+")")
                   .call(xAxis);
 

@@ -39,43 +39,18 @@ g .xaxis, rect.agt, path.domain, g.tick, {
   shape-rendering: crispEdges;
 }
 
-a {
-  color: steelblue;
+p, a, label, input {
+  color:black;
+  /* padding: 3px 4px; */
+  font-size: 12px;
   text-decoration: none;
+  display: inline;
+  font-family: "Roboto", sans-serif;
+  font-weight: normal;
 }
 
-h1 {
-  font-weight: 800;
-  font-size: 10px;
-  color: steelblue;
-}
-
-h2 {
-  font-weight: 800;
-  font-size: 15px;
-}
-
-h3 {
-  font-weight: 50;
-  font-size: 20px;
-}
-
-h4 {
-  font-weight: 50;
-  font-size: 15px;
-  font-style: italic;
-}
-
-h5 {
-  font-weight: 600;
-  font-size: 15px;
-  margin-top: 0px;
-  margin-bottom: 8px;
-}
-
-p {
-  font-weight: 50;
-  font-size: 15px;
+a {
+  text-decoration: underline;
 }
 
 
@@ -87,13 +62,23 @@ CHART
   display: flex;
   flex-shrink:0;
 }
-#chart.col-9 g.tick line {
-  stroke: black;
-}
 
 #chart.col-9 g.tick text {
   font-size: 12px;
-  font-weight: lighter;
+  font-weight: normal;
+  color: #bfbfbf;
+}
+g.xaxis path.domain {
+  shape-rendering: crispEdges;
+  stroke-width: 0px;
+}
+g.xaxis g.tick line {
+  stroke: black;
+  shape-rendering: crispEdges;
+  stroke-width: 2px;
+}
+g.xaxis g.tick text {
+  font-weight: normal;
 }
 
 .zoom {
@@ -101,54 +86,3 @@ CHART
   fill:none;
   pointer-events: all;
 }
-
-/* .tooltip {
-  background-color: #ffffff;
-  width: 100%;
-  padding-left: 20px;
-  font-family: "Roboto", sans-serif;
-  font-weight: 50;
-  z-index: -1;
-}
-
-
-/*
-Dropdown
-
-.dropbtn {
-  background-color: #3498DB;
-  color: white;
-  padding: 4px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-.dropbtn:hover, .dropbtn:focus {
-  background-color: #2980B9;
-}
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  width: 400%;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1; /*places dropdown in front of other elements
-}
-.dropdown-content a {
-  color:black;
-  padding: 3px 4px;
-  font-size: 10px;
-  text-decoration: none;
-  display: block;
-}
-.dropdown-content a:hover{
-  background-color: #ddd;
-}
-.show {
-  display: block;
-}
-*/

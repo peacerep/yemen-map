@@ -88,7 +88,7 @@ function callFunction() {
   var formatDay = d3.timeFormat("%j");  // day of the year as decimal number
   var formatYear = d3.timeFormat("%Y");
 
-  var margin = {top: 5, right: 15, bottom: 5, left: 5}, //read clockwise from top
+  var margin = {top: 5, right: 65, bottom: 5, left: 5}, //read clockwise from top
       width = parseInt(d3.select("body").style("width"), 10),
       width = width - margin.left - margin.right,
       agtHeight = 2,
@@ -157,7 +157,7 @@ function callFunction() {
 
           // Set up the x axis
           var minYear = d3.min(data,function(d){ return parseYear(d.Year-1); });
-          var maxYear = d3.max(data,function(d){ return parseYear(d.Year+1); });
+          var maxYear = d3.max(data,function(d){ return parseYear(d.Year); });
           var x = d3.scaleTime()
                       .domain([minYear,maxYear])  // data space
                       .range([margin.left,width]);  // display space
