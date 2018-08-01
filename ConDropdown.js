@@ -5,12 +5,13 @@ Country/Entity Dropdown
 function GetDropdown() {
   console.log("called GetDropdown");
   // while (window.localStorage.getItem("paxConList") != false){
-    var hasCons = window.localStorage.getItem("paxConList");
+    var hasCons = JSON.parse(window.localStorage.getItem("paxCons"));
+    console.log("hasCons: "+hasCons);
     // Once PA-X data loaded in mini-timeline.js file...
     if (hasCons.length > 0){
       // console.log("hasCons: "+(hasCons));
       // ...create dropdown list of every country/entity in the data...
-      var paxConList = JSON.parse(hasCons).sort();
+      var paxConList = hasCons.sort();
       // console.log("paxConList: "+paxConList);
       for (i = 0; i < paxConList.length; i++){
         if (paxConList != "undefined"){
@@ -19,11 +20,13 @@ function GetDropdown() {
           var conCheckbox = document.createElement("input");
           conCheckbox.type = "checkbox";
           conCheckbox.class = "Con";
+          conCheckbox.name = "Con";
           conCheckbox.value = paxConList[i];
           conCheckbox.id = paxConList[i];
           conCheckbox.checked = true;
           // ...and a label for each country/entity
           var conLabel = document.createElement("label");
+          conLabel.id = paxConList[i];
           conLabel.htmlFor = paxConList[i];
           conLabel.appendChild(document.createTextNode(paxConList[i]));
           var br = document.createElement("br");
@@ -31,23 +34,21 @@ function GetDropdown() {
           p.appendChild(conCheckbox);
           p.appendChild(conLabel);
           p.appendChild(br);
-          var conDropdown = document.getElementById("ConDropdown");
-          conDropdown.appendChild(p);
+          var cons = document.getElementById("Cons");
+          cons.appendChild(p);
         }
       }
     }
-    // console.log("Total Listed Cons: "+((document.getElementById("ConDropdown").getElementsByTagName("label")).length));
-    // console.log("Total Cons: "+(hasCons.length));
-  }
-// }
-
+}
 
 // When user clicks dropdown button, toggle between hide/show dropdown list
 function ConFunction() {
+  console.log("Called ConFunction");
   GetDropdown();
   document.getElementById("ConDropdown").classList.toggle("showConContent");
 }
 
+// NEED TO FIX!!!
 // Filter dropdown list values by what user types in search bar
 function filterConFunction() {
   var input, filter, div, label, checkbox;
@@ -61,6 +62,8 @@ function filterConFunction() {
     if (checkbox[i].type == "checkbox") {
       if (label[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
         label[i].style.display = "";
+        // console.log("label[i]: "+label[i]);
+        console.log("label[i].id: "+label.id);
         checkbox[i].style.display = "";
       } else {
         label[i].style.display = "none";

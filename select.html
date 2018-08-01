@@ -20,18 +20,23 @@
 
           <p>Visualize agreements from:</p>
           <div id="dropdown" class="dropdown">
-            <button onclick="ConFunction()" class="dropbtn">Click to select country/entity</button>
+            <button onclick="ConFunction()" class="dropbtn" id="ConDropBtn">Click to select country/entity</button>
             <div id="ConDropdown" class="ConContent">
-              <input type="text" placeholder="Search..." id="ConInput" onkeyup="filterConFunction()">
 
-              <a href="#AllCon" id="SelectAllCons">Select All</a>&nbsp;&nbsp;<a href="#NoCon" id="DeselectAllCons">Deselect All</a>
-              <br/>
-              <!-- <input type="checkbox" id="Colombia" name="Con" value="Colombia">
+              <!-- NEED TO FIX JS FUNCTION -->
+              <!-- <input type="text" placeholder="Search..." id="ConInput" onkeyup="filterConFunction()"> -->
+
+              <a href="#" id="SelectAllCons">Select All</a>&nbsp;&nbsp;<a href="#" id="DeselectAllCons">Deselect All</a>
+              <div id="Cons" class="ConContent">
+                <!-- List Country/Entity values with checkboxes (see ConDropdown.js) -->
+              </div>
+              <!-- <br/>
+              <input type="checkbox" id="Colombia" name="Con" value="Colombia">
               <label for="Colombia">Colombia</label>
               <br/>
               <input type="checkbox" id="NorthernIreland" name="Con" value="Northern Ireland">
-              <label for="NorthernIreland">Northern Ireland</label>
-              <br/> -->
+              <label for="NorthernIreland">Northern Ireland</label> -->
+              <br/>
             </div>
           </div>
 
