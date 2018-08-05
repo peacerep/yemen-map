@@ -19,19 +19,18 @@ Mini timeline iFrame with agreements displayed continuously on y axis
 // (value = 1) upon page load so all agreements are visible
 var paxHrFra = window.localStorage.setItem("paxHrFra",1); // Human rights framework
 var paxHrGen = window.localStorage.setItem("paxHrGen",1);; // Human rights/Rule of law
-var paxMps = window.localStorage.setItem("paxPol",1); // Military power sharing
+var paxMps = window.localStorage.setItem("paxMps",1); // Military power sharing
 var paxEps = window.localStorage.setItem("paxEps",1); // Economic power sharing
-var paxTerps = window.localStorage.setItem("paxMps",1); // Territorial power sharing
+var paxTerps = window.localStorage.setItem("paxTerps",1); // Territorial power sharing
 var paxPolps = window.localStorage.setItem("paxPolps",1); // Political power sharing
-var paxPol = window.localStorage.setItem("paxTerps",1); // Political institutions
-var paxGeWom = window.localStorage.setItem("paxTjMech",1); // Women, girls and gender
-var paxTjMech = window.localStorage.setItem("paxGeWom",1); // Transitional justice past mechanism
+var paxPol = window.localStorage.setItem("paxPol",1); // Political institutions
+var paxGeWom = window.localStorage.setItem("paxGeWom",1); // Women, girls and gender
+var paxTjMech = window.localStorage.setItem("paxTjMech",1); // Transitional justice past mechanism
 
 // var paxRule = window.localStorage.setItem("paxRule",1); // Selected ALL filter rule
 var paxANY = window.localStorage.setItem("paxANY",1); // Selected ANY filter rule
 var paxALL = window.localStorage.setItem("paxALL",0); // Selected ALL filter rule
 
-//window.localStorage.setItem("agtInfo", "Hover over an agreement to view its details.");
 
 callFunction();
 d3.select(window).on("resize", callFunction);
@@ -53,6 +52,8 @@ function getFilters(){
   paxPol = locStor.getItem("paxPol");
   paxGeWom = locStor.getItem("paxGeWom");
   paxTjMech = locStor.getItem("paxTjMech");
+  // Con (country/entity) filters - NOT WORKING!
+  // paxCons = JSON.parse(locStor.getItem("paxCons"));
 };
 
 function callFunction() {
@@ -155,6 +156,10 @@ function callFunction() {
           var maxDay = d3.max(data,function(d){ return (d.Dat); });
 
           // MAKE SURE CAN SEE AGTS PUBLISHED ON SAME DAY
+          var dat_nest = d3.nest()
+              .key(function(d){ return d.Dat; }).sortKeys(d3.ascending)
+              .entries(data);
+
           // WHY ARE AGTS DRAWN BEYOND ENDS OF AXIS?
           var x = d3.scaleTime()
                       .domain([minDay,maxDay])  // data space
@@ -172,16 +177,12 @@ function callFunction() {
                       .attr("class","chartGroup") //
                       .attr("transform","translate("+margin.left+","+margin.top+")") //;
 
-
-
           function newVisibility(d){
             var visibility = "visible";
-            // HOW TO CHECK THAT AGT RECT LIES IN BOUNDS OF X AXIS???
+            // Hide agreements from any deselected country/entity - NOT WORKING!
+            // if (paxCons.indexOf(d.Con) == -1){ return "hidden";}
 
-            // Hide agreements from any deselected country/entity
-            if (!paxCons.includes(d.Con)){ return "hidden";}
-
-            var codeFilters = [paxGeWom, paxHrFra, paxHrGen, paxEps, paxMps, paxPol, paxPolps, paxPol, paxTerps, paxTjMech];
+            var codeFilters = [paxGeWom, paxHrFra, paxHrGen, paxEps, paxMps, paxPol, paxPolps, paxTerps, paxTjMech];
             var agmtCodes = [d.GeWom, d.HrFra, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech];
 
             // Hide any agreement without at least one checked code
@@ -199,7 +200,6 @@ function callFunction() {
                 return "hidden";
               }
             }
-
 
             // Hide any agreement without all checked codes
             if (paxANY == 0 && paxALL == 1) {

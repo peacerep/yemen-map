@@ -60,23 +60,23 @@ function getFilters(){
 
 function callFunction() {
 
-  getFilters();
-
-  // Agreement information to display upon hover
-  var agt = "Hover over an agreement to view its details.",
-      dat = "",
-      reg = "",
-      con = "",
-      status = "",
-      agtp = "",
-      stage = "";
-  window.localStorage.setItem("paxagt", agt);
-  window.localStorage.setItem("paxdat", dat);
-  window.localStorage.setItem("paxreg", reg);
-  window.localStorage.setItem("paxcon", con);
-  window.localStorage.setItem("paxstatus", status);
-  window.localStorage.setItem("paxagtp", agtp);
-  window.localStorage.setItem("paxstage", stage);
+  // getFilters();
+  //
+  // // Agreement information to display upon hover
+  // var agt = "Hover over an agreement to view its details.",
+  //     dat = "",
+  //     reg = "",
+  //     con = "",
+  //     status = "",
+  //     agtp = "",
+  //     stage = "";
+  // window.localStorage.setItem("paxagt", agt);
+  // window.localStorage.setItem("paxdat", dat);
+  // window.localStorage.setItem("paxreg", reg);
+  // window.localStorage.setItem("paxcon", con);
+  // window.localStorage.setItem("paxstatus", status);
+  // window.localStorage.setItem("paxagtp", agtp);
+  // window.localStorage.setItem("paxstage", stage);
 
   // Date parsers & formatters
   var parseDate = d3.timeParse("%d/%m/%Y");
@@ -91,8 +91,9 @@ function callFunction() {
   var margin = {top: 5, right: 65, bottom: 5, left: 5}, //read clockwise from top
       width = parseInt(d3.select("body").style("width"), 10),
       width = width - margin.left - margin.right,
-      agtHeight = 2,
-      xTickHeight = 15,
+      height = 100 - margin.top - margin.bottom,
+      agtHeight = 50,
+      xHeight = 15,
       agtPadding = 5;
 
   var x = d3.scalePoint()
@@ -129,58 +130,71 @@ function callFunction() {
             svgtest.remove();
           };
 
+          // // Group agreements by Reg (region)
+          // var regs = d3.nest()
+          //      .key(function(d){ return d.Reg; }).sortKeys(d3.ascending)
+          //      .entries(data);
+
           // Group agreements by Year (create an array of objects whose key is the year and value is an array of objects (one per agreement))
-          var years = d3.nest()
-               .key(function(d){ return d.Year; }).sortKeys(d3.ascending)
-               .sortValues(function(a,b){ return d3.ascending(a.Dat, b.Dat); })
+          var dats = d3.nest()
+               .key(function(d){ return d.Dat; }).sortKeys(d3.ascending)         // sort by Agreement's Date Signed
+               .sortValues(function(a,b){ return d3.ascending(a.Agt, b.Agt); })  // sort by Agreement's Name
                .entries(data);
-          var yrList = (d3.map(years, function(year){ return year.key; })).keys(); // array of year values
+          var datList = (d3.map(dats, function(dat){ return dat.key; })).keys(); // array of Dat values
           // console.log(years); // an array of objects
           // console.log(years[0].values); // array of objects (one for each agreement in 1990)
           // console.log(years[0].values[0]); // first agreement object from 1990
           // console.log(years[0].values[0].Year); // Year (as number) of the first agreement object from 1990
 
-          // Find the maximum number of agreements in a single year
-          var maxAgts = d3.max(years, function(year){ return year.values.length; });
-          var height = (maxAgts*(agtHeight*1.5))+(xTickHeight*2) + margin.top + margin.bottom; //defines w & h as inner dimensions of chart area
-          // console.log(maxAgts); // 91
+          // Find the maximum number of agreements for a single date
+          var maxAgts = d3.max(dats, function(dat){ return dat.values.length; });
+          //var height = (maxAgts*(agtHeight*1.5))+(xHeight*2) + margin.top + margin.bottom;
+          // console.log(maxAgts); // 9
 
           // Calculate the size of each agreement in the display space
-          var agtWidth = (width/(yrList.length))-agtPadding;
+          var agtWidth = 3; // (width/(data.length));
+          // var height = (maxAgts*agtHeight) + xHeight + margin.top + margin.bottom;
 
           // Set up the x axis
-          var minYear = d3.min(data,function(d){ return parseYear(d.Year-1); });
-          var maxYear = d3.max(data,function(d){ return parseYear(d.Year); });
+          // Find the earliest & latest day of the year on which agreements are written
+          var minDay = d3.min(data,function(d){ return (d.Dat); });
+          var maxDay = d3.max(data,function(d){ return (d.Dat); });
           var x = d3.scaleTime()
-                      .domain([minYear,maxYear])  // data space
+                      .domain([minDay,maxDay])  // data space
                       .range([margin.left,width]);  // display space
 
           // Define the full timeline chart SVG element
           var svg = d3.select("body").select("#chart").append("svg")
               .attr("height", height + margin.top + margin.bottom)
               .attr("width", width + margin.left + margin.right)
+              // .call(d3.zoom()
+              //           .scaleExtent([1,100]) // prevent zoom out, restrict zoom in
+              //           .translateExtent([ [0, 0], [width,height]]) // restrict panning (<- & ->)
+              //           .on("zoom",zoom));
 
-          for (year = 0; year < yrList.length; year++){
+          // console.log(dats[0].values[0].Dat);
+
+          for (dat = 0; dat < datList.length; dat++){
             var chartGroup = svg.append("g")
                         .attr("class","chartGroup") //
                         .attr("transform","translate("+margin.left+","+margin.top+")")
 
-            console.log(years[year].values);
             var rects = chartGroup.selectAll("rects.agt")
-                .data(years[year].values)
+                .data(dats[dat].values)
               .enter().append("rect")
                 .attr("class","agt")
                 .attr("id",function(d){ return d.AgtId; })
-                .attr("name",function(d){ return d.Agt; })
-                .attr("value",function(d){ return d.Year; })
+                // .attr("name",function(d){ return d.Agt; })
+                // .attr("value",function(d){ return d.Dat; })
                 .attr("fill","black")
                 .attr("stroke","#c4c4c4")  // same as html background-color
                 .attr("stroke-width","1px")
-                .style("opacity", "1")
-                .attr("x", function(d){ return x(parseYear(d.Year)) - (agtWidth/2); })
-                .attr("y",function(d,i){ return (height-xTickHeight-2-((agtHeight*1.5)*(i)))+"px"; })
+                .style("opacity", "0.7")
+                .attr("x", function(d){ return x(d.Dat); })
+                // .attr("y", function(d, i){ return (height-xHeight-(agtHeight-1))+"px"; })
+                .attr("y",function(d,i){ return (height - xHeight - (agtHeight-1) + ((agtHeight/(dats[dat].values.length)) * i) )+"px"; })
                 .attr("width", agtWidth+"px")
-                .attr("height", agtHeight+"px");
+                .attr("height", (agtHeight/dats[dat].values.length)+"px");
 
             rects.on("mousemove",function(d){
                    if (this.style.opacity != "0"){
@@ -215,15 +229,25 @@ function callFunction() {
                    window.localStorage.setItem("paxagtp", "");
                    window.localStorage.setItem("paxstage", "");
                  });
-          }
+
+          } // end of for loop
 
           // Draw X axis for the entire chart
           var xAxis = d3.axisBottom(x).tickFormat(d3.timeFormat("%Y")).tickPadding([5]);
 
           var gX = chartGroup.append("g")
                .attr("class","xaxis")
-               .attr("transform","translate(0,"+(height-xTickHeight)+")")
+               .attr("transform","translate(0,"+(height-xHeight)+")")
                .call(xAxis);
+
+         // function zoom() {
+         //   gX.transition()
+         //   .duration(50)
+         //   .call(xAxis.scale(d3.event.transform.rescaleX(x)));
+
+             // var newX = d3.event.transform.rescaleX(x);
+             // rects.attr("x",function(d){ return newX(d.Dat); });
+         // }
 
       }) // end of .get(error,data)
 

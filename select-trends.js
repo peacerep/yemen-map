@@ -1,4 +1,5 @@
-/* Filtering agreements by category
+/* TRENDS VIEW
+   Filtering agreements by category
    Storing paxfilters in local storage
 */
 
@@ -6,38 +7,22 @@ window.onload = function() {
     /*
     Set deafults
     */
-    storeCheckedFilters(); // Record code filters in localStorage
-    paxFilterCheck(); // Check all code filters
-    storeBlankAgtDetails();// Empty agreement details in localStorage
-    paxRuleAny(); // Pick code filter rule ANY
-    // paxConsAllCheck();
+    storeUncheckedFilters();
+    paxFilterUncheck();
+    storeBlankAgtDetails();
+    localStorage.setItem("paxGeWom",1);
+    document.getElementById("GeWom").checked = true;
+    console.log("Checked GeWom");
 
     /*
     Listeners
     */
     document.getElementById("Reset").onclick = function(event) {
-      paxRuleAny(); // Set default filter rules
-      storeCheckedFilters(); // Set default code filters
+      storeUncheckedFilters(); // Set default code filters
+      paxFilterUncheck();
+      localStorage.setItem("paxGeWom",1);
+      console.log("Checked GeWom");
       storeBlankAgtDetails(); // Set default agreement details
-      // paxConsAllCheck();
-    }
-
-    // Country/entity listeners
-    document.getElementById("DeselectAllCons").onclick = function(event) {
-      paxConsAllUncheck();
-      storeBlankAgtDetails();
-    }
-    document.getElementById("SelectAllCons").onclick = function(event) {
-      paxConsAllCheck();
-      storeBlankAgtDetails();
-    }
-
-    // Filter rule listeners
-    document.getElementById("any").onclick = function(event) {
-        paxRuleAny();
-    }
-    document.getElementById("all").onclick = function(event) {
-        paxRuleAll();
     }
 
     // Code filter listeners
@@ -137,49 +122,16 @@ window.onload = function() {
     // Page refresh listener
     if (window.performance) {
       if (performance.navigation.TYPE_RELOAD) {
-        storeCheckedFilters(); // Record code filters in localStorage
-        paxFilterCheck(); // Check all code filters
+        storeUncheckedFilters(); // Record code filters in localStorage
+        paxFilterUncheck(); // Check all code filters
+        document.getElementById("GeWom").checked = true;
+        localStorage.setItem("paxGeWom",1);
+        console.log("Checked GeWom");
         storeBlankAgtDetails();// Empty agreement details in localStorage
-        paxRuleAny(); // Pick code filter rule ANY
-        paxConsAllCheck(); // Display all agreements for every country/entity
       }
     }
 }
 
-function paxConsAllCheck() {
-  var paxCons = []
-  var cons = document.getElementsByName("Con");
-  for (i = 0; i < cons.length; i++){
-    cons[i].checked = true;
-    paxCons += [String(cons[i].id)];
-  }
-  console.log("Checked all Country/Entity values");
-  localStorage.setItem("paxCons", JSON.stringify(paxCons));
-  //console.log("All Cons: "+JSON.parse(localStorage.getItem("paxCons")));
-  //console.log("Showing agreements for every country/entity.");
-}
-function paxConsAllUncheck() {
-  var cons = document.getElementsByName("Con");
-  for (i = 0; i < cons.length; i++){
-    cons[i].checked = false;
-  }
-  console.log("Unchecked all Country/Entity values");
-  localStorage.setItem("paxCons", JSON.stringify("")); // retrieve with JSON.parse(localStorage.getItem("paxCon"));
-  // console.log("No Cons: "+(JSON.parse(localStorage.getItem("paxCons"))).length);
-}
-
-function paxRuleAny() {
-  document.getElementById("any").checked = true;
-  localStorage.setItem("paxANY",1);
-  localStorage.setItem("paxALL",0);
-  console.log("Selected ANY")
-}
-function paxRuleAll() {
-  document.getElementById("all").checked = true;
-  localStorage.setItem("paxANY",0);
-  localStorage.setItem("paxALL",1);
-  console.log("Selected ALL")
-}
 function paxFilterUncheck() {
   var filters = document.getElementsByName("filter");
   for (i = 0; i < filters.length; i++) {
