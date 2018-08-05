@@ -178,7 +178,6 @@ function callFunction() {
                       .attr("transform","translate("+margin.left+","+margin.top+")") //;
 
           function newVisibility(d){
-            var visibility = "visible";
             // Hide agreements from any deselected country/entity - NOT WORKING!
             // if (paxCons.indexOf(d.Con) == -1){ return "hidden";}
 
@@ -187,19 +186,16 @@ function callFunction() {
 
             // Hide any agreement without at least one checked code
             if (paxANY == 1 && paxALL == 0){
-              var matchCount = []
-              var filterCount = 0;
+              var matchCount = 0;
               for (i = 0; i < codeFilters.length; i++){
-                if (codeFilters[i] == 1){
-                  filterCount += 1;
-                  if (agmtCodes[i] == 0) {
-                    matchCount += 1;
-                  }
+                if ((codeFilters[i] == 1) && (agmtCodes[i] > 0)){
+                  matchCount += 1;
+                  return "visible";
                 }
-              } if (matchCount == filterCount){
-                return "hidden";
               }
+              if (matchCount == 0){ return "hidden"; }
             }
+
 
             // Hide any agreement without all checked codes
             if (paxANY == 0 && paxALL == 1) {

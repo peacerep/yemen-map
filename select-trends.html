@@ -15,8 +15,8 @@
   <body>
 
         <div class="selecter">
-          <a href="select.html" id="Reset"><label for="Reset">Reset</label></a>
-          <br/><br/>
+          <!-- <a href="select.html" id="Reset"><label for="Reset">Reset</label></a>
+          <br/><br/> -->
 
           <p>Visualize agreements from:</p>
           <div id="dropdown" class="dropdown">
@@ -56,34 +56,34 @@
           <div class="filter"> -->
         <!-- CREATE LINKS FOR SELECT/DESELECT ALL -->
             <br/><br/>
-            &nbsp;<a href="#" id="SelectAllCodes">Select All</a>&nbsp;&nbsp;<a href="#" id="DeselectAllCodes">Deselect All</a>
+            <a href="#" id="DeselectAllCodes">Deselect All</a>
             <br/>
 
-            <input type="checkbox" id="HrFra" name="filter" value=0, onclick="select('HrFra')">
+            <input type="radio" id="paxHrFra" name="filter" value=0 onclick="select(this)">
             <label for="HrFra">Human Rights Framework</label>
             <br/>
-            <input type="checkbox" id="HrGen" name="filter" value=0, onclick="select('HrGen')">
+            <input type="radio" id="paxHrGen" name="filter" value=0 onclick="select('paxHrGen')">
             <label for="HrGen">Human Rights/Rule of Law</label>
             <br/>
-            <input type="checkbox" id="Pol" name="filter" value=0, onclick="select('Pol')">
+            <input type="radio" id="paxPol" name="filter" value=0 onclick="select('paxPol')">
             <label for="Pol">Political Institutions</label>
             <br/>
-            <input type="checkbox" id="Eps" name="filter" value=0, onclick="select('Eps')">
+            <input type="radio" id="paxEps" name="filter" value=0 onclick="select('paxEps')">
             <label for="Pol">Power Sharing: Economic</label>
             <br/>
-            <input type="checkbox" id="Mps" name="filter" value=0, onclick="select('Mps')">
+            <input type="radio" id="paxMps" name="filter" value=0 onclick="select('paxMps')">
             <label for="Mps">Power Sharing: Military</label>
             <br/>
-            <input type="checkbox" id="Polps" name="filter" value=0, onclick="select('Polps')">
+            <input type="radio" id="paxPolps" name="filter" value=0 onclick="select('paxPolps')">
             <label for="Polps">Power Sharing: Political</label>
             <br/>
-            <input type="checkbox" id="Terps" name="filter" value=0, onclick="select('Terps')">
+            <input type="radio" id="paxTerps" name="filter" value=0 onclick="select('paxTerps')">
             <label for="Terps">Power Sharing: Territorial</label>
             <br/>
-            <input type="checkbox" id="TjMech" name="filter" value=0, onclick="select('TjMech')">
+            <input type="radio" id="paxTjMech" name="filter" value=0 onclick="select('paxTjMech')">
             <label for="TjMech">Transitional Justice Past Mechanism</label>
             <br/>
-            <input type="checkbox" id="GeWom" name="filter" value=0, onclick="select('GeWom')">
+            <input type="radio" id="paxGeWom" name="filter" value=1 onclick="select('paxGeWom')" checked>
             <label for="GeWom">Women, Girls and Gender</label>
           </div>
        <!-- </div> -->

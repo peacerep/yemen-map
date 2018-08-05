@@ -10,124 +10,38 @@ window.onload = function() {
     storeUncheckedFilters();
     paxFilterUncheck();
     storeBlankAgtDetails();
+    document.getElementById("paxGeWom").checked = true;
     localStorage.setItem("paxGeWom",1);
-    document.getElementById("GeWom").checked = true;
-    console.log("Checked GeWom");
+    console.log("Selected GeWom");
 
     /*
     Listeners
     */
-    document.getElementById("Reset").onclick = function(event) {
-      storeUncheckedFilters(); // Set default code filters
-      paxFilterUncheck();
-      localStorage.setItem("paxGeWom",1);
-      console.log("Checked GeWom");
-      storeBlankAgtDetails(); // Set default agreement details
+
+    function select(selected) {
+      var code = selected.id;
+      var codes = document.getElementsByName("filter").id;
+      console.log("called select on ",selected);
+      for (i=0; i < codes.length; i++){
+        if (codes[i] != code){
+          document.getElementById(codes[i]).checked = false;
+          localStorage.setItem(codes[i],0);
+        }
+      }
+      document.getElementById(code).checked = true;
+      localStorage.setItem(code,1);
+      console.log("Selected ",code);
     }
 
-    // Code filter listeners
-    document.getElementById("DeselectAllCodes").onclick = function(event) {
-      storeUncheckedFilters();
-      paxFilterUncheck();
-      storeBlankAgtDetails();
-    }
-    document.getElementById("SelectAllCodes").onclick = function(event) {
-      storeCheckedFilters();
-      paxFilterCheck();
-      storeBlankAgtDetails();
-    }
-    document.getElementById("HrFra").onclick = function(event) {
-        if (localStorage.getItem("paxHrFra") == 0){
-          localStorage.setItem("paxHrFra",1);
-          console.log("Checked HrFra");
-        } else {
-          localStorage.setItem("paxHrFra",0);
-          console.log("Unchecked HrFra");
-        }
-    }
-    document.getElementById("HrGen").onclick = function(event) {
-      if (localStorage.getItem("paxHrGen") == 0){
-        localStorage.setItem("paxHrGen",1);
-        console.log("Checked HrGen");
-      } else {
-        localStorage.setItem("paxHrGen",0);
-        console.log("Unchecked HrGen");
-      }
-    }
-    document.getElementById("Pol").onclick = function(event) {
-      if (localStorage.getItem("paxPol") == 0){
-        localStorage.setItem("paxPol",1);
-        console.log("Checked Pol");
-      } else {
-        localStorage.setItem("paxPol",0);
-        console.log("Unchecked Pol");
-      }
-    }
-    document.getElementById("Eps").onclick = function(event) {
-      if (localStorage.getItem("paxEps") == 0){
-        localStorage.setItem("paxEps",1);
-        console.log("Checked Eps");
-      } else {
-        localStorage.setItem("paxEps",0);
-        console.log("Unchecked Eps");
-      }
-    }
-    document.getElementById("Mps").onclick = function(event) {
-      if (localStorage.getItem("paxMps") == 0){
-        localStorage.setItem("paxMps",1);
-        console.log("Checked Mps");
-      } else {
-        localStorage.setItem("paxMps",0);
-        console.log("Unchecked Mps");
-      }
-    }
-    document.getElementById("Polps").onclick = function(event) {
-      if (localStorage.getItem("paxPolps") == 0){
-        localStorage.setItem("paxPolps",1);
-        console.log("Checked Polps");
-      } else {
-        localStorage.setItem("paxPolps",0);
-        console.log("Unchecked Polps");
-      }
-    }
-    document.getElementById("Terps").onclick = function(event) {
-      if (localStorage.getItem("paxTerps") == 0){
-        localStorage.setItem("paxTerps",1);
-        console.log("Checked Terps");
-      } else {
-        localStorage.setItem("paxTerps",0);
-        console.log("Unchecked Terps");
-      }
-    }
-    document.getElementById("TjMech").onclick = function(event) {
-      if (localStorage.getItem("paxTjMech") == 0){
-        localStorage.setItem("paxTjMech",1);
-        console.log("Checked TjMech");
-      } else {
-        localStorage.setItem("paxTjMech",0);
-        console.log("Unchecked TjMech");
-      }
-    }
-    document.getElementById("GeWom").onclick = function(event) {
-      if (localStorage.getItem("paxGeWom") == 0){
-        localStorage.setItem("paxGeWom",1);
-        console.log("Checked GeWom");
-        console.log(localStorage.getItem("paxGeWom"));
-      } else {
-        localStorage.setItem("paxGeWom",0);
-        console.log("Unchecked GeWom");
-        console.log(localStorage.getItem("paxGeWom"));
-      }
-    }
     // Page refresh listener
     if (window.performance) {
       if (performance.navigation.TYPE_RELOAD) {
         storeUncheckedFilters(); // Record code filters in localStorage
         paxFilterUncheck(); // Check all code filters
-        document.getElementById("GeWom").checked = true;
-        localStorage.setItem("paxGeWom",1);
-        console.log("Checked GeWom");
         storeBlankAgtDetails();// Empty agreement details in localStorage
+        document.getElementById("paxGeWom").checked = true;
+        localStorage.setItem("paxGeWom",1);
+        console.log("Selected GeWom");
       }
     }
 }
