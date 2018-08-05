@@ -96,9 +96,6 @@ function callFunction() {
       agtPadding = 5,
       agtSpacing = 1;
 
-  var x = d3.scalePoint()
-      .range([margin.left, width]);
-
   // Obtain data
   d3.csv("PAX_with_additional.csv")
       .row(function(d){ return{ Year:+d.Year, //parseYear(d.Year),

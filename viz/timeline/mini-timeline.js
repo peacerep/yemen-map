@@ -27,7 +27,6 @@ var paxPol = window.localStorage.setItem("paxPol",1); // Political institutions
 var paxGeWom = window.localStorage.setItem("paxGeWom",1); // Women, girls and gender
 var paxTjMech = window.localStorage.setItem("paxTjMech",1); // Transitional justice past mechanism
 
-// var paxRule = window.localStorage.setItem("paxRule",1); // Selected ALL filter rule
 var paxANY = window.localStorage.setItem("paxANY",1); // Selected ANY filter rule
 var paxALL = window.localStorage.setItem("paxALL",0); // Selected ALL filter rule
 
@@ -126,15 +125,15 @@ function callFunction() {
               agtHeight = 30,
               xHeight = 15;
 
-          // Group agreements by country/entity
-          var con_count_nest = d3.nest()
-                .key(function(d){ return d.Con; }).sortKeys(d3.ascending)
-                .map(data);
-          // Create an array with every country/entity (non-repeating) in which agreements occur
-          var cons = con_count_nest.keys();
-          window.localStorage.setItem("paxCons",JSON.stringify(cons));
-          var paxCons = JSON.parse(window.localStorage.getItem("paxCons"));
-          // console.log("paxCons:"+paxCons);
+          // // Group agreements by country/entity
+          // var con_count_nest = d3.nest()
+          //       .key(function(d){ return d.Con; }).sortKeys(d3.ascending)
+          //       .map(data);
+          // // Create an array with every country/entity (non-repeating) in which agreements occur
+          // var cons = con_count_nest.keys();
+          // window.localStorage.setItem("paxCons",JSON.stringify(cons));
+          // var paxCons = JSON.parse(window.localStorage.getItem("paxCons"));
+          // // console.log("paxCons:"+paxCons);
 
           // Group agreements by year
           var yr_count_nest = d3.nest()
@@ -154,11 +153,6 @@ function callFunction() {
           // Find the earliest & latest day of the year on which agreements are written
           var minDay = d3.min(data,function(d){ return (d.Dat); });
           var maxDay = d3.max(data,function(d){ return (d.Dat); });
-
-          // MAKE SURE CAN SEE AGTS PUBLISHED ON SAME DAY
-          var dat_nest = d3.nest()
-              .key(function(d){ return d.Dat; }).sortKeys(d3.ascending)
-              .entries(data);
 
           // WHY ARE AGTS DRAWN BEYOND ENDS OF AXIS?
           var x = d3.scaleTime()
