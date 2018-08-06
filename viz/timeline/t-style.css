@@ -81,8 +81,18 @@ g.xaxis g.tick text {
   font-weight: normal;
 }
 
-.zoom {
+/* .zoom {
   cursor: zoom-in,zoom-out;
   fill:none;
   pointer-events: all;
+} */
+.tooltip {
+  background-color: #ffffff;
+  width: auto;
+  text-align: center;
+  padding-left: 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 50;
+  z-index: 1;
+  pointer-events: none !important;
 }

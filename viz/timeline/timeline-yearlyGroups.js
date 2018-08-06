@@ -92,7 +92,7 @@ function callFunction() {
       width = parseInt(d3.select("body").style("width"), 10),
       width = width - margin.left - margin.right,
       agtHeight = 2,
-      xTickHeight = 15,
+      xHeight = 15,
       agtPadding = 5,
       agtSpacing = 1;
 
@@ -122,9 +122,9 @@ function callFunction() {
                               }; })
       .get(function(error,data){
 
-          var svgtest = d3.select("body").select("svg");
-          if (!svgtest.empty()) {
-            svgtest.remove();
+          var svgTest = d3.select("body").select("svg");
+          if (!svgTest.empty()) {
+            svgTest.remove();
           };
 
           // Group agreements by Year (create an array of objects whose key is the year and value is an array of objects (one per agreement))
@@ -140,7 +140,7 @@ function callFunction() {
 
           // Find the maximum number of agreements in a single year
           var maxAgts = d3.max(years, function(year){ return year.values.length; });
-          var height = (maxAgts*(agtHeight*1.25))+(xTickHeight*2) + margin.top + margin.bottom; //defines w & h as inner dimensions of chart area
+          var height = (maxAgts*(agtHeight*1.25))+(xHeight*2) + margin.top + margin.bottom; //defines w & h as inner dimensions of chart area
           // console.log(maxAgts); // 91
 
           // Calculate the size of each agreement in the display space
@@ -180,6 +180,7 @@ function callFunction() {
                   return "0.5";
                 }
               }
+              return "1";
             }
           };
 
@@ -215,7 +216,7 @@ function callFunction() {
                 // .attr("stroke-width","1px")
                 .style("opacity", newOpacity)
                 .attr("x", function(d){ return x(parseYear(d.Year)) - (agtWidth/2); })
-                .attr("y",function(d,i){ return (height-xTickHeight-2-((agtHeight)*(i*agtSpacing)))+"px"; })
+                .attr("y",function(d,i){ return (height-xHeight-2-((agtHeight)*(i*agtSpacing)))+"px"; })
                 .attr("width", agtWidth+"px")
                 .attr("height", agtHeight+"px");
 
@@ -259,7 +260,7 @@ function callFunction() {
 
           var gX = chartGroup.append("g")
                .attr("class","xaxis")
-               .attr("transform","translate(0,"+(height-xTickHeight)+")")
+               .attr("transform","translate(0,"+(height-xHeight)+")")
                .call(xAxis);
 
       }) // end of .get(error,data)

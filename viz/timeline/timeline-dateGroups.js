@@ -1,21 +1,6 @@
 /*
 Timeline with agreements grouped by year
-TRY ONE Y AXIS PER YEAR - didn't work
-TRY EACH YEAR AS Y AXIS USING SCALEPOINT, space out SVG element per year instead of using x axis
-TRY EACH YEAR AS INDIVIDUAL BAR CHART
 */
-
-// GENERAL DATA IMPORT PATTERN FOR D3 ("Convenience Methods")
-// d3.request(url)
-//         .row(function(d){*format row*})
-//         .get(callback)
-
-// d3.request(url,formatRow,callback);
-// function formatRow(){return format(d);}
-// function callback(error,rows){
-//     if (error) throw error;
-//     *do something with the data*
-// }
 
 // Define one key/value pair per category (code) by which to filter which
 // agreements the timeline and map visualize, checking all paxfilters
@@ -60,23 +45,23 @@ function getFilters(){
 
 function callFunction() {
 
-  // getFilters();
-  //
-  // // Agreement information to display upon hover
-  // var agt = "Hover over an agreement to view its details.",
-  //     dat = "",
-  //     reg = "",
-  //     con = "",
-  //     status = "",
-  //     agtp = "",
-  //     stage = "";
-  // window.localStorage.setItem("paxagt", agt);
-  // window.localStorage.setItem("paxdat", dat);
-  // window.localStorage.setItem("paxreg", reg);
-  // window.localStorage.setItem("paxcon", con);
-  // window.localStorage.setItem("paxstatus", status);
-  // window.localStorage.setItem("paxagtp", agtp);
-  // window.localStorage.setItem("paxstage", stage);
+  getFilters();
+
+  // Agreement information to display upon hover
+  var agt = "Hover over an agreement to view its details.",
+      dat = "",
+      reg = "",
+      con = "",
+      status = "",
+      agtp = "",
+      stage = "";
+  window.localStorage.setItem("paxagt", agt);
+  window.localStorage.setItem("paxdat", dat);
+  window.localStorage.setItem("paxreg", reg);
+  window.localStorage.setItem("paxcon", con);
+  window.localStorage.setItem("paxstatus", status);
+  window.localStorage.setItem("paxagtp", agtp);
+  window.localStorage.setItem("paxstage", stage);
 
   // Date parsers & formatters
   var parseDate = d3.timeParse("%d/%m/%Y");
@@ -88,16 +73,13 @@ function callFunction() {
   var formatDay = d3.timeFormat("%j");  // day of the year as decimal number
   var formatYear = d3.timeFormat("%Y");
 
-  var margin = {top: 5, right: 65, bottom: 5, left: 5}, //read clockwise from top
+  var margin = {top: 5, right: 5, bottom: 5, left: 5}, //read clockwise from top
       width = parseInt(d3.select("body").style("width"), 10),
       width = width - margin.left - margin.right,
       height = 100 - margin.top - margin.bottom,
-      agtHeight = 50,
-      xHeight = 15,
+      agtHeight = height/3,
+      xHeight = 17,
       agtPadding = 5;
-
-  var x = d3.scalePoint()
-      .range([margin.left, width]);
 
   // Obtain data
   d3.csv("PAX_with_additional.csv")
@@ -130,10 +112,10 @@ function callFunction() {
             svgtest.remove();
           };
 
-          // // Group agreements by Reg (region)
-          // var regs = d3.nest()
-          //      .key(function(d){ return d.Reg; }).sortKeys(d3.ascending)
-          //      .entries(data);
+          // Create bar chart tooltip
+          var tooltip = d3.select("body").append("div")
+              .style("opacity","0")
+              .style("position","absolute");
 
           // Group agreements by Year (create an array of objects whose key is the year and value is an array of objects (one per agreement))
           var dats = d3.nest()
@@ -146,59 +128,97 @@ function callFunction() {
           // console.log(years[0].values[0]); // first agreement object from 1990
           // console.log(years[0].values[0].Year); // Year (as number) of the first agreement object from 1990
 
-          // Find the maximum number of agreements for a single date
-          var maxAgts = d3.max(dats, function(dat){ return dat.values.length; });
-          //var height = (maxAgts*(agtHeight*1.5))+(xHeight*2) + margin.top + margin.bottom;
-          // console.log(maxAgts); // 9
+          // Count the total agreements in each year
+          var yr_count = d3.nest()
+               .key(function(d){ return d.Year; }).sortKeys(d3.ascending)
+               .rollup(function(leaves){ return leaves.length; })
+               .entries(data);
+
+          // Find the maximum number of agreements on a date
+          var maxAgts = d3.max(dats, function(dat){ return dat.values.length; });  // 9
 
           // Calculate the size of each agreement in the display space
-          var agtWidth = 3; // (width/(data.length));
-          // var height = (maxAgts*agtHeight) + xHeight + margin.top + margin.bottom;
+          var agtWidth = (width/data.length)*4;
 
-          // Set up the x axis
+          // Set up the x axis (for the timeline and bar chart)
           // Find the earliest & latest day of the year on which agreements are written
           var minDay = d3.min(data,function(d){ return (d.Dat); });
           var maxDay = d3.max(data,function(d){ return (d.Dat); });
           var x = d3.scaleTime()
                       .domain([minDay,maxDay])  // data space
-                      .range([margin.left,width]);  // display space
+                      .range([0,width]);  // display space
+
+          var maxAgtsYr = d3.max(yr_count, function(d){ return d.value; });  // 91
+          // Set up the y axis (for the bar chart)
+          var y = d3.scaleLinear()
+                      .domain([0,maxAgtsYr])
+                      .rangeRound([(height - (xHeight+agtHeight)),margin.top]);
 
           // Define the full timeline chart SVG element
           var svg = d3.select("body").select("#chart").append("svg")
               .attr("height", height + margin.top + margin.bottom)
               .attr("width", width + margin.left + margin.right)
-              // .call(d3.zoom()
-              //           .scaleExtent([1,100]) // prevent zoom out, restrict zoom in
-              //           .translateExtent([ [0, 0], [width,height]]) // restrict panning (<- & ->)
-              //           .on("zoom",zoom));
 
-          // console.log(dats[0].values[0].Dat);
+          var chartGroup = svg.append("g")
+                      .attr("class","chartGroup")
+                      .attr("transform","translate("+margin.left+","+margin.top+")")
+                      // .call(d3.zoom()
+                      //           .scaleExtent([1,100]) // prevent zoom out, restrict zoom in
+                      //           .translateExtent([ [0, 0], [width,height]]) // restrict panning (<- & ->)
+                      //           .on("zoom",zoom));
+                      // Draw bar graph
+
+          chartGroup.selectAll(".bar")
+              .data(yr_count)
+            .enter().append("rect")
+              .attr("class", "bar")
+              .attr("x", function(d){ return x(parseYear(d.key))+margin.left; })
+              .attr("y", function(d){ return y(d.value); })
+              .attr("width", (width/yr_count.length))
+              .attr("height", function(d){ return (height-xHeight-agtHeight) - y(d.value); })
+              .attr("stroke","#c4c4c4")  // same as html background-color
+              .attr("stroke-width","1px")
+              /*
+              WHY DOES HOVER FLASH THE RECTANGLES???
+              */
+              .on("mousemove", function(d){
+                this.style.fill = "#ffffff";
+                tooltip.style("opacity","0.9")
+                  .style("left", d3.event.pageX+"px")
+                  .style("top", d3.event.pageY+"px")
+                  .style("background","#ffffff")
+                  .style("padding","5px")
+                  .attr("class","tooltip");
+                tooltip.html("<p>Total Agreements in "+d.key+":<br/><b>"+d.value+"</b></p>");
+              })
+              .on("mouseout",function(d) {
+                this.style.fill = "black"
+                tooltip.style("opacity","0")
+                  .style("left",d3.event.pageX+"px")
+                  .style("top",d3.event.pageY+"px");
+              });
 
           for (dat = 0; dat < datList.length; dat++){
-            var chartGroup = svg.append("g")
-                        .attr("class","chartGroup") //
-                        .attr("transform","translate("+margin.left+","+margin.top+")")
+            var yearGroup = chartGroup.append("g")
+                .attr("class","yearGroup");
+                // .attr("transform","translate(0,0)");
 
-            var rects = chartGroup.selectAll("rects.agt")
+            var rects = yearGroup.selectAll("rects.agt")
                 .data(dats[dat].values)
               .enter().append("rect")
                 .attr("class","agt")
                 .attr("id",function(d){ return d.AgtId; })
-                // .attr("name",function(d){ return d.Agt; })
-                // .attr("value",function(d){ return d.Dat; })
                 .attr("fill","black")
                 .attr("stroke","#c4c4c4")  // same as html background-color
                 .attr("stroke-width","1px")
                 .style("opacity", "0.7")
                 .attr("x", function(d){ return x(d.Dat); })
-                // .attr("y", function(d, i){ return (height-xHeight-(agtHeight-1))+"px"; })
                 .attr("y",function(d,i){ return (height - xHeight - (agtHeight-1) + ((agtHeight/(dats[dat].values.length)) * i) )+"px"; })
                 .attr("width", agtWidth+"px")
                 .attr("height", (agtHeight/dats[dat].values.length)+"px");
 
             rects.on("mousemove",function(d){
                    if (this.style.opacity != "0"){
-                     //console.log(d.Agt);
                      this.style.fill = "#ffffff";
                      this.style.stroke = "#ffffff";
                      // Core agreement information (name, date, region, country/entity, status, type & stage)
@@ -232,22 +252,31 @@ function callFunction() {
 
           } // end of for loop
 
-          // Draw X axis for the entire chart
-          var xAxis = d3.axisBottom(x).tickFormat(d3.timeFormat("%Y")).tickPadding([5]);
+           // Draw y axis (for the bar chart)
+           chartGroup.append("g")
+                   .attr("class","yaxis bar")
+                   .style("opacity","0")
+                   .call(d3.axisLeft(y));
+
+          // Draw x axis (for the timeline & bar chart)
+          var xAxis = d3.axisBottom(x).tickFormat(d3.timeFormat("%d %b %Y")).tickPadding([5]);
 
           var gX = chartGroup.append("g")
                .attr("class","xaxis")
                .attr("transform","translate(0,"+(height-xHeight)+")")
                .call(xAxis);
 
-         // function zoom() {
-         //   gX.transition()
-         //   .duration(50)
-         //   .call(xAxis.scale(d3.event.transform.rescaleX(x)));
+           // NEED TO FIX ZOOM!
+           // function zoom() {
+           //   // chartGroup.attr("transform", d3.event.transform);
 
-             // var newX = d3.event.transform.rescaleX(x);
-             // rects.attr("x",function(d){ return newX(d.Dat); });
-         // }
+           //   var newX = d3.event.transform.rescaleX(x);
+           //   gX.transition()
+           //     .duration(50)
+           //     .call(xAxis.scale(newX));
+           //   rects.attr("x",function(d){ return newX(d.Dat); });
+           // }
+
 
       }) // end of .get(error,data)
 

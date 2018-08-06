@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="select-style.css">
     <script type="text/javascript" src="viz/timeline/d3.v4.js"></script>
     <script type="text/javascript" src="select-trends.js"></script>
+    <!-- <script type="text/javascript" src="viz/timeline/yearlyTrends.js"></script> -->
     <script type="text/javascript" src="ConDropdown.js"></script>
   </head>
   <body>
@@ -59,7 +60,7 @@
             <a href="#" id="DeselectAllCodes">Deselect All</a>
             <br/>
 
-            <input type="radio" id="paxHrFra" name="filter" value=0 onclick="select(this)">
+            <input type="radio" id="paxHrFra" name="filter" value=0 onclick="select('HrFra')">
             <label for="HrFra">Human Rights Framework</label>
             <br/>
             <input type="radio" id="paxHrGen" name="filter" value=0 onclick="select('paxHrGen')">
@@ -68,7 +69,7 @@
             <input type="radio" id="paxPol" name="filter" value=0 onclick="select('paxPol')">
             <label for="Pol">Political Institutions</label>
             <br/>
-            <input type="radio" id="paxEps" name="filter" value=0 onclick="select('paxEps')">
+            <input type="radio" id="paxEpsL" name="filter" value=0 onclick="select('paxEps')">
             <label for="Pol">Power Sharing: Economic</label>
             <br/>
             <input type="radio" id="paxMps" name="filter" value=0 onclick="select('paxMps')">
@@ -83,7 +84,7 @@
             <input type="radio" id="paxTjMech" name="filter" value=0 onclick="select('paxTjMech')">
             <label for="TjMech">Transitional Justice Past Mechanism</label>
             <br/>
-            <input type="radio" id="paxGeWom" name="filter" value=1 onclick="select('paxGeWom')" checked>
+            <input type="radio" id="paxGeWom" name="filter" value=1 onclick="select('GeWom')" checked>
             <label for="GeWom">Women, Girls and Gender</label>
           </div>
        <!-- </div> -->

@@ -209,7 +209,7 @@ function callFunction() {
                      .attr("id", "rects")
                      .attr("fill","black")
                      .attr("stroke","#c4c4c4")  // same as html background-color
-                     .attr("stroke-width","1px")
+                     .attr("stroke-width","2px")
                      .style("opacity", "1")
                      .attr("x",function(d){ return x(d.Dat); })
                      .attr("y",function(d){ return (height-xHeight-(agtHeight-1))+"px"; })

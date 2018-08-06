@@ -115,7 +115,25 @@ var data = d3.csv("PAX_with_additional.csv")
                     };
                   })
 
-select('GeWom');  // defaults to show GeWom trend upon load
+                  /*
+                  LINE GRAPH - UNFINISHED
+                            //  // Obtain an array of agreements that address women, girls and gender
+                            // var dataGeWom = d3.nest()
+                            //     .key(function(d){ return d.GeWom; }).sortKeys(d3.ascending)
+                            //     .key(function(d){ return d.Year; }).sortKeys(d3.ascending)
+                            //     .sortValues(function(a,b){ return d3.ascending(a.Dat, b.Dat); })
+                            //     .entries(data);
+                            // dataGeWom = dataGeWom[1].values;
+                            // // Define y axis for proportions line graph (percentage of agreements that address a code)
+                            // var y = d3.scaleLinear()
+                            //           .domain([0,100])  // data space
+                            //           .range([(height-xHeight),margin.top]);  // display space
+                            // // Create the line for the selected code
+                            // var codeLine = d3.line()
+                            //       .x(function(d){ return x(d.Dat)})
+                            //       .y(function(d){ return y()})
+                  */
+
 
 function select(code){
   callFunction(data,code);
