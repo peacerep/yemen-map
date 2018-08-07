@@ -75,7 +75,7 @@ g.xaxis path.domain {
 g.xaxis g.tick line {
   stroke: black;
   shape-rendering: crispEdges;
-  stroke-width: 2px;
+  stroke-width: 1px;
 }
 g.xaxis g.tick text {
   font-weight: normal;

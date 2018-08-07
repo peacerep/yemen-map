@@ -1,59 +1,14 @@
 /*
 Country/Entity Dropdown
-
-TO DO
-Hard code country/entity names
-Put into JSON object
-Copy & paste into Excel & then into HTML to generate list
-
 */
 
-// Dynamically create list of country/entity values - NOT WORKING!
-// function GetDropdown() {
-//   console.log("called GetDropdown");
-//   // while (window.localStorage.getItem("paxConList") != false){
-//     var hasCons = JSON.parse(window.localStorage.getItem("paxCons"));
-//     console.log("hasCons: "+hasCons);
-//     // Once PA-X data loaded in mini-timeline.js file...
-//     if (hasCons.length > 0){
-//       // console.log("hasCons: "+(hasCons));
-//       // ...create dropdown list of every country/entity in the data...
-//       var paxConList = hasCons.sort();
-//       // console.log("paxConList: "+paxConList);
-//       for (i = 0; i < paxConList.length; i++){
-//         if (paxConList != "undefined"){
-//           var p = document.createElement("p");
-//           // ...with a checkbox...
-//           var conCheckbox = document.createElement("input");
-//           conCheckbox.type = "checkbox";
-//           conCheckbox.class = "Con";
-//           conCheckbox.name = "Con";
-//           conCheckbox.value = paxConList[i];
-//           conCheckbox.id = paxConList[i];
-//           conCheckbox.checked = true;
-//           // ...and a label for each country/entity
-//           var conLabel = document.createElement("label");
-//           conLabel.id = paxConList[i];
-//           conLabel.htmlFor = paxConList[i];
-//           conLabel.appendChild(document.createTextNode(paxConList[i]));
-//           var br = document.createElement("br");
-//           // var div = document.getElementById("dropdown");
-//           p.appendChild(conCheckbox);
-//           p.appendChild(conLabel);
-//           p.appendChild(br);
-//           var cons = document.getElementById("Cons");
-//           cons.appendChild(p);
-//         }
-//       }
-//     }
-// }
 
 // When user clicks dropdown button, toggle between hide/show dropdown list
-function ConFunction() {
-  console.log("Called ConFunction");
-  //GetDropdown();
-  document.getElementById("ConDropdown").classList.toggle("showConContent");
-}
+// function ConFunction() {
+//   console.log("Called ConFunction");
+//   //GetDropdown();
+//   document.getElementById("ConDropdown").classList.toggle("showConContent");
+// }
 
 // NEED TO FIX!!!
 // Filter dropdown list values by what user types in search bar

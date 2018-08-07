@@ -9,18 +9,23 @@ html, body {
   height: 95%;
 }
 
-p, a, label, input {
+p, a, label {
   color:black;
-  /* padding: 3px 4px; */
   font-size: 12px;
   text-decoration: none;
   display: inline;
   font-family: "Roboto", sans-serif;
   font-weight: normal;
 }
-
 a {
   text-decoration: underline;
+}
+input {
+  margin-left: 8px;
+}
+
+a#Reset:hover, a#SelectAllCodes:hover, a#DeselectAllCodes:hover, p.filterViews a:hover{
+  color: #ffffff;
 }
 
 svg {
@@ -106,6 +111,10 @@ Country/Entity Dropbown
   padding: 4px;
   z-index: 1;
 }
+.dropdown:hover .ConContent {
+  display: block;
+}
+
 .ConContent input#ConInput {
   color: #000000;
   font-weight: lighter;
@@ -126,10 +135,11 @@ Country/Entity Dropbown
   padding: 4px;
   display: inline;
 }
-.ConContent input:hover, .ConContent label:hover {
-  /* background-color: #ffffff; */
+/* .ConContent input:hover, .ConContent label:hover {
   font-weight: bolder;
-}
+} */
+
+/*
 .showConContent {
   display: block;
-}
+} */

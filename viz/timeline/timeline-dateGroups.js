@@ -3,21 +3,21 @@ Timeline with agreements grouped by year
 */
 
 // Define one key/value pair per category (code) by which to filter which
-// agreements the timeline and map visualize, checking all paxfilters
-// (value = 1) upon page load so all agreements are visible
-var paxHrFra = window.localStorage.setItem("paxHrFra",1); // Human rights framework
-var paxHrGen = window.localStorage.setItem("paxHrGen",1);; // Human rights/Rule of law
-var paxMps = window.localStorage.setItem("paxPol",1); // Military power sharing
-var paxEps = window.localStorage.setItem("paxEps",1); // Economic power sharing
-var paxTerps = window.localStorage.setItem("paxMps",1); // Territorial power sharing
-var paxPolps = window.localStorage.setItem("paxPolps",1); // Political power sharing
-var paxPol = window.localStorage.setItem("paxTerps",1); // Political institutions
-var paxGeWom = window.localStorage.setItem("paxTjMech",1); // Women, girls and gender
-var paxTjMech = window.localStorage.setItem("paxGeWom",1); // Transitional justice past mechanism
+// agreements the timeline and map visualize, unchecking all paxfilters
+// (value = 0) upon page load so all agreements are visible
+var paxHrFra = window.localStorage.setItem("paxHrFra",0); // Human rights framework
+var paxHrGen = window.localStorage.setItem("paxHrGen",0); // Human rights/Rule of law
+var paxMps = window.localStorage.setItem("paxPol",0); // Military power sharing
+var paxEps = window.localStorage.setItem("paxEps",0); // Economic power sharing
+var paxTerps = window.localStorage.setItem("paxMps",0); // Territorial power sharing
+var paxPolps = window.localStorage.setItem("paxPolps",0); // Political power sharing
+var paxPol = window.localStorage.setItem("paxTerps",0); // Political institutions
+var paxGeWom = window.localStorage.setItem("paxTjMech",0); // Women, girls and gender
+var paxTjMech = window.localStorage.setItem("paxGeWom",0); // Transitional justice past mechanism
 
 // var paxRule = window.localStorage.setItem("paxRule",1); // Selected ALL filter rule
-var paxANY = window.localStorage.setItem("paxANY",1); // Selected ANY filter rule
-var paxALL = window.localStorage.setItem("paxALL",0); // Selected ALL filter rule
+var paxANY = window.localStorage.setItem("paxANY",0); // Selected ANY filter rule
+var paxALL = window.localStorage.setItem("paxALL",1); // Selected ALL filter rule
 
 //window.localStorage.setItem("agtInfo", "Hover over an agreement to view its details.");
 
@@ -28,7 +28,6 @@ window.addEventListener("storage", callFunction);
 function getFilters(){
   var locStor = window.localStorage;
   // Filter rule
-  // paxRule = locStor.getItem("paxRule");
   paxANY = locStor.getItem("paxANY");
   paxALL = locStor.getItem("paxALL");
   // Filter codes
@@ -41,6 +40,7 @@ function getFilters(){
   paxPol = locStor.getItem("paxPol");
   paxGeWom = locStor.getItem("paxGeWom");
   paxTjMech = locStor.getItem("paxTjMech");
+  // console.log("Got: "+paxANY+","+paxALL+","+paxHrFra+","+paxHrGen+","+paxMps+","+paxEps+","+paxTerps+","+paxPolps+","+paxPol+","+paxGeWom+","+paxTjMech);
 };
 
 function callFunction() {
@@ -95,15 +95,15 @@ function callFunction() {
                                 Stage:d.Stage, // "Pre", "SubPar", "SubComp", "Imp", "Cea", "Other"
                                 StageSub:d.StageSub, // "FrCons"
                                 Agt:d.Agt,
-                                GeWom:d.GeWom, // 1 if topic of Women, girls and gender addressed; 0 if not
-                                Polps:d.Polps, // 1-3 indicating increasing level of detail given about Political Power sharing; 0 if none given
-                                Terps:d.Terps, // 1-3 indicating increasing level of detail given about Territorial Power sharing; 0 if none given
-                                Eps:d.Eps, // 1-3 indicating increasing level of detail given about Economic Power sharing; 0 if none given
-                                Mps:d.Mps, // 1-3 indicating increasing level of detail given about Political Power sharing; 0 if none given
-                                Pol:d.Pol, // 1-3 indicating increasing level of detail given about political institutions; 0 if none given
-                                HrGen:d.HrGen, // 1 if topic of human rights/rule of law addressed; 0 if not
-                                HrFra:d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
-                                TjMech:d.TjMech // 1-3 indicating increasing level of detail given about a body to deal with the past; 0 if none given
+                                GeWom:+d.GeWom, // 1 if topic of Women, girls and gender addressed; 0 if not
+                                Polps:+d.Polps, // 1-3 indicating increasing level of detail given about Political Power sharing; 0 if none given
+                                Terps:+d.Terps, // 1-3 indicating increasing level of detail given about Territorial Power sharing; 0 if none given
+                                Eps:+d.Eps, // 1-3 indicating increasing level of detail given about Economic Power sharing; 0 if none given
+                                Mps:+d.Mps, // 1-3 indicating increasing level of detail given about Political Power sharing; 0 if none given
+                                Pol:+d.Pol, // 1-3 indicating increasing level of detail given about political institutions; 0 if none given
+                                HrGen:+d.HrGen, // 1 if topic of human rights/rule of law addressed; 0 if not
+                                HrFra:+d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
+                                TjMech:+d.TjMech // 1-3 indicating increasing level of detail given about a body to deal with the past; 0 if none given
                               }; })
       .get(function(error,data){
 
@@ -117,6 +117,13 @@ function callFunction() {
               .style("opacity","0")
               .style("position","absolute");
 
+          // Group agreements by country/entity
+          // var con_count_nest = d3.nest()
+          //       .key(function(d){ return d.Con; }).sortKeys(d3.ascending)
+          //       .map(data);
+          // // Create an array with every country/entity (non-repeating) in which agreements occur
+          // var cons = con_count_nest.keys();
+
           // Group agreements by Year (create an array of objects whose key is the year and value is an array of objects (one per agreement))
           var dats = d3.nest()
                .key(function(d){ return d.Dat; }).sortKeys(d3.ascending)         // sort by Agreement's Date Signed
@@ -127,6 +134,13 @@ function callFunction() {
           // console.log(years[0].values); // array of objects (one for each agreement in 1990)
           // console.log(years[0].values[0]); // first agreement object from 1990
           // console.log(years[0].values[0].Year); // Year (as number) of the first agreement object from 1990
+
+          // Count agreements that address Women, Girls and Gender (GeWom) in each year
+          var gewoms = d3.nest()
+              .key(function(d){ if (d.GeWom > 0){ return d.Year; }; }).sortKeys(d3.ascending)
+              .rollup(function(leaves){ return leaves.length; })
+              .entries(data);
+          gewoms.splice(-1, 1);  // remove objects whose key is 'undefined' (indicates those agreements don't address GeWom)
 
           // Count the total agreements in each year
           var yr_count = d3.nest()
@@ -174,7 +188,7 @@ function callFunction() {
               .attr("class", "bar")
               .attr("x", function(d){ return x(parseYear(d.key))+margin.left; })
               .attr("y", function(d){ return y(d.value); })
-              .attr("width", (width/yr_count.length))
+              .attr("width", (width/gewoms.length))
               .attr("height", function(d){ return (height-xHeight-agtHeight) - y(d.value); })
               .attr("stroke","#c4c4c4")  // same as html background-color
               .attr("stroke-width","1px")
@@ -189,7 +203,7 @@ function callFunction() {
                   .style("background","#ffffff")
                   .style("padding","5px")
                   .attr("class","tooltip");
-                tooltip.html("<p>Total Agreements in "+d.key+":<br/><b>"+d.value+"</b></p>");
+                tooltip.html("<p>Count in "+d.key+":<br/><b>"+d.value+"</b></p>");
               })
               .on("mouseout",function(d) {
                 this.style.fill = "black"
@@ -212,6 +226,7 @@ function callFunction() {
                 .attr("stroke","#c4c4c4")  // same as html background-color
                 .attr("stroke-width","1px")
                 .style("opacity", "0.7")
+                .style("visibility",setVisibility)
                 .attr("x", function(d){ return x(d.Dat); })
                 .attr("y",function(d,i){ return (height - xHeight - (agtHeight-1) + ((agtHeight/(dats[dat].values.length)) * i) )+"px"; })
                 .attr("width", agtWidth+"px")
@@ -265,6 +280,37 @@ function callFunction() {
                .attr("class","xaxis")
                .attr("transform","translate(0,"+(height-xHeight)+")")
                .call(xAxis);
+
+           function setVisibility(d){
+             // Hide agreements from any deselected country/entity
+             var paxCons = JSON.parse(window.localStorage.getItem("paxCons"));
+             if (paxCons.indexOf(d.Con) == -1){ return "hidden"; }
+
+             var codeFilters = [paxGeWom, paxHrFra, paxHrGen, paxEps, paxMps, paxPol, paxPolps, paxTerps, paxTjMech];
+             var agmtCodes = [d.GeWom, d.HrFra, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech];
+
+             // Hide any agreement without at least one checked code
+             if (paxANY == 1 && paxALL == 0){
+               var matchCount = 0;
+               for (i = 0; i < codeFilters.length; i++){
+                 if ((codeFilters[i] == 1) && (agmtCodes[i] > 0)){
+                   matchCount += 1;
+                   return "visible";
+                 }
+               }
+               if (matchCount == 0){ return "hidden"; }
+             }
+
+
+             // Hide any agreement without all checked codes
+             if (paxANY == 0 && paxALL == 1) {
+               for (i=0; i < codeFilters.length; i++){
+                 if ((codeFilters[i] == 1) && (agmtCodes[i] == 0)) {
+                   return "hidden";
+                 }
+               }
+             }
+           };
 
            // NEED TO FIX ZOOM!
            // function zoom() {
