@@ -84,10 +84,6 @@ a {
   color: #005796; /*#b5e1ff;*/
   text-decoration: none;
 }
-a#CollapseT, a#ExpandT{
-  text-decoration: underline;
-  color: black;
-}
 
 /*
 Flexboxes

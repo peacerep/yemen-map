@@ -1,5 +1,5 @@
 /*
-Mini timeline iFrame with agreements displayed continuously on y axis
+HORIZONTAL TIMELINE - AGREEMENTS GROUPED BY DAT
 */
 
 // GENERAL DATA IMPORT PATTERN FOR D3 ("Convenience Methods")
@@ -17,19 +17,18 @@ Mini timeline iFrame with agreements displayed continuously on y axis
 // Define one key/value pair per category (code) by which to filter which
 // agreements the timeline and map visualize, checking all paxfilters
 // (value = 1) upon page load so all agreements are visible
-var paxHrFra = window.localStorage.setItem("paxHrFra",1); // Human rights framework
-var paxHrGen = window.localStorage.setItem("paxHrGen",1);; // Human rights/Rule of law
-var paxMps = window.localStorage.setItem("paxMps",1); // Military power sharing
-var paxEps = window.localStorage.setItem("paxEps",1); // Economic power sharing
-var paxTerps = window.localStorage.setItem("paxTerps",1); // Territorial power sharing
-var paxPolps = window.localStorage.setItem("paxPolps",1); // Political power sharing
-var paxPol = window.localStorage.setItem("paxPol",1); // Political institutions
-var paxGeWom = window.localStorage.setItem("paxGeWom",1); // Women, girls and gender
-var paxTjMech = window.localStorage.setItem("paxTjMech",1); // Transitional justice past mechanism
+var paxHrFra = window.localStorage.setItem("paxHrFra",0); // Human rights framework
+var paxHrGen = window.localStorage.setItem("paxHrGen",0); // Human rights/Rule of law
+var paxMps = window.localStorage.setItem("paxPol",0); // Military power sharing
+var paxEps = window.localStorage.setItem("paxEps",0); // Economic power sharing
+var paxTerps = window.localStorage.setItem("paxMps",0); // Territorial power sharing
+var paxPolps = window.localStorage.setItem("paxPolps",0); // Political power sharing
+var paxPol = window.localStorage.setItem("paxTerps",0); // Political institutions
+var paxGeWom = window.localStorage.setItem("paxTjMech",0); // Women, girls and gender
+var paxTjMech = window.localStorage.setItem("paxGeWom",0); // Transitional justice past mechanism
 
-var paxANY = window.localStorage.setItem("paxANY",1); // Selected ANY filter rule
-var paxALL = window.localStorage.setItem("paxALL",0); // Selected ALL filter rule
-
+var paxANY = window.localStorage.setItem("paxANY",0); // Selected ANY filter rule
+var paxALL = window.localStorage.setItem("paxALL",1); // Selected ALL filter rule
 
 callFunction();
 d3.select(window).on("resize", callFunction);
@@ -121,19 +120,10 @@ function callFunction() {
           var margin = {top: 5, right: 5, bottom: 5, left: 5}, //read clockwise from top
               width = parseInt(d3.select("body").style("width"), 10),
               width = width - margin.left - margin.right,
-              height = 60 - margin.top - margin.bottom, //defines w & h as inner dimensions of chart area
-              agtHeight = 30,
-              xHeight = 15;
-
-          // // Group agreements by country/entity
-          // var con_count_nest = d3.nest()
-          //       .key(function(d){ return d.Con; }).sortKeys(d3.ascending)
-          //       .map(data);
-          // // Create an array with every country/entity (non-repeating) in which agreements occur
-          // var cons = con_count_nest.keys();
-          // window.localStorage.setItem("paxCons",JSON.stringify(cons));
-          // var paxCons = JSON.parse(window.localStorage.getItem("paxCons"));
-          // // console.log("paxCons:"+paxCons);
+              height = 100 - margin.top - margin.bottom,
+              agtHeight = height/3,
+              xHeight = 17,
+              agtPadding = 5;
 
           // Group agreements by year
           var yr_count_nest = d3.nest()
@@ -143,8 +133,18 @@ function callFunction() {
           // Create an array of years (non-repeating) in which agreements occur
           var years = yr_count_nest.keys();
 
+          // Group agreements by Dat (create an array of objects whose key is the year and value is an array of objects (one per agreement))
+          var dats = d3.nest()
+               .key(function(d){ return d.Dat; }).sortKeys(d3.ascending)         // sort by Agreement's Date Signed
+               .sortValues(function(a,b){ return d3.ascending(a.Agt, b.Agt); })  // sort by Agreement's Name
+               .entries(data);
+          var datList = (d3.map(dats, function(dat){ return dat.key; })).keys(); // array of Dat values
+
           // Find the maximum number of agreements that occur in a single year
           var max = d3.max(yr_count_nest,function(d){ return d.value; });
+
+          // Calculate the size of each agreement in the display space
+          var agtWidth = (width/data.length)*4;
 
           // Find the earliest & latest year in which agreements occur
           var minYear = d3.min(yr_count_nest,function(d){ return d.key; });
@@ -162,22 +162,23 @@ function callFunction() {
           var svg = d3.select("body").select("#chart").append("svg")
               .attr("height", height + margin.top + margin.bottom)//"100%")
               .attr("width", width + margin.left + margin.right)//"100%");
-              .call(d3.zoom()
-                        .scaleExtent([1,100]) // prevent zoom out, restrict zoom in
-                        .translateExtent([ [0, 0], [width,height]]) // restrict panning (<- & ->)
-                        .on("zoom",zoom));
+              // .call(d3.zoom()
+              //           .scaleExtent([1,100]) // prevent zoom out, restrict zoom in
+              //           .translateExtent([ [0, 0], [width,height]]) // restrict panning (<- & ->)
+              //           .on("zoom",zoom));
 
           var chartGroup = svg.append("g")
                       .attr("class","chartGroup") //
                       .attr("transform","translate("+margin.left+","+margin.top+")") //;
 
-          function newVisibility(d){
-            // Hide agreements from any deselected country/entity - NOT WORKING!
-            // if (paxCons.indexOf(d.Con) == -1){ return "hidden";}
+          function setVisibility(d){
+            // Hide agreements from any deselected country/entity
+            var paxCon = window.localStorage.getItem("paxCons");  // For array of cons: var paxCons = JSON.parse(window.localStorage.getItem("paxCons"));
+            console.log(paxCon);
+            if ((paxCon != "allCons") && (paxCon != d.Con)){ return "hidden"; }  // CHANGE TO INCLUDE ANY COUNTRY OR ENTITY NAME AS DB SEARCH PAGE DOES
 
             var codeFilters = [paxGeWom, paxHrFra, paxHrGen, paxEps, paxMps, paxPol, paxPolps, paxTerps, paxTjMech];
             var agmtCodes = [d.GeWom, d.HrFra, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech];
-
             // Hide any agreement without at least one checked code
             if (paxANY == 1 && paxALL == 0){
               var matchCount = 0;
@@ -189,8 +190,6 @@ function callFunction() {
               }
               if (matchCount == 0){ return "hidden"; }
             }
-
-
             // Hide any agreement without all checked codes
             if (paxANY == 0 && paxALL == 1) {
               for (i=0; i < codeFilters.length; i++){
@@ -202,23 +201,27 @@ function callFunction() {
           };
 
           // Make one rectangle per agreement grouped by Year
-          var rects = chartGroup.selectAll("rect.agt")
-                  .data(data)
-                  .enter().append("rect")
-                     .attr("class","agt")
-                     .attr("id", "rects")
-                     .attr("fill","black")
-                     .attr("stroke","#c4c4c4")  // same as html background-color
-                     .attr("stroke-width","2px")
-                     .style("opacity", "1")
-                     .attr("x",function(d){ return x(d.Dat); })
-                     .attr("y",function(d){ return (height-xHeight-(agtHeight-1))+"px"; })
-                     .style("visibility",newVisibility)
-                     .attr("width","2px")
-                     .attr("height",agtHeight+"px");
+          for (dat = 0; dat < datList.length; dat++){
+            var yearGroup = chartGroup.append("g")
+                .attr("class","yearGroup");
+
+            var rects = yearGroup.selectAll("rects.agt")
+                .data(dats[dat].values)
+              .enter().append("rect")
+                .attr("class","agt")
+                .attr("id",function(d){ return d.AgtId; })
+                .attr("fill","black")
+                .attr("stroke","#c4c4c4")  // same as html background-color
+                .attr("stroke-width","1px")
+                .style("opacity", "0.7")
+                .style("visibility",setVisibility)
+                .attr("x", function(d){ return x(d.Dat); })
+                .attr("y",function(d,i){ return (height - xHeight - (agtHeight-1) + ((agtHeight/(dats[dat].values.length)) * i) )+"px"; })
+                .attr("width", agtWidth+"px")
+                .attr("height", (agtHeight/dats[dat].values.length)+"px");
+
             rects.on("mousemove",function(d){
-                   if ((this.style.opacity != "0") && (clicked == false)){
-                     //console.log(d.Agt);
+                   if (this.style.opacity != "0"){
                      this.style.fill = "#ffffff";
                      this.style.stroke = "#ffffff";
                      // Core agreement information (name, date, region, country/entity, status, type & stage)
@@ -239,56 +242,55 @@ function callFunction() {
                    }
                  });
             rects.on("mouseout",function(d) {
-              if (clicked == false){
-                this.style.fill = "black"
-                this.style.stroke = "#c4c4c4";
-                window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
-                window.localStorage.setItem("paxdat", "");
-                window.localStorage.setItem("paxreg", "");
-                window.localStorage.setItem("paxcon", "");
-                window.localStorage.setItem("paxstatus", "");
-                window.localStorage.setItem("paxagtp", "");
-                window.localStorage.setItem("paxstage", "");
-              }
-            });
-            rects.on("click", function(d){
-              if (clicked == false){
-                clicked = true;
-              } else {
-                clicked = false;
-              }
-              console.log(clicked);
-              if ((this.style.opacity != "0") && (clicked == false)){
-                this.style.fill = "black"
-                this.style.stroke = "#c4c4c4";
-                window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
-                window.localStorage.setItem("paxdat", "");
-                window.localStorage.setItem("paxreg", "");
-                window.localStorage.setItem("paxcon", "");
-                window.localStorage.setItem("paxstatus", "");
-                window.localStorage.setItem("paxagtp", "");
-                window.localStorage.setItem("paxstage", "");
-              }
-              if ((this.style.opacity != "0") && (clicked == true)){
-                this.style.fill = "#ffffff";
-                this.style.stroke = "#ffffff";
-                // Core agreement information (name, date, region, country/entity, status, type & stage)
-                agt = d.Agt;
-                dat = formatDate(d.Dat);
-                reg = d.Reg;
-                con = d.Con;
-                status = d.Status;
-                agtp = d.Agtp;
-                stage = d.Stage;
-                window.localStorage.setItem("paxagt", agt);
-                window.localStorage.setItem("paxdat", dat);
-                window.localStorage.setItem("paxreg", reg);
-                window.localStorage.setItem("paxcon", con);
-                window.localStorage.setItem("paxstatus", status);
-                window.localStorage.setItem("paxagtp", agtp);
-                window.localStorage.setItem("paxstage", stage);
-              }
-            });
+                   this.style.fill = "black"
+                   this.style.stroke = "#c4c4c4";
+                   window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
+                   window.localStorage.setItem("paxdat", "");
+                   window.localStorage.setItem("paxreg", "");
+                   window.localStorage.setItem("paxcon", "");
+                   window.localStorage.setItem("paxstatus", "");
+                   window.localStorage.setItem("paxagtp", "");
+                   window.localStorage.setItem("paxstage", "");
+                 });
+            // rects.on("click", function(d){
+            //   if (clicked == false){
+            //     clicked = true;
+            //   } else {
+            //     clicked = false;
+            //   }
+            //   console.log(clicked);
+            //   if ((this.style.opacity != "0") && (clicked == false)){
+            //     this.style.fill = "black"
+            //     this.style.stroke = "#c4c4c4";
+            //     window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
+            //     window.localStorage.setItem("paxdat", "");
+            //     window.localStorage.setItem("paxreg", "");
+            //     window.localStorage.setItem("paxcon", "");
+            //     window.localStorage.setItem("paxstatus", "");
+            //     window.localStorage.setItem("paxagtp", "");
+            //     window.localStorage.setItem("paxstage", "");
+            //   }
+            //   if ((this.style.opacity != "0") && (clicked == true)){
+            //     this.style.fill = "#ffffff";
+            //     this.style.stroke = "#ffffff";
+            //     // Core agreement information (name, date, region, country/entity, status, type & stage)
+            //     agt = d.Agt;
+            //     dat = formatDate(d.Dat);
+            //     reg = d.Reg;
+            //     con = d.Con;
+            //     status = d.Status;
+            //     agtp = d.Agtp;
+            //     stage = d.Stage;
+            //     window.localStorage.setItem("paxagt", agt);
+            //     window.localStorage.setItem("paxdat", dat);
+            //     window.localStorage.setItem("paxreg", reg);
+            //     window.localStorage.setItem("paxcon", con);
+            //     window.localStorage.setItem("paxstatus", status);
+            //     window.localStorage.setItem("paxagtp", agtp);
+            //     window.localStorage.setItem("paxstage", stage);
+            //   }
+            // });
+            } // end of for loop for rects.agt
 
              // Draw axes
              var xAxis = d3.axisBottom(x).tickFormat(d3.timeFormat("%e %b %Y")).tickPadding([5]);
@@ -298,14 +300,17 @@ function callFunction() {
                   .attr("transform","translate(0,"+(height-xHeight)+")")
                   .call(xAxis);
 
-            function zoom() {
-              gX.transition()
-              .duration(50)
-              .call(xAxis.scale(d3.event.transform.rescaleX(x)));
-
-              var newX = d3.event.transform.rescaleX(x);
-              rects.attr("x",function(d){ return newX(d.Dat); });
-            }
+            /*
+            NEED TO FIX ZOOM
+            */
+            // function zoom() {
+            //   gX.transition()
+            //   .duration(50)
+            //   .call(xAxis.scale(d3.event.transform.rescaleX(x)));
+            //
+            //   var newX = d3.event.transform.rescaleX(x);
+            //   rects.attr("x",function(d){ return newX(d.Dat); });
+            // }
 
       }) // end of .get(error,data)
 

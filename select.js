@@ -10,45 +10,18 @@ window.onload = function() {
     storeBlankAgtDetails();// Empty agreement details in localStorage
     paxRuleAll(); // Pick code filter rule ALL
     paxConsAllCheck();
+    localStorage.setItem("paxFilterView","none");
 
     /*
     Listeners
     */
-    document.getElementById("Reset").onclick = function(event) {
-      paxRuleAll(); // Set default filter rules
-      paxFilterUncheck(); // Set default code filters
-      storeBlankAgtDetails(); // Set default agreement details
-      paxConsAllCheck();
-    }
-
-    // Country/entity listeners
-    document.getElementById("DeselectAllCons").onclick = function(event) {
-      paxConsAllUncheck();
-      storeBlankAgtDetails();
-    }
-    document.getElementById("SelectAllCons").onclick = function(event) {
-      paxConsAllCheck();
-      storeBlankAgtDetails();
-    }
     document.getElementById("Cons").onclick = function(event){
       let target = event.target;
       console.log("Target.id: "+target.id);
-      if (target.type == "checkbox"){
-        var paxCons = JSON.parse(localStorage.getItem("paxCons"));
-        var i = paxCons.indexOf(target.id);
-        // if country/entity was unchecked, check it
-        if (i == -1) {
-          paxCons.push(String(target.id));
-          target.checked = true;
-          console.log("Added "+target.id+" to paxCons");
-        } else {
-        // if country/entity was checked, uncheck it
-          paxCons.splice(i, 1);
-          target.checked = false;
-          console.log("Removed "+target.id+" from paxCons");
-        }
-      // update country/entity list
-      localStorage.setItem("paxCons",(JSON.stringify(paxCons)));
+      if (target.name == "Con"){
+        localStorage.setItem("paxCons",target.id);
+        target.checked = true;
+        console.log("Set paxCons to "+target.id);
       }
     }
 
@@ -71,22 +44,17 @@ window.onload = function() {
     }
 
     // Code filter listeners
-    document.getElementById("filters").onclick = function(event){
+    document.getElementById("Codes").onclick = function(event){
       let target = event.target;
       // console.log("Target.id: "+target.id);
-      if ( (target.id.includes("Count")) || (target.id.includes("Prop")) ){
-        localStorage.setItem("paxFilterView",target.id);
-        console.log("Set filter view to "+target.id);
-      } else if (target.name == "filter") {
-        if (localStorage.getItem(target.id) == 0){
-          localStorage.setItem(target.id, 1);
-          target.checked = true;
-          console.log("Checked "+target.id);
-        } else {
-          localStorage.setItem(target.id, 0);
-          target.checked = false;
-          console.log("Unchecked "+target.id);
-        }
+      if (localStorage.getItem(target.id) == 0){
+        localStorage.setItem(target.id, 1);
+        target.checked = true;
+        console.log("Checked "+target.id);
+      } else {
+        localStorage.setItem(target.id, 0);
+        target.checked = false;
+        console.log("Unchecked "+target.id);
       }
     }
 
@@ -97,19 +65,15 @@ window.onload = function() {
         storeBlankAgtDetails();// Empty agreement details in localStorage
         paxRuleAll(); // Pick code filter rule ALL
         paxConsAllCheck(); // Display all agreements for every country/entity
+        localStorage.setItem("paxFilterView","none");
       }
     }
 }
 
 function paxConsAllCheck() {
-  var paxCons = [];
-  var cons = document.getElementsByName("Con");
-  for (i = 0; i < cons.length; i++){
-    cons[i].checked = true;
-    paxCons.push(String(cons[i].id));
-  }
+  document.getElementById("allCons").checked = true;
   console.log("Checked all Country/Entity values");
-  localStorage.setItem("paxCons", JSON.stringify(paxCons));
+  localStorage.setItem("paxCons", "allCons"); //JSON.stringify(paxCons));
   //console.log("All Cons: "+JSON.parse(localStorage.getItem("paxCons")));
   //console.log("Showing agreements for every country/entity.");
 }

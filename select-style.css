@@ -1,10 +1,13 @@
 /*
 Style for Select iFrame
 */
+* {
+  shape-rendering: crispEdges;
+}
+
 html {
   background-color: #c4c4c4;
 }
-
 html, body {
   height: 95%;
 }
@@ -73,54 +76,42 @@ foreignObject {
 }
 
 /*
-Country/Entity Dropbown
+DROPDOWNS
 */
 .dropbtn {
-  background-color: #209dff;
+  background-color: #c4c4c4;
   color: #ffffff;
   padding: 10px;
   font-family: "Roboto", sans-serif;
   font-size: 12px;
   font-weight: lighter;
-  font-style: oblique;
   border: none;
   cursor: pointer;
-}
-#ConInput{
-  /* border-box: box-sizing; */
-  background-color: #f1f1f1;
-  font-size: 12px;
-  padding: 4px;
-  border: none;
-  margin: 2px;
-  min-width: 180px;
-  /* border-bottom: 1px solid #ddd; */
-  /* border-width: 100%; */
+  border-width: 1px;
+  border-color: #dddddd;
+  border-style: solid;
+
 }
 .dropdown {
   position: relative;
   display: inline-block;
+  padding: 8px 2px;
 }
+/*
+CON (COUNTRY & ENTITY) DROPDOWN
+*/
 .ConContent {
   display: none;
   position: absolute;
   background-color: #ddd;
-  min-width: 190px;
+  min-width: 250px;
   overflow: auto;
-  max-height: 200px;
+  max-height: 250px;
   padding: 4px;
   z-index: 1;
 }
 .dropdown:hover .ConContent {
   display: block;
-}
-
-.ConContent input#ConInput {
-  color: #000000;
-  font-weight: lighter;
-  padding: 4px;
-  text-decoration: none;
-  display: inline;
 }
 .ConContent input {
   color: #000000;
@@ -135,11 +126,31 @@ Country/Entity Dropbown
   padding: 4px;
   display: inline;
 }
-/* .ConContent input:hover, .ConContent label:hover {
-  font-weight: bolder;
-} */
-
 /*
-.showConContent {
+CODES (FILTER) DROPDOWN
+*/
+.CodeContent {
+  display: none;
+  position: absolute;
+  background-color: #ddd;
+  min-width: 250px;
+  overflow: auto;
+  padding: 4px;
+  z-index: 1;
+}
+.dropdown:hover .CodeContent {
   display: block;
-} */
+}
+.CodeContent input {
+  color: #000000;
+  font-weight: bold;
+  padding: 4px;
+  text-decoration: none;
+  display: inline;
+}
+.CodeContent label, a {
+  color: #000000;
+  font-weight: normal;
+  padding: 4px;
+  display: inline;
+}

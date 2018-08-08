@@ -1,68 +1,37 @@
 * {
-  box-sizing: border-box;
   shape-rendering: crispEdges;
 }
 
-[class*="col-"]{
-  float: left;
-  padding-left: 20px;
-}
-
-.col-1 {width: 8.33%;}
-.col-2 {width: 16.66%;}
-.col-3 {width:25%;}
-.col-4 {width: 33.33%;}
-.col-5 {width: 41.66%;}
-.col-6 {width: 50%;}
-.col-7 {width: 58.33%;}
-.col-8 {width:66.66%;}
-.col-9 {width: 75%;}
-.col-10 {width: 83.33%;}
-.col-11 {width: 91.66%;}
-.col-12 {width: 100%;}
-
-html {
-  margin: 2;
-  float: left;
-  font-family: "Roboto", sans-serif;
-  background-color: #c4c4c4;
-}
 /*
-html:hover, svg:hover, g:hover, #chart:hover {
-  background-color: #f1f1f1;
-  border: solid;
-  border-color: black;
-  border-width: 0.5px;
-} */
-
-g .xaxis, rect.agt, path.domain, g.tick, {
-  shape-rendering: crispEdges;
-}
-
+TEXT
+*/
 p, a, label, input {
   color:black;
-  /* padding: 3px 4px; */
   font-size: 12px;
   text-decoration: none;
   display: inline;
   font-family: "Roboto", sans-serif;
   font-weight: normal;
 }
-
 a {
   text-decoration: underline;
+}
+a#tCount, a#tProp, a#Reset{
+  text-decoration: underline;
+  color: black;
 }
 
 
 /*
-CHART
+TIMELINE
 */
 #chart{
-  height: 15%;
   display: flex;
   flex-shrink:0;
 }
-
+#chart {
+  padding-top: 30px;
+}
 #chart.col-9 g.tick text {
   font-size: 12px;
   font-weight: normal;
@@ -70,7 +39,7 @@ CHART
 }
 g.xaxis path.domain {
   shape-rendering: crispEdges;
-  stroke-width: 0px;
+  stroke-width: 1px;
 }
 g.xaxis g.tick line {
   stroke: black;
@@ -80,7 +49,8 @@ g.xaxis g.tick line {
 g.xaxis g.tick text {
   font-weight: normal;
 }
-
+rect.agt{
+}
 /* .zoom {
   cursor: zoom-in,zoom-out;
   fill:none;
