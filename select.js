@@ -6,22 +6,49 @@ window.onload = function() {
     /*
     Set deafults
     */
+    localStorage.setItem("paxCons", JSON.stringify(document.getElementsByName("Con").id));
+    paxConsAllCheck(); // Check all country/entity values
+    paxConRuleAny(); // Display agreements with any checked country/entity
     paxFilterUncheck(); // Check all code filters
     storeBlankAgtDetails();// Empty agreement details in localStorage
     paxRuleAll(); // Pick code filter rule ALL
-    paxConsAllCheck();
     localStorage.setItem("paxFilterView","none");
 
     /*
     Listeners
     */
+    // Country/entity listeners
+    document.getElementById("anyCon").onclick = function(event) {
+        paxConRuleAny();
+    }
+    document.getElementById("allCons").onclick = function(event) {
+        paxConRuleAll();
+    }
+    document.getElementById("DeselectAllCons").onclick = function(event) {
+      paxConsAllUncheck();
+      storeBlankAgtDetails();
+    }
+    document.getElementById("SelectAllCons").onclick = function(event) {
+      paxConsAllCheck();
+      storeBlankAgtDetails();
+    }
     document.getElementById("Cons").onclick = function(event){
       let target = event.target;
-      console.log("Target.id: "+target.id);
+      var con = target.id;
       if (target.name == "Con"){
-        localStorage.setItem("paxCons",target.id);
-        target.checked = true;
-        console.log("Set paxCons to "+target.id);
+        var conList = JSON.parse(localStorage.getItem("paxCons"));
+        if (conList.includes(target.id)){
+          var conI = conList.indexOf(con);
+          var removed = conList.splice(conI, 1);
+          localStorage.setItem("paxCons",JSON.stringify(conList));
+          target.checked = false;
+          console.log("Removed from paxCons: "+removed);
+        } else {
+          conList.push(con);
+          localStorage.setItem("paxCons",JSON.stringify(conList));
+          target.checked = true;
+          console.log("Added to paxCons: "+target.id);
+        }
       }
     }
 
@@ -61,31 +88,44 @@ window.onload = function() {
     // Page refresh listener
     if (window.performance) {
       if (performance.navigation.TYPE_RELOAD) {
+        paxConsAllCheck(); // Check all country/entity values
+        paxConRuleAny(); // Display agreements with any checked country/entity
         paxFilterUncheck(); // Check all code filters
         storeBlankAgtDetails();// Empty agreement details in localStorage
         paxRuleAll(); // Pick code filter rule ALL
-        paxConsAllCheck(); // Display all agreements for every country/entity
         localStorage.setItem("paxFilterView","none");
       }
     }
 }
 
-function paxConsAllCheck() {
+function paxConRuleAny() {
+  console.log("Selected ANY Con");
+  document.getElementById("anyCon").checked = "true";
+  localStorage.setItem("paxConRule","any");
+}
+function paxConRuleAll() {
+  console.log("Selected ALL Cons");
   document.getElementById("allCons").checked = true;
-  console.log("Checked all Country/Entity values");
-  localStorage.setItem("paxCons", "allCons"); //JSON.stringify(paxCons));
-  //console.log("All Cons: "+JSON.parse(localStorage.getItem("paxCons")));
-  //console.log("Showing agreements for every country/entity.");
+  localStorage.setItem("paxConRule","all");
+}
+function paxConsAllCheck() {
+  var cons = document.getElementsByName("Con");
+  var newPaxCons = [];
+  for (i = 0; i < cons.length; i++){
+    cons[i].checked = true;
+    newPaxCons.push(String(cons[i].id))
+  }
+  console.log("Checked all Country/Entity values"); // array of 158 country/entity strings
+  localStorage.setItem("paxCons", JSON.stringify(newPaxCons)); // retrieve with JSON.parse(localStorage.getItem("paxCons"));
 }
 function paxConsAllUncheck() {
-  var paxCons = ["none"];
   var cons = document.getElementsByName("Con");
   for (i = 0; i < cons.length; i++){
     cons[i].checked = false;
   }
+  var newPaxCons = [""];
   console.log("Unchecked all Country/Entity values");
-  localStorage.setItem("paxCons", JSON.stringify(paxCons)); // retrieve with JSON.parse(localStorage.getItem("paxCon"));
-  // console.log("No Cons: "+(JSON.parse(localStorage.getItem("paxCons"))).length);
+  localStorage.setItem("paxCons", JSON.stringify(newPaxCons)); // retrieve with JSON.parse(localStorage.getItem("paxCons"));
 }
 function paxRuleAny() {
   document.getElementById("any").checked = true;

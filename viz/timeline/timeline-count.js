@@ -28,8 +28,8 @@ window.addEventListener("storage", callFunction);
 function getFilters(){
   var locStor = window.localStorage;
   // Filter rule
-  paxANY = locStor.getItem("paxANY");
-  paxALL = locStor.getItem("paxALL");
+  paxANY = +(locStor.getItem("paxANY"));
+  paxALL = +(locStor.getItem("paxALL"));
   // Filter codes
   paxHrFra = locStor.getItem("paxHrFra");
   paxHrGen = locStor.getItem("paxHrGen");
@@ -127,6 +127,7 @@ function callFunction() {
                 .key(function(d){ return d.Year; }).sortKeys(d3.ascending)
                 .rollup(function(leaves){ return leaves.length; })
                 .entries(data);
+          var conList = (d3.map(con_yr_count, function(con){ return con.key; })).keys(); // object with Cons (country/entity values)
           // console.log(cons[0].values[0].value);  // to get leaf (total agreements per year)
           // console.log(cons[0].values[0].key);  // to get year
           // console.log(cons[0].key == "(East Timor)"); // to get country/entity
@@ -137,18 +138,19 @@ function callFunction() {
                .key(function(d){ return d.Dat; }).sortKeys(d3.ascending)         // sort by Agreement's Date Signed
                .sortValues(function(a,b){ return d3.ascending(a.Agt, b.Agt); })  // sort by Agreement's Name
                .entries(data);
-          var datList = (d3.map(dats, function(dat){ return dat.key; })).keys(); // array of Dat values
+          var datList = (d3.map(dats, function(dat){ return dat.key; })).keys(); // object with Dats (date values)
           // console.log(years); // an array of objects
           // console.log(years[0].values); // array of objects (one for each agreement in 1990)
           // console.log(years[0].values[0]); // first agreement object from 1990
-          // console.log(years[0].values[0].Year); // Year (as number) of the first agreement object from 1990
+          // console.log(years[0].values[0].Year); // Year (as number) of the first agreement object from 1990)
 
           // Count the total agreements in each year
-          var yr_count = d3.nest()
+          var yrs = d3.nest()  // yr_count
                .key(function(d){ return d.Year; }).sortKeys(d3.ascending)
-               .rollup(function(leaves){ return leaves.length; })
+               .sortValues(function(a,b){ return d3.ascending(a.Dat, b.Dat); })
+               // .rollup(function(leaves){ return leaves.length; })
                .entries(data);
-          var yrList = (d3.map(yr_count, function(y){ return y.key; })).keys(); // array of Year values
+          var yrList = (d3.map(yrs, function(y){ return y.key; })).keys(); // object with Year values
 
           // Find the maximum number of agreements on a date
           var maxAgts = d3.max(dats, function(dat){ return dat.values.length; });  // 9
@@ -164,7 +166,7 @@ function callFunction() {
                       .domain([minDay,maxDay])  // data space
                       .range([0,width]);  // display space
 
-          var maxAgtsYr = d3.max(yr_count, function(d){ return d.value; });  // 91
+          var maxAgtsYr = d3.max(yrs, function(d){ return d.values.length; });  // 91
           // Set up the y axis (for the bar chart)
           var y = d3.scaleLinear()
                       .domain([0,+maxAgtsYr])
@@ -179,23 +181,27 @@ function callFunction() {
                       .attr("class","chartGroup")
                       .attr("transform","translate("+margin.left+","+margin.top+")");
 
+          var codeFilters = [+paxGeWom, +paxHrFra, +paxHrGen, +paxEps, +paxMps, +paxPol, +paxPolps, +paxTerps, +paxTjMech];
+
           /*
-          DRAW AGREEMENTS
+          DRAW AGREEMENTS (chronology)
           */
           for (dat = 0; dat < datList.length; dat++){
-            var yearGroup = chartGroup.append("g")
-                .attr("class","yearGroup");
+            var datGroup = chartGroup.append("g")
+                .attr("class","datGroup");
 
-            var rects = yearGroup.selectAll("rects.agt")
+            var rects = datGroup.selectAll("rects.agt")
                 .data(dats[dat].values)
               .enter().append("rect")
+              .filter(function(d){ return setAgtFilters(d); })
+              .filter(function(d){ return setAgtCons(d); })
                 .attr("class","agt")
                 .attr("id",function(d){ return d.AgtId; })
                 .attr("fill","black")
                 .attr("stroke","#c4c4c4")  // same as html background-color
                 .attr("stroke-width","1px")
                 .style("opacity", "0.7")
-                .style("visibility",setVisibility)
+                // .style("visibility",setVisibility)
                 .attr("x", function(d){ return x(d.Dat); })
                 .attr("y",function(d,i){ return (height - xHeight - (agtHeight-1) + ((agtHeight/(dats[dat].values.length)) * i) )+"px"; })
                 .attr("width", agtWidth+"px")
@@ -236,176 +242,119 @@ function callFunction() {
           } // end of for loop for rects.agt
 
           /*
-          DRAW BAR GRAPH
-          NOT WORKING TO FILTER BY CON & THEN CODE...MAYBE JUST SHOW COUNTS FOR ONE CON AT A TIME OR ONE CODE AT A TIME???
-          THEN COULD CREATE MORE LEVELS IN NEST THAT DOES SORTING FOR ME???  OR TRY EXPORT NEW CSV OR SOMETHING FOR BETTER FILTERING...?
+          DRAW BAR GRAPH (counts)
           */
-          function checkCodeFilters(){
-            var filtered = false;
-            var codeFilters = [paxGeWom, paxHrFra, paxHrGen, paxEps, paxMps, paxPol, paxPolps, paxTerps, paxTjMech];
-            for (i = 0; i < codeFilters.length; i++){
-              if (codeFilters[i] > 0){
-                filtered = true;
-              }
-            } if (filtered){ return codeFilters; } else { return []; }
+          for (yr = 0; yr < yrList.length; yr++){
+            var yearGroup = chartGroup.append("g")
+                .attr("class","yearGroup");
+
+            var bars = yearGroup.selectAll(".bar")
+                .data(yrs[yr].values)
+              .enter().append("rect")
+              // .filter(function(d){ setBarFilters(d); } })
+                .attr("class", "bar")
+                .attr("x", function(d){ return x(parseYear(d.key))+4; })
+                .attr("y", function(d){ return y(yrs[yr].values.length); })
+                .attr("width", (width/yrs.length)+1)
+                .attr("height", function(d){ return (height-xHeight-agtHeight) - y(+(yrs[yr].values.length)); })
+                .attr("stroke","#c4c4c4")  // same as html background-color
+                .attr("stroke-width","0px")
+
+            bars.on("mousemove", function(d){
+                  this.style.fill = "#ffffff";
+                  tooltip.style("opacity","0.9")
+                    .style("left", d3.event.pageX+"px")
+                    .style("top", d3.event.pageY+"px")
+                    .style("background","#ffffff")
+                    .style("padding","5px")
+                    .attr("class","tooltip");
+                  tooltip.html("<p>Count in "+d.key+":<br/><b>"+d.value+"</b></p>");
+            });
+            bars.on("mouseout",function(d) {
+                  this.style.fill = "black"
+                  tooltip.style("opacity","0")
+                    .style("left",d3.event.pageX+"px")
+                    .style("top",d3.event.pageY+"px");
+            });
           }
 
+         // Draw y axis (for the bar chart)
+         chartGroup.append("g")
+                 .attr("class","yaxis bar")
+                 .style("opacity","0")
+                 .call(d3.axisLeft(y));
 
-          var bar_data = getBarData(data, checkCodeFilters(), window.localStorage.getItem("paxCons"));
+         // Draw x axis (for the timeline & bar chart)
+         var xAxis = d3.axisBottom(x).tickFormat(d3.timeFormat("%d %b %Y")).tickPadding([5]);
 
-          chartGroup.selectAll(".bar")
-              .data(bar_data)
-            .enter().append("rect")
-              .attr("class", "bar")
-              .attr("x", function(d){ return x(parseYear(d.key))+4; })
-              .attr("y", function(d){ return y(d.value); })
-              .attr("width", (width/yr_count.length)+1)
-              .attr("height", function(d){ return (height-xHeight-agtHeight) - y(+(d.value)); })
-              .attr("stroke","#c4c4c4")  // same as html background-color
-              .attr("stroke-width","0px")
-              .on("mousemove", function(d){
-                this.style.fill = "#ffffff";
-                tooltip.style("opacity","0.9")
-                  .style("left", d3.event.pageX+"px")
-                  .style("top", d3.event.pageY+"px")
-                  .style("background","#ffffff")
-                  .style("padding","5px")
-                  .attr("class","tooltip");
-                tooltip.html("<p>Count in "+d.key+":<br/><b>"+d.value+"</b></p>");
-              })
-              .on("mouseout",function(d) {
-                this.style.fill = "black"
-                tooltip.style("opacity","0")
-                  .style("left",d3.event.pageX+"px")
-                  .style("top",d3.event.pageY+"px");
-              });
-
-           // Draw y axis (for the bar chart)
-           chartGroup.append("g")
-                   .attr("class","yaxis bar")
-                   .style("opacity","0")
-                   .call(d3.axisLeft(y));
-
-           // Draw x axis (for the timeline & bar chart)
-           var xAxis = d3.axisBottom(x).tickFormat(d3.timeFormat("%d %b %Y")).tickPadding([5]);
-
-           var gX = chartGroup.append("g")
-                   .attr("class","xaxis")
-                   .attr("transform","translate(0,"+(height-xHeight)+")")
-                   .call(xAxis);
+         var gX = chartGroup.append("g")
+                 .attr("class","xaxis")
+                 .attr("transform","translate(0,"+(height-xHeight)+")")
+                 .call(xAxis);
 
            /*
-           FILTER FUNCTIONS
+           FILTER FUNCTIONS - .filter(function(d){ if(...){ return ...; } })
            Notes:
              console.log(cons[0].values[0].value);  // to get leaf (total agreements per year)
              console.log(cons[0].values[0].key);  // to get year
              console.log(cons[0].key == "(East Timor)"); // to get country/entity
            */
-           function getBarData(data, codeFilters, paxCon){
-             console.log(window.localStorage.getItem("paxCons"));
-             if (codeFilters.length == 0){
-               if (paxCon == "allCons"){
-                 return yr_count;
-               } else {
-                  for (i = 0; i < con_yr_count.length; i++){
-                   console.log("con_yr_count[i].key: "+con_yr_count[i].key);
-                   if (con_yr_count[i].key == paxCon){
-                     console.log("con_yr_count[i].values: "+con_yr_count[i].values);
-                     return con_yr_count[i].values;
-                    }
-                  }
-                }
-              } else {
-                console.log("Display count bars");
-                var counts = [];
-                if (paxCon == "allCons"){
-                  var yrs = d3.nest().key(function(d){ return d.Year; }).sortKeys(d3.ascending).entries(data);
-                  for (j = 0; j < yrs.length; j++){
-                    var agmts = yrs[i].values;
-                    // console.log("yr agmts: "+agmts);
-                    var yrCodeCount = 0;
-                    for (k = 0; k < agmts.length; k++){
-                      var d = agmts[k];
-                      // console.log(d.AgtId);
-                      var dCodes = [d.GeWom, d.HrFra, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech];
-                      for (c = 0; c < codeFilters.length; c++){
-                        // console.log("Greater than 0? "+dCodes[c]+", "+codeFilters[c]);
-                        if ((dCodes[c] > 0) && (codeFilters[c] > 0)){
-                          yrCodeCount += 1
-                          console.log("yrCodeCount: "+yrCodeCount);
-                        }
-                      }
-                    }
-                    counts.push[yrCodeCount];
-                    console.log("Counts: "+counts);  // WHY IS THIS EMPTY???
-                  }
-                 } else {
-                  var cons = d3.nest().key(function(d){ return d.Con; }).sortKeys(d3.ascending).entries(data);
-                  for (i = 0; i < cons.length; i++){
-                    console.log("cons[i].key: "+cons[i].key);
-                    if (cons[i].key == paxCon){
-                      var con = cons[i].values;  // ITERATIVELY BUILD ON ARRAY HERE IF CAN SELECT MUTLIPLE CONS???
-                      console.log("con agmts: "+con);
-                      var con_yrs = d3.nest().key(function(d){ return d.Year; }).sortKeys(d3.ascending).entries(con);
-                      console.log(con_yrs);
-                      for (j = 0; j < con_yrs.length; j++){
-                        var agmts = con_yrs[i].values;
-                        var conYrCodeCount = 0;
-                        for (k = 0; k < agmts.length; k++){
-                          var d = agmts[k];
-                          var dCodes = [d.GeWom, d.HrFra, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech];
-                          for (c = 0; c < codeFilters.length; c++){
-                            if ((dCodes[c] > 0) && (codeFilters[c] > 0)){
-                              conYrCodeCount += 1;
-                            }
-                          }
-                        }
-                        counts.push[conYrCodeCount];
-                      }
-                    }
-                  }
-                }
-                if (counts.length == yr_count.length){
-                  console.log("yr_count: "+yr_count);
-                  for (i = 0; i < yr_count.length; i++){
-                    console.log("yr_count[i].value: "+yr_count[i].value);
-                    yr_count[i].value = counts[i];
-                    console.log("new yr_count[i].value: "+yr_count[i].value);
-                  }
-                  console.log("yr_count: "+yr_count);
-                }
-                return yr_count;
-              }
-          }
 
-           function setVisibility(d){
-             // Hide agreements from any deselected country/entity
-             var paxCon = window.localStorage.getItem("paxCons");  // For array of cons: var paxCons = JSON.parse(window.localStorage.getItem("paxCons"));
-             console.log(paxCon);
-             if ((paxCon != "allCons") && (paxCon != d.Con)){ return "hidden"; }  // CHANGE TO INCLUDE ANY COUNTRY OR ENTITY NAME AS DB SEARCH PAGE DOES
-
-             var codeFilters = [paxGeWom, paxHrFra, paxHrGen, paxEps, paxMps, paxPol, paxPolps, paxTerps, paxTjMech];
+           function setAgtFilters(d){
              var agmtCodes = [d.GeWom, d.HrFra, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech];
-             // Hide any agreement without at least one checked code
-             if (paxANY == 1 && paxALL == 0){
-               var matchCount = 0;
-               for (i = 0; i < codeFilters.length; i++){
+             var codeFilterCount = codeFilters.length;
+             if (paxANY == 1){
+               for (i = 0; i < codeFilterCount; i++){
                  if ((codeFilters[i] == 1) && (agmtCodes[i] > 0)){
-                   matchCount += 1;
-                   return "visible";
+                   return d;
                  }
                }
-               if (matchCount == 0){ return "hidden"; }
-             }
-             // Hide any agreement without all checked codes
-             if (paxANY == 0 && paxALL == 1) {
-               for (i=0; i < codeFilters.length; i++){
-                 if ((codeFilters[i] == 1) && (agmtCodes[i] == 0)) {
-                   return "hidden";
+             } else { // if paxALL == 1
+               var mismatch = false;
+               for (j = 0; j < codeFilterCount; j++){
+                 if ((codeFilters[j] == 1) && agmtCodes[j] == 0){
+                   mismatch = true;
                  }
                }
+               if (!mismatch){
+                 return d;
+               }
              }
-           };
+           }
+
+           function setAgtCons(d){
+             var agmtCon = d.Con;
+           }
+
+
+          // function setVisibility(d){
+          //    // Hide agreements from any deselected country/entity
+          //    var paxCon = window.localStorage.getItem("paxCons");  // For array of cons: var paxCons = JSON.parse(window.localStorage.getItem("paxCons"));
+          //    console.log(paxCon);
+          //    if ((paxCon != "allCons") && (paxCon != d.Con)){ return "hidden"; }  // CHANGE TO INCLUDE ANY COUNTRY OR ENTITY NAME AS DB SEARCH PAGE DOES
+          //
+          //    var codeFilters = [paxGeWom, paxHrFra, paxHrGen, paxEps, paxMps, paxPol, paxPolps, paxTerps, paxTjMech];
+          //    var agmtCodes = [d.GeWom, d.HrFra, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech];
+          //    // Hide any agreement without at least one checked code
+          //    if (paxANY == 1 && paxALL == 0){
+          //      var matchCount = 0;
+          //      for (i = 0; i < codeFilters.length; i++){
+          //        if ((codeFilters[i] == 1) && (agmtCodes[i] > 0)){
+          //          matchCount += 1;
+          //          return "visible";
+          //        }
+          //      }
+          //      if (matchCount == 0){ return "hidden"; }
+          //    }
+          //    // Hide any agreement without all checked codes
+          //    if (paxANY == 0 && paxALL == 1) {
+          //      for (i=0; i < codeFilters.length; i++){
+          //        if ((codeFilters[i] == 1) && (agmtCodes[i] == 0)) {
+          //          return "hidden";
+          //        }
+          //      }
+          //    }
+          //  };
 
            // NEED TO FIX ZOOM!
            // function zoom() {

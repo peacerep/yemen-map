@@ -30,6 +30,9 @@ var paxTjMech = window.localStorage.setItem("paxGeWom",0); // Transitional justi
 var paxANY = window.localStorage.setItem("paxANY",0); // Selected ANY filter rule
 var paxALL = window.localStorage.setItem("paxALL",1); // Selected ALL filter rule
 
+// var paxCons = JSON.parse(window.localStorage.getItem("paxCons")); // Country/entity list (includes all upon load)
+window.localStorage.setItem("paxConRule","any"); // Selected ANY country/entity rule
+
 callFunction();
 d3.select(window).on("resize", callFunction);
 window.addEventListener("storage", callFunction);
@@ -50,12 +53,12 @@ function getFilters(){
   paxPol = locStor.getItem("paxPol");
   paxGeWom = locStor.getItem("paxGeWom");
   paxTjMech = locStor.getItem("paxTjMech");
-  // Con (country/entity) filters - NOT WORKING!
-  // paxCons = JSON.parse(locStor.getItem("paxCons"));
 };
 
 function callFunction() {
-
+  console.log("Drawing visualization");
+  var paxCons = JSON.parse(window.localStorage.getItem("paxCons")); // Country/entity list (includes all upon load)
+  var paxConRule = localStorage.getItem("paxConRule");
   getFilters();
 
   // Agreement information to display upon hover
@@ -140,6 +143,15 @@ function callFunction() {
                .entries(data);
           var datList = (d3.map(dats, function(dat){ return dat.key; })).keys(); // array of Dat values
 
+          // Group agreements by country/entity
+          var cons = d3.nest() //con_yr_count
+                .key(function(d){ return d.Con; }).sortKeys(d3.ascending)
+                // .key(function(d){ return d.Year; }).sortKeys(d3.ascending)
+                .rollup(function(leaves){ return leaves.length; })
+                .entries(data);
+          // var conList = (d3.map(cons, function(con){ return con.key; })).keys(); // object with Cons (country/entity values)
+          // localStorage.setItem("paxCons",JSON.stringify(conList));
+
           // Find the maximum number of agreements that occur in a single year
           var max = d3.max(yr_count_nest,function(d){ return d.value; });
 
@@ -171,34 +183,34 @@ function callFunction() {
                       .attr("class","chartGroup") //
                       .attr("transform","translate("+margin.left+","+margin.top+")") //;
 
-          function setVisibility(d){
-            // Hide agreements from any deselected country/entity
-            var paxCon = window.localStorage.getItem("paxCons");  // For array of cons: var paxCons = JSON.parse(window.localStorage.getItem("paxCons"));
-            console.log(paxCon);
-            if ((paxCon != "allCons") && (paxCon != d.Con)){ return "hidden"; }  // CHANGE TO INCLUDE ANY COUNTRY OR ENTITY NAME AS DB SEARCH PAGE DOES
-
-            var codeFilters = [paxGeWom, paxHrFra, paxHrGen, paxEps, paxMps, paxPol, paxPolps, paxTerps, paxTjMech];
-            var agmtCodes = [d.GeWom, d.HrFra, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech];
-            // Hide any agreement without at least one checked code
-            if (paxANY == 1 && paxALL == 0){
-              var matchCount = 0;
-              for (i = 0; i < codeFilters.length; i++){
-                if ((codeFilters[i] == 1) && (agmtCodes[i] > 0)){
-                  matchCount += 1;
-                  return "visible";
-                }
-              }
-              if (matchCount == 0){ return "hidden"; }
-            }
-            // Hide any agreement without all checked codes
-            if (paxANY == 0 && paxALL == 1) {
-              for (i=0; i < codeFilters.length; i++){
-                if ((codeFilters[i] == 1) && (agmtCodes[i] == 0)) {
-                  return "hidden";
-                }
-              }
-            }
-          };
+          // function setVisibility(d){
+          //   // Hide agreements from any deselected country/entity
+          //   var paxCon = window.localStorage.getItem("paxCons");  // For array of cons: var paxCons = JSON.parse(window.localStorage.getItem("paxCons"));
+          //   console.log(paxCon);
+          //   if ((paxCon != "allCons") && (paxCon != d.Con)){ return "hidden"; }  // CHANGE TO INCLUDE ANY COUNTRY OR ENTITY NAME AS DB SEARCH PAGE DOES
+          //
+          //   var codeFilters = [paxGeWom, paxHrFra, paxHrGen, paxEps, paxMps, paxPol, paxPolps, paxTerps, paxTjMech];
+          //   var agmtCodes = [d.GeWom, d.HrFra, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech];
+          //   // Hide any agreement without at least one checked code
+          //   if (paxANY == 1 && paxALL == 0){
+          //     var matchCount = 0;
+          //     for (i = 0; i < codeFilters.length; i++){
+          //       if ((codeFilters[i] == 1) && (agmtCodes[i] > 0)){
+          //         matchCount += 1;
+          //         return "visible";
+          //       }
+          //     }
+          //     if (matchCount == 0){ return "hidden"; }
+          //   }
+          //   // Hide any agreement without all checked codes
+          //   if (paxANY == 0 && paxALL == 1) {
+          //     for (i=0; i < codeFilters.length; i++){
+          //       if ((codeFilters[i] == 1) && (agmtCodes[i] == 0)) {
+          //         return "hidden";
+          //       }
+          //     }
+          //   }
+          // };
 
           // Make one rectangle per agreement grouped by Year
           for (dat = 0; dat < datList.length; dat++){
@@ -208,13 +220,15 @@ function callFunction() {
             var rects = yearGroup.selectAll("rects.agt")
                 .data(dats[dat].values)
               .enter().append("rect")
+              .filter(function(d){ return setAgtFilters(d); })
+              .filter(function(d){ return setAgtCons(d); })
                 .attr("class","agt")
                 .attr("id",function(d){ return d.AgtId; })
                 .attr("fill","black")
                 .attr("stroke","#c4c4c4")  // same as html background-color
                 .attr("stroke-width","1px")
                 .style("opacity", "0.7")
-                .style("visibility",setVisibility)
+                // .style("visibility",setVisibility)
                 .attr("x", function(d){ return x(d.Dat); })
                 .attr("y",function(d,i){ return (height - xHeight - (agtHeight-1) + ((agtHeight/(dats[dat].values.length)) * i) )+"px"; })
                 .attr("width", agtWidth+"px")
@@ -292,13 +306,61 @@ function callFunction() {
             // });
             } // end of for loop for rects.agt
 
-             // Draw axes
-             var xAxis = d3.axisBottom(x).tickFormat(d3.timeFormat("%e %b %Y")).tickPadding([5]);
+            function setAgtFilters(d){
+              var agmtCodes = [d.GeWom, d.HrFra, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech];
+              var codeFilters = [+paxGeWom, +paxHrFra, +paxHrGen, +paxEps, +paxMps, +paxPol, +paxPolps, +paxTerps, +paxTjMech];
+              var codeFilterCount = codeFilters.length;
+              if (paxANY == 1){
+                for (i = 0; i < codeFilterCount; i++){
+                  if ((codeFilters[i] == 1) && (agmtCodes[i] > 0)){
+                    return d;
+                  }
+                }
+              } else { // if paxALL == 1
+                var mismatch = false;
+                for (j = 0; j < codeFilterCount; j++){
+                  if ((codeFilters[j] == 1) && agmtCodes[j] == 0){
+                    mismatch = true;
+                  }
+                }
+                if (!mismatch){
+                  return d;
+                }
+              }
+            }
+            function setAgtCons(d){
+              /* if keep paxCons as listed in each agreement (single or combination of country/entity values):
+              if (paxCons.includes(agmtCon)){
+                return d;
+              }
+              */
+              // TO DO: list item is single con/entity
+              console.log("paxConRule: "+paxConRule)
+              var agmtCon = String(d.Con);
+              if (paxConRule == "any"){
+                if (paxCons.includes(agmtCon)){
+                  return d;
+                }
+              } else { // if paxConRule == "all"
+                var mismatch = false;
+                for (j = 0; j < paxCons.length; j++){
+                  if (agmtCon.indexOf(paxCons[j]) == -1 ){
+                    mismatch = true;
+                  }
+                }
+                if (!mismatch){
+                  return d;
+                }
+              }
+            }
 
-             var gX = chartGroup.append("g")
-                  .attr("class","xaxis")
-                  .attr("transform","translate(0,"+(height-xHeight)+")")
-                  .call(xAxis);
+           // Draw axes
+           var xAxis = d3.axisBottom(x).tickFormat(d3.timeFormat("%e %b %Y")).tickPadding([5]);
+
+           var gX = chartGroup.append("g")
+                .attr("class","xaxis")
+                .attr("transform","translate(0,"+(height-xHeight)+")")
+                .call(xAxis);
 
             /*
             NEED TO FIX ZOOM
