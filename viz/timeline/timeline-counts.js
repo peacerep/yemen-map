@@ -20,21 +20,21 @@ TRY EACH YEAR AS INDIVIDUAL BAR CHART
 // Define one key/value pair per category (code) by which to filter which
 // agreements the timeline and map visualize, checking all paxfilters
 // (value = 1) upon page load so all agreements are visible
-var paxHrFra = window.localStorage.setItem("paxHrFra",1); // Human rights framework
-var paxHrGen = window.localStorage.setItem("paxHrGen",1);; // Human rights/Rule of law
-var paxMps = window.localStorage.setItem("paxPol",1); // Military power sharing
-var paxEps = window.localStorage.setItem("paxEps",1); // Economic power sharing
-var paxTerps = window.localStorage.setItem("paxMps",1); // Territorial power sharing
-var paxPolps = window.localStorage.setItem("paxPolps",1); // Political power sharing
-var paxPol = window.localStorage.setItem("paxTerps",1); // Political institutions
-var paxGeWom = window.localStorage.setItem("paxTjMech",1); // Women, girls and gender
-var paxTjMech = window.localStorage.setItem("paxGeWom",1); // Transitional justice past mechanism
+var paxHrFra = window.localStorage.setItem("paxHrFra",0); // Human rights framework
+var paxHrGen = window.localStorage.setItem("paxHrGen",0);; // Human rights/Rule of law
+var paxMps = window.localStorage.setItem("paxPol",0); // Military power sharing
+var paxEps = window.localStorage.setItem("paxEps",0); // Economic power sharing
+var paxTerps = window.localStorage.setItem("paxMps",0); // Territorial power sharing
+var paxPolps = window.localStorage.setItem("paxPolps",0); // Political power sharing
+var paxPol = window.localStorage.setItem("paxTerps",0); // Political institutions
+var paxGeWom = window.localStorage.setItem("paxTjMech",0); // Women, girls and gender
+var paxTjMech = window.localStorage.setItem("paxGeWom",0); // Transitional justice past mechanism
 
 // var paxRule = window.localStorage.setItem("paxRule",1); // Selected ALL filter rule
-var paxANY = window.localStorage.setItem("paxANY",1); // Selected ANY filter rule
-var paxALL = window.localStorage.setItem("paxALL",0); // Selected ALL filter rule
+var paxANY = window.localStorage.setItem("paxANY",0); // Selected ANY filter rule
+var paxALL = window.localStorage.setItem("paxALL",1); // Selected ALL filter rule
 
-//window.localStorage.setItem("agtInfo", "Hover over an agreement to view its details.");
+window.localStorage.setItem("paxConRule","all"); // Selected ANY country/entity rule
 
 callFunction();
 d3.select(window).on("resize", callFunction);
@@ -59,7 +59,9 @@ function getFilters(){
 };
 
 function callFunction() {
-
+  console.log("Drawing visualization of yearly counts");
+  var paxCons = JSON.parse(window.localStorage.getItem("paxCons")); // Country/entity list (includes all upon load)
+  var paxConRule = localStorage.getItem("paxConRule");
   getFilters();
 
   // Agreement information to display upon hover
@@ -92,8 +94,8 @@ function callFunction() {
       width = parseInt(d3.select("body").style("width"), 10),
       width = width - margin.left - margin.right,
       agtHeight = 2,
-      xHeight = 15,
-      agtPadding = 5,
+      xHeight = 10,
+      agtPadding = 2,
       agtSpacing = 1;
 
   // Obtain data
@@ -130,7 +132,7 @@ function callFunction() {
           // Group agreements by Year (create an array of objects whose key is the year and value is an array of objects (one per agreement))
           var years = d3.nest()
                .key(function(d){ return d.Year; }).sortKeys(d3.ascending)
-               .sortValues(function(a,b){ return d3.ascending(a.Dat, b.Dat); })
+               .sortValues(function(a,b){ return d3.descending(a.Dat, b.Dat); })
                .entries(data);
           var yrList = (d3.map(years, function(year){ return year.key; })).keys(); // array of year values
           // console.log(years); // an array of objects
@@ -140,7 +142,7 @@ function callFunction() {
 
           // Find the maximum number of agreements in a single year
           var maxAgts = d3.max(years, function(year){ return year.values.length; });
-          var height = (maxAgts*(agtHeight*1.25))+(xHeight*2) + margin.top + margin.bottom; //defines w & h as inner dimensions of chart area
+          var height = (maxAgts*agtHeight)+(xHeight); //defines w & h as inner dimensions of chart area
           // console.log(maxAgts); // 91
 
           // Calculate the size of each agreement in the display space
@@ -148,51 +150,41 @@ function callFunction() {
 
           // Set up the x axis
           var minYear = d3.min(data,function(d){ return parseYear(d.Year-1); });
-          var maxYear = d3.max(data,function(d){ return parseYear(d.Year); });
+          var maxYear = d3.max(data,function(d){ return parseYear(d.Year+1); });
           var x = d3.scaleTime()
                       .domain([minYear,maxYear])  // data space
                       .range([margin.left,width]);  // display space
 
           // Get filters
-          function newOpacity(d){
-            // Hide agreements from any deselected country/entity - NOT WORKING!
-            // if (paxCons.indexOf(d.Con) == -1){ return "hidden";}
-
-            var codeFilters = [paxGeWom, paxHrFra, paxHrGen, paxEps, paxMps, paxPol, paxPolps, paxTerps, paxTjMech];
-            var agmtCodes = [d.GeWom, d.HrFra, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech];
-
-            // Hide any agreement without at least one checked code
-            if (paxANY == 1 && paxALL == 0){
-              var matchCount = 0;
-              for (i = 0; i < codeFilters.length; i++){
-                if ((codeFilters[i] == 1) && (agmtCodes[i] > 0)){
-                  matchCount += 1;
-                  return "1";
-                }
-              }
-              if (matchCount == 0){ return "0.5"; }
-            }
-
-            // Hide any agreement without all checked codes
-            if (paxANY == 0 && paxALL == 1) {
-              for (i=0; i < codeFilters.length; i++){
-                if ((codeFilters[i] == 1) && (agmtCodes[i] == 0)) {
-                  return "0.5";
-                }
-              }
-              return "1";
-            }
-          };
-
-          // Draw trend line graphs
-          function newTrend(d){
-            // Hide agreements from any deselected country/entity - NOT WORKING!
-            // if (paxCons.indexOf(d.Con) == -1){ return "hidden";}
-
-            var codeFilters = [paxGeWom, paxHrFra, paxHrGen, paxEps, paxMps, paxPol, paxPolps, paxTerps, paxTjMech];
-            var agmtCodes = [d.GeWom, d.HrFra, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech];
-
-          }
+          // function newOpacity(d){
+          //   // Hide agreements from any deselected country/entity - NOT WORKING!
+          //   // if (paxCons.indexOf(d.Con) == -1){ return "hidden";}
+          //
+          //   var codeFilters = [paxGeWom, paxHrFra, paxHrGen, paxEps, paxMps, paxPol, paxPolps, paxTerps, paxTjMech];
+          //   var agmtCodes = [d.GeWom, d.HrFra, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech];
+          //
+          //   // Hide any agreement without at least one checked code
+          //   if (paxANY == 1 && paxALL == 0){
+          //     var matchCount = 0;
+          //     for (i = 0; i < codeFilters.length; i++){
+          //       if ((codeFilters[i] == 1) && (agmtCodes[i] > 0)){
+          //         matchCount += 1;
+          //         return "1";
+          //       }
+          //     }
+          //     if (matchCount == 0){ return "0.5"; }
+          //   }
+          //
+          //   // Hide any agreement without all checked codes
+          //   if (paxANY == 0 && paxALL == 1) {
+          //     for (i=0; i < codeFilters.length; i++){
+          //       if ((codeFilters[i] == 1) && (agmtCodes[i] == 0)) {
+          //         return "0.5";
+          //       }
+          //     }
+          //     return "1";
+          //   }
+          // };
 
           // Define the full timeline chart SVG element
           var svg = d3.select("body").select("#chart").append("svg")
@@ -207,44 +199,43 @@ function callFunction() {
             var rects = chartGroup.selectAll("rects.agt")
                 .data(years[year].values)
               .enter().append("rect")
+              .filter(function(d){ return setAgtFilters(d); })
+              .filter(function(d){ return setAgtCons(d); })
                 .attr("class","agt")
                 .attr("id",function(d){ return d.AgtId; })
                 .attr("name",function(d){ return d.Agt; })
                 .attr("value",function(d){ return d.Year; })
                 .attr("fill","black")
-                // .attr("stroke","#c4c4c4")  // same as html background-color
-                // .attr("stroke-width","1px")
-                .style("opacity", newOpacity)
+                .attr("stroke","#c4c4c4")  // same as html background-color
+                .attr("stroke-width","1px")
+                .style("opacity", "0.7")
                 .attr("x", function(d){ return x(parseYear(d.Year)) - (agtWidth/2); })
-                .attr("y",function(d,i){ return (height-xHeight-2-((agtHeight)*(i*agtSpacing)))+"px"; })
+                .attr("y",function(d,i){ return (height-xHeight-margin.bottom-(agtHeight*1.5)-((agtHeight)*(i*agtSpacing)))+"px"; })
                 .attr("width", agtWidth+"px")
                 .attr("height", agtHeight+"px");
 
             rects.on("mousemove",function(d){
-                   if (this.style.opacity == "1"){
-                     //console.log(d.Agt);
-                     this.style.fill = "#ffffff";
-                     // this.style.stroke = "#ffffff";
-                     // Core agreement information (name, date, region, country/entity, status, type & stage)
-                     agt = d.Agt;
-                     dat = formatDate(d.Dat);
-                     reg = d.Reg;
-                     con = d.Con;
-                     status = d.Status;
-                     agtp = d.Agtp;
-                     stage = d.Stage;
-                     window.localStorage.setItem("paxagt", agt);
-                     window.localStorage.setItem("paxdat", dat);
-                     window.localStorage.setItem("paxreg", reg);
-                     window.localStorage.setItem("paxcon", con);
-                     window.localStorage.setItem("paxstatus", status);
-                     window.localStorage.setItem("paxagtp", agtp);
-                     window.localStorage.setItem("paxstage", stage);
-                   }
+                    this.style.fill = "#ffffff";
+                    this.style.stroke = "#ffffff";
+                    // Core agreement information (name, date, region, country/entity, status, type & stage)
+                    agt = d.Agt;
+                    dat = formatDate(d.Dat);
+                    reg = d.Reg;
+                    con = d.Con;
+                    status = d.Status;
+                    agtp = d.Agtp;
+                    stage = d.Stage;
+                    window.localStorage.setItem("paxagt", agt);
+                    window.localStorage.setItem("paxdat", dat);
+                    window.localStorage.setItem("paxreg", reg);
+                    window.localStorage.setItem("paxcon", con);
+                    window.localStorage.setItem("paxstatus", status);
+                    window.localStorage.setItem("paxagtp", agtp);
+                    window.localStorage.setItem("paxstage", stage);
                  });
             rects.on("mouseout",function(d) {
                    this.style.fill = "black"
-                   // this.style.stroke = "#c4c4c4";
+                   this.style.stroke = "#c4c4c4";
                    window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
                    window.localStorage.setItem("paxdat", "");
                    window.localStorage.setItem("paxreg", "");
@@ -255,12 +246,64 @@ function callFunction() {
                  });
           }
 
+          function setAgtFilters(d){
+            var agmtCodes = [d.GeWom, d.HrFra, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech];
+            var codeFilters = [+paxGeWom, +paxHrFra, +paxHrGen, +paxEps, +paxMps, +paxPol, +paxPolps, +paxTerps, +paxTjMech];
+            var codeFilterCount = codeFilters.length;
+            if (paxANY == 1){
+              for (i = 0; i < codeFilterCount; i++){
+                if ((codeFilters[i] == 1) && (agmtCodes[i] > 0)){
+                  return d;
+                }
+              }
+            } else { // if paxALL == 1
+              var mismatch = false;
+              for (j = 0; j < codeFilterCount; j++){
+                if ((codeFilters[j] == 1) && agmtCodes[j] == 0){
+                  mismatch = true;
+                }
+              }
+              if (!mismatch){
+                return d;
+              }
+            }
+          }
+
+          function setAgtCons(d){
+            // TO DO: list item is single con/entity
+            var agmtCon = String(d.Con);
+            if (paxConRule == "any"){
+              if (paxCons.length > 0){
+                for (i = 0; i < paxCons.length; i++){
+                  // if (!(agmtCon.includes(paxCons[i]))){
+                  //   console.log(agmtCon);
+                  // }
+                  if (agmtCon.includes(paxCons[i])){
+                    return d;
+                  }
+                }
+              }
+            }
+            if (paxConRule == "all") {
+              var mismatch = false;
+              for (j = 0; j < paxCons.length; j++){
+                if (!(agmtCon.includes(paxCons[j]))){
+                  mismatch = true;
+                  // console.log("Mismatched: "+agmtCon);
+                }
+              }
+              if (!mismatch){
+                return d;
+              }
+            }
+          }
+
           // Draw X axis for the entire chart
           var xAxis = d3.axisBottom(x).tickFormat(d3.timeFormat("%Y")).tickPadding([5]);
 
           var gX = chartGroup.append("g")
                .attr("class","xaxis")
-               .attr("transform","translate(0,"+(height-xHeight)+")")
+               .attr("transform","translate(0,"+(height-xHeight-margin.bottom)+")")
                .call(xAxis);
 
       }) // end of .get(error,data)

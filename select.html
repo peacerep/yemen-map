@@ -19,10 +19,10 @@
 
 <!-- NEED TO SEPARATE EACH CON IN STRINGS -->
           <div class="conRadios">
-            <input type="radio" id="allCons" name="conRule" value="allCons">
+            <input type="radio" id="allCons" name="conRule" value="allCons" checked="checked">
             <label for="all"><b>ALL</b>&nbsp;checked countries/entities</label>
             <br/>
-            <input type="radio" id="anyCon" name="conRule" value="anyCon" checked="checked">
+            <input type="radio" id="anyCon" name="conRule" value="anyCon">
             <label for="any"><b>ANY</b>&nbsp;checked country/entity</label>
             <br/>
           </div>
@@ -35,323 +35,168 @@
               <a href="#" id="DeselectAllCons">Deselect All</a>
               <br/>
               <div id="Cons">
-                <!-- List Country/Entity values with checkboxes (see conNames.csv) -->
-                <input type='checkbox' id='(East Timor)' name='Con', value=1 checked><label for='pax(East Timor)'>(East Timor)</label><br/>
-                <input type='checkbox' id='Afghanistan' name='Con', value=1 checked><label for='paxAfghanistan'>Afghanistan</label><br/>
-                <input type='checkbox' id='Afghanistan/Pakistan' name='Con', value=1 checked><label for='paxAfghanistan/Pakistan'>Afghanistan/Pakistan</label><br/>
-                <input type='checkbox' id='Algeria' name='Con', value=1 checked><label for='paxAlgeria'>Algeria</label><br/>
-                <input type='checkbox' id='Angola' name='Con', value=1 checked><label for='paxAngola'>Angola</label><br/>
-                <input type='checkbox' id='Angola/Burundi/Central African Republic/Democratic Republic of Congo/Kenya/Republic of Congo/Rwanda/Sudan/Tanzania/Uganda/Zambia/(African Great Lakes)' name='Con', value=1 checked><label for='paxAngola/Burundi/Central African Republic/Democratic Republic of Congo/Kenya/Republic of Congo/Rwanda/Sudan/Tanzania/Uganda/Zambia/(African Great Lakes)'>Angola/Burundi/Central African Republic/Democratic Republic of Congo/Kenya/Republic of Congo/Rwanda/Sudan/Tanzania/Uganda/Zambia/(African Great Lakes)</label><br/>
-                <input type='checkbox' id='Angola/Burundi/Central African Republic/Democratic Republic of Congo/Republic of Congo/Rwanda/South Africa/South Sudan/Tanzania/Uganda/Zambia/(African Great Lakes)' name='Con', value=1 checked><label for='paxAngola/Burundi/Central African Republic/Democratic Republic of Congo/Republic of Congo/Rwanda/South Africa/South Sudan/Tanzania/Uganda/Zambia/(African Great Lakes)'>Angola/Burundi/Central African Republic/Democratic Republic of Congo/Republic of Congo/Rwanda/South Africa/South Sudan/Tanzania/Uganda/Zambia/(African Great Lakes)</label><br/>
-                <input type='checkbox' id='Angola/Cabinda' name='Con', value=1 checked><label for='paxAngola/Cabinda'>Angola/Cabinda</label><br/>
-                <input type='checkbox' id='Angola/Central African Republic/Democratic Republic of Congo/Kenya/Republic of Congo/Rwanda/Sudan/Tanzania/Uganda/Zambia/(African Great Lakes)' name='Con', value=1 checked><label for='paxAngola/Central African Republic/Democratic Republic of Congo/Kenya/Republic of Congo/Rwanda/Sudan/Tanzania/Uganda/Zambia/(African Great Lakes)'>Angola/Central African Republic/Democratic Republic of Congo/Kenya/Republic of Congo/Rwanda/Sudan/Tanzania/Uganda/Zambia/(African Great Lakes)</label><br/>
-                <input type='checkbox' id='Argentina/United Kingdom' name='Con', value=1 checked><label for='paxArgentina/United Kingdom'>Argentina/United Kingdom</label><br/>
-                <input type='checkbox' id='Armenia/Azerbaijan/(Nagorno-Karabakh)' name='Con', value=1 checked><label for='paxArmenia/Azerbaijan/(Nagorno-Karabakh)'>Armenia/Azerbaijan/(Nagorno-Karabakh)</label><br/>
-                <input type='checkbox' id='Armenia/Azerbaijan/Nagorno-Karabakh' name='Con', value=1 checked><label for='paxArmenia/Azerbaijan/Nagorno-Karabakh'>Armenia/Azerbaijan/Nagorno-Karabakh</label><br/>
-                <input type='checkbox' id='Armenia/Azerbaijan/Russia/(Nagorno-Karabakh)' name='Con', value=1 checked><label for='paxArmenia/Azerbaijan/Russia/(Nagorno-Karabakh)'>Armenia/Azerbaijan/Russia/(Nagorno-Karabakh)</label><br/>
-                <input type='checkbox' id='Bahrain' name='Con', value=1 checked><label for='paxBahrain'>Bahrain</label><br/>
-                <input type='checkbox' id='Bangladesh/Chittagong Hill Tracts' name='Con', value=1 checked><label for='paxBangladesh/Chittagong Hill Tracts'>Bangladesh/Chittagong Hill Tracts</label><br/>
-                <input type='checkbox' id='Bosnia and Herzegovina/Yugoslavia (former)' name='Con', value=1 checked><label for='paxBosnia and Herzegovina/Yugoslavia (former)'>Bosnia and Herzegovina/Yugoslavia (former)</label><br/>
-                <input type='checkbox' id='Burundi' name='Con', value=1 checked><label for='paxBurundi'>Burundi</label><br/>
-                <input type='checkbox' id='Cambodia' name='Con', value=1 checked><label for='paxCambodia'>Cambodia</label><br/>
-                <input type='checkbox' id='Cameroon/Nigeria' name='Con', value=1 checked><label for='paxCameroon/Nigeria'>Cameroon/Nigeria</label><br/>
-                <input type='checkbox' id='Central African Republic' name='Con', value=1 checked><label for='paxCentral African Republic'>Central African Republic</label><br/>
-                <input type='checkbox' id='Central African Republic/Chad/Sudan/(Darfur)' name='Con', value=1 checked><label for='paxCentral African Republic/Chad/Sudan/(Darfur)'>Central African Republic/Chad/Sudan/(Darfur)</label><br/>
-                <input type='checkbox' id='Chad' name='Con', value=1 checked><label for='paxChad'>Chad</label><br/>
-                <input type='checkbox' id='Chad/Libya' name='Con', value=1 checked><label for='paxChad/Libya'>Chad/Libya</label><br/>
-                <input type='checkbox' id='Chad/Sudan' name='Con', value=1 checked><label for='paxChad/Sudan'>Chad/Sudan</label><br/>
-                <input type='checkbox' id='China/India' name='Con', value=1 checked><label for='paxChina/India'>China/India</label><br/>
-                <input type='checkbox' id='China/Kazakhstan/Kyrgyzstan/Russia/Tajikistan' name='Con', value=1 checked><label for='paxChina/Kazakhstan/Kyrgyzstan/Russia/Tajikistan'>China/Kazakhstan/Kyrgyzstan/Russia/Tajikistan</label><br/>
-                <input type='checkbox' id='China/Kazakhstan/Russia' name='Con', value=1 checked><label for='paxChina/Kazakhstan/Russia'>China/Kazakhstan/Russia</label><br/>
-                <input type='checkbox' id='China/Mongolia/Russia' name='Con', value=1 checked><label for='paxChina/Mongolia/Russia'>China/Mongolia/Russia</label><br/>
-                <input type='checkbox' id='China/Russia' name='Con', value=1 checked><label for='paxChina/Russia'>China/Russia</label><br/>
-                <input type='checkbox' id='Colombia' name='Con', value=1 checked><label for='paxColombia'>Colombia</label><br/>
-                <input type='checkbox' id='Colombia/Venezuela' name='Con', value=1 checked><label for='paxColombia/Venezuela'>Colombia/Venezuela</label><br/>
-                <input type='checkbox' id='Comoros/Anjouan' name='Con', value=1 checked><label for='paxComoros/Anjouan'>Comoros/Anjouan</label><br/>
-                <input type='checkbox' id='Costa Rica/El Salvador/Guatemala/Honduras/Nicaragua' name='Con', value=1 checked><label for='paxCosta Rica/El Salvador/Guatemala/Honduras/Nicaragua'>Costa Rica/El Salvador/Guatemala/Honduras/Nicaragua</label><br/>
-                <input type='checkbox' id='Cote d'Ivoire' name='Con', value=1 checked><label for='paxCote d'Ivoire'>Cote d'Ivoire</label><br/>
-                <input type='checkbox' id='Croatia/Slovenia/Yugoslavia (former)' name='Con', value=1 checked><label for='paxCroatia/Slovenia/Yugoslavia (former)'>Croatia/Slovenia/Yugoslavia (former)</label><br/>
-                <input type='checkbox' id='Croatia/Yugoslavia (former)' name='Con', value=1 checked><label for='paxCroatia/Yugoslavia (former)'>Croatia/Yugoslavia (former)</label><br/>
-                <input type='checkbox' id='Democratic Republic of Congo' name='Con', value=1 checked><label for='paxDemocratic Republic of Congo'>Democratic Republic of Congo</label><br/>
-                <input type='checkbox' id='Democratic Republic of Congo/Rwanda' name='Con', value=1 checked><label for='paxDemocratic Republic of Congo/Rwanda'>Democratic Republic of Congo/Rwanda</label><br/>
-                <input type='checkbox' id='Democratic Republic of Congo/Rwanda/(African Great Lakes)' name='Con', value=1 checked><label for='paxDemocratic Republic of Congo/Rwanda/(African Great Lakes)'>Democratic Republic of Congo/Rwanda/(African Great Lakes)</label><br/>
-                <input type='checkbox' id='Democratic Republic of Congo/Uganda' name='Con', value=1 checked><label for='paxDemocratic Republic of Congo/Uganda'>Democratic Republic of Congo/Uganda</label><br/>
-                <input type='checkbox' id='Djibouti' name='Con', value=1 checked><label for='paxDjibouti'>Djibouti</label><br/>
-                <input type='checkbox' id='Djibouti/Eritrea' name='Con', value=1 checked><label for='paxDjibouti/Eritrea'>Djibouti/Eritrea</label><br/>
-                <input type='checkbox' id='East Timor' name='Con', value=1 checked><label for='paxEast Timor'>East Timor</label><br/>
-                <input type='checkbox' id='Ecuador/Peru' name='Con', value=1 checked><label for='paxEcuador/Peru'>Ecuador/Peru</label><br/>
-                <input type='checkbox' id='El Salvador' name='Con', value=1 checked><label for='paxEl Salvador'>El Salvador</label><br/>
-                <input type='checkbox' id='Eritrea/Ethiopia' name='Con', value=1 checked><label for='paxEritrea/Ethiopia'>Eritrea/Ethiopia</label><br/>
-                <input type='checkbox' id='Eritrea/Sudan' name='Con', value=1 checked><label for='paxEritrea/Sudan'>Eritrea/Sudan</label><br/>
-                <input type='checkbox' id='Ethiopia' name='Con', value=1 checked><label for='paxEthiopia'>Ethiopia</label><br/>
-                <input type='checkbox' id='Ethiopia/Ogaden' name='Con', value=1 checked><label for='paxEthiopia/Ogaden'>Ethiopia/Ogaden</label><br/>
-                <input type='checkbox' id='France/Germany/Russia/United Kingdom/United States of America' name='Con', value=1 checked><label for='paxFrance/Germany/Russia/United Kingdom/United States of America'>France/Germany/Russia/United Kingdom/United States of America</label><br/>
-                <input type='checkbox' id='Gabon' name='Con', value=1 checked><label for='paxGabon'>Gabon</label><br/>
-                <input type='checkbox' id='Georgia/(Abkhazia)/(Ossetia)' name='Con', value=1 checked><label for='paxGeorgia/(Abkhazia)/(Ossetia)'>Georgia/(Abkhazia)/(Ossetia)</label><br/>
-                <input type='checkbox' id='Georgia/Abkhazia' name='Con', value=1 checked><label for='paxGeorgia/Abkhazia'>Georgia/Abkhazia</label><br/>
-                <input type='checkbox' id='Georgia/Ossetia' name='Con', value=1 checked><label for='paxGeorgia/Ossetia'>Georgia/Ossetia</label><br/>
-                <input type='checkbox' id='Georgia/Russia/(Abkhazia)' name='Con', value=1 checked><label for='paxGeorgia/Russia/(Abkhazia)'>Georgia/Russia/(Abkhazia)</label><br/>
-                <input type='checkbox' id='Georgia/Russia/(Ossetia)' name='Con', value=1 checked><label for='paxGeorgia/Russia/(Ossetia)'>Georgia/Russia/(Ossetia)</label><br/>
-                <input type='checkbox' id='Georgia/Russia/Abkhazia' name='Con', value=1 checked><label for='paxGeorgia/Russia/Abkhazia'>Georgia/Russia/Abkhazia</label><br/>
-                <input type='checkbox' id='Georgia/Russia/Ossetia' name='Con', value=1 checked><label for='paxGeorgia/Russia/Ossetia'>Georgia/Russia/Ossetia</label><br/>
-                <input type='checkbox' id='Guatemala' name='Con', value=1 checked><label for='paxGuatemala'>Guatemala</label><br/>
-                <input type='checkbox' id='Guinea' name='Con', value=1 checked><label for='paxGuinea'>Guinea</label><br/>
-                <input type='checkbox' id='Guinea-Bissau' name='Con', value=1 checked><label for='paxGuinea-Bissau'>Guinea-Bissau</label><br/>
-                <input type='checkbox' id='Haiti' name='Con', value=1 checked><label for='paxHaiti'>Haiti</label><br/>
-                <input type='checkbox' id='Honduras' name='Con', value=1 checked><label for='paxHonduras'>Honduras</label><br/>
-                <input type='checkbox' id='India/Assam' name='Con', value=1 checked><label for='paxIndia/Assam'>India/Assam</label><br/>
-                <input type='checkbox' id='India/Bodoland' name='Con', value=1 checked><label for='paxIndia/Bodoland'>India/Bodoland</label><br/>
-                <input type='checkbox' id='India/Darjeeling' name='Con', value=1 checked><label for='paxIndia/Darjeeling'>India/Darjeeling</label><br/>
-                <input type='checkbox' id='India/Manipur' name='Con', value=1 checked><label for='paxIndia/Manipur'>India/Manipur</label><br/>
-                <input type='checkbox' id='India/Mizoram' name='Con', value=1 checked><label for='paxIndia/Mizoram'>India/Mizoram</label><br/>
-                <input type='checkbox' id='India/Nagaland' name='Con', value=1 checked><label for='paxIndia/Nagaland'>India/Nagaland</label><br/>
-                <input type='checkbox' id='India/Pakistan' name='Con', value=1 checked><label for='paxIndia/Pakistan'>India/Pakistan</label><br/>
-                <input type='checkbox' id='India/Tripura' name='Con', value=1 checked><label for='paxIndia/Tripura'>India/Tripura</label><br/>
-                <input type='checkbox' id='Indonesia/Aceh' name='Con', value=1 checked><label for='paxIndonesia/Aceh'>Indonesia/Aceh</label><br/>
-                <input type='checkbox' id='Indonesia/Moluccas' name='Con', value=1 checked><label for='paxIndonesia/Moluccas'>Indonesia/Moluccas</label><br/>
-                <input type='checkbox' id='Indonesia/Portugal/(East Timor)' name='Con', value=1 checked><label for='paxIndonesia/Portugal/(East Timor)'>Indonesia/Portugal/(East Timor)</label><br/>
-                <input type='checkbox' id='Iraq' name='Con', value=1 checked><label for='paxIraq'>Iraq</label><br/>
-                <input type='checkbox' id='Iraq/Kurds-Kurdistan' name='Con', value=1 checked><label for='paxIraq/Kurds-Kurdistan'>Iraq/Kurds-Kurdistan</label><br/>
-                <input type='checkbox' id='Iraq/Kuwait' name='Con', value=1 checked><label for='paxIraq/Kuwait'>Iraq/Kuwait</label><br/>
-                <input type='checkbox' id='Iraq/United Nations' name='Con', value=1 checked><label for='paxIraq/United Nations'>Iraq/United Nations</label><br/>
-                <input type='checkbox' id='Iraq/United States of America' name='Con', value=1 checked><label for='paxIraq/United States of America'>Iraq/United States of America</label><br/>
-                <input type='checkbox' id='Ireland/United Kingdom/(Northern Ireland)' name='Con', value=1 checked><label for='paxIreland/United Kingdom/(Northern Ireland)'>Ireland/United Kingdom/(Northern Ireland)</label><br/>
-                <input type='checkbox' id='Ireland/United Kingdom/Northern Ireland' name='Con', value=1 checked><label for='paxIreland/United Kingdom/Northern Ireland'>Ireland/United Kingdom/Northern Ireland</label><br/>
-                <input type='checkbox' id='Israel/(Palestine)' name='Con', value=1 checked><label for='paxIsrael/(Palestine)'>Israel/(Palestine)</label><br/>
-                <input type='checkbox' id='Israel/Jordan/(Palestine)' name='Con', value=1 checked><label for='paxIsrael/Jordan/(Palestine)'>Israel/Jordan/(Palestine)</label><br/>
-                <input type='checkbox' id='Israel/Lebanon' name='Con', value=1 checked><label for='paxIsrael/Lebanon'>Israel/Lebanon</label><br/>
-                <input type='checkbox' id='Israel/Palestine' name='Con', value=1 checked><label for='paxIsrael/Palestine'>Israel/Palestine</label><br/>
-                <input type='checkbox' id='Kenya' name='Con', value=1 checked><label for='paxKenya'>Kenya</label><br/>
-                <input type='checkbox' id='Kosovo/Serbia/Yugoslavia (former)' name='Con', value=1 checked><label for='paxKosovo/Serbia/Yugoslavia (former)'>Kosovo/Serbia/Yugoslavia (former)</label><br/>
-                <input type='checkbox' id='Kurds-Kurdistan' name='Con', value=1 checked><label for='paxKurds-Kurdistan'>Kurds-Kurdistan</label><br/>
-                <input type='checkbox' id='Lebanon' name='Con', value=1 checked><label for='paxLebanon'>Lebanon</label><br/>
-                <input type='checkbox' id='Lebanon/Syria' name='Con', value=1 checked><label for='paxLebanon/Syria'>Lebanon/Syria</label><br/>
-                <input type='checkbox' id='Lesotho' name='Con', value=1 checked><label for='paxLesotho'>Lesotho</label><br/>
-                <input type='checkbox' id='Liberia' name='Con', value=1 checked><label for='paxLiberia'>Liberia</label><br/>
-                <input type='checkbox' id='Libya' name='Con', value=1 checked><label for='paxLibya'>Libya</label><br/>
-                <input type='checkbox' id='Macedonia/Yugoslavia (former)' name='Con', value=1 checked><label for='paxMacedonia/Yugoslavia (former)'>Macedonia/Yugoslavia (former)</label><br/>
-                <input type='checkbox' id='Madagascar' name='Con', value=1 checked><label for='paxMadagascar'>Madagascar</label><br/>
-                <input type='checkbox' id='Mali/Azawad' name='Con', value=1 checked><label for='paxMali/Azawad'>Mali/Azawad</label><br/>
-                <input type='checkbox' id='Mexico' name='Con', value=1 checked><label for='paxMexico'>Mexico</label><br/>
-                <input type='checkbox' id='Moldova/Russia/(Transdniestria)' name='Con', value=1 checked><label for='paxMoldova/Russia/(Transdniestria)'>Moldova/Russia/(Transdniestria)</label><br/>
-                <input type='checkbox' id='Moldova/Transdniestria' name='Con', value=1 checked><label for='paxMoldova/Transdniestria'>Moldova/Transdniestria</label><br/>
-                <input type='checkbox' id='Morocco/(Western Sahara)' name='Con', value=1 checked><label for='paxMorocco/(Western Sahara)'>Morocco/(Western Sahara)</label><br/>
-                <input type='checkbox' id='Morocco/Western Sahara' name='Con', value=1 checked><label for='paxMorocco/Western Sahara'>Morocco/Western Sahara</label><br/>
-                <input type='checkbox' id='Mozambique' name='Con', value=1 checked><label for='paxMozambique'>Mozambique</label><br/>
-                <input type='checkbox' id='Myanmar' name='Con', value=1 checked><label for='paxMyanmar'>Myanmar</label><br/>
-                <input type='checkbox' id='Namibia/South Africa' name='Con', value=1 checked><label for='paxNamibia/South Africa'>Namibia/South Africa</label><br/>
-                <input type='checkbox' id='Nepal' name='Con', value=1 checked><label for='paxNepal'>Nepal</label><br/>
-                <input type='checkbox' id='Nicaragua' name='Con', value=1 checked><label for='paxNicaragua'>Nicaragua</label><br/>
-                <input type='checkbox' id='Niger/Air and Azawad' name='Con', value=1 checked><label for='paxNiger/Air and Azawad'>Niger/Air and Azawad</label><br/>
-                <input type='checkbox' id='Nigeria/Plateau State' name='Con', value=1 checked><label for='paxNigeria/Plateau State'>Nigeria/Plateau State</label><br/>
-                <input type='checkbox' id='Nigeria/Southern Kaduna' name='Con', value=1 checked><label for='paxNigeria/Southern Kaduna'>Nigeria/Southern Kaduna</label><br/>
-                <input type='checkbox' id='North Korea/South Korea' name='Con', value=1 checked><label for='paxNorth Korea/South Korea'>North Korea/South Korea</label><br/>
-                <input type='checkbox' id='North Korea/United States of America' name='Con', value=1 checked><label for='paxNorth Korea/United States of America'>North Korea/United States of America</label><br/>
-                <input type='checkbox' id='Pakistan/Taliban' name='Con', value=1 checked><label for='paxPakistan/Taliban'>Pakistan/Taliban</label><br/>
-                <input type='checkbox' id='Palestine' name='Con', value=1 checked><label for='paxPalestine'>Palestine</label><br/>
-                <input type='checkbox' id='Papua New Guinea/(Bougainville)' name='Con', value=1 checked><label for='paxPapua New Guinea/(Bougainville)'>Papua New Guinea/(Bougainville)</label><br/>
-                <input type='checkbox' id='Papua New Guinea/Bougainville' name='Con', value=1 checked><label for='paxPapua New Guinea/Bougainville'>Papua New Guinea/Bougainville</label><br/>
-                <input type='checkbox' id='Philippines' name='Con', value=1 checked><label for='paxPhilippines'>Philippines</label><br/>
-                <input type='checkbox' id='Philippines/Cordillera' name='Con', value=1 checked><label for='paxPhilippines/Cordillera'>Philippines/Cordillera</label><br/>
-                <input type='checkbox' id='Philippines/Mindanao' name='Con', value=1 checked><label for='paxPhilippines/Mindanao'>Philippines/Mindanao</label><br/>
-                <input type='checkbox' id='Philippines/Rebolusyonaryong Alyansang Makabansa (SFP-YOU)' name='Con', value=1 checked><label for='paxPhilippines/Rebolusyonaryong Alyansang Makabansa (SFP-YOU)'>Philippines/Rebolusyonaryong Alyansang Makabansa (SFP-YOU)</label><br/>
-                <input type='checkbox' id='Philippines/Rebolusyonaryong Partido ng Manggagawa-Pilipineas (RPMP/RPA/ABB)' name='Con', value=1 checked><label for='paxPhilippines/Rebolusyonaryong Partido ng Manggagawa-Pilipineas (RPMP/RPA/ABB)'>Philippines/Rebolusyonaryong Partido ng Manggagawa-Pilipineas (RPMP/RPA/ABB)</label><br/>
-                <input type='checkbox' id='Republic of Congo' name='Con', value=1 checked><label for='paxRepublic of Congo'>Republic of Congo</label><br/>
-                <input type='checkbox' id='Russia/Chechnya' name='Con', value=1 checked><label for='paxRussia/Chechnya'>Russia/Chechnya</label><br/>
-                <input type='checkbox' id='Rwanda' name='Con', value=1 checked><label for='paxRwanda'>Rwanda</label><br/>
-                <input type='checkbox' id='Rwanda/Uganda' name='Con', value=1 checked><label for='paxRwanda/Uganda'>Rwanda/Uganda</label><br/>
-                <input type='checkbox' id='Saudi Arabia/Yemen' name='Con', value=1 checked><label for='paxSaudi Arabia/Yemen'>Saudi Arabia/Yemen</label><br/>
-                <input type='checkbox' id='Senegal/Casamance' name='Con', value=1 checked><label for='paxSenegal/Casamance'>Senegal/Casamance</label><br/>
-                <input type='checkbox' id='Serbia/Yugoslavia (former)/Presevo Valley' name='Con', value=1 checked><label for='paxSerbia/Yugoslavia (former)/Presevo Valley'>Serbia/Yugoslavia (former)/Presevo Valley</label><br/>
-                <input type='checkbox' id='Sierra Leone' name='Con', value=1 checked><label for='paxSierra Leone'>Sierra Leone</label><br/>
-                <input type='checkbox' id='Slovenia/Yugoslavia (former)' name='Con', value=1 checked><label for='paxSlovenia/Yugoslavia (former)'>Slovenia/Yugoslavia (former)</label><br/>
-                <input type='checkbox' id='Solomon Islands' name='Con', value=1 checked><label for='paxSolomon Islands'>Solomon Islands</label><br/>
-                <input type='checkbox' id='Somalia' name='Con', value=1 checked><label for='paxSomalia'>Somalia</label><br/>
-                <input type='checkbox' id='Somalia/Puntland' name='Con', value=1 checked><label for='paxSomalia/Puntland'>Somalia/Puntland</label><br/>
-                <input type='checkbox' id='Somaliland' name='Con', value=1 checked><label for='paxSomaliland'>Somaliland</label><br/>
-                <input type='checkbox' id='South Africa' name='Con', value=1 checked><label for='paxSouth Africa'>South Africa</label><br/>
-                <input type='checkbox' id='South Sudan' name='Con', value=1 checked><label for='paxSouth Sudan'>South Sudan</label><br/>
-                <input type='checkbox' id='South Sudan/Aweil Counties/Gogrial West County/Twic County' name='Con', value=1 checked><label for='paxSouth Sudan/Aweil Counties/Gogrial West County/Twic County'>South Sudan/Aweil Counties/Gogrial West County/Twic County</label><br/>
-                <input type='checkbox' id='South Sudan/Sudan' name='Con', value=1 checked><label for='paxSouth Sudan/Sudan'>South Sudan/Sudan</label><br/>
-                <input type='checkbox' id='South Sudan/Sudan/(Southern Kordofan - Blue Nile - Abyei)' name='Con', value=1 checked><label for='paxSouth Sudan/Sudan/(Southern Kordofan - Blue Nile - Abyei)'>South Sudan/Sudan/(Southern Kordofan - Blue Nile - Abyei)</label><br/>
-                <input type='checkbox' id='South Sudan/Sudan/Darfur' name='Con', value=1 checked><label for='paxSouth Sudan/Sudan/Darfur'>South Sudan/Sudan/Darfur</label><br/>
-                <input type='checkbox' id='South Sudan/Sudan/Southern Kordofan - Blue Nile - Abyei' name='Con', value=1 checked><label for='paxSouth Sudan/Sudan/Southern Kordofan - Blue Nile - Abyei'>South Sudan/Sudan/Southern Kordofan - Blue Nile - Abyei</label><br/>
-                <input type='checkbox' id='South Sudan/Terekeka' name='Con', value=1 checked><label for='paxSouth Sudan/Terekeka'>South Sudan/Terekeka</label><br/>
-                <input type='checkbox' id='Spain/Basque Country' name='Con', value=1 checked><label for='paxSpain/Basque Country'>Spain/Basque Country</label><br/>
-                <input type='checkbox' id='Sri Lanka' name='Con', value=1 checked><label for='paxSri Lanka'>Sri Lanka</label><br/>
-                <input type='checkbox' id='Sudan' name='Con', value=1 checked><label for='paxSudan'>Sudan</label><br/>
-                <input type='checkbox' id='Sudan/Darfur' name='Con', value=1 checked><label for='paxSudan/Darfur'>Sudan/Darfur</label><br/>
-                <input type='checkbox' id='Sudan/Eastern Sudan' name='Con', value=1 checked><label for='paxSudan/Eastern Sudan'>Sudan/Eastern Sudan</label><br/>
-                <input type='checkbox' id='Sudan/Southern Kordofan - Blue Nile - Abyei' name='Con', value=1 checked><label for='paxSudan/Southern Kordofan - Blue Nile - Abyei'>Sudan/Southern Kordofan - Blue Nile - Abyei</label><br/>
-                <input type='checkbox' id='Sudan/Uganda' name='Con', value=1 checked><label for='paxSudan/Uganda'>Sudan/Uganda</label><br/>
-                <input type='checkbox' id='Syria' name='Con', value=1 checked><label for='paxSyria'>Syria</label><br/>
-                <input type='checkbox' id='Tajikistan' name='Con', value=1 checked><label for='paxTajikistan'>Tajikistan</label><br/>
-                <input type='checkbox' id='Thailand' name='Con', value=1 checked><label for='paxThailand'>Thailand</label><br/>
-                <input type='checkbox' id='Togo' name='Con', value=1 checked><label for='paxTogo'>Togo</label><br/>
-                <input type='checkbox' id='Tunisia' name='Con', value=1 checked><label for='paxTunisia'>Tunisia</label><br/>
-                <input type='checkbox' id='Uganda' name='Con', value=1 checked><label for='paxUganda'>Uganda</label><br/>
-                <input type='checkbox' id='Ukraine' name='Con', value=1 checked><label for='paxUkraine'>Ukraine</label><br/>
-                <input type='checkbox' id='United Nations/(Bougainville)' name='Con', value=1 checked><label for='paxUnited Nations/(Bougainville)'>United Nations/(Bougainville)</label><br/>
-                <input type='checkbox' id='Yemen' name='Con', value=1 checked><label for='paxYemen'>Yemen</label><br/>
-                <input type='checkbox' id='Zimbabwe' name='Con', value=1 checked><label for='paxZimbabwe'>Zimbabwe</label><br/>
-                <!-- <input type='checkbox' name='(East Timor)' id='Con', value=1 checked><label for='pax(East Timor)'>(East Timor)</label><br/>
-                <input type='checkbox' name='Afghanistan' id='Con', value=1 checked><label for='paxAfghanistan'>Afghanistan</label><br/>
-                <input type='checkbox' name='Afghanistan/Pakistan' id='Con', value=1 checked><label for='paxAfghanistan/Pakistan'>Afghanistan/Pakistan</label><br/>
-                <input type='checkbox' name='Algeria' id='Con', value=1 checked><label for='paxAlgeria'>Algeria</label><br/>
-                <input type='checkbox' name='Angola' id='Con', value=1 checked><label for='paxAngola'>Angola</label><br/>
-                <input type='checkbox' name='Angola/Burundi/Central African Republic/Democratic Republic of Congo/Kenya/Republic of Congo/Rwanda/Sudan/Tanzania/Uganda/Zambia/(African Great Lakes)' id='Con', value=1 checked><label for='paxAngola/Burundi/Central African Republic/Democratic Republic of Congo/Kenya/Republic of Congo/Rwanda/Sudan/Tanzania/Uganda/Zambia/(African Great Lakes)'>Angola/Burundi/Central African Republic/Democratic Republic of Congo/Kenya/Republic of Congo/Rwanda/Sudan/Tanzania/Uganda/Zambia/(African Great Lakes)</label><br/>
-                <input type='checkbox' name='Angola/Burundi/Central African Republic/Democratic Republic of Congo/Republic of Congo/Rwanda/South Africa/South Sudan/Tanzania/Uganda/Zambia/(African Great Lakes)' id='Con', value=1 checked><label for='paxAngola/Burundi/Central African Republic/Democratic Republic of Congo/Republic of Congo/Rwanda/South Africa/South Sudan/Tanzania/Uganda/Zambia/(African Great Lakes)'>Angola/Burundi/Central African Republic/Democratic Republic of Congo/Republic of Congo/Rwanda/South Africa/South Sudan/Tanzania/Uganda/Zambia/(African Great Lakes)</label><br/>
-                <input type='checkbox' name='Angola/Cabinda' id='Con', value=1 checked><label for='paxAngola/Cabinda'>Angola/Cabinda</label><br/>
-                <input type='checkbox' name='Angola/Central African Republic/Democratic Republic of Congo/Kenya/Republic of Congo/Rwanda/Sudan/Tanzania/Uganda/Zambia/(African Great Lakes)' id='Con', value=1 checked><label for='paxAngola/Central African Republic/Democratic Republic of Congo/Kenya/Republic of Congo/Rwanda/Sudan/Tanzania/Uganda/Zambia/(African Great Lakes)'>Angola/Central African Republic/Democratic Republic of Congo/Kenya/Republic of Congo/Rwanda/Sudan/Tanzania/Uganda/Zambia/(African Great Lakes)</label><br/>
-                <input type='checkbox' name='Argentina/United Kingdom' id='Con', value=1 checked><label for='paxArgentina/United Kingdom'>Argentina/United Kingdom</label><br/>
-                <input type='checkbox' name='Armenia/Azerbaijan/(Nagorno-Karabakh)' id='Con', value=1 checked><label for='paxArmenia/Azerbaijan/(Nagorno-Karabakh)'>Armenia/Azerbaijan/(Nagorno-Karabakh)</label><br/>
-                <input type='checkbox' name='Armenia/Azerbaijan/Nagorno-Karabakh' id='Con', value=1 checked><label for='paxArmenia/Azerbaijan/Nagorno-Karabakh'>Armenia/Azerbaijan/Nagorno-Karabakh</label><br/>
-                <input type='checkbox' name='Armenia/Azerbaijan/Russia/(Nagorno-Karabakh)' id='Con', value=1 checked><label for='paxArmenia/Azerbaijan/Russia/(Nagorno-Karabakh)'>Armenia/Azerbaijan/Russia/(Nagorno-Karabakh)</label><br/>
-                <input type='checkbox' name='Bahrain' id='Con', value=1 checked><label for='paxBahrain'>Bahrain</label><br/>
-                <input type='checkbox' name='Bangladesh/Chittagong Hill Tracts' id='Con', value=1 checked><label for='paxBangladesh/Chittagong Hill Tracts'>Bangladesh/Chittagong Hill Tracts</label><br/>
-                <input type='checkbox' name='Bosnia and Herzegovina/Yugoslavia (former)' id='Con', value=1 checked><label for='paxBosnia and Herzegovina/Yugoslavia (former)'>Bosnia and Herzegovina/Yugoslavia (former)</label><br/>
-                <input type='checkbox' name='Burundi' id='Con', value=1 checked><label for='paxBurundi'>Burundi</label><br/>
-                <input type='checkbox' name='Cambodia' id='Con', value=1 checked><label for='paxCambodia'>Cambodia</label><br/>
-                <input type='checkbox' name='Cameroon/Nigeria' id='Con', value=1 checked><label for='paxCameroon/Nigeria'>Cameroon/Nigeria</label><br/>
-                <input type='checkbox' name='Central African Republic' id='Con', value=1 checked><label for='paxCentral African Republic'>Central African Republic</label><br/>
-                <input type='checkbox' name='Central African Republic/Chad/Sudan/(Darfur)' id='Con', value=1 checked><label for='paxCentral African Republic/Chad/Sudan/(Darfur)'>Central African Republic/Chad/Sudan/(Darfur)</label><br/>
-                <input type='checkbox' name='Chad' id='Con', value=1 checked><label for='paxChad'>Chad</label><br/>
-                <input type='checkbox' name='Chad/Libya' id='Con', value=1 checked><label for='paxChad/Libya'>Chad/Libya</label><br/>
-                <input type='checkbox' name='Chad/Sudan' id='Con', value=1 checked><label for='paxChad/Sudan'>Chad/Sudan</label><br/>
-                <input type='checkbox' name='China/India' id='Con', value=1 checked><label for='paxChina/India'>China/India</label><br/>
-                <input type='checkbox' name='China/Kazakhstan/Kyrgyzstan/Russia/Tajikistan' id='Con', value=1 checked><label for='paxChina/Kazakhstan/Kyrgyzstan/Russia/Tajikistan'>China/Kazakhstan/Kyrgyzstan/Russia/Tajikistan</label><br/>
-                <input type='checkbox' name='China/Kazakhstan/Russia' id='Con', value=1 checked><label for='paxChina/Kazakhstan/Russia'>China/Kazakhstan/Russia</label><br/>
-                <input type='checkbox' name='China/Mongolia/Russia' id='Con', value=1 checked><label for='paxChina/Mongolia/Russia'>China/Mongolia/Russia</label><br/>
-                <input type='checkbox' name='China/Russia' id='Con', value=1 checked><label for='paxChina/Russia'>China/Russia</label><br/>
-                <input type='checkbox' name='Colombia' id='Con', value=1 checked><label for='paxColombia'>Colombia</label><br/>
-                <input type='checkbox' name='Colombia/Venezuela' id='Con', value=1 checked><label for='paxColombia/Venezuela'>Colombia/Venezuela</label><br/>
-                <input type='checkbox' name='Comoros/Anjouan' id='Con', value=1 checked><label for='paxComoros/Anjouan'>Comoros/Anjouan</label><br/>
-                <input type='checkbox' name='Costa Rica/El Salvador/Guatemala/Honduras/Nicaragua' id='Con', value=1 checked><label for='paxCosta Rica/El Salvador/Guatemala/Honduras/Nicaragua'>Costa Rica/El Salvador/Guatemala/Honduras/Nicaragua</label><br/>
-                <input type='checkbox' name='Cote d'Ivoire' id='Con', value=1 checked><label for='paxCote d'Ivoire'>Cote d'Ivoire</label><br/>
-                <input type='checkbox' name='Croatia/Slovenia/Yugoslavia (former)' id='Con', value=1 checked><label for='paxCroatia/Slovenia/Yugoslavia (former)'>Croatia/Slovenia/Yugoslavia (former)</label><br/>
-                <input type='checkbox' name='Croatia/Yugoslavia (former)' id='Con', value=1 checked><label for='paxCroatia/Yugoslavia (former)'>Croatia/Yugoslavia (former)</label><br/>
-                <input type='checkbox' name='Democratic Republic of Congo' id='Con', value=1 checked><label for='paxDemocratic Republic of Congo'>Democratic Republic of Congo</label><br/>
-                <input type='checkbox' name='Democratic Republic of Congo/Rwanda' id='Con', value=1 checked><label for='paxDemocratic Republic of Congo/Rwanda'>Democratic Republic of Congo/Rwanda</label><br/>
-                <input type='checkbox' name='Democratic Republic of Congo/Rwanda/(African Great Lakes)' id='Con', value=1 checked><label for='paxDemocratic Republic of Congo/Rwanda/(African Great Lakes)'>Democratic Republic of Congo/Rwanda/(African Great Lakes)</label><br/>
-                <input type='checkbox' name='Democratic Republic of Congo/Uganda' id='Con', value=1 checked><label for='paxDemocratic Republic of Congo/Uganda'>Democratic Republic of Congo/Uganda</label><br/>
-                <input type='checkbox' name='Djibouti' id='Con', value=1 checked><label for='paxDjibouti'>Djibouti</label><br/>
-                <input type='checkbox' name='Djibouti/Eritrea' id='Con', value=1 checked><label for='paxDjibouti/Eritrea'>Djibouti/Eritrea</label><br/>
-                <input type='checkbox' name='East Timor' id='Con', value=1 checked><label for='paxEast Timor'>East Timor</label><br/>
-                <input type='checkbox' name='Ecuador/Peru' id='Con', value=1 checked><label for='paxEcuador/Peru'>Ecuador/Peru</label><br/>
-                <input type='checkbox' name='El Salvador' id='Con', value=1 checked><label for='paxEl Salvador'>El Salvador</label><br/>
-                <input type='checkbox' name='Eritrea/Ethiopia' id='Con', value=1 checked><label for='paxEritrea/Ethiopia'>Eritrea/Ethiopia</label><br/>
-                <input type='checkbox' name='Eritrea/Sudan' id='Con', value=1 checked><label for='paxEritrea/Sudan'>Eritrea/Sudan</label><br/>
-                <input type='checkbox' name='Ethiopia' id='Con', value=1 checked><label for='paxEthiopia'>Ethiopia</label><br/>
-                <input type='checkbox' name='Ethiopia/Ogaden' id='Con', value=1 checked><label for='paxEthiopia/Ogaden'>Ethiopia/Ogaden</label><br/>
-                <input type='checkbox' name='France/Germany/Russia/United Kingdom/United States of America' id='Con', value=1 checked><label for='paxFrance/Germany/Russia/United Kingdom/United States of America'>France/Germany/Russia/United Kingdom/United States of America</label><br/>
-                <input type='checkbox' name='Gabon' id='Con', value=1 checked><label for='paxGabon'>Gabon</label><br/>
-                <input type='checkbox' name='Georgia/(Abkhazia)/(Ossetia)' id='Con', value=1 checked><label for='paxGeorgia/(Abkhazia)/(Ossetia)'>Georgia/(Abkhazia)/(Ossetia)</label><br/>
-                <input type='checkbox' name='Georgia/Abkhazia' id='Con', value=1 checked><label for='paxGeorgia/Abkhazia'>Georgia/Abkhazia</label><br/>
-                <input type='checkbox' name='Georgia/Ossetia' id='Con', value=1 checked><label for='paxGeorgia/Ossetia'>Georgia/Ossetia</label><br/>
-                <input type='checkbox' name='Georgia/Russia/(Abkhazia)' id='Con', value=1 checked><label for='paxGeorgia/Russia/(Abkhazia)'>Georgia/Russia/(Abkhazia)</label><br/>
-                <input type='checkbox' name='Georgia/Russia/(Ossetia)' id='Con', value=1 checked><label for='paxGeorgia/Russia/(Ossetia)'>Georgia/Russia/(Ossetia)</label><br/>
-                <input type='checkbox' name='Georgia/Russia/Abkhazia' id='Con', value=1 checked><label for='paxGeorgia/Russia/Abkhazia'>Georgia/Russia/Abkhazia</label><br/>
-                <input type='checkbox' name='Georgia/Russia/Ossetia' id='Con', value=1 checked><label for='paxGeorgia/Russia/Ossetia'>Georgia/Russia/Ossetia</label><br/>
-                <input type='checkbox' name='Guatemala' id='Con', value=1 checked><label for='paxGuatemala'>Guatemala</label><br/>
-                <input type='checkbox' name='Guinea' id='Con', value=1 checked><label for='paxGuinea'>Guinea</label><br/>
-                <input type='checkbox' name='Guinea-Bissau' id='Con', value=1 checked><label for='paxGuinea-Bissau'>Guinea-Bissau</label><br/>
-                <input type='checkbox' name='Haiti' id='Con', value=1 checked><label for='paxHaiti'>Haiti</label><br/>
-                <input type='checkbox' name='Honduras' id='Con', value=1 checked><label for='paxHonduras'>Honduras</label><br/>
-                <input type='checkbox' name='India/Assam' id='Con', value=1 checked><label for='paxIndia/Assam'>India/Assam</label><br/>
-                <input type='checkbox' name='India/Bodoland' id='Con', value=1 checked><label for='paxIndia/Bodoland'>India/Bodoland</label><br/>
-                <input type='checkbox' name='India/Darjeeling' id='Con', value=1 checked><label for='paxIndia/Darjeeling'>India/Darjeeling</label><br/>
-                <input type='checkbox' name='India/Manipur' id='Con', value=1 checked><label for='paxIndia/Manipur'>India/Manipur</label><br/>
-                <input type='checkbox' name='India/Mizoram' id='Con', value=1 checked><label for='paxIndia/Mizoram'>India/Mizoram</label><br/>
-                <input type='checkbox' name='India/Nagaland' id='Con', value=1 checked><label for='paxIndia/Nagaland'>India/Nagaland</label><br/>
-                <input type='checkbox' name='India/Pakistan' id='Con', value=1 checked><label for='paxIndia/Pakistan'>India/Pakistan</label><br/>
-                <input type='checkbox' name='India/Tripura' id='Con', value=1 checked><label for='paxIndia/Tripura'>India/Tripura</label><br/>
-                <input type='checkbox' name='Indonesia/Aceh' id='Con', value=1 checked><label for='paxIndonesia/Aceh'>Indonesia/Aceh</label><br/>
-                <input type='checkbox' name='Indonesia/Moluccas' id='Con', value=1 checked><label for='paxIndonesia/Moluccas'>Indonesia/Moluccas</label><br/>
-                <input type='checkbox' name='Indonesia/Portugal/(East Timor)' id='Con', value=1 checked><label for='paxIndonesia/Portugal/(East Timor)'>Indonesia/Portugal/(East Timor)</label><br/>
-                <input type='checkbox' name='Iraq' id='Con', value=1 checked><label for='paxIraq'>Iraq</label><br/>
-                <input type='checkbox' name='Iraq/Kurds-Kurdistan' id='Con', value=1 checked><label for='paxIraq/Kurds-Kurdistan'>Iraq/Kurds-Kurdistan</label><br/>
-                <input type='checkbox' name='Iraq/Kuwait' id='Con', value=1 checked><label for='paxIraq/Kuwait'>Iraq/Kuwait</label><br/>
-                <input type='checkbox' name='Iraq/United Nations' id='Con', value=1 checked><label for='paxIraq/United Nations'>Iraq/United Nations</label><br/>
-                <input type='checkbox' name='Iraq/United States of America' id='Con', value=1 checked><label for='paxIraq/United States of America'>Iraq/United States of America</label><br/>
-                <input type='checkbox' name='Ireland/United Kingdom/(Northern Ireland)' id='Con', value=1 checked><label for='paxIreland/United Kingdom/(Northern Ireland)'>Ireland/United Kingdom/(Northern Ireland)</label><br/>
-                <input type='checkbox' name='Ireland/United Kingdom/Northern Ireland' id='Con', value=1 checked><label for='paxIreland/United Kingdom/Northern Ireland'>Ireland/United Kingdom/Northern Ireland</label><br/>
-                <input type='checkbox' name='Israel/(Palestine)' id='Con', value=1 checked><label for='paxIsrael/(Palestine)'>Israel/(Palestine)</label><br/>
-                <input type='checkbox' name='Israel/Jordan/(Palestine)' id='Con', value=1 checked><label for='paxIsrael/Jordan/(Palestine)'>Israel/Jordan/(Palestine)</label><br/>
-                <input type='checkbox' name='Israel/Lebanon' id='Con', value=1 checked><label for='paxIsrael/Lebanon'>Israel/Lebanon</label><br/>
-                <input type='checkbox' name='Israel/Palestine' id='Con', value=1 checked><label for='paxIsrael/Palestine'>Israel/Palestine</label><br/>
-                <input type='checkbox' name='Kenya' id='Con', value=1 checked><label for='paxKenya'>Kenya</label><br/>
-                <input type='checkbox' name='Kosovo/Serbia/Yugoslavia (former)' id='Con', value=1 checked><label for='paxKosovo/Serbia/Yugoslavia (former)'>Kosovo/Serbia/Yugoslavia (former)</label><br/>
-                <input type='checkbox' name='Kurds-Kurdistan' id='Con', value=1 checked><label for='paxKurds-Kurdistan'>Kurds-Kurdistan</label><br/>
-                <input type='checkbox' name='Lebanon' id='Con', value=1 checked><label for='paxLebanon'>Lebanon</label><br/>
-                <input type='checkbox' name='Lebanon/Syria' id='Con', value=1 checked><label for='paxLebanon/Syria'>Lebanon/Syria</label><br/>
-                <input type='checkbox' name='Lesotho' id='Con', value=1 checked><label for='paxLesotho'>Lesotho</label><br/>
-                <input type='checkbox' name='Liberia' id='Con', value=1 checked><label for='paxLiberia'>Liberia</label><br/>
-                <input type='checkbox' name='Libya' id='Con', value=1 checked><label for='paxLibya'>Libya</label><br/>
-                <input type='checkbox' name='Macedonia/Yugoslavia (former)' id='Con', value=1 checked><label for='paxMacedonia/Yugoslavia (former)'>Macedonia/Yugoslavia (former)</label><br/>
-                <input type='checkbox' name='Madagascar' id='Con', value=1 checked><label for='paxMadagascar'>Madagascar</label><br/>
-                <input type='checkbox' name='Mali/Azawad' id='Con', value=1 checked><label for='paxMali/Azawad'>Mali/Azawad</label><br/>
-                <input type='checkbox' name='Mexico' id='Con', value=1 checked><label for='paxMexico'>Mexico</label><br/>
-                <input type='checkbox' name='Moldova/Russia/(Transdniestria)' id='Con', value=1 checked><label for='paxMoldova/Russia/(Transdniestria)'>Moldova/Russia/(Transdniestria)</label><br/>
-                <input type='checkbox' name='Moldova/Transdniestria' id='Con', value=1 checked><label for='paxMoldova/Transdniestria'>Moldova/Transdniestria</label><br/>
-                <input type='checkbox' name='Morocco/(Western Sahara)' id='Con', value=1 checked><label for='paxMorocco/(Western Sahara)'>Morocco/(Western Sahara)</label><br/>
-                <input type='checkbox' name='Morocco/Western Sahara' id='Con', value=1 checked><label for='paxMorocco/Western Sahara'>Morocco/Western Sahara</label><br/>
-                <input type='checkbox' name='Mozambique' id='Con', value=1 checked><label for='paxMozambique'>Mozambique</label><br/>
-                <input type='checkbox' name='Myanmar' id='Con', value=1 checked><label for='paxMyanmar'>Myanmar</label><br/>
-                <input type='checkbox' name='Namibia/South Africa' id='Con', value=1 checked><label for='paxNamibia/South Africa'>Namibia/South Africa</label><br/>
-                <input type='checkbox' name='Nepal' id='Con', value=1 checked><label for='paxNepal'>Nepal</label><br/>
-                <input type='checkbox' name='Nicaragua' id='Con', value=1 checked><label for='paxNicaragua'>Nicaragua</label><br/>
-                <input type='checkbox' name='Niger/Air and Azawad' id='Con', value=1 checked><label for='paxNiger/Air and Azawad'>Niger/Air and Azawad</label><br/>
-                <input type='checkbox' name='Nigeria/Plateau State' id='Con', value=1 checked><label for='paxNigeria/Plateau State'>Nigeria/Plateau State</label><br/>
-                <input type='checkbox' name='Nigeria/Southern Kaduna' id='Con', value=1 checked><label for='paxNigeria/Southern Kaduna'>Nigeria/Southern Kaduna</label><br/>
-                <input type='checkbox' name='North Korea/South Korea' id='Con', value=1 checked><label for='paxNorth Korea/South Korea'>North Korea/South Korea</label><br/>
-                <input type='checkbox' name='North Korea/United States of America' id='Con', value=1 checked><label for='paxNorth Korea/United States of America'>North Korea/United States of America</label><br/>
-                <input type='checkbox' name='Pakistan/Taliban' id='Con', value=1 checked><label for='paxPakistan/Taliban'>Pakistan/Taliban</label><br/>
-                <input type='checkbox' name='Palestine' id='Con', value=1 checked><label for='paxPalestine'>Palestine</label><br/>
-                <input type='checkbox' name='Papua New Guinea/(Bougainville)' id='Con', value=1 checked><label for='paxPapua New Guinea/(Bougainville)'>Papua New Guinea/(Bougainville)</label><br/>
-                <input type='checkbox' name='Papua New Guinea/Bougainville' id='Con', value=1 checked><label for='paxPapua New Guinea/Bougainville'>Papua New Guinea/Bougainville</label><br/>
-                <input type='checkbox' name='Philippines' id='Con', value=1 checked><label for='paxPhilippines'>Philippines</label><br/>
-                <input type='checkbox' name='Philippines/Cordillera' id='Con', value=1 checked><label for='paxPhilippines/Cordillera'>Philippines/Cordillera</label><br/>
-                <input type='checkbox' name='Philippines/Mindanao' id='Con', value=1 checked><label for='paxPhilippines/Mindanao'>Philippines/Mindanao</label><br/>
-                <input type='checkbox' name='Philippines/Rebolusyonaryong Alyansang Makabansa (SFP-YOU)' id='Con', value=1 checked><label for='paxPhilippines/Rebolusyonaryong Alyansang Makabansa (SFP-YOU)'>Philippines/Rebolusyonaryong Alyansang Makabansa (SFP-YOU)</label><br/>
-                <input type='checkbox' name='Philippines/Rebolusyonaryong Partido ng Manggagawa-Pilipineas (RPMP/RPA/ABB)' id='Con', value=1 checked><label for='paxPhilippines/Rebolusyonaryong Partido ng Manggagawa-Pilipineas (RPMP/RPA/ABB)'>Philippines/Rebolusyonaryong Partido ng Manggagawa-Pilipineas (RPMP/RPA/ABB)</label><br/>
-                <input type='checkbox' name='Republic of Congo' id='Con', value=1 checked><label for='paxRepublic of Congo'>Republic of Congo</label><br/>
-                <input type='checkbox' name='Russia/Chechnya' id='Con', value=1 checked><label for='paxRussia/Chechnya'>Russia/Chechnya</label><br/>
-                <input type='checkbox' name='Rwanda' id='Con', value=1 checked><label for='paxRwanda'>Rwanda</label><br/>
-                <input type='checkbox' name='Rwanda/Uganda' id='Con', value=1 checked><label for='paxRwanda/Uganda'>Rwanda/Uganda</label><br/>
-                <input type='checkbox' name='Saudi Arabia/Yemen' id='Con', value=1 checked><label for='paxSaudi Arabia/Yemen'>Saudi Arabia/Yemen</label><br/>
-                <input type='checkbox' name='Senegal/Casamance' id='Con', value=1 checked><label for='paxSenegal/Casamance'>Senegal/Casamance</label><br/>
-                <input type='checkbox' name='Serbia/Yugoslavia (former)/Presevo Valley' id='Con', value=1 checked><label for='paxSerbia/Yugoslavia (former)/Presevo Valley'>Serbia/Yugoslavia (former)/Presevo Valley</label><br/>
-                <input type='checkbox' name='Sierra Leone' id='Con', value=1 checked><label for='paxSierra Leone'>Sierra Leone</label><br/>
-                <input type='checkbox' name='Slovenia/Yugoslavia (former)' id='Con', value=1 checked><label for='paxSlovenia/Yugoslavia (former)'>Slovenia/Yugoslavia (former)</label><br/>
-                <input type='checkbox' name='Solomon Islands' id='Con', value=1 checked><label for='paxSolomon Islands'>Solomon Islands</label><br/>
-                <input type='checkbox' name='Somalia' id='Con', value=1 checked><label for='paxSomalia'>Somalia</label><br/>
-                <input type='checkbox' name='Somalia/Puntland' id='Con', value=1 checked><label for='paxSomalia/Puntland'>Somalia/Puntland</label><br/>
-                <input type='checkbox' name='Somaliland' id='Con', value=1 checked><label for='paxSomaliland'>Somaliland</label><br/>
-                <input type='checkbox' name='South Africa' id='Con', value=1 checked><label for='paxSouth Africa'>South Africa</label><br/>
-                <input type='checkbox' name='South Sudan' id='Con', value=1 checked><label for='paxSouth Sudan'>South Sudan</label><br/>
-                <input type='checkbox' name='South Sudan/Aweil Counties/Gogrial West County/Twic County' id='Con', value=1 checked><label for='paxSouth Sudan/Aweil Counties/Gogrial West County/Twic County'>South Sudan/Aweil Counties/Gogrial West County/Twic County</label><br/>
-                <input type='checkbox' name='South Sudan/Sudan' id='Con', value=1 checked><label for='paxSouth Sudan/Sudan'>South Sudan/Sudan</label><br/>
-                <input type='checkbox' name='South Sudan/Sudan/(Southern Kordofan - Blue Nile - Abyei)' id='Con', value=1 checked><label for='paxSouth Sudan/Sudan/(Southern Kordofan - Blue Nile - Abyei)'>South Sudan/Sudan/(Southern Kordofan - Blue Nile - Abyei)</label><br/>
-                <input type='checkbox' name='South Sudan/Sudan/Darfur' id='Con', value=1 checked><label for='paxSouth Sudan/Sudan/Darfur'>South Sudan/Sudan/Darfur</label><br/>
-                <input type='checkbox' name='South Sudan/Sudan/Southern Kordofan - Blue Nile - Abyei' id='Con', value=1 checked><label for='paxSouth Sudan/Sudan/Southern Kordofan - Blue Nile - Abyei'>South Sudan/Sudan/Southern Kordofan - Blue Nile - Abyei</label><br/>
-                <input type='checkbox' name='South Sudan/Terekeka' id='Con', value=1 checked><label for='paxSouth Sudan/Terekeka'>South Sudan/Terekeka</label><br/>
-                <input type='checkbox' name='Spain/Basque Country' id='Con', value=1 checked><label for='paxSpain/Basque Country'>Spain/Basque Country</label><br/>
-                <input type='checkbox' name='Sri Lanka' id='Con', value=1 checked><label for='paxSri Lanka'>Sri Lanka</label><br/>
-                <input type='checkbox' name='Sudan' id='Con', value=1 checked><label for='paxSudan'>Sudan</label><br/>
-                <input type='checkbox' name='Sudan/Darfur' id='Con', value=1 checked><label for='paxSudan/Darfur'>Sudan/Darfur</label><br/>
-                <input type='checkbox' name='Sudan/Eastern Sudan' id='Con', value=1 checked><label for='paxSudan/Eastern Sudan'>Sudan/Eastern Sudan</label><br/>
-                <input type='checkbox' name='Sudan/Southern Kordofan - Blue Nile - Abyei' id='Con', value=1 checked><label for='paxSudan/Southern Kordofan - Blue Nile - Abyei'>Sudan/Southern Kordofan - Blue Nile - Abyei</label><br/>
-                <input type='checkbox' name='Sudan/Uganda' id='Con', value=1 checked><label for='paxSudan/Uganda'>Sudan/Uganda</label><br/>
-                <input type='checkbox' name='Syria' id='Con', value=1 checked><label for='paxSyria'>Syria</label><br/>
-                <input type='checkbox' name='Tajikistan' id='Con', value=1 checked><label for='paxTajikistan'>Tajikistan</label><br/>
-                <input type='checkbox' name='Thailand' id='Con', value=1 checked><label for='paxThailand'>Thailand</label><br/>
-                <input type='checkbox' name='Togo' id='Con', value=1 checked><label for='paxTogo'>Togo</label><br/>
-                <input type='checkbox' name='Tunisia' id='Con', value=1 checked><label for='paxTunisia'>Tunisia</label><br/>
-                <input type='checkbox' name='Uganda' id='Con', value=1 checked><label for='paxUganda'>Uganda</label><br/>
-                <input type='checkbox' name='Ukraine' id='Con', value=1 checked><label for='paxUkraine'>Ukraine</label><br/>
-                <input type='checkbox' name='United Nations/(Bougainville)' id='Con', value=1 checked><label for='paxUnited Nations/(Bougainville)'>United Nations/(Bougainville)</label><br/>
-                <input type='checkbox' name='Yemen' id='Con', value=1 checked><label for='paxYemen'>Yemen</label><br/>
-                <input type='checkbox' name='Zimbabwe' id='Con', value=1 checked><label for='paxZimbabwe'>Zimbabwe</label><br/> -->
+                <!-- List of single Country or Entity values (each with checkbox) (see singleConTags.csv) -->
+              <input type='checkbox' id='(Abkhazia)' name='Con', value=1><label for='(Abkhazia)'>(Abkhazia)</label><br/>
+              <input type='checkbox' id='(African Great Lakes)' name='Con', value=1><label for='(African Great Lakes)'>(African Great Lakes)</label><br/>
+              <input type='checkbox' id='(Bougainville)' name='Con', value=1><label for='(Bougainville)'>(Bougainville)</label><br/>
+              <input type='checkbox' id='(Darfur)' name='Con', value=1><label for='(Darfur)'>(Darfur)</label><br/>
+              <input type='checkbox' id='(East Timor)' name='Con', value=1><label for='(East Timor)'>(East Timor)</label><br/>
+              <input type='checkbox' id='(Nagorno-Karabakh)' name='Con', value=1><label for='(Nagorno-Karabakh)'>(Nagorno-Karabakh)</label><br/>
+              <input type='checkbox' id='(Northern Ireland)' name='Con', value=1><label for='(Northern Ireland)'>(Northern Ireland)</label><br/>
+              <input type='checkbox' id='(Ossetia)' name='Con', value=1><label for='(Ossetia)'>(Ossetia)</label><br/>
+              <input type='checkbox' id='(Palestine)' name='Con', value=1><label for='(Palestine)'>(Palestine)</label><br/>
+              <input type='checkbox' id='(Southern Kordofan - Blue Nile - Abyei)' name='Con', value=1><label for='(Southern Kordofan - Blue Nile - Abyei)'>(Southern Kordofan - Blue Nile - Abyei)</label><br/>
+              <input type='checkbox' id='(Transdniestria)' name='Con', value=1><label for='(Transdniestria)'>(Transdniestria)</label><br/>
+              <input type='checkbox' id='(Western Sahara)' name='Con', value=1><label for='(Western Sahara)'>(Western Sahara)</label><br/>
+              <input type='checkbox' id='ABB)' name='Con', value=1><label for='ABB)'>ABB)</label><br/>
+              <input type='checkbox' id='Abkhazia' name='Con', value=1><label for='Abkhazia'>Abkhazia</label><br/>
+              <input type='checkbox' id='Aceh' name='Con', value=1><label for='Aceh'>Aceh</label><br/>
+              <input type='checkbox' id='Afghanistan' name='Con', value=1><label for='Afghanistan'>Afghanistan</label><br/>
+              <input type='checkbox' id='Air and Azawad' name='Con', value=1><label for='Air and Azawad'>Air and Azawad</label><br/>
+              <input type='checkbox' id='Algeria' name='Con', value=1><label for='Algeria'>Algeria</label><br/>
+              <input type='checkbox' id='Angola' name='Con', value=1><label for='Angola'>Angola</label><br/>
+              <input type='checkbox' id='Anjouan' name='Con', value=1><label for='Anjouan'>Anjouan</label><br/>
+              <input type='checkbox' id='Argentina' name='Con', value=1><label for='Argentina'>Argentina</label><br/>
+              <input type='checkbox' id='Armenia' name='Con', value=1><label for='Armenia'>Armenia</label><br/>
+              <input type='checkbox' id='Assam' name='Con', value=1><label for='Assam'>Assam</label><br/>
+              <input type='checkbox' id='Aweil Counties' name='Con', value=1><label for='Aweil Counties'>Aweil Counties</label><br/>
+              <input type='checkbox' id='Azawad' name='Con', value=1><label for='Azawad'>Azawad</label><br/>
+              <input type='checkbox' id='Azerbaijan' name='Con', value=1><label for='Azerbaijan'>Azerbaijan</label><br/>
+              <input type='checkbox' id='Bahrain' name='Con', value=1><label for='Bahrain'>Bahrain</label><br/>
+              <input type='checkbox' id='Bangladesh' name='Con', value=1><label for='Bangladesh'>Bangladesh</label><br/>
+              <input type='checkbox' id='Basque Country' name='Con', value=1><label for='Basque Country'>Basque Country</label><br/>
+              <input type='checkbox' id='Bodoland' name='Con', value=1><label for='Bodoland'>Bodoland</label><br/>
+              <input type='checkbox' id='Bosnia and Herzegovina' name='Con', value=1><label for='Bosnia and Herzegovina'>Bosnia and Herzegovina</label><br/>
+              <input type='checkbox' id='Bougainville' name='Con', value=1><label for='Bougainville'>Bougainville</label><br/>
+              <input type='checkbox' id='Burundi' name='Con', value=1><label for='Burundi'>Burundi</label><br/>
+              <input type='checkbox' id='Cabinda' name='Con', value=1><label for='Cabinda'>Cabinda</label><br/>
+              <input type='checkbox' id='Cambodia' name='Con', value=1><label for='Cambodia'>Cambodia</label><br/>
+              <input type='checkbox' id='Cameroon' name='Con', value=1><label for='Cameroon'>Cameroon</label><br/>
+              <input type='checkbox' id='Casamance' name='Con', value=1><label for='Casamance'>Casamance</label><br/>
+              <input type='checkbox' id='Central African Republic' name='Con', value=1><label for='Central African Republic'>Central African Republic</label><br/>
+              <input type='checkbox' id='Chad' name='Con', value=1><label for='Chad'>Chad</label><br/>
+              <input type='checkbox' id='Chechnya' name='Con', value=1><label for='Chechnya'>Chechnya</label><br/>
+              <input type='checkbox' id='China' name='Con', value=1><label for='China'>China</label><br/>
+              <input type='checkbox' id='Chittagong Hill Tracts' name='Con', value=1><label for='Chittagong Hill Tracts'>Chittagong Hill Tracts</label><br/>
+              <input type='checkbox' id='Colombia' name='Con', value=1><label for='Colombia'>Colombia</label><br/>
+              <input type='checkbox' id='Comoros' name='Con', value=1><label for='Comoros'>Comoros</label><br/>
+              <input type='checkbox' id='Cordillera' name='Con', value=1><label for='Cordillera'>Cordillera</label><br/>
+              <input type='checkbox' id='Costa Rica' name='Con', value=1><label for='Costa Rica'>Costa Rica</label><br/>
+              <input type='checkbox' id='Cote d'Ivoire' name='Con', value=1><label for='Cote d'Ivoire'>Cote d'Ivoire</label><br/>
+              <input type='checkbox' id='Croatia' name='Con', value=1><label for='Croatia'>Croatia</label><br/>
+              <input type='checkbox' id='Darfur' name='Con', value=1><label for='Darfur'>Darfur</label><br/>
+              <input type='checkbox' id='Darjeeling' name='Con', value=1><label for='Darjeeling'>Darjeeling</label><br/>
+              <input type='checkbox' id='Democratic Republic of Congo' name='Con', value=1><label for='Democratic Republic of Congo'>Democratic Republic of Congo</label><br/>
+              <input type='checkbox' id='Djibouti' name='Con', value=1><label for='Djibouti'>Djibouti</label><br/>
+              <input type='checkbox' id='East Timor' name='Con', value=1><label for='East Timor'>East Timor</label><br/>
+              <input type='checkbox' id='Eastern Sudan' name='Con', value=1><label for='Eastern Sudan'>Eastern Sudan</label><br/>
+              <input type='checkbox' id='Ecuador' name='Con', value=1><label for='Ecuador'>Ecuador</label><br/>
+              <input type='checkbox' id='El Salvador' name='Con', value=1><label for='El Salvador'>El Salvador</label><br/>
+              <input type='checkbox' id='Eritrea' name='Con', value=1><label for='Eritrea'>Eritrea</label><br/>
+              <input type='checkbox' id='Ethiopia' name='Con', value=1><label for='Ethiopia'>Ethiopia</label><br/>
+              <input type='checkbox' id='France' name='Con', value=1><label for='France'>France</label><br/>
+              <input type='checkbox' id='Gabon' name='Con', value=1><label for='Gabon'>Gabon</label><br/>
+              <input type='checkbox' id='Georgia' name='Con', value=1><label for='Georgia'>Georgia</label><br/>
+              <input type='checkbox' id='Germany' name='Con', value=1><label for='Germany'>Germany</label><br/>
+              <input type='checkbox' id='Gogrial West County' name='Con', value=1><label for='Gogrial West County'>Gogrial West County</label><br/>
+              <input type='checkbox' id='Guatemala' name='Con', value=1><label for='Guatemala'>Guatemala</label><br/>
+              <input type='checkbox' id='Guinea' name='Con', value=1><label for='Guinea'>Guinea</label><br/>
+              <input type='checkbox' id='Guinea-Bissau' name='Con', value=1><label for='Guinea-Bissau'>Guinea-Bissau</label><br/>
+              <input type='checkbox' id='Haiti' name='Con', value=1><label for='Haiti'>Haiti</label><br/>
+              <input type='checkbox' id='Honduras' name='Con', value=1><label for='Honduras'>Honduras</label><br/>
+              <input type='checkbox' id='India' name='Con', value=1><label for='India'>India</label><br/>
+              <input type='checkbox' id='Indonesia' name='Con', value=1><label for='Indonesia'>Indonesia</label><br/>
+              <input type='checkbox' id='Iraq' name='Con', value=1><label for='Iraq'>Iraq</label><br/>
+              <input type='checkbox' id='Ireland' name='Con', value=1><label for='Ireland'>Ireland</label><br/>
+              <input type='checkbox' id='Israel' name='Con', value=1><label for='Israel'>Israel</label><br/>
+              <input type='checkbox' id='Jordan' name='Con', value=1><label for='Jordan'>Jordan</label><br/>
+              <input type='checkbox' id='Kazakhstan' name='Con', value=1><label for='Kazakhstan'>Kazakhstan</label><br/>
+              <input type='checkbox' id='Kenya' name='Con', value=1><label for='Kenya'>Kenya</label><br/>
+              <input type='checkbox' id='Kosovo' name='Con', value=1><label for='Kosovo'>Kosovo</label><br/>
+              <input type='checkbox' id='Kurds-Kurdistan' name='Con', value=1><label for='Kurds-Kurdistan'>Kurds-Kurdistan</label><br/>
+              <input type='checkbox' id='Kuwait' name='Con', value=1><label for='Kuwait'>Kuwait</label><br/>
+              <input type='checkbox' id='Kyrgyzstan' name='Con', value=1><label for='Kyrgyzstan'>Kyrgyzstan</label><br/>
+              <input type='checkbox' id='Lebanon' name='Con', value=1><label for='Lebanon'>Lebanon</label><br/>
+              <input type='checkbox' id='Lesotho' name='Con', value=1><label for='Lesotho'>Lesotho</label><br/>
+              <input type='checkbox' id='Liberia' name='Con', value=1><label for='Liberia'>Liberia</label><br/>
+              <input type='checkbox' id='Libya' name='Con', value=1><label for='Libya'>Libya</label><br/>
+              <input type='checkbox' id='Macedonia' name='Con', value=1><label for='Macedonia'>Macedonia</label><br/>
+              <input type='checkbox' id='Madagascar' name='Con', value=1><label for='Madagascar'>Madagascar</label><br/>
+              <input type='checkbox' id='Mali' name='Con', value=1><label for='Mali'>Mali</label><br/>
+              <input type='checkbox' id='Manipur' name='Con', value=1><label for='Manipur'>Manipur</label><br/>
+              <input type='checkbox' id='Mexico' name='Con', value=1><label for='Mexico'>Mexico</label><br/>
+              <input type='checkbox' id='Mindanao' name='Con', value=1><label for='Mindanao'>Mindanao</label><br/>
+              <input type='checkbox' id='Mizoram' name='Con', value=1><label for='Mizoram'>Mizoram</label><br/>
+              <input type='checkbox' id='Moldova' name='Con', value=1><label for='Moldova'>Moldova</label><br/>
+              <input type='checkbox' id='Moluccas' name='Con', value=1><label for='Moluccas'>Moluccas</label><br/>
+              <input type='checkbox' id='Mongolia' name='Con', value=1><label for='Mongolia'>Mongolia</label><br/>
+              <input type='checkbox' id='Morocco' name='Con', value=1><label for='Morocco'>Morocco</label><br/>
+              <input type='checkbox' id='Mozambique' name='Con', value=1><label for='Mozambique'>Mozambique</label><br/>
+              <input type='checkbox' id='Myanmar' name='Con', value=1><label for='Myanmar'>Myanmar</label><br/>
+              <input type='checkbox' id='Nagaland' name='Con', value=1><label for='Nagaland'>Nagaland</label><br/>
+              <input type='checkbox' id='Nagorno-Karabakh' name='Con', value=1><label for='Nagorno-Karabakh'>Nagorno-Karabakh</label><br/>
+              <input type='checkbox' id='Namibia' name='Con', value=1><label for='Namibia'>Namibia</label><br/>
+              <input type='checkbox' id='Nepal' name='Con', value=1><label for='Nepal'>Nepal</label><br/>
+              <input type='checkbox' id='Nicaragua' name='Con', value=1><label for='Nicaragua'>Nicaragua</label><br/>
+              <input type='checkbox' id='Niger' name='Con', value=1><label for='Niger'>Niger</label><br/>
+              <input type='checkbox' id='Nigeria' name='Con', value=1><label for='Nigeria'>Nigeria</label><br/>
+              <input type='checkbox' id='North Korea' name='Con', value=1><label for='North Korea'>North Korea</label><br/>
+              <input type='checkbox' id='Northern Ireland' name='Con', value=1><label for='Northern Ireland'>Northern Ireland</label><br/>
+              <input type='checkbox' id='Ogaden' name='Con', value=1><label for='Ogaden'>Ogaden</label><br/>
+              <input type='checkbox' id='Ossetia' name='Con', value=1><label for='Ossetia'>Ossetia</label><br/>
+              <input type='checkbox' id='Pakistan' name='Con', value=1><label for='Pakistan'>Pakistan</label><br/>
+              <input type='checkbox' id='Palestine' name='Con', value=1><label for='Palestine'>Palestine</label><br/>
+              <input type='checkbox' id='Papua New Guinea' name='Con', value=1><label for='Papua New Guinea'>Papua New Guinea</label><br/>
+              <input type='checkbox' id='Peru' name='Con', value=1><label for='Peru'>Peru</label><br/>
+              <input type='checkbox' id='Philippines' name='Con', value=1><label for='Philippines'>Philippines</label><br/>
+              <input type='checkbox' id='Plateau State' name='Con', value=1><label for='Plateau State'>Plateau State</label><br/>
+              <input type='checkbox' id='Portugal' name='Con', value=1><label for='Portugal'>Portugal</label><br/>
+              <input type='checkbox' id='Presevo Valley' name='Con', value=1><label for='Presevo Valley'>Presevo Valley</label><br/>
+              <input type='checkbox' id='Puntland' name='Con', value=1><label for='Puntland'>Puntland</label><br/>
+              <input type='checkbox' id='RPA' name='Con', value=1><label for='RPA'>RPA</label><br/>
+              <input type='checkbox' id='Rebolusyonaryong Alyansang Makabansa (SFP-YOU)' name='Con', value=1><label for='Rebolusyonaryong Alyansang Makabansa (SFP-YOU)'>Rebolusyonaryong Alyansang Makabansa (SFP-YOU)</label><br/>
+              <input type='checkbox' id='Rebolusyonaryong Partido ng Manggagawa-Pilipineas (RPMP' name='Con', value=1><label for='Rebolusyonaryong Partido ng Manggagawa-Pilipineas (RPMP'>Rebolusyonaryong Partido ng Manggagawa-Pilipineas (RPMP</label><br/>
+              <input type='checkbox' id='Republic of Congo' name='Con', value=1><label for='Republic of Congo'>Republic of Congo</label><br/>
+              <input type='checkbox' id='Russia' name='Con', value=1><label for='Russia'>Russia</label><br/>
+              <input type='checkbox' id='Rwanda' name='Con', value=1><label for='Rwanda'>Rwanda</label><br/>
+              <input type='checkbox' id='Saudi Arabia' name='Con', value=1><label for='Saudi Arabia'>Saudi Arabia</label><br/>
+              <input type='checkbox' id='Senegal' name='Con', value=1><label for='Senegal'>Senegal</label><br/>
+              <input type='checkbox' id='Serbia' name='Con', value=1><label for='Serbia'>Serbia</label><br/>
+              <input type='checkbox' id='Sierra Leone' name='Con', value=1><label for='Sierra Leone'>Sierra Leone</label><br/>
+              <input type='checkbox' id='Slovenia' name='Con', value=1><label for='Slovenia'>Slovenia</label><br/>
+              <input type='checkbox' id='Solomon Islands' name='Con', value=1><label for='Solomon Islands'>Solomon Islands</label><br/>
+              <input type='checkbox' id='Somalia' name='Con', value=1><label for='Somalia'>Somalia</label><br/>
+              <input type='checkbox' id='Somaliland' name='Con', value=1><label for='Somaliland'>Somaliland</label><br/>
+              <input type='checkbox' id='South Africa' name='Con', value=1><label for='South Africa'>South Africa</label><br/>
+              <input type='checkbox' id='South Korea' name='Con', value=1><label for='South Korea'>South Korea</label><br/>
+              <input type='checkbox' id='South Sudan' name='Con', value=1><label for='South Sudan'>South Sudan</label><br/>
+              <input type='checkbox' id='Southern Kaduna' name='Con', value=1><label for='Southern Kaduna'>Southern Kaduna</label><br/>
+              <input type='checkbox' id='Southern Kordofan - Blue Nile - Abyei' name='Con', value=1><label for='Southern Kordofan - Blue Nile - Abyei'>Southern Kordofan - Blue Nile - Abyei</label><br/>
+              <input type='checkbox' id='Spain' name='Con', value=1><label for='Spain'>Spain</label><br/>
+              <input type='checkbox' id='Sri Lanka' name='Con', value=1><label for='Sri Lanka'>Sri Lanka</label><br/>
+              <input type='checkbox' id='Sudan' name='Con', value=1><label for='Sudan'>Sudan</label><br/>
+              <input type='checkbox' id='Syria' name='Con', value=1><label for='Syria'>Syria</label><br/>
+              <input type='checkbox' id='Tajikistan' name='Con', value=1><label for='Tajikistan'>Tajikistan</label><br/>
+              <input type='checkbox' id='Taliban' name='Con', value=1><label for='Taliban'>Taliban</label><br/>
+              <input type='checkbox' id='Tanzania' name='Con', value=1><label for='Tanzania'>Tanzania</label><br/>
+              <input type='checkbox' id='Terekeka' name='Con', value=1><label for='Terekeka'>Terekeka</label><br/>
+              <input type='checkbox' id='Thailand' name='Con', value=1><label for='Thailand'>Thailand</label><br/>
+              <input type='checkbox' id='Togo' name='Con', value=1><label for='Togo'>Togo</label><br/>
+              <input type='checkbox' id='Transdniestria' name='Con', value=1><label for='Transdniestria'>Transdniestria</label><br/>
+              <input type='checkbox' id='Tripura' name='Con', value=1><label for='Tripura'>Tripura</label><br/>
+              <input type='checkbox' id='Tunisia' name='Con', value=1><label for='Tunisia'>Tunisia</label><br/>
+              <input type='checkbox' id='Twic County' name='Con', value=1><label for='Twic County'>Twic County</label><br/>
+              <input type='checkbox' id='Uganda' name='Con', value=1><label for='Uganda'>Uganda</label><br/>
+              <input type='checkbox' id='Ukraine' name='Con', value=1><label for='Ukraine'>Ukraine</label><br/>
+              <input type='checkbox' id='United Kingdom' name='Con', value=1><label for='United Kingdom'>United Kingdom</label><br/>
+              <input type='checkbox' id='United Nations' name='Con', value=1><label for='United Nations'>United Nations</label><br/>
+              <input type='checkbox' id='United States of America' name='Con', value=1><label for='United States of America'>United States of America</label><br/>
+              <input type='checkbox' id='Venezuela' name='Con', value=1><label for='Venezuela'>Venezuela</label><br/>
+              <input type='checkbox' id='Western Sahara' name='Con', value=1><label for='Western Sahara'>Western Sahara</label><br/>
+              <input type='checkbox' id='Yemen' name='Con', value=1><label for='Yemen'>Yemen</label><br/>
+              <input type='checkbox' id='Yugoslavia (former)' name='Con', value=1><label for='Yugoslavia (former)'>Yugoslavia (former)</label><br/>
+              <input type='checkbox' id='Zambia' name='Con', value=1><label for='Zambia'>Zambia</label><br/>
+              <input type='checkbox' id='Zimbabwe' name='Con', value=1><label for='Zimbabwe'>Zimbabwe</label><br/>
               </div>
               <br/>
             </div>
@@ -377,39 +222,39 @@
                 <a href="#" id="DeselectAllCodes">Deselect All</a>
                 <br/>
                   <div id="Codes">
-                    <input type="checkbox" id="paxHrFra" name="filter" value=1 checked>
+                    <input type="checkbox" id="paxHrFra" name="filter" value=1>
                     <label for="HrFra">Human Rights Framework</label>
                     <br/>
 
-                    <input type="checkbox" id="paxHrGen" name="filter" value=1 checked>
+                    <input type="checkbox" id="paxHrGen" name="filter" value=1>
                     <label for="HrGen">Human Rights/Rule of Law</label>
                     <br/>
 
-                    <input type="checkbox" id="paxPol" name="filter" value=1 checked>
+                    <input type="checkbox" id="paxPol" name="filter" value=1>
                     <label for="Pol">Political Institutions</label>
                     <br/>
 
-                    <input type="checkbox" id="paxEps" name="filter" value=1 checked>
+                    <input type="checkbox" id="paxEps" name="filter" value=1>
                     <label for="Eps">Power Sharing: Economic</label>
                     <br/>
 
-                    <input type="checkbox" id="paxMps" name="filter" value=1 checked>
+                    <input type="checkbox" id="paxMps" name="filter" value=1>
                     <label for="Mps">Power Sharing: Military</label>
                     <br/>
 
-                    <input type="checkbox" id="paxPolps" name="filter" value=1 checked>
+                    <input type="checkbox" id="paxPolps" name="filter" value=1>
                     <label for="Polps">Power Sharing: Political</label>
                     <br/>
 
-                    <input type="checkbox" id="paxTerps" name="filter" value=1 checked>
+                    <input type="checkbox" id="paxTerps" name="filter" value=1>
                     <label for="Terps">Power Sharing: Territorial</label>
                     <br/>
 
-                    <input type="checkbox" id="paxTjMech" name="filter" value=1 checked>
+                    <input type="checkbox" id="paxTjMech" name="filter" value=1>
                     <label for="TjMech">Transitional Justice Past Mechanism</label>
                     <br/>
 
-                    <input type="checkbox" id="paxGeWom" name="filter" value=1 checked>
+                    <input type="checkbox" id="paxGeWom" name="filter" value=1>
                     <label for="GeWom">Women, Girls and Gender</label>
                   </div>
             </div>

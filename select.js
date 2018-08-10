@@ -7,16 +7,27 @@ window.onload = function() {
     Set deafults
     */
     localStorage.setItem("paxCons", JSON.stringify(document.getElementsByName("Con").id));
-    paxConsAllCheck(); // Check all country/entity values
-    paxConRuleAny(); // Display agreements with any checked country/entity
+    paxConsAllUncheck(); // Check all country/entity values
+    paxConRuleAll(); // Display agreements with any checked country/entity
     paxFilterUncheck(); // Check all code filters
     storeBlankAgtDetails();// Empty agreement details in localStorage
     paxRuleAll(); // Pick code filter rule ALL
-    localStorage.setItem("paxFilterView","none");
+    localStorage.setItem("paxTimelineView","Chronology");  // or "Counts"
 
     /*
     Listeners
     */
+    // Timeline view listeners
+    document.getElementById("Chronology").onclick = function(event){
+      localStorage.setItem("paxTimelineView", "Chronology");
+    }
+    document.getElementById("Counts").onclick = function(event){
+      localStorage.setItem("paxTimelineView", "Counts");
+    }
+    // document.getElementById("Proportions").onclick = function(event){
+    //   localStorage.setItem("paxTimelineView", "Proportions");
+    // }
+
     // Country/entity listeners
     document.getElementById("anyCon").onclick = function(event) {
         paxConRuleAny();
@@ -88,8 +99,9 @@ window.onload = function() {
     // Page refresh listener
     if (window.performance) {
       if (performance.navigation.TYPE_RELOAD) {
-        paxConsAllCheck(); // Check all country/entity values
-        paxConRuleAny(); // Display agreements with any checked country/entity
+        localStorage.setItem("paxCons", JSON.stringify(document.getElementsByName("Con").id));
+        paxConsAllUncheck(); // Check all country/entity values
+        paxConRuleAll(); // Display agreements with any checked country/entity
         paxFilterUncheck(); // Check all code filters
         storeBlankAgtDetails();// Empty agreement details in localStorage
         paxRuleAll(); // Pick code filter rule ALL
@@ -123,7 +135,7 @@ function paxConsAllUncheck() {
   for (i = 0; i < cons.length; i++){
     cons[i].checked = false;
   }
-  var newPaxCons = [""];
+  var newPaxCons = [];
   console.log("Unchecked all Country/Entity values");
   localStorage.setItem("paxCons", JSON.stringify(newPaxCons)); // retrieve with JSON.parse(localStorage.getItem("paxCons"));
 }

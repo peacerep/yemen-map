@@ -30,8 +30,7 @@ var paxTjMech = window.localStorage.setItem("paxGeWom",0); // Transitional justi
 var paxANY = window.localStorage.setItem("paxANY",0); // Selected ANY filter rule
 var paxALL = window.localStorage.setItem("paxALL",1); // Selected ALL filter rule
 
-// var paxCons = JSON.parse(window.localStorage.getItem("paxCons")); // Country/entity list (includes all upon load)
-window.localStorage.setItem("paxConRule","any"); // Selected ANY country/entity rule
+window.localStorage.setItem("paxConRule","all"); // Selected ANY country/entity rule
 
 callFunction();
 d3.select(window).on("resize", callFunction);
@@ -124,9 +123,10 @@ function callFunction() {
               width = parseInt(d3.select("body").style("width"), 10),
               width = width - margin.left - margin.right,
               height = 100 - margin.top - margin.bottom,
-              agtHeight = height/3,
-              xHeight = 17,
-              agtPadding = 5;
+              agtHeight = height/2,
+              xHeight = 15,
+              agtPadding = 5,
+              agtSpacing = 1;
 
           // Group agreements by year
           var yr_count_nest = d3.nest()
@@ -156,7 +156,8 @@ function callFunction() {
           var max = d3.max(yr_count_nest,function(d){ return d.value; });
 
           // Calculate the size of each agreement in the display space
-          var agtWidth = (width/data.length)*4;
+          var agtWidth = (width/data.length)*2;
+          // var agtWidth = (width/(years.length))-agtPadding;
 
           // Find the earliest & latest year in which agreements occur
           var minYear = d3.min(yr_count_nest,function(d){ return d.key; });
@@ -230,30 +231,29 @@ function callFunction() {
                 .style("opacity", "0.7")
                 // .style("visibility",setVisibility)
                 .attr("x", function(d){ return x(d.Dat); })
-                .attr("y",function(d,i){ return (height - xHeight - (agtHeight-1) + ((agtHeight/(dats[dat].values.length)) * i) )+"px"; })
+                .attr("y",function(d,i){ return (height-xHeight-(agtHeight) + ((agtHeight/(dats[dat].values.length)) * i) )+"px"; })
+                // .attr("y",function(d,i){ return (height-xHeight-margin.bottom-(agtHeight*1.5)-((agtHeight)*(i*agtSpacing)))+"px"; })
                 .attr("width", agtWidth+"px")
                 .attr("height", (agtHeight/dats[dat].values.length)+"px");
 
             rects.on("mousemove",function(d){
-                   if (this.style.opacity != "0"){
-                     this.style.fill = "#ffffff";
-                     this.style.stroke = "#ffffff";
-                     // Core agreement information (name, date, region, country/entity, status, type & stage)
-                     agt = d.Agt;
-                     dat = formatDate(d.Dat);
-                     reg = d.Reg;
-                     con = d.Con;
-                     status = d.Status;
-                     agtp = d.Agtp;
-                     stage = d.Stage;
-                     window.localStorage.setItem("paxagt", agt);
-                     window.localStorage.setItem("paxdat", dat);
-                     window.localStorage.setItem("paxreg", reg);
-                     window.localStorage.setItem("paxcon", con);
-                     window.localStorage.setItem("paxstatus", status);
-                     window.localStorage.setItem("paxagtp", agtp);
-                     window.localStorage.setItem("paxstage", stage);
-                   }
+                   this.style.fill = "#ffffff";
+                   this.style.stroke = "#ffffff";
+                   // Core agreement information (name, date, region, country/entity, status, type & stage)
+                   agt = d.Agt;
+                   dat = formatDate(d.Dat);
+                   reg = d.Reg;
+                   con = d.Con;
+                   status = d.Status;
+                   agtp = d.Agtp;
+                   stage = d.Stage;
+                   window.localStorage.setItem("paxagt", agt);
+                   window.localStorage.setItem("paxdat", dat);
+                   window.localStorage.setItem("paxreg", reg);
+                   window.localStorage.setItem("paxcon", con);
+                   window.localStorage.setItem("paxstatus", status);
+                   window.localStorage.setItem("paxagtp", agtp);
+                   window.localStorage.setItem("paxstage", stage);
                  });
             rects.on("mouseout",function(d) {
                    this.style.fill = "black"
@@ -328,24 +328,28 @@ function callFunction() {
                 }
               }
             }
+
             function setAgtCons(d){
-              /* if keep paxCons as listed in each agreement (single or combination of country/entity values):
-              if (paxCons.includes(agmtCon)){
-                return d;
-              }
-              */
               // TO DO: list item is single con/entity
-              console.log("paxConRule: "+paxConRule)
               var agmtCon = String(d.Con);
               if (paxConRule == "any"){
-                if (paxCons.includes(agmtCon)){
-                  return d;
+                if (paxCons.length > 0){
+                  for (i = 0; i < paxCons.length; i++){
+                    // if (!(agmtCon.includes(paxCons[i]))){
+                    //   console.log(agmtCon);
+                    // }
+                    if (agmtCon.includes(paxCons[i])){
+                      return d;
+                    }
+                  }
                 }
-              } else { // if paxConRule == "all"
+              }
+              if (paxConRule == "all") {
                 var mismatch = false;
                 for (j = 0; j < paxCons.length; j++){
-                  if (agmtCon.indexOf(paxCons[j]) == -1 ){
+                  if (!(agmtCon.includes(paxCons[j]))){
                     mismatch = true;
+                    // console.log("Mismatched: "+agmtCon);
                   }
                 }
                 if (!mismatch){
