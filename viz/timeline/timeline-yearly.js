@@ -1,21 +1,6 @@
 /*
-Timeline with agreements grouped by year
-TRY ONE Y AXIS PER YEAR - didn't work
-TRY EACH YEAR AS Y AXIS USING SCALEPOINT, space out SVG element per year instead of using x axis
-TRY EACH YEAR AS INDIVIDUAL BAR CHART
+Horizontal Timeline with Agreements Grouped by Year
 */
-
-// GENERAL DATA IMPORT PATTERN FOR D3 ("Convenience Methods")
-// d3.request(url)
-//         .row(function(d){*format row*})
-//         .get(callback)
-
-// d3.request(url,formatRow,callback);
-// function formatRow(){return format(d);}
-// function callback(error,rows){
-//     if (error) throw error;
-//     *do something with the data*
-// }
 
 // Define one key/value pair per category (code) by which to filter which
 // agreements the timeline and map visualize, checking all paxfilters
@@ -59,7 +44,7 @@ function getFilters(){
 };
 
 function callFunction() {
-  console.log("Drawing visualization of yearly counts");
+  console.log("Drawing visualization of yearly grouping");
   var paxCons = JSON.parse(window.localStorage.getItem("paxCons")); // Country/entity list (includes all upon load)
   var paxConRule = localStorage.getItem("paxConRule");
   getFilters();
@@ -155,37 +140,6 @@ function callFunction() {
                       .domain([minYear,maxYear])  // data space
                       .range([margin.left,width]);  // display space
 
-          // Get filters
-          // function newOpacity(d){
-          //   // Hide agreements from any deselected country/entity - NOT WORKING!
-          //   // if (paxCons.indexOf(d.Con) == -1){ return "hidden";}
-          //
-          //   var codeFilters = [paxGeWom, paxHrFra, paxHrGen, paxEps, paxMps, paxPol, paxPolps, paxTerps, paxTjMech];
-          //   var agmtCodes = [d.GeWom, d.HrFra, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech];
-          //
-          //   // Hide any agreement without at least one checked code
-          //   if (paxANY == 1 && paxALL == 0){
-          //     var matchCount = 0;
-          //     for (i = 0; i < codeFilters.length; i++){
-          //       if ((codeFilters[i] == 1) && (agmtCodes[i] > 0)){
-          //         matchCount += 1;
-          //         return "1";
-          //       }
-          //     }
-          //     if (matchCount == 0){ return "0.5"; }
-          //   }
-          //
-          //   // Hide any agreement without all checked codes
-          //   if (paxANY == 0 && paxALL == 1) {
-          //     for (i=0; i < codeFilters.length; i++){
-          //       if ((codeFilters[i] == 1) && (agmtCodes[i] == 0)) {
-          //         return "0.5";
-          //       }
-          //     }
-          //     return "1";
-          //   }
-          // };
-
           // Define the full timeline chart SVG element
           var svg = d3.select("body").select("#chart").append("svg")
               .attr("height", height + margin.top + margin.bottom)
@@ -270,7 +224,6 @@ function callFunction() {
           }
 
           function setAgtCons(d){
-            // TO DO: list item is single con/entity
             var agmtCon = String(d.Con);
             if (paxConRule == "any"){
               if (paxCons.length > 0){

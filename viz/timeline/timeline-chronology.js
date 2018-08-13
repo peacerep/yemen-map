@@ -1,5 +1,5 @@
 /*
-HORIZONTAL TIMELINE - AGREEMENTS GROUPED BY DAT
+Horizontal Timeline with Agreements Grouped by Date
 */
 
 // GENERAL DATA IMPORT PATTERN FOR D3 ("Convenience Methods")
@@ -213,12 +213,12 @@ function callFunction() {
           //   }
           // };
 
-          // Make one rectangle per agreement grouped by Year
+          // Make one rectangle per agreement grouped by Dat
           for (dat = 0; dat < datList.length; dat++){
-            var yearGroup = chartGroup.append("g")
+            var datGroup = chartGroup.append("g")
                 .attr("class","yearGroup");
 
-            var rects = yearGroup.selectAll("rects.agt")
+            var rects = datGroup.selectAll("rects.agt")
                 .data(dats[dat].values)
               .enter().append("rect")
               .filter(function(d){ return setAgtFilters(d); })
@@ -305,6 +305,33 @@ function callFunction() {
             //   }
             // });
             } // end of for loop for rects.agt
+
+            chartGroup.selectAll("rect.count")
+               .data(yr_count_nest)
+               .enter().append("rect")
+                 .attr("class","count")
+                 .attr("fill","black")
+                 .attr("stroke","white")
+                 .attr("stroke-width","0.5px")
+                 .attr("x",function(d){ return x(parseYear(d.key)); })
+                 .attr("y",function(d){ return ((height/2)+24)+"px"; })
+                 .attr("width",width/(years.length))
+                 .attr("height",function(d){ return d.value; })
+                 .on("mousemove",function(d){
+                   this.style.fill = "steelblue"
+                   tooltip.style("opacity","1")
+                     .style("left",margin.left)  //("left",d3.event.pageX+"px")
+                     .style("top",(margin.top + tooltipMargin)+"px")  //("top",d3.event.pageY+"px")
+                     .attr("class","tooltip");
+                   // Display core agreement information (name, date, region, country/entity, status, type & stage)
+                   tooltip.html("<h5>Total Peace Agreements in "+d.key+": "+d.value+"</h5>");
+                 })
+                 .on("mouseout",function(d) {
+                   this.style.fill = "black"
+                   tooltip.style("opacity","0")
+                     .style("left",margin.left)  //("left",d3.event.pageX+"px")
+                     .style("top",height+"px");
+                 });
 
             function setAgtFilters(d){
               var agmtCodes = [d.GeWom, d.HrFra, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech];

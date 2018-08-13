@@ -12,18 +12,18 @@ window.onload = function() {
     paxFilterUncheck(); // Check all code filters
     storeBlankAgtDetails();// Empty agreement details in localStorage
     paxRuleAll(); // Pick code filter rule ALL
-    localStorage.setItem("paxTimelineView","Chronology");  // or "Counts"
+    // localStorage.setItem("paxTimelineView","Chronology");
 
     /*
     Listeners
     */
     // Timeline view listeners
-    document.getElementById("Chronology").onclick = function(event){
-      localStorage.setItem("paxTimelineView", "Chronology");
-    }
-    document.getElementById("Counts").onclick = function(event){
-      localStorage.setItem("paxTimelineView", "Counts");
-    }
+    // document.getElementById("Chronology").onclick = function(event){
+    //   localStorage.setItem("paxTimelineView", "Chronology");
+    // }
+    // document.getElementById("Counts").onclick = function(event){
+    //   localStorage.setItem("paxTimelineView", "Counts");
+    // }
     // document.getElementById("Proportions").onclick = function(event){
     //   localStorage.setItem("paxTimelineView", "Proportions");
     // }
@@ -105,7 +105,7 @@ window.onload = function() {
         paxFilterUncheck(); // Check all code filters
         storeBlankAgtDetails();// Empty agreement details in localStorage
         paxRuleAll(); // Pick code filter rule ALL
-        localStorage.setItem("paxFilterView","none");
+        // localStorage.setItem("paxTimelineView","Chronology");
       }
     }
 }

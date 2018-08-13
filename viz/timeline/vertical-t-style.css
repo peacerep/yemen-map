@@ -1,0 +1,87 @@
+* {
+  shape-rendering: crispEdges;
+}
+html{
+  background-color: #c4c4c4;
+}
+
+
+/*
+DROPDOWNS
+*/
+.dropbtn {
+  background-color: #c4c4c4;
+  color: #ffffff;
+  padding: 10px;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: lighter;
+  border: none;
+  cursor: pointer;
+  border-width: 1px;
+  border-color: #dddddd;
+  border-style: solid;
+
+}
+.dropdown2 {
+  position: relative;
+  display: inline-block;
+  padding: 8px 2px;
+}
+/*
+CON (COUNTRY & ENTITY) DROPDOWN
+*/
+.ConContent {
+  display: none;
+  position: absolute;
+  background-color: #ddd;
+  min-width: 250px;
+  overflow: auto;
+  max-height: 250px;
+  padding: 4px;
+  z-index: 1;
+}
+.dropdown2:hover .ConContent {
+  display: block;
+}
+.ConContent input {
+  color: #000000;
+  font-weight: bold;
+  padding: 4px;
+  text-decoration: none;
+  display: inline;
+}
+.ConContent label, a {
+  color: #000000;
+  font-weight: normal;
+  padding: 4px;
+  display: inline;
+}
+/*
+CODES (FILTER) DROPDOWN
+*/
+.CodeContent {
+  display: none;
+  position: absolute;
+  background-color: #ddd;
+  min-width: 250px;
+  overflow: auto;
+  padding: 4px;
+  z-index: 1;
+}
+.dropdown2:hover .CodeContent {
+  display: block;
+}
+.CodeContent input {
+  color: #000000;
+  font-weight: bold;
+  padding: 4px;
+  text-decoration: none;
+  display: inline;
+}
+.CodeContent label, a {
+  color: #000000;
+  font-weight: normal;
+  padding: 4px;
+  display: inline;
+}
