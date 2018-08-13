@@ -125,7 +125,9 @@ function callFunction() {
               .attr("width", width + margin.left + margin.right)
               .attr("class","C");
 
-          var list = svg.append("select")
+          // Define the color scale for agreement stages
+          var stageColors = ["#377eb8","#ffff33","#ff7f00","#4daf4a","#e41a1c","#a65628","#984ea3"];   //from: http://colorbrewer2.org/#type=qualitative&scheme=Set1&n=7
+          var stageValues = ["Pre", "SubPar", "SubComp", "Imp", "Cea", "Other", "FrCons"];
 
           for (year = 0; year < yrList.length; year++){
             var chartGroup = svg.append("g")
@@ -140,7 +142,7 @@ function callFunction() {
                 .attr("id",function(d){ return d.AgtId; })
                 .attr("name",function(d){ return d.Agt; })
                 .attr("value",function(d){ return d.Year; })
-                .attr("fill","black")
+                .attr("fill", function(d){ return getStageFill(d, stageValues, stageColors); })//"black")
                 .attr("stroke","#c4c4c4")  // same as html background-color
                 .attr("stroke-width","1px")
                 .style("opacity", "0.7")
@@ -158,6 +160,7 @@ function callFunction() {
                   status = d.Status;
                   agtp = d.Agtp;
                   stage = d.Stage;
+                  substage = d.StageSub;
                   // Display core information in tooltip
                   this.style.fill = "#ffffff";
                   tooltip.style("opacity","0.9")
@@ -166,10 +169,10 @@ function callFunction() {
                     .style("background","#ffffff")
                     .style("padding","10px")
                     .attr("class","tooltip");
-                  tooltip.html("<p><em>"+agt+"</em><br/><br/><b>Date Signed:</b> "+dat+"<br/><b>Region:</b> "+reg+"</br><b>Country/Entity:</b> "+con+"<br/><b>Status:</b> "+status+"<br/><b>Type:</b> "+agtp+"<br/><b>Stage:</b> "+stage);
+                  tooltip.html("<p><em>"+agt+"</em><br/><br/><b>Date Signed:</b> "+dat+"<br/><b>Region:</b> "+reg+"</br><b>Country/Entity:</b> "+con+"<br/><b>Status:</b> "+status+"<br/><b>Type:</b> "+agtp+"<br/><b>Stage:</b> "+stage+"<br/><b>Substage:</b> "+substage);
                  });
             rects.on("mouseout",function(d) {
-                   this.style.fill = "black"
+                   this.style.fill = getStageFill(d, stageValues, stageColors) //"black"
                    this.style.stroke = "#c4c4c4"
                    tooltip.style("opacity","0");
                  });
@@ -179,17 +182,32 @@ function callFunction() {
           var yAxis = d3.axisLeft(y).tickFormat(d3.timeFormat("%Y")).tickPadding([5]);
 
           var gY = chartGroup.append("g")
-               .attr("class","yaxis")
-               .attr("transform","translate("+(yWidth+margin.left)+","+"0)") //(height-xHeight-margin.bottom)+
-               .call(yAxis);
+             .attr("class","yaxis")
+             .attr("transform","translate("+(yWidth+margin.left)+","+"0)") //(height-xHeight-margin.bottom)+
+             .call(yAxis);
 
-           function pickAgtCon(d){
-             var con = String(localStorage.getItem("paxVertConC"));
-             var agmtCon = String(d.Con);
-             if (agmtCon.includes(con)){
-               return d;
-             }
-           }
+          function pickAgtCon(d){
+            var con = String(localStorage.getItem("paxVertConC"));
+            var agmtCon = String(d.Con);
+            if (agmtCon.includes(con)){
+             return d;
+            }
+          }
+
+          function getStageFill(d, stageValues, stageColors){
+            // d.StageSub value to color: "FrCons"
+            // d.Stage possible values to color: "Pre", "SubPar", "SubComp", "Imp", "Cea", "Other"
+            if (d.StageSub == stageValues[6]){ //"FrCons"
+              return stageColors[6];
+            } else {
+              var stageI = stageValues.indexOf(d.Stage);
+              if (stageI != -1){
+                return stageColors[stageI];
+              } else {
+                return "black";
+              }
+            }
+          }
 
       }) // end of .get(error,data)
 
