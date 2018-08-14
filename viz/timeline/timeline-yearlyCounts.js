@@ -94,7 +94,6 @@ function callFunction() {
       width = width - margin.left - margin.right,
       height = 100 - margin.top - margin.bottom,
       agtHeight = height/2,
-      agtWidth = 2,
       xHeight = 17,
       agtPadding = 5;
 
@@ -163,6 +162,9 @@ function callFunction() {
 
           // Find the maximum number of agreements on a date
           var maxAgts = d3.max(dats, function(dat){ return dat.values.length; });  // 9
+
+          // Calculate the size of each agreement in the display space
+          var agtWidth = (width/data.length)*2;
 
           // Set up the x axis (for the timeline and bar chart)
           // Find the earliest & latest day of the year on which agreements are written

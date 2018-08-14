@@ -103,7 +103,7 @@ CON (COUNTRY & ENTITY) DROPDOWN
 .ConContent {
   display: none;
   position: absolute;
-  background-color: #ddd;
+  background-color: #dddddd;
   min-width: 250px;
   overflow: auto;
   max-height: 250px;
@@ -132,7 +132,7 @@ CODES (FILTER) DROPDOWN
 .CodeContent {
   display: none;
   position: absolute;
-  background-color: #ddd;
+  background-color: #dddddd;
   min-width: 250px;
   overflow: auto;
   padding: 4px;
@@ -153,4 +153,73 @@ CODES (FILTER) DROPDOWN
   font-weight: normal;
   padding: 4px;
   display: inline;
+}
+
+/*
+VERTICAL TIMELINES LEGEND
+  From timeline-v-A|B|C.js:
+    var stageColors = ["#377eb8","#ffff33","#ff7f00","#4daf4a","#e41a1c","#a65628","#984ea3","#000"];
+    var stageValues = ["Pre", "SubPar", "SubComp", "Imp", "Cea", "Other", "FrCons", "Ren"];
+*/
+table {
+   border-collapse: collapse;
+}
+
+table, th, td {
+  border: 0px;
+   font-family: "Roboto", sans-serif;
+   text-align: left;
+}
+th {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 10px;
+  font-weight: normal;
+  color: #000;
+}
+td, tr {
+  padding: 10px;
+  text-align: left;
+  font-weight: normal;
+  font-size: 10px;
+}
+tr {
+  opacity: 0.7;
+}
+td {
+  opacity: 1;
+}
+tr#Pre {
+  background-color: #377eb8;
+  color: #000;
+}
+tr#SubPar {
+  background-color: #ffff33;
+  color: #000;
+}
+tr#SubComp {
+  background-color: #ff7f00;
+  color: #000;
+}
+tr#Imp {
+  color: #000;
+  background-color: #4daf4a;
+}
+tr#Cea {
+  background-color: #e41a1c;
+  color: #dddddd;
+}
+tr#Other {
+  background-color: #a65628;
+  color: #dddddd;
+}
+tr#FrCons {
+  background-color: #984ea3;
+  color: #dddddd;
+}
+tr#Ren{
+  background-color: #000;
+  color: #dddddd;
 }
