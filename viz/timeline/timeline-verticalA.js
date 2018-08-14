@@ -2,12 +2,44 @@
 Vertical Timeline
 */
 
+var paxHrFra = window.localStorage.setItem("paxHrFraV",0); // Human rights framework
+var paxHrGen = window.localStorage.setItem("paxHrGenV",0); // Human rights/Rule of law
+var paxMps = window.localStorage.setItem("paxPolV",0); // Military power sharing
+var paxEps = window.localStorage.setItem("paxEpsV",0); // Economic power sharing
+var paxTerps = window.localStorage.setItem("paxMpsV",0); // Territorial power sharing
+var paxPolps = window.localStorage.setItem("paxPolpsV",0); // Political power sharing
+var paxPol = window.localStorage.setItem("paxTerpsV",0); // Political institutions
+var paxGeWom = window.localStorage.setItem("paxTjMechV",0); // Women, girls and gender
+var paxTjMech = window.localStorage.setItem("paxGeWomV",0); // Transitional justice past mechanism
+
+var paxANY = window.localStorage.setItem("paxANYV",0); // Selected ANY filter rule
+var paxALL = window.localStorage.setItem("paxALLV",1); // Selected ALL filter rule
+
 callFunction();
 d3.select(window).on("resize", callFunction);
 window.addEventListener("storage", callFunction);
 
 function callFunction() {
-  console.log("Drawing vertical timeline of yearly grouping");
+  console.log("Drawing left vertical timeline of yearly grouping");
+  getFilters();
+
+  function getFilters(){
+    var locStor = window.localStorage;
+    // Filter rule
+    // paxRule = locStor.getItem("paxRule");
+    paxANY = locStor.getItem("paxANYV");
+    paxALL = locStor.getItem("paxALLV");
+    // Filter codes
+    paxHrFra = locStor.getItem("paxHrFraV");
+    paxHrGen = locStor.getItem("paxHrGenV");
+    paxMps = locStor.getItem("paxMpsV");
+    paxEps = locStor.getItem("paxEpsV");
+    paxTerps = locStor.getItem("paxTerpsV");
+    paxPolps = locStor.getItem("paxPolpsV");
+    paxPol = locStor.getItem("paxPolV");
+    paxGeWom = locStor.getItem("paxGeWomV");
+    paxTjMech = locStor.getItem("paxTjMechV");
+  };
 
   // Agreement information to display upon hover
   var agt = "Hover over an agreement to view its details.",
@@ -58,15 +90,15 @@ function callFunction() {
                                 Stage:d.Stage, // "Pre", "SubPar", "SubComp", "Imp", "Cea", "Other"
                                 StageSub:d.StageSub, // "FrCons"
                                 Agt:d.Agt,
-                                GeWom:d.GeWom, // 1 if topic of Women, girls and gender addressed; 0 if not
-                                Polps:d.Polps, // 1-3 indicating increasing level of detail given about Political Power sharing; 0 if none given
-                                Terps:d.Terps, // 1-3 indicating increasing level of detail given about Territorial Power sharing; 0 if none given
-                                Eps:d.Eps, // 1-3 indicating increasing level of detail given about Economic Power sharing; 0 if none given
-                                Mps:d.Mps, // 1-3 indicating increasing level of detail given about Political Power sharing; 0 if none given
-                                Pol:d.Pol, // 1-3 indicating increasing level of detail given about political institutions; 0 if none given
-                                HrGen:d.HrGen, // 1 if topic of human rights/rule of law addressed; 0 if not
-                                HrFra:d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
-                                TjMech:d.TjMech // 1-3 indicating increasing level of detail given about a body to deal with the past; 0 if none given
+                                GeWom:+d.GeWom, // 1 if topic of Women, girls and gender addressed; 0 if not
+                                Polps:+d.Polps, // 1-3 indicating increasing level of detail given about Political Power sharing; 0 if none given
+                                Terps:+d.Terps, // 1-3 indicating increasing level of detail given about Territorial Power sharing; 0 if none given
+                                Eps:+d.Eps, // 1-3 indicating increasing level of detail given about Economic Power sharing; 0 if none given
+                                Mps:+d.Mps, // 1-3 indicating increasing level of detail given about Political Power sharing; 0 if none given
+                                Pol:+d.Pol, // 1-3 indicating increasing level of detail given about political institutions; 0 if none given
+                                HrGen:+d.HrGen, // 1 if topic of human rights/rule of law addressed; 0 if not
+                                HrFra:+d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
+                                TjMech:+d.TjMech // 1-3 indicating increasing level of detail given about a body to deal with the past; 0 if none given
                               }; })
       .get(function(error,data){
 
@@ -139,6 +171,7 @@ function callFunction() {
                 .data(years[year].values)
               .enter().append("rect")
               .filter(function(d){ return pickAgtCon(d); })
+              .filter(function(d){ return setVertAgtFilters(d); })
                 .attr("class","agt")
                 .attr("id",function(d){ return d.AgtId; })
                 .attr("name",function(d){ return d.Agt; })
@@ -192,6 +225,29 @@ function callFunction() {
              var agmtCon = String(d.Con);
              if (agmtCon.includes(con)){
                return d;
+             }
+           }
+
+           function setVertAgtFilters(d){
+             var agmtCodes = [d.GeWom, d.HrFra, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech];
+             var codeFilters = [+paxGeWom, +paxHrFra, +paxHrGen, +paxEps, +paxMps, +paxPol, +paxPolps, +paxTerps, +paxTjMech];
+             var codeFilterCount = codeFilters.length;
+             if (paxANY == 1){
+               for (i = 0; i < codeFilterCount; i++){
+                 if ((+codeFilters[i] == 1) && (+agmtCodes[i] > 0)){
+                   return d;
+                 }
+               }
+             } else { // if paxALL == 1
+               var mismatch = false;
+               for (j = 0; j < codeFilterCount; j++){
+                 if ((+codeFilters[j] == 1) && (+agmtCodes[j] == 0)){
+                   mismatch = true;
+                 }
+               }
+               if (!mismatch){
+                 return d;
+               }
              }
            }
 
