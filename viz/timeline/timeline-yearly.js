@@ -213,6 +213,7 @@ function callFunction() {
                    window.localStorage.setItem("paxstage", "");
                    window.localStorage.setItem("paxsubstage", "");
                  });
+
           }
 
           function setAgtFilters(d){

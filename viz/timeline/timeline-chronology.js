@@ -32,7 +32,9 @@ var paxALL = window.localStorage.setItem("paxALL",1); // Selected ALL filter rul
 
 window.localStorage.setItem("paxConRule","all"); // Selected ANY country/entity rule
 
-// var oldFilters = [+paxGeWom, +paxHrFra, +paxHrGen, +paxEps, +paxMps, +paxPol, +paxPolps, +paxTerps, +paxTjMech, +paxANY, +paxALL];
+var newMinDay = window.localStorage.setItem("paxNewMinDay","");
+var newMaxDay = window.localStorage.setItem("paxNewMaxDay","");
+var zoom = false;
 
 callFunction();
 d3.select(window).on("resize", callFunction);
@@ -60,6 +62,9 @@ function getFilters(){
   paxPol = locStor.getItem("paxPol");
   paxGeWom = locStor.getItem("paxGeWom");
   paxTjMech = locStor.getItem("paxTjMech");
+
+  newMinDay = locStor.getItem("paxNewMinDay");
+  newMaxDay = locStor.getItem("paxNewMaxDay");
 };
 
 function callFunction() {
@@ -169,18 +174,22 @@ function callFunction() {
           var agtWidth = (width/data.length)*2;
           // var agtWidth = (width/(years.length))-agtPadding;
 
+          // Set up the x axis (for the timeline and bar chart)
+          // Find the earliest & latest day of the year on which agreements are written
+          if (newMinDay.length > 0){
+            var x = d3.scaleTime()
+                  .domain([parseDate(newMinDay),parseDate(newMaxDay)])
+                  .range([0,width]);
+          } else {
+            var minDay = d3.min(data,function(d){ return (d.Dat); });
+            var maxDay = d3.max(data,function(d){ return (d.Dat); });
+            var x = d3.scaleTime()
+                        .domain([minDay,maxDay])  // data space
+                        .range([margin.left,width]);  // display space
+          }
           // Find the earliest & latest year in which agreements occur
           var minYear = d3.min(yr_count_nest,function(d){ return d.key; });
           var maxYear = d3.max(yr_count_nest,function(d){ return d.key; });
-
-          // Find the earliest & latest day of the year on which agreements are written
-          var minDay = d3.min(data,function(d){ return (d.Dat); });
-          var maxDay = d3.max(data,function(d){ return (d.Dat); });
-
-          // WHY ARE AGTS DRAWN BEYOND ENDS OF AXIS?
-          var x = d3.scaleTime()
-                      .domain([minDay,maxDay])  // data space
-                      .range([margin.left,width]);  // display space
 
           var svg = d3.select("body").select("#chart").append("svg")
               .attr("height", height + margin.top + margin.bottom)//"100%")
@@ -194,31 +203,18 @@ function callFunction() {
                       .attr("class","chartGroup") //
                       .attr("transform","translate("+margin.left+","+margin.top+")") //;
 
-          // function setVisibility(d){
-          //   // Hide agreements from any deselected country/entity
-          //   var paxCon = window.localStorage.getItem("paxCons");  // For array of cons: var paxCons = JSON.parse(window.localStorage.getItem("paxCons"));
-          //   console.log(paxCon);
-          //   if ((paxCon != "allCons") && (paxCon != d.Con)){ return "hidden"; }  // CHANGE TO INCLUDE ANY COUNTRY OR ENTITY NAME AS DB SEARCH PAGE DOES
-          //
-          //   var codeFilters = [paxGeWom, paxHrFra, paxHrGen, paxEps, paxMps, paxPol, paxPolps, paxTerps, paxTjMech];
-          //   var agmtCodes = [d.GeWom, d.HrFra, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech];
-          //   // Hide any agreement without at least one checked code
-          //   if (paxANY == 1 && paxALL == 0){
-          //     var matchCount = 0;
-          //     for (i = 0; i < codeFilters.length; i++){
-          //       if ((codeFilters[i] == 1) && (agmtCodes[i] > 0)){
-          //         matchCount += 1;
-          //         return "visible";
-          //       }
-          //     }
-          //     if (matchCount == 0){ return "hidden"; }
-          //   }
-          //   // Hide any agreement without all checked codes
-          //   if (paxANY == 0 && paxALL == 1) {
-          //     for (i=0; i < codeFilters.length; i++){
-          //       if ((codeFilters[i] == 1) && (agmtCodes[i] == 0)) {
-          //         return "hidden";
-          //       }
+          /*
+          WHY DO AGREEMENTS REMAIN VISIBLE OUTSIDE BOUNDS OF X AXIS???
+          */
+          // function setVisibility(d, zoom, newMinDay, newMaxDay){
+          //   // Hide agreements outside bounds of zoomed-in axis
+          //   if (!zoom){
+          //     return "visible";
+          //   } else {
+          //     if ((d.Dat >= parseDate(newMinDay)) && (d.Dat <= parseDate(newMaxDay))){
+          //       return "visible";
+          //     } else {
+          //       return "hidden"
           //     }
           //   }
           // };
@@ -228,7 +224,7 @@ function callFunction() {
             var datGroup = chartGroup.append("g")
                 .attr("class","yearGroup");
 
-            var rects = datGroup.selectAll("rects.agt")
+            var rects = datGroup.selectAll("rect.agt")
                 .data(dats[dat].values)
               .enter().append("rect")
               .filter(function(d){ return setAgtFilters(d); })
@@ -239,11 +235,15 @@ function callFunction() {
                 .attr("stroke","#c4c4c4")  // same as html background-color
                 .attr("stroke-width","1px")
                 .style("opacity", "0.7")
-                // .style("visibility",setVisibility)
+                // .style("visibility",function(d){ setVisibility(d, zoom, newMinDay, newMaxDay); })
                 .attr("x", function(d){ return x(d.Dat); })
                 .attr("y",function(d,i){ return (height-xHeight-(agtHeight) + ((agtHeight/(dats[dat].values.length)) * i) )+"px"; })
-                // .attr("y",function(d,i){ return (height-xHeight-margin.bottom-(agtHeight*1.5)-((agtHeight)*(i*agtSpacing)))+"px"; })
-                .attr("width", agtWidth+"px")
+                .attr("width", function(d){ if (!zoom){
+                                                return agtWidth+"px";
+                                            } else {
+                                              return (agtWidth*2)+"px";
+                                            }
+                                          })
                 .attr("height", (agtHeight/dats[dat].values.length)+"px");
 
             rects.on("mousemove",function(d){
@@ -281,44 +281,37 @@ function callFunction() {
                    window.localStorage.setItem("paxstage", "");
                    window.localStorage.setItem("paxsubstage", "");
                  });
-            // rects.on("click", function(d){
-            //   if (clicked == false){
-            //     clicked = true;
-            //   } else {
-            //     clicked = false;
-            //   }
-            //   console.log(clicked);
-            //   if ((this.style.opacity != "0") && (clicked == false)){
-            //     this.style.fill = "black"
-            //     this.style.stroke = "#c4c4c4";
-            //     window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
-            //     window.localStorage.setItem("paxdat", "");
-            //     window.localStorage.setItem("paxreg", "");
-            //     window.localStorage.setItem("paxcon", "");
-            //     window.localStorage.setItem("paxstatus", "");
-            //     window.localStorage.setItem("paxagtp", "");
-            //     window.localStorage.setItem("paxstage", "");
-            //   }
-            //   if ((this.style.opacity != "0") && (clicked == true)){
-            //     this.style.fill = "#ffffff";
-            //     this.style.stroke = "#ffffff";
-            //     // Core agreement information (name, date, region, country/entity, status, type & stage)
-            //     agt = d.Agt;
-            //     dat = formatDate(d.Dat);
-            //     reg = d.Reg;
-            //     con = d.Con;
-            //     status = d.Status;
-            //     agtp = d.Agtp;
-            //     stage = d.Stage;
-            //     window.localStorage.setItem("paxagt", agt);
-            //     window.localStorage.setItem("paxdat", dat);
-            //     window.localStorage.setItem("paxreg", reg);
-            //     window.localStorage.setItem("paxcon", con);
-            //     window.localStorage.setItem("paxstatus", status);
-            //     window.localStorage.setItem("paxagtp", agtp);
-            //     window.localStorage.setItem("paxstage", stage);
-            //   }
-            // });
+
+                 rects.on("click", function(d){
+                   if (!zoom){
+                     zoom = true;
+                     var clickedDat = d.Dat;
+                     var clickedYear = +d.Year;
+                     var newMinYear;
+                     var newMaxYear;
+                     // Find minimum & maximum dates for zoomed-in x scale domain
+                     if (clickedYear == 1990){
+                       newMinYear = 1990;
+                       newMaxYear = 1992;
+                     } else if (clickedYear == 2015){
+                       newMinYear = 2013;
+                       newMaxYear = 2015;
+                     } else {
+                       newMinYear = clickedYear - 1;
+                       newMaxYear = clickedYear; // + 1;
+                     }
+                     var newMinDay = "01/01/"+newMinYear;
+                     window.localStorage.setItem("paxNewMinDay",newMinDay);
+                     var newMaxDay = "01/01/"+newMaxYear;
+                     window.localStorage.setItem("paxNewMaxDay",newMaxDay);
+                   } else {
+                     zoom = false;
+                     window.localStorage.setItem("paxNewMinDay","");
+                     window.localStorage.setItem("paxNewMaxDay","");
+                   }
+                   callFunction();
+                 });
+
             } // end of for loop for rects.agt
 
             chartGroup.selectAll("rect.count")

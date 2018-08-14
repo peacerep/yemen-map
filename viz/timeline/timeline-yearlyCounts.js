@@ -21,7 +21,9 @@ var paxALL = window.localStorage.setItem("paxALL",1); // Selected ALL filter rul
 
 window.localStorage.setItem("paxConRule","all"); // Selected ANY country/entity rule
 
-//var oldFilters = [+paxGeWom, +paxHrFra, +paxHrGen, +paxEps, +paxMps, +paxPol, +paxPolps, +paxTerps, +paxTjMech, +paxANY, +paxALL];
+var newMinDay = window.localStorage.setItem("paxNewMinDay","");
+var newMaxDay = window.localStorage.setItem("paxNewMaxDay","");
+var zoom = false;
 
 callFunction();
 d3.select(window).on("resize", callFunction);
@@ -48,7 +50,9 @@ function getFilters(){
   paxPol = locStor.getItem("paxPol");
   paxGeWom = locStor.getItem("paxGeWom");
   paxTjMech = locStor.getItem("paxTjMech");
-  // console.log("Got: "+paxANY+","+paxALL+","+paxHrFra+","+paxHrGen+","+paxMps+","+paxEps+","+paxTerps+","+paxPolps+","+paxPol+","+paxGeWom+","+paxTjMech);
+
+  newMinDay = locStor.getItem("paxNewMinDay");
+  newMaxDay = locStor.getItem("paxNewMaxDay");
 };
 
 function callFunction() {
@@ -162,12 +166,19 @@ function callFunction() {
 
           // Set up the x axis (for the timeline and bar chart)
           // Find the earliest & latest day of the year on which agreements are written
-          var minDay = d3.min(data,function(d){ return (d.Dat); });
-          var maxDay = d3.max(data,function(d){ return (d.Dat); });
-          var x = d3.scaleTime()
-                      .domain([minDay,maxDay])  // data space
-                      .range([0,width]);  // display space
+          if (newMinDay.length > 0){
+            var x = d3.scaleTime()
+                  .domain([parseDate(newMinDay),parseDate(newMaxDay)])
+                  .range([margin.left,width]);
+          } else {
+            var minDay = d3.min(data,function(d){ return (d.Dat); });
+            var maxDay = d3.max(data,function(d){ return (d.Dat); });
+            var x = d3.scaleTime()
+                        .domain([minDay,maxDay])  // data space
+                        .range([margin.left,width]);  // display space
+          }
 
+          // Find the maximum number of agreements in a year
           var maxAgtsYr = d3.max(yr_count, function(d){ return d.value; });  // 91
           // Set up the y axis (for the bar chart)
           var y = d3.scaleLinear()
@@ -196,7 +207,12 @@ function callFunction() {
               .attr("class", "bar")
               .attr("x", function(d){ return x(parseYear(d.key))+margin.left; })
               .attr("y", function(d){ return (y(d.values.length)); })
-              .attr("width", (width/yearly.length))
+              .attr("width", function(d){ if (!zoom){
+                                              return width/yearly.length;
+                                          } else {
+                                            return width/2;
+                                          }
+                                        })
               .attr("height", function(d){ return (height-xHeight-agtHeight) - y(d.values.length); })
               .attr("stroke","#c4c4c4")  // same as html background-color
               .attr("stroke-width","1px")
@@ -236,46 +252,81 @@ function callFunction() {
                 // .style("visibility",setVisibility)
                 .attr("x", function(d){ return x(d.Dat); })
                 .attr("y",function(d,i){ return (height - xHeight - (agtHeight-1) + ((agtHeight/(dats[dat].values.length)) * i) )+"px"; })
-                .attr("width", agtWidth+"px")
+                .attr("width", function(d){ if (!zoom){
+                                                return agtWidth+"px";
+                                            } else {
+                                              return (agtWidth*2)+"px";
+                                            }
+                                          })
                 .attr("height", (agtHeight/dats[dat].values.length)+"px");
 
-            rects.on("mousemove",function(d){
-                   if (this.style.opacity != "0"){
-                     this.style.fill = "#ffffff";
-                     this.style.stroke = "#ffffff";
-                     // Core agreement information (name, date, region, country/entity, status, type & stage)
-                     agt = d.Agt;
-                     dat = formatDate(d.Dat);
-                     reg = d.Reg;
-                     con = d.Con;
-                     status = d.Status;
-                     agtp = d.Agtp;
-                     stage = d.Stage;
-                     substage = d.StageSub;
-                     window.localStorage.setItem("updateVertical","false");
-                     window.localStorage.setItem("paxagt", agt);
-                     window.localStorage.setItem("paxdat", dat);
-                     window.localStorage.setItem("paxreg", reg);
-                     window.localStorage.setItem("paxcon", con);
-                     window.localStorage.setItem("paxstatus", status);
-                     window.localStorage.setItem("paxagtp", agtp);
-                     window.localStorage.setItem("paxstage", stage);
-                     window.localStorage.setItem("paxsubstage", substage);
-                   }
-                 });
-            rects.on("mouseout",function(d) {
-                   this.style.fill = "black"
-                   this.style.stroke = "#c4c4c4";
-                   window.localStorage.setItem("updateVertical","false");
-                   window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
-                   window.localStorage.setItem("paxdat", "");
-                   window.localStorage.setItem("paxreg", "");
-                   window.localStorage.setItem("paxcon", "");
-                   window.localStorage.setItem("paxstatus", "");
-                   window.localStorage.setItem("paxagtp", "");
-                   window.localStorage.setItem("paxstage", "");
-                   window.localStorage.setItem("paxsubstage", "");
-                 });
+            rects.on("mousemove", function(d){
+               if (this.style.opacity != "0"){
+                 this.style.fill = "#ffffff";
+                 this.style.stroke = "#ffffff";
+                 // Core agreement information (name, date, region, country/entity, status, type & stage)
+                 agt = d.Agt;
+                 dat = formatDate(d.Dat);
+                 reg = d.Reg;
+                 con = d.Con;
+                 status = d.Status;
+                 agtp = d.Agtp;
+                 stage = d.Stage;
+                 substage = d.StageSub;
+                 window.localStorage.setItem("updateVertical","false");
+                 window.localStorage.setItem("paxagt", agt);
+                 window.localStorage.setItem("paxdat", dat);
+                 window.localStorage.setItem("paxreg", reg);
+                 window.localStorage.setItem("paxcon", con);
+                 window.localStorage.setItem("paxstatus", status);
+                 window.localStorage.setItem("paxagtp", agtp);
+                 window.localStorage.setItem("paxstage", stage);
+                 window.localStorage.setItem("paxsubstage", substage);
+               }
+             });
+            rects.on("mouseout", function(d) {
+               this.style.fill = "black"
+               this.style.stroke = "#c4c4c4";
+               window.localStorage.setItem("updateVertical","false");
+               window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
+               window.localStorage.setItem("paxdat", "");
+               window.localStorage.setItem("paxreg", "");
+               window.localStorage.setItem("paxcon", "");
+               window.localStorage.setItem("paxstatus", "");
+               window.localStorage.setItem("paxagtp", "");
+               window.localStorage.setItem("paxstage", "");
+               window.localStorage.setItem("paxsubstage", "");
+            });
+
+            rects.on("click", function(d){
+              if (!zoom){
+                zoom = true;
+                var clickedDat = d.Dat;
+                var clickedYear = +d.Year;
+                var newMinYear;
+                var newMaxYear;
+                // Find minimum & maximum dates for zoomed-in x scale domain
+                if (clickedYear == 1990){
+                  newMinYear = 1990;
+                  newMaxYear = 1992;
+                } else if (clickedYear == 2015){
+                  newMinYear = 2013;
+                  newMaxYear = 2015;
+                } else {
+                  newMinYear = clickedYear - 1;
+                  newMaxYear = clickedYear + 1
+                }
+                var newMinDay = "01/01/"+newMinYear;
+                window.localStorage.setItem("paxNewMinDay",newMinDay);
+                var newMaxDay = "01/01/"+newMaxYear;
+                window.localStorage.setItem("paxNewMaxDay",newMaxDay);
+              } else {
+                zoom = false;
+                window.localStorage.setItem("paxNewMinDay","");
+                window.localStorage.setItem("paxNewMaxDay","");
+              }
+              callFunction();
+            });
 
           } // end of for loop
 
