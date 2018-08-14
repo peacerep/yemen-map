@@ -1,28 +1,39 @@
 window.onload = function() {
 
+  window.localStorage.setItem("updateVertical","true");
+  window.localStorage.setItem("updateHorizontal","false");
   paxFilterUncheck(); // Check all code filters
   paxRuleAll(); // Pick code filter rule ALL
 
   // Filter rule listeners
   document.getElementById("anyV").onclick = function(event) {
-      paxRuleAny();
+    window.localStorage.setItem("updateVertical","true");
+    window.localStorage.setItem("updateHorizontal","false");
+    paxRuleAny();
   }
   document.getElementById("allV").onclick = function(event) {
-      paxRuleAll();
+    window.localStorage.setItem("updateVertical","true");
+    window.localStorage.setItem("updateHorizontal","false");
+    paxRuleAll();
   }
 
   // Code filter listeners
   document.getElementById("DeselectAllCodesV").onclick = function(event) {
+    window.localStorage.setItem("updateVertical","true");
+    window.localStorage.setItem("updateHorizontal","false");
     paxFilterUncheck();
   }
   document.getElementById("SelectAllCodesV").onclick = function(event) {
+    window.localStorage.setItem("updateVertical","true");
+    window.localStorage.setItem("updateHorizontal","false");
     paxFilterCheck();
   }
 
   // Code filter listeners
   document.getElementById("CodesV").onclick = function(event){
+    window.localStorage.setItem("updateVertical","true");
+    window.localStorage.setItem("updateHorizontal","false");
     let target = event.target;
-    // console.log("Target.id: "+target.id);
     if (+localStorage.getItem(target.id) == 0){
       localStorage.setItem(target.id, 1);
       target.checked = true;
@@ -37,6 +48,8 @@ window.onload = function() {
   // Page refresh listener
     if (window.performance) {
       if (performance.navigation.TYPE_RELOAD) {
+        window.localStorage.setItem("updateVertical","true");
+        window.localStorage.setItem("updateHorizontal","false");
         paxFilterUncheck(); // Check all code filters
         paxRuleAll(); // Pick code filter rule ALL
     }

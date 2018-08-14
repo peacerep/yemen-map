@@ -7,6 +7,8 @@ window.onload = function() {
     Set deafults
     */
     localStorage.setItem("paxCons", JSON.stringify(document.getElementsByName("Con").id));
+    window.localStorage.setItem("updateVertical","false");
+    window.localStorage.setItem("updateHorizontal","true");
     paxConsAllUncheck(); // Check all country/entity values
     paxConRuleAll(); // Display agreements with any checked country/entity
     paxFilterUncheck(); // Check all code filters
@@ -30,20 +32,30 @@ window.onload = function() {
 
     // Country/entity listeners
     document.getElementById("anyCon").onclick = function(event) {
-        paxConRuleAny();
+      window.localStorage.setItem("updateVertical","false");
+      window.localStorage.setItem("updateHorizontal","true");
+      paxConRuleAny();
     }
     document.getElementById("allCons").onclick = function(event) {
-        paxConRuleAll();
+      window.localStorage.setItem("updateVertical","false");
+      window.localStorage.setItem("updateHorizontal","true");
+      paxConRuleAll();
     }
     document.getElementById("DeselectAllCons").onclick = function(event) {
+      window.localStorage.setItem("updateVertical","false");
+      window.localStorage.setItem("updateHorizontal","true");
       paxConsAllUncheck();
       storeBlankAgtDetails();
     }
     document.getElementById("SelectAllCons").onclick = function(event) {
+      window.localStorage.setItem("updateVertical","false");
+      window.localStorage.setItem("updateHorizontal","true");
       paxConsAllCheck();
       storeBlankAgtDetails();
     }
     document.getElementById("Cons").onclick = function(event){
+      window.localStorage.setItem("updateVertical","false");
+      window.localStorage.setItem("updateHorizontal","true");
       let target = event.target;
       var con = target.id;
       if (target.name == "Con"){
@@ -65,24 +77,34 @@ window.onload = function() {
 
     // Filter rule listeners
     document.getElementById("any").onclick = function(event) {
-        paxRuleAny();
+      window.localStorage.setItem("updateVertical","false");
+      window.localStorage.setItem("updateHorizontal","true");
+      paxRuleAny();
     }
     document.getElementById("all").onclick = function(event) {
-        paxRuleAll();
+      window.localStorage.setItem("updateVertical","false");
+      window.localStorage.setItem("updateHorizontal","true");
+      paxRuleAll();
     }
 
     // Code filter listeners
     document.getElementById("DeselectAllCodes").onclick = function(event) {
+      window.localStorage.setItem("updateVertical","false");
+      window.localStorage.setItem("updateHorizontal","true");
       paxFilterUncheck();
       storeBlankAgtDetails();
     }
     document.getElementById("SelectAllCodes").onclick = function(event) {
+      window.localStorage.setItem("updateVertical","false");
+      window.localStorage.setItem("updateHorizontal","true");
       paxFilterCheck();
       storeBlankAgtDetails();
     }
 
     // Code filter listeners
     document.getElementById("Codes").onclick = function(event){
+      window.localStorage.setItem("updateVertical","false");
+      window.localStorage.setItem("updateHorizontal","true");
       let target = event.target;
       // console.log("Target.id: "+target.id);
       if (localStorage.getItem(target.id) == 0){
@@ -100,6 +122,8 @@ window.onload = function() {
     if (window.performance) {
       if (performance.navigation.TYPE_RELOAD) {
         localStorage.setItem("paxCons", JSON.stringify(document.getElementsByName("Con").id));
+        window.localStorage.setItem("updateVertical","false");
+        window.localStorage.setItem("updateHorizontal","true");
         paxConsAllUncheck(); // Check all country/entity values
         paxConRuleAll(); // Display agreements with any checked country/entity
         paxFilterUncheck(); // Check all code filters

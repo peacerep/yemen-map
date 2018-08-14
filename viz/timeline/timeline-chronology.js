@@ -32,9 +32,17 @@ var paxALL = window.localStorage.setItem("paxALL",1); // Selected ALL filter rul
 
 window.localStorage.setItem("paxConRule","all"); // Selected ANY country/entity rule
 
+// var oldFilters = [+paxGeWom, +paxHrFra, +paxHrGen, +paxEps, +paxMps, +paxPol, +paxPolps, +paxTerps, +paxTjMech, +paxANY, +paxALL];
+
 callFunction();
 d3.select(window).on("resize", callFunction);
-window.addEventListener("storage", callFunction);
+window.addEventListener("storage", toUpdate);
+
+function toUpdate(){
+  if (window.localStorage.getItem("updateHorizontal") == "true"){
+    return callFunction();
+  }
+}
 
 function getFilters(){
   var locStor = window.localStorage;
@@ -67,7 +75,8 @@ function callFunction() {
       con = "",
       status = "",
       agtp = "",
-      stage = "";
+      stage = "",
+      substage = "";
   window.localStorage.setItem("paxagt", agt);
   window.localStorage.setItem("paxdat", dat);
   window.localStorage.setItem("paxreg", reg);
@@ -75,6 +84,7 @@ function callFunction() {
   window.localStorage.setItem("paxstatus", status);
   window.localStorage.setItem("paxagtp", agtp);
   window.localStorage.setItem("paxstage", stage);
+  window.localStorage.setItem("paxsubstage", substage);
 
   // Date parsers & formatters
   var parseDate = d3.timeParse("%d/%m/%Y");
@@ -247,6 +257,8 @@ function callFunction() {
                    status = d.Status;
                    agtp = d.Agtp;
                    stage = d.Stage;
+                   substage = d.StageSub;
+                   window.localStorage.setItem("updateVertical","false");
                    window.localStorage.setItem("paxagt", agt);
                    window.localStorage.setItem("paxdat", dat);
                    window.localStorage.setItem("paxreg", reg);
@@ -254,10 +266,12 @@ function callFunction() {
                    window.localStorage.setItem("paxstatus", status);
                    window.localStorage.setItem("paxagtp", agtp);
                    window.localStorage.setItem("paxstage", stage);
+                   window.localStorage.setItem("paxsubstage", substage);
                  });
             rects.on("mouseout",function(d) {
                    this.style.fill = "black"
                    this.style.stroke = "#c4c4c4";
+                   window.localStorage.setItem("updateVertical","false");
                    window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
                    window.localStorage.setItem("paxdat", "");
                    window.localStorage.setItem("paxreg", "");
@@ -265,6 +279,7 @@ function callFunction() {
                    window.localStorage.setItem("paxstatus", "");
                    window.localStorage.setItem("paxagtp", "");
                    window.localStorage.setItem("paxstage", "");
+                   window.localStorage.setItem("paxsubstage", "");
                  });
             // rects.on("click", function(d){
             //   if (clicked == false){

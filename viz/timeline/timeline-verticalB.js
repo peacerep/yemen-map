@@ -15,9 +15,14 @@ var paxTjMech = window.localStorage.setItem("paxGeWomV",0); // Transitional just
 var paxANY = window.localStorage.setItem("paxANYV",0); // Selected ANY filter rule
 var paxALL = window.localStorage.setItem("paxALLV",1); // Selected ALL filter rule
 
-callFunction();
 d3.select(window).on("resize", callFunction);
-window.addEventListener("storage", callFunction);
+window.addEventListener("storage", toUpdate);
+
+function toUpdate(){
+  if (window.localStorage.getItem("updateVertical") == "true"){
+    return callFunction();
+  }
+}
 
 function callFunction() {
   console.log("Drawing middle vertical timeline of yearly grouping");
@@ -40,22 +45,6 @@ function callFunction() {
     paxGeWom = locStor.getItem("paxGeWomV");
     paxTjMech = locStor.getItem("paxTjMechV");
   };
-
-  // Agreement information to display upon hover
-  var agt = "Hover over an agreement to view its details.",
-      dat = "",
-      reg = "",
-      con = "",
-      status = "",
-      agtp = "",
-      stage = "";
-  window.localStorage.setItem("paxagt", agt);
-  window.localStorage.setItem("paxdat", dat);
-  window.localStorage.setItem("paxreg", reg);
-  window.localStorage.setItem("paxcon", con);
-  window.localStorage.setItem("paxstatus", status);
-  window.localStorage.setItem("paxagtp", agtp);
-  window.localStorage.setItem("paxstage", stage);
 
   // Date parsers & formatters
   var parseDate = d3.timeParse("%d/%m/%Y");
