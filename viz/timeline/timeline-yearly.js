@@ -5,15 +5,15 @@ Horizontal Timeline with Agreements Grouped by Year
 // Define one key/value pair per category (code) by which to filter which
 // agreements the timeline and map visualize, checking all paxfilters
 // (value = 1) upon page load so all agreements are visible
+var paxGeWom = window.localStorage.setItem("paxGeWom",0); // Women, girls and gender
 var paxHrFra = window.localStorage.setItem("paxHrFra",0); // Human rights framework
-var paxHrGen = window.localStorage.setItem("paxHrGen",0);; // Human rights/Rule of law
-var paxMps = window.localStorage.setItem("paxPol",0); // Military power sharing
+var paxHrGen = window.localStorage.setItem("paxHrGen",0); // Human rights/Rule of law
+var paxMps = window.localStorage.setItem("paxMps",0); // Military power sharing
 var paxEps = window.localStorage.setItem("paxEps",0); // Economic power sharing
-var paxTerps = window.localStorage.setItem("paxMps",0); // Territorial power sharing
+var paxTerps = window.localStorage.setItem("paxTerps",0); // Territorial power sharing
 var paxPolps = window.localStorage.setItem("paxPolps",0); // Political power sharing
-var paxPol = window.localStorage.setItem("paxTerps",0); // Political institutions
-var paxGeWom = window.localStorage.setItem("paxTjMech",0); // Women, girls and gender
-var paxTjMech = window.localStorage.setItem("paxGeWom",0); // Transitional justice past mechanism
+var paxPol = window.localStorage.setItem("paxPol",0); // Political institutions
+var paxTjMech = window.localStorage.setItem("paxTjMech",0); // Transitional justice past mechanism
 
 // var paxRule = window.localStorage.setItem("paxRule",1); // Selected ALL filter rule
 var paxANY = window.localStorage.setItem("paxANY",0); // Selected ANY filter rule

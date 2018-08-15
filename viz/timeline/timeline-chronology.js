@@ -19,21 +19,21 @@ Horizontal Timeline with Agreements Grouped by Date
 // (value = 1) upon page load so all agreements are visible
 var paxHrFra = window.localStorage.setItem("paxHrFra",0); // Human rights framework
 var paxHrGen = window.localStorage.setItem("paxHrGen",0); // Human rights/Rule of law
-var paxMps = window.localStorage.setItem("paxPol",0); // Military power sharing
+var paxPol = window.localStorage.setItem("paxPol",0); // Political institutions
 var paxEps = window.localStorage.setItem("paxEps",0); // Economic power sharing
-var paxTerps = window.localStorage.setItem("paxMps",0); // Territorial power sharing
+var paxMps = window.localStorage.setItem("paxMps",0); // Military power sharing
 var paxPolps = window.localStorage.setItem("paxPolps",0); // Political power sharing
-var paxPol = window.localStorage.setItem("paxTerps",0); // Political institutions
-var paxGeWom = window.localStorage.setItem("paxTjMech",0); // Women, girls and gender
-var paxTjMech = window.localStorage.setItem("paxGeWom",0); // Transitional justice past mechanism
+var paxTerps = window.localStorage.setItem("paxTerps",0); // Territorial power sharing
+var paxTjMech = window.localStorage.setItem("paxTjMech",0); // Transitional justice past mechanism
+var paxGeWom = window.localStorage.setItem("paxGeWom",0); // Women, girls and gender
 
 var paxANY = window.localStorage.setItem("paxANY",0); // Selected ANY filter rule
 var paxALL = window.localStorage.setItem("paxALL",1); // Selected ALL filter rule
 
 window.localStorage.setItem("paxConRule","all"); // Selected ANY country/entity rule
 
-var newMinDay = window.localStorage.setItem("paxNewMinDay","");
-var newMaxDay = window.localStorage.setItem("paxNewMaxDay","");
+var newMinDay = window.localStorage.setItem("paxNewMinDay", "01/01/1990");
+var newMaxDay = window.localStorage.getItem("paxNewMaxDay", "31/12/2015");
 var zoom = false;
 
 callFunction();
@@ -55,13 +55,13 @@ function getFilters(){
   // Filter codes
   paxHrFra = locStor.getItem("paxHrFra");
   paxHrGen = locStor.getItem("paxHrGen");
-  paxMps = locStor.getItem("paxMps");
-  paxEps = locStor.getItem("paxEps");
-  paxTerps = locStor.getItem("paxTerps");
-  paxPolps = locStor.getItem("paxPolps");
   paxPol = locStor.getItem("paxPol");
-  paxGeWom = locStor.getItem("paxGeWom");
+  paxEps = locStor.getItem("paxEps");
+  paxMps = locStor.getItem("paxMps");
+  paxPolps = locStor.getItem("paxPolps");
+  paxTerps = locStor.getItem("paxTerps");
   paxTjMech = locStor.getItem("paxTjMech");
+  paxGeWom = locStor.getItem("paxGeWom");
 
   newMinDay = locStor.getItem("paxNewMinDay");
   newMaxDay = locStor.getItem("paxNewMaxDay");
@@ -69,7 +69,7 @@ function getFilters(){
 
 function callFunction() {
   console.log("Drawing visualization");
-  var paxCons = JSON.parse(window.localStorage.getItem("paxCons")); // Country/entity list (includes all upon load)
+  var paxCons = JSON.parse(window.localStorage.getItem("paxCons"));
   var paxConRule = localStorage.getItem("paxConRule");
   getFilters();
 
@@ -97,6 +97,7 @@ function callFunction() {
   var parseYear = d3.timeParse("%Y");
   var parseDay = d3.timeParse("%j");
   var formatDate = d3.timeFormat("%d %B %Y");
+  var formatDateShort = d3.timeFormat("%d/%m/%Y");
   var formatMonth = d3.timeFormat("%m");
   var formatDay = d3.timeFormat("%j");  // day of the year as decimal number
   var formatYear = d3.timeFormat("%Y");
@@ -137,8 +138,9 @@ function callFunction() {
           var margin = {top: 5, right: 5, bottom: 5, left: 5}, //read clockwise from top
               width = parseInt(d3.select("body").style("width"), 10),
               width = width - margin.left - margin.right,
-              height = 100 - margin.top - margin.bottom,
-              agtHeight = height/2,
+              height = 140 - margin.top - margin.bottom,
+              descriptHeight = 20,
+              agtHeight = (height/2)-descriptHeight,
               xHeight = 15,
               agtPadding = 5,
               agtSpacing = 1;
@@ -176,13 +178,15 @@ function callFunction() {
 
           // Set up the x axis (for the timeline and bar chart)
           // Find the earliest & latest day of the year on which agreements are written
-          if (newMinDay.length > 0){
+          if ((newMinDay.length > 0) && (newMaxDay.length > 0)){
             var x = d3.scaleTime()
                   .domain([parseDate(newMinDay),parseDate(newMaxDay)])
-                  .range([0,width]);
+                  .range([margin.left,width]);
           } else {
             var minDay = d3.min(data,function(d){ return (d.Dat); });
+            window.localStorage.setItem("paxNewMinDay",formatDateShort(minDay));
             var maxDay = d3.max(data,function(d){ return (d.Dat); });
+            window.localStorage.setItem("paxNewMaxDay",formatDateShort(maxDay));
             var x = d3.scaleTime()
                         .domain([minDay,maxDay])  // data space
                         .range([margin.left,width]);  // display space
@@ -227,6 +231,7 @@ function callFunction() {
             var rects = datGroup.selectAll("rect.agt")
                 .data(dats[dat].values)
               .enter().append("rect")
+              .filter(function(d){ return setAgtTimePeriod(d); })
               .filter(function(d){ return setAgtFilters(d); })
               .filter(function(d){ return setAgtCons(d); })
                 .attr("class","agt")
@@ -302,7 +307,7 @@ function callFunction() {
                      }
                      var newMinDay = "01/01/"+newMinYear;
                      window.localStorage.setItem("paxNewMinDay",newMinDay);
-                     var newMaxDay = "01/01/"+newMaxYear;
+                     var newMaxDay = "31/12/"+newMaxYear;
                      window.localStorage.setItem("paxNewMaxDay",newMaxDay);
                    } else {
                      zoom = false;
@@ -314,41 +319,107 @@ function callFunction() {
 
             } // end of for loop for rects.agt
 
-            chartGroup.selectAll("rect.count")
-               .data(yr_count_nest)
-               .enter().append("rect")
-                 .attr("class","count")
-                 .attr("fill","black")
-                 .attr("stroke","white")
-                 .attr("stroke-width","0.5px")
-                 .attr("x",function(d){ return x(parseYear(d.key)); })
-                 .attr("y",function(d){ return ((height/2)+24)+"px"; })
-                 .attr("width",width/(years.length))
-                 .attr("height",function(d){ return d.value; })
-                 .on("mousemove",function(d){
-                   this.style.fill = "steelblue"
-                   tooltip.style("opacity","1")
-                     .style("left",margin.left)  //("left",d3.event.pageX+"px")
-                     .style("top",(margin.top + tooltipMargin)+"px")  //("top",d3.event.pageY+"px")
-                     .attr("class","tooltip");
-                   // Display core agreement information (name, date, region, country/entity, status, type & stage)
-                   tooltip.html("<h5>Total Peace Agreements in "+d.key+": "+d.value+"</h5>");
-                 })
-                 .on("mouseout",function(d) {
-                   this.style.fill = "black"
-                   tooltip.style("opacity","0")
-                     .style("left",margin.left)  //("left",d3.event.pageX+"px")
-                     .style("top",height+"px");
-                 });
+            // chartGroup.selectAll("rect.count")
+            //    .data(yr_count_nest)
+            //    .enter().append("rect")
+            //      .attr("class","count")
+            //      .attr("fill","black")
+            //      .attr("stroke","white")
+            //      .attr("stroke-width","0.5px")
+            //      .attr("x",function(d){ return x(parseYear(d.key)); })
+            //      .attr("y",function(d){ return ((height/2)+24)+"px"; })
+            //      .attr("width",width/(years.length))
+            //      .attr("height",function(d){ return d.value; })
+            //      .on("mousemove",function(d){
+            //        this.style.fill = "steelblue"
+            //        tooltip.style("opacity","1")
+            //          .style("left",margin.left)  //("left",d3.event.pageX+"px")
+            //          .style("top",(margin.top + tooltipMargin)+"px")  //("top",d3.event.pageY+"px")
+            //          .attr("class","tooltip");
+            //        // Display core agreement information (name, date, region, country/entity, status, type & stage)
+            //        tooltip.html("<h5>Total Peace Agreements in "+d.key+": "+d.value+"</h5>");
+            //      })
+            //      .on("mouseout",function(d) {
+            //        this.style.fill = "black"
+            //        tooltip.style("opacity","0")
+            //          .style("left",margin.left)  //("left",d3.event.pageX+"px")
+            //          .style("top",height+"px");
+            //      });
+
+            /*
+            TIMELINE DESCRIPTION
+            */
+            chartGroup.append("text")
+                        .attr("x", margin.left+"px")
+                        .attr("y", height-xHeight-(agtHeight)-(agtPadding*10))
+                        .attr("class","description")
+                        .text("Selected Countries/Entities: "+(getConText(paxCons)));
+            chartGroup.append("text")
+                        .attr("x", margin.left+"px")
+                        .attr("y", height-xHeight-(agtHeight)-(agtPadding*7))
+                        .attr("class","description")
+                        .text("Selected Codes:"+(getCodeText()));
+            chartGroup.append("text")
+                        .attr("x", margin.left+"px")
+                        .attr("y", height-xHeight-(agtHeight)-(agtPadding*4))
+                        .attr("class","description")
+                        .text("Selected Time Period: "+newMinDay+" through "+newMaxDay);
+
+            function getConText(paxCons){
+              var paxConsCount = paxCons.length;
+              if (paxConsCount == 161){
+                return "All";
+              } else if (paxConsCount > 0){
+                var conText = ""
+                for (i = 0; i < (paxConsCount-1); i++){
+                  conText += String(paxCons[i]) + ", ";
+                }
+                conText += String(paxCons[paxConsCount-1]);
+                return conText;
+              } else {
+                return "None";
+              }
+            }
+
+            function getCodeText(){
+              var codeFilters = [+paxHrFra, +paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
+              var codeFilterCount = codeFilters.length;
+              var codeText = "";
+              var vizCodes = ["Human Rights Framework", "Human Rights/Rule of Law", "Political Institutions", "Power Sharing: Economic", "Power Sharing: Military", "Power Sharing: Political", "Power Sharing: Territorial", "Transitional Justice Past Mechanism", "Women, Girls and Gender"];
+              var codeIndeces = [];
+              for (i = 0; i < codeFilterCount; i++){
+                if (codeFilters[i] > 0){
+                  // codeIndeces.push(i);
+                  codeText += " " + vizCodes[i] + ",";
+                }
+              }
+              if (codeText.length == 0){
+                return " None";
+              }
+              codeText = codeText.slice(0,-1);
+              return codeText;
+            }
+
+            function setAgtTimePeriod(d){
+              // console.log(newMinDay);
+              // console.log(newMaxDay);
+              var minDate = parseDate(newMinDay);
+              var maxDate = parseDate(newMaxDay);
+              var agmtDat = d.Dat;
+              if ((agmtDat >= minDate) && (agmtDat <= maxDate)){
+                return d;
+              }
+            }
 
             function setAgtFilters(d){
-              var agmtCodes = [d.GeWom, d.HrFra, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech];
-              var codeFilters = [+paxGeWom, +paxHrFra, +paxHrGen, +paxEps, +paxMps, +paxPol, +paxPolps, +paxTerps, +paxTjMech];
+              var agmtCodes = [d.HrFra, d.HrGen, d.Pol, d.Eps, d.Mps, d.Polps, d.Terps, d.TjMech, d.GeWom, ];
+              var codeFilters = [+paxHrFra, +paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
               var codeFilterCount = codeFilters.length;
               if (paxANY == 1){
                 for (i = 0; i < codeFilterCount; i++){
                   if ((codeFilters[i] == 1) && (agmtCodes[i] > 0)){
                     return d;
+                  } else if (codeFilters[i] == 0){
                   }
                 }
               } else { // if paxALL == 1
@@ -356,6 +427,7 @@ function callFunction() {
                 for (j = 0; j < codeFilterCount; j++){
                   if ((codeFilters[j] == 1) && agmtCodes[j] == 0){
                     mismatch = true;
+                  } else if (codeFilters[j] == 0){
                   }
                 }
                 if (!mismatch){
@@ -365,7 +437,6 @@ function callFunction() {
             }
 
             function setAgtCons(d){
-              // TO DO: list item is single con/entity
               var agmtCon = String(d.Con);
               if (paxConRule == "any"){
                 if (paxCons.length > 0){

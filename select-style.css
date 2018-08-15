@@ -98,6 +98,35 @@ DROPDOWNS
   padding: 8px 2px;
 }
 /*
+YEARS DROPDOWN
+*/
+.TimeContent {
+  display: none;
+  position: absolute;
+  background-color: #dddddd;
+  width: 91%;
+  overflow: auto;
+  padding: 4px;
+  max-height: 250px;
+  z-index: 1;
+}
+.dropdown:hover .TimeContent {
+  display: block;
+}
+.TimeContent input {
+  color: #000000;
+  font-weight: bold;
+  padding: 4px;
+  text-decoration: none;
+  display: inline;
+}
+.TimeContent label, a {
+  color: #000000;
+  font-weight: normal;
+  padding: 4px;
+  display: inline;
+}
+/*
 CON (COUNTRY & ENTITY) DROPDOWN
 */
 .ConContent {

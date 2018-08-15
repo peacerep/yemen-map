@@ -9,6 +9,7 @@ window.onload = function() {
     localStorage.setItem("paxCons", JSON.stringify(document.getElementsByName("Con").id));
     window.localStorage.setItem("updateVertical","false");
     window.localStorage.setItem("updateHorizontal","true");
+    paxCheckTime();
     paxConsAllUncheck(); // Check all country/entity values
     paxConRuleAll(); // Display agreements with any checked country/entity
     paxFilterUncheck(); // Check all code filters
@@ -29,6 +30,22 @@ window.onload = function() {
     // document.getElementById("Proportions").onclick = function(event){
     //   localStorage.setItem("paxTimelineView", "Proportions");
     // }
+
+    // Time listeners
+    document.getElementById("StartYears").onclick = function(event){
+      let target = event.target;
+      var startDate = "01/01/"+String(target.id);
+      window.localStorage.setItem("paxNewMinDay",startDate);
+      window.localStorage.setItem("updateVertical","false");
+      window.localStorage.setItem("updateHorizontal","true");
+    }
+    document.getElementById("EndYears").onclick = function(event){
+      let target = event.target;
+      var endDate = "31/12/"+String(target.id);
+      window.localStorage.setItem("paxNewMaxDay",endDate);
+      window.localStorage.setItem("updateVertical","false");
+      window.localStorage.setItem("updateHorizontal","true");
+    }
 
     // Country/entity listeners
     document.getElementById("anyCon").onclick = function(event) {
@@ -122,18 +139,38 @@ window.onload = function() {
     if (window.performance) {
       if (performance.navigation.TYPE_RELOAD) {
         localStorage.setItem("paxCons", JSON.stringify(document.getElementsByName("Con").id));
-        window.localStorage.setItem("updateVertical","false");
-        window.localStorage.setItem("updateHorizontal","true");
+        paxCheckTime();
         paxConsAllUncheck(); // Check all country/entity values
         paxConRuleAll(); // Display agreements with any checked country/entity
         paxFilterUncheck(); // Check all code filters
         storeBlankAgtDetails();// Empty agreement details in localStorage
         paxRuleAll(); // Pick code filter rule ALL
-        // localStorage.setItem("paxTimelineView","Chronology");
+        window.localStorage.setItem("updateVertical","false");
+        window.localStorage.setItem("updateHorizontal","true");
       }
     }
 }
 
+function paxCheckTime(){
+  window.localStorage.setItem("paxNewMinDay","01/01/1990");
+  window.localStorage.setItem("paxNewMaxDay","31/12/2015");
+  var startYears = document.getElementsByName("StartYear")
+  for (i = 0; i < startYears.length; i++){
+    if (startYears[i].id == "1990"){
+      startYears[i].checked == true;
+    } else {
+      startYears[i].checked == false;
+    }
+  }
+  var endYears = document.getElementsByName("EndYear")
+  for (i = 0; i < endYears.length; i++){
+    if (endYears[i].id == "2015"){
+      endYears[i].checked == true;
+    } else {
+      endYears[i].checked == false;
+    }
+  }
+}
 function paxConRuleAny() {
   console.log("Selected ANY Con");
   document.getElementById("anyCon").checked = "true";

@@ -25,6 +25,15 @@ a#tCount, a#tProp, a#Reset{
 /*
 TIMELINE
 */
+.description {
+  color:black;
+  font-size: 10px;
+  text-decoration: none;
+  display: inline;
+  font-family: "Roboto", sans-serif;
+  font-weight: normal;
+}
+
 #chart{
   display: flex;
   flex-shrink:0;
