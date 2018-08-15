@@ -21,7 +21,8 @@ var paxALL = window.localStorage.setItem("paxALL",1); // Selected ALL filter rul
 
 window.localStorage.setItem("paxConRule","all"); // Selected ANY country/entity rule
 
-// var oldFilters = [+paxGeWom, +paxHrFra, +paxHrGen, +paxEps, +paxMps, +paxPol, +paxPolps, +paxTerps, +paxTjMech, +paxANY, +paxALL];
+var newMinDay = window.localStorage.setItem("paxNewMinDay", "01/01/1990");
+var newMaxDay = window.localStorage.getItem("paxNewMaxDay", "31/12/2015");
 
 callFunction();
 d3.select(window).on("resize", callFunction);
@@ -49,6 +50,9 @@ function getFilters(){
   paxPol = locStor.getItem("paxPol");
   paxGeWom = locStor.getItem("paxGeWom");
   paxTjMech = locStor.getItem("paxTjMech");
+
+  newMinDay = locStor.getItem("paxNewMinDay");
+  newMaxDay = locStor.getItem("paxNewMaxDay");
 };
 
 function callFunction() {
@@ -90,7 +94,7 @@ function callFunction() {
       width = width - margin.left - margin.right,
       agtHeight = 2,
       xHeight = 10,
-      agtPadding = 2,
+      agtPadding = 1,
       agtSpacing = 1;
 
   // Obtain data
@@ -140,15 +144,26 @@ function callFunction() {
           var height = (maxAgts*agtHeight)+(xHeight); //defines w & h as inner dimensions of chart area
           // console.log(maxAgts); // 91
 
-          // Calculate the size of each agreement in the display space
-          var agtWidth = (width/(yrList.length))-agtPadding;
-
           // Set up the x axis
-          var minYear = d3.min(data,function(d){ return parseYear(d.Year-1); });
-          var maxYear = d3.max(data,function(d){ return parseYear(d.Year+1); });
-          var x = d3.scaleTime()
-                      .domain([minYear,maxYear])  // data space
-                      .range([margin.left,width]);  // display space
+          // Find the earliest & latest years in which agreements are written
+          if ((newMinDay.length > 0) && (newMaxDay.length > 0)){
+            var minYear = +(newMinDay.substring(6))-1;
+            var maxYear = +(newMaxDay.substring(6))+1;
+            var x = d3.scaleTime()
+                  .domain([parseYear(minYear),parseYear(maxYear)])
+                  .range([margin.left,width]);
+          } else {
+            var minYear = d3.min(data,function(d){ return parseYear(d.Year-1); });
+            window.localStorage.setItem("paxNewMaxDay", ("01/01/"+minYear));
+            var maxYear = d3.max(data,function(d){ return parseYear(d.Year+1); });
+            window.localStorage.setItem("paxNewMaxDay", ("31/12/"+maxYear));
+            var x = d3.scaleTime()
+                        .domain([minYear,maxYear])  // data space
+                        .range([margin.left,width]);  // display space
+          }
+
+          // Calculate the size of each agreement in the display space
+          var agtWidth = width/(maxYear-minYear)-agtPadding;  //(width/(yrList.length))-agtPadding;
 
           // Define the full timeline chart SVG element
           var svg = d3.select("body").select("#chart").append("svg")
@@ -163,6 +178,7 @@ function callFunction() {
             var rects = chartGroup.selectAll("rects.agt")
                 .data(years[year].values)
               .enter().append("rect")
+              .filter(function(d){ return setAgtTimePeriod(d); })
               .filter(function(d){ return setAgtFilters(d); })
               .filter(function(d){ return setAgtCons(d); })
                 .attr("class","agt")
@@ -214,6 +230,17 @@ function callFunction() {
                    window.localStorage.setItem("paxsubstage", "");
                  });
 
+          }
+
+          function setAgtTimePeriod(d){
+            // console.log(newMinDay);
+            // console.log(newMaxDay);
+            var minDate = parseDate(newMinDay);
+            var maxDate = parseDate(newMaxDay);
+            var agmtDat = d.Dat;
+            if ((agmtDat >= minDate) && (agmtDat <= maxDate)){
+              return d;
+            }
           }
 
           function setAgtFilters(d){

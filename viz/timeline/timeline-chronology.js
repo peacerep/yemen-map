@@ -365,6 +365,9 @@ function callFunction() {
                         .attr("class","description")
                         .text("Selected Time Period: "+newMinDay+" through "+newMaxDay);
 
+            /*
+            FUNCTIONS
+            */
             function getConText(paxCons){
               var paxConsCount = paxCons.length;
               if (paxConsCount == 161){
