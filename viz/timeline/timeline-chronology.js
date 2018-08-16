@@ -205,28 +205,12 @@ function callFunction() {
 
           var chartGroup = svg.append("g")
                       .attr("class","chartGroup") //
-                      .attr("transform","translate("+margin.left+","+margin.top+")") //;
-
-          /*
-          WHY DO AGREEMENTS REMAIN VISIBLE OUTSIDE BOUNDS OF X AXIS???
-          */
-          // function setVisibility(d, zoom, newMinDay, newMaxDay){
-          //   // Hide agreements outside bounds of zoomed-in axis
-          //   if (!zoom){
-          //     return "visible";
-          //   } else {
-          //     if ((d.Dat >= parseDate(newMinDay)) && (d.Dat <= parseDate(newMaxDay))){
-          //       return "visible";
-          //     } else {
-          //       return "hidden"
-          //     }
-          //   }
-          // };
+                      .attr("transform","translate("+margin.left+","+margin.top+")");
 
           // Make one rectangle per agreement grouped by Dat
           for (dat = 0; dat < datList.length; dat++){
             var datGroup = chartGroup.append("g")
-                .attr("class","yearGroup");
+                .attr("class","datGroup");
 
             var rects = datGroup.selectAll("rect.agt")
                 .data(dats[dat].values)

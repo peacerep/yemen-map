@@ -181,7 +181,7 @@ function callFunction(click) {
 
           for (year = 0; year < yrList.length; year++){
             var chartGroup = svg.append("g")
-                        .attr("class","chartGroup")
+                        .attr("class","yearGroup")
                         .attr("transform","translate("+margin.left+","+margin.top+")")
 
             var rects = chartGroup.selectAll("rects.agt")
