@@ -135,7 +135,7 @@ function callFunction() {
             svgtest.remove();
           };
 
-          var margin = {top: 5, right: 5, bottom: 5, left: 5}, //read clockwise from top
+          var margin = {top: 4, right: 5, bottom: 5, left: 5}, //read clockwise from top
               width = parseInt(d3.select("body").style("width"), 10),
               width = width - margin.left - margin.right,
               height = 140 - margin.top - margin.bottom,
@@ -351,17 +351,17 @@ function callFunction() {
             */
             chartGroup.append("text")
                         .attr("x", margin.left+"px")
-                        .attr("y", height-xHeight-(agtHeight)-(agtPadding*10))
+                        .attr("y", margin.top)
                         .attr("class","description")
                         .text("Selected Countries/Entities: "+(getConText(paxCons)));
             chartGroup.append("text")
                         .attr("x", margin.left+"px")
-                        .attr("y", height-xHeight-(agtHeight)-(agtPadding*7))
+                        .attr("y", margin.top*4)
                         .attr("class","description")
                         .text("Selected Codes:"+(getCodeText()));
             chartGroup.append("text")
                         .attr("x", margin.left+"px")
-                        .attr("y", height-xHeight-(agtHeight)-(agtPadding*4))
+                        .attr("y", margin.top*7)
                         .attr("class","description")
                         .text("Selected Time Period: "+newMinDay+" through "+newMaxDay);
 

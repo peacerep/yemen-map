@@ -24,13 +24,16 @@ window.localStorage.setItem("paxConRule","all"); // Selected ANY country/entity 
 var newMinDay = window.localStorage.setItem("paxNewMinDay", "01/01/1990");
 var newMaxDay = window.localStorage.getItem("paxNewMaxDay", "31/12/2015");
 
-callFunction();
-d3.select(window).on("resize", callFunction);
+// Hide yearly count text upon load
+var click = false;
+
+callFunction(click);
+d3.select(window).on("resize", callFunction(click));
 window.addEventListener("storage", toUpdate);
 
 function toUpdate(){
   if (window.localStorage.getItem("updateHorizontal") == "true"){
-    return callFunction();
+    return callFunction(click);
   }
 }
 
@@ -55,7 +58,7 @@ function getFilters(){
   newMaxDay = locStor.getItem("paxNewMaxDay");
 };
 
-function callFunction() {
+function callFunction(click) {
   console.log("Drawing visualization of yearly grouping");
   var paxCons = JSON.parse(window.localStorage.getItem("paxCons")); // Country/entity list (includes all upon load)
   var paxConRule = localStorage.getItem("paxConRule");
@@ -89,12 +92,13 @@ function callFunction() {
   var formatDay = d3.timeFormat("%j");  // day of the year as decimal number
   var formatYear = d3.timeFormat("%Y");
 
-  var margin = {top: 5, right: 65, bottom: 5, left: 5}, //read clockwise from top
+  var margin = {top: 4, right: 65, bottom: 5, left: 5}, //read clockwise from top
       width = parseInt(d3.select("body").style("width"), 10),
       width = width - margin.left - margin.right,
-      agtHeight = 2,
+      descriptHeight = 20,
+      agtHeight = 1.5,
       xHeight = 10,
-      agtPadding = 1,
+      agtPadding = 0.5,
       agtSpacing = 1;
 
   // Obtain data
@@ -134,6 +138,11 @@ function callFunction() {
                .sortValues(function(a,b){ return d3.descending(a.Dat, b.Dat); })
                .entries(data);
           var yrList = (d3.map(years, function(year){ return year.key; })).keys(); // array of year values
+
+          var yr_count = d3.nest()
+                .key(function(d){ return d.Year; }).sortKeys(d3.ascending)
+                .rollup(function(leaves){ return leaves.length; })
+                .entries(data);
           // console.log(years); // an array of objects
           // console.log(years[0].values); // array of objects (one for each agreement in 1990)
           // console.log(years[0].values[0]); // first agreement object from 1990
@@ -141,7 +150,7 @@ function callFunction() {
 
           // Find the maximum number of agreements in a single year
           var maxAgts = d3.max(years, function(year){ return year.values.length; });
-          var height = (maxAgts*agtHeight)+(xHeight); //defines w & h as inner dimensions of chart area
+          var height = (maxAgts*agtHeight)+(xHeight*2)+(descriptHeight)+(margin.top*7); //defines w & h as inner dimensions of chart area
           // console.log(maxAgts); // 91
 
           // Set up the x axis
@@ -163,7 +172,7 @@ function callFunction() {
           }
 
           // Calculate the size of each agreement in the display space
-          var agtWidth = width/(maxYear-minYear)-agtPadding;  //(width/(yrList.length))-agtPadding;
+          var agtWidth = width/(maxYear-minYear)-agtPadding;
 
           // Define the full timeline chart SVG element
           var svg = d3.select("body").select("#chart").append("svg")
@@ -172,7 +181,7 @@ function callFunction() {
 
           for (year = 0; year < yrList.length; year++){
             var chartGroup = svg.append("g")
-                        .attr("class","chartGroup") //
+                        .attr("class","chartGroup")
                         .attr("transform","translate("+margin.left+","+margin.top+")")
 
             var rects = chartGroup.selectAll("rects.agt")
@@ -187,7 +196,7 @@ function callFunction() {
                 .attr("value",function(d){ return d.Year; })
                 .attr("fill","black")
                 .attr("stroke","#c4c4c4")  // same as html background-color
-                .attr("stroke-width","1px")
+                .attr("stroke-width","0.5px")
                 .style("opacity", "0.7")
                 .attr("x", function(d){ return x(parseYear(d.Year)) - (agtWidth/2); })
                 .attr("y",function(d,i){ return (height-xHeight-margin.bottom-(agtHeight*1.5)-((agtHeight)*(i*agtSpacing)))+"px"; })
@@ -229,7 +238,63 @@ function callFunction() {
                    window.localStorage.setItem("paxstage", "");
                    window.localStorage.setItem("paxsubstage", "");
                  });
+          }
 
+          /*
+          TIMELINE DESCRIPTION
+          */
+          svg.append("text")
+                      .attr("x", margin.left+"px")
+                      .attr("y", margin.top*2)
+                      .attr("class","description")
+                      .text("Selected Countries/Entities: "+(getConText(paxCons)));
+          svg.append("text")
+                      .attr("x", margin.left+"px")
+                      .attr("y", (margin.top*5))
+                      .attr("class","description")
+                      .text("Selected Codes:"+(getCodeText()));
+          svg.append("text")
+                      .attr("x", margin.left+"px")
+                      .attr("y", (margin.top*8))
+                      .attr("class","description")
+                      .text("Selected Time Period: "+newMinDay+" through "+newMaxDay);
+
+          /*
+          FUNCTIONS
+          */
+          function getConText(paxCons){
+            var paxConsCount = paxCons.length;
+            if (paxConsCount == 161){
+              return "All";
+            } else if (paxConsCount > 0){
+              var conText = ""
+              for (i = 0; i < (paxConsCount-1); i++){
+                conText += String(paxCons[i]) + ", ";
+              }
+              conText += String(paxCons[paxConsCount-1]);
+              return conText;
+            } else {
+              return "None";
+            }
+          }
+
+          function getCodeText(){
+            var codeFilters = [+paxHrFra, +paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
+            var codeFilterCount = codeFilters.length;
+            var codeText = "";
+            var vizCodes = ["Human Rights Framework", "Human Rights/Rule of Law", "Political Institutions", "Power Sharing: Economic", "Power Sharing: Military", "Power Sharing: Political", "Power Sharing: Territorial", "Transitional Justice Past Mechanism", "Women, Girls and Gender"];
+            var codeIndeces = [];
+            for (i = 0; i < codeFilterCount; i++){
+              if (codeFilters[i] > 0){
+                // codeIndeces.push(i);
+                codeText += " " + vizCodes[i] + ",";
+              }
+            }
+            if (codeText.length == 0){
+              return " None";
+            }
+            codeText = codeText.slice(0,-1);
+            return codeText;
           }
 
           function setAgtTimePeriod(d){
