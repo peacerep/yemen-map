@@ -1,5 +1,5 @@
 /*
-Horizontal Timeline with Agreements Grouped by Year showing Yearly Total Count
+Horizontal Timeline with Agreements Grouped by Year showing Yearly Code Proportions
 */
 
 // Define one key/value pair per category (code) by which to filter which
@@ -188,13 +188,13 @@ function callFunction(click) {
                 .data(years[year].values)
               .enter().append("rect")
               .filter(function(d){ return setAgtTimePeriod(d); })
-              .filter(function(d){ return setAgtFilters(d); })
+              // .filter(function(d){ return setAgtFilters(d); })
               .filter(function(d){ return setAgtCons(d); })
                 .attr("class","agt")
                 .attr("id",function(d){ return d.AgtId; })
                 .attr("name",function(d){ return d.Agt; })
                 .attr("value",function(d){ return d.Year; })
-                .attr("fill","black")
+                .attr("fill", function(d){ return setAgtColors(d); })//"black")
                 .attr("stroke","#c4c4c4")  // same as html background-color
                 .attr("stroke-width","0.5px")
                 .style("opacity", "0.7")
@@ -226,7 +226,7 @@ function callFunction(click) {
                     window.localStorage.setItem("paxsubstage", substage);
                  });
             rects.on("mouseout",function(d) {
-                   this.style.fill = "black"
+                   this.style.fill = setAgtColors(d);
                    this.style.stroke = "#c4c4c4";
                    window.localStorage.setItem("updateVertical","false");
                    window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
@@ -239,19 +239,23 @@ function callFunction(click) {
                    window.localStorage.setItem("paxsubstage", "");
                  });
 
-            var yrCount = getCount(years[year].values);
+             // Filter by code, country, & time to determine height of year &
+             // thus the y coordinate value for the text
+             var yrCount = getCount(years[year].values);
 
-            var text = chartGroup.selectAll("text.count")
+             var text = chartGroup.selectAll("text.count")
                   .data(years[year].values)
                .enter().append("text")
+               .filter(function(d){ return setAgtTimePeriod(d); })
+               .filter(function(d){ return setAgtCons(d); })
                   .attr("class","count")
                   .attr("x", function(d){ return x(parseYear(d.Year))})
                   .attr("y", height-(xHeight*2)-(yrCount*agtHeight))
-                  .text(yrCount)
+                  .text(getProp(yrCount, years[year].values))
                   .style("font-family", "sans-serif")
                   .style("font-size", "10px")
                   .style("font-weight", "bold")
-                  .style("fill","black")
+                  .style("fill","steelblue")
                   .style("font-weight","normal")
                   .attr("text-anchor", "middle");
 
@@ -314,8 +318,10 @@ function callFunction(click) {
             return codeText;
           }
 
-          function getCount(values){
-            var count = values.length;
+          function getProp(yrCount, values){
+            // Subtract agreements that don't have selected countries/entities
+            // (values already filtered by time)
+            var total = values.length;
             for (v = 0; v < values.length; v++){
               var d = values[v];
               var subtracted = false;
@@ -328,7 +334,7 @@ function callFunction(click) {
                 for (i = 0; i < codeFilterCount; i++){
                   if ((codeFilters[i] > 0) && (agmtCodes[i] > 0)){ pass = true; }
                 } if (!pass) {
-                  count -= 1;
+                  total -= 1;
                   subtracted = true;
                 }
               } else { // if paxALL == 1
@@ -336,12 +342,11 @@ function callFunction(click) {
                 for (j = 0; j < codeFilterCount; j++){
                   if ((codeFilters[j] > 0) && agmtCodes[j] == 0){ mismatch = true; }
                 } if (mismatch){
-                    count -= 1;
+                    total -= 1;
                     subtracted = true;
                 }
               }
               if (!subtracted){
-                // Subtract agreements that don't have selected countries/entities
                 var agmtCon = String(d.Con);
                 if (paxConRule == "any"){
                   if (paxCons.length > 0){
@@ -349,8 +354,7 @@ function callFunction(click) {
                       var pass = false;
                       if (agmtCon.includes(paxCons[i])){ pass = true; }
                     } if (!pass){
-                      count -= 1;
-                      subtracted = true;
+                      total -= 1;
                     }
                   }
                 } if (paxConRule == "all") {
@@ -358,12 +362,41 @@ function callFunction(click) {
                   for (j = 0; j < paxCons.length; j++){
                     if (!(agmtCon.includes(paxCons[j]))){
                       mismatch = true;
-                      // console.log("Mismatched: "+agmtCon);
                     }
                   } if (mismatch){
-                    count -= 1;
-                    subtracted = true;
+                    total -= 1;
                   }
+                }
+              }
+            }
+            var prop = (+total/+yrCount)*100;
+            var propText = String(prop).substring(0,4)+"%"
+            return propText;
+          }
+
+          function getCount(values){
+            var count = values.length;
+            for (v = 0; v < values.length; v++){
+              var d = values[v];
+              // Subtract agreements that don't have selected countries/entities
+              var agmtCon = String(d.Con);
+              if (paxConRule == "any"){
+                if (paxCons.length > 0){
+                  for (i = 0; i < paxCons.length; i++){
+                    var pass = false;
+                    if (agmtCon.includes(paxCons[i])){ pass = true; }
+                  } if (!pass){
+                    count -= 1;
+                  }
+                }
+              } if (paxConRule == "all") {
+                var mismatch = false;
+                for (j = 0; j < paxCons.length; j++){
+                  if (!(agmtCon.includes(paxCons[j]))){
+                    mismatch = true;
+                  }
+                } if (mismatch){
+                  count -= 1;
                 }
               }
             }
@@ -371,8 +404,6 @@ function callFunction(click) {
           }
 
           function setAgtTimePeriod(d){
-            // console.log(newMinDay);
-            // console.log(newMaxDay);
             var minDate = parseDate(newMinDay);
             var maxDate = parseDate(newMaxDay);
             var agmtDat = d.Dat;
@@ -381,14 +412,14 @@ function callFunction(click) {
             }
           }
 
-          function setAgtFilters(d){
+          function setAgtColors(d){
             var agmtCodes = [d.GeWom, d.HrFra, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech];
             var codeFilters = [+paxGeWom, +paxHrFra, +paxHrGen, +paxEps, +paxMps, +paxPol, +paxPolps, +paxTerps, +paxTjMech];
             var codeFilterCount = codeFilters.length;
             if (paxANY == 1){
               for (i = 0; i < codeFilterCount; i++){
                 if ((codeFilters[i] == 1) && (agmtCodes[i] > 0)){
-                  return d;
+                  return "steelblue";
                 }
               }
             } else { // if paxALL == 1
@@ -399,9 +430,10 @@ function callFunction(click) {
                 }
               }
               if (!mismatch){
-                return d;
+                return "steelblue";
               }
             }
+            return "black"
           }
 
           function setAgtCons(d){
@@ -409,9 +441,6 @@ function callFunction(click) {
             if (paxConRule == "any"){
               if (paxCons.length > 0){
                 for (i = 0; i < paxCons.length; i++){
-                  // if (!(agmtCon.includes(paxCons[i]))){
-                  //   console.log(agmtCon);
-                  // }
                   if (agmtCon.includes(paxCons[i])){
                     return d;
                   }

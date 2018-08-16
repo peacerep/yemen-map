@@ -53,14 +53,14 @@ Grid Layout
   /* grid-column: 2 / 62; */
   grid-column: 2 / 8;
   /* grid-row: 2 / 32; */
-  grid-row: 2 / 32;
+  grid-row: 2 / 34;
 }
 .item-d {
   grid-area: map;
   /* grid-column: 2 / 62; */
   grid-column: 2 / 8;
   /* grid-row: 32 / 82; */
-  grid-row: 32 / 100;
+  grid-row: 34 / 100;
 }
 .item-e {
   grid-area: selecter2;
