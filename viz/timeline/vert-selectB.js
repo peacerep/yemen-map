@@ -1,6 +1,6 @@
 window.onload = function() {
 
-  localStorage.setItem("paxVertConB",0);
+  localStorage.setItem("paxVertConB","None");
   document.getElementById("None").checked = true;
 
   // Country/entity listeners for vertical timelines (left to right)

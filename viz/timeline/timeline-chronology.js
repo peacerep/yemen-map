@@ -138,10 +138,10 @@ function callFunction() {
           var margin = {top: 4, right: 5, bottom: 5, left: 5}, //read clockwise from top
               width = parseInt(d3.select("body").style("width"), 10),
               width = width - margin.left - margin.right,
-              height = 140 - margin.top - margin.bottom,
+              height = 170 - margin.top - margin.bottom,
               descriptHeight = 20,
               agtHeight = (height/2)-descriptHeight,
-              xHeight = 15,
+              xHeight = 45,//15,
               agtPadding = 5,
               agtSpacing = 1;
 
@@ -271,35 +271,35 @@ function callFunction() {
                    window.localStorage.setItem("paxsubstage", "");
                  });
 
-                 rects.on("click", function(d){
-                   if (!zoom){
-                     zoom = true;
-                     var clickedDat = d.Dat;
-                     var clickedYear = +d.Year;
-                     var newMinYear;
-                     var newMaxYear;
-                     // Find minimum & maximum dates for zoomed-in x scale domain
-                     if (clickedYear == 1990){
-                       newMinYear = 1990;
-                       newMaxYear = 1992;
-                     } else if (clickedYear == 2015){
-                       newMinYear = 2013;
-                       newMaxYear = 2015;
-                     } else {
-                       newMinYear = clickedYear - 1;
-                       newMaxYear = clickedYear; // + 1;
-                     }
-                     var newMinDay = "01/01/"+newMinYear;
-                     window.localStorage.setItem("paxNewMinDay",newMinDay);
-                     var newMaxDay = "31/12/"+newMaxYear;
-                     window.localStorage.setItem("paxNewMaxDay",newMaxDay);
-                   } else {
-                     zoom = false;
-                     window.localStorage.setItem("paxNewMinDay","");
-                     window.localStorage.setItem("paxNewMaxDay","");
-                   }
-                   callFunction();
-                 });
+                 // rects.on("click", function(d){
+                 //   if (!zoom){
+                 //     zoom = true;
+                 //     var clickedDat = d.Dat;
+                 //     var clickedYear = +d.Year;
+                 //     var newMinYear;
+                 //     var newMaxYear;
+                 //     // Find minimum & maximum dates for zoomed-in x scale domain
+                 //     if (clickedYear == 1990){
+                 //       newMinYear = 1990;
+                 //       newMaxYear = 1992;
+                 //     } else if (clickedYear == 2015){
+                 //       newMinYear = 2013;
+                 //       newMaxYear = 2015;
+                 //     } else {
+                 //       newMinYear = clickedYear - 1;
+                 //       newMaxYear = clickedYear; // + 1;
+                 //     }
+                 //     var newMinDay = "01/01/"+newMinYear;
+                 //     window.localStorage.setItem("paxNewMinDay",newMinDay);
+                 //     var newMaxDay = "31/12/"+newMaxYear;
+                 //     window.localStorage.setItem("paxNewMaxDay",newMaxDay);
+                 //   } else {
+                 //     zoom = false;
+                 //     window.localStorage.setItem("paxNewMinDay","");
+                 //     window.localStorage.setItem("paxNewMaxDay","");
+                 //   }
+                 //   callFunction();
+                 // });
 
             } // end of for loop for rects.agt
 
@@ -456,6 +456,7 @@ function callFunction() {
 
            var gX = chartGroup.append("g")
                 .attr("class","xaxis")
+                .attr("id","dat")
                 .attr("transform","translate(0,"+(height-xHeight)+")")
                 .call(xAxis);
 

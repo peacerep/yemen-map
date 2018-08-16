@@ -58,7 +58,7 @@ function callFunction() {
 
   var margin = {top: 5, right: 65, bottom: 5, left: 25}, //read clockwise from top
       // width = parseInt(d3.select("body").style("width"), 10),
-      height = 800 - margin.top - margin.bottom,
+      height = 880 - margin.top - margin.bottom,
       width = width = parseInt(d3.select("body").style("width"), 10),
       width = width - margin.left - margin.right,
       yWidth = 10,
@@ -143,7 +143,7 @@ function callFunction() {
 
           // Define the full timeline chart SVG element
           var svg = d3.select("body").select("#chartA").append("svg")
-              .attr("height", height + margin.top + margin.bottom)
+              .attr("height", height + (margin.top*8) + margin.bottom)
               .attr("width", width + margin.left + margin.right)
               .attr("class","A");
 
@@ -170,7 +170,7 @@ function callFunction() {
                 .attr("stroke-width","1px")
                 .style("opacity", "0.7")
                 .attr("x",function(d,i){ return (yWidth+margin.left+((agtWidth)*(i*agtSpacing)))+"px"; })
-                .attr("y", function(d){ return y(parseYear(d.Year)) - (agtHeight/2); })
+                .attr("y", function(d){ return y(parseYear(d.Year)) - (agtHeight/2) + (margin.top*7); })
                 .attr("width", agtWidth+"px")
                 .attr("height", agtHeight+"px");
 
@@ -188,7 +188,7 @@ function callFunction() {
                   this.style.fill = "#ffffff";
                   tooltip.style("opacity","0.9")
                     .style("left", (d3.event.pageX/2)+"px")
-                    .style("top", d3.event.pageY+"px")
+                    .style("top", (d3.event.pageY)+"px")
                     .style("background","#ffffff")
                     .style("padding","10px")
                     .attr("class","tooltip");
@@ -201,59 +201,87 @@ function callFunction() {
                  });
           }
 
-          // Draw Y axis for the entire chart
+          /*
+          TIMELINE DESCRIPTION
+          */
+          chartGroup.append("text")
+                      .attr("x","0px")
+                      .attr("y", margin.top*2)
+                      .attr("class","description")
+                      .text("Country/Entity: "+(localStorage.getItem("paxVertConA")));
+          chartGroup.append("text")
+                      .attr("x", "0px")
+                      .attr("y", margin.top*5)
+                      .attr("class","description")
+                      .text("Selected Codes: "+String(getCodeCount()));
+
+          /*
+          DRAW Y AXIS
+          */
           var yAxis = d3.axisLeft(y).tickFormat(d3.timeFormat("%Y")).tickPadding([5]);
 
           var gY = chartGroup.append("g")
                .attr("class","yaxis")
-               .attr("transform","translate("+(yWidth+margin.left)+","+"0)") //(height-xHeight-margin.bottom)+
+               .attr("transform","translate("+(yWidth+margin.left)+","+(margin.top*7)+")") //(height-xHeight-margin.bottom)+
                .call(yAxis);
 
-           function pickAgtCon(d){
-             var con = String(localStorage.getItem("paxVertConA"));
-             var agmtCon = String(d.Con);
-             if (agmtCon.includes(con)){
-               return d;
-             }
-           }
+          /*
+          FUNCTIONS
+          */
+          function getCodeCount(){
+            var codeFilters = [+paxHrFra, +paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
+            var codeFilterCount = codeFilters.length;
+            var codeText = 0;
+            for (i = 0; i < codeFilterCount; i++){
+              if (codeFilters[i] > 0){ codeText += 1; }
+            } return codeText;
+          }
 
-           function setVertAgtFilters(d){
-             var agmtCodes = [d.GeWom, d.HrFra, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech];
-             var codeFilters = [+paxGeWom, +paxHrFra, +paxHrGen, +paxEps, +paxMps, +paxPol, +paxPolps, +paxTerps, +paxTjMech];
-             var codeFilterCount = codeFilters.length;
-             if (paxANY == 1){
-               for (i = 0; i < codeFilterCount; i++){
-                 if ((+codeFilters[i] == 1) && (+agmtCodes[i] > 0)){
-                   return d;
-                 }
-               }
-             } else { // if paxALL == 1
-               var mismatch = false;
-               for (j = 0; j < codeFilterCount; j++){
-                 if ((+codeFilters[j] == 1) && (+agmtCodes[j] == 0)){
-                   mismatch = true;
-                 }
-               }
-               if (!mismatch){
+          function pickAgtCon(d){
+            var con = String(localStorage.getItem("paxVertConA"));
+            var agmtCon = String(d.Con);
+            if (agmtCon.includes(con)){
+             return d;
+            }
+          }
+
+          function setVertAgtFilters(d){
+            var agmtCodes = [d.GeWom, d.HrFra, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech];
+            var codeFilters = [+paxGeWom, +paxHrFra, +paxHrGen, +paxEps, +paxMps, +paxPol, +paxPolps, +paxTerps, +paxTjMech];
+            var codeFilterCount = codeFilters.length;
+            if (paxANY == 1){
+             for (i = 0; i < codeFilterCount; i++){
+               if ((+codeFilters[i] == 1) && (+agmtCodes[i] > 0)){
                  return d;
                }
              }
-           }
-
-           function getStageFill(d, stageValues, stageColors){
-             // d.StageSub value to color: "FrCons"
-             // d.Stage possible values to color: "Pre", "SubPar", "SubComp", "Imp", "Cea", "Other"
-             if (d.StageSub == stageValues[6]){ //"FrCons"
-               return stageColors[6];
-             } else {
-               var stageI = stageValues.indexOf(d.Stage);
-               if (stageI != -1){
-                 return stageColors[stageI];
-               } else {
-                 return "black";
+            } else { // if paxALL == 1
+             var mismatch = false;
+             for (j = 0; j < codeFilterCount; j++){
+               if ((+codeFilters[j] == 1) && (+agmtCodes[j] == 0)){
+                 mismatch = true;
                }
              }
-           }
+             if (!mismatch){
+               return d;
+             }
+            }
+          }
+
+          function getStageFill(d, stageValues, stageColors){
+            // d.StageSub value to color: "FrCons"
+            // d.Stage possible values to color: "Pre", "SubPar", "SubComp", "Imp", "Cea", "Other"
+            if (d.StageSub == stageValues[6]){ //"FrCons"
+             return stageColors[6];
+            } else {
+             var stageI = stageValues.indexOf(d.Stage);
+             if (stageI != -1){
+               return stageColors[stageI];
+             } else {
+               return "black";
+             }
+            }
+          }
 
       }) // end of .get(error,data)
 

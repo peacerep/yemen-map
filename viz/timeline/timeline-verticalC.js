@@ -59,7 +59,7 @@ function callFunction() {
 
   var margin = {top: 5, right: 65, bottom: 5, left: 25}, //read clockwise from top
       // width = parseInt(d3.select("body").style("width"), 10),
-      height = 800 - margin.top - margin.bottom,
+      height = 880 - margin.top - margin.bottom,
       width = width = parseInt(d3.select("body").style("width"), 10),
       width = width - margin.left - margin.right,
       yWidth = 10,
@@ -143,7 +143,7 @@ function callFunction() {
 
           // Define the full timeline chart SVG element
           var svg = d3.select("body").select("#chartC").append("svg")
-              .attr("height", height + margin.top + margin.bottom)
+              .attr("height", height + (margin.top*8) + margin.bottom)
               .attr("width", width + margin.left + margin.right)
               .attr("class","C");
 
@@ -170,7 +170,7 @@ function callFunction() {
                 .attr("stroke-width","1px")
                 .style("opacity", "0.7")
                 .attr("x",function(d,i){ return (yWidth+margin.left+((agtWidth)*(i*agtSpacing)))+"px"; })
-                .attr("y", function(d){ return y(parseYear(d.Year)) - (agtHeight/2); })
+                .attr("y", function(d){ return y(parseYear(d.Year)) - (agtHeight/2) + (margin.top*7); })
                 .attr("width", agtWidth+"px")
                 .attr("height", agtHeight+"px");
 
@@ -201,17 +201,42 @@ function callFunction() {
                  });
           }
 
-          // Draw Y axis for the entire chart
+          /*
+          TIMELINE DESCRIPTION
+          */
+          chartGroup.append("text")
+                      .attr("x","0px")
+                      .attr("y", margin.top*2)
+                      .attr("class","description")
+                      .text("Country/Entity: "+(localStorage.getItem("paxVertConC")));
+          chartGroup.append("text")
+                      .attr("x", "0px")
+                      .attr("y", margin.top*5)
+                      .attr("class","description")
+                      .text("Selected Codes: "+String(getCodeCount()));
+
+          /*
+          DRAW Y AXIS
+          */
           var yAxis = d3.axisLeft(y).tickFormat(d3.timeFormat("%Y")).tickPadding([5]);
 
           var gY = chartGroup.append("g")
-             .attr("class","yaxis")
-             .attr("transform","translate("+(yWidth+margin.left)+","+"0)") //(height-xHeight-margin.bottom)+
-             .call(yAxis);
+               .attr("class","yaxis")
+               .attr("transform","translate("+(yWidth+margin.left)+","+(margin.top*7)+")") //(height-xHeight-margin.bottom)+
+               .call(yAxis);
 
           /*
-          FILTERING & COLORING FUNCTIONS
+          FUNCTIONS
           */
+          function getCodeCount(){
+            var codeFilters = [+paxHrFra, +paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
+            var codeFilterCount = codeFilters.length;
+            var codeText = 0;
+            for (i = 0; i < codeFilterCount; i++){
+              if (codeFilters[i] > 0){ codeText += 1; }
+            } return codeText;
+          }
+
           function pickAgtCon(d){
             var con = String(localStorage.getItem("paxVertConC"));
             var agmtCon = String(d.Con);

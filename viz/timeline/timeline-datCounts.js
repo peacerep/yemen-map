@@ -144,10 +144,10 @@ function callFunction() {
           var margin = {top: 4, right: 5, bottom: 5, left: 5}, //read clockwise from top
               width = parseInt(d3.select("body").style("width"), 10),
               width = width - margin.left - margin.right,
-              height = 140 - margin.top - margin.bottom,
+              height = 170 - margin.top - margin.bottom,
               descriptHeight = 20,
               agtHeight = 10,//(height/2)-descriptHeight,
-              xHeight = 15,
+              xHeight = 45,
               agtPadding = 5,
               agtSpacing = 1;
 
@@ -432,6 +432,7 @@ function callFunction() {
 
            var gX = chartGroup.append("g")
                 .attr("class","xaxis")
+                .attr("id","dat")
                 .attr("transform","translate(0,"+(height-xHeight)+")")
                 .call(xAxis);
 

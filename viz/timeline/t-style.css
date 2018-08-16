@@ -58,7 +58,9 @@ g.xaxis g.tick line {
 g.xaxis g.tick text {
   font-weight: normal;
 }
-rect.agt{
+g.xaxis#dat g.tick text {
+  text-anchor: start;
+  transform: rotate(45deg);
 }
 /* .zoom {
   cursor: zoom-in,zoom-out;
