@@ -190,65 +190,39 @@ VERTICAL TIMELINES LEGEND
     var stageColors = ["#377eb8","#ffff33","#ff7f00","#4daf4a","#e41a1c","#a65628","#984ea3","#000"];
     var stageValues = ["Pre", "SubPar", "SubComp", "Imp", "Cea", "Other", "FrCons", "Ren"];
 */
-table {
-   border-collapse: collapse;
-}
-
-table, th, td {
-  border: 0px;
-   font-family: "Roboto", sans-serif;
-   text-align: left;
-}
-th {
-  padding-top: 10px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  font-size: 10px;
-  font-weight: normal;
-  color: #000;
+table td {
+  font-family: "Roboto", sans-serif;
+  text-align: left;
 }
 td, tr {
-  padding: 10px;
+  padding: 4px;
   text-align: left;
   font-weight: normal;
   font-size: 10px;
 }
-tr {
-  opacity: 0.7;
-}
-td {
-  opacity: 1;
-}
-tr#Pre {
+td#Pre {
   background-color: #377eb8;
   color: #000;
 }
-tr#SubPar {
+td#SubPar {
   background-color: #ffff33;
-  color: #000;
 }
-tr#SubComp {
+td#SubComp {
   background-color: #ff7f00;
-  color: #000;
 }
-tr#Imp {
+td#Imp {
   color: #000;
   background-color: #4daf4a;
 }
-tr#Cea {
+td#Cea {
   background-color: #e41a1c;
-  color: #dddddd;
 }
-tr#Other {
+td#Other {
   background-color: #a65628;
-  color: #dddddd;
 }
-tr#FrCons {
+td#FrCons {
   background-color: #984ea3;
-  color: #dddddd;
 }
-tr#Ren{
+td#Ren{
   background-color: #000;
-  color: #dddddd;
 }
