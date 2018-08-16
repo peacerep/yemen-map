@@ -24,16 +24,13 @@ window.localStorage.setItem("paxConRule","all"); // Selected ANY country/entity 
 var newMinDay = window.localStorage.setItem("paxNewMinDay", "01/01/1990");
 var newMaxDay = window.localStorage.getItem("paxNewMaxDay", "31/12/2015");
 
-// Hide yearly count text upon load
-var click = false;
-
-callFunction(click);
-d3.select(window).on("resize", callFunction(click));
+callFunction();
+d3.select(window).on("resize", callFunction);
 window.addEventListener("storage", toUpdate);
 
 function toUpdate(){
   if (window.localStorage.getItem("updateHorizontal") == "true"){
-    return callFunction(click);
+    return callFunction();
   }
 }
 
@@ -58,7 +55,7 @@ function getFilters(){
   newMaxDay = locStor.getItem("paxNewMaxDay");
 };
 
-function callFunction(click) {
+function callFunction() {
   console.log("Drawing visualization of yearly grouping");
   var paxCons = JSON.parse(window.localStorage.getItem("paxCons")); // Country/entity list (includes all upon load)
   var paxConRule = localStorage.getItem("paxConRule");

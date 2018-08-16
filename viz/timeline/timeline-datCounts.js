@@ -102,8 +102,6 @@ function callFunction() {
   var formatDay = d3.timeFormat("%j");  // day of the year as decimal number
   var formatYear = d3.timeFormat("%Y");
 
-  var clicked = false; // keep track of whether an agreement on timeline has been clicked
-
   // Obtain data
   d3.csv("PAX_with_additional.csv")
       .row(function(d){ return{ Year:+d.Year,
