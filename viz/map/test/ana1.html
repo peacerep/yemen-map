@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>Peace agreement</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <link
+          rel="stylesheet"
+          href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"
+      />
+      <script
+              src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js">
+          </script>
+  <script src="https://npmcdn.com/@turf/turf/turf.min.js"></script>  <style>
+    body { margin:0; padding:0; }
+    #map { position:absolute; top:0; z-index:1;bottom:0; width:100%; }
+  </style>
+</head>
+<body>
+  <div id='map'></div>
+  <script type="text/javascript" src="json/countrygeo.json"></script>
+  <script type="text/javascript" src="json/us_states.json"></script>
+
+<script>
+
+countrydata = {'2': 'United States of America',
+  '20': 'Canada',
+  '31': 'Bahamas',
+  '40': 'Cuba',
+  '41': 'Haiti',
+  '41': 'Haiti',
+  '42': 'Dominican Republic',
+  '51': 'Jamaica',
+  '52': 'Trinidad and Tobago',
+  '53': 'Barbados',
+  '70': 'Mexico',
+  '80': 'Belize',
+  '89': 'United Provinces of Central America',
+  '90': 'Guatemala',
+  '91': 'Honduras',
+  '92': 'El Salvador',
+  '93': 'Nicaragua',
+  '94': 'Costa Rica',
+  '95': 'Panama',
+  '99': 'Great Colombia',
+  '100': 'Colombia',
+  '101': 'Venezuela',
+  '110': 'Guyana',
+  '115': 'Surinam',
+  '130': 'Ecuador',
+  '135': 'Peru',
+  '140': 'Brazil',
+  '145': 'Bolivia',
+  '150': 'Paraguay',
+  '155': 'Chile',
+  '160': 'Argentina',
+  '165': 'Uruguay',
+  '200': 'United Kingdom',
+  '205': 'Ireland',
+  '210': 'Netherlands',
+  '211': 'Belgium',
+  '212': 'Luxembourg',
+  '220': 'France',
+  '225': 'Switzerland',
+  '230': 'Spain',
+  '235': 'Portugal',
+  '240': 'Hanover',
+  '245': 'Bavaria',
+  '255': 'Germany (Prussia)',
+  '260': 'German Federal Republic',
+  '265': 'German Democratic Republic',
+  '267': 'Baden',
+  '269': 'Saxony',
+  '271': 'Württemberg',
+  '273': 'Hesse-Kassel (Electoral)',
+  '275': 'Hesse-Darmstadt (Ducal)',
+  '280': 'Mecklenburg-Schwerin',
+  '290': 'Poland',
+  '300': 'Austria-Hungary',
+  '305': 'Austria',
+  '310': 'Hungary',
+  '315': 'Czechoslovakia',
+  '316': 'Czech Republic',
+  '317': 'Slovakia',
+  '325': 'Italy',
+  '327': 'Papal States',
+  '329': 'Two Sicilies',
+  '332': 'Modena',
+  '335': 'Parma',
+  '337': 'Tuscany',
+  '338': 'Malta',
+  '339': 'Albania',
+  '341': 'Montenegro',
+  '341': 'Montenegro',
+  '343': 'Macedonia (Former Yugoslav Republic of)',
+  '344': 'Croatia',
+  '340': 'Serbia',
+  '340': 'Serbia',
+  '345': 'Yugoslavia',
+  '346': 'Bosnia-Herzegovina',
+  '347': 'Kosovo',
+  '349': 'Slovenia',
+  '350': 'Greece',
+  '352': 'Cyprus',
+  '355': 'Bulgaria',
+  '359': 'Moldova',
+  '360': 'Rumania',
+  '365': 'Russia (Soviet Union)',
+  '366': 'Estonia',
+  '366': 'Estonia',
+  '367': 'Latvia',
+  '367': 'Latvia',
+  '368': 'Lithuania',
+  '368': 'Lithuania',
+  '369': 'Ukraine',
+  '370': 'Belarus (Byelorussia)',
+  '371': 'Armenia',
+  '372': 'Georgia',
+  '373': 'Azerbaijan',
+  '375': 'Finland',
+  '380': 'Sweden',
+  '385': 'Norway',
+  '390': 'Denmark',
+  '395': 'Iceland',
+  '402': 'Cape Verde',
+  '404': 'Guinea-Bissau',
+  '411': 'Equatorial Guinea',
+  '420': 'Gambia',
+  '432': 'Mali',
+  '433': 'Senegal',
+  '434': 'Benin',
+  '435': 'Mauritania',
+  '436': 'Niger',
+  '437': 'Cote D’Ivoire',
+  '438': 'Guinea',
+  '439': 'Burkina Faso (Upper Volta)',
+  '450': 'Liberia',
+  '451': 'Sierra Leone',
+  '452': 'Ghana',
+  '461': 'Togo',
+  '471': 'Cameroon',
+  '475': 'Nigeria',
+  '481': 'Gabon',
+  '482': 'Central African Republic',
+  '483': 'Chad',
+  '484': 'Congo',
+  '490': 'Congo, Democratic Republic of (Zaire)',
+  '500': 'Uganda',
+  '501': 'Kenya',
+  '510': 'Tanzania/Tanganyika',
+  '511': 'Zanzibar',
+  '516': 'Burundi',
+  '517': 'Rwanda',
+  '520': 'Somalia',
+  '522': 'Djibouti',
+  '530': 'Ethiopia',
+  '531': 'Eritrea',
+  '540': 'Angola',
+  '541': 'Mozambique',
+  '551': 'Zambia',
+  '552': 'Zimbabwe (Rhodesia)',
+  '553': 'Malawi',
+  '560': 'South Africa',
+  '563': 'Transvaal',
+  '564': 'Orange Free State',
+  '565': 'Namibia',
+  '570': 'Lesotho',
+  '571': 'Botswana',
+  '572': 'Swaziland',
+  '580': 'Madagascar (Malagasy)',
+  '580': 'Madagascar',
+  '581': 'Comoros',
+  '590': 'Mauritius',
+  '600': 'Morocco',
+  '600': 'Morocco',
+  '615': 'Algeria',
+  '615': 'Algeria',
+  '616': 'Tunisia',
+  '616': 'Tunisia',
+  '620': 'Libya',
+  '620': 'Libya',
+  '625': 'Sudan',
+  '626': 'South Sudan',
+  '630': 'Iran (Persia)',
+  '640': 'Turkey (Ottoman Empire)',
+  '645': 'Iraq',
+  '651': 'Egypt',
+  '651': 'Egypt',
+  '652': 'Syria',
+  '660': 'Lebanon',
+  '663': 'Jordan',
+  '666': 'Israel',
+  '670': 'Saudi Arabia',
+  '678': 'Yemen (Arab Republic of Yemen)',
+  '690': 'Kuwait',
+  '692': 'Bahrain',
+  '694': 'Qatar',
+  '696': 'United Arab Emirates',
+  '698': 'Oman',
+  '700': 'Afghanistan',
+  '700': 'Afghanistan',
+  '701': 'Turkmenistan',
+  '702': 'Tajikistan',
+  '703': 'Kyrgyz Republic',
+  '704': 'Uzbekistan',
+  '705': 'Kazakhstan',
+  '710': 'China',
+  '711': 'Tibet',
+  '712': 'Mongolia',
+  '713': 'Taiwan',
+  '730': 'Korea',
+  '732': 'Korea, Republic of',
+  '740': 'Japan',
+  '750': 'India',
+  '760': 'Bhutan',
+  '770': 'Pakistan',
+  '771': 'Bangladesh',
+  '775': 'Myanmar (Burma)',
+  '775': 'Myanmar (Burma)',
+  '780': 'Sri Lanka (Ceylon)',
+  '781': 'Maldives',
+  '790': 'Nepal',
+  '800': 'Thailand',
+  '811': 'Cambodia (Kampuchea)',
+  '812': 'Laos',
+  '815': 'Vietnam (Annam/Cochin China/Tonkin)',
+  '816': 'Vietnam, Democratic Republic of',
+  '817': 'Vietnam, Republic of',
+  '820': 'Malaysia',
+  '830': 'Singapore',
+  '835': 'Brunei',
+  '840': 'Philippines',
+  '850': 'Indonesia',
+  '860': 'East Timor',
+  '900': 'Australia',
+  '910': 'Papua New Guinea',
+  '920': 'New Zealand',
+  '940': 'Solomon Islands',
+  '950': 'Fiji',
+  '680': 'Yemen, People Republic of',
+  '731': 'Korea, People Republic of'}          //gwno code
+countryMap = {'Abkhazia': ['43.0005', '41.00501'],
+   'Aceh': ['4', '97'],
+   'Afghanistan': ['34.516666666666666', '69.183333'],
+   'Aland Islands': ['60.116667', '19.900000'],
+   'Albania': ['41.31666666666667', '19.816667'],
+   'Algeria': ['36.75', '3.050000'],
+   'American Samoa': ['-14.266666666666667', '-170.700000'],
+   'Andorra': ['42.5', '1.516667'],
+   'Anjouan': ['-12.16672', '44.39944'],
+   'Angola': ['-8.833333333333334', '13.216667'],
+   'Anguilla': ['18.216666666666665', '-63.050000'],
+   'Antarctica': ['0', '0.000000'],
+   'Antigua and Barbuda': ['17.116666666666667', '-61.850000'],
+   'Assam': ['26', '93'],
+   'Argentina': ['-34.583333333333336', '-58.666667'],
+   'Armenia': ['40.166666666666664', '44.500000'],
+   'Aruba': ['12.516666666666667', '-70.033333'],
+   'Australia': ['-35.266666666666666', '149.133333'],
+   'Austria': ['48.2', '16.366667'],
+   'Aweil Counties': ['9.0', '27.0'],
+   'Azerbaijan': ['40.38333333333333', '49.866667'],
+   'Azawad': ['18.54778', '-2.33417'],
+   'Bahamas': ['25.083333333333332', '-77.350000'],
+   'Bahrain': ['26.233333333333334', '50.566667'],
+   'Bangladesh': ['23.716666666666665', '90.400000'],
+   'Barbados': ['13.1', '-59.616667'],
+   'Basque Country': ['43', '-2.75'],
+   'Belarus': ['53.9', '27.566667'],
+   'Belgium': ['50.833333333333336', '4.333333'],
+   'Belize': ['17.25', '-88.766667'],
+   'Benin': ['6.483333333333333', '2.616667'],
+   'Bermuda': ['32.28333333333333', '-64.783333'],
+   'Bhutan': ['27.466666666666665', '89.633333'],
+   'Bolivia': ['-16.5', '-68.150000'],
+   'Bosnia-Herzegovina': ['43.86666666666667', '18.416667'],
+   'Botswana': ['-24.633333333333333', '25.900000'],
+   'Bodoland': ['26.4', '90.27'],
+   'Bougainville': ['-6', '155'],
+   'Brazil': ['-15.783333333333333', '-47.916667'],
+   'British Indian Ocean Territory': ['-7.3', '72.400000'],
+   'British Virgin Islands': ['18.416666666666668', '-64.616667'],
+   'Brunei Darussalam': ['4.883333333333333', '114.933333'],
+   'Bulgaria': ['42.68333333333333', '23.316667'],
+   'Burkina Faso': ['12.366666666666667', '-1.516667'],
+   'Burundi': ['-3.3666666666666667', '29.350000'],
+   'Cambodia (Kampuchea)': ['11.55', '104.916667'],
+   'Cabinda': ['-4.93423', '12.40532'],
+   'Cameroon': ['3.8666666666666667', '11.516667'],
+   'Canada': ['45.416666666666664', '-75.700000'],
+   'Cape Verde': ['14.916666666666666', '-23.516667'],
+   'Casamance': ['12.75', '-15.5'],
+   'Cayman Islands': ['19.3', '-81.383333'],
+   'Central African Republic': ['4.366666666666666', '18.583333'],
+   'Chad': ['12.1', '15.033333'],
+   'Chechnya': ['43.25', '45.83333'],
+   'Chile': ['-33.45', '-70.666667'],
+   'China': ['39.916666666666664', '116.383333'],
+   'Chittagong Hill Tracts': ['21.98467', '92.49033'],
+   'Christmas Island': ['-10.416666666666666', '105.716667'],
+   'Cocos Islands': ['-12.166666666666666', '96.833333'],
+   'Colombia': ['4.6', '-74.083333'],
+   'Comoros': ['-11.7', '43.233333'],
+   'Cook Islands': ['-21.2', '-159.766667'],
+   'Cordillera':['17.0852', '121.03322'],
+   'Costa Rica': ['9.933333333333334', '-84.083333'],
+   "Cote D’Ivoire": ['6.816666666666666', '-5.266667'],
+   'Croatia': ['45.8', '16.000000'],
+   'Cuba': ['23.116666666666667', '-82.350000'],
+   'CuraÃ§ao': ['12.1', '-68.916667'],
+   'Cyprus': ['35.166666666666664', '33.366667'],
+   'Czech Republic': ['50.083333333333336', '14.466667'],
+   'Darfur': ['16', '25.5'],
+   'Darjeeling': ['27.0333', '88.2667'],
+   'Congo, Democratic Republic of (Zaire)': ['-4.316666666666666', '15.300000'],
+   'Denmark': ['55.666666666666664', '12.583333'],
+   'Djibouti': ['11.583333333333334', '43.150000'],
+   'Dominica': ['15.3', '-61.400000'],
+   'Dominican Republic': ['18.466666666666665', '-69.900000'],
+   'Ecuador': ['-0.21666666666666667', '-78.500000'],
+   'Egypt': ['30.05', '31.250000'],
+   'El Salvador': ['13.7', '-89.200000'],
+   'Equatorial Guinea': ['3.75', '8.783333'],
+   'Eritrea': ['15.333333333333334', '38.933333'],
+   'Estonia': ['59.43333333333333', '24.716667'],
+   'East Timor': ['-8.83333', '125.75'],
+   'Ethiopia': ['9.033333333333333', '38.700000'],
+   'Falkland Islands': ['-51.7', '-57.850000'],
+   'Faroe Islands': ['62', '-6.766667'],
+   'Federated States of Micronesia': ['6.916666666666667', '158.150000'],
+   'Fiji': ['-18.133333333333333', '178.416667'],
+   'Finland': ['60.166666666666664', '24.933333'],
+   'France': ['48.86666666666667', '2.333333'],
+   'French Polynesia': ['-17.533333333333335', '-149.566667'],
+   'French Southern and Antarctic Lands': ['-49.35', '70.216667'],
+   'Gabon': ['0.38333333333333336', '9.450000'],
+   'Georgia': ['41.68333333333333', '44.833333'],
+   'Germany': ['52.516666666666666', '13.400000'],
+   'Ghana': ['5.55', '-0.216667'],
+   'Gibraltar': ['36.13333333333333', '-5.350000'],
+   'Gogrial West County': ['8.5332', '28.1004'],
+   'Greece': ['37.983333333333334', '23.733333'],
+   'Greenland': ['64.18333333333334', '-51.750000'],
+   'Grenada': ['12.05', '-61.750000'],
+   'Guam': ['13.466666666666667', '144.733333'],
+   'Guatemala': ['14.616666666666667', '-90.516667'],
+   'Guernsey': ['49.45', '-2.533333'],
+   'Guinea': ['9.5', '-13.700000'],
+   'Guinea-Bissau': ['11.85', '-15.583333'],
+   'Guyana': ['6.8', '-58.150000'],
+   'Haiti': ['18.533333333333335', '-72.333333'],
+   'Heard Island and McDonald Islands': ['0', '0.000000'],
+   'Honduras': ['14.1', '-87.216667'],
+   'Hong Kong': ['0', '0.000000'],
+   'Hungary': ['47.5', '19.083333'],
+   'Iceland': ['64.15', '-21.950000'],
+   'India': ['28.6', '77.200000'],
+   'Indonesia': ['-6.166666666666667', '106.816667'],
+   'Iran': ['35.7', '51.416667'],
+   'Iraq': ['33.333333333333336', '44.400000'],
+   'Ireland': ['53.31666666666667', '-6.233333'],
+   'Isle of Man': ['54.15', '-4.483333'],
+   'Israel': ['31.766666666666666', '35.233333'],
+   'Italy': ['41.9', '12.483333'],
+   'Jamaica': ['18', '-76.800000'],
+   'Japan': ['35.68333333333333', '139.750000'],
+   'Jersey': ['49.18333333333333', '-2.100000'],
+   'Jordan': ['31.95', '35.933333'],
+   'Kazakhstan': ['51.166666666666664', '71.416667'],
+   'Kenya': ['-1.2833333333333332', '36.816667'],
+   'Kurds-Kurdistan': ['37', '44'],
+   'Kiribati': ['-0.8833333333333333', '169.533333'],
+   'Kosovo': ['42.666666666666664', '21.166667'],
+   'Kuwait': ['29.366666666666667', '47.966667'],
+   'Kyrgyzstan': ['42.86666666666667', '74.600000'],
+   'Laos': ['17.966666666666665', '102.600000'],
+   'Latvia': ['56.95', '24.100000'],
+   'Lebanon': ['33.86666666666667', '35.500000'],
+   'Lesotho': ['-29.316666666666666', '27.483333'],
+   'Liberia': ['6.3', '-10.800000'],
+   'Libya': ['32.88333333333333', '13.166667'],
+   'Liechtenstein': ['47.13333333333333', '9.516667'],
+   'Lithuania': ['54.68333333333333', '25.316667'],
+   'Luxembourg': ['49.6', '6.116667'],
+   'Macau': ['0', '0.000000'],
+   'Macedonia (Former Yugoslav Republic of)': ['42', '21.433333'],
+   'Madagascar': ['-18.916666666666668', '47.516667'],
+   'Manipur': ['25', '94'],
+   'Malawi': ['-13.966666666666667', '33.783333'],
+   'Malaysia': ['3.1666666666666665', '101.700000'],
+   'Maldives': ['4.166666666666667', '73.500000'],
+   'Mali': ['12.65', '-8.000000'],
+   'Malta': ['35.88333333333333', '14.500000'],
+   'Marshall Islands': ['7.1', '171.383333'],
+   'Mauritania': ['18.066666666666666', '-15.966667'],
+   'Mauritius': ['-20.15', '57.483333'],
+   'Mexico': ['19.433333333333334', '-99.133333'],
+   'Mindanao': ['8.5262', '125.22669'],
+   'Mizoram': ['23', '93'],
+   'Moldova': ['47', '28.850000'],
+   'Monaco': ['43.733333333333334', '7.416667'],
+   'Mongolia': ['47.916666666666664', '106.916667'],
+   'Montenegro': ['42.43333333333333', '19.266667'],
+   'Montserrat': ['16.7', '-62.216667'],
+   'Morocco': ['34.016666666666666', '-6.816667'],
+   'Moluccas': ['-3.23846', '130.14527'],
+   'Mozambique': ['-25.95', '32.583333'],
+   'Myanmar (Burma)': ['16.8', '96.150000'],
+   'Nagorno-Karabakh': ['40',' 46.58333'],
+   'Nagaland': ['26.08333', '94.5'],
+   'Namibia': ['-22.566666666666666', '17.083333'],
+   'Nauru': ['-0.5477', '166.920867'],
+   'Nepal': ['27.716666666666665', '85.316667'],
+   'Netherlands': ['52.35', '4.916667'],
+   'New Caledonia': ['-22.266666666666666', '166.450000'],
+   'New Zealand': ['-41.3', '174.783333'],
+   'Nicaragua': ['12.133333333333333', '-86.250000'],
+   'Niger': ['13.516666666666667', '2.116667'],
+   'Nigeria': ['9.083333333333334', '7.533333'],
+   'Niue': ['-19.016666666666666', '-169.916667'],
+   'Norfolk Island': ['-29.05', '167.966667'],
+   'North Korea': ['39.016666666666666', '125.750000'],
+   'Northern Cyprus': ['35.183333', '33.366667'],
+   'Northern Ireland': ['54.5', '-6.5'],
+   'Northern Mariana Islands': ['15.2', '145.750000'],
+   'Norway': ['59.916666666666664', '10.750000'],
+   'Oman': ['23.616666666666667', '58.583333'],
+   'Ogaden': ['0.61222', '40.09556'],
+   'Ossetia': ['43', '44.25'],
+   'Pakistan': ['33.68333333333333', '73.050000'],
+   'Palau': ['7.483333333333333', '134.633333'],
+   'Palestine': ['31.766666666666666', '35.233333'],
+   'Panama': ['8.966666666666667', '-79.533333'],
+   'Papua New Guinea': ['-9.45', '147.183333'],
+   'Paraguay': ['-25.266666666666666', '-57.666667'],
+   'Peru': ['-12.05', '-77.050000'],
+   'Philippines': ['14.6', '120.966667'],
+   'Pitcairn Islands': ['-25.066666666666666', '-130.083333'],
+   'Plateau State': ['9.16667', '9.75'],
+   'Poland': ['52.25', '21.000000'],
+   'Presevo Valley': ['42.3', '21.6333'],
+   'Portugal': ['38.71666666666667', '-9.133333'],
+   'Puerto Rico': ['18.466666666666665', '-66.116667'],
+   'Puntland': ['9', '49'],
+   'Qatar': ['25.283333333333335', '51.533333'],
+   'Congo': ['-4.25', '15.283333'],
+   'Romania': ['44.43333333333333', '26.100000'],
+   'Russia (Soviet Union)': ['55.75', '37.600000'],
+   'Rwanda': ['-1.95', '30.050000'],
+   'Saint Barthelemy': ['17.883333333333333', '-62.850000'],
+   'Saint Helena': ['-15.933333333333334', '-5.716667'],
+   'Saint Kitts and Nevis': ['17.3', '-62.716667'],
+   'Saint Lucia': ['14', '-61.000000'],
+   'Saint Martin': ['18.0731', '-63.082200'],
+   'Saint Pierre and Miquelon': ['46.766666666666666', '-56.183333'],
+   'Saint Vincent and the Grenadines': ['13.133333333333333', '-61.216667'],
+   'Samoa': ['-13.816666666666666', '-171.766667'],
+   'San Marino': ['43.93333333333333', '12.416667'],
+   'Sao Tome and Principe': ['0.3333333333333333', '6.733333'],
+   'Saudi Arabia': ['24.65', '46.700000'],
+   'Senegal': ['14.733333333333333', '-17.633333'],
+   'Serbia': ['44.833333333333336', '20.500000'],
+   'Seychelles': ['-4.616666666666667', '55.450000'],
+   'Sierra Leone': ['8.483333333333333', '-13.233333'],
+   'Singapore': ['1.2833333333333332', '103.850000'],
+   'Sint Maarten': ['18.016666666666666', '-63.033333'],
+   'Slovakia': ['48.15', '17.116667'],
+   'Slovenia': ['46.05', '14.516667'],
+   'Solomon Islands': ['-9.433333333333334', '159.950000'],
+   'Somalia': ['2.066666666666667', '45.333333'],
+   'Somaliland': ['9.55', '44.050000'],
+   'South Africa': ['-25.7', '28.216667'],
+   'South Georgia and South Sandwich Islands': ['-54.283333', '-36.500000'],
+   'Southern Kaduna': ['34.72202', '72.7208'],
+   'South Korea': ['37.55', '126.983333'],
+   'Southern Kordofan - Blue Nile - Abyei': ['11.26667', '30.83333'],
+   'South Sudan': ['4.85', '31.616667'],
+   'Spain': ['40.4', '-3.683333'],
+   'Sri Lanka (Ceylon)': ['6.916666666666667', '79.833333'],
+   'Sudan': ['15.6', '32.533333'],
+   'Suriname': ['5.833333333333333', '-55.166667'],
+   'Svalbard': ['78.21666666666667', '15.633333'],
+   'Swaziland': ['-26.316666666666666', '31.133333'],
+   'Sweden': ['59.333333333333336', '18.050000'],
+   'Switzerland': ['46.916666666666664', '7.466667'],
+   'Syria': ['33.5', '36.300000'],
+   'Taliban': ['34.92204', '70.94583'],
+   'Taiwan': ['25.033333333333335', '121.516667'],
+   'Tajikistan': ['38.55', '68.766667'],
+   'Tanzania': ['-6.8', '39.283333'],
+   'Terekeka': ['5.44196', '31.72585'],
+   'Thailand': ['13.75', '100.516667'],
+   'The Gambia': ['13.45', '-16.566667'],
+   'Timor-Leste': ['-8.583333333333334', '125.600000'],
+   'Togo': ['6.116666666666666', '1.216667'],
+   'Tokelau': ['-9.166667', '-171.833333'],
+   'Tonga': ['-21.133333333333333', '-175.200000'],
+   'Transdniestria': ['47.3338', '29.1976'],
+   'Trinidad and Tobago': ['10.65', '-61.516667'],
+   'Tripura': ['24', '92'],
+   'Tunisia': ['36.8', '10.183333'],
+   'Turkey': ['39.93333333333333', '32.866667'],
+   'Turkmenistan': ['37.95', '58.383333'],
+   'Turks and Caicos Islands': ['21.466666666666665', '-71.133333'],
+   'Tuvalu': ['-8.516666666666667', '179.216667'],
+   'Twic County': ['9.11055', '28.28613'],
+   'US Virgin Islands': ['18.35', '-64.933333'],
+   'Uganda': ['0.31666666666666665', '32.550000'],
+   'Ukraine': ['50.43333333333333', '30.516667'],
+   'United Arab Emirates': ['24.466666666666665', '54.366667'],
+   'United Kingdom': ['51.5', '-0.083333'],
+   'United States of America': ['38.883333','-77.000000'],
+   'Uruguay': ['-34.85', '-56.166667'],
+   'Uzbekistan': ['41.31666666666667', '69.250000'],
+   'Vanuatu': ['-17.733333333333334', '168.316667'],
+   'Vatican City': ['41.9', '12.450000'],
+   'Venezuela': ['10.483333333333333', '-66.866667'],
+   'Vietnam': ['21.033333333333335', '105.850000'],
+   'Wallis and Futuna': ['-13.95', '-171.933333'],
+   'Western Sahara': ['27.153611', '-13.203333'],
+   'Yemen': ['15.35', '44.200000'],
+   'Yemen (Arab Republic of Yemen)': ['30.86226', '32.05161'],
+   'Yugoslavia': ['44', '19.75'],
+   'Zambia': ['-15.416666666666666', '28.283333'],
+   'Zimbabwe (Rhodesia)': ['-17.816666666666666', '31.033333']}        // location
+countrynum = {"Afghanistan":19,
+    "Algeria":6,
+    "Angola":12,
+    "Argentina":2,
+    "Azerbaijan":22,
+    "Bahrain":5,
+    "Bangladesh":1,
+    "Bosnia-Herzegovina":113,
+    "Burundi":19,
+    "Cambodia (Kampuchea)":6,
+    "Cameroon":2,
+    "Central African Republic":17,
+    "Chad":13,
+    "China":11,
+    "Colombia":112,
+    "Comoros":8,
+    "Congo":3,
+    "Congo, Democratic Republic of (Zaire)":25,
+    "Cote D’Ivoire":19,
+    "Croatia":37,
+    "Djibouti":4,
+    "Ecuador":14,
+    "El Salvador":14,
+    "Eritrea":7,
+    "Ethiopia":4,
+    "Gabon":1,
+    "Georgia":61,
+    "Guatemala":18,
+    "Guinea":1,
+    "Guinea-Bissau":6,
+    "Haiti":4,
+    "Honduras":2,
+    "India":16,
+    "Indonesia":27,
+    "Iraq":11,
+    "Israel":44,
+    "Kenya":11,
+    "Korea, People Republic of":1,
+    "Korea, Republic of":4,
+    "Lebanon":3,
+    "Lesotho":5,
+    "Liberia":30,
+    "Libya":4,
+    "Macedonia (Former Yugoslav Republic of)":1,
+    "Madagascar":8,
+    "Mali":18,
+    "Mexico":6,
+    "Moldova":5,
+    "Morocco":11,
+    "Mozambique":13,
+    "Myanmar (Burma)":34,
+    "Namibia":4,
+    "Nepal":51,
+    "Nicaragua":8,
+    "Niger":4,
+    "Pakistan":6,
+    "Papua New Guinea":34,
+    "Philippines":137,
+    "Russia (Soviet Union)":21,
+    "Rwanda":9,
+    "Senegal":2,
+    "Sierra Leone":9,
+    "Slovenia":1,
+    "Solomon Islands":3,
+    "Somalia":43,
+    "South Africa":11,
+    "South Sudan":68,
+    "Spain":3,
+    "Sri Lanka (Ceylon)":25,
+    "Sudan":44,
+    "Syria":9,
+    "Tajikistan":21,
+    "Thailand":1,
+    "Togo":3,
+    "Tunisia":1,
+    "Uganda":17,
+    "Ukraine":4,
+    "United Kingdom":33,
+    "Yemen (Arab Republic of Yemen)":18,
+    "Yugoslavia":9,
+    "Zimbabwe (Rhodesia)":3,
+}
+
+var map = L.map('map').setView([40.5, 30.083333], 4);
+L.tileLayer('https://api.mapbox.com/styles/v1/mtbao/cjj4evs5x492o2sp9non1iuz1/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXRiYW8iLCJhIjoiY2pnaWY5NXh3MDFuMjMybXpkMjRsZzN1diJ9.QU8UYn66fAYh1f7ghsS89w', {
+  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+               '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+               'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+  id: 'mapbox.streets',
+  zoomControl: true,
+  minZoom: 2,
+  maxZoom: 10,
+  zoomSnap: 0.5
+}).addTo(map);
+
+var jsonData;
+var arr1 = new Array();
+var arr2 = new Array();
+var arr3 = new Array();
+var arr4 = new Array();
+var arr5 = {};   //admin name
+var concount = {},                // caculate how many agreements with same gwno code;
+gwnona = 0;
+
+var coor = [];  //save the coordinates
+
+
+d3.csv("PAX_with_additional.csv", function(error, data){       // load data
+    if (error){
+      console.log(error);
+    }
+    var b= 0;
+    var c= 0;
+    var d= 0;
+    for(var i=0; i<data.length; i++){
+        var gwno = data[i].GWNO;   //JJ
+        var agtp = data[i].Agtp;
+        var agtid = data[i].AgtId;  //B
+        var agtp = data[i].Agtp;  // J     b1/b2
+        var hrgen = data[i].HrGen;   //DK   a1
+        // var ce = data[i].Ce;      //GV     a2
+        var gewom = data[i].GeWom;   //BM   a5
+        var pol = data[i].Pol;      //CC    a3
+        // var ele = data[i].Ele;      //C1    a4
+        var polps = data[i].Polps;      //CO     a6
+        var terps = data[i].Terps;  //B
+        var mps = data[i].Mps;  // J     b1/b2
+        var eps = data[i].Eps;
+        var tjmech = data[i].TjMech;
+
+        var transgwno = countrydata[gwno];
+        if (transgwno){
+            if (concount[transgwno]){
+              concount[transgwno]= concount[transgwno] + 1;
+
+            }else {concount[transgwno]= 1; arr3.push(transgwno)}
+            arr1.push(transgwno);     //save all agreements country
+            findcoor(gwno,agtp,transgwno, agtid, hrgen, gewom, pol,polps,terps,mps,eps,tjmech);
+             //findgeocoordinate(gwno,transgwno, agtid, hrgen, gewom, pol,polps,terps,mps,eps,tjmech);
+
+          }else{
+            gwnona = gwnona+1;
+            console.log("cannot find agreement number: "+ agtid + ", which gwno code is " + gwno);
+          }
+
+
+    }
+
+
+    //console.log(concount[1])
+   function randomPointInPoly (polygon) {
+        var bounds = polygon.getBounds();
+        var x_min  = bounds.getEast();
+        var x_max  = bounds.getWest();
+        var y_min  = bounds.getSouth();
+        var y_max  = bounds.getNorth();
+
+
+        var lat = y_min + (Math.random() * (y_max - y_min));
+        var lng = x_min + (Math.random() * (x_max - x_min));
+
+        var point  = turf.point([lng, lat]);
+        var poly   = polygon.toGeoJSON();
+        var inside = turf.inside(point,poly);
+
+        if (inside) {
+            return point
+        } else {
+            return randomPointInPoly(polygon)
+        }
+    }
+
+    function findcoor(gwno,agtp,transgwno, agtid, hrgen, gewom, pol,polps,terps,mps,eps,tjmech){
+
+      cgeodata.features.forEach(function(d){
+
+        if (d.properties.ADMIN == transgwno){
+            if(d.geometry.type == 'Polygon' ){
+              b++;
+              polygon =   L.polygon(d.geometry.coordinates).addTo(map);
+              //for (var j = 0;j<countrynum[d.properties.ADMIN];j++){
+                var point = randomPointInPoly(polygon);
+              //console.log('{"circle":{"coordinates":['+point.geometry.coordinates+']},"countryname": "'+transgwno+'","GWNO":'+)
+                console.log('{"circle":{"coordinates":['+point.geometry.coordinates+"]},"+'"countryname":"'+ transgwno+'", "GWNO":'+ gwno+',"agtp": '+agtp+',"agtid": ' +agtid+', "pol":'+pol+', "polps":'+polps+', "terps":'+terps+
+                  ', "mps":'+mps+', "eps":'+eps+',"hrgen":'+hrgen+',"gewom":'+gewom+',"tjmech":'+ tjmech+'},');
+//
+              //  L.geoJson(point).addTo(map);
+              //}
+        } else if (d.geometry.type == 'MultiPolygon' ){
+        // && d.properties.ADMIN=='Aruba'){
+
+              polygon =   L.multiPolygon(d.geometry.coordinates).addTo(map);
+              //for (var j = 0;j<countrynum[d.properties.ADMIN];j++){
+                var point = randomPointInPoly(polygon);
+                console.log('{"circle":{"coordinates":['+point.geometry.coordinates+"]},"+'"countryname":"'+ transgwno+'", "GWNO":'+ gwno+',"agtp": '+agtp+',"agtid": ' +agtid+', "pol":'+pol+', "polps":'+polps+', "terps":'+terps+
+                  ', "mps":'+mps+', "eps":'+eps+',"hrgen":'+hrgen+',"gewom":'+gewom+',"tjmech":'+ tjmech+'},');
+              //  console.log(d.properties.ADMIN+'  '+point.geometry.coordinates)
+              //  L.geoJson(point).addTo(map);
+              }
+        }
+
+
+    })
+
+  }  //end findcoor
+//     cgeodata.features.forEach(function(d){
+//       if (arr5[d.properties.ADMIN]){
+//         concount[transgwno]= concount[transgwno] + 1;
+//       }else {arr5[d.properties.ADMIN]= 1;
+// }
+// })
+// for (var m = 0;m<arr3.length;m++){
+//   if (arr5[arr3[m]]){
+//     console.log(arr3[m])
+//   }else{
+//     console.log("cannot find "+ arr3[m])
+//   }
+// }
+//console.log(b+d)
+
+  });// end json
+ var popup = L.popup();
+
+  function onMapClick(e) {
+      popup
+          .setLatLng(e.latlng)
+          .setContent("You clicked the map at " + e.latlng.toString())
+          .openOn(map);
+  }
+
+  map.on('click', onMapClick);
+
+  // function findgeocoordinate(gwno,transgwno, agtid, hrgen, gewom, pol,polps,terps,mps,eps,tjmech){
+  //
+  //       var latlngs = boundary[transgwno]
+  //       var polygon = L.polygon(latlngs).addTo(map);
+  //
+  // //  })
+
+   //  d3.json("json/countries.geo.json", function(data){
+   //    //console.log(data.features.properties.name);
+   //    data.features.forEach(function(d){
+   //      //console.log(d.geometry.coordinates)
+   //      a = d.geometry.coordinates
+   //      console.log('"'+d.properties.name+'":'+a)
+   //
+   //    var name = d.properties.name
+   //    var bound = d.geometry.coordinates
+   //     b = {
+   //       name: bound
+   //     }
+   //    boundary.push(b);
+   // })
+
+   //    console.log(boundary.bound)
+   // })
+   //
+   //
+   //      if (concount[transgwno]){              //the number of agreement with same country
+   //        r1 = parseFloat(Math.random()*(6-0+1)+0);
+   //        r2 = parseFloat(Math.random()*(7-0+1)+0);
+   //        lat = parseFloat(countryMap[transgwno][0])+r1 * 2;
+   //        lng = parseFloat(countryMap[transgwno][1])+r2 * 2;
+   //        concount[transgwno]= concount[transgwno] + 1;
+   //      }else{
+   //        lat = parseFloat(countryMap[transgwno][0]);
+   //        lng = parseFloat(countryMap[transgwno][1]);
+   //        concount[transgwno]= 1;
+   //      }
+   //   console.log('{"circle"'+":{"+"coordinates"+":["+lat+","+lng+"]},"+'"countryname:" "'+ transgwno+'", "GWNO":'+ gwno+',"agtid": ' +agtid+', "pol":'+pol+', "polps":'+polps+', "terps:"'+terps+
+   //   ', "mps":'+mps+', "eps":'+eps+',"hrgen":'+hrgen+',"gewom":'+gewom+',"tjmech":'+ tjmech+'},');
+
+  //}
+
+</script>
+
+
+</body>
+</html>
