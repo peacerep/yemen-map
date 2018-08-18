@@ -2,28 +2,6 @@
 Horizontal Timeline with Agreements Grouped by Year
 */
 
-// Define one key/value pair per category (code) by which to filter which
-// agreements the timeline and map visualize, checking all paxfilters
-// (value = 1) upon page load so all agreements are visible
-var paxGeWom = window.localStorage.setItem("paxGeWom",0); // Women, girls and gender
-var paxHrFra = window.localStorage.setItem("paxHrFra",0); // Human rights framework
-var paxHrGen = window.localStorage.setItem("paxHrGen",0); // Human rights/Rule of law
-var paxMps = window.localStorage.setItem("paxMps",0); // Military power sharing
-var paxEps = window.localStorage.setItem("paxEps",0); // Economic power sharing
-var paxTerps = window.localStorage.setItem("paxTerps",0); // Territorial power sharing
-var paxPolps = window.localStorage.setItem("paxPolps",0); // Political power sharing
-var paxPol = window.localStorage.setItem("paxPol",0); // Political institutions
-var paxTjMech = window.localStorage.setItem("paxTjMech",0); // Transitional justice past mechanism
-
-// var paxRule = window.localStorage.setItem("paxRule",1); // Selected ALL filter rule
-var paxANY = window.localStorage.setItem("paxANY",0); // Selected ANY filter rule
-var paxALL = window.localStorage.setItem("paxALL",1); // Selected ALL filter rule
-
-window.localStorage.setItem("paxConRule","all"); // Selected ANY country/entity rule
-
-var newMinDay = window.localStorage.setItem("paxNewMinDay", "01/01/1990");
-var newMaxDay = window.localStorage.getItem("paxNewMaxDay", "31/12/2015");
-
 callFunction();
 d3.select(window).on("resize", callFunction);
 window.addEventListener("storage", toUpdate);
@@ -34,33 +12,27 @@ function toUpdate(){
   }
 }
 
-function getFilters(){
-  var locStor = window.localStorage;
-  // Filter rule
-  // paxRule = locStor.getItem("paxRule");
-  paxANY = locStor.getItem("paxANY");
-  paxALL = locStor.getItem("paxALL");
-  // Filter codes
-  paxHrFra = locStor.getItem("paxHrFra");
-  paxHrGen = locStor.getItem("paxHrGen");
-  paxMps = locStor.getItem("paxMps");
-  paxEps = locStor.getItem("paxEps");
-  paxTerps = locStor.getItem("paxTerps");
-  paxPolps = locStor.getItem("paxPolps");
-  paxPol = locStor.getItem("paxPol");
-  paxGeWom = locStor.getItem("paxGeWom");
-  paxTjMech = locStor.getItem("paxTjMech");
-
-  newMinDay = locStor.getItem("paxNewMinDay");
-  newMaxDay = locStor.getItem("paxNewMaxDay");
-};
-
 function callFunction() {
   console.log("Drawing visualization of yearly grouping");
-  var paxCons = JSON.parse(window.localStorage.getItem("paxCons")); // Country/entity list (includes all upon load)
+  // Countries/entities
+  var paxCons = JSON.parse(window.localStorage.getItem("paxCons"));
   var paxConRule = localStorage.getItem("paxConRule");
-  getFilters();
-
+  // Code filter rule
+  var paxANY = localStorage.getItem("paxANY");
+  var paxALL = localStorage.getItem("paxALL");
+  // Code filters
+  var paxHrFra = localStorage.getItem("paxHrFra");
+  var paxHrGen = localStorage.getItem("paxHrGen");
+  var paxPol = localStorage.getItem("paxPol");
+  var paxEps = localStorage.getItem("paxEps");
+  var paxMps = localStorage.getItem("paxMps");
+  var paxPolps = localStorage.getItem("paxPolps");
+  var paxTerps = localStorage.getItem("paxTerps");
+  var paxTjMech = localStorage.getItem("paxTjMech");
+  var paxGeWom = localStorage.getItem("paxGeWom");
+  // Time period
+  var newMinDay = localStorage.getItem("paxNewMinDay");
+  var newMaxDay = localStorage.getItem("paxNewMaxDay");
   // Agreement information to display upon hover
   var agt = "Hover over an agreement to view its details.",
       dat = "",
@@ -261,7 +233,8 @@ function callFunction() {
           */
           function getConText(paxCons){
             var paxConsCount = paxCons.length;
-            if (paxConsCount == 161){
+            var allCons = JSON.parse(localStorage.getItem("paxConsAll"));
+            if (paxCons.length == allCons.length){
               return "All";
             } else if (paxConsCount > 0){
               var conText = ""
@@ -331,11 +304,11 @@ function callFunction() {
           function setAgtCons(d){
             var agmtCon = String(d.Con);
             if (paxConRule == "any"){
-              if (paxCons.length > 0){
+              var allCons = JSON.parse(localStorage.getItem("paxConsAll"));
+              if (paxCons.length == allCons.length){
+                return d;
+              } else if (paxCons.length > 0){
                 for (i = 0; i < paxCons.length; i++){
-                  // if (!(agmtCon.includes(paxCons[i]))){
-                  //   console.log(agmtCon);
-                  // }
                   if (agmtCon.includes(paxCons[i])){
                     return d;
                   }
@@ -357,7 +330,7 @@ function callFunction() {
           }
 
           // Draw X axis for the entire chart
-          var xAxis = d3.axisBottom(x).tickFormat(d3.timeFormat("%Y")).tickPadding([5]);
+          var xAxis = d3.axisBottom(x).tickFormat(d3.timeFormat("%Y")).tickPadding([5]).ticks(4);
 
           var gX = chartGroup.append("g")
                .attr("class","xaxis")

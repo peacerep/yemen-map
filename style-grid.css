@@ -98,6 +98,13 @@ a {
   font-weight: bold;
   color: steelblue;
 }
+a#Reset{
+  text-decoration: underline;
+  font-weight: normal;
+  color: black;
+  font-size: 12px;
+  padding-left: 8px;
+}
 iframe {
   border: none;
 }

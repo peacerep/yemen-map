@@ -1,5 +1,6 @@
 /*
 Horizontal Timeline with Agreements Grouped by Date
+VERSION 2 (IMPROVING CODE ATTEMPT 1)
 */
 
 // GENERAL DATA IMPORT PATTERN FOR D3 ("Convenience Methods")
@@ -14,8 +15,35 @@ Horizontal Timeline with Agreements Grouped by Date
 //     *do something with the data*
 // }
 
+/*
+Get code filters, time period and countries/entities for initial page load
+*/
+var paxHrFra = window.localStorage.setItem("paxHrFra",0); // Human rights framework
+var paxHrGen = window.localStorage.setItem("paxHrGen",0); // Human rights/Rule of law
+var paxPol = window.localStorage.setItem("paxPol",0); // Political institutions
+var paxEps = window.localStorage.setItem("paxEps",0); // Economic power sharing
+var paxMps = window.localStorage.setItem("paxMps",0); // Military power sharing
+var paxPolps = window.localStorage.setItem("paxPolps",0); // Political power sharing
+var paxTerps = window.localStorage.setItem("paxTerps",0); // Territorial power sharing
+var paxTjMech = window.localStorage.setItem("paxTjMech",0); // Transitional justice past mechanism
+var paxGeWom = window.localStorage.setItem("paxGeWom",0); // Women, girls and gender
+
+var paxANY = window.localStorage.setItem("paxANY",0); // Selected ANY filter rule
+var paxALL = window.localStorage.setItem("paxALL",1); // Selected ALL filter rule
+
+var paxConRule = window.localStorage.setItem("paxConRule","all"); // Selected ANY country/entity rule
+var paxCons = (window.localStorage.setItem("paxCons", JSON.stringify([])));
+
+var newMinDay = window.localStorage.setItem("paxNewMinDay", "01/01/1990");
+var newMaxDay = window.localStorage.setItem("paxNewMaxDay", "31/12/2015");
+
+
+function draw(data){
+
+}
+
+
 callFunction();
-d3.select(window).on("resize", callFunction);
 window.addEventListener("storage", toUpdate);
 
 function toUpdate(){
@@ -24,27 +52,31 @@ function toUpdate(){
   }
 }
 
-function callFunction() {
-  console.log("Drawing visualization");
-  // Countries/entities
-  var paxCons = JSON.parse(window.localStorage.getItem("paxCons"));
-  var paxConRule = localStorage.getItem("paxConRule");
-  // Code filter rule
-  var paxANY = localStorage.getItem("paxANY");
-  var paxALL = localStorage.getItem("paxALL");
+function getFilters(){
+  var locStor = window.localStorage;
   // Code filters
-  var paxHrFra = localStorage.getItem("paxHrFra");
-  var paxHrGen = localStorage.getItem("paxHrGen");
-  var paxPol = localStorage.getItem("paxPol");
-  var paxEps = localStorage.getItem("paxEps");
-  var paxMps = localStorage.getItem("paxMps");
-  var paxPolps = localStorage.getItem("paxPolps");
-  var paxTerps = localStorage.getItem("paxTerps");
-  var paxTjMech = localStorage.getItem("paxTjMech");
-  var paxGeWom = localStorage.getItem("paxGeWom");
+  paxANY = locStor.getItem("paxANY");
+  paxALL = locStor.getItem("paxALL");
+  // Filter codes
+  paxHrFra = locStor.getItem("paxHrFra");
+  paxHrGen = locStor.getItem("paxHrGen");
+  paxPol = locStor.getItem("paxPol");
+  paxEps = locStor.getItem("paxEps");
+  paxMps = locStor.getItem("paxMps");
+  paxPolps = locStor.getItem("paxPolps");
+  paxTerps = locStor.getItem("paxTerps");
+  paxTjMech = locStor.getItem("paxTjMech");
+  paxGeWom = locStor.getItem("paxGeWom");
   // Time period
-  var newMinDay = localStorage.getItem("paxNewMinDay");
-  var newMaxDay = localStorage.getItem("paxNewMaxDay");
+  newMinDay = locStor.getItem("paxNewMinDay");
+  newMaxDay = locStor.getItem("paxNewMaxDay");
+  // Countries/entities
+  paxCons = JSON.parse(window.localStorage.getItem("paxCons"));
+  paxConRule = localStorage.getItem("paxConRule");
+};
+
+function callFunction() {
+  // console.log("Drawing visualization");
 
   // Agreement information to display upon hover
   var agt = "Hover over an agreement to view its details.",
@@ -319,10 +351,8 @@ function callFunction() {
             FUNCTIONS
             */
             function getConText(paxCons){
-              // console.log("paxCons length: "+paxCons.length); // 163
               var paxConsCount = paxCons.length;
-              var allCons = JSON.parse(localStorage.getItem("paxConsAll"));
-              if (paxCons.length == allCons.length){
+              if (paxConsCount == 161){
                 return "All";
               } else if (paxConsCount > 0){
                 var conText = ""
@@ -394,10 +424,7 @@ function callFunction() {
             function setAgtCons(d){
               var agmtCon = String(d.Con);
               if (paxConRule == "any"){
-                var allCons = JSON.parse(localStorage.getItem("paxConsAll"));
-                if (paxCons.length == allCons.length){
-                  return d;
-                } else if (paxCons.length > 0){
+                if (paxCons.length > 0){
                   for (i = 0; i < paxCons.length; i++){
                     if (agmtCon.includes(paxCons[i])){
                       return d;

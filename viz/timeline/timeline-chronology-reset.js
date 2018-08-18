@@ -14,6 +14,27 @@ Horizontal Timeline with Agreements Grouped by Date
 //     *do something with the data*
 // }
 
+// Define one key/value pair per category (code) by which to filter which
+// agreements the timeline and map visualize, checking all paxfilters
+// (value = 1) upon page load so all agreements are visible
+var paxHrFra = window.localStorage.setItem("paxHrFra",0); // Human rights framework
+var paxHrGen = window.localStorage.setItem("paxHrGen",0); // Human rights/Rule of law
+var paxPol = window.localStorage.setItem("paxPol",0); // Political institutions
+var paxEps = window.localStorage.setItem("paxEps",0); // Economic power sharing
+var paxMps = window.localStorage.setItem("paxMps",0); // Military power sharing
+var paxPolps = window.localStorage.setItem("paxPolps",0); // Political power sharing
+var paxTerps = window.localStorage.setItem("paxTerps",0); // Territorial power sharing
+var paxTjMech = window.localStorage.setItem("paxTjMech",0); // Transitional justice past mechanism
+var paxGeWom = window.localStorage.setItem("paxGeWom",0); // Women, girls and gender
+
+var paxANY = window.localStorage.setItem("paxANY",0); // Selected ANY filter rule
+var paxALL = window.localStorage.setItem("paxALL",1); // Selected ALL filter rule
+
+window.localStorage.setItem("paxConRule","all"); // Selected ANY country/entity rule
+
+var newMinDay = window.localStorage.setItem("paxNewMinDay", "01/01/1990");
+var newMaxDay = window.localStorage.setItem("paxNewMaxDay", "31/12/2015");
+
 callFunction();
 d3.select(window).on("resize", callFunction);
 window.addEventListener("storage", toUpdate);
@@ -24,27 +45,32 @@ function toUpdate(){
   }
 }
 
+function getFilters(){
+  var locStor = window.localStorage;
+  // Filter rule
+  // paxRule = locStor.getItem("paxRule");
+  paxANY = locStor.getItem("paxANY");
+  paxALL = locStor.getItem("paxALL");
+  // Filter codes
+  paxHrFra = locStor.getItem("paxHrFra");
+  paxHrGen = locStor.getItem("paxHrGen");
+  paxPol = locStor.getItem("paxPol");
+  paxEps = locStor.getItem("paxEps");
+  paxMps = locStor.getItem("paxMps");
+  paxPolps = locStor.getItem("paxPolps");
+  paxTerps = locStor.getItem("paxTerps");
+  paxTjMech = locStor.getItem("paxTjMech");
+  paxGeWom = locStor.getItem("paxGeWom");
+
+  newMinDay = locStor.getItem("paxNewMinDay");
+  newMaxDay = locStor.getItem("paxNewMaxDay");
+};
+
 function callFunction() {
   console.log("Drawing visualization");
-  // Countries/entities
   var paxCons = JSON.parse(window.localStorage.getItem("paxCons"));
   var paxConRule = localStorage.getItem("paxConRule");
-  // Code filter rule
-  var paxANY = localStorage.getItem("paxANY");
-  var paxALL = localStorage.getItem("paxALL");
-  // Code filters
-  var paxHrFra = localStorage.getItem("paxHrFra");
-  var paxHrGen = localStorage.getItem("paxHrGen");
-  var paxPol = localStorage.getItem("paxPol");
-  var paxEps = localStorage.getItem("paxEps");
-  var paxMps = localStorage.getItem("paxMps");
-  var paxPolps = localStorage.getItem("paxPolps");
-  var paxTerps = localStorage.getItem("paxTerps");
-  var paxTjMech = localStorage.getItem("paxTjMech");
-  var paxGeWom = localStorage.getItem("paxGeWom");
-  // Time period
-  var newMinDay = localStorage.getItem("paxNewMinDay");
-  var newMaxDay = localStorage.getItem("paxNewMaxDay");
+  getFilters();
 
   // Agreement information to display upon hover
   var agt = "Hover over an agreement to view its details.",
@@ -195,7 +221,6 @@ function callFunction() {
                 .attr("stroke","#c4c4c4")  // same as html background-color
                 .attr("stroke-width","1px")
                 .style("opacity", "0.7")
-                // .style("visibility",function(d){ setVisibility(d, zoom, newMinDay, newMaxDay); })
                 .attr("x", function(d){ return x(d.Dat); })
                 .attr("y",function(d,i){ return (height-xHeight-(agtHeight) + ((agtHeight/(dats[dat].values.length)) * i) )+"px"; })
                 .attr("width", function(d){ return agtWidth+"px"; })
