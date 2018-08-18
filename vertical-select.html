@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <!-- for responsive web design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Category Filters</title>
+
+    <link rel="stylesheet" type="text/css" href="select-style.css">
+    <script type="text/javascript" src="viz/timeline/d3.v4.js"></script>
+    <script type="text/javascript" src="viz/timeline/vert-select.js"></script>
+    <!-- <script type="text/javascript" src="ConDropdown.js"></script> -->
+  </head>
+  <body>
+
+        <div class="selecter">
+          <br/><br/>
+          <p>Visualize each agreement that has:</p>
+          <br/>
+          <div class="codeFilterRadios">
+            <input type="radio" id="allV" name="filterRule" value="all" checked="checked">
+            <label for="all"><b>ALL</b>&nbsp;checked codes</label>
+            <br/>
+            <input type="radio" id="anyV" name="filterRule" value="any">
+            <label for="any"><b>ANY</b>&nbsp;checked code</label>
+            <br/>
+          </div>
+          <p id="filters">
+            <div id="dropdown" class="dropdown">
+              <button class="dropbtn" id="CodeDropBtn">SELECT CODE(S)</button>
+              <div id="CodeDropdown" class="CodeContent">
+                &nbsp;<a href="#" id="SelectAllCodesV">Select All</a>
+                &nbsp;&nbsp;
+                <a href="#" id="DeselectAllCodesV">Deselect All</a>
+                <br/>
+                  <div id="CodesV">
+                    <input type="checkbox" id="paxHrFraV" name="filterV" value=1>
+                    <label for="HrFra">Human Rights Framework</label>
+                    <br/>
+
+                    <input type="checkbox" id="paxHrGenV" name="filterV" value=1>
+                    <label for="HrGen">Human Rights/Rule of Law</label>
+                    <br/>
+
+                    <input type="checkbox" id="paxPolV" name="filterV" value=1>
+                    <label for="Pol">Political Institutions</label>
+                    <br/>
+
+                    <input type="checkbox" id="paxEpsV" name="filterV" value=1>
+                    <label for="Eps">Power Sharing: Economic</label>
+                    <br/>
+
+                    <input type="checkbox" id="paxMpsV" name="filterV" value=1>
+                    <label for="Mps">Power Sharing: Military</label>
+                    <br/>
+
+                    <input type="checkbox" id="paxPolpsV" name="filterV" value=1>
+                    <label for="Polps">Power Sharing: Political</label>
+                    <br/>
+
+                    <input type="checkbox" id="paxTerpsV" name="filterV" value=1>
+                    <label for="Terps">Power Sharing: Territorial</label>
+                    <br/>
+
+                    <input type="checkbox" id="paxTjMechV" name="filterV" value=1>
+                    <label for="TjMech">Transitional Justice Past Mechanism</label>
+                    <br/>
+
+                    <input type="checkbox" id="paxGeWomV" name="filterV" value=1>
+                    <label for="GeWom">Women, Girls and Gender</label>
+                  </div>
+            </div>
+          </div>
+          </p>
+          <br/><br/>
+
+          <div id="legend">
+            <p>Legend<p>
+            <table>
+              <tr>
+                <td id="Cea">&nbsp;&nbsp;&nbsp;</td>
+                <td>Ceasefire/related (Cea)</td>
+              </tr>
+              <tr>
+                <td id="Pre">&nbsp;&nbsp;&nbsp;</td>
+                <td>Prenegotiation (Pre)</td>
+              </tr>
+              <tr>
+                <td id="SubPar">&nbsp;&nbsp;&nbsp;</td>
+                <td>Framework-substantive, partial (SubPar)</td>
+              </tr>
+              <tr>
+                <td id="SubComp">&nbsp;&nbsp;&nbsp;</td>
+                <td>Framework-substantive, comprehensive (SubComp)</td>
+              <tr>
+              <tr>
+                <td id="FrCons">&nbsp;&nbsp;&nbsp;</td>
+                <td>Constitution (FrCons)</td>
+              </tr>
+              <tr>
+                <td id="Imp">&nbsp;&nbsp;&nbsp;</td>
+                <td>Implementation (Imp)</td>
+              </tr>
+              <tr>
+                <td id="Ren">&nbsp;&nbsp;&nbsp;</td>
+                <td>Renewal (Ren)</td>
+              </tr>
+              <tr>
+                <td id="Other">&nbsp;&nbsp;&nbsp;</td>
+                <td>Other</td>
+            </table>
+          </div>
+
+       </div> <!-- end of selecter div -->
+
+  </body>
+
+</html>

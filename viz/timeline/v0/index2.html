@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <!-- for responsive web design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PA-X Timeline</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="d3.v4.js"></script>
+  </head>
+  <body>
+    <div class="header">
+      <h1><a href="http://www.peaceagreements.org">Home</a></h1>
+      <h2>PA-X Timeline</h1>
+    </div>
+    <hr>
+    <div class="col-12">
+      <h3>Worldwide Peace Agreements organized by Year and Day of the Month</h3>
+      <h4>Hover over an agreement on the timeline to view more detail.  Click the links below to see which agreemnts address those topics.</h4>
+      <p><a href=index.html id="all">All</a>&nbsp;|
+        <!--<a href=index1.html id="all">Grouped by Year</a>&nbsp;|-->
+        <a href=index-wgg.html id="wgg">Women, Girls and Gender</a>&nbsp;|
+        <a href=index2.html id="byYr">Years x Days</a>&nbsp;|
+        <a href=index-GeWom.html id="GeWom">Women, Girls and Gender, Years x Days</a>
+        <br/><br/><br/><br/><br/>
+      </p>
+    </div>
+    <div id="chart" class="col-10">
+      <!--reference to D3 script must be in body tags-->
+      <script type="text/javascript" src="timeline2.js"></script>
+    </div>
+  </body>
+
+</html>

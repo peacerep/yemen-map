@@ -1,0 +1,228 @@
+/*
+Style for Select iFrame
+*/
+* {
+  shape-rendering: crispEdges;
+}
+
+html {
+  background-color: #c4c4c4;
+}
+html, body {
+  height: 95%;
+}
+
+p, a, label {
+  color:black;
+  font-size: 12px;
+  text-decoration: none;
+  display: inline;
+  font-family: "Roboto", sans-serif;
+  font-weight: normal;
+}
+a {
+  text-decoration: underline;
+}
+input {
+  margin-left: 8px;
+}
+
+a#Reset:hover, a#SelectAllCodes:hover, a#DeselectAllCodes:hover, p.filterViews a:hover{
+  color: #ffffff;
+}
+
+svg {
+  display: flex;
+  flex-wrap: wrap;
+  display: -webkit-flex;
+  display:    -moz-flex;
+  display:     -ms-flex;
+  display:         flex;
+
+  -webkit-flex-direction: column;
+     -moz-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+
+          -webkit-flex: 16.66%;
+             -moz-flex: 16.66%;
+              -ms-flex: 16.66%;
+                  flex: 16.66%;
+}
+
+g {
+  display: flex;
+  flex-wrap: wrap;
+  display: -webkit-flex;
+  display:    -moz-flex;
+  display:     -ms-flex;
+  display:         flex;
+
+  -webkit-flex-direction: column;
+     -moz-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+
+          -webkit-flex: 16.66%;
+             -moz-flex: 16.66%;
+              -ms-flex: 16.66%;
+                  flex: 16.66%;
+
+}
+foreignObject {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+/*
+DROPDOWNS
+*/
+.dropbtn {
+  background-color: #c4c4c4;
+  color: #ffffff;
+  padding: 10px;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  font-weight: lighter;
+  border: none;
+  cursor: pointer;
+  border-width: 1px;
+  border-color: #dddddd;
+  border-style: solid;
+
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+  padding: 8px 2px;
+}
+/*
+YEARS DROPDOWN
+*/
+.TimeContent {
+  display: none;
+  position: absolute;
+  background-color: #dddddd;
+  width: 91%;
+  overflow: auto;
+  padding: 4px;
+  max-height: 250px;
+  z-index: 1;
+}
+.dropdown:hover .TimeContent {
+  display: block;
+}
+.TimeContent input {
+  color: #000000;
+  font-weight: bold;
+  padding: 4px;
+  text-decoration: none;
+  display: inline;
+}
+.TimeContent label, a {
+  color: #000000;
+  font-weight: normal;
+  padding: 4px;
+  display: inline;
+}
+/*
+CON (COUNTRY & ENTITY) DROPDOWN
+*/
+.ConContent {
+  display: none;
+  position: absolute;
+  background-color: #dddddd;
+  min-width: 250px;
+  overflow: auto;
+  max-height: 250px;
+  padding: 4px;
+  z-index: 1;
+}
+.dropdown:hover .ConContent {
+  display: block;
+}
+.ConContent input {
+  color: #000000;
+  font-weight: bold;
+  padding: 4px;
+  text-decoration: none;
+  display: inline;
+}
+.ConContent label, a {
+  color: #000000;
+  font-weight: normal;
+  padding: 4px;
+  display: inline;
+}
+/*
+CODES (FILTER) DROPDOWN
+*/
+.CodeContent {
+  display: none;
+  position: absolute;
+  background-color: #dddddd;
+  min-width: 250px;
+  overflow: auto;
+  padding: 4px;
+  z-index: 1;
+}
+.dropdown:hover .CodeContent {
+  display: block;
+}
+.CodeContent input {
+  color: #000000;
+  font-weight: bold;
+  padding: 4px;
+  text-decoration: none;
+  display: inline;
+}
+.CodeContent label, a {
+  color: #000000;
+  font-weight: normal;
+  padding: 4px;
+  display: inline;
+}
+
+/*
+VERTICAL TIMELINES LEGEND
+  From timeline-v-A|B|C.js:
+    var stageColors = ["#377eb8","#ffff33","#ff7f00","#4daf4a","#e41a1c","#a65628","#984ea3","#000"];
+    var stageValues = ["Pre", "SubPar", "SubComp", "Imp", "Cea", "Other", "FrCons", "Ren"];
+*/
+table td {
+  font-family: "Roboto", sans-serif;
+  text-align: left;
+}
+td, tr {
+  padding: 4px;
+  text-align: left;
+  font-weight: normal;
+  font-size: 10px;
+}
+td#Pre {
+  background-color: #377eb8;
+  color: #000;
+}
+td#SubPar {
+  background-color: #ffff33;
+}
+td#SubComp {
+  background-color: #ff7f00;
+}
+td#Imp {
+  color: #000;
+  background-color: #4daf4a;
+}
+td#Cea {
+  background-color: #e41a1c;
+}
+td#Other {
+  background-color: #a65628;
+}
+td#FrCons {
+  background-color: #984ea3;
+}
+td#Ren{
+  background-color: #000;
+}

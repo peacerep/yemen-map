@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <!-- for responsive web design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PA-X Timeline</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="d3.v4.js"></script>
+    <script type="text/javascript" src="dropdown.js"></script>
+  </head>
+  <body>
+    <div class="header">
+      <h1><a href="http://www.peaceagreements.org">Home</a></h1>
+      <h2>PA-X Timeline</h1>
+    </div>
+    <hr>
+    <div class="col-12">
+      <h3>Worldwide Peace Agreements: Political Institutions</h3>
+      <h4>Hover over timeline elements to view more detail.  Click "Filter" to view agreements that address specific categories.</h4>
+      <p>
+         <div class="dropdown">
+           <button onclick="changeFilter()" class="dropbtn">Filter</button>
+           <div id="code_filters" class="dropdown-content">
+             <a href="index-HrFra.html" id="HrFra">Human Rights Framework</a>
+             <a href="index-HrGen.html" id="HrGen">Human Rights/Rule of Law</a>
+             <a href="index-Pol.html" id="Pol">Political Institutions</a>
+             <a href="index-Eps.html" id="Eps">Power Sharing: Economic</a>
+             <a href="index-Mps.html" id="Mps">Power Sharing: Military</a>
+             <a href="index-Polps.html" id="Polps">Power Sharing: Political</a>
+             <a href="index-Terps.html" id="Terps">Power Sharing: Territorial</a>
+             <a href="index-TjMech.html" id="TjMech">Transitional Justice Past Mechanism</a>
+             <a href="index-GeWom.html" id="GeWom">Women, Girls and Gender</a>
+          </div>
+        </div>
+        <a href=index.html id="all">Reset</a>
+
+        <!--<a href=index1.html id="all">Grouped by Year</a>&nbsp;|-->
+        <!--<a href=index-wgg.html id="wgg">Women, Girls and Gender</a>&nbsp;|
+        <a href=index2.html id="byYr">Years x Days</a>&nbsp;|
+        <a href=index-GeWom.html id="GeWom">Women, Girls and Gender, Years x Days</a>-->
+        <br/><br/><br/><br/><br/>
+      </p>
+    </div>
+    <div id="chart" class="col-10">
+      <!-- reference to D3 script must be in body tags -->
+      <script type="text/javascript" src="timeline-TjMech.js"></script>
+    </div>
+  </body>
+
+</html>
+
+<!-- var csv = d3.dsv("\,", "text/comma-separated-values; charset=ISO-8859-15")tsv("operations.txt", function(error,data) { console.log(data); }) -->

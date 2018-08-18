@@ -1,0 +1,79 @@
+* {
+  shape-rendering: crispEdges;
+}
+
+/*
+TEXT
+*/
+p, a, label, input {
+  color:black;
+  font-size: 12px;
+  text-decoration: none;
+  display: inline;
+  font-family: "Roboto", sans-serif;
+  font-weight: normal;
+}
+a {
+  text-decoration: underline;
+}
+a#tCount, a#tProp, a#Reset{
+  text-decoration: underline;
+  color: black;
+}
+
+
+/*
+TIMELINE
+*/
+.description {
+  color:black;
+  font-size: 10px;
+  text-decoration: none;
+  display: inline;
+  font-family: "Roboto", sans-serif;
+  font-weight: normal;
+}
+
+#chart{
+  display: flex;
+  flex-shrink:0;
+}
+#chart {
+  padding-top: 30px;
+}
+#chart.col-9 g.tick text {
+  font-size: 12px;
+  font-weight: normal;
+  color: #bfbfbf;
+}
+g.xaxis path.domain {
+  shape-rendering: crispEdges;
+  stroke-width: 1px;
+}
+g.xaxis g.tick line {
+  stroke: black;
+  shape-rendering: crispEdges;
+  stroke-width: 1px;
+}
+g.xaxis g.tick text {
+  font-weight: normal;
+}
+g.xaxis#dat g.tick text {
+  text-anchor: start;
+  transform: rotate(45deg);
+}
+/* .zoom {
+  cursor: zoom-in,zoom-out;
+  fill:none;
+  pointer-events: all;
+} */
+.tooltip {
+  background-color: #ffffff;
+  width: auto;
+  text-align: center;
+  padding-left: 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 50;
+  z-index: 1;
+  pointer-events: none !important;
+}
