@@ -85,7 +85,7 @@
 <script type="text/javascript" src="json/countrygeo.json"></script>
 <script>
 
-var map = L.map('map').setView([40.5, 30.083333], 4);
+var map = L.map('map').setView([40.5, 30.083333], 2);
 // L.tileLayer('https://api.mapbox.com/styles/v1/mtbao/cjj4evs5x492o2sp9non1iuz1/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXRiYW8iLCJhIjoiY2pnaWY5NXh3MDFuMjMybXpkMjRsZzN1diJ9.QU8UYn66fAYh1f7ghsS89w', {
 //   attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
 //                '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
@@ -193,26 +193,104 @@ var circle_opacity = .8,
 //     topLeft = bounds[0],
 //     bottomRight = bounds[1];
 
+// When new filter selected/deselected, update the map
+window.addEventListener("storage", toUpdate);
+function toUpdate(){
+  if (window.localStorage.getItem("updateHorizontal") == "true"){
+    d3.selectAll("ellipse").remove();
+    d3.selectAll("circle").remove();
+    Drawflowers();
+  }
+}
 
 var svg = d3.select(map.getPanes().overlayPane).append("svg")
-      // .attr("width", bottomRight[0] - topLeft[0])
-      // .attr("height", bottomRight[1] - topLeft[1])
-      // .style("left", topLeft[0] + "px")
-      // .style("top", topLeft[1] + "px")
-      //
      .attr("width", width)
      .attr("height", height)
      .attr("pointer-events","visible")
      .style("position","absolute")
      .style('top',0)
      .style('z-index',6)
-
-    // .style('right','0px')
-    .attr("class", "leaflet-zoom-hide");
+     .attr("class", "leaflet-zoom-hide");
 // Append <g> to <svg>
 
 
 function Drawflowers(){
+  console.log("Drawing flowers...");
+  // Agreement information to display upon hover
+  var agtid = "",
+      con = "",
+      hrgen = "",
+      pol = "",
+      eps = "",
+      mps = "",
+      polps = "",
+      terps = "",
+      tjmech = "",
+      gewom = "";
+  window.localStorage.setItem("paxAgtId", agtid);
+  // window.localStorage.setItem("paxAgtCon", con);
+  // window.localStorage.setItem("paxAgtHrGen", hrgen);
+  // window.localStorage.setItem("paxAgtPol", pol);
+  // window.localStorage.setItem("paxAgtEps", eps);
+  // window.localStorage.setItem("paxAgtMps", mps);
+  // window.localStorage.setItem("paxAgtPolps", polps);
+  // window.localStorage.setItem("paxAgtTerps", terps);
+  // window.localStorage.setItem("paxAgtTjMech", tjmech);
+  // window.localStorage.setItem("paxAgtGeWom", gewom);
+
+  // var paxANY = locStor.getItem("paxANY");
+  // var paxALL = locStor.getItem("paxALL");
+  // // Filter codes
+  // var paxHrFra = locStor.getItem("paxHrFra");
+  // var paxHrGen = locStor.getItem("paxHrGen");
+  // var paxPol = locStor.getItem("paxPol");
+  // var paxEps = locStor.getItem("paxEps");
+  // var paxMps = locStor.getItem("paxMps");
+  // var paxPolps = locStor.getItem("paxPolps");
+  // var paxTerps = locStor.getItem("paxTerps");
+  // var paxTjMech = locStor.getItem("paxTjMech");
+  // var paxGeWom = locStor.getItem("paxGeWom");
+  // Time filters
+  // var newMinDay = locStor.getItem("paxNewMinDay");
+  // var newMaxDay = locStor.getItem("paxNewMaxDay");
+  // Country/entity filters
+  var paxCons = JSON.parse(window.localStorage.getItem("paxCons"));
+  var paxConRule = localStorage.getItem("paxConRule");
+
+  function setAgtCons(d){
+    var agmtCon = String(d.countryname);
+    if (paxConRule == "any"){
+      var allCons = JSON.parse(localStorage.getItem("paxConsAll"));
+      if (paxCons.length == allCons.length){
+        // console.log("Matched: "+agmtCon);
+        return d;
+      } else if (paxCons.length > 0){
+        for (i = 0; i < paxCons.length; i++){
+          if ( (agmtCon.includes(paxCons[i])) || (paxCons[i].includes(agmtCon)) ){
+            // console.log("Matched: "+agmtCon);
+            return d;
+          }
+        }
+      }
+    }
+    if (paxConRule == "all") {
+      var mismatch = false;
+      for (j = 0; j < paxCons.length; j++){
+        if ( (!(agmtCon.includes(paxCons[j]))) && (!(paxCons[j].includes(agmtCon))) ){
+          mismatch = true;
+          // console.log("Mismatched: "+agmtCon);
+        }
+      }
+      if (!mismatch){
+        // console.log("Matched: "+agmtCon);
+        return d;
+      }
+    }
+  }
+
+/*
+  TO DO: ADD FLOWER TO SELECTER DETAILS!
+*/
 
   d3.json("json/agreements3.json", function(collection) {
 
@@ -232,6 +310,7 @@ function Drawflowers(){
         }
 
          var data = d;
+         // console.log(d);
          g = svg.append("g")
                 .attr('class','flower')
                 .attr("pointer-events","visible");
@@ -239,6 +318,7 @@ function Drawflowers(){
          var ellipse_pol = g.selectAll("ellipse")//0 1 2 3
             .data([data]).enter()
             .append("ellipse")
+            .filter(function(d){ return setAgtCons(d); })
             if (d.pol){
                ellipse_pol.style("opacity", circle_opacity)
                .style("fill", color_pol)
@@ -275,22 +355,37 @@ function Drawflowers(){
                    return ry3;
                  }
                });
-               // .on("mouseover",function(d){
-               //      tooltip.html("The agreement "+d.agtid+" "+d.countryname+", Pol value is "+ d.pol)
-               //      color_temper = this.style.fill;
-               //      d3.select(this)
-               //        .style("fill", "pink")
-               //
-               //      })
+               // .on("mouseover", function(d) {
+                 // console.log(d.agtid);
+                 // window.localStorage.setItem("updateVertical","false");
+                 // window.localStorage.setItem("paxagtid", d.agtid);
+                 // window.localStorage.setItem("paxcon", d.countryname);
+                 // window.localStorage.setItem("paxHrGen", d.hrgen);
+                 // window.localStorage.setItem("paxPol", d.pol);
+                 // window.localStorage.setItem("paxEps", d.eps);
+                 // window.localStorage.setItem("paxMps", d.mps);
+                 // window.localStorage.setItem("paxPolps", d.polps);
+                 // window.localStorage.setItem("paxTerps", d.terps);
+                 // window.localStorage.setItem("paxTjMech", d.tjmech);
+                 // window.localStorage.setItem("paxGeWom", d.gewom);
+                     // })
                // .on("mouseout", function(d) {
-               //      d3.select(this)
-               //        .style("fill", color_temper);
-               //    });//end ellipse_pol
+                 // window.localStorage.setItem("updateVertical","false");
+                 // window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
+                 // window.localStorage.setItem("paxdat", "");
+                 // window.localStorage.setItem("paxreg", "");
+                 // window.localStorage.setItem("paxcon", "");
+                 // window.localStorage.setItem("paxstatus", "");
+                 // window.localStorage.setItem("paxagtp", "");
+                 // window.localStorage.setItem("paxstage", "");
+                 // window.localStorage.setItem("paxsubstage", "");
+                 // }); //end ellipse_pol
              }//end ellipse_pol
 
          var ellipse_polps = g.selectAll(".ellipse")  //0 1 2 3
            .data([data]).enter()
            .append("ellipse")
+           .filter(function(d){ return setAgtCons(d); })
            if (d.polps){
             ellipse_polps.style("opacity", circle_opacity)
             .style("fill", color_polps)
@@ -330,21 +425,37 @@ function Drawflowers(){
                return 'rotate(45,'+map.latLngToLayerPoint(d.LatLng).x+
                ','+map.latLngToLayerPoint(d.LatLng).y+')'
              });
-            // .on("mouseover", function(d) {
-            //      tooltip.html("The agreement "+d.agtid+" "+d.countryname+", Polps value is "+ d.polps)
-            //      color_temper = this.style.fill;
-            //      d3.select(this)
-            //        .style("fill", "pink")
-            //       })
-            // .on("mouseout", function(d) {
-            //      d3.select(this)
-            //        .style("fill", color_temper);
-            //    });  //end ellipse_polps
+             // .on("mouseover", function(d) {
+               // console.log(d.agtid);
+               // window.localStorage.setItem("updateVertical","false");
+               // window.localStorage.setItem("paxagtid", d.agtid);
+               // window.localStorage.setItem("paxcon", d.countryname);
+               // window.localStorage.setItem("paxHrGen", d.hrgen);
+               // window.localStorage.setItem("paxPol", d.pol);
+               // window.localStorage.setItem("paxEps", d.eps);
+               // window.localStorage.setItem("paxMps", d.mps);
+               // window.localStorage.setItem("paxPolps", d.polps);
+               // window.localStorage.setItem("paxTerps", d.terps);
+               // window.localStorage.setItem("paxTjMech", d.tjmech);
+               // window.localStorage.setItem("paxGeWom", d.gewom);
+                   // })
+             // .on("mouseout", function(d) {
+               // window.localStorage.setItem("updateVertical","false");
+               // window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
+               // window.localStorage.setItem("paxdat", "");
+               // window.localStorage.setItem("paxreg", "");
+               // window.localStorage.setItem("paxcon", "");
+               // window.localStorage.setItem("paxstatus", "");
+               // window.localStorage.setItem("paxagtp", "");
+               // window.localStorage.setItem("paxstage", "");
+               // window.localStorage.setItem("paxsubstage", "");
+               // });  //end ellipse_polps
           }//end ellipse_polps
 
          var ellipse_terps = g.selectAll(".ellipse")   //0 1 2 3
             .data([data]).enter()
             .append("ellipse")
+            .filter(function(d){ return setAgtCons(d); })
             if (d.terps){
              ellipse_terps.style("opacity", circle_opacity)
              .style("fill", color_terps)
@@ -384,21 +495,37 @@ function Drawflowers(){
                 return 'rotate(90,'+map.latLngToLayerPoint(d.LatLng).x+
                 ','+map.latLngToLayerPoint(d.LatLng).y+')'
               });
-             // .on("mouseover", function(d) {
-             //      tooltip.html("The agreement "+d.agtid+" "+d.countryname+", terps value is "+ d.terps)
-             //      color_temper = this.style.fill;
-             //      d3.select(this)
-             //        .style("fill", "pink")
-             //       })
-             // .on("mouseout", function(d) {
-             //      d3.select(this)
-             //        .style("fill", color_temper);
-             //    });   //ellipse_terps
+              // .on("mouseover", function(d) {
+                // console.log(d.agtid);
+                // window.localStorage.setItem("updateVertical","false");
+                // window.localStorage.setItem("paxagtid", d.agtid);
+                // window.localStorage.setItem("paxcon", d.countryname);
+                // window.localStorage.setItem("paxHrGen", d.hrgen);
+                // window.localStorage.setItem("paxPol", d.pol);
+                // window.localStorage.setItem("paxEps", d.eps);
+                // window.localStorage.setItem("paxMps", d.mps);
+                // window.localStorage.setItem("paxPolps", d.polps);
+                // window.localStorage.setItem("paxTerps", d.terps);
+                // window.localStorage.setItem("paxTjMech", d.tjmech);
+                // window.localStorage.setItem("paxGeWom", d.gewom);
+              //       })
+              // .on("mouseout", function(d) {
+                // window.localStorage.setItem("updateVertical","false");
+                // window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
+                // window.localStorage.setItem("paxdat", "");
+                // window.localStorage.setItem("paxreg", "");
+                // window.localStorage.setItem("paxcon", "");
+                // window.localStorage.setItem("paxstatus", "");
+                // window.localStorage.setItem("paxagtp", "");
+                // window.localStorage.setItem("paxstage", "");
+                // window.localStorage.setItem("paxsubstage", "");
+                // });   //ellipse_terps
            } //ellipse_terps
 
          var ellipse_eps = g.selectAll(".ellipse")   // 0 1 2 3
            .data([data]).enter()
            .append("ellipse")
+           .filter(function(d){ return setAgtCons(d); })
            if (d.eps){
             ellipse_eps.style("opacity", circle_opacity)
             .style("fill", color_eps)
@@ -438,21 +565,37 @@ function Drawflowers(){
                return 'rotate(225,'+map.latLngToLayerPoint(d.LatLng).x+
                ','+map.latLngToLayerPoint(d.LatLng).y+')'
              });
-            // .on("mouseover", function(d) {
-            //      tooltip.html("The agreement "+d.agtid+" "+d.countryname+", eps value is "+ d.eps)
-            //      color_temper = this.style.fill;
-            //      d3.select(this)
-            //        .style("fill", "pink")
-            //       })
-            // .on("mouseout", function(d) {
-            //      d3.select(this)
-            //        .style("fill", color_temper);
-            //    });   //ellipse_eps
+             // .on("mouseover", function(d) {
+               // console.log(d.agtid);
+               // window.localStorage.setItem("updateVertical","false");
+               // window.localStorage.setItem("paxagtid", d.agtid);
+               // window.localStorage.setItem("paxcon", d.countryname);
+               // window.localStorage.setItem("paxHrGen", d.hrgen);
+               // window.localStorage.setItem("paxPol", d.pol);
+               // window.localStorage.setItem("paxEps", d.eps);
+               // window.localStorage.setItem("paxMps", d.mps);
+               // window.localStorage.setItem("paxPolps", d.polps);
+               // window.localStorage.setItem("paxTerps", d.terps);
+               // window.localStorage.setItem("paxTjMech", d.tjmech);
+               // window.localStorage.setItem("paxGeWom", d.gewom);
+             //       })
+             // .on("mouseout", function(d) {
+               // window.localStorage.setItem("updateVertical","false");
+               // window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
+               // window.localStorage.setItem("paxdat", "");
+               // window.localStorage.setItem("paxreg", "");
+               // window.localStorage.setItem("paxcon", "");
+               // window.localStorage.setItem("paxstatus", "");
+               // window.localStorage.setItem("paxagtp", "");
+               // window.localStorage.setItem("paxstage", "");
+               // window.localStorage.setItem("paxsubstage", "");
+               // });   //ellipse_eps
           }//ellipse_eps
 
          var ellipse_mps = g.selectAll(".ellipse")   //0 1 2 3
            .data([data]).enter()
            .append("ellipse")
+           .filter(function(d){ return setAgtCons(d); })
            if (d.mps){
             ellipse_mps.style("opacity", circle_opacity)
             .style("fill", color_mps)
@@ -492,21 +635,38 @@ function Drawflowers(){
                return 'rotate(180,'+map.latLngToLayerPoint(d.LatLng).x+
                ','+map.latLngToLayerPoint(d.LatLng).y+')'
              });
-            // .on("mouseover", function(d) {
-            //      tooltip.html("The agreement "+d.agtid+" "+d.countryname+", mps value is "+ d.mps)
-            //      color_temper = this.style.fill;
-            //      d3.select(this)
-            //        .style("fill", "pink")
-            //       })
-            // .on("mouseout", function(d) {
-            //      d3.select(this)
-            //        .style("fill", color_temper);
-            //    });   //ellipse_mps
+             // .on("mouseover", function(d) {
+               // console.log(d.agtid);
+               // window.localStorage.setItem("updateVertical","false");
+               // window.localStorage.setItem("paxagtid", d.agtid);
+               // window.localStorage.setItem("paxcon", d.countryname);
+               // window.localStorage.setItem("paxHrGen", d.hrgen);
+               // window.localStorage.setItem("paxPol", d.pol);
+               // window.localStorage.setItem("paxEps", d.eps);
+               // window.localStorage.setItem("paxMps", d.mps);
+               // window.localStorage.setItem("paxPolps", d.polps);
+               // window.localStorage.setItem("paxTerps", d.terps);
+               // window.localStorage.setItem("paxTjMech", d.tjmech);
+               // window.localStorage.setItem("paxGeWom", d.gewom);
+             //       })
+             // .on("mouseout", function(d) {
+               // window.localStorage.setItem("updateVertical","false");
+               // window.localStorage.setItem("paxagtid", "");
+               // window.localStorage.setItem("paxcon", "");
+               // window.localStorage.setItem("paxHrGen", "");
+               // window.localStorage.setItem("paxPol", "");
+               // window.localStorage.setItem("paxEps", "");
+               // window.localStorage.setItem("paxMps", "");
+               // window.localStorage.setItem("paxTerps", "");
+               // window.localStorage.setItem("paxTjMech", "");
+               // window.localStorage.setItem("paxGeWom", "");
+               // });    //ellipse_mps
           }
 
          var ellipse_hrgen = g.selectAll(".ellipse")   //0/1
            .data([data]).enter()
            .append("ellipse")
+           .filter(function(d){ return setAgtCons(d); })
            if (d.hrgen){
             ellipse_hrgen.style("opacity", circle_opacity)
             .style("fill", color_hrgen)
@@ -527,21 +687,38 @@ function Drawflowers(){
                return 'rotate(135,'+map.latLngToLayerPoint(d.LatLng).x+
                ','+map.latLngToLayerPoint(d.LatLng).y+')'
              });
-            // .on("mouseover", function(d) {
-            //      tooltip.html("The agreement "+d.agtid+" "+d.countryname+", hrgen value is "+ d.hrgen)
-            //      color_temper = this.style.fill;
-            //      d3.select(this)
-            //        .style("fill", "pink")
-            //       })
-            // .on("mouseout", function(d) {
-            //      d3.select(this)
-            //        .style("fill", color_temper);
-            //    });   //ellipse_hrgen
+             // .on("mouseover", function(d) {
+               // console.log(d.agtid);
+               // window.localStorage.setItem("updateVertical","false");
+               // window.localStorage.setItem("paxagtid", d.agtid);
+               // window.localStorage.setItem("paxcon", d.countryname);
+               // window.localStorage.setItem("paxHrGen", d.hrgen);
+               // window.localStorage.setItem("paxPol", d.pol);
+               // window.localStorage.setItem("paxEps", d.eps);
+               // window.localStorage.setItem("paxMps", d.mps);
+               // window.localStorage.setItem("paxPolps", d.polps);
+               // window.localStorage.setItem("paxTerps", d.terps);
+               // window.localStorage.setItem("paxTjMech", d.tjmech);
+               // window.localStorage.setItem("paxGeWom", d.gewom);
+                   // })
+             // .on("mouseout", function(d) {
+               // window.localStorage.setItem("updateVertical","false");
+               // window.localStorage.setItem("paxagtid", "");
+               // window.localStorage.setItem("paxcon", "");
+               // window.localStorage.setItem("paxHrGen", "");
+               // window.localStorage.setItem("paxPol", "");
+               // window.localStorage.setItem("paxEps", "");
+               // window.localStorage.setItem("paxMps", "");
+               // window.localStorage.setItem("paxTerps", "");
+               // window.localStorage.setItem("paxTjMech", "");
+               // window.localStorage.setItem("paxGeWom", "");
+               // });    //ellipse_hrgen
           }
 
          var ellipse_gewom = g.selectAll(".ellipse")   // 0/1
            .data([data]).enter()
            .append("ellipse")
+           .filter(function(d){ return setAgtCons(d); })
            if (d.gewom == 1){
             ellipse_gewom.style("opacity", circle_opacity)
             .style("fill", color_gewom)
@@ -563,21 +740,39 @@ function Drawflowers(){
                return 'rotate(270,'+map.latLngToLayerPoint(d.LatLng).x+
                ','+map.latLngToLayerPoint(d.LatLng).y+')'
              });
-            // .on("mouseover", function(d) {
-            //      tooltip.html("The agreement "+d.agtid+" "+d.countryname+", gewom value is "+ d.gewom)
-            //      color_temper = this.style.fill;
-            //      d3.select(this)
-            //        .style("fill", "pink")
-            //       })
-            // .on("mouseout", function(d) {
-            //      d3.select(this)
-            //        .style("fill", color_temper);
-            //    });   //ellipse_gewom
+             // .on("mouseover", function(d) {
+               // console.log(d.agtid);
+               // window.localStorage.setItem("updateVertical","false");
+               // window.localStorage.setItem("paxagtid", d.agtid);
+               // window.localStorage.setItem("paxcon", d.countryname);
+               // window.localStorage.setItem("paxHrGen", d.hrgen);
+               // window.localStorage.setItem("paxPol", d.pol);
+               // window.localStorage.setItem("paxEps", d.eps);
+               // window.localStorage.setItem("paxMps", d.mps);
+               // window.localStorage.setItem("paxPolps", d.polps);
+               // window.localStorage.setItem("paxTerps", d.terps);
+               // window.localStorage.setItem("paxTjMech", d.tjmech);
+               // window.localStorage.setItem("paxGeWom", d.gewom);
+             //       })
+             // .on("mouseout", function(d) {
+               // window.localStorage.setItem("updateVertical","false");
+               // window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
+               // window.localStorage.setItem("paxagtid", "");
+               // window.localStorage.setItem("paxcon", "");
+               // window.localStorage.setItem("paxHrGen", "");
+               // window.localStorage.setItem("paxPol", "");
+               // window.localStorage.setItem("paxEps", "");
+               // window.localStorage.setItem("paxMps", "");
+               // window.localStorage.setItem("paxTerps", "");
+               // window.localStorage.setItem("paxTjMech", "");
+               // window.localStorage.setItem("paxGeWom", "");
+               // });    //ellipse_gewom
           }
 
          var ellipse_tjmech = g.selectAll(".ellipse")
            .data([data]).enter()
            .append("ellipse")
+           .filter(function(d){ return setAgtCons(d); })
            if(d.tjmech){
             ellipse_tjmech.style("opacity", circle_opacity)
             .style("fill", color_tjmech)
@@ -617,22 +812,39 @@ function Drawflowers(){
                ','+map.latLngToLayerPoint(d.LatLng).y+')'
              });
             // .on("mouseover", function(d) {
-            //      tooltip.html("The agreement "+d.agtid+" "+d.countryname+", tjmech value is "+ d.tjmech)
-            //      color_temper = this.style.fill;
-            //      d3.select(this)
-            //        .style("fill", "pink")
-            //       })
+              // console.log(d.agtid);
+              // window.localStorage.setItem("updateVertical","false");
+              // window.localStorage.setItem("paxagtid", d.agtid);
+              // window.localStorage.setItem("paxcon", d.countryname);
+              // window.localStorage.setItem("paxHrGen", d.hrgen);
+              // window.localStorage.setItem("paxPol", d.pol);
+              // window.localStorage.setItem("paxEps", d.eps);
+              // window.localStorage.setItem("paxMps", d.mps);
+              // window.localStorage.setItem("paxPolps", d.polps);
+              // window.localStorage.setItem("paxTerps", d.terps);
+              // window.localStorage.setItem("paxTjMech", d.tjmech);
+              // window.localStorage.setItem("paxGeWom", d.gewom);
+                  // })
             // .on("mouseout", function(d) {
-            //      d3.select(this)
-            //        .style("fill", color_temper);
-            //   });   //ellipse_tjmech
+              // window.localStorage.setItem("updateVertical","false");
+              // window.localStorage.setItem("paxagtid", "");
+              // window.localStorage.setItem("paxcon", "");
+              // window.localStorage.setItem("paxHrGen", "");
+              // window.localStorage.setItem("paxPol", "");
+              // window.localStorage.setItem("paxEps", "");
+              // window.localStorage.setItem("paxMps", "");
+              // window.localStorage.setItem("paxTerps", "");
+              // window.localStorage.setItem("paxTjMech", "");
+              // window.localStorage.setItem("paxGeWom", "");
+              // });   //ellipse_tjmech
             }
 
          var circles = g.selectAll("circle")
                .data([data]).enter().append("circle")
+               .filter(function(d){ return setAgtCons(d); })
                    .style("opacity", circle_opacity)
                    .style("fill", circle_color)
-                   .style('z-index',3)
+                   .style('z-index',10)//3
                    .attr("cx",function(d){
                        d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                        return map.latLngToLayerPoint(d.LatLng).x;})
@@ -640,20 +852,22 @@ function Drawflowers(){
                      d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                      return map.latLngToLayerPoint(d.LatLng).y;})
                    .attr('r', r)
-                   .on("mouseover", function(d) {
-                        tooltip.html("The agreement "+d.agtid+" "+d.countryname)
-                        color_temper = this.style.fill;
-                        d3.select(this)
-                          .style("fill", "pink")
-                         })
-                   .on("mouseout", function(d) {
-                        d3.select(this)
-                          .style("fill", color_temper);
-                      });  //end circle
+                   .on("click", function(d){ console.log(d.agtid); });
+                   // .on("mouseover", function(d) {
+                   //      tooltip.html("The agreement "+d.agtid+" "+d.countryname)
+                   //      color_temper = this.style.fill;
+                   //      d3.select(this)
+                   //        .style("fill", "pink")
+                   //       })
+                   // .on("mouseout", function(d) {
+                   //      d3.select(this)
+                   //        .style("fill", color_temper);
+                   //    });  //end circle
 
          })  //end for each
-       })   // end read json file
 
+       })   // end read json file
+       console.log("...flower drawing now complete.")
   }
   // geojson = L.geoJson(cgeodata).addTo(map);
 
@@ -675,6 +889,7 @@ function Drawboundary(){
 
   function highlightFeature(e) {
       var layer = e.target;
+      // console.log(e);
       //tip.show;
       layer.setStyle({
         weight: 5,
@@ -704,7 +919,7 @@ function Drawboundary(){
   // }
 
   function onEachFeature(feature, layer) {
-      layer.bindTooltip(feature.properties.ADMIN, {padding: "30px",opacity: 0.8} )
+      // layer.bindTooltip(feature.properties.ADMIN, {padding: "30px",opacity: 0.8} )
       layer.on({
         mouseover: highlightFeature,
         mouseout: resetHighlight,
@@ -714,7 +929,7 @@ function Drawboundary(){
 
   var geojson = L.geoJson(cgeodata, {
       style: style,
-      onEachFeature: onEachFeature
+      // onEachFeature: onEachFeature
       }).addTo(map);
     // geojson.bindTooltip(function (layer) {
     //       return layer.feature.properties.ADMIN; //merely sets the tooltip text
