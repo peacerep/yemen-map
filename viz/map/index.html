@@ -251,42 +251,11 @@ function Drawflowers(){
   var paxTjMech = window.localStorage.getItem("paxTjMech");
   var paxGeWom = window.localStorage.getItem("paxGeWom");
   // // Time filters
-  // var newMinDay = window.localStorage.getItem("paxNewMinDay");
-  // var newMaxDay = window.localStorage.getItem("paxNewMaxDay");
+  var newMinDay = window.localStorage.getItem("paxNewMinDay");
+  var newMaxDay = window.localStorage.getItem("paxNewMaxDay");
   // Country/entity filters
   var paxCons = JSON.parse(window.localStorage.getItem("paxCons"));
   var paxConRule = localStorage.getItem("paxConRule");
-
-  function setAgtCons(d){
-    var agmtCon = String(d.countryname);
-    if (paxConRule == "any"){
-      var allCons = JSON.parse(localStorage.getItem("paxConsAll"));
-      if (paxCons.length == allCons.length){
-        // console.log("Matched: "+agmtCon);
-        return d;
-      } else if (paxCons.length > 0){
-        for (i = 0; i < paxCons.length; i++){
-          if ( (agmtCon.includes(paxCons[i])) || (paxCons[i].includes(agmtCon)) ){
-            // console.log("Matched: "+agmtCon);
-            return d;
-          }
-        }
-      }
-    }
-    if (paxConRule == "all") {
-      var mismatch = false;
-      for (j = 0; j < paxCons.length; j++){
-        if ( (!(agmtCon.includes(paxCons[j]))) && (!(paxCons[j].includes(agmtCon))) ){
-          mismatch = true;
-          // console.log("Mismatched: "+agmtCon);
-        }
-      }
-      if (!mismatch){
-        // console.log("Matched: "+agmtCon);
-        return d;
-      }
-    }
-  }
 
   function setAgtFilters(d){
     var agmtCodes = [d.hrgen, d.pol, d.eps, d.mps, d.polps, d.terps, d.tjmech, d.gewom, ];
@@ -313,14 +282,50 @@ function Drawflowers(){
     }
   }
 
+  function setAgtCons(d){
+    var agmtCon = String(d.con);
+    if (paxConRule == "any"){
+      var allCons = JSON.parse(localStorage.getItem("paxConsAll"));
+      if (paxCons.length == allCons.length){
+        return d;
+      } else if (paxCons.length > 0){
+        for (i = 0; i < paxCons.length; i++){
+          if (agmtCon.includes(paxCons[i])){
+            return d;
+          }
+        }
+      }
+    }
+    if (paxConRule == "all") {
+      var mismatch = false;
+      for (j = 0; j < paxCons.length; j++){
+        if (!(agmtCon.includes(paxCons[j]))){
+          mismatch = true;
+        }
+      }
+      if (!mismatch){
+        return d;
+      }
+    }
+  }
+
+  var parseDate = d3.time.format("%d/%m/%Y").parse;
+
+  function setAgtTimePeriod(d, newMinDay, newMaxDay){
+    var minDate = parseDate(newMinDay);
+    var maxDate = parseDate(newMaxDay);
+    var agmtDat = parseDate(d.dat);
+    if ((agmtDat >= minDate) && (agmtDat <= maxDate)){
+      return d;
+    }
+  }
+
 /*
   TO DO:
   ADD FLOWER TO SELECTER DETAILS!
-  UPDATE DATA FILE TO HAVE AGREEMENTS' DATE SIGNED
-  MAKE SURE COUNTRYNAMES CORRESPOND WITH CONS IN TIMELINE & SELECTER DROPDOWN
 */
 
-  d3.json("json/agreements3.json", function(collection) {
+  d3.json("json/mapTimeConData.json", function(collection) { //data file without Dat & Con: json/agreements3.json
 
       collection.objects.forEach(function(d) {
         if (map.getZoom() < 4){
@@ -348,6 +353,7 @@ function Drawflowers(){
             .append("ellipse")
             .filter(function(d){ return setAgtCons(d); })
             .filter(function(d){ return setAgtFilters(d); })
+            .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
             if (d.pol){
                ellipse_pol.style("opacity", circle_opacity)
                .style("fill", color_pol)
@@ -416,6 +422,7 @@ function Drawflowers(){
            .append("ellipse")
            .filter(function(d){ return setAgtCons(d); })
            .filter(function(d){ return setAgtFilters(d); })
+           .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
            if (d.polps){
             ellipse_polps.style("opacity", circle_opacity)
             .style("fill", color_polps)
@@ -487,6 +494,7 @@ function Drawflowers(){
             .append("ellipse")
             .filter(function(d){ return setAgtCons(d); })
             .filter(function(d){ return setAgtFilters(d); })
+            .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
             if (d.terps){
              ellipse_terps.style("opacity", circle_opacity)
              .style("fill", color_terps)
@@ -558,6 +566,7 @@ function Drawflowers(){
            .append("ellipse")
            .filter(function(d){ return setAgtCons(d); })
            .filter(function(d){ return setAgtFilters(d); })
+           .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
            if (d.eps){
             ellipse_eps.style("opacity", circle_opacity)
             .style("fill", color_eps)
@@ -629,6 +638,7 @@ function Drawflowers(){
            .append("ellipse")
            .filter(function(d){ return setAgtCons(d); })
            .filter(function(d){ return setAgtFilters(d); })
+           .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
            if (d.mps){
             ellipse_mps.style("opacity", circle_opacity)
             .style("fill", color_mps)
@@ -701,6 +711,7 @@ function Drawflowers(){
            .append("ellipse")
            .filter(function(d){ return setAgtCons(d); })
            .filter(function(d){ return setAgtFilters(d); })
+           .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
            if (d.hrgen){
             ellipse_hrgen.style("opacity", circle_opacity)
             .style("fill", color_hrgen)
@@ -754,6 +765,7 @@ function Drawflowers(){
            .append("ellipse")
            .filter(function(d){ return setAgtCons(d); })
            .filter(function(d){ return setAgtFilters(d); })
+           .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
            if (d.gewom == 1){
             ellipse_gewom.style("opacity", circle_opacity)
             .style("fill", color_gewom)
@@ -809,6 +821,7 @@ function Drawflowers(){
            .append("ellipse")
            .filter(function(d){ return setAgtCons(d); })
            .filter(function(d){ return setAgtFilters(d); })
+           .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
            if(d.tjmech){
             ellipse_tjmech.style("opacity", circle_opacity)
             .style("fill", color_tjmech)
@@ -879,6 +892,7 @@ function Drawflowers(){
                .data([data]).enter().append("circle")
                .filter(function(d){ return setAgtCons(d); })
                .filter(function(d){ return setAgtFilters(d); })
+               .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
                    .style("opacity", circle_opacity)
                    .style("fill", circle_color)
                    .style('z-index',10)//3
