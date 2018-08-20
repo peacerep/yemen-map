@@ -16,7 +16,15 @@
 
   <style>
     body { margin:0; padding:0; }
-    #map { position:absolute; top:80px; z-index:1;bottom:30px; right: 20px; width: 1200px;height: 800px;}
+    #map {
+      position:absolute;
+      /* top:80px; */
+      z-index:1;
+      /* bottom:30px; */
+      /* right: 20px; */
+      width: 100%; /*1200px;*/
+      height: 100%; /*800px;*/
+    }
     .bindTooltip {
       background: rgba(255,255,255,0.85);
     	border: 1px solid silver;
@@ -67,11 +75,11 @@
         <!-- <a class="facebook icon icon-facebook"></a> -->
         <a class="icon icon-twitter twitter-link"></a>
       </div>
-  <div class="social large" style="display: block;">
-      <a class="twitter-link" href="https://twitter.com/intent/tweet?text=http://localhost:8888/test_2/index.html"><button class="btn btn-large btn-primary btn-twitter" type="button"><i class="icon-twitter"></i> Share on Twitter</button></a>
+  <!-- <div class="social large" style="display: block;">
+      <a class="twitter-link" href="https://twitter.com/intent/tweet?text=http://localhost:8888/test_2/index.html"><button class="btn btn-large btn-primary btn-twitter" type="button"><i class="icon-twitter"></i> Share on Twitter</button></a> -->
 
       <!-- <a class="twitter-link" href="https://twitter.com/NASA"><button class="btn btn-large btn-primary btn-twitter" type="button"><i class="icon-twitter"></i> Share on Twitter</button></a> -->
-  </div>
+  <!-- </div> -->
 </div>
 <script type="text/javascript"></script>
 <script type="text/javascript" src="json/countrygeo.json"></script>
@@ -146,21 +154,21 @@ var circle_opacity = .8,
     // width=window.innerWidth,
     // height=window.innerHeight;
 
-var tooltip = d3.select("body").append('div')
-      .style("position","absolute")
-      .style('padding','20px 10px')
-      .style('right','20px')
-      .style('top',0)
-      .style('opacity',.9)
-      .style('z-index',2)
-      .style('background','gray');
-
-var tip = d3.tip()
-  .attr('class', 'd3-tip')
-  .offset([-10, 0])
-  .html(function(d) {
-    return "<strong>Frequency:</strong> <span style='color:red'>" + "d.frequency" + "</span>";
-  })
+// var tooltip = d3.select("body").append('div')
+//       .style("position","absolute")
+//       .style('padding','20px 10px')
+//       .style('right','20px')
+//       .style('top',0)
+//       .style('opacity',.9)
+//       .style('z-index',2)
+//       .style('background','gray');
+//
+// var tip = d3.tip()
+//   .attr('class', 'd3-tip')
+//   .offset([-10, 0])
+//   .html(function(d) {
+//     return "<strong>Frequency:</strong> <span style='color:red'>" + "d.frequency" + "</span>";
+  // })
 // var pol = [],
 //     polps = [],  //1,2,3
 //     terps = [],  //1,2,3
@@ -218,7 +226,7 @@ function Drawflowers(){
           var ry1 = 6,ry2 =8,ry3 = 10,
               r = 1.5, rx = rx1 = 2;
         }
-        else{
+        else {
           var ry1 = 1.5*map.getZoom(),ry2 = 2*map.getZoom(),ry3 = 2.5*map.getZoom(),
               r = 1.5+map.getZoom()/3, rx1 = 3,rx = map.getZoom();
         }
@@ -266,18 +274,18 @@ function Drawflowers(){
                  }else if (d.pol ==3){
                    return ry3;
                  }
-               })
-               .on("mouseover",function(d){
-                    tooltip.html("The agreement "+d.agtid+" "+d.countryname+", Pol value is "+ d.pol)
-                    color_temper = this.style.fill;
-                    d3.select(this)
-                      .style("fill", "pink")
-
-                    })
-               .on("mouseout", function(d) {
-                    d3.select(this)
-                      .style("fill", color_temper);
-                  });//end ellipse_pol
+               });
+               // .on("mouseover",function(d){
+               //      tooltip.html("The agreement "+d.agtid+" "+d.countryname+", Pol value is "+ d.pol)
+               //      color_temper = this.style.fill;
+               //      d3.select(this)
+               //        .style("fill", "pink")
+               //
+               //      })
+               // .on("mouseout", function(d) {
+               //      d3.select(this)
+               //        .style("fill", color_temper);
+               //    });//end ellipse_pol
              }//end ellipse_pol
 
          var ellipse_polps = g.selectAll(".ellipse")  //0 1 2 3
@@ -320,17 +328,18 @@ function Drawflowers(){
              .attr('transform', function(d){
                d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                return 'rotate(45,'+map.latLngToLayerPoint(d.LatLng).x+
-               ','+map.latLngToLayerPoint(d.LatLng).y+')'})
-            .on("mouseover", function(d) {
-                 tooltip.html("The agreement "+d.agtid+" "+d.countryname+", Polps value is "+ d.polps)
-                 color_temper = this.style.fill;
-                 d3.select(this)
-                   .style("fill", "pink")
-                  })
-            .on("mouseout", function(d) {
-                 d3.select(this)
-                   .style("fill", color_temper);
-               });  //end ellipse_polps
+               ','+map.latLngToLayerPoint(d.LatLng).y+')'
+             });
+            // .on("mouseover", function(d) {
+            //      tooltip.html("The agreement "+d.agtid+" "+d.countryname+", Polps value is "+ d.polps)
+            //      color_temper = this.style.fill;
+            //      d3.select(this)
+            //        .style("fill", "pink")
+            //       })
+            // .on("mouseout", function(d) {
+            //      d3.select(this)
+            //        .style("fill", color_temper);
+            //    });  //end ellipse_polps
           }//end ellipse_polps
 
          var ellipse_terps = g.selectAll(".ellipse")   //0 1 2 3
@@ -373,17 +382,18 @@ function Drawflowers(){
               .attr('transform', function(d){
                 d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                 return 'rotate(90,'+map.latLngToLayerPoint(d.LatLng).x+
-                ','+map.latLngToLayerPoint(d.LatLng).y+')'})
-             .on("mouseover", function(d) {
-                  tooltip.html("The agreement "+d.agtid+" "+d.countryname+", terps value is "+ d.terps)
-                  color_temper = this.style.fill;
-                  d3.select(this)
-                    .style("fill", "pink")
-                   })
-             .on("mouseout", function(d) {
-                  d3.select(this)
-                    .style("fill", color_temper);
-                });   //ellipse_terps
+                ','+map.latLngToLayerPoint(d.LatLng).y+')'
+              });
+             // .on("mouseover", function(d) {
+             //      tooltip.html("The agreement "+d.agtid+" "+d.countryname+", terps value is "+ d.terps)
+             //      color_temper = this.style.fill;
+             //      d3.select(this)
+             //        .style("fill", "pink")
+             //       })
+             // .on("mouseout", function(d) {
+             //      d3.select(this)
+             //        .style("fill", color_temper);
+             //    });   //ellipse_terps
            } //ellipse_terps
 
          var ellipse_eps = g.selectAll(".ellipse")   // 0 1 2 3
@@ -426,17 +436,18 @@ function Drawflowers(){
              .attr('transform', function(d){
                d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                return 'rotate(225,'+map.latLngToLayerPoint(d.LatLng).x+
-               ','+map.latLngToLayerPoint(d.LatLng).y+')'})
-            .on("mouseover", function(d) {
-                 tooltip.html("The agreement "+d.agtid+" "+d.countryname+", eps value is "+ d.eps)
-                 color_temper = this.style.fill;
-                 d3.select(this)
-                   .style("fill", "pink")
-                  })
-            .on("mouseout", function(d) {
-                 d3.select(this)
-                   .style("fill", color_temper);
-               });   //ellipse_eps
+               ','+map.latLngToLayerPoint(d.LatLng).y+')'
+             });
+            // .on("mouseover", function(d) {
+            //      tooltip.html("The agreement "+d.agtid+" "+d.countryname+", eps value is "+ d.eps)
+            //      color_temper = this.style.fill;
+            //      d3.select(this)
+            //        .style("fill", "pink")
+            //       })
+            // .on("mouseout", function(d) {
+            //      d3.select(this)
+            //        .style("fill", color_temper);
+            //    });   //ellipse_eps
           }//ellipse_eps
 
          var ellipse_mps = g.selectAll(".ellipse")   //0 1 2 3
@@ -479,17 +490,18 @@ function Drawflowers(){
              .attr('transform', function(d){
                d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                return 'rotate(180,'+map.latLngToLayerPoint(d.LatLng).x+
-               ','+map.latLngToLayerPoint(d.LatLng).y+')'})
-            .on("mouseover", function(d) {
-                 tooltip.html("The agreement "+d.agtid+" "+d.countryname+", mps value is "+ d.mps)
-                 color_temper = this.style.fill;
-                 d3.select(this)
-                   .style("fill", "pink")
-                  })
-            .on("mouseout", function(d) {
-                 d3.select(this)
-                   .style("fill", color_temper);
-               });   //ellipse_mps
+               ','+map.latLngToLayerPoint(d.LatLng).y+')'
+             });
+            // .on("mouseover", function(d) {
+            //      tooltip.html("The agreement "+d.agtid+" "+d.countryname+", mps value is "+ d.mps)
+            //      color_temper = this.style.fill;
+            //      d3.select(this)
+            //        .style("fill", "pink")
+            //       })
+            // .on("mouseout", function(d) {
+            //      d3.select(this)
+            //        .style("fill", color_temper);
+            //    });   //ellipse_mps
           }
 
          var ellipse_hrgen = g.selectAll(".ellipse")   //0/1
@@ -513,17 +525,18 @@ function Drawflowers(){
             .attr('transform', function(d){
                d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                return 'rotate(135,'+map.latLngToLayerPoint(d.LatLng).x+
-               ','+map.latLngToLayerPoint(d.LatLng).y+')'})
-            .on("mouseover", function(d) {
-                 tooltip.html("The agreement "+d.agtid+" "+d.countryname+", hrgen value is "+ d.hrgen)
-                 color_temper = this.style.fill;
-                 d3.select(this)
-                   .style("fill", "pink")
-                  })
-            .on("mouseout", function(d) {
-                 d3.select(this)
-                   .style("fill", color_temper);
-               });   //ellipse_hrgen
+               ','+map.latLngToLayerPoint(d.LatLng).y+')'
+             });
+            // .on("mouseover", function(d) {
+            //      tooltip.html("The agreement "+d.agtid+" "+d.countryname+", hrgen value is "+ d.hrgen)
+            //      color_temper = this.style.fill;
+            //      d3.select(this)
+            //        .style("fill", "pink")
+            //       })
+            // .on("mouseout", function(d) {
+            //      d3.select(this)
+            //        .style("fill", color_temper);
+            //    });   //ellipse_hrgen
           }
 
          var ellipse_gewom = g.selectAll(".ellipse")   // 0/1
@@ -548,17 +561,18 @@ function Drawflowers(){
              .attr('transform', function(d){
                d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                return 'rotate(270,'+map.latLngToLayerPoint(d.LatLng).x+
-               ','+map.latLngToLayerPoint(d.LatLng).y+')'})
-            .on("mouseover", function(d) {
-                 tooltip.html("The agreement "+d.agtid+" "+d.countryname+", gewom value is "+ d.gewom)
-                 color_temper = this.style.fill;
-                 d3.select(this)
-                   .style("fill", "pink")
-                  })
-            .on("mouseout", function(d) {
-                 d3.select(this)
-                   .style("fill", color_temper);
-               });   //ellipse_gewom
+               ','+map.latLngToLayerPoint(d.LatLng).y+')'
+             });
+            // .on("mouseover", function(d) {
+            //      tooltip.html("The agreement "+d.agtid+" "+d.countryname+", gewom value is "+ d.gewom)
+            //      color_temper = this.style.fill;
+            //      d3.select(this)
+            //        .style("fill", "pink")
+            //       })
+            // .on("mouseout", function(d) {
+            //      d3.select(this)
+            //        .style("fill", color_temper);
+            //    });   //ellipse_gewom
           }
 
          var ellipse_tjmech = g.selectAll(".ellipse")
@@ -600,17 +614,18 @@ function Drawflowers(){
              .attr('transform', function(d){
                d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                return 'rotate(-45,'+map.latLngToLayerPoint(d.LatLng).x+
-               ','+map.latLngToLayerPoint(d.LatLng).y+')'})
-            .on("mouseover", function(d) {
-                 tooltip.html("The agreement "+d.agtid+" "+d.countryname+", tjmech value is "+ d.tjmech)
-                 color_temper = this.style.fill;
-                 d3.select(this)
-                   .style("fill", "pink")
-                  })
-            .on("mouseout", function(d) {
-                 d3.select(this)
-                   .style("fill", color_temper);
-              });   //ellipse_tjmech
+               ','+map.latLngToLayerPoint(d.LatLng).y+')'
+             });
+            // .on("mouseover", function(d) {
+            //      tooltip.html("The agreement "+d.agtid+" "+d.countryname+", tjmech value is "+ d.tjmech)
+            //      color_temper = this.style.fill;
+            //      d3.select(this)
+            //        .style("fill", "pink")
+            //       })
+            // .on("mouseout", function(d) {
+            //      d3.select(this)
+            //        .style("fill", color_temper);
+            //   });   //ellipse_tjmech
             }
 
          var circles = g.selectAll("circle")
