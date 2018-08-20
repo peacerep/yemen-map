@@ -228,31 +228,31 @@ function Drawflowers(){
       tjmech = "",
       gewom = "";
   window.localStorage.setItem("paxAgtId", agtid);
-  // window.localStorage.setItem("paxAgtCon", con);
-  // window.localStorage.setItem("paxAgtHrGen", hrgen);
-  // window.localStorage.setItem("paxAgtPol", pol);
-  // window.localStorage.setItem("paxAgtEps", eps);
-  // window.localStorage.setItem("paxAgtMps", mps);
-  // window.localStorage.setItem("paxAgtPolps", polps);
-  // window.localStorage.setItem("paxAgtTerps", terps);
-  // window.localStorage.setItem("paxAgtTjMech", tjmech);
-  // window.localStorage.setItem("paxAgtGeWom", gewom);
-
-  // var paxANY = locStor.getItem("paxANY");
-  // var paxALL = locStor.getItem("paxALL");
-  // // Filter codes
-  // var paxHrFra = locStor.getItem("paxHrFra");
-  // var paxHrGen = locStor.getItem("paxHrGen");
-  // var paxPol = locStor.getItem("paxPol");
-  // var paxEps = locStor.getItem("paxEps");
-  // var paxMps = locStor.getItem("paxMps");
-  // var paxPolps = locStor.getItem("paxPolps");
-  // var paxTerps = locStor.getItem("paxTerps");
-  // var paxTjMech = locStor.getItem("paxTjMech");
-  // var paxGeWom = locStor.getItem("paxGeWom");
-  // Time filters
-  // var newMinDay = locStor.getItem("paxNewMinDay");
-  // var newMaxDay = locStor.getItem("paxNewMaxDay");
+  window.localStorage.setItem("paxAgtCon", con);
+  window.localStorage.setItem("paxAgtHrGen", hrgen);
+  window.localStorage.setItem("paxAgtPol", pol);
+  window.localStorage.setItem("paxAgtEps", eps);
+  window.localStorage.setItem("paxAgtMps", mps);
+  window.localStorage.setItem("paxAgtPolps", polps);
+  window.localStorage.setItem("paxAgtTerps", terps);
+  window.localStorage.setItem("paxAgtTjMech", tjmech);
+  window.localStorage.setItem("paxAgtGeWom", gewom);
+  // Code filter rules
+  var paxANY = window.localStorage.getItem("paxANY");
+  var paxALL = window.localStorage.getItem("paxALL");
+  // Code filters
+  // var paxHrFra = window.localStorage.getItem("paxHrFra");
+  var paxHrGen = window.localStorage.getItem("paxHrGen");
+  var paxPol = window.localStorage.getItem("paxPol");
+  var paxEps = window.localStorage.getItem("paxEps");
+  var paxMps = window.localStorage.getItem("paxMps");
+  var paxPolps = window.localStorage.getItem("paxPolps");
+  var paxTerps = window.localStorage.getItem("paxTerps");
+  var paxTjMech = window.localStorage.getItem("paxTjMech");
+  var paxGeWom = window.localStorage.getItem("paxGeWom");
+  // // Time filters
+  // var newMinDay = window.localStorage.getItem("paxNewMinDay");
+  // var newMaxDay = window.localStorage.getItem("paxNewMaxDay");
   // Country/entity filters
   var paxCons = JSON.parse(window.localStorage.getItem("paxCons"));
   var paxConRule = localStorage.getItem("paxConRule");
@@ -288,8 +288,36 @@ function Drawflowers(){
     }
   }
 
+  function setAgtFilters(d){
+    var agmtCodes = [d.hrgen, d.pol, d.eps, d.mps, d.polps, d.terps, d.tjmech, d.gewom, ];
+    var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
+    var codeFilterCount = codeFilters.length;
+    if (paxANY == 1){
+      for (i = 0; i < codeFilterCount; i++){
+        if ((codeFilters[i] == 1) && (agmtCodes[i] > 0)){
+          return d;
+        } else if (codeFilters[i] == 0){
+        }
+      }
+    } else { // if paxALL == 1
+      var mismatch = false;
+      for (j = 0; j < codeFilterCount; j++){
+        if ((codeFilters[j] == 1) && agmtCodes[j] == 0){
+          mismatch = true;
+        } else if (codeFilters[j] == 0){
+        }
+      }
+      if (!mismatch){
+        return d;
+      }
+    }
+  }
+
 /*
-  TO DO: ADD FLOWER TO SELECTER DETAILS!
+  TO DO:
+  ADD FLOWER TO SELECTER DETAILS!
+  UPDATE DATA FILE TO HAVE AGREEMENTS' DATE SIGNED
+  MAKE SURE COUNTRYNAMES CORRESPOND WITH CONS IN TIMELINE & SELECTER DROPDOWN
 */
 
   d3.json("json/agreements3.json", function(collection) {
@@ -319,6 +347,7 @@ function Drawflowers(){
             .data([data]).enter()
             .append("ellipse")
             .filter(function(d){ return setAgtCons(d); })
+            .filter(function(d){ return setAgtFilters(d); })
             if (d.pol){
                ellipse_pol.style("opacity", circle_opacity)
                .style("fill", color_pol)
@@ -386,6 +415,7 @@ function Drawflowers(){
            .data([data]).enter()
            .append("ellipse")
            .filter(function(d){ return setAgtCons(d); })
+           .filter(function(d){ return setAgtFilters(d); })
            if (d.polps){
             ellipse_polps.style("opacity", circle_opacity)
             .style("fill", color_polps)
@@ -456,6 +486,7 @@ function Drawflowers(){
             .data([data]).enter()
             .append("ellipse")
             .filter(function(d){ return setAgtCons(d); })
+            .filter(function(d){ return setAgtFilters(d); })
             if (d.terps){
              ellipse_terps.style("opacity", circle_opacity)
              .style("fill", color_terps)
@@ -526,6 +557,7 @@ function Drawflowers(){
            .data([data]).enter()
            .append("ellipse")
            .filter(function(d){ return setAgtCons(d); })
+           .filter(function(d){ return setAgtFilters(d); })
            if (d.eps){
             ellipse_eps.style("opacity", circle_opacity)
             .style("fill", color_eps)
@@ -596,6 +628,7 @@ function Drawflowers(){
            .data([data]).enter()
            .append("ellipse")
            .filter(function(d){ return setAgtCons(d); })
+           .filter(function(d){ return setAgtFilters(d); })
            if (d.mps){
             ellipse_mps.style("opacity", circle_opacity)
             .style("fill", color_mps)
@@ -667,6 +700,7 @@ function Drawflowers(){
            .data([data]).enter()
            .append("ellipse")
            .filter(function(d){ return setAgtCons(d); })
+           .filter(function(d){ return setAgtFilters(d); })
            if (d.hrgen){
             ellipse_hrgen.style("opacity", circle_opacity)
             .style("fill", color_hrgen)
@@ -719,6 +753,7 @@ function Drawflowers(){
            .data([data]).enter()
            .append("ellipse")
            .filter(function(d){ return setAgtCons(d); })
+           .filter(function(d){ return setAgtFilters(d); })
            if (d.gewom == 1){
             ellipse_gewom.style("opacity", circle_opacity)
             .style("fill", color_gewom)
@@ -773,6 +808,7 @@ function Drawflowers(){
            .data([data]).enter()
            .append("ellipse")
            .filter(function(d){ return setAgtCons(d); })
+           .filter(function(d){ return setAgtFilters(d); })
            if(d.tjmech){
             ellipse_tjmech.style("opacity", circle_opacity)
             .style("fill", color_tjmech)
@@ -842,6 +878,7 @@ function Drawflowers(){
          var circles = g.selectAll("circle")
                .data([data]).enter().append("circle")
                .filter(function(d){ return setAgtCons(d); })
+               .filter(function(d){ return setAgtFilters(d); })
                    .style("opacity", circle_opacity)
                    .style("fill", circle_color)
                    .style('z-index',10)//3
