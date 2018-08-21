@@ -61,12 +61,11 @@ function callFunction() {
   var formatDay = d3.timeFormat("%j");  // day of the year as decimal number
   var formatYear = d3.timeFormat("%Y");
 
-  var margin = {top: 4, right: 65, bottom: 5, left: 5}, //read clockwise from top
+  var margin = {top: 4, right: 65, bottom: 15, left: 5}, //read clockwise from top
       width = parseInt(d3.select("body").style("width"), 10),
       width = width - margin.left - margin.right,
-      descriptHeight = 20,
       agtHeight = 1.5,
-      xHeight = 10,
+      xHeight = 20,
       agtPadding = 0.5,
       agtSpacing = 1;
 
@@ -119,7 +118,7 @@ function callFunction() {
 
           // Find the maximum number of agreements in a single year
           var maxAgts = d3.max(years, function(year){ return year.values.length; });
-          var height = (maxAgts*agtHeight)+(xHeight*2)+(descriptHeight)+(margin.top*7); //defines w & h as inner dimensions of chart area
+          var height = (maxAgts*agtHeight)+(xHeight*2)+(margin.top*7); //defines w & h as inner dimensions of chart area
           // console.log(maxAgts); // 91
 
           // Set up the x axis
@@ -231,61 +230,8 @@ function callFunction() {
           }
 
           /*
-          TIMELINE DESCRIPTION
-          */
-          svg.append("text")
-                      .attr("x", margin.left+"px")
-                      .attr("y", margin.top*2)
-                      .attr("class","description")
-                      .text("Selected Countries/Entities: "+(getConText(paxCons)));
-          svg.append("text")
-                      .attr("x", margin.left+"px")
-                      .attr("y", (margin.top*5))
-                      .attr("class","description")
-                      .text("Selected Codes:"+(getCodeText()));
-          svg.append("text")
-                      .attr("x", margin.left+"px")
-                      .attr("y", (margin.top*8))
-                      .attr("class","description")
-                      .text("Selected Time Period: "+newMinDay+" through "+newMaxDay);
-
-          /*
           FUNCTIONS
           */
-          function getConText(paxCons){
-            var paxConsCount = paxCons.length;
-            if (paxConsCount == 161){
-              return "All";
-            } else if (paxConsCount > 0){
-              var conText = ""
-              for (i = 0; i < (paxConsCount-1); i++){
-                conText += String(paxCons[i]) + ", ";
-              }
-              conText += String(paxCons[paxConsCount-1]);
-              return conText;
-            } else {
-              return "None";
-            }
-          }
-
-          function getCodeText(){
-            var codeFilters = [+paxHrFra, +paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
-            var codeFilterCount = codeFilters.length;
-            var codeText = "";
-            var vizCodes = ["Human Rights Framework", "Human Rights/Rule of Law", "Political Institutions", "Power Sharing: Economic", "Power Sharing: Military", "Power Sharing: Political", "Power Sharing: Territorial", "Transitional Justice Past Mechanism", "Women, Girls and Gender"];
-            var codeIndeces = [];
-            for (i = 0; i < codeFilterCount; i++){
-              if (codeFilters[i] > 0){
-                // codeIndeces.push(i);
-                codeText += " " + vizCodes[i] + ",";
-              }
-            }
-            if (codeText.length == 0){
-              return " None";
-            }
-            codeText = codeText.slice(0,-1);
-            return codeText;
-          }
 
           function getProp(yrCount, values){
             // Subtract agreements that don't have selected countries/entities

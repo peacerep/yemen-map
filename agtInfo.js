@@ -34,12 +34,12 @@ function callInfoFunction() {
       width = width - margin.left - margin.right,
       height = parseInt(d3.select(".selecter").style("height"), 10); // + margin.top; //- margin.bottom; //defines w & h as inner dimensions of chart area
 
-  var textposition = (height/4) - 40,
+  var textposition = (height/4) + 40,
       fontsize = 14;
 
   var svg = d3.select("body").select("#agt").append("svg")
       .attr("height", height + margin.top + margin.bottom)//"100%")
-      .attr("width", width + margin.left + margin.right)//"100%");  // FIX WIDTH SO TEXT DOESN'T GET CUT OFF
+      .attr("width", width + margin.left + margin.right)//"100%");
       .attr("x",0)
       .attr("y", textposition);
 

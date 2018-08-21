@@ -171,7 +171,9 @@ function callFunction() {
 
           // Calculate the size of each agreement in the display space
           var agtWidth = (width/data.length)*2;
-          // var agtWidth = (width/(years.length))-agtPadding;
+          if (agtWidth < 2){
+            agtWidth = 2;
+          }
 
           // Set up the x axis (for the timeline and bar chart)
           // Find the earliest & latest day of the year on which agreements are written
@@ -323,7 +325,7 @@ function callFunction() {
 
             /*
             TIMELINE DESCRIPTION
-            */
+
             chartGroup.append("text")
                         .attr("x", margin.left+"px")
                         .attr("y", margin.top)
@@ -342,7 +344,7 @@ function callFunction() {
 
             /*
             FUNCTIONS
-            */
+
             function getConText(paxCons){
               // console.log("paxCons length: "+paxCons.length); // 163
               var paxConsCount = paxCons.length;
@@ -379,6 +381,7 @@ function callFunction() {
               codeText = codeText.slice(0,-1);
               return codeText;
             }
+            */
 
             function setAgtTimePeriod(d){
               // console.log(newMinDay);

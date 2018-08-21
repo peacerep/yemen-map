@@ -139,7 +139,9 @@ function callFunction() {
 
           // Calculate the size of each agreement in the display space
           var agtWidth = (width/data.length)*2;
-          // var agtWidth = (width/(years.length))-agtPadding;
+          if (agtWidth < 2){
+            agtWidth = 2;
+          }
 
           // Set up the x axis (for the timeline and bar chart)
           // Find the earliest & latest day of the year on which agreements are written
@@ -220,62 +222,8 @@ function callFunction() {
             } // end of for loop for rects.count
 
             /*
-            TIMELINE DESCRIPTION
-            */
-            chartGroup.append("text")
-                        .attr("x", margin.left+"px")
-                        .attr("y", margin.top)
-                        .attr("class","description")
-                        .text("Selected Countries/Entities: "+(getConText(paxCons)));
-            chartGroup.append("text")
-                        .attr("x", margin.left+"px")
-                        .attr("y", margin.top*4)
-                        .attr("class","description")
-                        .text("Selected Codes:"+(getCodeText()));
-            chartGroup.append("text")
-                        .attr("x", margin.left+"px")
-                        .attr("y", margin.top*7)
-                        .attr("class","description")
-                        .text("Selected Time Period: "+newMinDay+" through "+newMaxDay);
-
-            /*
             FUNCTIONS
             */
-            function getConText(paxCons){
-              var paxConsCount = paxCons.length;
-              var allCons = JSON.parse(localStorage.getItem("paxConsAll"));
-              if (paxCons.length == allCons.length){
-                return "All";
-              } else if (paxConsCount > 0){
-                var conText = ""
-                for (i = 0; i < (paxConsCount-1); i++){
-                  conText += String(paxCons[i]) + ", ";
-                }
-                conText += String(paxCons[paxConsCount-1]);
-                return conText;
-              } else {
-                return "None";
-              }
-            }
-
-            function getCodeText(){
-              var codeFilters = [+paxHrFra, +paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
-              var codeFilterCount = codeFilters.length;
-              var codeText = "";
-              var vizCodes = ["Human Rights Framework", "Human Rights/Rule of Law", "Political Institutions", "Power Sharing: Economic", "Power Sharing: Military", "Power Sharing: Political", "Power Sharing: Territorial", "Transitional Justice Past Mechanism", "Women, Girls and Gender"];
-              var codeIndeces = [];
-              for (i = 0; i < codeFilterCount; i++){
-                if (codeFilters[i] > 0){
-                  codeText += " " + vizCodes[i] + ",";
-                }
-              }
-              if (codeText.length == 0){
-                return " None";
-              }
-              codeText = codeText.slice(0,-1);
-              return codeText;
-            }
-
             function setAgtTimePeriod(d){
               var minDate = parseDate(newMinDay);
               var maxDate = parseDate(newMaxDay);
