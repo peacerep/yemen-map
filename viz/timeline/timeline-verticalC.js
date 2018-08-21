@@ -19,7 +19,7 @@ d3.select(window).on("resize", callFunction);
 window.addEventListener("storage", toUpdate);
 
 function toUpdate(){
-  if (window.localStorage.getItem("updateVertical") == "true"){
+  if (window.localStorage.getItem("updatePaxVertical") == "true"){
     return callFunction();
   }
 }
@@ -284,5 +284,7 @@ function callFunction() {
           }
 
       }) // end of .get(error,data)
+
+      window.localStorage.setItem("updatePaxVertical","false");
 
   }; // end of callFunction()

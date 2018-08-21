@@ -7,8 +7,8 @@ window.onload = function() {
   document.getElementById("VertConRadiosC").onclick = function(event){
     let target = event.target;
     if (target.name == "ConRadio"){
-      window.localStorage.setItem("updateVertical","true");
-      window.localStorage.setItem("updateHorizontal","false");
+      window.localStorage.setItem("updatePaxVertical","true");
+      window.localStorage.setItem("updatePaxHorizontal","false");
       localStorage.setItem("paxVertConC",String(target.id));
       console.log("Set paxVertConC to "+target.id);
     }

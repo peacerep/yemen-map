@@ -7,7 +7,7 @@ d3.select(window).on("resize", callFunction);
 window.addEventListener("storage", toUpdate);
 
 function toUpdate(){
-  if (window.localStorage.getItem("updateHorizontal") == "true"){
+  if (window.localStorage.getItem("updatePaxHorizontal") == "true"){
     return callFunction();
   }
 }
@@ -21,7 +21,7 @@ function callFunction() {
   var paxANY = localStorage.getItem("paxANY");
   var paxALL = localStorage.getItem("paxALL");
   // Code filters
-  var paxHrFra = localStorage.getItem("paxHrFra");
+  // var paxHrFra = localStorage.getItem("paxHrFra");
   var paxHrGen = localStorage.getItem("paxHrGen");
   var paxPol = localStorage.getItem("paxPol");
   var paxEps = localStorage.getItem("paxEps");
@@ -90,7 +90,7 @@ function callFunction() {
                                 Mps:d.Mps, // 1-3 indicating increasing level of detail given about Political Power sharing; 0 if none given
                                 Pol:d.Pol, // 1-3 indicating increasing level of detail given about political institutions; 0 if none given
                                 HrGen:d.HrGen, // 1 if topic of human rights/rule of law addressed; 0 if not
-                                HrFra:d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
+                                // HrFra:d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
                                 TjMech:d.TjMech // 1-3 indicating increasing level of detail given about a body to deal with the past; 0 if none given
                               }; })
       .get(function(error,data){
@@ -183,7 +183,7 @@ function callFunction() {
                     agtp = d.Agtp;
                     stage = d.Stage;
                     substage = d.StageSub;
-                    window.localStorage.setItem("updateVertical","false");
+                    window.localStorage.setItem("updatePaxVertical","false");
                     window.localStorage.setItem("paxagt", agt);
                     window.localStorage.setItem("paxdat", dat);
                     window.localStorage.setItem("paxreg", reg);
@@ -196,7 +196,7 @@ function callFunction() {
             rects.on("mouseout",function(d) {
                    this.style.fill = "black"
                    this.style.stroke = "#c4c4c4";
-                   window.localStorage.setItem("updateVertical","false");
+                   window.localStorage.setItem("updatePaxVertical","false");
                    window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
                    window.localStorage.setItem("paxdat", "");
                    window.localStorage.setItem("paxreg", "");
@@ -235,8 +235,8 @@ function callFunction() {
               var d = values[v];
               var subtracted = false;
               // Subtract agreements that don't have selected codes
-              var agmtCodes = [d.GeWom, d.HrFra, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech];
-              var codeFilters = [+paxGeWom, +paxHrFra, +paxHrGen, +paxEps, +paxMps, +paxPol, +paxPolps, +paxTerps, +paxTjMech];
+              var agmtCodes = [d.HrGen, d.Pol, d.Eps, d.Mps, d.Polps, d.Terps, d.TjMech, d.GeWom, ]; //d.HrFra,
+              var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrFra,
               var codeFilterCount = codeFilters.length;
               if (paxANY == 1){
                 var pass = false;
@@ -297,8 +297,8 @@ function callFunction() {
           }
 
           function setAgtFilters(d){
-            var agmtCodes = [d.GeWom, d.HrFra, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech];
-            var codeFilters = [+paxGeWom, +paxHrFra, +paxHrGen, +paxEps, +paxMps, +paxPol, +paxPolps, +paxTerps, +paxTjMech];
+            var agmtCodes = [d.HrGen, d.Pol, d.Eps, d.Mps, d.Polps, d.Terps, d.TjMech, d.GeWom, ]; //d.HrFra,
+            var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrFra,
             var codeFilterCount = codeFilters.length;
             if (paxANY == 1){
               for (i = 0; i < codeFilterCount; i++){
@@ -359,5 +359,7 @@ function callFunction() {
                .call(xAxis);
 
       }) // end of .get(error,data)
+
+      window.localStorage.setItem("updatePaxHorizontal","false");
 
   }; // end of callFunction()

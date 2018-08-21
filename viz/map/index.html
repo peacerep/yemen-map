@@ -196,7 +196,7 @@ var circle_opacity = .8,
 // When new filter selected/deselected, update the map
 window.addEventListener("storage", toUpdate);
 function toUpdate(){
-  if (window.localStorage.getItem("updateHorizontal") == "true"){
+  if (window.localStorage.getItem("updatePaxMap") == "true"){
     d3.selectAll("ellipse").remove();
     d3.selectAll("circle").remove();
     Drawflowers();
@@ -1005,8 +1005,8 @@ function Drawboundary(){
 
 
 function initial(){
-       Drawboundary();
-       Drawflowers();
+    Drawboundary();
+    Drawflowers();
 
 
     }
@@ -1020,6 +1020,7 @@ function initial(){
       d3.selectAll("circle").remove();
       Drawflowers();
       //Drawboundary();
+      window.localStorage.getItem("updatePaxMap", "false");
 
     }
 

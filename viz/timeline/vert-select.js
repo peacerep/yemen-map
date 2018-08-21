@@ -1,38 +1,36 @@
 window.onload = function() {
 
-  window.localStorage.setItem("updateVertical","true");
-  window.localStorage.setItem("updateHorizontal","false");
   paxFilterUncheck(); // Check all code filters
   paxRuleAll(); // Pick code filter rule ALL
 
   // Filter rule listeners
   document.getElementById("anyV").onclick = function(event) {
-    window.localStorage.setItem("updateVertical","true");
-    window.localStorage.setItem("updateHorizontal","false");
+    window.localStorage.setItem("updatePaxVertical","true");
+    window.localStorage.setItem("updatePaxHorizontal","false");
     paxRuleAny();
   }
   document.getElementById("allV").onclick = function(event) {
-    window.localStorage.setItem("updateVertical","true");
-    window.localStorage.setItem("updateHorizontal","false");
+    window.localStorage.setItem("updatePaxVertical","true");
+    window.localStorage.setItem("updatePaxHorizontal","false");
     paxRuleAll();
   }
 
   // Code filter listeners
   document.getElementById("DeselectAllCodesV").onclick = function(event) {
-    window.localStorage.setItem("updateVertical","true");
-    window.localStorage.setItem("updateHorizontal","false");
+    window.localStorage.setItem("updatePaxVertical","true");
+    window.localStorage.setItem("updatePaxHorizontal","false");
     paxFilterUncheck();
   }
   document.getElementById("SelectAllCodesV").onclick = function(event) {
-    window.localStorage.setItem("updateVertical","true");
-    window.localStorage.setItem("updateHorizontal","false");
+    window.localStorage.setItem("updatePaxVertical","true");
+    window.localStorage.setItem("updatePaxHorizontal","false");
     paxFilterCheck();
   }
 
   // Code filter listeners
   document.getElementById("CodesV").onclick = function(event){
-    window.localStorage.setItem("updateVertical","true");
-    window.localStorage.setItem("updateHorizontal","false");
+    window.localStorage.setItem("updatePaxVertical","true");
+    window.localStorage.setItem("updatePaxHorizontal","false");
     let target = event.target;
     if (+localStorage.getItem(target.id) == 0){
       localStorage.setItem(target.id, 1);
@@ -48,8 +46,8 @@ window.onload = function() {
   // Page refresh listener
     if (window.performance) {
       if (performance.navigation.TYPE_RELOAD) {
-        window.localStorage.setItem("updateVertical","true");
-        window.localStorage.setItem("updateHorizontal","false");
+        window.localStorage.setItem("updatePaxVertical","true");
+        window.localStorage.setItem("updatePaxHorizontal","false");
         paxFilterUncheck(); // Check all code filters
         paxRuleAll(); // Pick code filter rule ALL
     }

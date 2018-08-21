@@ -31,43 +31,47 @@ window.onload = function() {
       let target = event.target;
       var startDate = "01/01/"+String(target.id);
       window.localStorage.setItem("paxNewMinDay",startDate);
-      window.localStorage.setItem("updateVertical","false");
-      window.localStorage.setItem("updateHorizontal","true");
+      window.localStorage.setItem("updatePaxVertical","false");
+      window.localStorage.setItem("updatePaxHorizontal","true");
+      window.localStorage.setItem("updatePaxMap", "true");
     }
     document.getElementById("EndYears").onclick = function(event){
       let target = event.target;
       var endDate = "31/12/"+String(target.id);
       window.localStorage.setItem("paxNewMaxDay",endDate);
-      window.localStorage.setItem("updateVertical","false");
-      window.localStorage.setItem("updateHorizontal","true");
+      window.localStorage.setItem("updatePaxVertical","false");
+      window.localStorage.setItem("updatePaxHorizontal","true");
+      window.localStorage.setItem("updatePaxMap", "true");
     }
 
     // Country/entity listeners
     document.getElementById("anyCon").onclick = function(event) {
-      window.localStorage.setItem("updateVertical","false");
-      window.localStorage.setItem("updateHorizontal","true");
       paxConRuleAny();
+      window.localStorage.setItem("updatePaxVertical","false");
+      window.localStorage.setItem("updatePaxHorizontal","true");
+      window.localStorage.setItem("updatePaxMap", "true");
     }
     document.getElementById("allCon").onclick = function(event) {
-      window.localStorage.setItem("updateVertical","false");
-      window.localStorage.setItem("updateHorizontal","true");
       paxConRuleAll();
+      window.localStorage.setItem("updatePaxVertical","false");
+      window.localStorage.setItem("updatePaxHorizontal","true");
+      window.localStorage.setItem("updatePaxMap", "true");
     }
     document.getElementById("DeselectAllCons").onclick = function(event) {
-      window.localStorage.setItem("updateVertical","false");
-      window.localStorage.setItem("updateHorizontal","true");
       paxConsAllUncheck();
       storeBlankAgtDetails();
+      window.localStorage.setItem("updatePaxVertical","false");
+      window.localStorage.setItem("updatePaxHorizontal","true");
+      window.localStorage.setItem("updatePaxMap", "true");
     }
     document.getElementById("SelectAllCons").onclick = function(event) {
-      window.localStorage.setItem("updateVertical","false");
-      window.localStorage.setItem("updateHorizontal","true");
       paxConsAllCheck();
       storeBlankAgtDetails();
+      window.localStorage.setItem("updatePaxVertical","false");
+      window.localStorage.setItem("updatePaxHorizontal","true");
+      window.localStorage.setItem("updatePaxMap", "true");
     }
     document.getElementById("Cons").onclick = function(event){
-      window.localStorage.setItem("updateVertical","false");
-      window.localStorage.setItem("updateHorizontal","true");
       let target = event.target;
       var con = target.id;
       if (target.name == "Con"){
@@ -85,38 +89,43 @@ window.onload = function() {
           console.log("Added to paxCons: "+target.id);
         }
       }
+      window.localStorage.setItem("updatePaxVertical","false");
+      window.localStorage.setItem("updatePaxHorizontal","true");
+      window.localStorage.setItem("updatePaxMap", "true");
     }
 
     // Filter rule listeners
     document.getElementById("any").onclick = function(event) {
-      window.localStorage.setItem("updateVertical","false");
-      window.localStorage.setItem("updateHorizontal","true");
       paxRuleAny();
+      window.localStorage.setItem("updatePaxVertical","false");
+      window.localStorage.setItem("updatePaxHorizontal","true");
+      window.localStorage.setItem("updatePaxMap", "true");
     }
     document.getElementById("all").onclick = function(event) {
-      window.localStorage.setItem("updateVertical","false");
-      window.localStorage.setItem("updateHorizontal","true");
       paxRuleAll();
+      window.localStorage.setItem("updatePaxVertical","false");
+      window.localStorage.setItem("updatePaxHorizontal","true");
+      window.localStorage.setItem("updatePaxMap", "true");
     }
 
     // Code filter listeners
     document.getElementById("DeselectAllCodes").onclick = function(event) {
-      window.localStorage.setItem("updateVertical","false");
-      window.localStorage.setItem("updateHorizontal","true");
       paxFilterUncheck();
       storeBlankAgtDetails();
+      window.localStorage.setItem("updatePaxVertical","false");
+      window.localStorage.setItem("updatePaxHorizontal","true");
+      window.localStorage.setItem("updatePaxMap", "true");
     }
     document.getElementById("SelectAllCodes").onclick = function(event) {
-      window.localStorage.setItem("updateVertical","false");
-      window.localStorage.setItem("updateHorizontal","true");
       paxFilterCheck();
       storeBlankAgtDetails();
+      window.localStorage.setItem("updatePaxVertical","false");
+      window.localStorage.setItem("updatePaxHorizontal","true");
+      window.localStorage.setItem("updatePaxMap", "true");
     }
 
     // Code filter listeners
     document.getElementById("Codes").onclick = function(event){
-      window.localStorage.setItem("updateVertical","false");
-      window.localStorage.setItem("updateHorizontal","true");
       let target = event.target;
       // console.log("Target.id: "+target.id);
       if (localStorage.getItem(target.id) == 0){
@@ -128,11 +137,14 @@ window.onload = function() {
         target.checked = false;
         console.log("Unchecked "+target.id);
       }
+      window.localStorage.setItem("updatePaxVertical","false");
+      window.localStorage.setItem("updatePaxHorizontal","true");
+      window.localStorage.setItem("updatePaxMap", "true");
     }
 
     // Page refresh listener
     if (window.performance) {
-      if (performance.navigation.TYPE_RELOAD) {
+      if ((performance.navigation.TYPE_RELOAD) || (window.localStorage.getItem("paxReset") == "true")){
         localStorage.setItem("paxCons", JSON.stringify(document.getElementsByName("Con").id));
         paxCheckTime();
         paxConsAllUncheck(); // Check all country/entity values
@@ -140,10 +152,11 @@ window.onload = function() {
         paxFilterUncheck(); // Check all code filters
         storeBlankAgtDetails();// Empty agreement details in localStorage
         paxRuleAll(); // Pick code filter rule ALL
-        window.localStorage.setItem("updateVertical","false");
-        window.localStorage.setItem("updateHorizontal","true");
+        window.localStorage.setItem("updatePaxVertical","true");
+        window.localStorage.setItem("updatePaxHorizontal","true");
+        window.localStorage.setItem("updatePaxMap", "true");
         // Reset codes, countries/entities, & time period
-        window.localStorage.setItem("paxHrFra",0); // Human rights framework
+        // window.localStorage.setItem("paxHrFra",0); // Human rights framework
         window.localStorage.setItem("paxHrGen",0); // Human rights/Rule of law
         window.localStorage.setItem("paxPol",0); // Political institutions
         window.localStorage.setItem("paxEps",0); // Economic power sharing
@@ -157,6 +170,8 @@ window.onload = function() {
         window.localStorage.setItem("paxConRule","all"); // Selected ANY country/entity rule
         window.localStorage.setItem("paxNewMinDay", "01/01/1990");
         window.localStorage.setItem("paxNewMaxDay", "31/12/2015");
+
+        window.localStorage.setItem("paxReset", "false");
       }
     }
 }

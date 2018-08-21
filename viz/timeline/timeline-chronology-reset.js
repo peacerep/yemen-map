@@ -17,7 +17,7 @@ Horizontal Timeline with Agreements Grouped by Date
 // Define one key/value pair per category (code) by which to filter which
 // agreements the timeline and map visualize, checking all paxfilters
 // (value = 1) upon page load so all agreements are visible
-var paxHrFra = window.localStorage.setItem("paxHrFra",0); // Human rights framework
+// var paxHrFra = window.localStorage.setItem("paxHrFra",0); // Human rights framework
 var paxHrGen = window.localStorage.setItem("paxHrGen",0); // Human rights/Rule of law
 var paxPol = window.localStorage.setItem("paxPol",0); // Political institutions
 var paxEps = window.localStorage.setItem("paxEps",0); // Economic power sharing
@@ -52,7 +52,7 @@ function getFilters(){
   paxANY = locStor.getItem("paxANY");
   paxALL = locStor.getItem("paxALL");
   // Filter codes
-  paxHrFra = locStor.getItem("paxHrFra");
+  // paxHrFra = locStor.getItem("paxHrFra");
   paxHrGen = locStor.getItem("paxHrGen");
   paxPol = locStor.getItem("paxPol");
   paxEps = locStor.getItem("paxEps");
@@ -122,7 +122,7 @@ function callFunction() {
                                 Mps:d.Mps, // 1-3 indicating increasing level of detail given about Political Power sharing; 0 if none given
                                 Pol:d.Pol, // 1-3 indicating increasing level of detail given about political institutions; 0 if none given
                                 HrGen:d.HrGen, // 1 if topic of human rights/rule of law addressed; 0 if not
-                                HrFra:d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
+                                // HrFra:d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
                                 TjMech:d.TjMech // 1-3 indicating increasing level of detail given about a body to deal with the past; 0 if none given
                               }; })
       .get(function(error,data){
@@ -395,8 +395,8 @@ function callFunction() {
             }
 
             function setAgtFilters(d){
-              var agmtCodes = [d.HrFra, d.HrGen, d.Pol, d.Eps, d.Mps, d.Polps, d.Terps, d.TjMech, d.GeWom, ];
-              var codeFilters = [+paxHrFra, +paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
+              var agmtCodes = [d.HrGen, d.Pol, d.Eps, d.Mps, d.Polps, d.Terps, d.TjMech, d.GeWom, ]; //d.HrFra,
+              var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrFra,
               var codeFilterCount = codeFilters.length;
               if (paxANY == 1){
                 for (i = 0; i < codeFilterCount; i++){
