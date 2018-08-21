@@ -1,5 +1,4 @@
 window.onload = function() {
-
   localStorage.setItem("paxVertConC","None");
   document.getElementById("None").checked = true;
 
@@ -9,6 +8,7 @@ window.onload = function() {
     if (target.name == "ConRadio"){
       window.localStorage.setItem("updatePaxVertical","true");
       window.localStorage.setItem("updatePaxHorizontal","false");
+      window.localStorage.setItem("updatePaxMap", "false");
       localStorage.setItem("paxVertConC",String(target.id));
       console.log("Set paxVertConC to "+target.id);
     }

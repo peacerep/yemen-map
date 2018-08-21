@@ -918,6 +918,8 @@ function Drawflowers(){
          })  //end for each
 
        })   // end read json file
+
+       window.localStorage.getItem("updatePaxMap", "false");
        console.log("...flower drawing now complete.")
   }
   // geojson = L.geoJson(cgeodata).addTo(map);
@@ -1007,6 +1009,7 @@ function Drawboundary(){
 function initial(){
     Drawboundary();
     Drawflowers();
+    window.localStorage.getItem("updatePaxMap", "false");
 
 
     }

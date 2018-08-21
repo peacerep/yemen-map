@@ -1,35 +1,48 @@
 window.onload = function() {
 
+  window.localStorage.setItem("updatePaxMap", "false");
+  window.localStorage.setItem("updatePaxVertical","false");
+  window.localStorage.setItem("updatePaxHorizontal","false");
   paxFilterUncheck(); // Check all code filters
   paxRuleAll(); // Pick code filter rule ALL
+  window.localStorage.setItem("updatePaxVertical","true");
 
   // Filter rule listeners
   document.getElementById("anyV").onclick = function(event) {
-    window.localStorage.setItem("updatePaxVertical","true");
+    window.localStorage.setItem("updatePaxMap", "false");
+    window.localStorage.setItem("updatePaxVertical","false");
     window.localStorage.setItem("updatePaxHorizontal","false");
     paxRuleAny();
+    window.localStorage.setItem("updatePaxVertical","true");
   }
   document.getElementById("allV").onclick = function(event) {
-    window.localStorage.setItem("updatePaxVertical","true");
+    window.localStorage.setItem("updatePaxMap", "false");
+    window.localStorage.setItem("updatePaxVertical","false");
     window.localStorage.setItem("updatePaxHorizontal","false");
     paxRuleAll();
+    window.localStorage.setItem("updatePaxVertical","true");
   }
 
   // Code filter listeners
   document.getElementById("DeselectAllCodesV").onclick = function(event) {
-    window.localStorage.setItem("updatePaxVertical","true");
+    window.localStorage.setItem("updatePaxMap", "false");
+    window.localStorage.setItem("updatePaxVertical","false");
     window.localStorage.setItem("updatePaxHorizontal","false");
     paxFilterUncheck();
+    window.localStorage.setItem("updatePaxVertical","true");
   }
   document.getElementById("SelectAllCodesV").onclick = function(event) {
-    window.localStorage.setItem("updatePaxVertical","true");
+    window.localStorage.setItem("updatePaxMap", "false");
+    window.localStorage.setItem("updatePaxVertical","false");
     window.localStorage.setItem("updatePaxHorizontal","false");
     paxFilterCheck();
+    window.localStorage.setItem("updatePaxVertical","true");
   }
 
   // Code filter listeners
   document.getElementById("CodesV").onclick = function(event){
-    window.localStorage.setItem("updatePaxVertical","true");
+    window.localStorage.setItem("updatePaxMap", "false");
+    window.localStorage.setItem("updatePaxVertical","false");
     window.localStorage.setItem("updatePaxHorizontal","false");
     let target = event.target;
     if (+localStorage.getItem(target.id) == 0){
@@ -41,15 +54,18 @@ window.onload = function() {
       target.checked = false;
       console.log("Unchecked "+target.id);
     }
+    window.localStorage.setItem("updatePaxVertical","true");
   }
 
   // Page refresh listener
     if (window.performance) {
-      if (performance.navigation.TYPE_RELOAD) {
-        window.localStorage.setItem("updatePaxVertical","true");
-        window.localStorage.setItem("updatePaxHorizontal","false");
+      if ((performance.navigation.TYPE_RELOAD) || (window.localStorage.getItem("paxReset") == "true")) {
+        window.localStorage.setItem("updatePaxMap", "false");
+        window.localStorage.setItem("updatePaxHorizontal", "false");
+        window.localStorage.setItem("updatePaxVertical","false");
         paxFilterUncheck(); // Check all code filters
         paxRuleAll(); // Pick code filter rule ALL
+        window.localStorage.setItem("updatePaxVertical","true");
     }
   }
 

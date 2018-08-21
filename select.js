@@ -1,13 +1,14 @@
 /* Filtering agreements by category
    Storing paxfilters in local storage
 */
-
-// HOW TO FORCE REFRESH OF SELECTER?
-
 window.onload = function() {
     /*
     Set defaults
     */
+    window.localStorage.setItem("updatePaxMap", "false");
+    window.localStorage.setItem("updatePaxHorizontal","false");
+    window.localStorage.setItem("updatePaxVertical","false");
+
     var allCons = document.getElementsByName("Con");
     var paxConsAll = [];
     for (i = 0; i < allCons.length; i++){
@@ -23,55 +24,73 @@ window.onload = function() {
     storeBlankAgtDetails();// Empty agreement details in localStorage
     paxRuleAll(); // Pick code filter rule ALL
 
+    window.localStorage.setItem("updatePaxHorizontal","true");
+    window.localStorage.setItem("updatePaxMap", "true");
+
     /*
     Listeners
     */
     // Time listeners
     document.getElementById("StartYears").onclick = function(event){
+      window.localStorage.setItem("updatePaxHorizontal","false");
+      window.localStorage.setItem("updatePaxVertical","false");
+      window.localStorage.setItem("updatePaxMap", "false");
       let target = event.target;
       var startDate = "01/01/"+String(target.id);
       window.localStorage.setItem("paxNewMinDay",startDate);
-      window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
     }
     document.getElementById("EndYears").onclick = function(event){
+      window.localStorage.setItem("updatePaxHorizontal","false");
+      window.localStorage.setItem("updatePaxVertical","false");
+      window.localStorage.setItem("updatePaxMap", "false");
       let target = event.target;
       var endDate = "31/12/"+String(target.id);
       window.localStorage.setItem("paxNewMaxDay",endDate);
-      window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
     }
 
     // Country/entity listeners
     document.getElementById("anyCon").onclick = function(event) {
-      paxConRuleAny();
+      window.localStorage.setItem("updatePaxHorizontal","false");
       window.localStorage.setItem("updatePaxVertical","false");
+      window.localStorage.setItem("updatePaxMap", "false");
+      paxConRuleAny();
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
     }
     document.getElementById("allCon").onclick = function(event) {
-      paxConRuleAll();
+      window.localStorage.setItem("updatePaxHorizontal","false");
       window.localStorage.setItem("updatePaxVertical","false");
+      window.localStorage.setItem("updatePaxMap", "false");
+      paxConRuleAll();
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
     }
     document.getElementById("DeselectAllCons").onclick = function(event) {
+      window.localStorage.setItem("updatePaxHorizontal","false");
+      window.localStorage.setItem("updatePaxVertical","false");
+      window.localStorage.setItem("updatePaxMap", "false");
       paxConsAllUncheck();
       storeBlankAgtDetails();
-      window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
     }
     document.getElementById("SelectAllCons").onclick = function(event) {
+      window.localStorage.setItem("updatePaxHorizontal","false");
+      window.localStorage.setItem("updatePaxVertical","false");
+      window.localStorage.setItem("updatePaxMap", "false");
       paxConsAllCheck();
       storeBlankAgtDetails();
-      window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
     }
     document.getElementById("Cons").onclick = function(event){
+      window.localStorage.setItem("updatePaxHorizontal","false");
+      window.localStorage.setItem("updatePaxVertical","false");
+      window.localStorage.setItem("updatePaxMap", "false");
       let target = event.target;
       var con = target.id;
       if (target.name == "Con"){
@@ -89,43 +108,53 @@ window.onload = function() {
           console.log("Added to paxCons: "+target.id);
         }
       }
-      window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
     }
 
     // Filter rule listeners
     document.getElementById("any").onclick = function(event) {
-      paxRuleAny();
+      window.localStorage.setItem("updatePaxHorizontal","false");
       window.localStorage.setItem("updatePaxVertical","false");
+      window.localStorage.setItem("updatePaxMap", "false");
+      paxRuleAny();
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
     }
     document.getElementById("all").onclick = function(event) {
-      paxRuleAll();
+      window.localStorage.setItem("updatePaxHorizontal","false");
       window.localStorage.setItem("updatePaxVertical","false");
+      window.localStorage.setItem("updatePaxMap", "false");
+      paxRuleAll();
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
     }
 
     // Code filter listeners
     document.getElementById("DeselectAllCodes").onclick = function(event) {
+      window.localStorage.setItem("updatePaxHorizontal","false");
+      window.localStorage.setItem("updatePaxVertical","false");
+      window.localStorage.setItem("updatePaxMap", "false");
       paxFilterUncheck();
       storeBlankAgtDetails();
-      window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
     }
     document.getElementById("SelectAllCodes").onclick = function(event) {
+      window.localStorage.setItem("updatePaxHorizontal","false");
+      window.localStorage.setItem("updatePaxVertical","false");
+      window.localStorage.setItem("updatePaxMap", "false");
       paxFilterCheck();
       storeBlankAgtDetails();
-      window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
     }
 
     // Code filter listeners
     document.getElementById("Codes").onclick = function(event){
+      window.localStorage.setItem("updatePaxHorizontal","false");
+      window.localStorage.setItem("updatePaxVertical","false");
+      window.localStorage.setItem("updatePaxMap", "false");
       let target = event.target;
       // console.log("Target.id: "+target.id);
       if (localStorage.getItem(target.id) == 0){
@@ -137,7 +166,6 @@ window.onload = function() {
         target.checked = false;
         console.log("Unchecked "+target.id);
       }
-      window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
     }
@@ -145,6 +173,8 @@ window.onload = function() {
     // Page refresh listener
     if (window.performance) {
       if ((performance.navigation.TYPE_RELOAD) || (window.localStorage.getItem("paxReset") == "true")){
+        window.localStorage.setItem("updatePaxHorizontal","false");
+        window.localStorage.setItem("updatePaxMap", "false");
         localStorage.setItem("paxCons", JSON.stringify(document.getElementsByName("Con").id));
         paxCheckTime();
         paxConsAllUncheck(); // Check all country/entity values
@@ -152,9 +182,6 @@ window.onload = function() {
         paxFilterUncheck(); // Check all code filters
         storeBlankAgtDetails();// Empty agreement details in localStorage
         paxRuleAll(); // Pick code filter rule ALL
-        window.localStorage.setItem("updatePaxVertical","true");
-        window.localStorage.setItem("updatePaxHorizontal","true");
-        window.localStorage.setItem("updatePaxMap", "true");
         // Reset codes, countries/entities, & time period
         // window.localStorage.setItem("paxHrFra",0); // Human rights framework
         window.localStorage.setItem("paxHrGen",0); // Human rights/Rule of law
@@ -170,6 +197,9 @@ window.onload = function() {
         window.localStorage.setItem("paxConRule","all"); // Selected ANY country/entity rule
         window.localStorage.setItem("paxNewMinDay", "01/01/1990");
         window.localStorage.setItem("paxNewMaxDay", "31/12/2015");
+
+        window.localStorage.setItem("updatePaxHorizontal","true");
+        window.localStorage.setItem("updatePaxMap", "true");
 
         window.localStorage.setItem("paxReset", "false");
       }

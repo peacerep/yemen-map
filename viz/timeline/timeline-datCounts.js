@@ -143,7 +143,7 @@ function callFunction() {
             agtWidth = 2;
           }
 
-          // Set up the x axis (for the timeline and bar chart)
+          // Set up the x axis
           // Find the earliest & latest day of the year on which agreements are written
           if ((newMinDay.length > 0) && (newMaxDay.length > 0)){
             var x = d3.scaleTime()
@@ -158,6 +158,7 @@ function callFunction() {
                         .domain([minDay,maxDay])  // data space
                         .range([margin.left,width]);  // display space
           }
+
           // Find the earliest & latest year in which agreements occur
           var minYear = d3.min(yr_count_nest,function(d){ return d.key; });
           var maxYear = d3.max(yr_count_nest,function(d){ return d.key; });

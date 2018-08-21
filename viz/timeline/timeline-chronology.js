@@ -20,12 +20,14 @@ window.addEventListener("storage", toUpdate);
 
 function toUpdate(){
   if (window.localStorage.getItem("updatePaxHorizontal") == "true"){
+    d3.selectAll("rects").remove();
     return callFunction();
   }
 }
 
 function callFunction() {
   console.log("Drawing visualization");
+
   // Countries/entities
   var paxCons = JSON.parse(window.localStorage.getItem("paxCons"));
   var paxConRule = localStorage.getItem("paxConRule");
@@ -45,7 +47,6 @@ function callFunction() {
   // Time period
   var newMinDay = localStorage.getItem("paxNewMinDay");
   var newMaxDay = localStorage.getItem("paxNewMaxDay");
-
   // Agreement information to display upon hover
   var agt = "Hover over an agreement to view its details.",
       dat = "",
@@ -149,7 +150,7 @@ function callFunction() {
             agtWidth = 2;
           }
 
-          // Set up the x axis (for the timeline and bar chart)
+          // Set up the x axis
           // Find the earliest & latest day of the year on which agreements are written
           if ((newMinDay.length > 0) && (newMaxDay.length > 0)){
             var x = d3.scaleTime()
@@ -164,6 +165,7 @@ function callFunction() {
                         .domain([minDay,maxDay])  // data space
                         .range([margin.left,width]);  // display space
           }
+
           // Find the earliest & latest year in which agreements occur
           var minYear = d3.min(yr_count_nest,function(d){ return d.key; });
           var maxYear = d3.max(yr_count_nest,function(d){ return d.key; });
@@ -216,6 +218,7 @@ function callFunction() {
                    stage = d.Stage;
                    substage = d.StageSub;
                    window.localStorage.setItem("updatePaxVertical","false");
+                   window.localStorage.setItem("updatePaxMap", "false");
                    window.localStorage.setItem("paxagt", agt);
                    window.localStorage.setItem("paxdat", dat);
                    window.localStorage.setItem("paxreg", reg);
@@ -229,6 +232,7 @@ function callFunction() {
                    this.style.fill = "black"
                    this.style.stroke = "#c4c4c4";
                    window.localStorage.setItem("updatePaxVertical","false");
+                   window.localStorage.setItem("updatePaxMap", "false");
                    window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
                    window.localStorage.setItem("paxdat", "");
                    window.localStorage.setItem("paxreg", "");

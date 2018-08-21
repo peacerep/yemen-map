@@ -284,6 +284,4 @@ function callFunction() {
 
       }) // end of .get(error,data)
 
-      window.localStorage.setItem("updatePaxVertical","false");
-
   }; // end of callFunction()
