@@ -163,7 +163,7 @@ function callFunction() {
                 .attr("name",function(d){ return d.Agt; })
                 .attr("value",function(d){ return d.Year; })
                 .attr("fill","black")
-                .attr("stroke","#c4c4c4")  // same as html background-color
+                .attr("stroke","#737373")  // same as html background-color
                 .attr("stroke-width","0.5px")
                 .style("opacity", "0.7")
                 .attr("x", function(d){ return x(parseYear(d.Year)) - (agtWidth/2); })
@@ -195,7 +195,7 @@ function callFunction() {
                  });
             rects.on("mouseout",function(d) {
                    this.style.fill = "black"
-                   this.style.stroke = "#c4c4c4";
+                   this.style.stroke = "#737373";
                    window.localStorage.setItem("updatePaxVertical","false");
                    window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
                    window.localStorage.setItem("paxdat", "");

@@ -10,7 +10,7 @@ p, a, label, input {
   font-size: 12px;
   text-decoration: none;
   display: inline;
-  font-family: "Roboto", sans-serif;
+  font-family: "Helvetica", sans-serif;
   font-weight: normal;
 }
 a {
@@ -25,13 +25,16 @@ a#tCount, a#tProp, a#Reset{
 /*
 TIMELINE
 */
-.description {
+/* .description {
   color:black;
   font-size: 10px;
   text-decoration: none;
   display: inline;
-  font-family: "Roboto", sans-serif;
+  font-family: "Helvetica", sans-serif;
   font-weight: normal;
+} */
+text.count {
+  text-anchor: middle;
 }
 
 #chart{
@@ -72,7 +75,7 @@ g.xaxis#dat g.tick text {
   width: auto;
   text-align: center;
   padding-left: 20px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Helvetica", sans-serif;
   font-weight: 50;
   z-index: 1;
   pointer-events: none !important;

@@ -19,7 +19,7 @@ d3.select(window).on("resize", callFunction);
 window.addEventListener("storage", toUpdate);
 
 function toUpdate(){
-  if (window.localStorage.getItem("updatePaxVertical") == "true"){
+  if ((window.localStorage.getItem("updatePaxVertical") == "true") || (window.localStorage.getItem("updatePaxVerticalB") == "true")){
     return callFunction();
   }
 }
@@ -147,7 +147,8 @@ function callFunction() {
               .attr("class","B");
 
           // Define the color scale for agreement stages
-          var stageColors = ["#377eb8","#ffff33","#ff7f00","#4daf4a","#e41a1c","#a65628","#984ea3"];   //from: http://colorbrewer2.org/#type=qualitative&scheme=Set1&n=7
+          // (Colors from: http://colorbrewer2.org/#type=qualitative&scheme=Set3&n=7)
+          var stageColors = ["#8dd3c7", "#ffffb3", "#fdb462", "#b3de69", "#fb8072", "#8c8c8c", "#80b1d3"];
           var stageValues = ["Pre", "SubPar", "SubComp", "Imp", "Cea", "Other", "FrCons"];
 
           for (year = 0; year < yrList.length; year++){
@@ -165,7 +166,7 @@ function callFunction() {
                 .attr("name",function(d){ return d.Agt; })
                 .attr("value",function(d){ return d.Year; })
                 .attr("fill", function(d){ return getStageFill(d, stageValues, stageColors); })//"black")
-                .attr("stroke","#c4c4c4")  // same as html background-color
+                .attr("stroke","#737373")  // same as html background-color
                 .attr("stroke-width","1px")
                 .style("opacity", "0.7")
                 .attr("x",function(d,i){ return (yWidth+margin.left+((agtWidth)*(i*agtSpacing)))+"px"; })
@@ -195,7 +196,7 @@ function callFunction() {
                  });
             rects.on("mouseout",function(d) {
                    this.style.fill = getStageFill(d, stageValues, stageColors) //"black"
-                   this.style.stroke = "#c4c4c4"
+                   this.style.stroke = "#737373"
                    tooltip.style("opacity","0");
                  });
           }
@@ -277,11 +278,14 @@ function callFunction() {
                if (stageI != -1){
                  return stageColors[stageI];
                } else {
-                 return "black";
+                 return "#bebada";
                }
              }
            }
 
       }) // end of .get(error,data)
 
+      window.localStorage.setItem("updatePaxVertical","false");
+      window.localStorage.setItem("updatePaxVerticalB", "false");
+      
   }; // end of callFunction()

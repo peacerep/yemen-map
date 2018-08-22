@@ -147,175 +147,95 @@ function callFunction() {
               .attr("height", height + margin.top + margin.bottom)
               .attr("width", width + margin.left + margin.right)
 
+          var yrProps = [];
           for (year = 0; year < yrList.length; year++){
-            var chartGroup = svg.append("g")
-                        .attr("class","yearGroup")
-                        .attr("transform","translate("+margin.left+","+margin.top+")")
+            var y = +(years[year].key);
+            // Only draw agreements within the axis bounds
+            if ((y > minYear) && (y < maxYear)){
+              var chartGroup = svg.append("g")
+                          .attr("class","yearGroup")
+                          .attr("id", String(years[year].key))
+                          .attr("transform","translate("+margin.left+","+margin.top+")")
 
-            var rects = chartGroup.selectAll("rects.agt")
-                .data(years[year].values)
-              .enter().append("rect")
-              .filter(function(d){ return setAgtTimePeriod(d); })
-              // .filter(function(d){ return setAgtFilters(d); })
-              .filter(function(d){ return setAgtCons(d); })
-                .attr("class","agt")
-                .attr("id",function(d){ return d.AgtId; })
-                .attr("name",function(d){ return d.Agt; })
-                .attr("value",function(d){ return d.Year; })
-                .attr("fill", function(d){ return setAgtColors(d); })//"black")
-                .attr("stroke","#c4c4c4")  // same as html background-color
-                .attr("stroke-width","0.5px")
-                .style("opacity", "0.7")
-                .attr("x", function(d){ return x(parseYear(d.Year)) - (agtWidth/2); })
-                .attr("y",function(d,i){ return (height-xHeight-margin.bottom-(agtHeight*1.5)-((agtHeight)*(i*agtSpacing)))+"px"; })
-                .attr("width", agtWidth+"px")
-                .attr("height", agtHeight+"px");
-
-            rects.on("mousemove",function(d){
-                    this.style.fill = "#ffffff";
-                    this.style.stroke = "#ffffff";
-                    // Core agreement information (name, date, region, country/entity, status, type & stage)
-                    agt = d.Agt;
-                    dat = formatDate(d.Dat);
-                    reg = d.Reg;
-                    con = d.Con;
-                    status = d.Status;
-                    agtp = d.Agtp;
-                    stage = d.Stage;
-                    substage = d.StageSub;
-                    window.localStorage.setItem("updatePaxVertical","false");
-                    window.localStorage.setItem("paxagt", agt);
-                    window.localStorage.setItem("paxdat", dat);
-                    window.localStorage.setItem("paxreg", reg);
-                    window.localStorage.setItem("paxcon", con);
-                    window.localStorage.setItem("paxstatus", status);
-                    window.localStorage.setItem("paxagtp", agtp);
-                    window.localStorage.setItem("paxstage", stage);
-                    window.localStorage.setItem("paxsubstage", substage);
-                 });
-            rects.on("mouseout",function(d) {
-                   this.style.fill = setAgtColors(d);
-                   this.style.stroke = "#c4c4c4";
-                   window.localStorage.setItem("updatePaxVertical","false");
-                   window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
-                   window.localStorage.setItem("paxdat", "");
-                   window.localStorage.setItem("paxreg", "");
-                   window.localStorage.setItem("paxcon", "");
-                   window.localStorage.setItem("paxstatus", "");
-                   window.localStorage.setItem("paxagtp", "");
-                   window.localStorage.setItem("paxstage", "");
-                   window.localStorage.setItem("paxsubstage", "");
-                 });
-
-             // Filter by code, country, & time to determine height of year &
-             // thus the y coordinate value for the text
-             var yrCount = getCount(years[year].values);
-
-             var text = chartGroup.selectAll("text.count")
+              var rects = chartGroup.selectAll("rects")
                   .data(years[year].values)
-               .enter().append("text")
-               .filter(function(d){ return setAgtTimePeriod(d); })
-               .filter(function(d){ return setAgtCons(d); })
-                  .attr("class","count")
-                  .attr("x", function(d){ return x(parseYear(d.Year))})
-                  .attr("y", height-(xHeight*2)-(yrCount*agtHeight))
-                  .text(getProp(yrCount, years[year].values))
-                  .style("font-family", "sans-serif")
-                  .style("font-size", "10px")
-                  .style("font-weight", "bold")
-                  .style("fill","steelblue")
-                  .style("font-weight","normal")
-                  .attr("text-anchor", "middle");
+                .enter().append("rect")
+                .filter(function(d){ return setAgtTimePeriod(d); })
+                .filter(function(d){ return setAgtCons(d); })
+                  .attr("class",function(d){ return String((setAgtColors(d))[1]); })
+                  .attr("id",function(d){ return d.AgtId; })
+                  .attr("name",function(d){ return d.Agt; })
+                  .attr("value",function(d){ return d.Year; })
+                  .attr("fill", function(d){ return (setAgtColors(d))[0]; })//"black")
+                  .attr("stroke","#737373")  // same as html background-color
+                  .attr("stroke-width","0.5px")
+                  .style("opacity", "0.7")
+                  .attr("x", function(d){ return x(parseYear(d.Year)) - (agtWidth/2) - 5; })
+                  .attr("y",function(d,i){ return (height-xHeight-margin.bottom-(agtHeight*1.5)-((agtHeight)*(i*agtSpacing)))+"px"; })
+                  .attr("width", agtWidth+"px")
+                  .attr("height", agtHeight+"px");
 
+              rects.on("mousemove",function(d){
+                      this.style.fill = "#ffffff";
+                      this.style.stroke = "#ffffff";
+                      // Core agreement information (name, date, region, country/entity, status, type & stage)
+                      agt = d.Agt;
+                      dat = formatDate(d.Dat);
+                      reg = d.Reg;
+                      con = d.Con;
+                      status = d.Status;
+                      agtp = d.Agtp;
+                      stage = d.Stage;
+                      substage = d.StageSub;
+                      window.localStorage.setItem("updatePaxVertical","false");
+                      window.localStorage.setItem("paxagt", agt);
+                      window.localStorage.setItem("paxdat", dat);
+                      window.localStorage.setItem("paxreg", reg);
+                      window.localStorage.setItem("paxcon", con);
+                      window.localStorage.setItem("paxstatus", status);
+                      window.localStorage.setItem("paxagtp", agtp);
+                      window.localStorage.setItem("paxstage", stage);
+                      window.localStorage.setItem("paxsubstage", substage);
+                   });
+              rects.on("mouseout",function(d) {
+                     this.style.fill = setAgtColors(d);
+                     this.style.stroke = "#737373";
+                     window.localStorage.setItem("updatePaxVertical","false");
+                     window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
+                     window.localStorage.setItem("paxdat", "");
+                     window.localStorage.setItem("paxreg", "");
+                     window.localStorage.setItem("paxcon", "");
+                     window.localStorage.setItem("paxstatus", "");
+                     window.localStorage.setItem("paxagtp", "");
+                     window.localStorage.setItem("paxstage", "");
+                     window.localStorage.setItem("paxsubstage", "");
+                   });
+
+               var yrCount = chartGroup.selectAll('rect.selected')._groups[0].length;
+               var yrTotal = years[year].values.length;
+               yrProps.push([(years[year].values[0].Year), yrCount, yrTotal]);
+             }
           }
 
           /*
           FUNCTIONS
           */
-
-          function getProp(yrCount, values){
-            // Subtract agreements that don't have selected countries/entities
-            // (values already filtered by time)
-            var total = values.length;
-            for (v = 0; v < values.length; v++){
-              var d = values[v];
-              var subtracted = false;
-              // Subtract agreements that don't have selected codes
-              var agmtCodes = [d.HrGen, d.Pol, d.Eps, d.Mps, d.Polps, d.Terps, d.TjMech, d.GeWom, ]; //d.HrFra,
-              var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrFra,
-              var codeFilterCount = codeFilters.length;
-              if (paxANY == 1){
-                var pass = false;
-                for (i = 0; i < codeFilterCount; i++){
-                  if ((codeFilters[i] > 0) && (agmtCodes[i] > 0)){ pass = true; }
-                } if (!pass) {
-                  total -= 1;
-                  subtracted = true;
-                }
-              } else { // if paxALL == 1
-                var mismatch = false;
-                for (j = 0; j < codeFilterCount; j++){
-                  if ((codeFilters[j] > 0) && agmtCodes[j] == 0){ mismatch = true; }
-                } if (mismatch){
-                    total -= 1;
-                    subtracted = true;
-                }
-              }
-              if (!subtracted){
-                var agmtCon = String(d.Con);
-                if (paxConRule == "any"){
-                  if (paxCons.length > 0){
-                    for (i = 0; i < paxCons.length; i++){
-                      var pass = false;
-                      if (agmtCon.includes(paxCons[i])){ pass = true; }
-                    } if (!pass){
-                      total -= 1;
-                    }
-                  }
-                } if (paxConRule == "all") {
-                  var mismatch = false;
-                  for (j = 0; j < paxCons.length; j++){
-                    if (!(agmtCon.includes(paxCons[j]))){
-                      mismatch = true;
-                    }
-                  } if (mismatch){
-                    total -= 1;
-                  }
-                }
+          function getProp(yrCount, yrTotal){
+            var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrFra,
+            var codeFilterCount = codeFilters.length;
+            var codeValueTotal = 0;
+            for (i = 0; i < codeFilterCount; i++){
+              if (codeFilters[i] == 1){ codeValueTotal += 1; }
+            }
+            if (codeValueTotal == 0){ return ""; } else {
+              if ((yrCount == 0) || (yrTotal == 0)){ return "0%" }
+              // else if (yrCount == "none"){ return ""; }
+              else {
+                var prop = (+yrCount/+yrTotal)*100;
+                var propText = String(prop).substring(0,4)+"%"
+                return propText;
               }
             }
-            var prop = (+total/+yrCount)*100;
-            var propText = String(prop).substring(0,4)+"%"
-            return propText;
-          }
-
-          function getCount(values){
-            var count = values.length;
-            for (v = 0; v < values.length; v++){
-              var d = values[v];
-              // Subtract agreements that don't have selected countries/entities
-              var agmtCon = String(d.Con);
-              if (paxConRule == "any"){
-                if (paxCons.length > 0){
-                  for (i = 0; i < paxCons.length; i++){
-                    var pass = false;
-                    if (agmtCon.includes(paxCons[i])){ pass = true; }
-                  } if (!pass){
-                    count -= 1;
-                  }
-                }
-              } if (paxConRule == "all") {
-                var mismatch = false;
-                for (j = 0; j < paxCons.length; j++){
-                  if (!(agmtCon.includes(paxCons[j]))){
-                    mismatch = true;
-                  }
-                } if (mismatch){
-                  count -= 1;
-                }
-              }
-            }
-            return count;
           }
 
           function setAgtTimePeriod(d){
@@ -332,23 +252,39 @@ function callFunction() {
             var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrFra,
             var codeFilterCount = codeFilters.length;
             if (paxANY == 1){
+              pass = false;
+              var codeValueTotal = 0;
               for (i = 0; i < codeFilterCount; i++){
-                if ((codeFilters[i] == 1) && (agmtCodes[i] > 0)){
-                  return "steelblue";
+                if (codeFilters[i] == 1){
+                  codeValueTotal += 1;
+                  if ((agmtCodes[i] > 0)){
+                    pass = true;
+                  }
                 }
               }
-            } else { // if paxALL == 1
-              var mismatch = false;
-              for (j = 0; j < codeFilterCount; j++){
-                if ((codeFilters[j] == 1) && agmtCodes[j] == 0){
-                  mismatch = true;
-                }
-              }
-              if (!mismatch){
-                return "steelblue";
+              if ((codeValueTotal > 0) && (pass)){
+                return ["#b3d9ff", "selected"];
+              } else {
+                return ["black", "unselected"];
               }
             }
-            return "black"
+            else { // if paxALL == 1
+              var codeValueTotal = 0;
+              var mismatch = false;
+              for (j = 0; j < codeFilterCount; j++){
+                if (codeFilters[j] == 1){
+                  codeValueTotal += 1;
+                  if (agmtCodes[j] == 0){
+                    mismatch = true;
+                  }
+                }
+              }
+              if ((codeValueTotal > 0) && (!mismatch)){
+                return ["#b3d9ff", "selected"];
+              } else {
+                return ["black", "unselected"];
+              }
+            }
           }
 
           function setAgtCons(d){
@@ -376,12 +312,30 @@ function callFunction() {
             }
           }
 
-          // Draw X axis for the entire chart
+          /*
+          WRITE PROPORTIONS
+          */
+          var text = svg.selectAll("text.count")
+               .data(yrProps)   //yrProps format: [Year, yrCount, yrTotals]
+             .enter().append("text")
+               .attr("class","count")
+               .attr("x", function(d){ return x(parseYear(d[0])); })
+               .attr("y", function(d){ return height-(xHeight*2)-(d[2]*agtHeight); })
+               .text(function(d){ return getProp(d[1],d[2]); })
+               .style("font-family", "sans-serif")
+               .style("font-size", "10px")
+               .style("fill","#b3d9ff")
+               .style("stroke","0px")
+               .style("font-weight","light");
+
+          /*
+          DRAW X AXIS
+          */
           var xAxis = d3.axisBottom(x).tickFormat(d3.timeFormat("%Y")).tickPadding([5]).ticks(4);
 
-          var gX = chartGroup.append("g")
+          var gX = svg.append("g")
                .attr("class","xaxis")
-               .attr("transform","translate(0,"+(height-xHeight-margin.bottom)+")")
+               .attr("transform","translate(0,"+(height-xHeight-margin.bottom+2)+")")
                .call(xAxis);
 
       }) // end of .get(error,data)

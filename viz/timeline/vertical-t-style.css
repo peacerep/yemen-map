@@ -2,23 +2,23 @@
   shape-rendering: crispEdges;
 }
 html{
-  background-color: #c4c4c4;
+  /* background-color: #c4c4c4; */
 }
 
 /*
 DROPDOWNS
 */
 .dropbtn {
-  background-color: #c4c4c4;
-  color: #ffffff;
+  background-color: #737373;
+  color: silver;
   padding: 10px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Helvetica", sans-serif;
   font-size: 12px;
   font-weight: lighter;
   border: none;
   cursor: pointer;
   border-width: 1px;
-  border-color: #dddddd;
+  border-color: silver;
   border-style: solid;
 
 }
@@ -33,7 +33,7 @@ CON (COUNTRY & ENTITY) DROPDOWN
 .ConContent {
   display: none;
   position: absolute;
-  background-color: #ddd;
+  background-color: silver;
   min-width: 250px;
   overflow: auto;
   max-height: 250px;
@@ -62,7 +62,7 @@ CODES (FILTER) DROPDOWN
 .CodeContent {
   display: none;
   position: absolute;
-  background-color: #ddd;
+  background-color: silver;
   min-width: 250px;
   overflow: auto;
   padding: 4px;

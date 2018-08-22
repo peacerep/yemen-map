@@ -6,7 +6,7 @@ Style for Select iFrame
 }
 
 html {
-  background-color: #c4c4c4;
+  /* background-color: #c4c4c4; */
 }
 html, body {
   height: 95%;
@@ -17,7 +17,7 @@ p, a, label {
   font-size: 12px;
   text-decoration: none;
   display: inline;
-  font-family: "Roboto", sans-serif;
+  font-family: "Helvetica", sans-serif;
   font-weight: normal;
 }
 a {
@@ -70,7 +70,7 @@ g {
 
 }
 foreignObject {
-  font-family: "Roboto", sans-serif;
+  font-family: "Helvetica", sans-serif;
   font-size: 12px;
   font-weight: normal;
 }
@@ -79,16 +79,16 @@ foreignObject {
 DROPDOWNS
 */
 .dropbtn {
-  background-color: #c4c4c4;
-  color: #ffffff;
+  background-color: #737373;
+  color: silver;
   padding: 10px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Helvetica", sans-serif;
   font-size: 12px;
   font-weight: lighter;
   border: none;
   cursor: pointer;
   border-width: 1px;
-  border-color: #dddddd;
+  border-color: silver;
   border-style: solid;
 
 }
@@ -103,7 +103,7 @@ YEARS DROPDOWN
 .TimeContent {
   display: none;
   position: absolute;
-  background-color: #dddddd;
+  background-color: silver;
   width: 91%;
   overflow: auto;
   padding: 4px;
@@ -132,7 +132,7 @@ CON (COUNTRY & ENTITY) DROPDOWN
 .ConContent {
   display: none;
   position: absolute;
-  background-color: #dddddd;
+  background-color: silver;
   min-width: 250px;
   overflow: auto;
   max-height: 250px;
@@ -161,7 +161,7 @@ CODES (FILTER) DROPDOWN
 .CodeContent {
   display: none;
   position: absolute;
-  background-color: #dddddd;
+  background-color: silver;
   min-width: 250px;
   overflow: auto;
   padding: 4px;
@@ -191,7 +191,7 @@ VERTICAL TIMELINES LEGEND
     var stageValues = ["Pre", "SubPar", "SubComp", "Imp", "Cea", "Other", "FrCons", "Ren"];
 */
 table td {
-  font-family: "Roboto", sans-serif;
+  font-family: "Helvetica", sans-serif;
   text-align: left;
 }
 td, tr {
@@ -201,28 +201,34 @@ td, tr {
   font-size: 10px;
 }
 td#Pre {
-  background-color: #377eb8;
-  color: #000;
+  background-color: #8dd3c7;
+  border: 0.5px solid black;
 }
 td#SubPar {
-  background-color: #ffff33;
+  background-color: #ffffb3;
+  border: 0.5px solid black;
 }
 td#SubComp {
-  background-color: #ff7f00;
+  background-color: #fdb462;
+  border: 0.5px solid black;
 }
 td#Imp {
-  color: #000;
-  background-color: #4daf4a;
+  background-color: #b3de69;
+  border: 0.5px solid black;
 }
 td#Cea {
-  background-color: #e41a1c;
+  background-color: #fb8072; /*#e41a1c;*/
+  border: 0.5px solid black;
 }
 td#Other {
-  background-color: #a65628;
+  background-color: #8c8c8c;
+  border: 0.5px solid black;
 }
 td#FrCons {
-  background-color: #984ea3;
+  background-color: #80b1d3;
+  border: 0.5px solid black;
 }
 td#Ren{
-  background-color: #000;
+  background-color: #bebada;
+  border: 0.5px solid black;
 }

@@ -173,10 +173,6 @@ function callFunction() {
           var svg = d3.select("body").select("#chart").append("svg")
               .attr("height", height + margin.top + margin.bottom)//"100%")
               .attr("width", width + margin.left + margin.right)//"100%");
-              // .call(d3.zoom()
-              //           .scaleExtent([1,100]) // prevent zoom out, restrict zoom in
-              //           .translateExtent([ [0, 0], [width,height]]) // restrict panning (<- & ->)
-              //           .on("zoom",zoom));
 
           var chartGroup = svg.append("g")
                       .attr("class","chartGroup") //
@@ -196,7 +192,7 @@ function callFunction() {
                 .attr("class","agt")
                 .attr("id",function(d){ return d.AgtId; })
                 .attr("fill","black")
-                .attr("stroke","#c4c4c4")  // same as html background-color
+                .attr("stroke","#737373")  // same as html background-color
                 .attr("stroke-width","1px")
                 .style("opacity", "0.7")
                 // .style("visibility",function(d){ setVisibility(d, zoom, newMinDay, newMaxDay); })
@@ -230,7 +226,7 @@ function callFunction() {
                  });
             rects.on("mouseout",function(d) {
                    this.style.fill = "black"
-                   this.style.stroke = "#c4c4c4";
+                   this.style.stroke = "#737373";
                    window.localStorage.setItem("updatePaxVertical","false");
                    window.localStorage.setItem("updatePaxMap", "false");
                    window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
@@ -377,18 +373,6 @@ function callFunction() {
                 .attr("id","dat")
                 .attr("transform","translate(0,"+(height-xHeight)+")")
                 .call(xAxis);
-
-            /*
-            NEED TO FIX ZOOM
-            */
-            // function zoom() {
-            //   gX.transition()
-            //   .duration(50)
-            //   .call(xAxis.scale(d3.event.transform.rescaleX(x)));
-            //
-            //   var newX = d3.event.transform.rescaleX(x);
-            //   rects.attr("x",function(d){ return newX(d.Dat); });
-            // }
 
       }) // end of .get(error,data)
 

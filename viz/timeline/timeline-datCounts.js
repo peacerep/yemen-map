@@ -119,7 +119,7 @@ function callFunction() {
 
           // Group agreements by Dat (create an array of objects whose key is the year and value is an array of objects (one per agreement))
           var dats = d3.nest()
-               .key(function(d){ return d.Dat; }).sortKeys(d3.ascending)         // sort by Agreement's Date Signed
+               .key(function(d){ return formatDateShort(d.Dat); }).sortKeys(d3.ascending)         // sort by Agreement's Date Signed
                .sortValues(function(a,b){ return d3.ascending(a.Agt, b.Agt); })  // sort by Agreement's Name
                // .rollup(function(leaves){ return leaves.length; })
                .entries(data);
@@ -146,8 +146,10 @@ function callFunction() {
           // Set up the x axis
           // Find the earliest & latest day of the year on which agreements are written
           if ((newMinDay.length > 0) && (newMaxDay.length > 0)){
+            var minDay = parseDate(newMinDay);
+            var maxDay = parseDate(newMaxDay)
             var x = d3.scaleTime()
-                  .domain([parseDate(newMinDay),parseDate(newMaxDay)])
+                  .domain([minDay,maxDay])
                   .range([margin.left,width]);
           } else {
             var minDay = d3.min(data,function(d){ return (d.Dat); });
@@ -166,94 +168,108 @@ function callFunction() {
           var svg = d3.select("body").select("#chart").append("svg")
               .attr("height", height + margin.top + margin.bottom)//"100%")
               .attr("width", width + margin.left + margin.right);//"100%");
-              // .call(d3.zoom()
-              //           .scaleExtent([1,100]) // prevent zoom out, restrict zoom in
-              //           .translateExtent([ [0, 0], [width,height]]) // restrict panning (<- & ->)
-              //           .on("zoom",zoom));
 
           var chartGroup = svg.append("g")
                       .attr("class","chartGroup") //
                       .attr("transform","translate("+margin.left+","+margin.top+")");
 
           // Make one rectangle per Dat with height based on number of agreements
+          datCounts = [];
           for (dat = 0; dat < datList.length; dat++){
-            var datGroup = chartGroup.append("g")
-                .attr("class","datGroup");
+            var day = parseDate(dats[dat].key);
+            // Only draw agreements within the axis bounds
+            if ((day > minDay) && (day < maxDay)){
+              var datGroup = chartGroup.append("g")
+                  .attr("class","datGroup")
+                  .attr("id",String(dats[dat].key));
 
-            var datCount = getCount(dats[dat].values);
+              var datCount = ((dats[dat].values).filter(function(d){ return setAgtFilters(d); }).filter(function(d){ return setAgtCons(d); })).length;
+              datCounts.push([day, datCount]);
 
-            var rects = chartGroup.selectAll("rect.count")
-                .data(dats[dat].values)
-              .enter().append("rect")
-              .filter(function(d){ return setAgtTimePeriod(d); })
-              .filter(function(d){ return setAgtFilters(d); })
-              .filter(function(d){ return setAgtCons(d); })
-                .attr("class","agt")
-                .attr("id", datCount)
-                .attr("fill","black")
-                .attr("stroke","#c4c4c4")  // same as html background-color
-                .attr("stroke-width","1px")
-                .style("opacity", "0.7")
-                // .style("visibility",function(d){ setVisibility(d, zoom, newMinDay, newMaxDay); })
-                .attr("x", function(d){ return x(d.Dat); })
-                .attr("y", (height-xHeight-(agtHeight*datCount))+"px")
-                .attr("width", agtWidth+"px")
-                .attr("height", (agtHeight*datCount)+"px");
+              var rects = chartGroup.selectAll("rect.count")
+                  .data(dats[dat].values)
+                .enter().append("rect")
+                  .attr("class","count");
+             }
+          }
 
-            // Display number of agreements signed on date upon hover
-            rects.on("mousemove",function(d){
-                this.style.fill = "#ffffff";
-                tooltip.style("opacity","0.9")
-                  .style("left", function(d){ if (d3.event.pageX < (margin.left+10)){ return d3.event.pageX+10+"px"; }
-                                              else if (d3.event.pageX > (margin.right+80)){ return d3.event.pageX-80+"px"; }
-                                              else { return d3.event.pageX+"px"; }
-                                            })
-                  .style("top", d3.event.pageY+"px")
-                  .style("background","#ffffff")
-                  .style("padding","10px")
-                  .attr("class","tooltip");
-                tooltip.html("<p>Agreements signed on<br/>"+formatDate(d.Dat)+":<br/><b>"+this.id+"</b></p>");
+          // Draw date count bars
+          var rects = chartGroup.selectAll("rect.count")
+               .data(datCounts)   //datCounts format: [Dat, datCount]
+             .enter().append("rect")
+               .attr("class","count")
+               .attr("id", function(d){ return d[0]; })
+               .attr("fill","black")
+               .attr("stroke","#737373")  // same as html background-color
+               .attr("stroke-width","1px")
+               .style("opacity", "0.7")
+               .attr("x", function(d){ return x(d[0]); })
+               .attr("y", function(d){ return (height-xHeight-(agtHeight*d[1]))+"px"; })
+               .attr("width", agtWidth+"px")
+               .attr("height", function(d){ return (agtHeight*d[1])+"px"; });
+
+           // Display number of agreements signed on date upon hover
+           rects.on("mousemove",function(d){
+               this.style.fill = "#ffffff";
+               tooltip.style("opacity","0.9")
+                 .style("left", function(d){
+                   if (d3.event.pageX < (margin.left+10)){ return d3.event.pageX+10+"px"; }
+                   else if (d3.event.pageX > (margin.right+80)){ return d3.event.pageX-80+"px"; }
+                   else { return d3.event.pageX+"px"; }
+                 })
+                 .style("top", d3.event.pageY+"px")
+                 .style("background","#ffffff")
+                 .style("padding","10px")
+                 .attr("class","tooltip");
+               tooltip.html("<p>Agreements signed on<br/>"+formatDate(d[0])+":<br/><b>"+d[1]+"</b></p>");
+           });
+           rects.on("mouseout",function(d) {
+              this.style.fill = "black";
+              this.style.stroke = "#737373";
+              tooltip.style("opacity","0");
             });
-            rects.on("mouseout",function(d) {
-               this.style.fill = "black";
-               this.style.stroke = "#c4c4c4";
-               tooltip.style("opacity","0");
-             });
-
-            } // end of for loop for rects.count
 
             /*
             FUNCTIONS
             */
-            function setAgtTimePeriod(d){
-              var minDate = parseDate(newMinDay);
-              var maxDate = parseDate(newMaxDay);
-              var agmtDat = d.Dat;
-              if ((agmtDat >= minDate) && (agmtDat <= maxDate)){
-                return d;
-              }
-            }
+            // function setAgtTimePeriod(d){
+            //   var minDate = parseDate(newMinDay);
+            //   var maxDate = parseDate(newMaxDay);
+            //   var agmtDat = d.Dat;
+            //   if ((agmtDat >= minDate) && (agmtDat <= maxDate)){
+            //     return d;
+            //   }
+            // }
 
             function setAgtFilters(d){
               var agmtCodes = [d.HrGen, d.Pol, d.Eps, d.Mps, d.Polps, d.Terps, d.TjMech, d.GeWom, ]; //d.HrFra,
               var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrFra,
               var codeFilterCount = codeFilters.length;
               if (paxANY == 1){
+                pass = false;
+                var codeValueTotal = 0;
                 for (i = 0; i < codeFilterCount; i++){
-                  if ((codeFilters[i] == 1) && (agmtCodes[i] > 0)){
-                    return d;
+                  if (codeFilters[i] == 1){
+                    codeValueTotal += 1;
+                    if ((agmtCodes[i] > 0)){
+                      pass = true;
+                    }
                   }
                 }
-              } else { // if paxALL == 1
+                if ((pass) && (codeValueTotal > 0)){ return d; }
+              }
+              else { // if paxALL == 1
                 var mismatch = false;
+                var codeValueTotal = 0;
                 for (j = 0; j < codeFilterCount; j++){
-                  if ((codeFilters[j] == 1) && agmtCodes[j] == 0){
-                    mismatch = true;
+                  if (codeFilters[j] == 1){
+                    codeValueTotal += 1;
+                    if (agmtCodes[j] == 0){
+                      mismatch = true;
+                    }
                   }
                 }
-                if (!mismatch){
-                  return d;
-                }
+                if ((!mismatch) || (codeValueTotal == 0)){ return d; }
               }
             }
 
@@ -284,60 +300,22 @@ function callFunction() {
               }
             }
 
-            function getCount(values){
-              var count = values.length;
-              for (v = 0; v < values.length; v++){
-                var d = values[v];
-                var subtracted = false;
-                // Subtract agreements that don't have selected codes
-                var agmtCodes = [d.HrGen, d.Pol, d.Eps, d.Mps, d.Polps, d.Terps, d.TjMech, d.GeWom, ]; //d.HrFra,
-                var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrFra,
-                var codeFilterCount = codeFilters.length;
-                if (paxANY == 1){
-                  var pass = false;
-                  for (i = 0; i < codeFilterCount; i++){
-                    if ((codeFilters[i] > 0) && (agmtCodes[i] > 0)){ pass = true; }
-                  } if (!pass) {
-                    count -= 1;
-                    subtracted = true;
-                  }
-                } else { // if paxALL == 1
-                  var mismatch = false;
-                  for (j = 0; j < codeFilterCount; j++){
-                    if ((codeFilters[j] > 0) && agmtCodes[j] == 0){ mismatch = true; }
-                  } if (mismatch){
-                      count -= 1;
-                      subtracted = true;
-                  }
-                }
-                if (!subtracted){
-                  // Subtract agreements that don't have selected countries/entities
-                  var agmtCon = String(d.Con);
-                  if (paxConRule == "any"){
-                    if (paxCons.length > 0){
-                      for (i = 0; i < paxCons.length; i++){
-                        var pass = false;
-                        if (agmtCon.includes(paxCons[i])){ pass = true; }
-                      } if (!pass){
-                        count -= 1;
-                        subtracted = true;
-                      }
-                    }
-                  } if (paxConRule == "all") {
-                    var mismatch = false;
-                    for (j = 0; j < paxCons.length; j++){
-                      if (!(agmtCon.includes(paxCons[j]))){
-                        mismatch = true;
-                      }
-                    } if (mismatch){
-                      count -= 1;
-                      subtracted = true;
-                    }
-                  }
-                }
-              }
-              return count;
-            }
+            /*
+            WRITE COUNTS
+            */
+            var text = svg.selectAll("text.count")
+                 .data(datCounts)   //datCounts format: [Dat, datCount]
+               .enter().append("text")
+                 .attr("class","count")
+                 .attr("x", function(d){ return x(parseDate(d[0])); })
+                 .attr("y", function(d){ return height-(xHeight*2)-(d[1]*agtHeight); })
+                 .text(function(d){ return d[1]; })
+                 .style("font-family", "sans-serif")
+                 .style("font-size", "10px")
+                 .style("fill","#000")
+                 .style("stroke","0px")
+                 .style("font-weight","bold")
+                 .style("text-anchor", "middle");
 
            /*
            DRAW X AXIS
@@ -349,18 +327,6 @@ function callFunction() {
                 .attr("id","dat")
                 .attr("transform","translate(0,"+(height-xHeight)+")")
                 .call(xAxis);
-
-            /*
-            NEED TO FIX ZOOM
-            */
-            // function zoom() {
-            //   gX.transition()
-            //   .duration(50)
-            //   .call(xAxis.scale(d3.event.transform.rescaleX(x)));
-            //
-            //   var newX = d3.event.transform.rescaleX(x);
-            //   rects.attr("x",function(d){ return newX(d.Dat); });
-            // }
 
       }) // end of .get(error,data)
 

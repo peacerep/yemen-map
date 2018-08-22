@@ -2,7 +2,7 @@
   shape-rendering: crispEdges;
 }
 html{
-  background-color: #c4c4c4;
+  background-color: #737373; /*c4c4c4;*/
 }
 
 /*
@@ -32,7 +32,7 @@ Grid Layout
 .grid-container > div {
   color: black;
   text-align: left;
-  font-family: "Roboto", sans-serif;
+  font-family: "Helvetica", sans-serif;
   padding: 10px;
 }
 
@@ -96,7 +96,7 @@ Text
 a {
   text-decoration: underline;
   font-weight: bold;
-  color: steelblue;
+  color: silver;
 }
 a#Reset{
   text-decoration: underline;
