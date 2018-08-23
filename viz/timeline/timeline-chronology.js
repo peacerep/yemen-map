@@ -205,6 +205,7 @@ function callFunction() {
                    this.style.fill = "#ffffff";
                    this.style.stroke = "#ffffff";
                    // Core agreement information (name, date, region, country/entity, status, type & stage)
+                   agtid = d.AgtId;
                    agt = d.Agt;
                    dat = formatDate(d.Dat);
                    reg = d.Reg;
@@ -215,6 +216,7 @@ function callFunction() {
                    substage = d.StageSub;
                    window.localStorage.setItem("updatePaxVertical","false");
                    window.localStorage.setItem("updatePaxMap", "false");
+                   window.localStorage.setItem("paxagtid", agtid);
                    window.localStorage.setItem("paxagt", agt);
                    window.localStorage.setItem("paxdat", dat);
                    window.localStorage.setItem("paxreg", reg);
@@ -227,16 +229,6 @@ function callFunction() {
             rects.on("mouseout",function(d) {
                    this.style.fill = "black"
                    this.style.stroke = "#737373";
-                   window.localStorage.setItem("updatePaxVertical","false");
-                   window.localStorage.setItem("updatePaxMap", "false");
-                   window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
-                   window.localStorage.setItem("paxdat", "");
-                   window.localStorage.setItem("paxreg", "");
-                   window.localStorage.setItem("paxcon", "");
-                   window.localStorage.setItem("paxstatus", "");
-                   window.localStorage.setItem("paxagtp", "");
-                   window.localStorage.setItem("paxstage", "");
-                   window.localStorage.setItem("paxsubstage", "");
                  });
 
                  // rects.on("click", function(d){

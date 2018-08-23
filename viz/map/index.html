@@ -341,472 +341,320 @@ function Drawflowers(){
             .attr("id",function(d){ return d.agtid; })
             .attr("z-index",6)
             .on("mouseover", function(d){
-              console.log(d.agtid);
               window.localStorage.setItem("updateVertical","false");
+              window.localStorage.setItem("updateHorizontal","false");
               window.localStorage.setItem("paxagtid", d.agtid);
-            })
-            .on("mouseout", function(d) {
-              window.localStorage.setItem("updateVertical","false");
-              window.localStorage.setItem("paxagtid", "");
+              window.localStorage.setItem("paxAgtHrGen", d.hrgen);
+              window.localStorage.setItem("paxAgtPol", d.pol);
+              window.localStorage.setItem("paxAgtEps", d.eps);
+              window.localStorage.setItem("paxAgtMps", d.mps);
+              window.localStorage.setItem("paxAgtPolps", d.polps);
+              window.localStorage.setItem("paxAgtTerps", d.terps);
+              window.localStorage.setItem("paxAgtTjMech", d.tjmech);
+              window.localStorage.setItem("paxAgtGeWom", d.gewom);
             });
 
-        var circle = g.selectAll("circle.agt")
-            .data([data])
-          .enter().append("circle")
-          .filter(function(d){ return setAgtCons(d); })
-          .filter(function(d){ return setAgtFilters(d); })
-          .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
-            .attr("class","agt")
-            .style("opacity", circle_opacity)
-            .style("fill", circle_color)
-            .style('z-index',6)//3
-            .attr("cx",function(d){
-                d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-                return map.latLngToLayerPoint(d.LatLng).x;})
-            .attr("cy",function(d){
-              d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-              return map.latLngToLayerPoint(d.LatLng).y;})
-            .attr('r', r);
-            // .on("mouseover", function(d){
-            //   console.log(d.agtid);
-            //   window.localStorage.setItem("updateVertical","false");
-            //   window.localStorage.setItem("paxagtid", d.agtid);
-            // })
-            // .on("mouseout", function(d) {
-            //   window.localStorage.setItem("updateVertical","false");
-            //   window.localStorage.setItem("paxagtid", "");
-            // });  //end circle
+        if (data.pol){
+          var ellipse_pol = g.selectAll("ellipse.pol")//0 1 2 3
+                 .data([data])
+              .enter().append("ellipse")
+              .filter(function(d){ return setAgtCons(d); })
+              .filter(function(d){ return setAgtFilters(d); })
+              .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
+                 .attr("class","pol")
+                 .style("opacity", circle_opacity)
+                 .style("fill", color_pol)
+                 .style('z-index',6)
+                 .attr("pointer-events","visible")
+                 .attr("cx",function(d){
+                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                     var xvalue=map.latLngToLayerPoint(d.LatLng).x;
+                     return xvalue;
+                 })
+                 .attr("cy",function(d){
+                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                     var yvalue=map.latLngToLayerPoint(d.LatLng).y;
+                     if (d.pol ==1){ return yvalue-ry1; }
+                     else if (d.pol ==2){ return yvalue-ry2; }
+                     else if (d.pol ==3){ return yvalue-ry3; }
+                })
+                .attr('rx', function(d){
+                     if (d.pol == 1){ return rx1; } else { return rx; }
+                })
+                .attr("ry", function(d){
+                     if (d.pol ==1){ return ry1; }
+                     else if (d.pol ==2){ return ry2; }
+                     else if (d.pol ==3){ return ry3; }
+                });
+         } //end ellipse_pol
 
-        var ellipse_pol = g.selectAll("ellipse.pol")//0 1 2 3
-            .data([data])
-          .enter().append("ellipse")
-          .filter(function(d){ return setAgtCons(d); })
-          .filter(function(d){ return setAgtFilters(d); })
-          .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
-            .attr("class","pol")
-            if (d.pol){
-               ellipse_pol.style("opacity", circle_opacity)
-               .style("fill", color_pol)
+         if (data.polps){
+           var ellipse_polps = g.selectAll("ellipse.polps")  //0 1 2 3
+                .data([data])
+              .enter().append("ellipse")
+              .filter(function(d){ return setAgtCons(d); })
+              .filter(function(d){ return setAgtFilters(d); })
+              .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
+                .attr("class","polps")
+                .style("opacity", circle_opacity)
+                .style("fill", color_polps)
+                .style('z-index',6)
+                .attr("cx",function(d){
+                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                    var xvalue=map.latLngToLayerPoint(d.LatLng).x;
+                    return xvalue;
+                })
+                .attr("cy",function(d){
+                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                    var yvalue=map.latLngToLayerPoint(d.LatLng).y;
+                    if (d.polps ==1){ return yvalue-ry1; }
+                    else if (d.polps ==2){ return yvalue-ry2; }
+                    else if (d.polps ==3){ return yvalue-ry3; }
+                })
+                .attr('rx', function(d){
+                    if (d.polps == 1){ return rx1; } else { return rx; }
+                 })
+                .attr("ry", function(d){
+                    if (d.polps ==1){ return ry1; }
+                    else if (d.polps ==2){ return ry2; }
+                    else if (d.polps ==3){ return ry3; }
+                })
+                .attr('transform', function(d){
+                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                    return 'rotate(45,'+map.latLngToLayerPoint(d.LatLng).x+
+                    ','+map.latLngToLayerPoint(d.LatLng).y+')'
+                 });
+         }//end ellipse_polps
+
+         if (data.terps){
+           var ellipse_terps = g.selectAll("ellipse.terps")   //0 1 2 3
+               .data([data])
+            .enter().append("ellipse")
+            .filter(function(d){ return setAgtCons(d); })
+            .filter(function(d){ return setAgtFilters(d); })
+            .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
+               .attr("class","terps")
+               .style("opacity", circle_opacity)
+               .style("fill", color_terps)
                .style('z-index',6)
-               .attr("pointer-events","visible")
                .attr("cx",function(d){
                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                    var xvalue=map.latLngToLayerPoint(d.LatLng).x;
                    return xvalue;
                  })
                .attr("cy",function(d){
-                 d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-                 var yvalue=map.latLngToLayerPoint(d.LatLng).y;
-                 if (d.pol ==1){
-                   return yvalue-ry1;
-                 }else if (d.pol ==2){
-                   return yvalue-ry2;
-                 }else if (d.pol ==3){
-                   return yvalue-ry3;
-                 }
+                   d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                   var yvalue=map.latLngToLayerPoint(d.LatLng).y;
+                   if (d.terps ==1){ return yvalue-ry1; }
+                   else if (d.terps ==2){ return yvalue-ry2; }
+                   else if (d.terps ==3){ return yvalue-ry3; }
                })
                .attr('rx', function(d){
-                 if (d.pol == 1){
-                   return rx1;
-                 }else{
-                   return rx;}
+                   if (d.terps == 1){ return rx1; }
+                   else { return rx; }
                 })
                .attr("ry", function(d){
-                 if (d.pol ==1){
-                   return ry1;
-                 }else if (d.pol ==2){
-                   return ry2;
-                 }else if (d.pol ==3){
-                   return ry3;
-                 }
-               });
-              //  .on("mouseover", function(d) {
-              //     console.log(d.agtid);
-              //     window.localStorage.setItem("updateVertical","false");
-              //     window.localStorage.setItem("paxagtid", d.agtid);
-              //     window.localStorage.setItem("paxAgtHrGen", d.hrgen);
-              //     window.localStorage.setItem("paxAgtPol", d.pol);
-              //     window.localStorage.setItem("paxAgtEps", d.eps);
-              //     window.localStorage.setItem("paxAgtMps", d.mps);
-              //     window.localStorage.setItem("paxAgtPolps", d.polps);
-              //     window.localStorage.setItem("paxAgtTerps", d.terps);
-              //     window.localStorage.setItem("paxAgtTjMech", d.tjmech);
-              //     window.localStorage.setItem("paxAgtGeWom", d.gewom);
-              //   })
-              //  .on("mouseout", function(d) {
-              //     window.localStorage.setItem("updateVertical","false");
-              //     window.localStorage.setItem("paxagtid", "");
-              //     window.localStorage.setItem("paxAgtHrGen", "");
-              //     window.localStorage.setItem("paxAgtPol", "");
-              //     window.localStorage.setItem("paxAgtEps", "");
-              //     window.localStorage.setItem("paxAgtMps", "");
-              //     window.localStorage.setItem("paxAgtPolps", "");
-              //     window.localStorage.setItem("paxAgtTerps", "");
-              //     window.localStorage.setItem("paxAgtTjMech", "");
-              //     window.localStorage.setItem("paxAgtGeWom", "");
-              // });
-             }//end ellipse_pol
+                   if (d.terps ==1){ return ry1; }
+                   else if (d.terps ==2){ return ry2; }
+                   else if (d.terps ==3){ return ry3; }
+               })
+                .attr('transform', function(d){
+                   d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                   return 'rotate(90,'+map.latLngToLayerPoint(d.LatLng).x+
+                   ','+map.latLngToLayerPoint(d.LatLng).y+')'
+                });
+          } //ellipse_terps
 
-         var ellipse_polps = g.selectAll("ellipse.polps")  //0 1 2 3
-            .data([data])
-          .enter().append("ellipse")
-          .filter(function(d){ return setAgtCons(d); })
-          .filter(function(d){ return setAgtFilters(d); })
-          .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
-             .attr("class","polps")
-             if (d.polps){
-              ellipse_polps.style("opacity", circle_opacity)
-              .style("fill", color_polps)
-              .style('z-index',6)
-              .attr("cx",function(d){
-                  d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-                  var xvalue=map.latLngToLayerPoint(d.LatLng).x;
-                  return xvalue;
+          if (data.eps) {
+            var ellipse_eps = g.selectAll("ellipse.eps")   // 0 1 2 3
+                .data([data])
+               .enter().append("ellipse")
+               .filter(function(d){ return setAgtCons(d); })
+               .filter(function(d){ return setAgtFilters(d); })
+               .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
+                .attr("class","eps")
+                .style("opacity", circle_opacity)
+                .style("fill", color_eps)
+                .style('z-index',6)
+                .attr("cx",function(d){
+                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                    var xvalue=map.latLngToLayerPoint(d.LatLng).x;
+                    return xvalue;
+                  })
+                .attr("cy",function(d){
+                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                    var yvalue=map.latLngToLayerPoint(d.LatLng).y;
+                    if (d.eps ==1){ return yvalue-ry1; }
+                    else if (d.eps ==2){ return yvalue-ry2; }
+                    else if (d.eps ==3){ return yvalue-ry3; }
                 })
-              .attr("cy",function(d){
-                d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-                var yvalue=map.latLngToLayerPoint(d.LatLng).y;
-                if (d.polps ==1){
-                  return yvalue-ry1;
-                }else if (d.polps ==2){
-                  return yvalue-ry2;
-                }else if (d.polps ==3){
-                  return yvalue-ry3;}
-              })
-              .attr('rx', function(d){
-                if (d.polps == 1){
-                  return rx1;
-                }else{
-                  return rx;}
-               })
-              .attr("ry", function(d){
-                if (d.polps ==1){
-                  return ry1;
-                }else if (d.polps ==2){
-                  return ry2;
-                }else if (d.polps ==3){
-                  return ry3;
-                }
-              })
-               .attr('transform', function(d){
-                 d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-                 return 'rotate(45,'+map.latLngToLayerPoint(d.LatLng).x+
-                 ','+map.latLngToLayerPoint(d.LatLng).y+')'
-               });
-               // .on("mouseover", function(d) {
-               //   console.log(d.agtid);
-               //   window.localStorage.setItem("updateVertical","false");
-               //   window.localStorage.setItem("paxagtid", d.agtid);
-               //       })
-               // .on("mouseout", function(d) {
-               //   window.localStorage.setItem("updateVertical","false");
-               //   window.localStorage.setItem("paxagtid", "");
-               //   });  //end ellipse_polps
-            }//end ellipse_polps
-
-         var ellipse_terps = g.selectAll("ellipse.terps")   //0 1 2 3
-            .data([data])
-          .enter().append("ellipse")
-          .filter(function(d){ return setAgtCons(d); })
-          .filter(function(d){ return setAgtFilters(d); })
-          .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
-            .attr("class","terps")
-            if (d.terps){
-             ellipse_terps.style("opacity", circle_opacity)
-             .style("fill", color_terps)
-             .style('z-index',6)
-             .attr("cx",function(d){
-                 d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-                 var xvalue=map.latLngToLayerPoint(d.LatLng).x;
-                 return xvalue;
-               })
-             .attr("cy",function(d){
-               d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-               var yvalue=map.latLngToLayerPoint(d.LatLng).y;
-               if (d.terps ==1){
-                 return yvalue-ry1;
-               }else if (d.terps ==2){
-                 return yvalue-ry2;
-               }else if (d.terps ==3){
-                 return yvalue-ry3;}
-             })
-             .attr('rx', function(d){
-               if (d.terps == 1){
-                 return rx1;
-               }else{
-                 return rx;}
-              })
-             .attr("ry", function(d){
-               if (d.terps ==1){
-                 return ry1;
-               }else if (d.terps ==2){
-                 return ry2;
-               }else if (d.terps ==3){
-                 return ry3;
-               }
-             })
-              .attr('transform', function(d){
-                d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-                return 'rotate(90,'+map.latLngToLayerPoint(d.LatLng).x+
-                ','+map.latLngToLayerPoint(d.LatLng).y+')'
-              });
-              // .on("mouseover", function(d) {
-              //   console.log(d.agtid);
-              //   window.localStorage.setItem("updateVertical","false");
-              //   window.localStorage.setItem("paxagtid", d.agtid);
-              //       })
-              // .on("mouseout", function(d) {
-              //   window.localStorage.setItem("updateVertical","false");
-              //   window.localStorage.setItem("paxagtid", "");
-              //   });   //ellipse_terps
-           } //ellipse_terps
-
-         var ellipse_eps = g.selectAll("ellipse.eps")   // 0 1 2 3
-           .data([data])
-         .enter().append("ellipse")
-         .filter(function(d){ return setAgtCons(d); })
-         .filter(function(d){ return setAgtFilters(d); })
-         .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
-           .attr("class","eps")
-           if (d.eps){
-            ellipse_eps.style("opacity", circle_opacity)
-            .style("fill", color_eps)
-            .style('z-index',6)
-            .attr("cx",function(d){
-                d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-                var xvalue=map.latLngToLayerPoint(d.LatLng).x;
-                return xvalue;
-              })
-            .attr("cy",function(d){
-              d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-              var yvalue=map.latLngToLayerPoint(d.LatLng).y;
-              if (d.eps ==1){
-                return yvalue-ry1;
-              }else if (d.eps ==2){
-                return yvalue-ry2;
-              }else if (d.eps ==3){
-                return yvalue-ry3;}
-            })
-            .attr('rx', function(d){
-              if (d.eps == 1){
-                return rx1;
-              }else{
-                return rx;}
-             })
-            .attr("ry", function(d){
-              if (d.eps ==1){
-                return ry1;
-              }else if (d.eps ==2){
-                return ry2;
-              }else if (d.eps ==3){
-                return ry3;
-              }
-            })
-             .attr('transform', function(d){
-               d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-               return 'rotate(225,'+map.latLngToLayerPoint(d.LatLng).x+
-               ','+map.latLngToLayerPoint(d.LatLng).y+')'
-             });
-             // .on("mouseover", function(d) {
-             //   console.log(d.agtid);
-             //   window.localStorage.setItem("updateVertical","false");
-             //   window.localStorage.setItem("paxagtid", d.agtid);
-             //       })
-             // .on("mouseout", function(d) {
-             //   window.localStorage.setItem("updateVertical","false");
-             //   window.localStorage.setItem("paxagtid", "");
-             //   });   //ellipse_eps
+                .attr('rx', function(d){
+                    if (d.eps == 1){ return rx1; } else { return rx; }
+                })
+                .attr("ry", function(d){
+                    if (d.eps ==1){ return ry1; }
+                    else if (d.eps ==2){ return ry2; }
+                    else if (d.eps ==3){ return ry3; }
+                 })
+                 .attr('transform', function(d){
+                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                    return 'rotate(225,'+map.latLngToLayerPoint(d.LatLng).x+
+                    ','+map.latLngToLayerPoint(d.LatLng).y+')'
+                 });
           }//ellipse_eps
 
-         var ellipse_mps = g.selectAll("ellipse.mps")   //0 1 2 3
-           .data([data])
-         .enter().append("ellipse")
-         .filter(function(d){ return setAgtCons(d); })
-         .filter(function(d){ return setAgtFilters(d); })
-         .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
-           .attr("class","mps")
-           if (d.mps){
-            ellipse_mps.style("opacity", circle_opacity)
-            .style("fill", color_mps)
-            .style('z-index',6)
-            .attr("cx",function(d){
-                d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-                var xvalue=map.latLngToLayerPoint(d.LatLng).x;
-                return xvalue;
-              })
-            .attr("cy",function(d){
-              d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-              var yvalue=map.latLngToLayerPoint(d.LatLng).y;
-              if (d.mps ==1){
-                return yvalue-ry1;
-              }else if (d.mps ==2){
-                return yvalue-ry2;
-              }else if (d.mps ==3){
-                return yvalue-ry3;}
-            })
-            .attr('rx', function(d){
-              if (d.mps == 1){
-                return rx1;
-              }else{
-                return rx;}
-             })
-            .attr("ry", function(d){
-              if (d.mps ==1){
-                return ry1;
-              }else if (d.mps ==2){
-                return ry2;
-              }else if (d.mps ==3){
-                return ry3;
-              }
-            })
-             .attr('transform', function(d){
-               d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-               return 'rotate(180,'+map.latLngToLayerPoint(d.LatLng).x+
-               ','+map.latLngToLayerPoint(d.LatLng).y+')'
-             });
-             // .on("mouseover", function(d) {
-             //   console.log(d.agtid);
-             //   window.localStorage.setItem("updateVertical","false");
-             //   window.localStorage.setItem("paxagtid", d.agtid);
-             //       })
-             // .on("mouseout", function(d) {
-             //   window.localStorage.setItem("updateVertical","false");
-             //   window.localStorage.setItem("paxagtid", "");
-             //   });    //ellipse_mps
-          }
-
-         var ellipse_hrgen = g.selectAll("ellipse.hrgen")   //0/1
-           .data([data])
-         .enter().append("ellipse")
-         .filter(function(d){ return setAgtCons(d); })
-         .filter(function(d){ return setAgtFilters(d); })
-         .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
-           .attr("class","hrgen")
-           if (d.hrgen){
-            ellipse_hrgen.style("opacity", circle_opacity)
-            .style("fill", color_hrgen)
-            .style('z-index',6)
-            .attr("cx",function(d){
-                d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-                var xvalue=map.latLngToLayerPoint(d.LatLng).x;
-                return xvalue;
-              })
-            .attr("cy",function(d){
-              d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-              var yvalue=map.latLngToLayerPoint(d.LatLng).y;
-                return yvalue-ry1;  })
-            .attr('rx', rx1)
-            .attr("ry", ry1)
-            .attr('transform', function(d){
-               d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-               return 'rotate(135,'+map.latLngToLayerPoint(d.LatLng).x+
-               ','+map.latLngToLayerPoint(d.LatLng).y+')'
-             });
-             // .on("mouseover", function(d) {
-             //   console.log(d.agtid);
-             //   window.localStorage.setItem("updateVertical","false");
-             //   window.localStorage.setItem("paxagtid", d.agtid);
-             //       })
-             // .on("mouseout", function(d) {
-             //   window.localStorage.setItem("updateVertical","false");
-             //   window.localStorage.setItem("paxagtid", "");
-             //   });    //ellipse_hrgen
-          }
-
-         var ellipse_gewom = g.selectAll("ellipse.gewom")   // 0/1
-           .data([data])
-         .enter().append("ellipse")
-         .filter(function(d){ return setAgtCons(d); })
-         .filter(function(d){ return setAgtFilters(d); })
-         .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
-           .attr("class","gewom")
-           if (d.gewom == 1){
-            ellipse_gewom.style("opacity", circle_opacity)
-            .style("fill", color_gewom)
-            .style('z-index',6)
-            .attr("cx",function(d){
-                d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-                var xvalue=map.latLngToLayerPoint(d.LatLng).x;
-                return xvalue;
+          if (data.mps){
+            var ellipse_mps = g.selectAll("ellipse.mps")   //0 1 2 3
+                .data([data])
+              .enter().append("ellipse")
+              .filter(function(d){ return setAgtCons(d); })
+              .filter(function(d){ return setAgtFilters(d); })
+              .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
+                .attr("class","mps")
+                .style("opacity", circle_opacity)
+                .style("fill", color_mps)
+                .style('z-index',6)
+                .attr("cx",function(d){
+                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                    var xvalue=map.latLngToLayerPoint(d.LatLng).x;
+                    return xvalue;
+                  })
+                .attr("cy",function(d){
+                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                    var yvalue=map.latLngToLayerPoint(d.LatLng).y;
+                    if (d.mps ==1){ return yvalue-ry1; }
+                    else if (d.mps ==2){ return yvalue-ry2; }
+                    else if (d.mps ==3){ return yvalue-ry3; }
                 })
-            .attr("cy",function(d){
-                d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-                var yvalue=map.latLngToLayerPoint(d.LatLng).y;
-                return yvalue-ry1;
-              })
-            .attr('rx', rx1)
-            .attr("ry", ry1)
-             .attr('transform', function(d){
-               d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-               return 'rotate(270,'+map.latLngToLayerPoint(d.LatLng).x+
-               ','+map.latLngToLayerPoint(d.LatLng).y+')'
-             });
-             // .on("mouseover", function(d) {
-             //   console.log(d.agtid);
-             //   window.localStorage.setItem("updateVertical","false");
-             //   window.localStorage.setItem("paxagtid", d.agtid);
-             //       })
-             // .on("mouseout", function(d) {
-             //   window.localStorage.setItem("updateVertical","false");
-             //   window.localStorage.setItem("paxagtid", "");
-             //   });    //ellipse_gewom
+                .attr('rx', function(d){
+                    if (d.mps == 1){ return rx1; } else { return rx; }
+                 })
+                .attr("ry", function(d){
+                    if (d.mps ==1){ return ry1; }
+                    else if (d.mps ==2){ return ry2; }
+                    else if (d.mps ==3){ return ry3; }
+                })
+                 .attr('transform', function(d){
+                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                    return 'rotate(180,'+map.latLngToLayerPoint(d.LatLng).x+
+                    ','+map.latLngToLayerPoint(d.LatLng).y+')'
+                 });
           }
 
-         var ellipse_tjmech = g.selectAll("ellipse.tjmech")
-           .data([data])
-         .enter().append("ellipse")
-         .filter(function(d){ return setAgtCons(d); })
-         .filter(function(d){ return setAgtFilters(d); })
-         .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
-           .attr("class","tjmech")
-           if(d.tjmech){
-            ellipse_tjmech.style("opacity", circle_opacity)
-            .style("fill", color_tjmech)
-            .style('z-index',6)
-            .attr("cx",function(d){
-                d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-                var xvalue=map.latLngToLayerPoint(d.LatLng).x;
-                return xvalue;
-              })
-            .attr("cy",function(d){
-              d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-              var yvalue=map.latLngToLayerPoint(d.LatLng).y;
-              if (d.tjmech ==1){
-                return yvalue-ry1;
-              }else if (d.tjmech ==2){
-                return yvalue-ry2;
-              }else if (d.tjmech ==3){
-                return yvalue-ry3;}
-            })
-            .attr('rx', function(d){
-              if (d.tjmech == 1){
-                return rx1;}else{
-                  return rx;}
+          if (data.hrgen){
+            var ellipse_hrgen = g.selectAll("ellipse.hrgen")   //0/1
+                .data([data])
+              .enter().append("ellipse")
+              .filter(function(d){ return setAgtCons(d); })
+              .filter(function(d){ return setAgtFilters(d); })
+              .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
+              .attr("class","hrgen")
+                .style("opacity", circle_opacity)
+                .style("fill", color_hrgen)
+                .style('z-index',6)
+                .attr("cx",function(d){
+                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                    var xvalue=map.latLngToLayerPoint(d.LatLng).x;
+                    return xvalue;
+                  })
+                .attr("cy",function(d){
+                  d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                  var yvalue=map.latLngToLayerPoint(d.LatLng).y;
+                    return yvalue-ry1;  })
+                .attr('rx', rx1)
+                .attr("ry", ry1)
+                .attr('transform', function(d){
+                   d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                   return 'rotate(135,'+map.latLngToLayerPoint(d.LatLng).x+
+                   ','+map.latLngToLayerPoint(d.LatLng).y+')'
+                 });
+          }
+
+          if (data.gewom){
+            var ellipse_gewom = g.selectAll("ellipse.gewom")   // 0/1
+                .data([data])
+              .enter().append("ellipse")
+              .filter(function(d){ return setAgtCons(d); })
+              .filter(function(d){ return setAgtFilters(d); })
+              .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
+                .attr("class","gewom")
+                .style("opacity", circle_opacity)
+                .style("fill", color_gewom)
+                .style('z-index',6)
+                .attr("cx",function(d){
+                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                    var xvalue=map.latLngToLayerPoint(d.LatLng).x;
+                    return xvalue;
+                    })
+                .attr("cy",function(d){
+                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                    var yvalue=map.latLngToLayerPoint(d.LatLng).y;
+                    return yvalue-ry1;
+                  })
+                .attr('rx', rx1)
+                .attr("ry", ry1)
+                .attr('transform', function(d){
+                   d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                   return 'rotate(270,'+map.latLngToLayerPoint(d.LatLng).x+
+                   ','+map.latLngToLayerPoint(d.LatLng).y+')'
+                });
+          }
+
+          if (data.tjmech){
+            var ellipse_tjmech = g.selectAll("ellipse.tjmech")  //0/1/2/3
+                .data([data])
+              .enter().append("ellipse")
+              .filter(function(d){ return setAgtCons(d); })
+              .filter(function(d){ return setAgtFilters(d); })
+              .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
+                .attr("class","tjmech")
+                .style("opacity", circle_opacity)
+                .style("fill", color_tjmech)
+                .style('z-index',6)
+                .attr("cx",function(d){
+                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                    var xvalue=map.latLngToLayerPoint(d.LatLng).x;
+                    return xvalue;
+                  })
+                .attr("cy",function(d){
+                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                    var yvalue=map.latLngToLayerPoint(d.LatLng).y;
+                    if (d.tjmech ==1){ return yvalue-ry1; }
+                    else if (d.tjmech ==2){ return yvalue-ry2; }
+                    else if (d.tjmech ==3){ return yvalue-ry3; }
                 })
-            .attr("ry", function(d){
-              if (d.tjmech ==1){
-                return ry1;
-              }else if (d.tjmech ==2){
-                return ry2;
-              }else if (d.tjmech ==3){
-                return ry3;
-              }
-            })
-             .attr('transform', function(d){
-               d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-               return 'rotate(-45,'+map.latLngToLayerPoint(d.LatLng).x+
-               ','+map.latLngToLayerPoint(d.LatLng).y+')'
-             });
-            // .on("mouseover", function(d) {
-            //   console.log(d.agtid);
-            //   window.localStorage.setItem("updateVertical","false");
-            //   window.localStorage.setItem("paxagtid", d.agtid);
-            //       })
-            // .on("mouseout", function(d) {
-            //   window.localStorage.setItem("updateVertical","false");
-            //   window.localStorage.setItem("paxagtid", "");
-            //   });   //ellipse_tjmech
+                .attr('rx', function(d){
+                    if (d.tjmech == 1){ return rx1; } else { return rx; }
+                })
+                .attr("ry", function(d){
+                    if (d.tjmech ==1){ return ry1; }
+                    else if (d.tjmech ==2){ return ry2; }
+                    else if (d.tjmech ==3){ return ry3; }
+                })
+                 .attr('transform', function(d){
+                   d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                   return 'rotate(-45,'+map.latLngToLayerPoint(d.LatLng).x+
+                   ','+map.latLngToLayerPoint(d.LatLng).y+')'
+                 });
             }
+
+            var circle = g.selectAll("circle.agt")
+                .data([data])
+              .enter().append("circle")
+              .filter(function(d){ return setAgtCons(d); })
+              .filter(function(d){ return setAgtFilters(d); })
+              .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
+                .attr("class","agt")
+                .style("opacity", circle_opacity)
+                .style("fill", circle_color)
+                .style('z-index',6)//3
+                .attr("cx",function(d){
+                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                    return map.latLngToLayerPoint(d.LatLng).x;})
+                .attr("cy",function(d){
+                  d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                  return map.latLngToLayerPoint(d.LatLng).y;})
+                .attr('r', r);
 
          })  //end for each
 
