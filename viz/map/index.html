@@ -337,7 +337,7 @@ function Drawflowers(){
             .data([data])
           .enter().append("g")
             .attr('class','flower')
-            .attr("pointer-events","visible")
+            .attr("pointer-events","all")
             .attr("id",function(d){ return d.agtid; })
             .attr("z-index",6)
             .on("mouseover", function(d){

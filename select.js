@@ -5,6 +5,7 @@ window.onload = function() {
     /*
     Set defaults
     */
+    window.localStorage.setItem("paxagtid","")
     window.localStorage.setItem("updatePaxMap", "false");
     window.localStorage.setItem("updatePaxHorizontal","false");
     window.localStorage.setItem("updatePaxVertical","false");
