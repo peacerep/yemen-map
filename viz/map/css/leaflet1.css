@@ -117,8 +117,8 @@
 .leaflet-control {
 	position: relative;
 	z-index: 800;
-	pointer-events: visiblePainted; /* IE 9-10 doesn't have auto */
-	pointer-events: auto;
+	pointer-events: none; /*visiblePainted; /* IE 9-10 doesn't have auto */
+	pointer-events: auto; /*auto;*/
 	}
 .leaflet-top,
 .leaflet-bottom {
@@ -238,8 +238,8 @@
 .leaflet-marker-icon.leaflet-interactive,
 .leaflet-image-layer.leaflet-interactive,
 .leaflet-pane > svg path.leaflet-interactive {
-	pointer-events: visiblePainted; /* IE 9-10 doesn't have auto */
-	pointer-events: auto;
+	pointer-events: none; /*visiblePainted; /* IE 9-10 doesn't have auto */
+	pointer-events: none; /*auto;*/
 	}
 
 /* visual tweaks */

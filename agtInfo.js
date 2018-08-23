@@ -16,16 +16,18 @@ function callInfoFunction() {
       con = "<b>Country/Entity:</b> "+ window.localStorage.getItem("paxcon"),
       status = "<b>Status:</b> "+ window.localStorage.getItem("paxstatus"),
       agtp = "<b>Type:</b> "+ window.localStorage.getItem("paxagtp"),
-      stage = "<b>Stage:</b> "+ window.localStorage.getItem("paxstage");
-      paxAgtId = "<b>Agreement ID:</b> "+ window.localStorage.getItem("paxAgtId");
-      // paxAgtHrGen = "<b>HrGen:</b> "+ window.localStorage.getItem("paxAgtHrGen");
-      // paxAgtPol = "<b>Pol:</b> "+ window.localStorage.getItem("paxAgtPol");
-      // paxAgtEps = "<b>Eps:</b> "+ window.localStorage.getItem("paxAgtEps");
-      // paxAgtMps = "<b>Mps:</b> "+ window.localStorage.getItem("paxAgtMps");
-      // paxAgtPolps = "<b>Polps:</b> "+ window.localStorage.getItem("paxAgtPolps");
-      // paxAgtTerps = "<b>Terps:</b> "+ window.localStorage.getItem("paxAgtTerps");
-      // paxAgtTjMech = "<b>TjMech:</b> "+ window.localStorage.getItem("paxAgtTjMech");
-      // paxAgtGeWom = "<b>GeWom:</b> "+ window.localStorage.getItem("paxAgtGeWom");
+      stage = "<b>Stage:</b> "+ window.localStorage.getItem("paxstage"),
+      paxAgtId = "<b>Agreement ID:</b> "+ window.localStorage.getItem("paxagtid"),
+
+      // Flower coding information
+      paxAgtHrGen = "<b>HrGen:</b> "+ window.localStorage.getItem("paxAgtHrGen"),
+      paxAgtPol = "<b>Pol:</b> "+ window.localStorage.getItem("paxAgtPol"),
+      paxAgtEps = "<b>Eps:</b> "+ window.localStorage.getItem("paxAgtEps"),
+      paxAgtMps = "<b>Mps:</b> "+ window.localStorage.getItem("paxAgtMps"),
+      paxAgtPolps = "<b>Polps:</b> "+ window.localStorage.getItem("paxAgtPolps"),
+      paxAgtTerps = "<b>Terps:</b> "+ window.localStorage.getItem("paxAgtTerps"),
+      paxAgtTjMech = "<b>TjMech:</b> "+ window.localStorage.getItem("paxAgtTjMech"),
+      paxAgtGeWom = "<b>GeWom:</b> "+ window.localStorage.getItem("paxAgtGeWom");
 
   var agtInfo = "<em>"+agt+"</em>"+"<br/><br/>"+dat+"<br/>"+reg+"<br/>"+con+"<br/>"+status+"<br/>"+agtp+"<br/>"+stage+"<br/>"+paxAgtId; //+paxAgtHrGen+"<br/>"+paxAgtPol+"<br/>"+paxAgtEps+"<br/>"+paxAgtMps+"<br/>"+paxAgtPolps+"<br/>"+paxAgtTerps+"<br/>"+paxAgtTjMech+"<br/>"+paxAgtGeWom;
 

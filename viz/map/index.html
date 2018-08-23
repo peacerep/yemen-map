@@ -34,7 +34,7 @@
       height:200px;
       width:200px;
 }
-    /* .d3-tip {
+    .d3-tip {
       line-height: 1;
       font-weight: bold;
       padding: 30px;
@@ -44,7 +44,7 @@
     }
 
     /* Creates a small triangle extender for the tooltip */
-    /* .d3-tip:after {
+    .d3-tip:after {
       box-sizing: border-box;
       display: inline;
       font-size: 10px;
@@ -54,14 +54,14 @@
       content: "\25BC";
       position: absolute;
       text-align: center;
-    } */
+    }
 
     /* Style northward tooltips differently */
-    /* .d3-tip.n:after {
+    .d3-tip.n:after {
       margin: -1px 0 0 0;
       top: 100%;
       left: 0;
-    } */
+    }
   </style>
 </head>
 <body>
@@ -133,21 +133,10 @@ L.tileLayer('https://api.mapbox.com/styles/v1/mtbao/cjjyiskb605in2srt1301jl0m/ti
 var circle_opacity = .8,
     circle_stroke = '#343332',
     circle_color = '#dddcda',
-  //  circle_color = '#707070',
-
-    // color_pol = '#861543',color_polps = '#CE1131',color_terps = '#C5503C',
-    // color_eps = '#462955',color_mps = '#899B73',color_hrgen = '#35523C',
-    // color_gewom = '#1D3565',color_tjmech = '#006B75',  //dark
-
-    // color_pol = '#da784e',color_polps = '#a19ce2',color_terps = '#d2a653',
-    // color_hrgen = '#95b162',color_mps = '#73a1c5',color_eps = '#d06672',
-    // color_gewom = '#81527e',color_tjmech = '#e75968',    //oocd
 
     color_pol = '#f5003d',color_polps = '#01557a',color_terps = '#fbdd4b',
     color_eps = '#7a56a0',color_mps = '#029680',color_hrgen = '#f46c38',
     color_gewom = '#59c9df',color_tjmech = '#fc96ab',
-    // rx1 = 6,
-    // ry1 = 12,ry2 = 18,ry3 = 24,
 
     width = '180000px',
     height = '80000px';
@@ -168,7 +157,7 @@ var circle_opacity = .8,
 //   .offset([-10, 0])
 //   .html(function(d) {
 //     return "<strong>Frequency:</strong> <span style='color:red'>" + "d.frequency" + "</span>";
-  // })
+//   })
 // var pol = [],
 //     polps = [],  //1,2,3
 //     terps = [],  //1,2,3
@@ -342,18 +331,59 @@ function Drawflowers(){
               r = 1.5+map.getZoom()/3, rx1 = 3,rx = map.getZoom();
         }
 
-         var data = d;
-         // console.log(d);
-         g = svg.append("g")
-                .attr('class','flower')
-                .attr("pointer-events","visible");
+        var data = d;
+        // console.log(d);
+        var g = svg.selectAll("g.flowers")
+            .data([data])
+          .enter().append("g")
+            .attr('class','flower')
+            .attr("pointer-events","visible")
+            .attr("id",function(d){ return d.agtid; })
+            .attr("z-index",6)
+            .on("mouseover", function(d){
+              console.log(d.agtid);
+              window.localStorage.setItem("updateVertical","false");
+              window.localStorage.setItem("paxagtid", d.agtid);
+            })
+            .on("mouseout", function(d) {
+              window.localStorage.setItem("updateVertical","false");
+              window.localStorage.setItem("paxagtid", "");
+            });
 
-         var ellipse_pol = g.selectAll("ellipse")//0 1 2 3
-            .data([data]).enter()
-            .append("ellipse")
-            .filter(function(d){ return setAgtCons(d); })
-            .filter(function(d){ return setAgtFilters(d); })
-            .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
+        var circle = g.selectAll("circle.agt")
+            .data([data])
+          .enter().append("circle")
+          .filter(function(d){ return setAgtCons(d); })
+          .filter(function(d){ return setAgtFilters(d); })
+          .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
+            .attr("class","agt")
+            .style("opacity", circle_opacity)
+            .style("fill", circle_color)
+            .style('z-index',6)//3
+            .attr("cx",function(d){
+                d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                return map.latLngToLayerPoint(d.LatLng).x;})
+            .attr("cy",function(d){
+              d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+              return map.latLngToLayerPoint(d.LatLng).y;})
+            .attr('r', r);
+            // .on("mouseover", function(d){
+            //   console.log(d.agtid);
+            //   window.localStorage.setItem("updateVertical","false");
+            //   window.localStorage.setItem("paxagtid", d.agtid);
+            // })
+            // .on("mouseout", function(d) {
+            //   window.localStorage.setItem("updateVertical","false");
+            //   window.localStorage.setItem("paxagtid", "");
+            // });  //end circle
+
+        var ellipse_pol = g.selectAll("ellipse.pol")//0 1 2 3
+            .data([data])
+          .enter().append("ellipse")
+          .filter(function(d){ return setAgtCons(d); })
+          .filter(function(d){ return setAgtFilters(d); })
+          .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
+            .attr("class","pol")
             if (d.pol){
                ellipse_pol.style("opacity", circle_opacity)
                .style("fill", color_pol)
@@ -390,115 +420,101 @@ function Drawflowers(){
                    return ry3;
                  }
                });
-               // .on("mouseover", function(d) {
-                 // console.log(d.agtid);
-                 // window.localStorage.setItem("updateVertical","false");
-                 // window.localStorage.setItem("paxagtid", d.agtid);
-                 // window.localStorage.setItem("paxcon", d.countryname);
-                 // window.localStorage.setItem("paxHrGen", d.hrgen);
-                 // window.localStorage.setItem("paxPol", d.pol);
-                 // window.localStorage.setItem("paxEps", d.eps);
-                 // window.localStorage.setItem("paxMps", d.mps);
-                 // window.localStorage.setItem("paxPolps", d.polps);
-                 // window.localStorage.setItem("paxTerps", d.terps);
-                 // window.localStorage.setItem("paxTjMech", d.tjmech);
-                 // window.localStorage.setItem("paxGeWom", d.gewom);
-                     // })
-               // .on("mouseout", function(d) {
-                 // window.localStorage.setItem("updateVertical","false");
-                 // window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
-                 // window.localStorage.setItem("paxdat", "");
-                 // window.localStorage.setItem("paxreg", "");
-                 // window.localStorage.setItem("paxcon", "");
-                 // window.localStorage.setItem("paxstatus", "");
-                 // window.localStorage.setItem("paxagtp", "");
-                 // window.localStorage.setItem("paxstage", "");
-                 // window.localStorage.setItem("paxsubstage", "");
-                 // }); //end ellipse_pol
+              //  .on("mouseover", function(d) {
+              //     console.log(d.agtid);
+              //     window.localStorage.setItem("updateVertical","false");
+              //     window.localStorage.setItem("paxagtid", d.agtid);
+              //     window.localStorage.setItem("paxAgtHrGen", d.hrgen);
+              //     window.localStorage.setItem("paxAgtPol", d.pol);
+              //     window.localStorage.setItem("paxAgtEps", d.eps);
+              //     window.localStorage.setItem("paxAgtMps", d.mps);
+              //     window.localStorage.setItem("paxAgtPolps", d.polps);
+              //     window.localStorage.setItem("paxAgtTerps", d.terps);
+              //     window.localStorage.setItem("paxAgtTjMech", d.tjmech);
+              //     window.localStorage.setItem("paxAgtGeWom", d.gewom);
+              //   })
+              //  .on("mouseout", function(d) {
+              //     window.localStorage.setItem("updateVertical","false");
+              //     window.localStorage.setItem("paxagtid", "");
+              //     window.localStorage.setItem("paxAgtHrGen", "");
+              //     window.localStorage.setItem("paxAgtPol", "");
+              //     window.localStorage.setItem("paxAgtEps", "");
+              //     window.localStorage.setItem("paxAgtMps", "");
+              //     window.localStorage.setItem("paxAgtPolps", "");
+              //     window.localStorage.setItem("paxAgtTerps", "");
+              //     window.localStorage.setItem("paxAgtTjMech", "");
+              //     window.localStorage.setItem("paxAgtGeWom", "");
+              // });
              }//end ellipse_pol
 
-         var ellipse_polps = g.selectAll(".ellipse")  //0 1 2 3
-           .data([data]).enter()
-           .append("ellipse")
-           .filter(function(d){ return setAgtCons(d); })
-           .filter(function(d){ return setAgtFilters(d); })
-           .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
-           if (d.polps){
-            ellipse_polps.style("opacity", circle_opacity)
-            .style("fill", color_polps)
-            .style('z-index',2)
-            .attr("cx",function(d){
+         var ellipse_polps = g.selectAll("ellipse.polps")  //0 1 2 3
+            .data([data])
+          .enter().append("ellipse")
+          .filter(function(d){ return setAgtCons(d); })
+          .filter(function(d){ return setAgtFilters(d); })
+          .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
+             .attr("class","polps")
+             if (d.polps){
+              ellipse_polps.style("opacity", circle_opacity)
+              .style("fill", color_polps)
+              .style('z-index',6)
+              .attr("cx",function(d){
+                  d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                  var xvalue=map.latLngToLayerPoint(d.LatLng).x;
+                  return xvalue;
+                })
+              .attr("cy",function(d){
                 d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-                var xvalue=map.latLngToLayerPoint(d.LatLng).x;
-                return xvalue;
+                var yvalue=map.latLngToLayerPoint(d.LatLng).y;
+                if (d.polps ==1){
+                  return yvalue-ry1;
+                }else if (d.polps ==2){
+                  return yvalue-ry2;
+                }else if (d.polps ==3){
+                  return yvalue-ry3;}
               })
-            .attr("cy",function(d){
-              d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-              var yvalue=map.latLngToLayerPoint(d.LatLng).y;
-              if (d.polps ==1){
-                return yvalue-ry1;
-              }else if (d.polps ==2){
-                return yvalue-ry2;
-              }else if (d.polps ==3){
-                return yvalue-ry3;}
-            })
-            .attr('rx', function(d){
-              if (d.polps == 1){
-                return rx1;
-              }else{
-                return rx;}
-             })
-            .attr("ry", function(d){
-              if (d.polps ==1){
-                return ry1;
-              }else if (d.polps ==2){
-                return ry2;
-              }else if (d.polps ==3){
-                return ry3;
-              }
-            })
-             .attr('transform', function(d){
-               d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-               return 'rotate(45,'+map.latLngToLayerPoint(d.LatLng).x+
-               ','+map.latLngToLayerPoint(d.LatLng).y+')'
-             });
-             // .on("mouseover", function(d) {
-               // console.log(d.agtid);
-               // window.localStorage.setItem("updateVertical","false");
-               // window.localStorage.setItem("paxagtid", d.agtid);
-               // window.localStorage.setItem("paxcon", d.countryname);
-               // window.localStorage.setItem("paxHrGen", d.hrgen);
-               // window.localStorage.setItem("paxPol", d.pol);
-               // window.localStorage.setItem("paxEps", d.eps);
-               // window.localStorage.setItem("paxMps", d.mps);
-               // window.localStorage.setItem("paxPolps", d.polps);
-               // window.localStorage.setItem("paxTerps", d.terps);
-               // window.localStorage.setItem("paxTjMech", d.tjmech);
-               // window.localStorage.setItem("paxGeWom", d.gewom);
-                   // })
-             // .on("mouseout", function(d) {
-               // window.localStorage.setItem("updateVertical","false");
-               // window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
-               // window.localStorage.setItem("paxdat", "");
-               // window.localStorage.setItem("paxreg", "");
-               // window.localStorage.setItem("paxcon", "");
-               // window.localStorage.setItem("paxstatus", "");
-               // window.localStorage.setItem("paxagtp", "");
-               // window.localStorage.setItem("paxstage", "");
-               // window.localStorage.setItem("paxsubstage", "");
-               // });  //end ellipse_polps
-          }//end ellipse_polps
+              .attr('rx', function(d){
+                if (d.polps == 1){
+                  return rx1;
+                }else{
+                  return rx;}
+               })
+              .attr("ry", function(d){
+                if (d.polps ==1){
+                  return ry1;
+                }else if (d.polps ==2){
+                  return ry2;
+                }else if (d.polps ==3){
+                  return ry3;
+                }
+              })
+               .attr('transform', function(d){
+                 d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                 return 'rotate(45,'+map.latLngToLayerPoint(d.LatLng).x+
+                 ','+map.latLngToLayerPoint(d.LatLng).y+')'
+               });
+               // .on("mouseover", function(d) {
+               //   console.log(d.agtid);
+               //   window.localStorage.setItem("updateVertical","false");
+               //   window.localStorage.setItem("paxagtid", d.agtid);
+               //       })
+               // .on("mouseout", function(d) {
+               //   window.localStorage.setItem("updateVertical","false");
+               //   window.localStorage.setItem("paxagtid", "");
+               //   });  //end ellipse_polps
+            }//end ellipse_polps
 
-         var ellipse_terps = g.selectAll(".ellipse")   //0 1 2 3
-            .data([data]).enter()
-            .append("ellipse")
-            .filter(function(d){ return setAgtCons(d); })
-            .filter(function(d){ return setAgtFilters(d); })
-            .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
+         var ellipse_terps = g.selectAll("ellipse.terps")   //0 1 2 3
+            .data([data])
+          .enter().append("ellipse")
+          .filter(function(d){ return setAgtCons(d); })
+          .filter(function(d){ return setAgtFilters(d); })
+          .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
+            .attr("class","terps")
             if (d.terps){
              ellipse_terps.style("opacity", circle_opacity)
              .style("fill", color_terps)
-             .style('z-index',2)
+             .style('z-index',6)
              .attr("cx",function(d){
                  d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                  var xvalue=map.latLngToLayerPoint(d.LatLng).x;
@@ -535,42 +551,27 @@ function Drawflowers(){
                 ','+map.latLngToLayerPoint(d.LatLng).y+')'
               });
               // .on("mouseover", function(d) {
-                // console.log(d.agtid);
-                // window.localStorage.setItem("updateVertical","false");
-                // window.localStorage.setItem("paxagtid", d.agtid);
-                // window.localStorage.setItem("paxcon", d.countryname);
-                // window.localStorage.setItem("paxHrGen", d.hrgen);
-                // window.localStorage.setItem("paxPol", d.pol);
-                // window.localStorage.setItem("paxEps", d.eps);
-                // window.localStorage.setItem("paxMps", d.mps);
-                // window.localStorage.setItem("paxPolps", d.polps);
-                // window.localStorage.setItem("paxTerps", d.terps);
-                // window.localStorage.setItem("paxTjMech", d.tjmech);
-                // window.localStorage.setItem("paxGeWom", d.gewom);
+              //   console.log(d.agtid);
+              //   window.localStorage.setItem("updateVertical","false");
+              //   window.localStorage.setItem("paxagtid", d.agtid);
               //       })
               // .on("mouseout", function(d) {
-                // window.localStorage.setItem("updateVertical","false");
-                // window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
-                // window.localStorage.setItem("paxdat", "");
-                // window.localStorage.setItem("paxreg", "");
-                // window.localStorage.setItem("paxcon", "");
-                // window.localStorage.setItem("paxstatus", "");
-                // window.localStorage.setItem("paxagtp", "");
-                // window.localStorage.setItem("paxstage", "");
-                // window.localStorage.setItem("paxsubstage", "");
-                // });   //ellipse_terps
+              //   window.localStorage.setItem("updateVertical","false");
+              //   window.localStorage.setItem("paxagtid", "");
+              //   });   //ellipse_terps
            } //ellipse_terps
 
-         var ellipse_eps = g.selectAll(".ellipse")   // 0 1 2 3
-           .data([data]).enter()
-           .append("ellipse")
-           .filter(function(d){ return setAgtCons(d); })
-           .filter(function(d){ return setAgtFilters(d); })
-           .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
+         var ellipse_eps = g.selectAll("ellipse.eps")   // 0 1 2 3
+           .data([data])
+         .enter().append("ellipse")
+         .filter(function(d){ return setAgtCons(d); })
+         .filter(function(d){ return setAgtFilters(d); })
+         .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
+           .attr("class","eps")
            if (d.eps){
             ellipse_eps.style("opacity", circle_opacity)
             .style("fill", color_eps)
-            .style('z-index',2)
+            .style('z-index',6)
             .attr("cx",function(d){
                 d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                 var xvalue=map.latLngToLayerPoint(d.LatLng).x;
@@ -607,42 +608,27 @@ function Drawflowers(){
                ','+map.latLngToLayerPoint(d.LatLng).y+')'
              });
              // .on("mouseover", function(d) {
-               // console.log(d.agtid);
-               // window.localStorage.setItem("updateVertical","false");
-               // window.localStorage.setItem("paxagtid", d.agtid);
-               // window.localStorage.setItem("paxcon", d.countryname);
-               // window.localStorage.setItem("paxHrGen", d.hrgen);
-               // window.localStorage.setItem("paxPol", d.pol);
-               // window.localStorage.setItem("paxEps", d.eps);
-               // window.localStorage.setItem("paxMps", d.mps);
-               // window.localStorage.setItem("paxPolps", d.polps);
-               // window.localStorage.setItem("paxTerps", d.terps);
-               // window.localStorage.setItem("paxTjMech", d.tjmech);
-               // window.localStorage.setItem("paxGeWom", d.gewom);
+             //   console.log(d.agtid);
+             //   window.localStorage.setItem("updateVertical","false");
+             //   window.localStorage.setItem("paxagtid", d.agtid);
              //       })
              // .on("mouseout", function(d) {
-               // window.localStorage.setItem("updateVertical","false");
-               // window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
-               // window.localStorage.setItem("paxdat", "");
-               // window.localStorage.setItem("paxreg", "");
-               // window.localStorage.setItem("paxcon", "");
-               // window.localStorage.setItem("paxstatus", "");
-               // window.localStorage.setItem("paxagtp", "");
-               // window.localStorage.setItem("paxstage", "");
-               // window.localStorage.setItem("paxsubstage", "");
-               // });   //ellipse_eps
+             //   window.localStorage.setItem("updateVertical","false");
+             //   window.localStorage.setItem("paxagtid", "");
+             //   });   //ellipse_eps
           }//ellipse_eps
 
-         var ellipse_mps = g.selectAll(".ellipse")   //0 1 2 3
-           .data([data]).enter()
-           .append("ellipse")
-           .filter(function(d){ return setAgtCons(d); })
-           .filter(function(d){ return setAgtFilters(d); })
-           .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
+         var ellipse_mps = g.selectAll("ellipse.mps")   //0 1 2 3
+           .data([data])
+         .enter().append("ellipse")
+         .filter(function(d){ return setAgtCons(d); })
+         .filter(function(d){ return setAgtFilters(d); })
+         .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
+           .attr("class","mps")
            if (d.mps){
             ellipse_mps.style("opacity", circle_opacity)
             .style("fill", color_mps)
-            .style('z-index',2)
+            .style('z-index',6)
             .attr("cx",function(d){
                 d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                 var xvalue=map.latLngToLayerPoint(d.LatLng).x;
@@ -679,43 +665,27 @@ function Drawflowers(){
                ','+map.latLngToLayerPoint(d.LatLng).y+')'
              });
              // .on("mouseover", function(d) {
-               // console.log(d.agtid);
-               // window.localStorage.setItem("updateVertical","false");
-               // window.localStorage.setItem("paxagtid", d.agtid);
-               // window.localStorage.setItem("paxcon", d.countryname);
-               // window.localStorage.setItem("paxHrGen", d.hrgen);
-               // window.localStorage.setItem("paxPol", d.pol);
-               // window.localStorage.setItem("paxEps", d.eps);
-               // window.localStorage.setItem("paxMps", d.mps);
-               // window.localStorage.setItem("paxPolps", d.polps);
-               // window.localStorage.setItem("paxTerps", d.terps);
-               // window.localStorage.setItem("paxTjMech", d.tjmech);
-               // window.localStorage.setItem("paxGeWom", d.gewom);
+             //   console.log(d.agtid);
+             //   window.localStorage.setItem("updateVertical","false");
+             //   window.localStorage.setItem("paxagtid", d.agtid);
              //       })
              // .on("mouseout", function(d) {
-               // window.localStorage.setItem("updateVertical","false");
-               // window.localStorage.setItem("paxagtid", "");
-               // window.localStorage.setItem("paxcon", "");
-               // window.localStorage.setItem("paxHrGen", "");
-               // window.localStorage.setItem("paxPol", "");
-               // window.localStorage.setItem("paxEps", "");
-               // window.localStorage.setItem("paxMps", "");
-               // window.localStorage.setItem("paxTerps", "");
-               // window.localStorage.setItem("paxTjMech", "");
-               // window.localStorage.setItem("paxGeWom", "");
-               // });    //ellipse_mps
+             //   window.localStorage.setItem("updateVertical","false");
+             //   window.localStorage.setItem("paxagtid", "");
+             //   });    //ellipse_mps
           }
 
-         var ellipse_hrgen = g.selectAll(".ellipse")   //0/1
-           .data([data]).enter()
-           .append("ellipse")
-           .filter(function(d){ return setAgtCons(d); })
-           .filter(function(d){ return setAgtFilters(d); })
-           .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
+         var ellipse_hrgen = g.selectAll("ellipse.hrgen")   //0/1
+           .data([data])
+         .enter().append("ellipse")
+         .filter(function(d){ return setAgtCons(d); })
+         .filter(function(d){ return setAgtFilters(d); })
+         .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
+           .attr("class","hrgen")
            if (d.hrgen){
             ellipse_hrgen.style("opacity", circle_opacity)
             .style("fill", color_hrgen)
-            .style('z-index',2)
+            .style('z-index',6)
             .attr("cx",function(d){
                 d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                 var xvalue=map.latLngToLayerPoint(d.LatLng).x;
@@ -733,43 +703,27 @@ function Drawflowers(){
                ','+map.latLngToLayerPoint(d.LatLng).y+')'
              });
              // .on("mouseover", function(d) {
-               // console.log(d.agtid);
-               // window.localStorage.setItem("updateVertical","false");
-               // window.localStorage.setItem("paxagtid", d.agtid);
-               // window.localStorage.setItem("paxcon", d.countryname);
-               // window.localStorage.setItem("paxHrGen", d.hrgen);
-               // window.localStorage.setItem("paxPol", d.pol);
-               // window.localStorage.setItem("paxEps", d.eps);
-               // window.localStorage.setItem("paxMps", d.mps);
-               // window.localStorage.setItem("paxPolps", d.polps);
-               // window.localStorage.setItem("paxTerps", d.terps);
-               // window.localStorage.setItem("paxTjMech", d.tjmech);
-               // window.localStorage.setItem("paxGeWom", d.gewom);
-                   // })
+             //   console.log(d.agtid);
+             //   window.localStorage.setItem("updateVertical","false");
+             //   window.localStorage.setItem("paxagtid", d.agtid);
+             //       })
              // .on("mouseout", function(d) {
-               // window.localStorage.setItem("updateVertical","false");
-               // window.localStorage.setItem("paxagtid", "");
-               // window.localStorage.setItem("paxcon", "");
-               // window.localStorage.setItem("paxHrGen", "");
-               // window.localStorage.setItem("paxPol", "");
-               // window.localStorage.setItem("paxEps", "");
-               // window.localStorage.setItem("paxMps", "");
-               // window.localStorage.setItem("paxTerps", "");
-               // window.localStorage.setItem("paxTjMech", "");
-               // window.localStorage.setItem("paxGeWom", "");
-               // });    //ellipse_hrgen
+             //   window.localStorage.setItem("updateVertical","false");
+             //   window.localStorage.setItem("paxagtid", "");
+             //   });    //ellipse_hrgen
           }
 
-         var ellipse_gewom = g.selectAll(".ellipse")   // 0/1
-           .data([data]).enter()
-           .append("ellipse")
-           .filter(function(d){ return setAgtCons(d); })
-           .filter(function(d){ return setAgtFilters(d); })
-           .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
+         var ellipse_gewom = g.selectAll("ellipse.gewom")   // 0/1
+           .data([data])
+         .enter().append("ellipse")
+         .filter(function(d){ return setAgtCons(d); })
+         .filter(function(d){ return setAgtFilters(d); })
+         .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
+           .attr("class","gewom")
            if (d.gewom == 1){
             ellipse_gewom.style("opacity", circle_opacity)
             .style("fill", color_gewom)
-            .style('z-index',2)
+            .style('z-index',6)
             .attr("cx",function(d){
                 d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                 var xvalue=map.latLngToLayerPoint(d.LatLng).x;
@@ -788,44 +742,27 @@ function Drawflowers(){
                ','+map.latLngToLayerPoint(d.LatLng).y+')'
              });
              // .on("mouseover", function(d) {
-               // console.log(d.agtid);
-               // window.localStorage.setItem("updateVertical","false");
-               // window.localStorage.setItem("paxagtid", d.agtid);
-               // window.localStorage.setItem("paxcon", d.countryname);
-               // window.localStorage.setItem("paxHrGen", d.hrgen);
-               // window.localStorage.setItem("paxPol", d.pol);
-               // window.localStorage.setItem("paxEps", d.eps);
-               // window.localStorage.setItem("paxMps", d.mps);
-               // window.localStorage.setItem("paxPolps", d.polps);
-               // window.localStorage.setItem("paxTerps", d.terps);
-               // window.localStorage.setItem("paxTjMech", d.tjmech);
-               // window.localStorage.setItem("paxGeWom", d.gewom);
+             //   console.log(d.agtid);
+             //   window.localStorage.setItem("updateVertical","false");
+             //   window.localStorage.setItem("paxagtid", d.agtid);
              //       })
              // .on("mouseout", function(d) {
-               // window.localStorage.setItem("updateVertical","false");
-               // window.localStorage.setItem("paxagt", "Hover over an agreement to view its details.");
-               // window.localStorage.setItem("paxagtid", "");
-               // window.localStorage.setItem("paxcon", "");
-               // window.localStorage.setItem("paxHrGen", "");
-               // window.localStorage.setItem("paxPol", "");
-               // window.localStorage.setItem("paxEps", "");
-               // window.localStorage.setItem("paxMps", "");
-               // window.localStorage.setItem("paxTerps", "");
-               // window.localStorage.setItem("paxTjMech", "");
-               // window.localStorage.setItem("paxGeWom", "");
-               // });    //ellipse_gewom
+             //   window.localStorage.setItem("updateVertical","false");
+             //   window.localStorage.setItem("paxagtid", "");
+             //   });    //ellipse_gewom
           }
 
-         var ellipse_tjmech = g.selectAll(".ellipse")
-           .data([data]).enter()
-           .append("ellipse")
-           .filter(function(d){ return setAgtCons(d); })
-           .filter(function(d){ return setAgtFilters(d); })
-           .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
+         var ellipse_tjmech = g.selectAll("ellipse.tjmech")
+           .data([data])
+         .enter().append("ellipse")
+         .filter(function(d){ return setAgtCons(d); })
+         .filter(function(d){ return setAgtFilters(d); })
+         .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
+           .attr("class","tjmech")
            if(d.tjmech){
             ellipse_tjmech.style("opacity", circle_opacity)
             .style("fill", color_tjmech)
-            .style('z-index',2)
+            .style('z-index',6)
             .attr("cx",function(d){
                 d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                 var xvalue=map.latLngToLayerPoint(d.LatLng).x;
@@ -861,59 +798,15 @@ function Drawflowers(){
                ','+map.latLngToLayerPoint(d.LatLng).y+')'
              });
             // .on("mouseover", function(d) {
-              // console.log(d.agtid);
-              // window.localStorage.setItem("updateVertical","false");
-              // window.localStorage.setItem("paxagtid", d.agtid);
-              // window.localStorage.setItem("paxcon", d.countryname);
-              // window.localStorage.setItem("paxHrGen", d.hrgen);
-              // window.localStorage.setItem("paxPol", d.pol);
-              // window.localStorage.setItem("paxEps", d.eps);
-              // window.localStorage.setItem("paxMps", d.mps);
-              // window.localStorage.setItem("paxPolps", d.polps);
-              // window.localStorage.setItem("paxTerps", d.terps);
-              // window.localStorage.setItem("paxTjMech", d.tjmech);
-              // window.localStorage.setItem("paxGeWom", d.gewom);
-                  // })
+            //   console.log(d.agtid);
+            //   window.localStorage.setItem("updateVertical","false");
+            //   window.localStorage.setItem("paxagtid", d.agtid);
+            //       })
             // .on("mouseout", function(d) {
-              // window.localStorage.setItem("updateVertical","false");
-              // window.localStorage.setItem("paxagtid", "");
-              // window.localStorage.setItem("paxcon", "");
-              // window.localStorage.setItem("paxHrGen", "");
-              // window.localStorage.setItem("paxPol", "");
-              // window.localStorage.setItem("paxEps", "");
-              // window.localStorage.setItem("paxMps", "");
-              // window.localStorage.setItem("paxTerps", "");
-              // window.localStorage.setItem("paxTjMech", "");
-              // window.localStorage.setItem("paxGeWom", "");
-              // });   //ellipse_tjmech
+            //   window.localStorage.setItem("updateVertical","false");
+            //   window.localStorage.setItem("paxagtid", "");
+            //   });   //ellipse_tjmech
             }
-
-         var circles = g.selectAll("circle")
-               .data([data]).enter().append("circle")
-               .filter(function(d){ return setAgtCons(d); })
-               .filter(function(d){ return setAgtFilters(d); })
-               .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
-                   .style("opacity", circle_opacity)
-                   .style("fill", circle_color)
-                   .style('z-index',10)//3
-                   .attr("cx",function(d){
-                       d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-                       return map.latLngToLayerPoint(d.LatLng).x;})
-                   .attr("cy",function(d){
-                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-                     return map.latLngToLayerPoint(d.LatLng).y;})
-                   .attr('r', r)
-                   .on("click", function(d){ console.log(d.agtid); });
-                   // .on("mouseover", function(d) {
-                   //      tooltip.html("The agreement "+d.agtid+" "+d.countryname)
-                   //      color_temper = this.style.fill;
-                   //      d3.select(this)
-                   //        .style("fill", "pink")
-                   //       })
-                   // .on("mouseout", function(d) {
-                   //      d3.select(this)
-                   //        .style("fill", color_temper);
-                   //    });  //end circle
 
          })  //end for each
 

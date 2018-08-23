@@ -25,16 +25,13 @@ a#tCount, a#tProp, a#Reset{
 /*
 TIMELINE
 */
-/* .description {
+.description {
   color:black;
   font-size: 10px;
   text-decoration: none;
   display: inline;
   font-family: "Helvetica", sans-serif;
   font-weight: normal;
-} */
-text.count {
-  text-anchor: middle;
 }
 
 #chart{
