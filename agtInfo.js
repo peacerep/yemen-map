@@ -38,7 +38,7 @@ function callInfoFunction() {
   var textposition = (height/4) + 40,
       fontsize = 14,
       flowerX = width/3,
-      flowerY = (height/2) + 20,
+      flowerY = (height/4) + (textposition*2),
       ry1 = 15,ry2 = 25,ry3 = 30, r = 5, rx = 5, rx1 = 5,
       rPolX = 0, rPolY = 0,
       rPolpsX = 0, rPolpsY = 0,
@@ -84,7 +84,7 @@ function callInfoFunction() {
       .attr("class","hovered")
       .attr("id", data[0])
       .attr("pointer-events","all");
-  console.log(data[0]);
+  // console.log(data[0]);
 
   if (data[1] > 0){
     var ellipse_pol = g.selectAll("ellipse.pol")//0 1 2 3
@@ -266,7 +266,7 @@ function callInfoFunction() {
           .data([data])
         .enter().append("circle")
           .attr("class","agt")
-          .style("opacity", circle_opacity)
+          .style("opacity", 1)
           .style("fill", circle_color)
           .attr("id", data[0])
           .attr("cx",flowerX)

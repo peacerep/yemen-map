@@ -342,8 +342,8 @@ function Drawflowers(){
             .attr("z-index",6)
             .on("mouseover", function(d){
               window.localStorage.setItem("updateVertical","false");
-              window.localStorage.setItem("updateHorizontal","false");
               window.localStorage.setItem("paxagtid", d.agtid);
+              window.localStorage.setItem("updateHorizontal","true");
               window.localStorage.setItem("paxAgtHrGen", d.hrgen);
               window.localStorage.setItem("paxAgtPol", d.pol);
               window.localStorage.setItem("paxAgtEps", d.eps);

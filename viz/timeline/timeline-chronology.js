@@ -21,12 +21,13 @@ window.addEventListener("storage", toUpdate);
 function toUpdate(){
   if (window.localStorage.getItem("updatePaxHorizontal") == "true"){
     d3.selectAll("rects").remove();
+    console.log("Updating horizontal...");
     return callFunction();
   }
 }
 
 function callFunction() {
-  console.log("Drawing visualization");
+  console.log("Drawing horizontal visualization...");
 
   // Countries/entities
   var paxCons = JSON.parse(window.localStorage.getItem("paxCons"));
@@ -47,6 +48,8 @@ function callFunction() {
   // Time period
   var newMinDay = localStorage.getItem("paxNewMinDay");
   var newMaxDay = localStorage.getItem("paxNewMaxDay");
+  // Hovered agreement
+  var paxAgtId = window.localStorage.getItem("paxagtid");
   // Agreement information to display upon hover
   var agt = "Hover over an agreement to view its details.",
       dat = "",
@@ -178,6 +181,7 @@ function callFunction() {
                       .attr("class","chartGroup") //
                       .attr("transform","translate("+margin.left+","+margin.top+")");
 
+          console.log(paxAgtId);
           // Make one rectangle per agreement grouped by Dat
           for (dat = 0; dat < datList.length; dat++){
             var datGroup = chartGroup.append("g")
@@ -191,8 +195,9 @@ function callFunction() {
               .filter(function(d){ return setAgtCons(d); })
                 .attr("class","agt")
                 .attr("id",function(d){ return d.AgtId; })
-                .attr("fill","black")
-                .attr("stroke","#737373")  // same as html background-color
+                // highlight an agreement if it's hovered over on the map
+                .attr("fill",function(d){ if (d.AgtId == paxAgtId){ return "white"; } else { return "black"; } })
+                .attr("stroke",function(d){ if (d.AgtId == paxAgtId){ return "white"; } else { return "#737373"; } })  // same as html background-color
                 .attr("stroke-width","1px")
                 .style("opacity", "0.7")
                 // .style("visibility",function(d){ setVisibility(d, zoom, newMinDay, newMaxDay); })
@@ -225,6 +230,14 @@ function callFunction() {
                    window.localStorage.setItem("paxagtp", agtp);
                    window.localStorage.setItem("paxstage", stage);
                    window.localStorage.setItem("paxsubstage", substage);
+                   window.localStorage.setItem("paxAgtHrGen", d.HrGen);
+                   window.localStorage.setItem("paxAgtPol", d.Pol);
+                   window.localStorage.setItem("paxAgtEps", d.Eps);
+                   window.localStorage.setItem("paxAgtMps", d.Mps);
+                   window.localStorage.setItem("paxAgtPolps", d.Polps);
+                   window.localStorage.setItem("paxAgtTerps", d.Terps);
+                   window.localStorage.setItem("paxAgtTjMech", d.TjMech);
+                   window.localStorage.setItem("paxAgtGeWom", d.GeWom);
                  });
             rects.on("mouseout",function(d) {
                    this.style.fill = "black"
@@ -369,5 +382,6 @@ function callFunction() {
       }) // end of .get(error,data)
 
       window.localStorage.setItem("updatePaxHorizontal","false");
+      console.log("horizontal complete.");
 
   }; // end of callFunction()
