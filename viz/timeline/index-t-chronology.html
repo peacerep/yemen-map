@@ -11,24 +11,16 @@
     <script type="text/javascript" src="d3.v4.js"></script>
   </head>
   <body>
-    <p>Timeline View:
-      <a href="#" id="By Date"><label for="By Date"><b>By Date</b></label></a>
-      &nbsp;|&nbsp;
-      <a href="index-t-datCounts.html" id="Date Counts"><label for="Date Counts">Date Counts</label></a>
-      &nbsp;|&nbsp;
-      <a href="index-t-yearly.html" id="Yearly"><label for="Yearly">By Year</label></a>
-      &nbsp;|&nbsp;
-      <a href="index-t-yearlyCounts.html" id="Year Counts"><label for="Year Counts">Year Counts</label></a>
-      &nbsp;|&nbsp;
-      <a href="index-t-proportions.html" id="Proportions"><label for="Proportions">Code Proportions</label></a>
+    <p>Views:
+      <a href="index-t-chronology.html" id="By Date"><button class="horizTimeView_current" id="date"><label for="By Date">Chronology</label></button></a>
+      <a href="index-t-datCounts.html" id="Date Counts"><button class="horizTimeView" id="dateCounts"><label for="Date Counts">Count per Day</label></button></a>
+      <a href="index-t-yearly.html" id="Yearly"><button class="horizTimeView" id="year"><label for="Yearly">Yearly with Counts</label></button></a>
+      <a href="index-t-proportions.html" id="Proportions"><button class="horizTimeView" id="prop"><label for="Proportions"><b>Yearly with Code Proportions</b></label></button></a>
     </p>
     <br/>
-    <p><em>
+    <p class="expl"><em>
       Each vertical line on the timeline represents one agreement.  Agreements
-      signed on the same date are stacked on top of one another.  Hover over an
-      agreement (a vertical line) to view its details in the left sidebar
-      Select codes in the left sidebar to view agreements for specific years,
-      countries/entities, or codes.
+      signed on the same date are stacked on top of one another).
     </em></p>
     <div id="chart">
       <!--reference to D3 script must be in body tags-->

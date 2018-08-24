@@ -11,24 +11,16 @@
     <script type="text/javascript" src="d3.v4.js"></script>
   </head>
   <body>
-    <p>Timeline View:
-      <a href="index-t-chronology.html" id="By Date"><label for="By Date">By Date</label></a>
-      &nbsp;|&nbsp;
-      <a href="#" id="Date Counts"><label for="Date Counts"><b>Date Counts</b></label></a>
-      &nbsp;|&nbsp;
-      <a href="index-t-yearly.html" id="Yearly"><label for="Yearly">By Year</label></a>
-      &nbsp;|&nbsp;
-      <a href="index-t-yearlyCounts.html" id="Year Counts"><label for="Year Counts">Year Counts</label></a>
-      &nbsp;|&nbsp;
-      <a href="index-t-proportions.html" id="Proportions"><label for="Proportions">Code Proportions</label></a>
+    <p>Views:
+      <a href="index-t-chronology.html" id="By Date"><button class="horizTimeView" id="date"><label for="By Date">Chronology</label></button></a>
+      <a href="index-t-datCounts.html" id="Date Counts"><button class="horizTimeView_current" id="dateCounts"><label for="Date Counts">Count per Day</label></button></a>
+      <a href="index-t-yearly.html" id="Yearly"><button class="horizTimeView" id="year"><label for="Yearly">Yearly with Counts</label></button></a>
+      <a href="index-t-proportions.html" id="Proportions"><label for="Proportions"><button class="horizTimeView" id="prop"><b>Yearly with Code Proportions</label></button></a>
     </p>
     <br/>
-    <p><em>
+    <p class="expl"><em>
       Each vertical line on the timeline represents the total agreements signed
-      on the corresponding date.  Hover over a group of agreements (a vertical
-      line) to view the total number of agreements per date.  Select codes in
-      the left sidebar to view agreements for specific years,
-      countries/entities, or codes.
+      on the corresponding day.  Hover over a line for the total number.
     </em></p>
     <div id="chart">
       <!--reference to D3 script must be in body tags-->

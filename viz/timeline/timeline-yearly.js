@@ -14,6 +14,9 @@ function toUpdate(){
 
 function callFunction() {
   console.log("Drawing visualization of yearly grouping");
+
+  var click = false; // Hide counts upon load
+
   // Countries/entities
   var paxCons = JSON.parse(window.localStorage.getItem("paxCons"));
   var paxConRule = localStorage.getItem("paxConRule");
@@ -147,60 +150,102 @@ function callFunction() {
               .attr("height", height + margin.top + margin.bottom)
               .attr("width", width + margin.left + margin.right)
 
+          yrCounts = [];
           for (year = 0; year < yrList.length; year++){
-            var chartGroup = svg.append("g")
-                        .attr("class","yearGroup")
-                        .attr("transform","translate("+margin.left+","+margin.top+")")
+            var y = +(years[year].key);
+            // Only draw agreements within the axis bounds
+            if ((y > minYear) && (y < maxYear)){
+              var chartGroup = svg.append("g")
+                          .attr("class","yearGroup")
+                          .attr("transform","translate("+margin.left+","+margin.top+")")
 
-            var rects = chartGroup.selectAll("rects.agt")
-                .data(years[year].values)
-              .enter().append("rect")
-              .filter(function(d){ return setAgtTimePeriod(d); })
-              .filter(function(d){ return setAgtFilters(d); })
-              .filter(function(d){ return setAgtCons(d); })
-                .attr("class","agt")
-                .attr("id",function(d){ return d.AgtId; })
-                .attr("name",function(d){ return d.Agt; })
-                .attr("value",function(d){ return d.Year; })
-                .attr("fill","black")
-                .attr("stroke","#737373")  // same as html background-color
-                .attr("stroke-width","0.5px")
-                .style("opacity", "0.7")
-                .attr("x", function(d){ return x(parseYear(d.Year)) - (agtWidth/2); })
-                .attr("y",function(d,i){ return (height-xHeight-margin.bottom-(agtHeight*1.5)-((agtHeight)*(i*agtSpacing)))+"px"; })
-                .attr("width", agtWidth+"px")
-                .attr("height", agtHeight+"px");
+              var rects = chartGroup.selectAll("rects.agt")
+                  .data(years[year].values)
+                .enter().append("rect")
+                .filter(function(d){ return setAgtTimePeriod(d); })
+                .filter(function(d){ return setAgtFilters(d); })
+                .filter(function(d){ return setAgtCons(d); })
+                  .attr("class","agt")
+                  .attr("id",function(d){ return d.AgtId; })
+                  .attr("name",function(d){ return d.Agt; })
+                  .attr("value",function(d){ return d.Year; })
+                  .attr("fill","black")
+                  .attr("stroke","#737373")  // same as html background-color
+                  .attr("stroke-width","0.5px")
+                  .style("opacity", "0.7")
+                  .attr("x", function(d){ return x(parseYear(d.Year)) - (agtWidth/2); })
+                  .attr("y",function(d,i){ return (height-xHeight-margin.bottom-(agtHeight*1.5)-((agtHeight)*(i*agtSpacing)))+"px"; })
+                  .attr("width", agtWidth+"px")
+                  .attr("height", agtHeight+"px");
 
-            rects.on("mousemove",function(d){
-                    this.style.fill = "#ffffff";
-                    this.style.stroke = "#ffffff";
-                    // Core agreement information (name, date, region, country/entity, status, type & stage)
-                    agtid = d.AgtId;
-                    agt = d.Agt;
-                    dat = formatDate(d.Dat);
-                    reg = d.Reg;
-                    con = d.Con;
-                    status = d.Status;
-                    agtp = d.Agtp;
-                    stage = d.Stage;
-                    substage = d.StageSub;
-                    window.localStorage.setItem("updatePaxVertical","false");
-                    window.localStorage.setItem("updatePaxMap", "false");
-                    window.localStorage.setItem("paxagtid", agtid);
-                    window.localStorage.setItem("paxagt", agt);
-                    window.localStorage.setItem("paxdat", dat);
-                    window.localStorage.setItem("paxreg", reg);
-                    window.localStorage.setItem("paxcon", con);
-                    window.localStorage.setItem("paxstatus", status);
-                    window.localStorage.setItem("paxagtp", agtp);
-                    window.localStorage.setItem("paxstage", stage);
-                    window.localStorage.setItem("paxsubstage", substage);
-                 });
-            rects.on("mouseout",function(d) {
-                   this.style.fill = "black"
-                   this.style.stroke = "#737373";
-                 });
+              rects.on("mousemove",function(d){
+                      this.style.fill = "#ffffff";
+                      this.style.stroke = "#ffffff";
+                      // Core agreement information (name, date, region, country/entity, status, type & stage)
+                      agtid = d.AgtId;
+                      agt = d.Agt;
+                      dat = formatDate(d.Dat);
+                      reg = d.Reg;
+                      con = d.Con;
+                      status = d.Status;
+                      agtp = d.Agtp;
+                      stage = d.Stage;
+                      substage = d.StageSub;
+                      window.localStorage.setItem("updatePaxVertical","false");
+                      window.localStorage.setItem("updatePaxMap", "false");
+                      window.localStorage.setItem("paxagtid", agtid);
+                      window.localStorage.setItem("paxagt", agt);
+                      window.localStorage.setItem("paxdat", dat);
+                      window.localStorage.setItem("paxreg", reg);
+                      window.localStorage.setItem("paxcon", con);
+                      window.localStorage.setItem("paxstatus", status);
+                      window.localStorage.setItem("paxagtp", agtp);
+                      window.localStorage.setItem("paxstage", stage);
+                      window.localStorage.setItem("paxsubstage", substage);
+                      window.localStorage.setItem("paxAgtHrGen", d.HrGen);
+                      window.localStorage.setItem("paxAgtPol", d.Pol);
+                      window.localStorage.setItem("paxAgtEps", d.Eps);
+                      window.localStorage.setItem("paxAgtMps", d.Mps);
+                      window.localStorage.setItem("paxAgtPolps", d.Polps);
+                      window.localStorage.setItem("paxAgtTerps", d.Terps);
+                      window.localStorage.setItem("paxAgtTjMech", d.TjMech);
+                      window.localStorage.setItem("paxAgtGeWom", d.GeWom);
+                   });
+              rects.on("mouseout",function(d) {
+                     this.style.fill = "black"
+                     this.style.stroke = "#737373";
+                   });
+
+               var yrCount = chartGroup.selectAll('rect.agt')._groups[0].length;
+               yrCounts.push([(years[year].values[0].Year), yrCount]);
+
+             }
+
           }
+
+          /*
+          SHOW COUNTS ON CLICK
+          */
+          svg.on("click",function(d){
+            if (click){
+              click = false;
+              svg.selectAll("text.count").remove();
+            } else {
+              var text = svg.selectAll("text.count")
+                   .data(yrCounts)   //yrCounts format: [Year, yrCount]
+                 .enter().append("text")
+                   .attr("class","count")
+                   .attr("x", function(d){ return x(parseYear(d[0])); })
+                   .attr("y", function(d){ return height-(xHeight*2)-(d[1]*agtHeight); })
+                   .text(function(d){ return d[1]; })
+                   .style("font-family", "sans-serif")
+                   .style("font-size", "10px")
+                   .style("fill","#000")
+                   .style("stroke","0px")
+                   .style("font-weight","bold");
+              click = true;
+            }
+          })
 
           /*
           FUNCTIONS

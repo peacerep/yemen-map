@@ -35,11 +35,10 @@ function callInfoFunction() {
       width = width - margin.left - margin.right,
       height = parseInt(d3.select(".selecter").style("height"), 10);
 
-  var textposition = (height/4) + 40,
+  var flowerX = width/4,
+      textposition = (height/4) + 40,
       fontsize = 14,
-      flowerX = width/3,
-      flowerY = (height/4) + (textposition*2),
-      ry1 = 15,ry2 = 25,ry3 = 30, r = 5, rx = 5, rx1 = 5,
+      ry1 = 25,ry2 = 35,ry3 = 40, r = 10, rx = 10, rx1 = 10,
       rPolX = 0, rPolY = 0,
       rPolpsX = 0, rPolpsY = 0,
       rTerpsX = 0, rTerpsY = 0,
@@ -47,7 +46,8 @@ function callInfoFunction() {
       rMpsX = 0, rMpsY = 0,
       rHrGenpsX = 0, rHrGenY = 0,
       rGeWomX = 0, rGeWomY = 0,
-      rTjMechX = 0, rTjMechY = 0;
+      rTjMechX = 0, rTjMechY = 0,
+      flowerY = textposition + ry3;
 
   var circle_opacity = .8,
       circle_stroke = '#343332',
@@ -59,23 +59,14 @@ function callInfoFunction() {
   var svg = d3.select("body").select("#agt").append("svg")
       .attr("height", height + margin.top + margin.bottom)
       .attr("width", width + margin.left + margin.right)
-      .attr("x",0)
-      .attr("y", textposition);
+      // .attr("x",0)
+      // .attr("y", textposition);
 
-  // Create flower tooltip
-  var tooltip = svg.append("div")
-      .style("opacity","0")
-      .style("position","absolute")
-      .attr("class","tooltip");
-
-  // Display core agreement information
-  svg.append("foreignObject")
-      .attr("width",width)
-      .attr("height",height)
-    .append("xhtml:body")
-      .style("fill","black")
-      .html(details)
-      .attr("class","agtInfo");
+  // Create flower tooltip - NOT WORKING
+  // var tooltip = svg.append("div")
+  //     .style("opacity","0")
+  //     .style("position","absolute")
+  //     .attr("class","tooltip");
 
   // Display agreement glyph
   var g = svg.selectAll("g.flower")
@@ -106,20 +97,20 @@ function callInfoFunction() {
           })
           .attr("cx",flowerX)
           .attr("cy",(flowerY-rPolY))
-          .on("mouseover", function(d){
-            this.style.opacity = 1;
-            tooltip.style("opacity", "0.9")
-              .style("background","#ffffff")
-              .style("padding","10px")
-              .style("left", d3.event.pageX+"px")
-              .style("top", d3.event.pageY+"px")
-              .attr("class","tooltip");
-            tooltip.html("<p>Political Institutions<br/><b>"+d+"</b>");
-          })
-          .on("mouseout",function(d){
-            this.style.opacity = circle_opacity;
-            tooltip.style("opacity","0");
-          });
+          // .on("mouseover", function(d){
+          //   this.style.opacity = 1;
+          //   tooltip.style("opacity", "0.9")
+          //     .style("background","#ffffff")
+          //     .style("padding","10px")
+          //     .style("left", width/2)
+          //     .style("top", height/2)
+          //     .attr("class","tooltip");
+          //   tooltip.html("Political Institutions<br/><b>"+d+"</b>");
+          // })
+          // .on("mouseout",function(d){
+          //   this.style.opacity = circle_opacity;
+          //   tooltip.style("opacity","0");
+          // });
    } //end ellipse_pol
 
    if (data[2] > 0){
@@ -273,5 +264,16 @@ function callInfoFunction() {
           .attr("cy",flowerY)
           .attr('r', r);
       }
+
+      // Display core agreement information
+      svg.append("foreignObject")
+          .attr("width",width)
+          .attr("height",height)
+        .append("xhtml:body")
+          .style("fill","black")
+          .html(details)
+          .attr("class","agtInfo")
+          .attr("x", 0)
+          .attr("y", textposition);  // REPLACE TEXT NODES INSTEAD LIKE WITH CON SELECTED LIST
 
 } // end of callInfoFunction

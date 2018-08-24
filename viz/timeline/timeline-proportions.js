@@ -14,6 +14,9 @@ function toUpdate(){
 
 function callFunction() {
   console.log("Drawing visualization of yearly grouping");
+
+  click = false; // Hide proportions upon load
+
   // Countries/entities
   var paxCons = JSON.parse(window.localStorage.getItem("paxCons"));
   var paxConRule = localStorage.getItem("paxConRule");
@@ -199,9 +202,17 @@ function callFunction() {
                       window.localStorage.setItem("paxagtp", agtp);
                       window.localStorage.setItem("paxstage", stage);
                       window.localStorage.setItem("paxsubstage", substage);
+                      window.localStorage.setItem("paxAgtHrGen", d.HrGen);
+                      window.localStorage.setItem("paxAgtPol", d.Pol);
+                      window.localStorage.setItem("paxAgtEps", d.Eps);
+                      window.localStorage.setItem("paxAgtMps", d.Mps);
+                      window.localStorage.setItem("paxAgtPolps", d.Polps);
+                      window.localStorage.setItem("paxAgtTerps", d.Terps);
+                      window.localStorage.setItem("paxAgtTjMech", d.TjMech);
+                      window.localStorage.setItem("paxAgtGeWom", d.GeWom);
                    });
               rects.on("mouseout",function(d) {
-                     this.style.fill = setAgtColors(d);
+                     this.style.fill = (setAgtColors(d))[0];
                      this.style.stroke = "#737373";
                    });
 
@@ -210,6 +221,32 @@ function callFunction() {
                yrProps.push([(years[year].values[0].Year), yrCount, yrTotal]);
              }
           }
+
+        /*
+        SHOW PROPORTIONS ON CLICK
+        */
+        svg.on("click",function(d){
+           if (click){
+             click = false;
+             svg.selectAll("text.count").remove();
+           } else {
+             var text = svg.selectAll("text.count")
+                  .data(yrProps)   //yrProps format: [Year, yrCount, yrTotals]
+                .enter().append("text")
+                  .attr("class","count")
+                  .attr("x", function(d){ return x(parseYear(d[0])); })
+                  .attr("y", function(d){ return height-(xHeight*2)-(d[2]*agtHeight); })
+                  .text(function(d){ return getProp(d[1],d[2]); })
+                  .style("font-family", "sans-serif")
+                  .style("font-size", "10px")
+                  .style("fill","#b3d9ff")
+                  .style("stroke","0px")
+                  .style("font-weight","light")
+                  .style("text-anchor", "middle");
+             click = true;
+           }
+         })
+
 
           /*
           FUNCTIONS
@@ -305,22 +342,6 @@ function callFunction() {
               }
             }
           }
-
-          /*
-          WRITE PROPORTIONS
-          */
-          var text = svg.selectAll("text.count")
-               .data(yrProps)   //yrProps format: [Year, yrCount, yrTotals]
-             .enter().append("text")
-               .attr("class","count")
-               .attr("x", function(d){ return x(parseYear(d[0])); })
-               .attr("y", function(d){ return height-(xHeight*2)-(d[2]*agtHeight); })
-               .text(function(d){ return getProp(d[1],d[2]); })
-               .style("font-family", "sans-serif")
-               .style("font-size", "10px")
-               .style("fill","#b3d9ff")
-               .style("stroke","0px")
-               .style("font-weight","light");
 
           /*
           DRAW X AXIS

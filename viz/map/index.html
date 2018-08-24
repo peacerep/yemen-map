@@ -205,6 +205,10 @@ var svg = d3.select(map.getPanes().overlayPane).append("svg")
 
 function Drawflowers(){
   console.log("Drawing flowers...");
+
+  /*
+  FILTER DATA
+  */
   // Agreement information to display upon hover
   var agtid = "",
       con = "",
@@ -245,76 +249,17 @@ function Drawflowers(){
   // Country/entity filters
   var paxCons = JSON.parse(window.localStorage.getItem("paxCons"));
   var paxConRule = localStorage.getItem("paxConRule");
-
-  function setAgtFilters(d){
-    var agmtCodes = [d.hrgen, d.pol, d.eps, d.mps, d.polps, d.terps, d.tjmech, d.gewom, ];
-    var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
-    var codeFilterCount = codeFilters.length;
-    if (paxANY == 1){
-      for (i = 0; i < codeFilterCount; i++){
-        if ((codeFilters[i] == 1) && (agmtCodes[i] > 0)){
-          return d;
-        } else if (codeFilters[i] == 0){
-        }
-      }
-    } else { // if paxALL == 1
-      var mismatch = false;
-      for (j = 0; j < codeFilterCount; j++){
-        if ((codeFilters[j] == 1) && agmtCodes[j] == 0){
-          mismatch = true;
-        } else if (codeFilters[j] == 0){
-        }
-      }
-      if (!mismatch){
-        return d;
-      }
-    }
-  }
-
-  function setAgtCons(d){
-    var agmtCon = String(d.con);
-    if (paxConRule == "any"){
-      var allCons = JSON.parse(localStorage.getItem("paxConsAll"));
-      if (paxCons.length == allCons.length){
-        return d;
-      } else if (paxCons.length > 0){
-        for (i = 0; i < paxCons.length; i++){
-          if (agmtCon.includes(paxCons[i])){
-            return d;
-          }
-        }
-      }
-    }
-    if (paxConRule == "all") {
-      var mismatch = false;
-      for (j = 0; j < paxCons.length; j++){
-        if (!(agmtCon.includes(paxCons[j]))){
-          mismatch = true;
-        }
-      }
-      if (!mismatch){
-        return d;
-      }
-    }
-  }
-
+  // Time parsers & formatters
   var parseDate = d3.time.format("%d/%m/%Y").parse;
+  var formatDate = d3.time.format("%d %B %Y");
 
-  function setAgtTimePeriod(d, newMinDay, newMaxDay){
-    var minDate = parseDate(newMinDay);
-    var maxDate = parseDate(newMaxDay);
-    var agmtDat = parseDate(d.dat);
-    if ((agmtDat >= minDate) && (agmtDat <= maxDate)){
-      return d;
-    }
-  }
 
-/*
-  TO DO:
-  ADD FLOWER TO SELECTER DETAILS!
-*/
+  /*
+  LOAD MAP DATA & DRAW GLYPHS
+  */
+  d3.json("json/mapTimeConData.json", function(collection) { //data file without core information: json/agreements3.json
 
-  d3.json("json/mapTimeConData.json", function(collection) { //data file without Dat & Con: json/agreements3.json
+    // console.log(collection);
 
       collection.objects.forEach(function(d) {
         if (map.getZoom() < 4){
@@ -344,6 +289,14 @@ function Drawflowers(){
               window.localStorage.setItem("updateVertical","false");
               window.localStorage.setItem("paxagtid", d.agtid);
               window.localStorage.setItem("updateHorizontal","true");
+              window.localStorage.setItem("paxagt", d.agt);
+              window.localStorage.setItem("paxdat", formatDate(parseDate(d.dat)));
+              window.localStorage.setItem("paxreg", d.reg);
+              window.localStorage.setItem("paxcon", d.con);
+              window.localStorage.setItem("paxstatus", d.status);
+              window.localStorage.setItem("paxagtp", d.agtp);
+              window.localStorage.setItem("paxstage", d.stage);
+              window.localStorage.setItem("paxsubstage", d.stagesub);
               window.localStorage.setItem("paxAgtHrGen", d.hrgen);
               window.localStorage.setItem("paxAgtPol", d.pol);
               window.localStorage.setItem("paxAgtEps", d.eps);
@@ -659,6 +612,70 @@ function Drawflowers(){
          })  //end for each
 
        })   // end read json file
+
+       /*
+       FUNCTIONS
+       */
+       function setAgtFilters(d){
+         var agmtCodes = [d.hrgen, d.pol, d.eps, d.mps, d.polps, d.terps, d.tjmech, d.gewom, ];
+         var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
+         var codeFilterCount = codeFilters.length;
+         if (paxANY == 1){
+           for (i = 0; i < codeFilterCount; i++){
+             if ((codeFilters[i] == 1) && (agmtCodes[i] > 0)){
+               return d;
+             } else if (codeFilters[i] == 0){
+             }
+           }
+         } else { // if paxALL == 1
+           var mismatch = false;
+           for (j = 0; j < codeFilterCount; j++){
+             if ((codeFilters[j] == 1) && agmtCodes[j] == 0){
+               mismatch = true;
+             } else if (codeFilters[j] == 0){
+             }
+           }
+           if (!mismatch){
+             return d;
+           }
+         }
+       }
+
+       function setAgtCons(d){
+         var agmtCon = String(d.con);
+         if (paxConRule == "any"){
+           var allCons = JSON.parse(localStorage.getItem("paxConsAll"));
+           if (paxCons.length == allCons.length){
+             return d;
+           } else if (paxCons.length > 0){
+             for (i = 0; i < paxCons.length; i++){
+               if (agmtCon.includes(paxCons[i])){
+                 return d;
+               }
+             }
+           }
+         }
+         if (paxConRule == "all") {
+           var mismatch = false;
+           for (j = 0; j < paxCons.length; j++){
+             if (!(agmtCon.includes(paxCons[j]))){
+               mismatch = true;
+             }
+           }
+           if (!mismatch){
+             return d;
+           }
+         }
+       }
+
+       function setAgtTimePeriod(d, newMinDay, newMaxDay){
+         var minDate = parseDate(newMinDay);
+         var maxDate = parseDate(newMaxDay);
+         var agmtDat = parseDate(d.dat);
+         if ((agmtDat >= minDate) && (agmtDat <= maxDate)){
+           return d;
+         }
+       }
 
        window.localStorage.getItem("updatePaxMap", "false");
        console.log("...flower drawing now complete.")

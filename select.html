@@ -19,7 +19,7 @@
           <br/>
           <div class="timePeriod" id="timePeriod">
             <div id="dropdown" class="dropdown">
-                <button class="dropbtn" id="StartDropBtn">SELECT START YEAR</button>
+                <button class="dropbtn" id="StartDropBtn">Select Start Year</button>
                 <div id="StartYears" class="TimeContent">
                   <input type='radio' id='1990' name='StartYear' value=1 checked="checked"><label for='1990'>1990</label><br/>
                   <input type='radio' id='1991' name='StartYear' value=0><label for='1991'>1991</label><br/>
@@ -50,7 +50,7 @@
                 </div>
             </div>
             <div id="dropdown" class="dropdown">
-              <button class="dropbtn" id="EndDropBtn">SELECT END YEAR</button>
+              <button class="dropbtn" id="EndDropBtn">Select End Year</button>
               <div id="EndYears" class="TimeContent">
                 <input type='radio' id='1990' name='EndYear' value=0><label for='1990'>1990</label><br/>
                 <input type='radio' id='1991' name='EndYear' value=0><label for='1991'>1991</label><br/>
@@ -95,7 +95,7 @@
           </div>
 
           <div id="dropdown" class="dropdown">
-            <button class="dropbtn" id="ConDropBtn">SELECT COUNTRY/ENTITY</button>
+            <button class="dropbtn" id="ConDropBtn">Select Countries/Entities</button>
             <div id="ConDropdown" class="ConContent"  onclick="callFilterFunction()">
               &nbsp;<a href="#" id="SelectAllCons">Select All</a>
               &nbsp;&nbsp;
@@ -270,8 +270,14 @@
               <br/>
             </div>
           </div>
+          <br/>
+          <label for="Selections"><b>Selected Countries/Entities:</b></label>
+          <br/>
+          <div id="selections">
+            <p id="selectionsCon">None</p>
+          </div>
 
-          <br/><br/>
+          <br/>
           <p>Visualize agreements that address:</p>
           <br/>
           <div class="codeFilterRadios">
@@ -280,12 +286,20 @@
             <br/>
             <input type="radio" id="any" name="filterRule" value="any">
             <label for="any"><b>ANY</b>&nbsp;checked code</label>
-            <br/>
           </div>
           <p id="filters">
+            <!-- <div id="codeButtons"> -->
+              <!-- <button id="paxHrGen" class="btn"><a href="#" class="btn">Human Rights/Rule of Law</a></button><br/>
+              <button id="paxPol" class="btn"><a href="#" class="btn">Political Institutions</a></button><br/>
+              <button id="paxEps" class="btn"><a href="#" class="btn">Power Sharing: Economic</a></button><br/>
+              <button id="paxMps" class="btn"><a href="#" class="btn">Power Sharing: Military</a></button><br/>
+              <button id="paxPolps" class="btn"><a href="#" class="btn">Power Sharing: Political</a></button><br/>
+              <button id="paxTerps" class="btn"><a href="#" class="btn">Power Sharing: Territorial</a></button><br/>
+              <button id="paxTjMech" class="btn"><a href="#" class="btn">Transitional Justice Past Mechanism</a></button><br/>
+              <button id="paxGeWom" class="btn"><a href="#" class="btn">Women, Girls and Gender</a></button><br/> -->
             <div id="dropdown" class="dropdown">
-              <button class="dropbtn" id="CodeDropBtn">SELECT CODE(S)</button>
-              <div id="CodeDropdown" class="CodeContent"  onclick="callFilterFunction()">
+              <button class="dropbtn" id="CodeDropBtn">Select Codes</button>
+              <div id="CodeDropdown" class="CodeContent">                         <!--onclick="callFilterFunction()">-->
                 &nbsp;<a href="#" id="SelectAllCodes">Select All</a>
                 &nbsp;&nbsp;
                 <a href="#" id="DeselectAllCodes">Deselect All</a>
@@ -294,7 +308,6 @@
                     <!-- <input type="checkbox" id="paxHrFra" name="filter" value=1>
                     <label for="HrFra">Human Rights Framework</label>
                     <br/> -->
-
                     <input type="checkbox" id="paxHrGen" name="filter" value=1>
                     <label for="HrGen">Human Rights/Rule of Law</label>
                     <br/>
@@ -328,17 +341,49 @@
                   </div>
             </div>
           </div>
+          <br/><br/>
+          <p>Code Legend<p>
+          <table id="codeLegend">
+            <tr>
+              <td id="paxHrGen" class="color">&nbsp;&nbsp;&nbsp;</td>
+              <td>Human Rights/Rule of Law (HrGen)</td>
+            </tr>
+            <tr>
+              <td id="paxPol" class="color">&nbsp;&nbsp;&nbsp;</td>
+              <td>Political Institutions (Pol)</td>
+            </tr>
+            <tr>
+              <td id="paxEps" class="color">&nbsp;&nbsp;&nbsp;</td>
+              <td>Power Sharing: Economic (Eps)</td>
+            </tr>
+            <tr>
+              <td id="paxMps" class="color">&nbsp;&nbsp;&nbsp;</td>
+              <td>Power Sharing: Military (Mps)</td>
+            <tr>
+            <tr>
+              <td id="paxTerps" class="color">&nbsp;&nbsp;&nbsp;</td>
+              <td>Power Sharing: Territorial</td>
+            </tr>
+            <tr>
+              <td id="paxTjMech" class="color">&nbsp;&nbsp;&nbsp;</td>
+              <td>Transitional Justice Past Mechanism (TjMech)</td>
+            </tr>
+            <tr>
+              <td id="paxGeWom" class="color">&nbsp;&nbsp;&nbsp;</td>
+              <td>Women, Girls and Gender (GeWom)</td>
+            </tr>
+          </table>
           </p>
 
        </div> <!-- end of selecter div -->
-       <br/>
+       <!-- <br/>
        <label for="Selections"><b>Selections:</b></label>
        <br/>
        <div id="selections">
          <p id="selectionsCon">Countries/Entities: None</p>
          <br/><br/>
          <p id="selectionsCode">Codes: None</p>
-       </div>
+       </div> -->
        <br/>
        <label for="agtInfo"><b>Agreement Details:</b></label>
        <br/>
