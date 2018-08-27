@@ -15,11 +15,13 @@
   <body>
 
         <div class="selecter">
+          <h1>VISUALIZATION FILTERS</h1>
+          <br/><br/>
           <p>Visualize agreements signed in:</p>
           <br/>
           <div class="timePeriod" id="timePeriod">
             <div id="dropdown" class="dropdown">
-                <button class="dropbtn" id="StartDropBtn">Select Start Year</button>
+                <button class="dropbtn" id="StartDropBtn">Start Year</button>
                 <div id="StartYears" class="TimeContent">
                   <input type='radio' id='1990' name='StartYear' value=1 checked="checked"><label for='1990'>1990</label><br/>
                   <input type='radio' id='1991' name='StartYear' value=0><label for='1991'>1991</label><br/>
@@ -50,7 +52,7 @@
                 </div>
             </div>
             <div id="dropdown" class="dropdown">
-              <button class="dropbtn" id="EndDropBtn">Select End Year</button>
+              <button class="dropbtn" id="EndDropBtn">End Year</button>
               <div id="EndYears" class="TimeContent">
                 <input type='radio' id='1990' name='EndYear' value=0><label for='1990'>1990</label><br/>
                 <input type='radio' id='1991' name='EndYear' value=0><label for='1991'>1991</label><br/>
@@ -87,16 +89,15 @@
           <br/>
           <div class="conRadios">
             <input type="radio" id="allCon" name="conRule" value="allCons" checked="checked">
-            <label for="all"><b>ALL</b>&nbsp;checked countries/entities</label>
-            <br/>
+            <label for="all">all</label>
             <input type="radio" id="anyCon" name="conRule" value="anyCon">
-            <label for="any"><b>ANY</b>&nbsp;checked country/entity</label>
+            <label for="any">any</label>
             <br/>
           </div>
 
           <div id="dropdown" class="dropdown">
-            <button class="dropbtn" id="ConDropBtn">Select Countries/Entities</button>
-            <div id="ConDropdown" class="ConContent"  onclick="callFilterFunction()">
+            <button class="dropbtn" id="ConDropBtn">Country/Entity Selections</button>
+            <div id="ConDropdown" class="ConContent" onclick="callFilterFunction()">
               &nbsp;<a href="#" id="SelectAllCons">Select All</a>
               &nbsp;&nbsp;
               <a href="#" id="DeselectAllCons">Deselect All</a>
@@ -271,9 +272,9 @@
             </div>
           </div>
           <br/>
-          <label for="Selections"><b>Selected Countries/Entities:</b></label>
+          <label for="conSelections"><b>Selected Countries/Entities:</b></label>
           <br/>
-          <div id="selections">
+          <div id="conSelections">
             <p id="selectionsCon">None</p>
           </div>
 
@@ -282,10 +283,9 @@
           <br/>
           <div class="codeFilterRadios">
             <input type="radio" id="all" name="filterRule" value="all" checked="checked">
-            <label for="all"><b>ALL</b>&nbsp;checked codes</label>
-            <br/>
+            <label for="all">all</label>
             <input type="radio" id="any" name="filterRule" value="any">
-            <label for="any"><b>ANY</b>&nbsp;checked code</label>
+            <label for="any">any</label>
           </div>
           <p id="filters">
             <!-- <div id="codeButtons"> -->
@@ -298,8 +298,8 @@
               <button id="paxTjMech" class="btn"><a href="#" class="btn">Transitional Justice Past Mechanism</a></button><br/>
               <button id="paxGeWom" class="btn"><a href="#" class="btn">Women, Girls and Gender</a></button><br/> -->
             <div id="dropdown" class="dropdown">
-              <button class="dropbtn" id="CodeDropBtn">Select Codes</button>
-              <div id="CodeDropdown" class="CodeContent">                         <!--onclick="callFilterFunction()">-->
+              <button class="dropbtn" id="CodeDropBtn">Code Selections</button>
+              <div id="CodeDropdown" class="CodeContent" onclick="callFilterFunction()">                         <!--onclick="callFilterFunction()">-->
                 &nbsp;<a href="#" id="SelectAllCodes">Select All</a>
                 &nbsp;&nbsp;
                 <a href="#" id="DeselectAllCodes">Deselect All</a>
@@ -341,7 +341,12 @@
                   </div>
             </div>
           </div>
-          <br/><br/>
+          <br/>
+          <label for="codeSelections"><b>Selected Codes:</b></label>
+          <div id="codeSelections">
+            <p id="selectionsCode">None</p>
+          </div>
+          <br/>
           <p>Code Legend<p>
           <table id="codeLegend">
             <tr>
@@ -359,10 +364,14 @@
             <tr>
               <td id="paxMps" class="color">&nbsp;&nbsp;&nbsp;</td>
               <td>Power Sharing: Military (Mps)</td>
-            <tr>
+            </tr>
+              <tr>
+                <td id="paxPolps" class="color">&nbsp;&nbsp;&nbsp;</td>
+                <td>Power Sharing: Political (Polps)</td>
+              </tr>
             <tr>
               <td id="paxTerps" class="color">&nbsp;&nbsp;&nbsp;</td>
-              <td>Power Sharing: Territorial</td>
+              <td>Power Sharing: Territorial (Terps)</td>
             </tr>
             <tr>
               <td id="paxTjMech" class="color">&nbsp;&nbsp;&nbsp;</td>
@@ -376,14 +385,6 @@
           </p>
 
        </div> <!-- end of selecter div -->
-       <!-- <br/>
-       <label for="Selections"><b>Selections:</b></label>
-       <br/>
-       <div id="selections">
-         <p id="selectionsCon">Countries/Entities: None</p>
-         <br/><br/>
-         <p id="selectionsCode">Codes: None</p>
-       </div> -->
        <br/>
        <label for="agtInfo"><b>Agreement Details:</b></label>
        <br/>

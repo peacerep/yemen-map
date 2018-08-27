@@ -39,7 +39,7 @@ function callFunction() {
   // Agreement information to display upon hover
   var agt = "Hover over an agreement to view its details.",
       dat = "",
-      reg = "",
+      // reg = "",
       con = "",
       status = "",
       agtp = "",
@@ -47,7 +47,7 @@ function callFunction() {
       substage = "";
   window.localStorage.setItem("paxagt", agt);
   window.localStorage.setItem("paxdat", dat);
-  window.localStorage.setItem("paxreg", reg);
+  // window.localStorage.setItem("paxreg", reg);
   window.localStorage.setItem("paxcon", con);
   window.localStorage.setItem("paxstatus", status);
   window.localStorage.setItem("paxagtp", agtp);
@@ -73,13 +73,11 @@ function callFunction() {
       agtSpacing = 1;
 
   // Obtain data
-  d3.csv("PAX_with_additional.csv")
-      .row(function(d){ return{ Year:+d.Year, //parseYear(d.Year),
-                                Day:+d.Day,
-                                Month:+d.Month,
+  d3.csv("paxTimelineData_24Aug2018.csv")
+      .row(function(d){ return{ Year:+d.Year,
                                 Dat:parseDate(d.Dat),
                                 AgtId:Number(d.AgtId),
-                                Reg:d.Reg,
+                                // Reg:d.Reg,
                                 Con:d.Con,
                                 Status:d.Status,
                                 Agtp:d.Agtp,
@@ -185,7 +183,7 @@ function callFunction() {
                       agtid = d.AgtId;
                       agt = d.Agt;
                       dat = formatDate(d.Dat);
-                      reg = d.Reg;
+                      // reg = d.Reg;
                       con = d.Con;
                       status = d.Status;
                       agtp = d.Agtp;
@@ -196,7 +194,7 @@ function callFunction() {
                       window.localStorage.setItem("paxagtid", agtid);
                       window.localStorage.setItem("paxagt", agt);
                       window.localStorage.setItem("paxdat", dat);
-                      window.localStorage.setItem("paxreg", reg);
+                      // window.localStorage.setItem("paxreg", reg);
                       window.localStorage.setItem("paxcon", con);
                       window.localStorage.setItem("paxstatus", status);
                       window.localStorage.setItem("paxagtp", agtp);

@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="select-style.css">
     <script type="text/javascript" src="viz/timeline/d3.v4.js"></script>
     <script type="text/javascript" src="viz/timeline/vert-select.js"></script>
+    <script type="text/javascript" src="viz/timeline/vertAgtInfo.js"></script>
     <!-- <script type="text/javascript" src="ConDropdown.js"></script> -->
   </head>
   <body>
@@ -28,7 +29,7 @@
           <p id="filters">
             <div id="dropdown" class="dropdown">
               <button class="dropbtn" id="CodeDropBtn">Select Codes</button>
-              <div id="CodeDropdown" class="CodeContent">
+              <div id="CodeDropdown" class="CodeContent" onclick="callVertFilterFunction()">
                 &nbsp;<a href="#" id="SelectAllCodesV">Select All</a>
                 &nbsp;&nbsp;
                 <a href="#" id="DeselectAllCodesV">Deselect All</a>
@@ -72,6 +73,11 @@
             </div>
           </div>
           </p>
+          <br/>
+          <label for="codeSelections"><b>Selected Codes:</b></label>
+          <div id="codeSelections">
+            <p id="selectionsCode">None</p>
+          </div>
           <br/><br/>
 
           <div id="legend">

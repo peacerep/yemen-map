@@ -5,6 +5,27 @@ html{
   background-color: #737373; /*c4c4c4;*/
 }
 
+button#reset.btn {
+  background-color: #737373;
+  padding: 5px;
+  margin: 2px;
+  width: auto;
+  cursor: pointer;
+  opacity: 1;
+  border: 1px solid silver;
+}
+button#reset.btn label {
+  font-family: "Helvetica", sans-serif;
+  font-size: 12px;
+  font-weight: lighter;
+  color: silver;
+  text-decoration: none;
+  text-align: left;
+}
+button.btn#reset:hover{
+  background-color: #838383;
+}
+
 /*
 Grid Layout
 */
@@ -16,6 +37,7 @@ Grid Layout
     'header header header header header header header'
     'selecter timeline-h timeline-h timeline-h timeline-h timeline-h timeline-h'
     'selecter timeline-h timeline-h timeline-h timeline-h timeline-h timeline-h'
+    'selecter map map map map map map'
     'selecter map map map map map map'
     'selecter map map map map map map'
     'selecter map map map map map map'
@@ -66,37 +88,37 @@ Grid Layout
   grid-area: selecter2;
   grid-column: 1 / 2;
   /* grid-row: 82 / 232; */
-  grid-row: 100 / 220;
+  grid-row: 112 / 226;
 }
 .item-f {
   grid-area: timeline-v1;
   /* grid-column: 2 / 62; */
   grid-column: 2 / 4;
   /* grid-row: 82 / 232; */
-  grid-row: 100 / 220;
+  grid-row: 112 / 226;
 }
 .item-g {
   grid-area: timeline-v2;
   /* grid-column: 2 / 62;
   grid-row: 82 / 232; */
   grid-column: 4 / 6;
-  grid-row: 100 / 220;
+  grid-row: 112 / 226;
 }
 .item-h {
   grid-area: timeline-v3;
   /* grid-column: 2 / 62; */
   grid-column: 6 / 8;
   /* grid-row: 82 / 232; */
-  grid-row: 100 / 220;
+  grid-row: 112 / 226;
 }
 
 /*
 Text
 */
 a {
-  text-decoration: underline;
+  text-decoration: none;
   font-weight: bold;
-  color: silver;
+  color: #b3b3b3;
 }
 a#Reset{
   text-decoration: underline;
@@ -104,6 +126,7 @@ a#Reset{
   color: black;
   font-size: 12px;
   padding-left: 8px;
+  float: right;
 }
 iframe {
   border: none;

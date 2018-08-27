@@ -13,6 +13,7 @@ Horizontal Timeline with Agreements Grouped by Date
 //     if (error) throw error;
 //     *do something with the data*
 // }
+window.localStorage.setItem("paxagtid", 1370); // default to an agreement that addresses all codes
 
 callFunction();
 d3.select(window).on("resize", callFunction);
@@ -48,25 +49,29 @@ function callFunction() {
   // Time period
   var newMinDay = localStorage.getItem("paxNewMinDay");
   var newMaxDay = localStorage.getItem("paxNewMaxDay");
+
+
   // Hovered agreement
   var paxAgtId = window.localStorage.getItem("paxagtid");
-  // Agreement information to display upon hover
-  var agt = "Hover over an agreement to view its details.",
-      dat = "",
-      reg = "",
-      con = "",
-      status = "",
-      agtp = "",
-      stage = "",
-      substage = "";
-  window.localStorage.setItem("paxagt", agt);
-  window.localStorage.setItem("paxdat", dat);
-  window.localStorage.setItem("paxreg", reg);
-  window.localStorage.setItem("paxcon", con);
-  window.localStorage.setItem("paxstatus", status);
-  window.localStorage.setItem("paxagtp", agtp);
-  window.localStorage.setItem("paxstage", stage);
-  window.localStorage.setItem("paxsubstage", substage);
+  // // Agreement information to display upon hover
+  // var agt = "Hover over an agreement to view its details.",
+  //     dat = "",
+  //     // reg = "",
+  //     con = "",
+  //     status = "",
+  //     agtp = "",
+  //     stage = "",
+  //     substage = "";
+  // window.localStorage.setItem("paxagt", agt);
+  // window.localStorage.setItem("paxdat", dat);
+  // // window.localStorage.setItem("paxreg", reg);
+  // window.localStorage.setItem("paxcon", con);
+  // window.localStorage.setItem("paxstatus", status);
+  // window.localStorage.setItem("paxagtp", agtp);
+  // window.localStorage.setItem("paxstage", stage);
+  // window.localStorage.setItem("paxsubstage", substage);
+
+
 
   // Date parsers & formatters
   var parseDate = d3.timeParse("%d/%m/%Y");
@@ -80,13 +85,11 @@ function callFunction() {
   var formatYear = d3.timeFormat("%Y");
 
   // Obtain data
-  d3.csv("PAX_with_additional.csv")
+  d3.csv("paxTimelineData_24Aug2018.csv")
       .row(function(d){ return{ Year:+d.Year,
-                                Day:+d.Day,
-                                Month:+d.Month,
                                 Dat:parseDate(d.Dat),
                                 AgtId:Number(d.AgtId),
-                                Reg:d.Reg,
+                                // Reg:d.Reg,
                                 Con:d.Con,
                                 Status:d.Status,
                                 Agtp:d.Agtp,
@@ -104,6 +107,23 @@ function callFunction() {
                                 TjMech:d.TjMech // 1-3 indicating increasing level of detail given about a body to deal with the past; 0 if none given
                               }; })
       .get(function(error,data){
+
+        // Store data needed for viz in dictionary
+        var vizData = {};
+        for (i = 0; i < data.length; i++){
+          agt = data[i];
+          vizData[String(agt.AgtId)] = [String(agt.Agt),
+                                        String(formatDate(agt.Dat)),
+                                        String(agt.Con), String(agt.Status),
+                                        String(agt.Agtp), String(agt.Stage),
+                                        String(agt.StageSub), String(agt.Pol),
+                                        String(agt.Polps), String(agt.Terps),
+                                        String(agt.Eps), String(agt.Mps),
+                                        String(agt.HrGen), String(agt.GeWom),
+                                        String(agt.TjMech)];
+        }
+        // console.log(vizData);
+        window.localStorage.setItem("paxVizData", JSON.stringify(vizData));
 
           var svgtest = d3.select("body").select("svg");
           if (!svgtest.empty()) {
@@ -181,7 +201,6 @@ function callFunction() {
                       .attr("class","chartGroup") //
                       .attr("transform","translate("+margin.left+","+margin.top+")");
 
-          console.log(paxAgtId);
           // Make one rectangle per agreement grouped by Dat
           for (dat = 0; dat < datList.length; dat++){
             var datGroup = chartGroup.append("g")
@@ -211,25 +230,26 @@ function callFunction() {
                    this.style.stroke = "#ffffff";
                    // Core agreement information (name, date, region, country/entity, status, type & stage)
                    agtid = d.AgtId;
-                   agt = d.Agt;
-                   dat = formatDate(d.Dat);
-                   reg = d.Reg;
-                   con = d.Con;
-                   status = d.Status;
-                   agtp = d.Agtp;
-                   stage = d.Stage;
-                   substage = d.StageSub;
+                   console.log(agtid);
+                   // agt = d.Agt;
+                   // dat = formatDate(d.Dat);
+                   // // reg = d.Reg;
+                   // con = d.Con;
+                   // status = d.Status;
+                   // agtp = d.Agtp;
+                   // stage = d.Stage;
+                   // substage = d.StageSub;
                    window.localStorage.setItem("updatePaxVertical","false");
                    window.localStorage.setItem("updatePaxMap", "false");
                    window.localStorage.setItem("paxagtid", agtid);
-                   window.localStorage.setItem("paxagt", agt);
-                   window.localStorage.setItem("paxdat", dat);
-                   window.localStorage.setItem("paxreg", reg);
-                   window.localStorage.setItem("paxcon", con);
-                   window.localStorage.setItem("paxstatus", status);
-                   window.localStorage.setItem("paxagtp", agtp);
-                   window.localStorage.setItem("paxstage", stage);
-                   window.localStorage.setItem("paxsubstage", substage);
+                   // window.localStorage.setItem("paxagt", agt);
+                   // window.localStorage.setItem("paxdat", dat);
+                   // // window.localStorage.setItem("paxreg", reg);
+                   // window.localStorage.setItem("paxcon", con);
+                   // window.localStorage.setItem("paxstatus", status);
+                   // window.localStorage.setItem("paxagtp", agtp);
+                   // window.localStorage.setItem("paxstage", stage);
+                   // window.localStorage.setItem("paxsubstage", substage);
                    window.localStorage.setItem("paxAgtHrGen", d.HrGen);
                    window.localStorage.setItem("paxAgtPol", d.Pol);
                    window.localStorage.setItem("paxAgtEps", d.Eps);

@@ -12,6 +12,15 @@ html, body {
   height: 95%;
 }
 
+h1 {
+  color:black;
+  font-size: 12px;
+  text-decoration: none;
+  display: inline;
+  font-family: "Helvetica", sans-serif;
+  font-weight: bolder;
+}
+
 p, a, label {
   color:black;
   font-size: 12px;
@@ -27,7 +36,7 @@ input {
   margin-left: 8px;
 }
 
-a#Reset:hover, a#SelectAllCodes:hover, a#DeselectAllCodes:hover, p.filterViews a:hover{
+a#SelectAllCodes:hover, a#DeselectAllCodes:hover, p.filterViews a:hover{
   color: #ffffff;
 }
 

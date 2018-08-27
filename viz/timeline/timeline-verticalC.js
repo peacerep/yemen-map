@@ -67,13 +67,11 @@ function callFunction() {
       agtSpacing = 1;
 
   // Obtain data
-  d3.csv("PAX_with_additional.csv")
-      .row(function(d){ return{ Year:+d.Year, //parseYear(d.Year),
-                                Day:+d.Day,
-                                Month:+d.Month,
+  d3.csv("paxTimelineData_24Aug2018.csv")
+      .row(function(d){ return{ Year:+d.Year,
                                 Dat:parseDate(d.Dat),
                                 AgtId:Number(d.AgtId),
-                                Reg:d.Reg,
+                                // Reg:d.Reg,
                                 Con:d.Con,
                                 Status:d.Status,
                                 Agtp:d.Agtp,
@@ -87,7 +85,7 @@ function callFunction() {
                                 Mps:+d.Mps, // 1-3 indicating increasing level of detail given about Political Power sharing; 0 if none given
                                 Pol:+d.Pol, // 1-3 indicating increasing level of detail given about political institutions; 0 if none given
                                 HrGen:+d.HrGen, // 1 if topic of human rights/rule of law addressed; 0 if not
-                                HrFra:+d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
+                                // HrFra:+d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
                                 TjMech:+d.TjMech // 1-3 indicating increasing level of detail given about a body to deal with the past; 0 if none given
                               }; })
       .get(function(error,data){
@@ -179,7 +177,7 @@ function callFunction() {
                   // Get core agreement information (name, date, region, country/entity, status, type & stage)
                   agt = d.Agt;
                   dat = formatDate(d.Dat);
-                  reg = d.Reg;
+                  // reg = d.Reg;
                   con = d.Con;
                   status = d.Status;
                   agtp = d.Agtp;
@@ -193,7 +191,7 @@ function callFunction() {
                     .style("background","#ffffff")
                     .style("padding","10px")
                     .attr("class","tooltip");
-                  tooltip.html("<p><em>"+agt+"</em><br/><br/><b>Date Signed:</b> "+dat+"<br/><b>Region:</b> "+reg+"</br><b>Country/Entity:</b> "+con+"<br/><b>Status:</b> "+status+"<br/><b>Type:</b> "+agtp+"<br/><b>Stage:</b> "+stage+"<br/><b>Substage:</b> "+substage);
+                  tooltip.html("<p><em>"+agt+"</em><br/><br/><b>Date Signed:</b> "+dat+"</br><b>Country/Entity:</b> "+con+"<br/><b>Status:</b> "+status+"<br/><b>Type:</b> "+agtp+"<br/><b>Stage:</b> "+stage+"<br/><b>Substage:</b> "+substage);
                  });
             rects.on("mouseout",function(d) {
                    this.style.fill = getStageFill(d, stageValues, stageColors) //"black"

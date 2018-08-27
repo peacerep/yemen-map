@@ -14,6 +14,9 @@ window.onload = function() {
     window.localStorage.setItem("updatePaxHorizontal","false");
     paxRuleAny();
     window.localStorage.setItem("updatePaxVertical","true");
+    window.localStorage.setItem("updatePaxVerticalA","true");
+    window.localStorage.setItem("updatePaxVerticalB","true");
+    window.localStorage.setItem("updatePaxVerticalC","true");
   }
   document.getElementById("allV").onclick = function(event) {
     window.localStorage.setItem("updatePaxMap", "false");
@@ -21,6 +24,9 @@ window.onload = function() {
     window.localStorage.setItem("updatePaxHorizontal","false");
     paxRuleAll();
     window.localStorage.setItem("updatePaxVertical","true");
+    window.localStorage.setItem("updatePaxVerticalA","true");
+    window.localStorage.setItem("updatePaxVerticalB","true");
+    window.localStorage.setItem("updatePaxVerticalC","true");
   }
 
   // Code filter listeners
@@ -30,6 +36,9 @@ window.onload = function() {
     window.localStorage.setItem("updatePaxHorizontal","false");
     paxFilterUncheck();
     window.localStorage.setItem("updatePaxVertical","true");
+    window.localStorage.setItem("updatePaxVerticalA","true");
+    window.localStorage.setItem("updatePaxVerticalB","true");
+    window.localStorage.setItem("updatePaxVerticalC","true");
   }
   document.getElementById("SelectAllCodesV").onclick = function(event) {
     window.localStorage.setItem("updatePaxMap", "false");
@@ -37,6 +46,9 @@ window.onload = function() {
     window.localStorage.setItem("updatePaxHorizontal","false");
     paxFilterCheck();
     window.localStorage.setItem("updatePaxVertical","true");
+    window.localStorage.setItem("updatePaxVerticalA","true");
+    window.localStorage.setItem("updatePaxVerticalB","true");
+    window.localStorage.setItem("updatePaxVerticalC","true");
   }
 
   // Code filter listeners
@@ -55,6 +67,9 @@ window.onload = function() {
       console.log("Unchecked "+target.id);
     }
     window.localStorage.setItem("updatePaxVertical","true");
+    window.localStorage.setItem("updatePaxVerticalA","true");
+    window.localStorage.setItem("updatePaxVerticalB","true");
+    window.localStorage.setItem("updatePaxVerticalC","true");
   }
 
   // Page refresh listener
@@ -66,6 +81,9 @@ window.onload = function() {
         paxFilterUncheck(); // Check all code filters
         paxRuleAll(); // Pick code filter rule ALL
         window.localStorage.setItem("updatePaxVertical","true");
+        window.localStorage.setItem("updatePaxVerticalA","true");
+        window.localStorage.setItem("updatePaxVerticalB","true");
+        window.localStorage.setItem("updatePaxVerticalC","true");
     }
   }
 
