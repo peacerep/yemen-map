@@ -20,6 +20,7 @@ function callInfoFunction() {
           agtp = "<b>Type:</b> "+ agtVizData[paxAgtId][4], // window.localStorage.getItem("paxagtp"),
           stage = "<b>Stage:</b> "+ agtVizData[paxAgtId][5], // window.localStorage.getItem("paxstage"),
           // stagesub = "<b>Substage:</b> "+ agtVizData[paxAgtId][6], // window.localStorage.getItem("paxagtid"),
+
           paxAgtPol = agtVizData[paxAgtId][7],//window.localStorage.getItem("paxAgtPol"),
           paxAgtPolps = agtVizData[paxAgtId][8], //window.localStorage.getItem("paxAgtPolps"),
           paxAgtTerps = agtVizData[paxAgtId][9], //window.localStorage.getItem("paxAgtTerps"),
@@ -27,9 +28,18 @@ function callInfoFunction() {
           paxAgtMps = agtVizData[paxAgtId][11], //window.localStorage.getItem("paxAgtMps"),
           paxAgtHrGen = agtVizData[paxAgtId][12], //window.localStorage.getItem("paxAgtHrGen"),
           paxAgtGeWom = agtVizData[paxAgtId][13], //window.localStorage.getItem("paxAgtGeWom"),
-          paxAgtTjMech = agtVizData[paxAgtId][14]; //window.localStorage.getItem("paxAgtTjMech");
+          paxAgtTjMech = agtVizData[paxAgtId][14], //window.localStorage.getItem("paxAgtTjMech"),
 
-      var details = "<em>"+agt+"</em>"+"<br/><br/>"+dat+"<br/>"+con+"<br/>"+status+"<br/>"+agtp+"<br/>"+stage+"<br/>", //+stagesub+"<br/>",
+          agtPDF = "https://peaceagreements.org/masterdocument/"+String(paxAgtId),
+          agtCod = "https://peaceagreements.org/view/"+String(paxAgtId)+"/"+String(agt);
+
+
+      var details = "<em>"+agt+"</em>"+"<br/><br/><p>"+dat+"</p><br/><p>"
+                    +con+"</p><br/><p>"+status+"</p><br/><p>"+agtp+"</p><br/><p>"
+                    +stage+"</p><br/>"+"<p><b><a class='pdf' href="
+                    +agtPDF+">Open PDF</a></b></p>"+
+                    "&nbsp;&nbsp;|&nbsp;&nbsp;<p><b><a class='cod' target='_blank' href="
+                    +agtCod+">View Coding Detail</a></b></p>",                 //+stagesub+"<br/>",
           data = [paxAgtId, +paxAgtPol, +paxAgtPolps, +paxAgtTerps, +paxAgtEps, +paxAgtMps, +paxAgtHrGen, +paxAgtGeWom, +paxAgtTjMech];
 
       var margin = {top: 160, right: 10, bottom: 30, left: 10}, //read clockwise from top
@@ -49,7 +59,7 @@ function callInfoFunction() {
           rHrGenpsX = 0, rHrGenY = 0,
           rGeWomX = 0, rGeWomY = 0,
           rTjMechX = 0, rTjMechY = 0,
-          flowerY = textposition + ry3;
+          flowerY = textposition + 40 + ry3;
 
       var circle_opacity = .8,
           circle_stroke = '#343332',
