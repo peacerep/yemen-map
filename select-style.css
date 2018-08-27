@@ -120,7 +120,7 @@ YEARS DROPDOWN
   display: none;
   position: absolute;
   background-color: silver;
-  width: 91%;
+  width: 100%;
   overflow: auto;
   padding: 4px;
   max-height: 250px;

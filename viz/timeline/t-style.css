@@ -34,7 +34,14 @@ p.expl {
 /*
 TIMELINE
 */
-button.horizTimeView {
+button#export.btn {
+  float: right;
+}
+button#exportV.btn {
+  float: left;
+}
+
+button.horizTimeView, button#export.btn, button#exportV.btn  {
   background-color: #737373;
   padding: 5px;
   margin: 2px;
@@ -43,7 +50,7 @@ button.horizTimeView {
   opacity: 1;
   border: 1px solid silver;
 }
-button.horizTimeView_current, button.horizTimeView {
+button.horizTimeView_current, button.horizTimeView, button#export.btn, button#exportV.btn {
   font-family: "Helvetica", sans-serif;
   font-size: 12px;
   font-weight: lighter;
@@ -51,10 +58,10 @@ button.horizTimeView_current, button.horizTimeView {
   text-decoration: none;
   text-align: left;
 }
-button.horizTimeView:hover{
+button.horizTimeView:hover, button#export.btn:hover, button#exportV.btn:hover {
   background-color: #838383;
 }
-button.horizTimeView_current{
+button.horizTimeView_current, button#export.btn:hover, button#exportV.btn:hover {
   background-color: #838383;
   padding: 5px;
   margin: 2px;

@@ -29,6 +29,7 @@ function toUpdate(){
 
 function callFunction() {
   console.log("Drawing horizontal visualization...");
+  var clicked = false;
 
   // Countries/entities
   var paxCons = JSON.parse(window.localStorage.getItem("paxCons"));
@@ -49,27 +50,8 @@ function callFunction() {
   // Time period
   var newMinDay = localStorage.getItem("paxNewMinDay");
   var newMaxDay = localStorage.getItem("paxNewMaxDay");
-
-
-  // Hovered agreement
+  // Agreement in left sidebar
   var paxAgtId = window.localStorage.getItem("paxagtid");
-  // // Agreement information to display upon hover
-  // var agt = "Hover over an agreement to view its details.",
-  //     dat = "",
-  //     // reg = "",
-  //     con = "",
-  //     status = "",
-  //     agtp = "",
-  //     stage = "",
-  //     substage = "";
-  // window.localStorage.setItem("paxagt", agt);
-  // window.localStorage.setItem("paxdat", dat);
-  // // window.localStorage.setItem("paxreg", reg);
-  // window.localStorage.setItem("paxcon", con);
-  // window.localStorage.setItem("paxstatus", status);
-  // window.localStorage.setItem("paxagtp", agtp);
-  // window.localStorage.setItem("paxstage", stage);
-  // window.localStorage.setItem("paxsubstage", substage);
 
 
 
@@ -226,102 +208,28 @@ function callFunction() {
                 .attr("height", (agtHeight/dats[dat].values.length)+"px");
 
             rects.on("mousemove",function(d){
+              if (!clicked) {
                    this.style.fill = "#ffffff";
                    this.style.stroke = "#ffffff";
                    // Core agreement information (name, date, region, country/entity, status, type & stage)
                    agtid = d.AgtId;
-                   console.log(agtid);
-                   // agt = d.Agt;
-                   // dat = formatDate(d.Dat);
-                   // // reg = d.Reg;
-                   // con = d.Con;
-                   // status = d.Status;
-                   // agtp = d.Agtp;
-                   // stage = d.Stage;
-                   // substage = d.StageSub;
                    window.localStorage.setItem("updatePaxVertical","false");
                    window.localStorage.setItem("updatePaxMap", "false");
                    window.localStorage.setItem("paxagtid", agtid);
-                   // window.localStorage.setItem("paxagt", agt);
-                   // window.localStorage.setItem("paxdat", dat);
-                   // // window.localStorage.setItem("paxreg", reg);
-                   // window.localStorage.setItem("paxcon", con);
-                   // window.localStorage.setItem("paxstatus", status);
-                   // window.localStorage.setItem("paxagtp", agtp);
-                   // window.localStorage.setItem("paxstage", stage);
-                   // window.localStorage.setItem("paxsubstage", substage);
-                   window.localStorage.setItem("paxAgtHrGen", d.HrGen);
-                   window.localStorage.setItem("paxAgtPol", d.Pol);
-                   window.localStorage.setItem("paxAgtEps", d.Eps);
-                   window.localStorage.setItem("paxAgtMps", d.Mps);
-                   window.localStorage.setItem("paxAgtPolps", d.Polps);
-                   window.localStorage.setItem("paxAgtTerps", d.Terps);
-                   window.localStorage.setItem("paxAgtTjMech", d.TjMech);
-                   window.localStorage.setItem("paxAgtGeWom", d.GeWom);
-                 });
+              }
+            });
             rects.on("mouseout",function(d) {
+              // if (!clicked) {
                    this.style.fill = "black"
                    this.style.stroke = "#737373";
-                 });
-
-                 // rects.on("click", function(d){
-                 //   if (!zoom){
-                 //     zoom = true;
-                 //     var clickedDat = d.Dat;
-                 //     var clickedYear = +d.Year;
-                 //     var newMinYear;
-                 //     var newMaxYear;
-                 //     // Find minimum & maximum dates for zoomed-in x scale domain
-                 //     if (clickedYear == 1990){
-                 //       newMinYear = 1990;
-                 //       newMaxYear = 1992;
-                 //     } else if (clickedYear == 2015){
-                 //       newMinYear = 2013;
-                 //       newMaxYear = 2015;
-                 //     } else {
-                 //       newMinYear = clickedYear - 1;
-                 //       newMaxYear = clickedYear; // + 1;
-                 //     }
-                 //     var newMinDay = "01/01/"+newMinYear;
-                 //     window.localStorage.setItem("paxNewMinDay",newMinDay);
-                 //     var newMaxDay = "31/12/"+newMaxYear;
-                 //     window.localStorage.setItem("paxNewMaxDay",newMaxDay);
-                 //   } else {
-                 //     zoom = false;
-                 //     window.localStorage.setItem("paxNewMinDay","");
-                 //     window.localStorage.setItem("paxNewMaxDay","");
-                 //   }
-                 //   callFunction();
-                 // });
+              // }
+            });
+            rects.on("click", function(d) {
+                  if (!clicked){ clicked = true; }
+                  else { clicked = false; }
+            });
 
             } // end of for loop for rects.agt
-
-            // chartGroup.selectAll("rect.count")
-            //    .data(yr_count_nest)
-            //    .enter().append("rect")
-            //      .attr("class","count")
-            //      .attr("fill","black")
-            //      .attr("stroke","white")
-            //      .attr("stroke-width","0.5px")
-            //      .attr("x",function(d){ return x(parseYear(d.key)); })
-            //      .attr("y",function(d){ return ((height/2)+24)+"px"; })
-            //      .attr("width",width/(years.length))
-            //      .attr("height",function(d){ return d.value; })
-            //      .on("mousemove",function(d){
-            //        this.style.fill = "steelblue"
-            //        tooltip.style("opacity","1")
-            //          .style("left",margin.left)  //("left",d3.event.pageX+"px")
-            //          .style("top",(margin.top + tooltipMargin)+"px")  //("top",d3.event.pageY+"px")
-            //          .attr("class","tooltip");
-            //        // Display core agreement information (name, date, region, country/entity, status, type & stage)
-            //        tooltip.html("<h5>Total Peace Agreements in "+d.key+": "+d.value+"</h5>");
-            //      })
-            //      .on("mouseout",function(d) {
-            //        this.style.fill = "black"
-            //        tooltip.style("opacity","0")
-            //          .style("left",margin.left)  //("left",d3.event.pageX+"px")
-            //          .style("top",height+"px");
-            //      });
 
             /*
             FUNCTIONS
@@ -396,12 +304,21 @@ function callFunction() {
            var gX = chartGroup.append("g")
                 .attr("class","xaxis")
                 .attr("id","dat")
-                .attr("transform","translate(0,"+(height-xHeight)+")")
+                .attr("transform","translate("+(margin.left)+","+(height-xHeight)+")")
                 .call(xAxis);
 
       }) // end of .get(error,data)
 
       window.localStorage.setItem("updatePaxHorizontal","false");
       console.log("horizontal complete.");
+
+      /*
+      EXPORT PNG
+      from https://github.com/exupero/saveSvgAsPng
+      */
+      d3.select("#export").on("click", function(){
+        saveSvgAsPng(document.getElementsByTagName("svg")[0], "PA-X_HorizontalTimeline_Chronology.png", {scale: 2, backgroundColor: "#737373"});
+        // if IE need canvg: canvg passed between scale & backgroundColor
+      });
 
   }; // end of callFunction()

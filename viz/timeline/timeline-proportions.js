@@ -2,6 +2,8 @@
 Horizontal Timeline with Agreements Grouped by Year showing Yearly Code Proportions
 */
 
+window.localStorage.setItem("paxagtid", 1370); // default to an agreement that addresses all codes
+
 callFunction();
 d3.select(window).on("resize", callFunction);
 window.addEventListener("storage", toUpdate);
@@ -15,7 +17,7 @@ function toUpdate(){
 function callFunction() {
   console.log("Drawing visualization of yearly grouping");
 
-  click = false; // Hide proportions upon load
+  clicked = false; // To dislay agreement in left sidebar
 
   // Countries/entities
   var paxCons = JSON.parse(window.localStorage.getItem("paxCons"));
@@ -36,23 +38,8 @@ function callFunction() {
   // Time period
   var newMinDay = localStorage.getItem("paxNewMinDay");
   var newMaxDay = localStorage.getItem("paxNewMaxDay");
-  // Agreement information to display upon hover
-  var agt = "Hover over an agreement to view its details.",
-      dat = "",
-      // reg = "",
-      con = "",
-      status = "",
-      agtp = "",
-      stage = "",
-      substage = "";
-  window.localStorage.setItem("paxagt", agt);
-  window.localStorage.setItem("paxdat", dat);
-  // window.localStorage.setItem("paxreg", reg);
-  window.localStorage.setItem("paxcon", con);
-  window.localStorage.setItem("paxstatus", status);
-  window.localStorage.setItem("paxagtp", agtp);
-  window.localStorage.setItem("paxstage", stage);
-  window.localStorage.setItem("paxsubstage", substage);
+  // Agreement to display in left sidebar
+  var paxAgtId = window.localStorage.getItem("paxagtid");
 
   // Date parsers & formatters
   var parseDate = d3.timeParse("%d/%m/%Y");
@@ -100,6 +87,23 @@ function callFunction() {
           if (!svgTest.empty()) {
             svgTest.remove();
           };
+
+          // Store data needed for viz in dictionary
+          var vizData = {};
+          for (i = 0; i < data.length; i++){
+            agt = data[i];
+            vizData[String(agt.AgtId)] = [String(agt.Agt),
+                                          String(formatDate(agt.Dat)),
+                                          String(agt.Con), String(agt.Status),
+                                          String(agt.Agtp), String(agt.Stage),
+                                          String(agt.StageSub), String(agt.Pol),
+                                          String(agt.Polps), String(agt.Terps),
+                                          String(agt.Eps), String(agt.Mps),
+                                          String(agt.HrGen), String(agt.GeWom),
+                                          String(agt.TjMech)];
+          }
+          // console.log(vizData);
+          window.localStorage.setItem("paxVizData", JSON.stringify(vizData));
 
           // Group agreements by Year (create an array of objects whose key is the year and value is an array of objects (one per agreement))
           var years = d3.nest()
@@ -156,7 +160,7 @@ function callFunction() {
               var chartGroup = svg.append("g")
                           .attr("class","yearGroup")
                           .attr("id", String(years[year].key))
-                          .attr("transform","translate("+margin.left+","+margin.top+")")
+                          .attr("transform","translate("+(margin.left*2)+","+margin.top+")")
 
               var rects = chartGroup.selectAll("rects")
                   .data(years[year].values)
@@ -171,80 +175,58 @@ function callFunction() {
                   .attr("stroke","#737373")  // same as html background-color
                   .attr("stroke-width","0.5px")
                   .style("opacity", "0.7")
-                  .attr("x", function(d){ return x(parseYear(d.Year)) - (agtWidth/2) - 5; })
+                  .attr("x", function(d){ return x(parseYear(d.Year)) - (agtWidth/2); })
                   .attr("y",function(d,i){ return (height-xHeight-margin.bottom-(agtHeight*1.5)-((agtHeight)*(i*agtSpacing)))+"px"; })
                   .attr("width", agtWidth+"px")
                   .attr("height", agtHeight+"px");
 
-              rects.on("mousemove",function(d){
+              var selectedRects = chartGroup.selectAll('rect.selected');
+              selectedRects.on("mousemove",function(d){
+                if (!clicked){
                       this.style.fill = "#ffffff";
                       this.style.stroke = "#ffffff";
                       // Core agreement information (name, date, region, country/entity, status, type & stage)
                       agtid = d.AgtId;
-                      agt = d.Agt;
-                      dat = formatDate(d.Dat);
-                      // reg = d.Reg;
-                      con = d.Con;
-                      status = d.Status;
-                      agtp = d.Agtp;
-                      stage = d.Stage;
-                      substage = d.StageSub;
                       window.localStorage.setItem("updatePaxVertical","false");
                       window.localStorage.setItem("updatePaxMap", "false");
                       window.localStorage.setItem("paxagtid", agtid);
-                      window.localStorage.setItem("paxagt", agt);
-                      window.localStorage.setItem("paxdat", dat);
-                      // window.localStorage.setItem("paxreg", reg);
-                      window.localStorage.setItem("paxcon", con);
-                      window.localStorage.setItem("paxstatus", status);
-                      window.localStorage.setItem("paxagtp", agtp);
-                      window.localStorage.setItem("paxstage", stage);
-                      window.localStorage.setItem("paxsubstage", substage);
-                      window.localStorage.setItem("paxAgtHrGen", d.HrGen);
-                      window.localStorage.setItem("paxAgtPol", d.Pol);
-                      window.localStorage.setItem("paxAgtEps", d.Eps);
-                      window.localStorage.setItem("paxAgtMps", d.Mps);
-                      window.localStorage.setItem("paxAgtPolps", d.Polps);
-                      window.localStorage.setItem("paxAgtTerps", d.Terps);
-                      window.localStorage.setItem("paxAgtTjMech", d.TjMech);
-                      window.localStorage.setItem("paxAgtGeWom", d.GeWom);
-                   });
-              rects.on("mouseout",function(d) {
-                     this.style.fill = (setAgtColors(d))[0];
+                }
+              });
+              selectedRects.on("mouseout",function(d) {
+                // if (!clicked){
+                     this.style.fill = "black"; //(setAgtColors(d))[0];
                      this.style.stroke = "#737373";
-                   });
+                // }
+              });
 
-               var yrCount = chartGroup.selectAll('rect.selected')._groups[0].length;
+               var yrCount = selectedRects._groups[0].length;
                var yrTotal = years[year].values.length;
                yrProps.push([(years[year].values[0].Year), yrCount, yrTotal]);
+
+               rects.on("click", function(d) {
+                     if (!clicked){ clicked = true; }
+                     else { clicked = false; }
+               });
+
              }
           }
 
         /*
-        SHOW PROPORTIONS ON CLICK
+        SHOW PROPORTIONS (%)
         */
-        svg.on("click",function(d){
-           if (click){
-             click = false;
-             svg.selectAll("text.count").remove();
-           } else {
-             var text = svg.selectAll("text.count")
-                  .data(yrProps)   //yrProps format: [Year, yrCount, yrTotals]
-                .enter().append("text")
-                  .attr("class","count")
-                  .attr("x", function(d){ return x(parseYear(d[0])); })
-                  .attr("y", function(d){ return height-(xHeight*2)-(d[2]*agtHeight); })
-                  .text(function(d){ return getProp(d[1],d[2]); })
-                  .style("font-family", "sans-serif")
-                  .style("font-size", "10px")
-                  .style("fill","black")
-                  .style("stroke","0px")
-                  .style("font-weight","light")
-                  .style("text-anchor", "middle");
-             click = true;
-           }
-         })
-
+        var text = svg.selectAll("text.count")
+              .data(yrProps)   //yrProps format: [Year, yrCount, yrTotals]
+            .enter().append("text")
+              .attr("class","count")
+              .attr("x", function(d){ return x(parseYear(d[0]))+(margin.left*2.5); })
+              .attr("y", function(d){ return height-(xHeight*2)-(d[2]*agtHeight); })
+              .text(function(d){ return getProp(d[1],d[2]); })
+              .style("font-family", "sans-serif")
+              .style("font-size", "10px")
+              .style("fill","black")
+              .style("stroke","0px")
+              .style("font-weight","light")
+              .style("text-anchor", "middle");
 
           /*
           FUNCTIONS
@@ -348,11 +330,20 @@ function callFunction() {
 
           var gX = svg.append("g")
                .attr("class","xaxis")
-               .attr("transform","translate(0,"+(height-xHeight-margin.bottom+2)+")")
+               .attr("transform","translate("+(margin.left*2)+","+(height-xHeight-margin.bottom+2)+")")
                .call(xAxis);
 
       }) // end of .get(error,data)
 
       window.localStorage.setItem("updatePaxHorizontal","false");
+
+      /*
+      EXPORT PNG
+      from https://github.com/exupero/saveSvgAsPng
+      */
+      d3.select("#export").on("click", function(){
+        saveSvgAsPng(document.getElementsByTagName("svg")[0], "PA-X_HorizontalTimeline_Proportions.png", {scale: 2, backgroundColor: "#737373"});
+        // if IE need canvg: canvg passed between scale & backgroundColor
+      });
 
   }; // end of callFunction()

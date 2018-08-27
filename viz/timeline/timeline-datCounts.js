@@ -323,11 +323,20 @@ function callFunction() {
            var gX = chartGroup.append("g")
                 .attr("class","xaxis")
                 .attr("id","dat")
-                .attr("transform","translate(0,"+(height-xHeight)+")")
+                .attr("transform","translate("+(margin.left)+","+(height-xHeight)+")")
                 .call(xAxis);
 
       }) // end of .get(error,data)
 
       window.localStorage.setItem("updatePaxHorizontal","false");
+
+      /*
+      EXPORT PNG
+      from https://github.com/exupero/saveSvgAsPng
+      */
+      d3.select("#export").on("click", function(){
+        saveSvgAsPng(document.getElementsByTagName("svg")[0], "PA-X_HorizontalTimeline_CountPerDay.png", {scale: 2, backgroundColor: "#737373"});
+        // if IE need canvg: canvg passed between scale & backgroundColor
+      });
 
   }; // end of callFunction()

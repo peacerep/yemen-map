@@ -136,7 +136,7 @@ function callFunction() {
           var maxYear = d3.max(data,function(d){ return parseYear(d.Year+1); });
           var y = d3.scaleTime()
                       .domain([minYear,maxYear])  // data space
-                      .range([margin.top,height]);  // display space
+                      .range([margin.top,(height-margin.bottom)]);  // display space
 
           // Define the full timeline chart SVG element
           var svg = d3.select("body").select("#chartB").append("svg")
@@ -285,5 +285,10 @@ function callFunction() {
 
       window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxVerticalB", "false");
+
+      d3.select("#exportV").on("click", function(){
+        saveSvgAsPng(document.getElementsByTagName("svg")[0], "PA-X_VerticalTimeline.png", {scale: 2, backgroundColor: "#737373"});
+        // if IE need canvg: canvg passed between scale & backgroundColor
+      });
 
   }; // end of callFunction()

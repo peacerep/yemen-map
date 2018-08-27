@@ -11,10 +11,11 @@
     <link rel="stylesheet" type="text/css" href="t-style.css">
     <script type="text/javascript" src="vert-selectA.js"></script>
     <script type="text/javascript" src="d3.v4.js"></script>
+    <script type="text/javascript" src="saveSvgAsPng.js"></script>
   </head>
   <body>
     <div id="dropdown2" class="dropdown2">
-      <button class="dropbtn" id="ConDropBtn">Select Country/Entity</button>
+      <button class="dropbtn" id="ConDropBtn">Country/Entity Selection</button>
       <div id="ConDropdown" class="ConContent">
         <div id="VertConRadiosA">
           <!-- List of single Country or Entity values (each with checkbox) (see singleConTags.csv) -->
@@ -189,5 +190,7 @@
       <!--reference to D3 script must be in body tags-->
       <script type="text/javascript" src="timeline-verticalA.js"></script>
     </div>
+    <br/>
+    <button class="btn" id="exportV"><label for="export">Export</label></button>
   </body>
 </html>

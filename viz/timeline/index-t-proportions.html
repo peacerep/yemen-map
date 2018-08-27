@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" type="text/css" href="t-style.css">
     <script type="text/javascript" src="d3.v4.js"></script>
+    <script type="text/javascript" src="saveSvgAsPng.js"></script>
   </head>
   <body>
     <p>Views:
@@ -16,12 +17,14 @@
       <a href="index-t-datCounts.html" id="Date Counts"><button class="horizTimeView" id="dateCounts"><label for="Date Counts">Count per Day</label></button></a>
       <a href="index-t-yearly.html" id="Yearly"><button class="horizTimeView" id="year"><label for="Yearly">Yearly with Counts</label></button></a>
       <a href="index-t-proportions.html" id="Proportions"><button class="horizTimeView_current" id="prop"><label for="Proportions">Yearly with Code Proportions</label></button></a>
+      <button class="btn" id="export"><label for="export">Export</label></button>
     </p>
     <br/>
     <p class="expl"><em>
       Each horizontal line on the timeline represents one agreement.  Agreements
-      that address selected codes are in black.  Click to view the yearly
-      proportions.
+      that address selected codes are in black.  Hover over agreements to
+      display their details on the left, and click to freeze or unfreeze the
+      displayed agreement.
     </em></p>
     <div id="chart">
       <!--reference to D3 script must be in body tags-->
