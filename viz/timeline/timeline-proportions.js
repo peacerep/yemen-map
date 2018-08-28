@@ -88,24 +88,6 @@ function callFunction() {
           if (!svgTest.empty()) {
             svgTest.remove();
           };
-
-          // Store data needed for viz in dictionary
-          // var vizData = {};
-          // for (i = 0; i < data.length; i++){
-          //   agt = data[i];
-          //   vizData[String(agt.AgtId)] = [String(agt.Agt),
-          //                                 String(formatDate(agt.Dat)),
-          //                                 String(agt.Con), String(agt.Status),
-          //                                 String(agt.Agtp), String(agt.Stage),
-          //                                 String(agt.StageSub), String(agt.Pol),
-          //                                 String(agt.Polps), String(agt.Terps),
-          //                                 String(agt.Eps), String(agt.Mps),
-          //                                 String(agt.HrGen), String(agt.GeWom),
-          //                                 String(agt.TjMech)];
-          // }
-          // // console.log(vizData);
-          // window.localStorage.setItem("paxVizData", JSON.stringify(vizData));
-
           // Group agreements by Year (create an array of objects whose key is the year and value is an array of objects (one per agreement))
           var years = d3.nest()
                .key(function(d){ return d.Year; }).sortKeys(d3.ascending)
@@ -225,29 +207,9 @@ function callFunction() {
                      }
                 });
 
-
-
-              // var selectedRects = chartGroup.selectAll('rect.selected');
-              // selectedRects.on("mousemove",function(d){
-              //   if (!clicked){
-              //         this.style.fill = "#ffffff";
-              //         this.style.stroke = "#ffffff";
-              //         // Core agreement information (name, date, region, country/entity, status, type & stage)
-              //         agtid = d.AgtId;
-              //         window.localStorage.setItem("updatePaxVertical","false");
-              //         window.localStorage.setItem("updatePaxMap", "false");
-              //         window.localStorage.setItem("paxagtid", agtid);
-              //   }
-              // });
-              // selectedRects.on("mouseout",function(d) {
-              //   // if (!clicked){
-              //        this.style.fill = "black"; //(setAgtColors(d))[0];
-              //        this.style.stroke = "#737373";
-              //   // }
-              // });
-
                var yrCount = selectedRects._groups[0].length;
-               var yrTotal = years[year].values.length;
+               console.log(selectedRects);
+               var yrTotal = years[year].values.filter(function(d){ return setAgtCons(d); }).length;
                yrProps.push([(years[year].values[0].Year), yrCount, yrTotal]);
 
              }
@@ -364,7 +326,6 @@ function callFunction() {
               for (j = 0; j < paxCons.length; j++){
                 if (!(agmtCon.includes(paxCons[j]))){
                   mismatch = true;
-                  // console.log("Mismatched: "+agmtCon);
                 }
               }
               if (!mismatch){
@@ -378,9 +339,9 @@ function callFunction() {
           */
           var xAxis = d3.axisBottom(x).tickFormat(d3.timeFormat("%Y")).tickPadding([5]).ticks(4);
 
-          var gX = svg.append("g")
+          var gX = chartGroup.append("g")
                .attr("class","xaxis")
-               .attr("transform","translate("+(margin.left*2)+","+(height-xHeight-margin.bottom+2)+")")
+               .attr("transform","translate("+(margin.left*2)+","+(height-xHeight-margin.bottom)+")")
                .call(xAxis);
 
       }) // end of .get(error,data)

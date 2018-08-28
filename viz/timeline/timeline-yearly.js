@@ -86,23 +86,6 @@ function callFunction() {
             svgTest.remove();
           };
 
-          // Store data needed for viz in dictionary
-          // var vizData = {};
-          // for (i = 0; i < data.length; i++){
-          //   agt = data[i];
-          //   vizData[String(agt.AgtId)] = [String(agt.Agt),
-          //                                 String(formatDate(agt.Dat)),
-          //                                 String(agt.Con), String(agt.Status),
-          //                                 String(agt.Agtp), String(agt.Stage),
-          //                                 String(agt.StageSub), String(agt.Pol),
-          //                                 String(agt.Polps), String(agt.Terps),
-          //                                 String(agt.Eps), String(agt.Mps),
-          //                                 String(agt.HrGen), String(agt.GeWom),
-          //                                 String(agt.TjMech)];
-          // }
-          // // console.log(vizData);
-          // window.localStorage.setItem("paxVizData", JSON.stringify(vizData));
-
           // Group agreements by Year (create an array of objects whose key is the year and value is an array of objects (one per agreement))
           var years = d3.nest()
                .key(function(d){ return d.Year; }).sortKeys(d3.ascending)

@@ -9,6 +9,7 @@ window.addEventListener("storage", toUpdate);
 function toUpdate(){
   if (window.localStorage.getItem("updatePaxHorizontal") == "true"){
     return callFunction();
+  }
 }
 
 function callFunction() {
@@ -229,15 +230,6 @@ function callFunction() {
             /*
             FUNCTIONS
             */
-            // function setAgtTimePeriod(d){
-            //   var minDate = parseDate(newMinDay);
-            //   var maxDate = parseDate(newMaxDay);
-            //   var agmtDat = d.Dat;
-            //   if ((agmtDat >= minDate) && (agmtDat <= maxDate)){
-            //     return d;
-            //   }
-            // }
-
             function setAgtFilters(d){
               var agmtCodes = [d.HrGen, d.Pol, d.Eps, d.Mps, d.Polps, d.Terps, d.TjMech, d.GeWom, ]; //d.HrFra,
               var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrFra,
@@ -338,4 +330,4 @@ function callFunction() {
         // if IE need canvg: canvg passed between scale & backgroundColor
       });
 
-  }; // end of callFunction()
+} // end of callFunction()
