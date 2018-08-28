@@ -209,6 +209,7 @@ var svg = d3.select(map.getPanes().overlayPane).append("svg")
 
 function Drawflowers(){
   console.log("Drawing flowers...");
+  window.localStorage.setItem("updatePaxMap","false");
 
   /*
   FILTER DATA
@@ -241,7 +242,6 @@ function Drawflowers(){
   console.log("Selection: "+selection);
 
   var clicked = false;
-
 
   /*
   LOAD MAP DATA & DRAW GLYPHS
@@ -286,9 +286,9 @@ function Drawflowers(){
         g.on("mouseout",function(d){
           if (!clicked){
             this.style.opacity = circle_opacity;
-            window.localStorage.setItem("paxagtid", 0);
             window.localStorage.setItem("updatePaxHorizontal","false");
             window.localStorage.setItem("updatePaxMap","false");
+            window.localStorage.setItem("paxagtid", 0);
           }
         });
         g.on("click", function(d){
@@ -917,26 +917,21 @@ function Drawboundary(){
  // }
 
 
-function initial(){
+  function initial(){
     Drawboundary();
     Drawflowers();
-    // window.localStorage.setItem("updatePaxMap", "false");
-
-
-    }
-    initial();
-    //事件响应
-    map.on('zoom',update);
-    function update() {
-      d3.selectAll("g").remove();
-      // d3.selectAll("ellipse").remove();
-      // // d3.selectAll("ellipses").remove();
-      // d3.selectAll("circle").remove();
-      Drawflowers();
-      //Drawboundary();
-      // window.localStorage.setItem("updatePaxMap", "false");
-
-    }
+  }
+  initial();
+  //事件响应
+  map.on('zoom',update);
+  function update() {
+    d3.selectAll("g").remove();
+    // d3.selectAll("ellipse").remove();
+    // // d3.selectAll("ellipses").remove();
+    // d3.selectAll("circle").remove();
+    Drawflowers();
+    //Drawboundary();
+  }
 
 
 //Re-draw on reset, this keeps the markers where they should be on reset/zoom

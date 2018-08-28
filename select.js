@@ -20,11 +20,10 @@ window.onload = function() {
     paxConsAllUncheck(); // Check all country/entity values
     paxConRuleAll(); // Display agreements with any checked country/entity
     paxFilterUncheck(); // Check all code filters
-    storeBlankAgtDetails();// Empty agreement details in localStorage
     paxRuleAll(); // Pick code filter rule ALL
 
-    // window.localStorage.setItem("updatePaxHorizontal","true");
-    // window.localStorage.setItem("updatePaxMap", "true");
+    window.localStorage.setItem("updatePaxHorizontal","true");
+    window.localStorage.setItem("updatePaxMap", "true");
 
     /*
     Listeners
@@ -73,7 +72,7 @@ window.onload = function() {
       // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       paxConsAllUncheck();
-      storeBlankAgtDetails();
+
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
     }
@@ -82,7 +81,7 @@ window.onload = function() {
       // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       paxConsAllCheck();
-      storeBlankAgtDetails();
+
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
     }
@@ -135,7 +134,7 @@ window.onload = function() {
       // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       paxFilterUncheck();
-      storeBlankAgtDetails();
+
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
     }
@@ -144,7 +143,7 @@ window.onload = function() {
       // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       paxFilterCheck();
-      storeBlankAgtDetails();
+
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
     }
@@ -177,7 +176,6 @@ window.onload = function() {
         paxConsAllUncheck(); // Check all country/entity values
         paxConRuleAll(); // Display agreements with any checked country/entity
         paxFilterUncheck(); // Check all code filters
-        storeBlankAgtDetails();// Empty agreement details in localStorage
         paxRuleAll(); // Pick code filter rule ALL
         // Reset codes, countries/entities, & time period
         // window.localStorage.setItem("paxHrFra",0); // Human rights framework
@@ -234,7 +232,6 @@ function paxConRuleAny() {
     }
   }
   console.log("Selected ANY Con");
-  // document.getElementById("anyCon").checked = "true";
   localStorage.setItem("paxConRule","any");
 }
 function paxConRuleAll() {
@@ -245,7 +242,6 @@ function paxConRuleAll() {
     }
   }
   console.log("Selected ALL Cons");
-  // document.getElementById("allCon").checked = true;
   localStorage.setItem("paxConRule","all");
 }
 function paxConsAllCheck() {
@@ -286,7 +282,6 @@ function paxRuleAll() {
       filterRadios[i].checked == true;
     }
   }
-  // document.getElementById("all").checked = true;
   localStorage.setItem("paxANY",0);
   localStorage.setItem("paxALL",1);
   console.log("Selected ALL")
@@ -306,13 +301,4 @@ function paxFilterCheck() {
     localStorage.setItem(filters[i].id,1);
   }
   console.log("Checked all code filters");
-}
-function storeBlankAgtDetails() {
-  localStorage.setItem("agt", "Hover over an agreement to view its details.");
-  window.localStorage.setItem("paxdat", "");
-  window.localStorage.setItem("paxreg", "");
-  window.localStorage.setItem("paxcon", "");
-  window.localStorage.setItem("paxstatus", "");
-  window.localStorage.setItem("paxagtp", "");
-  window.localStorage.setItem("paxstage", "");  // Set one message for start time, one for end time, codes, regions, countries - each msg as json object so can have list or single
 }

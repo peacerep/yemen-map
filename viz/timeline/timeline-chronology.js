@@ -14,10 +14,10 @@ Horizontal Timeline with Agreements Grouped by Date
 //     *do something with the data*
 // }
 
-// window.localStorage.setItem("paxagtid", 1370);
-// window.localStorage.setItem("paxselection", 1370);
+window.localStorage.setItem("paxagtid", 1370);
+window.localStorage.setItem("paxselection", 1370);
 
-callFunction();
+// callFunction();
 d3.select(window).on("resize", callFunction);
 window.addEventListener("storage", toUpdate);
 
@@ -234,18 +234,20 @@ function callFunction() {
 
             rects.on("mouseover",function(d){
               if (!clicked){
-                 this.style.fill = "#ffffff";
-                 this.style.stroke = "#ffffff";
-                 window.localStorage.setItem("updatePaxHorizontal","false");
-                 window.localStorage.setItem("updatePaxMap", "false");
-                 window.localStorage.setItem("paxagtid", d.AgtId);
+                this.style.fill = "#ffffff";
+                this.style.stroke = "#ffffff";
+                window.localStorage.setItem("updatePaxHorizontal","false");
+                window.localStorage.setItem("updatePaxMap", "false");
+                window.localStorage.setItem("paxagtid", d.AgtId);
                }
             });
             rects.on("mouseout",function(d) {
-                if ((!clicked) && (+this.id != +selection)){
-                 window.localStorage.setItem("paxagtid", 0);
-                 this.style.fill = "black"
-                 this.style.stroke = "#737373";
+              if ((!clicked) && (+this.id != +selection)){
+                window.localStorage.setItem("updatePaxHorizontal","false");
+                window.localStorage.setItem("updatePaxMap", "false");
+                window.localStorage.setItem("paxagtid", 0);
+                this.style.fill = "black"
+                this.style.stroke = "#737373";
                }
             });
 
