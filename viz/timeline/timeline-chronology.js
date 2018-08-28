@@ -58,8 +58,6 @@ function callFunction() {
   var selection = window.localStorage.getItem("paxselection");
   console.log("Selection: "+selection);
 
-
-
   // Date parsers & formatters
   var parseDate = d3.timeParse("%d/%m/%Y");
   var parseMonth = d3.timeParse("%m");

@@ -2,8 +2,6 @@
 Horizontal Timeline with Agreements Grouped by Year
 */
 
-window.localStorage.setItem("paxagtid", 1370); // default to an agreement that addresses all codes
-
 callFunction();
 d3.select(window).on("resize", callFunction);
 window.addEventListener("storage", toUpdate);
@@ -37,6 +35,9 @@ function callFunction() {
   // Time period
   var newMinDay = localStorage.getItem("paxNewMinDay");
   var newMaxDay = localStorage.getItem("paxNewMaxDay");
+  // Agreement clicked on map
+  var selection = window.localStorage.getItem("paxselection");
+  console.log("Selection: "+selection);
 
   // Date parsers & formatters
   var parseDate = d3.timeParse("%d/%m/%Y");

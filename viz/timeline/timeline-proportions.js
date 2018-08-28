@@ -2,8 +2,6 @@
 Horizontal Timeline with Agreements Grouped by Year showing Yearly Code Proportions
 */
 
-window.localStorage.setItem("paxagtid", 1370); // default to an agreement that addresses all codes
-
 callFunction();
 d3.select(window).on("resize", callFunction);
 window.addEventListener("storage", toUpdate);
@@ -40,6 +38,9 @@ function callFunction() {
   var newMaxDay = localStorage.getItem("paxNewMaxDay");
   // Agreement to display in left sidebar
   var paxAgtId = window.localStorage.getItem("paxagtid");
+  // Agreement clicked on map
+  var selection = window.localStorage.getItem("paxselection");
+  console.log("Selection: "+selection);
 
   // Date parsers & formatters
   var parseDate = d3.timeParse("%d/%m/%Y");
@@ -172,6 +173,9 @@ function callFunction() {
                   .attr("name",function(d){ return d.Agt; })
                   .attr("value",function(d){ return d.Year; })
                   .attr("fill", function(d){ return (setAgtColors(d))[0]; })//"black")
+                  .attr("stroke",function(d){ if (+d.AgtId == +selection){ return "white"; } else { return "#737373"; } })  // same as html background-color
+                  .attr("stroke-width",function(d){ if (+d.AgtId == +selection){ return "4px"; } else { return "1px"; } })
+                  .style("opacity", function(d){ if (+d.AgtId == +selection){ return "1"; } else { return "0.5"; } })
                   .attr("stroke","#737373")  // same as html background-color
                   .attr("stroke-width","0.5px")
                   .style("opacity", "0.7")
@@ -180,33 +184,71 @@ function callFunction() {
                   .attr("width", agtWidth+"px")
                   .attr("height", agtHeight+"px");
 
-              var selectedRects = chartGroup.selectAll('rect.selected');
-              selectedRects.on("mousemove",function(d){
-                if (!clicked){
+                var selectedRects = chartGroup.selectAll('rect.selected');
+                selectedRects.on("click", function(d) {
+                    if (!clicked){
+                      clicked = true;
+                      this.style.opacity = 1;
+                      console.log(this.id);
+                      if (+this.id == +selection){
+                        window.localStorage.setItem("paxselection", 0);
+                      } else {
+                        window.localStorage.setItem("paxselection", d.AgtId);
+                      }
+                      window.localStorage.setItem("updatePaxMap", "true");
+                      callFunction();
+
+                    } else { // if clicked
+                      clicked = false;
+                      this.style.opacity = 0.5;
+                      window.localStorage.setItem("paxselection", 0);
+                      window.localStorage.setItem("updatePaxMap", "true");
+                      callFunction();
+                    }
+                });
+                selectedRects.on("mouseover",function(d){
+                    if (!clicked){
                       this.style.fill = "#ffffff";
                       this.style.stroke = "#ffffff";
-                      // Core agreement information (name, date, region, country/entity, status, type & stage)
-                      agtid = d.AgtId;
-                      window.localStorage.setItem("updatePaxVertical","false");
+                      window.localStorage.setItem("updatePaxHorizontal","false");
                       window.localStorage.setItem("updatePaxMap", "false");
-                      window.localStorage.setItem("paxagtid", agtid);
-                }
-              });
-              selectedRects.on("mouseout",function(d) {
-                // if (!clicked){
-                     this.style.fill = "black"; //(setAgtColors(d))[0];
-                     this.style.stroke = "#737373";
-                // }
-              });
+                      window.localStorage.setItem("paxagtid", d.AgtId);
+                     }
+                });
+                selectedRects.on("mouseout",function(d) {
+                    if ((!clicked) && (+this.id != +selection)){
+                      window.localStorage.setItem("updatePaxHorizontal","false");
+                      window.localStorage.setItem("updatePaxMap", "false");
+                      window.localStorage.setItem("paxagtid", 0);
+                      this.style.fill = "black"
+                      this.style.stroke = "#737373";
+                     }
+                });
+
+
+
+              // var selectedRects = chartGroup.selectAll('rect.selected');
+              // selectedRects.on("mousemove",function(d){
+              //   if (!clicked){
+              //         this.style.fill = "#ffffff";
+              //         this.style.stroke = "#ffffff";
+              //         // Core agreement information (name, date, region, country/entity, status, type & stage)
+              //         agtid = d.AgtId;
+              //         window.localStorage.setItem("updatePaxVertical","false");
+              //         window.localStorage.setItem("updatePaxMap", "false");
+              //         window.localStorage.setItem("paxagtid", agtid);
+              //   }
+              // });
+              // selectedRects.on("mouseout",function(d) {
+              //   // if (!clicked){
+              //        this.style.fill = "black"; //(setAgtColors(d))[0];
+              //        this.style.stroke = "#737373";
+              //   // }
+              // });
 
                var yrCount = selectedRects._groups[0].length;
                var yrTotal = years[year].values.length;
                yrProps.push([(years[year].values[0].Year), yrCount, yrTotal]);
-
-               rects.on("click", function(d) {
-                     if (!clicked){ clicked = true; }
-                     else { clicked = false; }
-               });
 
              }
           }
@@ -274,7 +316,11 @@ function callFunction() {
                 }
               }
               if ((codeValueTotal > 0) && (pass)){
-                return ["black", "selected"];
+                if (+d.AgtId == +selection){
+                  return ["white", "selected"];
+                } else {
+                  return ["black", "selected"];
+                }
               } else {
                 return ["#595959", "unselected"];
               }
@@ -291,7 +337,11 @@ function callFunction() {
                 }
               }
               if ((codeValueTotal > 0) && (!mismatch)){
-                return ["black", "selected"];
+                if (+d.AgtId == +selection){
+                  return ["white", "selected"];
+                } else {
+                  return ["black", "selected"];
+                }
               } else {
                 return ["#595959", "unselected"];
               }
