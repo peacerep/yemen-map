@@ -19,7 +19,7 @@ d3.select(window).on("resize", callFunction);
 window.addEventListener("storage", toUpdate);
 
 function toUpdate(){
-  if ((window.localStorage.getItem("updatePaxVertical") == "true") || (window.localStorage.getItem("updatePaxVerticalB") == "true")){
+  if (window.localStorage.getItem("updatePaxVerticalB") == "true"){
     return callFunction();
   }
 }
@@ -206,12 +206,12 @@ function callFunction() {
                       .attr("x","0px")
                       .attr("y", margin.top*2)
                       .attr("class","description")
-                      .text("Country/Entity: "+(localStorage.getItem("paxVertConB")));
-          chartGroup.append("text")
-                      .attr("x", "0px")
-                      .attr("y", margin.top*5)
-                      .attr("class","description")
-                      .text("Selected Codes: "+String(getCodeCount()));
+                      .text(localStorage.getItem("paxVertConB"));
+          // chartGroup.append("text")
+          //             .attr("x", "0px")
+          //             .attr("y", margin.top*5)
+          //             .attr("class","description")
+          //             .text("Selected Codes: "+String(getCodeCount()));
 
           /*
           DRAW Y AXIS
@@ -226,14 +226,14 @@ function callFunction() {
           /*
           FUNCTIONS
           */
-          function getCodeCount(){
-            var codeFilters = [+paxHrFra, +paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
-            var codeFilterCount = codeFilters.length;
-            var codeText = 0;
-            for (i = 0; i < codeFilterCount; i++){
-              if (codeFilters[i] > 0){ codeText += 1; }
-            } return codeText;
-          }
+          // function getCodeCount(){
+          //   var codeFilters = [+paxHrFra, +paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
+          //   var codeFilterCount = codeFilters.length;
+          //   var codeText = 0;
+          //   for (i = 0; i < codeFilterCount; i++){
+          //     if (codeFilters[i] > 0){ codeText += 1; }
+          //   } return codeText;
+          // }
 
            function pickAgtCon(d){
              var con = String(localStorage.getItem("paxVertConB"));
@@ -283,7 +283,6 @@ function callFunction() {
 
       }) // end of .get(error,data)
 
-      window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxVerticalB", "false");
 
       d3.select("#exportV").on("click", function(){

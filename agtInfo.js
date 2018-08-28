@@ -47,8 +47,9 @@ function callInfoFunction() {
           width = width - margin.left - margin.right,
           height = parseInt(d3.select(".selecter").style("height"), 10);
 
-      var flowerX = width/4,
-          textposition = (height/4) + 35,
+      var spacing = 10,
+          flowerX = width/4,
+          flowerY =  height/8 + spacing;
           fontsize = 14,
           ry1 = 25,ry2 = 35,ry3 = 40, r = 10, rx = 10, rx1 = 10,
           rPolX = 0, rPolY = 0,
@@ -59,7 +60,7 @@ function callInfoFunction() {
           rHrGenpsX = 0, rHrGenY = 0,
           rGeWomX = 0, rGeWomY = 0,
           rTjMechX = 0, rTjMechY = 0,
-          flowerY = textposition + 40 + ry3;
+          textposition = flowerY + ry3 + r + (spacing*3);
 
       var circle_opacity = .8,
           circle_stroke = '#343332',
@@ -281,10 +282,10 @@ function callInfoFunction() {
           svg.append("foreignObject")
               .attr("width",width)
               .attr("height",height)
+              .attr("x", 0)
+              .attr("y", textposition)
             .append("xhtml:body")
               .style("fill","black")
               .html(details)
-              .attr("class","agtInfo")
-              .attr("x", 0)
-              .attr("y", textposition);
+              .attr("class","agtInfo");
 } // end of callInfoFunction

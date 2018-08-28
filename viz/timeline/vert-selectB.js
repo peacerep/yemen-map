@@ -1,14 +1,15 @@
 window.onload = function() {
-  localStorage.setItem("paxVertConB","None");
+  localStorage.setItem("paxVertConB","None selected");
   document.getElementById("None").checked = true;
-  window.localStorage.setItem("updatePaxVerticalB","true");
+  // window.localStorage.setItem("updatePaxVerticalB","true");
 
   // Country/entity listeners for vertical timelines (left to right)
   document.getElementById("VertConRadiosB").onclick = function(event){
     let target = event.target;
     if (target.name == "ConRadio"){
       window.localStorage.setItem("updatePaxVerticalB","true");
-      window.localStorage.setItem("updatePaxVertical","false");
+      window.localStorage.setItem("updatePaxVerticalA","false");
+      window.localStorage.setItem("updatePaxVerticalC","false");
       window.localStorage.setItem("updatePaxHorizontal","false");
       window.localStorage.setItem("updatePaxMap", "false");
       localStorage.setItem("paxVertConB",String(target.id));

@@ -14,6 +14,7 @@ Horizontal Timeline with Agreements Grouped by Date
 //     *do something with the data*
 // }
 window.localStorage.setItem("paxagtid", 1370); // default to an agreement that addresses all codes
+window.localStorage.setItem("paxTimeSelection", 0);
 
 callFunction();
 d3.select(window).on("resize", callFunction);
@@ -52,6 +53,9 @@ function callFunction() {
   var newMaxDay = localStorage.getItem("paxNewMaxDay");
   // Agreement in left sidebar
   var paxAgtId = window.localStorage.getItem("paxagtid");
+  // Agreement clicked on map
+  var mapSelection = window.localStorage.getItem("paxMapSelection");
+  console.log("Map Selection: "+mapSelection);
 
 
 
@@ -160,7 +164,7 @@ function callFunction() {
           if ((newMinDay.length > 0) && (newMaxDay.length > 0)){
             var x = d3.scaleTime()
                   .domain([parseDate(newMinDay),parseDate(newMaxDay)])
-                  .range([margin.left,width]);
+                  .range([margin.left,(width-margin.right)]);
           } else {
             var minDay = d3.min(data,function(d){ return (d.Dat); });
             window.localStorage.setItem("paxNewMinDay",formatDateShort(minDay));
@@ -168,7 +172,7 @@ function callFunction() {
             window.localStorage.setItem("paxNewMaxDay",formatDateShort(maxDay));
             var x = d3.scaleTime()
                         .domain([minDay,maxDay])  // data space
-                        .range([margin.left,width]);  // display space
+                        .range([margin.left,(width-margin.right)]);  // display space
           }
 
           // Find the earliest & latest year in which agreements occur
@@ -196,40 +200,51 @@ function callFunction() {
               .filter(function(d){ return setAgtCons(d); })
                 .attr("class","agt")
                 .attr("id",function(d){ return d.AgtId; })
-                // highlight an agreement if it's hovered over on the map
-                .attr("fill",function(d){ if (d.AgtId == paxAgtId){ return "white"; } else { return "black"; } })
-                .attr("stroke",function(d){ if (d.AgtId == paxAgtId){ return "white"; } else { return "#737373"; } })  // same as html background-color
+                .attr("fill",function(d){ if (+d.AgtId == +mapSelection){ return "white"; } else { return "black"; } })
+                .attr("stroke",function(d){ if (+d.AgtId == +mapSelection){ return "white"; } else { return "#737373"; } })  // same as html background-color
                 .attr("stroke-width","1px")
-                .style("opacity", "0.7")
-                // .style("visibility",function(d){ setVisibility(d, zoom, newMinDay, newMaxDay); })
+                .style("opacity", function(d){ if (+d.AgtId == +mapSelection){ return "1"; } else { return "0.5"; } })
                 .attr("x", function(d){ return x(d.Dat); })
                 .attr("y",function(d,i){ return (height-xHeight-(agtHeight) + ((agtHeight/(dats[dat].values.length)) * i) )+"px"; })
                 .attr("width", function(d){ return agtWidth+"px"; })
                 .attr("height", (agtHeight/dats[dat].values.length)+"px");
 
-            rects.on("mousemove",function(d){
-              if (!clicked) {
-                   this.style.fill = "#ffffff";
-                   this.style.stroke = "#ffffff";
-                   // Core agreement information (name, date, region, country/entity, status, type & stage)
-                   agtid = d.AgtId;
-                   window.localStorage.setItem("updatePaxVertical","false");
-                   window.localStorage.setItem("updatePaxMap", "false");
-                   window.localStorage.setItem("paxagtid", agtid);
+            rects.on("click", function(d) {
+              console.log("clicked: "+clicked);
+              console.log(d.AgtId);
+              if (!clicked){
+                clicked = true;
+                this.style.opacity = 1;
+                window.localStorage.setItem("paxTimeSelection", d.AgtId);
+                window.localStorage.setItem("updatePaxMap", "true");
+              } else { // if clicked
+                clicked = false;
+                this.style.opacity = 0.5;
+                window.localStorage.setItem("paxTimeSelection", 0);
+                window.localStorage.setItem("updatePaxMap", "true");
               }
             });
-            rects.on("mouseout",function(d) {
-              // if (!clicked) {
-                   this.style.fill = "black"
-                   this.style.stroke = "#737373";
-              // }
+
+            rects.on("mouseover",function(d){
+              if (!clicked){
+                 this.style.fill = "#ffffff";
+                 this.style.stroke = "#ffffff";
+                 this.style.opacity = 1;
+                 // window.localStorage.setItem("updatePaxVertical","false");
+                 window.localStorage.setItem("updatePaxHorizontal","false");
+                 window.localStorage.setItem("updatePaxMap", "false");
+                 window.localStorage.setItem("paxagtid", d.AgtId);
+               }
             });
-            rects.on("click", function(d) {
-                  if (!clicked){ clicked = true; }
-                  else { clicked = false; }
+            rects.on("mouseout",function(d) {
+                if (!clicked){
+                 this.style.fill = "black"
+                 this.style.stroke = "#737373";
+                 this.style.opacity = 0.5;
+               }
             });
 
-            } // end of for loop for rects.agt
+          } // end of for loop for rects.agt
 
             /*
             FUNCTIONS

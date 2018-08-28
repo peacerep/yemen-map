@@ -9,7 +9,6 @@ window.addEventListener("storage", toUpdate);
 function toUpdate(){
   if (window.localStorage.getItem("updatePaxHorizontal") == "true"){
     return callFunction();
-  }
 }
 
 function callFunction() {
@@ -148,7 +147,7 @@ function callFunction() {
             var maxDay = parseDate(newMaxDay)
             var x = d3.scaleTime()
                   .domain([minDay,maxDay])
-                  .range([margin.left,width]);
+                  .range([margin.left,(width-margin.right)]);
           } else {
             var minDay = d3.min(data,function(d){ return (d.Dat); });
             window.localStorage.setItem("paxNewMinDay",formatDateShort(minDay));
@@ -156,7 +155,7 @@ function callFunction() {
             window.localStorage.setItem("paxNewMaxDay",formatDateShort(maxDay));
             var x = d3.scaleTime()
                         .domain([minDay,maxDay])  // data space
-                        .range([margin.left,width]);  // display space
+                        .range([margin.left,(width-margin.right)]);  // display space
           }
 
           // Find the earliest & latest year in which agreements occur

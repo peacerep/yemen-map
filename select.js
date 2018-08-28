@@ -8,7 +8,9 @@ window.onload = function() {
     window.localStorage.setItem("paxagtid","1")
     window.localStorage.setItem("updatePaxMap", "false");
     window.localStorage.setItem("updatePaxHorizontal","false");
-    window.localStorage.setItem("updatePaxVertical","false");
+    // window.localStorage.setItem("updatePaxVerticalA","false");
+    // window.localStorage.setItem("updatePaxVerticalB","false");
+    // window.localStorage.setItem("updatePaxVerticalC","false");
 
     var allCons = document.getElementsByName("Con");
     var paxConsAll = [];
@@ -34,7 +36,7 @@ window.onload = function() {
     // Time listeners
     document.getElementById("StartYears").onclick = function(event){
       window.localStorage.setItem("updatePaxHorizontal","false");
-      window.localStorage.setItem("updatePaxVertical","false");
+      // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       let target = event.target;
       var startDate = "01/01/"+String(target.id);
@@ -44,7 +46,7 @@ window.onload = function() {
     }
     document.getElementById("EndYears").onclick = function(event){
       window.localStorage.setItem("updatePaxHorizontal","false");
-      window.localStorage.setItem("updatePaxVertical","false");
+      // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       let target = event.target;
       var endDate = "31/12/"+String(target.id);
@@ -56,7 +58,7 @@ window.onload = function() {
     // Country/entity listeners
     document.getElementById("anyCon").onclick = function(event) {
       window.localStorage.setItem("updatePaxHorizontal","false");
-      window.localStorage.setItem("updatePaxVertical","false");
+      // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       paxConRuleAny();
       window.localStorage.setItem("updatePaxHorizontal","true");
@@ -64,7 +66,7 @@ window.onload = function() {
     }
     document.getElementById("allCon").onclick = function(event) {
       window.localStorage.setItem("updatePaxHorizontal","false");
-      window.localStorage.setItem("updatePaxVertical","false");
+      // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       paxConRuleAll();
       window.localStorage.setItem("updatePaxHorizontal","true");
@@ -72,7 +74,7 @@ window.onload = function() {
     }
     document.getElementById("DeselectAllCons").onclick = function(event) {
       window.localStorage.setItem("updatePaxHorizontal","false");
-      window.localStorage.setItem("updatePaxVertical","false");
+      // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       paxConsAllUncheck();
       storeBlankAgtDetails();
@@ -81,7 +83,7 @@ window.onload = function() {
     }
     document.getElementById("SelectAllCons").onclick = function(event) {
       window.localStorage.setItem("updatePaxHorizontal","false");
-      window.localStorage.setItem("updatePaxVertical","false");
+      // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       paxConsAllCheck();
       storeBlankAgtDetails();
@@ -90,7 +92,7 @@ window.onload = function() {
     }
     document.getElementById("Cons").onclick = function(event){
       window.localStorage.setItem("updatePaxHorizontal","false");
-      window.localStorage.setItem("updatePaxVertical","false");
+      // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       let target = event.target;
       var con = target.id;
@@ -116,7 +118,7 @@ window.onload = function() {
     // Filter rule listeners
     document.getElementById("any").onclick = function(event) {
       window.localStorage.setItem("updatePaxHorizontal","false");
-      window.localStorage.setItem("updatePaxVertical","false");
+      // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       paxRuleAny();
       window.localStorage.setItem("updatePaxHorizontal","true");
@@ -124,7 +126,7 @@ window.onload = function() {
     }
     document.getElementById("all").onclick = function(event) {
       window.localStorage.setItem("updatePaxHorizontal","false");
-      window.localStorage.setItem("updatePaxVertical","false");
+      // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       paxRuleAll();
       window.localStorage.setItem("updatePaxHorizontal","true");
@@ -134,7 +136,7 @@ window.onload = function() {
     // Code filter listeners
     document.getElementById("DeselectAllCodes").onclick = function(event) {
       window.localStorage.setItem("updatePaxHorizontal","false");
-      window.localStorage.setItem("updatePaxVertical","false");
+      // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       paxFilterUncheck();
       storeBlankAgtDetails();
@@ -143,7 +145,7 @@ window.onload = function() {
     }
     document.getElementById("SelectAllCodes").onclick = function(event) {
       window.localStorage.setItem("updatePaxHorizontal","false");
-      window.localStorage.setItem("updatePaxVertical","false");
+      // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       paxFilterCheck();
       storeBlankAgtDetails();
@@ -154,7 +156,7 @@ window.onload = function() {
     // Code filter listeners
     document.getElementById("Codes").onclick = function(event){
       window.localStorage.setItem("updatePaxHorizontal","false");
-      window.localStorage.setItem("updatePaxVertical","false");
+      // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       let target = event.target;
       // console.log("Target.id: "+target.id);
@@ -174,8 +176,6 @@ window.onload = function() {
     // Page refresh listener
     if (window.performance) {
       if ((performance.navigation.TYPE_RELOAD) || (window.localStorage.getItem("paxReset") == "true")){
-        window.localStorage.setItem("updatePaxHorizontal","false");
-        window.localStorage.setItem("updatePaxMap", "false");
         localStorage.setItem("paxCons", JSON.stringify(document.getElementsByName("Con").id));
         paxCheckTime();
         paxConsAllUncheck(); // Check all country/entity values

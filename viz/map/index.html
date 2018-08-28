@@ -182,12 +182,15 @@ var circle_opacity = .8,
 //     topLeft = bounds[0],
 //     bottomRight = bounds[1];
 
+window.localStorage.setItem("paxMapSelection", 0);
+
 // When new filter selected/deselected, update the map
 window.addEventListener("storage", toUpdate);
 function toUpdate(){
   if (window.localStorage.getItem("updatePaxMap") == "true"){
-    d3.selectAll("ellipse").remove();
-    d3.selectAll("circle").remove();
+    // d3.selectAll("ellipse").remove();
+    // d3.selectAll("circle").remove();
+    d3.selectAll("g").remove();
     Drawflowers();
   }
 }
@@ -209,27 +212,6 @@ function Drawflowers(){
   /*
   FILTER DATA
   */
-  // Agreement information to display upon hover
-  var agtid = "",
-      con = "",
-      hrgen = "",
-      pol = "",
-      eps = "",
-      mps = "",
-      polps = "",
-      terps = "",
-      tjmech = "",
-      gewom = "";
-  window.localStorage.setItem("paxAgtId", agtid);
-  window.localStorage.setItem("paxAgtCon", con);
-  window.localStorage.setItem("paxAgtHrGen", hrgen);
-  window.localStorage.setItem("paxAgtPol", pol);
-  window.localStorage.setItem("paxAgtEps", eps);
-  window.localStorage.setItem("paxAgtMps", mps);
-  window.localStorage.setItem("paxAgtPolps", polps);
-  window.localStorage.setItem("paxAgtTerps", terps);
-  window.localStorage.setItem("paxAgtTjMech", tjmech);
-  window.localStorage.setItem("paxAgtGeWom", gewom);
   // Code filter rules
   var paxANY = window.localStorage.getItem("paxANY");
   var paxALL = window.localStorage.getItem("paxALL");
@@ -252,6 +234,12 @@ function Drawflowers(){
   // Time parsers & formatters
   var parseDate = d3.time.format("%d/%m/%Y").parse;
   var formatDate = d3.time.format("%d %B %Y");
+  // Hovered agreement
+  var paxAgtId = window.localStorage.getItem("pagagtid");
+  var timeSelection = window.localStorage.getItem("paxTimeSelection");
+  console.log("Time Selection: "+timeSelection);
+
+  var clicked = false;
 
 
   /*
@@ -277,7 +265,7 @@ function Drawflowers(){
         }
 
         var data = d;
-        // console.log(d);
+
         var g = svg.selectAll("g.flowers")
             .data([data])
           .enter().append("g")
@@ -285,27 +273,38 @@ function Drawflowers(){
             .attr("pointer-events","all")
             .attr("id",function(d){ return d.agtid; })
             .attr("z-index",6)
-            .on("mouseover", function(d){
-              window.localStorage.setItem("updateVertical","false");
-              window.localStorage.setItem("paxagtid", d.agtid);
-              window.localStorage.setItem("updateHorizontal","true");
-              window.localStorage.setItem("paxagt", d.agt);
-              window.localStorage.setItem("paxdat", formatDate(parseDate(d.dat)));
-              // window.localStorage.setItem("paxreg", d.reg);
-              window.localStorage.setItem("paxcon", d.con);
-              window.localStorage.setItem("paxstatus", d.status);
-              window.localStorage.setItem("paxagtp", d.agtp);
-              window.localStorage.setItem("paxstage", d.stage);
-              window.localStorage.setItem("paxsubstage", d.stagesub);
-              window.localStorage.setItem("paxAgtHrGen", d.hrgen);
-              window.localStorage.setItem("paxAgtPol", d.pol);
-              window.localStorage.setItem("paxAgtEps", d.eps);
-              window.localStorage.setItem("paxAgtMps", d.mps);
-              window.localStorage.setItem("paxAgtPolps", d.polps);
-              window.localStorage.setItem("paxAgtTerps", d.terps);
-              window.localStorage.setItem("paxAgtTjMech", d.tjmech);
-              window.localStorage.setItem("paxAgtGeWom", d.gewom);
+
+        if (!clicked){
+            g.on("mouseover", function(d){
+                  this.style.opacity = 1;
+                  window.localStorage.setItem("updatePaxVertical","false");
+                  window.localStorage.setItem("updatePaxHorizontal","false");
+                  window.localStorage.setItem("updatePaxMap","false");
+                  window.localStorage.setItem("paxagtid", d.agtid);
+             });
+            g.on("mouseout",function(d){
+                this.style.opacity = circle_opacity;
+                window.localStorage.setItem("updatePaxMap","false");
+                window.localStorage.setItem("updatePaxVertical","false");
+                window.localStorage.setItem("updatePaxHorizontal","false");
             });
+        }
+        g.on("click", function(d){
+          if (!clicked){
+            clicked = true;
+            this.style.opacity = 1;
+            console.log(d.agtid);
+            window.localStorage.setItem("paxMapSelection", d.agtid);
+            window.localStorage.setItem("updatePaxHorizontal", "true");
+          } else { // if clicked
+            clicked = false;
+            if (this.style.opacity == 1){
+              this.style.opacity = circle_opacity;
+            }
+            window.localStorage.setItem("paxMapSelection", 0);
+            window.localStorage.setItem("updatePaxHorizontal", "true");
+          }
+        });
 
         if (data.pol){
           var ellipse_pol = g.selectAll("ellipse.pol")//0 1 2 3
@@ -501,7 +500,7 @@ function Drawflowers(){
               .filter(function(d){ return setAgtCons(d); })
               .filter(function(d){ return setAgtFilters(d); })
               .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
-              .attr("class","hrgen")
+                .attr("class","hrgen")
                 .style("opacity", circle_opacity)
                 .style("fill", color_hrgen)
                 .style('z-index',6)
@@ -607,7 +606,11 @@ function Drawflowers(){
                 .attr("cy",function(d){
                   d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                   return map.latLngToLayerPoint(d.LatLng).y;})
-                .attr('r', r);
+                .attr('r', function(d){
+                  if (+d.agtid == +timeSelection){
+                    return r*4;
+                  } else { return r; }
+                });
 
          })  //end for each
 
@@ -767,7 +770,7 @@ function Drawboundary(){
 function initial(){
     Drawboundary();
     Drawflowers();
-    window.localStorage.getItem("updatePaxMap", "false");
+    window.localStorage.setItem("updatePaxMap", "false");
 
 
     }
@@ -775,13 +778,13 @@ function initial(){
     //事件响应
     map.on('zoom',update);
     function update() {
-      //d3.selectAll("g").remove();
-      d3.selectAll("ellipse").remove();
+      d3.selectAll("g").remove();
+      // d3.selectAll("ellipse").remove();
       // // d3.selectAll("ellipses").remove();
-      d3.selectAll("circle").remove();
+      // d3.selectAll("circle").remove();
       Drawflowers();
       //Drawboundary();
-      window.localStorage.getItem("updatePaxMap", "false");
+      window.localStorage.setItem("updatePaxMap", "false");
 
     }
 
