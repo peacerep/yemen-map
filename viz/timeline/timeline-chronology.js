@@ -211,12 +211,15 @@ function callFunction() {
                 .attr("height", (agtHeight/dats[dat].values.length)+"px");
 
             rects.on("click", function(d) {
-              console.log("clicked: "+clicked);
-              console.log(d.AgtId);
               if (!clicked){
                 clicked = true;
                 this.style.opacity = 1;
-                window.localStorage.setItem("paxselection", d.AgtId);
+                console.log(this.id);
+                if (+this.id == +selection){
+                  window.localStorage.setItem("paxselection", 0);
+                } else {
+                  window.localStorage.setItem("paxselection", d.AgtId);
+                }
                 window.localStorage.setItem("updatePaxMap", "true");
                 callFunction();
 

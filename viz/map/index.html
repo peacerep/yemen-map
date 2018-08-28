@@ -295,7 +295,11 @@ function Drawflowers(){
           if (!clicked){
             clicked = true;
             console.log(d.agtid);
-            window.localStorage.setItem("paxselection", d.agtid);
+            if (+d.agtid == +selection){
+              window.localStorage.setItem("paxselection", 0);
+            } else {
+              window.localStorage.setItem("paxselection", d.agtid);
+            }
             window.localStorage.setItem("updatePaxHorizontal", "true");
             d3.selectAll("g").remove();
             Drawflowers();
