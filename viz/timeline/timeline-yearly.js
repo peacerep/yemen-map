@@ -87,21 +87,21 @@ function callFunction() {
           };
 
           // Store data needed for viz in dictionary
-          var vizData = {};
-          for (i = 0; i < data.length; i++){
-            agt = data[i];
-            vizData[String(agt.AgtId)] = [String(agt.Agt),
-                                          String(formatDate(agt.Dat)),
-                                          String(agt.Con), String(agt.Status),
-                                          String(agt.Agtp), String(agt.Stage),
-                                          String(agt.StageSub), String(agt.Pol),
-                                          String(agt.Polps), String(agt.Terps),
-                                          String(agt.Eps), String(agt.Mps),
-                                          String(agt.HrGen), String(agt.GeWom),
-                                          String(agt.TjMech)];
-          }
-          // console.log(vizData);
-          window.localStorage.setItem("paxVizData", JSON.stringify(vizData));
+          // var vizData = {};
+          // for (i = 0; i < data.length; i++){
+          //   agt = data[i];
+          //   vizData[String(agt.AgtId)] = [String(agt.Agt),
+          //                                 String(formatDate(agt.Dat)),
+          //                                 String(agt.Con), String(agt.Status),
+          //                                 String(agt.Agtp), String(agt.Stage),
+          //                                 String(agt.StageSub), String(agt.Pol),
+          //                                 String(agt.Polps), String(agt.Terps),
+          //                                 String(agt.Eps), String(agt.Mps),
+          //                                 String(agt.HrGen), String(agt.GeWom),
+          //                                 String(agt.TjMech)];
+          // }
+          // // console.log(vizData);
+          // window.localStorage.setItem("paxVizData", JSON.stringify(vizData));
 
           // Group agreements by Year (create an array of objects whose key is the year and value is an array of objects (one per agreement))
           var years = d3.nest()
@@ -169,40 +169,58 @@ function callFunction() {
                   .attr("id",function(d){ return d.AgtId; })
                   .attr("name",function(d){ return d.Agt; })
                   .attr("value",function(d){ return d.Year; })
-                  .attr("fill","black")
-                  .attr("stroke","#737373")  // same as html background-color
-                  .attr("stroke-width","0.5px")
-                  .style("opacity", "0.7")
+                  .attr("fill",function(d){ if (+d.AgtId == +selection){ return "white"; } else { return "black"; } })
+                  .attr("stroke",function(d){ if (+d.AgtId == +selection){ return "white"; } else { return "#737373"; } })  // same as html background-color
+                  .attr("stroke-width",function(d){ if (+d.AgtId == +selection){ return "2px"; } else { return "0.5px"; } })
+                  .style("opacity", function(d){ if (+d.AgtId == +selection){ return "1"; } else { return "0.5"; } })
                   .attr("x", function(d){ return x(parseYear(d.Year)) - (agtWidth/2) + (margin.left*2); })
                   .attr("y",function(d,i){ return (height-xHeight-margin.bottom-(agtHeight*1.5)-((agtHeight)*(i*agtSpacing)))+"px"; })
                   .attr("width", agtWidth+"px")
                   .attr("height", agtHeight+"px");
 
-              rects.on("mousemove",function(d){
+              rects.on("click", function(d) {
                 if (!clicked){
-                      this.style.fill = "#ffffff";
-                      this.style.stroke = "#ffffff";
-                      // Core agreement information (name, date, region, country/entity, status, type & stage)
-                      agtid = d.AgtId;
-                      window.localStorage.setItem("updatePaxVertical","false");
-                      window.localStorage.setItem("updatePaxMap", "false");
-                      window.localStorage.setItem("paxagtid", agtid);
-                    }
-                });
+                  clicked = true;
+                  this.style.opacity = 1;
+                  console.log(this.id);
+                  if (+this.id == +selection){
+                    window.localStorage.setItem("paxselection", 0);
+                  } else {
+                    window.localStorage.setItem("paxselection", d.AgtId);
+                  }
+                  window.localStorage.setItem("updatePaxMap", "true");
+                  callFunction();
+
+                } else { // if clicked
+                  clicked = false;
+                  this.style.opacity = 0.5;
+                  window.localStorage.setItem("paxselection", 0);
+                  window.localStorage.setItem("updatePaxMap", "true");
+                  callFunction();
+                }
+              });
+
+              rects.on("mouseover",function(d){
+                if (!clicked){
+                  this.style.fill = "#ffffff";
+                  this.style.stroke = "#ffffff";
+                  window.localStorage.setItem("updatePaxHorizontal","false");
+                  window.localStorage.setItem("updatePaxMap", "false");
+                  window.localStorage.setItem("paxagtid", d.AgtId);
+                 }
+              });
               rects.on("mouseout",function(d) {
-                // if (!clicked) {
-                     this.style.fill = "black"
-                     this.style.stroke = "#737373";
-                   // }
-                 });
+                if ((!clicked) && (+this.id != +selection)){
+                  window.localStorage.setItem("updatePaxHorizontal","false");
+                  window.localStorage.setItem("updatePaxMap", "false");
+                  window.localStorage.setItem("paxagtid", 0);
+                  this.style.fill = "black"
+                  this.style.stroke = "#737373";
+                 }
+              });
 
                var yrCount = chartGroup.selectAll('rect.agt')._groups[0].length;
                yrCounts.push([(years[year].values[0].Year), yrCount]);
-
-               rects.on("click", function(d) {
-                     if (!clicked){ clicked = true; }
-                     else { clicked = false; }
-               });
 
              }
 

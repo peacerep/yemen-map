@@ -90,21 +90,21 @@ function callFunction() {
           };
 
           // Store data needed for viz in dictionary
-          var vizData = {};
-          for (i = 0; i < data.length; i++){
-            agt = data[i];
-            vizData[String(agt.AgtId)] = [String(agt.Agt),
-                                          String(formatDate(agt.Dat)),
-                                          String(agt.Con), String(agt.Status),
-                                          String(agt.Agtp), String(agt.Stage),
-                                          String(agt.StageSub), String(agt.Pol),
-                                          String(agt.Polps), String(agt.Terps),
-                                          String(agt.Eps), String(agt.Mps),
-                                          String(agt.HrGen), String(agt.GeWom),
-                                          String(agt.TjMech)];
-          }
-          // console.log(vizData);
-          window.localStorage.setItem("paxVizData", JSON.stringify(vizData));
+          // var vizData = {};
+          // for (i = 0; i < data.length; i++){
+          //   agt = data[i];
+          //   vizData[String(agt.AgtId)] = [String(agt.Agt),
+          //                                 String(formatDate(agt.Dat)),
+          //                                 String(agt.Con), String(agt.Status),
+          //                                 String(agt.Agtp), String(agt.Stage),
+          //                                 String(agt.StageSub), String(agt.Pol),
+          //                                 String(agt.Polps), String(agt.Terps),
+          //                                 String(agt.Eps), String(agt.Mps),
+          //                                 String(agt.HrGen), String(agt.GeWom),
+          //                                 String(agt.TjMech)];
+          // }
+          // // console.log(vizData);
+          // window.localStorage.setItem("paxVizData", JSON.stringify(vizData));
 
           // Group agreements by Year (create an array of objects whose key is the year and value is an array of objects (one per agreement))
           var years = d3.nest()
@@ -174,7 +174,7 @@ function callFunction() {
                   .attr("value",function(d){ return d.Year; })
                   .attr("fill", function(d){ return (setAgtColors(d))[0]; })//"black")
                   .attr("stroke",function(d){ if (+d.AgtId == +selection){ return "white"; } else { return "#737373"; } })  // same as html background-color
-                  .attr("stroke-width",function(d){ if (+d.AgtId == +selection){ return "4px"; } else { return "1px"; } })
+                  .attr("stroke-width",function(d){ if (+d.AgtId == +selection){ return "2px"; } else { return "0.5px"; } })
                   .style("opacity", function(d){ if (+d.AgtId == +selection){ return "1"; } else { return "0.5"; } })
                   .attr("stroke","#737373")  // same as html background-color
                   .attr("stroke-width","0.5px")
