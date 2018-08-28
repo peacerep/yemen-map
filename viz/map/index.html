@@ -182,7 +182,8 @@ var circle_opacity = .8,
 //     topLeft = bounds[0],
 //     bottomRight = bounds[1];
 
-window.localStorage.setItem("paxMapSelection", 0);
+// window.localStorage.setItem("paxagtid", 1370);
+// window.localStorage.setItem("paxselection", 1370);
 
 // When new filter selected/deselected, update the map
 window.addEventListener("storage", toUpdate);
@@ -236,8 +237,8 @@ function Drawflowers(){
   var formatDate = d3.time.format("%d %B %Y");
   // Hovered agreement
   var paxAgtId = window.localStorage.getItem("pagagtid");
-  var timeSelection = window.localStorage.getItem("paxTimeSelection");
-  console.log("Time Selection: "+timeSelection);
+  var selection = window.localStorage.getItem("paxselection");
+  console.log("Selection: "+selection);
 
   var clicked = false;
 
@@ -274,35 +275,36 @@ function Drawflowers(){
             .attr("id",function(d){ return d.agtid; })
             .attr("z-index",6)
 
-        if (!clicked){
-            g.on("mouseover", function(d){
-                  this.style.opacity = 1;
-                  window.localStorage.setItem("updatePaxVertical","false");
-                  window.localStorage.setItem("updatePaxHorizontal","false");
-                  window.localStorage.setItem("updatePaxMap","false");
-                  window.localStorage.setItem("paxagtid", d.agtid);
-             });
-            g.on("mouseout",function(d){
-                this.style.opacity = circle_opacity;
-                window.localStorage.setItem("updatePaxMap","false");
-                window.localStorage.setItem("updatePaxVertical","false");
-                window.localStorage.setItem("updatePaxHorizontal","false");
-            });
-        }
+        g.on("mouseover", function(d){
+          if (!clicked){
+              this.style.opacity = 1;
+              window.localStorage.setItem("updatePaxHorizontal","false");
+              window.localStorage.setItem("updatePaxMap","false");
+              window.localStorage.setItem("paxagtid", d.agtid);
+            }
+         });
+        g.on("mouseout",function(d){
+          if (!clicked){
+            this.style.opacity = circle_opacity;
+            window.localStorage.setItem("paxagtid", 0);
+            window.localStorage.setItem("updatePaxHorizontal","false");
+            window.localStorage.setItem("updatePaxMap","false");
+          }
+        });
         g.on("click", function(d){
           if (!clicked){
             clicked = true;
-            this.style.opacity = 1;
             console.log(d.agtid);
-            window.localStorage.setItem("paxMapSelection", d.agtid);
+            window.localStorage.setItem("paxselection", d.agtid);
             window.localStorage.setItem("updatePaxHorizontal", "true");
+            d3.selectAll("g").remove();
+            Drawflowers();
           } else { // if clicked
             clicked = false;
-            if (this.style.opacity == 1){
-              this.style.opacity = circle_opacity;
-            }
-            window.localStorage.setItem("paxMapSelection", 0);
+            window.localStorage.setItem("paxselection", 0);
             window.localStorage.setItem("updatePaxHorizontal", "true");
+            d3.selectAll("g").remove();
+            Drawflowers();
           }
         });
 
@@ -324,19 +326,37 @@ function Drawflowers(){
                      return xvalue;
                  })
                  .attr("cy",function(d){
+                   if (+d.agtid == +selection){
+                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                     var yvalue=map.latLngToLayerPoint(d.LatLng).y;
+                     if (d.pol ==1){ return yvalue-(ry1*4); }
+                     else if (d.pol ==2){ return yvalue-(ry2*4); }
+                     else if (d.pol ==3){ return yvalue-(ry3*4); }
+                   } else {
                      d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                      var yvalue=map.latLngToLayerPoint(d.LatLng).y;
                      if (d.pol ==1){ return yvalue-ry1; }
                      else if (d.pol ==2){ return yvalue-ry2; }
                      else if (d.pol ==3){ return yvalue-ry3; }
+                   }
                 })
                 .attr('rx', function(d){
-                     if (d.pol == 1){ return rx1; } else { return rx; }
+                    if (+d.agtid == +selection){
+                      if (d.pol == 1){ return rx1*4; } else { return rx*4; }
+                    } else {
+                      if (d.pol == 1){ return rx1; } else { return rx; }
+                    }
                 })
                 .attr("ry", function(d){
-                     if (d.pol ==1){ return ry1; }
-                     else if (d.pol ==2){ return ry2; }
-                     else if (d.pol ==3){ return ry3; }
+                  if (+d.agtid == +selection){
+                    if (d.pol ==1){ return ry1*4; }
+                    else if (d.pol ==2){ return ry2*4; }
+                    else if (d.pol ==3){ return ry3*4; }
+                  } else {
+                    if (d.pol ==1){ return ry1; }
+                    else if (d.pol ==2){ return ry2; }
+                    else if (d.pol ==3){ return ry3; }
+                  }
                 });
          } //end ellipse_pol
 
@@ -357,19 +377,37 @@ function Drawflowers(){
                     return xvalue;
                 })
                 .attr("cy",function(d){
+                  if (+d.agtid == +selection){
+                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                    var yvalue=map.latLngToLayerPoint(d.LatLng).y;
+                    if (d.polps ==1){ return yvalue-(ry1*4); }
+                    else if (d.polps ==2){ return yvalue-(ry2*4); }
+                    else if (d.polps ==3){ return yvalue-(ry3*4); }
+                  } else {
                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                     var yvalue=map.latLngToLayerPoint(d.LatLng).y;
                     if (d.polps ==1){ return yvalue-ry1; }
                     else if (d.polps ==2){ return yvalue-ry2; }
                     else if (d.polps ==3){ return yvalue-ry3; }
+                  }
                 })
                 .attr('rx', function(d){
-                    if (d.polps == 1){ return rx1; } else { return rx; }
-                 })
+                    if (+d.agtid == +selection){
+                      if (d.polps == 1){ return rx1*4; } else { return rx*4; }
+                    } else {
+                      if (d.polps == 1){ return rx1; } else { return rx; }
+                    }
+                })
                 .attr("ry", function(d){
+                  if (+d.agtid == +selection){
+                    if (d.polps ==1){ return ry1*4; }
+                    else if (d.polps ==2){ return ry2*4; }
+                    else if (d.polps ==3){ return ry3*4; }
+                  } else {
                     if (d.polps ==1){ return ry1; }
                     else if (d.polps ==2){ return ry2; }
                     else if (d.polps ==3){ return ry3; }
+                  }
                 })
                 .attr('transform', function(d){
                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
@@ -395,20 +433,37 @@ function Drawflowers(){
                    return xvalue;
                  })
                .attr("cy",function(d){
+                 if (+d.agtid == +selection){
+                   d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                   var yvalue=map.latLngToLayerPoint(d.LatLng).y;
+                   if (d.terps ==1){ return yvalue-(ry1*4); }
+                   else if (d.terps ==2){ return yvalue-(ry2*4); }
+                   else if (d.terps ==3){ return yvalue-(ry3*4); }
+                 } else {
                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                    var yvalue=map.latLngToLayerPoint(d.LatLng).y;
                    if (d.terps ==1){ return yvalue-ry1; }
                    else if (d.terps ==2){ return yvalue-ry2; }
                    else if (d.terps ==3){ return yvalue-ry3; }
+                 }
                })
                .attr('rx', function(d){
-                   if (d.terps == 1){ return rx1; }
-                   else { return rx; }
-                })
+                   if (+d.agtid == +selection){
+                     if (d.terps == 1){ return rx1*4; } else { return rx*4; }
+                   } else {
+                     if (d.terps == 1){ return rx1; } else { return rx; }
+                   }
+               })
                .attr("ry", function(d){
+                 if (+d.agtid == +selection){
+                   if (d.terps ==1){ return ry1*4; }
+                   else if (d.terps ==2){ return ry2*4; }
+                   else if (d.terps ==3){ return ry3*4; }
+                 } else {
                    if (d.terps ==1){ return ry1; }
                    else if (d.terps ==2){ return ry2; }
                    else if (d.terps ==3){ return ry3; }
+                 }
                })
                 .attr('transform', function(d){
                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
@@ -434,20 +489,38 @@ function Drawflowers(){
                     return xvalue;
                   })
                 .attr("cy",function(d){
+                  if (+d.agtid == +selection){
+                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                    var yvalue=map.latLngToLayerPoint(d.LatLng).y;
+                    if (d.eps ==1){ return yvalue-(ry1*4); }
+                    else if (d.eps ==2){ return yvalue-(ry2*4); }
+                    else if (d.eps ==3){ return yvalue-(ry3*4); }
+                  } else {
                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                     var yvalue=map.latLngToLayerPoint(d.LatLng).y;
                     if (d.eps ==1){ return yvalue-ry1; }
                     else if (d.eps ==2){ return yvalue-ry2; }
                     else if (d.eps ==3){ return yvalue-ry3; }
+                  }
                 })
                 .attr('rx', function(d){
-                    if (d.eps == 1){ return rx1; } else { return rx; }
+                    if (+d.agtid == +selection){
+                      if (d.eps == 1){ return rx1*4; } else { return rx*4; }
+                    } else {
+                      if (d.eps == 1){ return rx1; } else { return rx; }
+                    }
                 })
                 .attr("ry", function(d){
+                  if (+d.agtid == +selection){
+                    if (d.eps ==1){ return ry1*4; }
+                    else if (d.eps ==2){ return ry2*4; }
+                    else if (d.eps ==3){ return ry3*4; }
+                  } else {
                     if (d.eps ==1){ return ry1; }
                     else if (d.eps ==2){ return ry2; }
                     else if (d.eps ==3){ return ry3; }
-                 })
+                  }
+                })
                  .attr('transform', function(d){
                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                     return 'rotate(225,'+map.latLngToLayerPoint(d.LatLng).x+
@@ -472,19 +545,37 @@ function Drawflowers(){
                     return xvalue;
                   })
                 .attr("cy",function(d){
+                  if (+d.agtid == +selection){
+                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                    var yvalue=map.latLngToLayerPoint(d.LatLng).y;
+                    if (d.mps ==1){ return yvalue-(ry1*4); }
+                    else if (d.mps ==2){ return yvalue-(ry2*4); }
+                    else if (d.mps ==3){ return yvalue-(ry3*4); }
+                  } else {
                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                     var yvalue=map.latLngToLayerPoint(d.LatLng).y;
                     if (d.mps ==1){ return yvalue-ry1; }
                     else if (d.mps ==2){ return yvalue-ry2; }
                     else if (d.mps ==3){ return yvalue-ry3; }
+                  }
                 })
                 .attr('rx', function(d){
-                    if (d.mps == 1){ return rx1; } else { return rx; }
-                 })
+                    if (+d.agtid == +selection){
+                      if (d.mps == 1){ return rx1*4; } else { return rx*4; }
+                    } else {
+                      if (d.mps == 1){ return rx1; } else { return rx; }
+                    }
+                })
                 .attr("ry", function(d){
+                  if (+d.agtid == +selection){
+                    if (d.mps ==1){ return ry1*4; }
+                    else if (d.mps ==2){ return ry2*4; }
+                    else if (d.mps ==3){ return ry3*4; }
+                  } else {
                     if (d.mps ==1){ return ry1; }
                     else if (d.mps ==2){ return ry2; }
                     else if (d.mps ==3){ return ry3; }
+                  }
                 })
                  .attr('transform', function(d){
                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
@@ -510,11 +601,30 @@ function Drawflowers(){
                     return xvalue;
                   })
                 .attr("cy",function(d){
-                  d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
-                  var yvalue=map.latLngToLayerPoint(d.LatLng).y;
-                    return yvalue-ry1;  })
-                .attr('rx', rx1)
-                .attr("ry", ry1)
+                  if (+d.agtid == +selection){
+                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                    var yvalue=map.latLngToLayerPoint(d.LatLng).y;
+                    return yvalue-(ry1*4);
+                  } else {
+                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                    var yvalue=map.latLngToLayerPoint(d.LatLng).y;
+                      return yvalue-ry1;
+                  }
+                })
+                .attr('rx', function(d){
+                    if (+d.agtid == +selection){
+                      return rx1*4;
+                    } else {
+                      return rx1;
+                    }
+                  })
+                .attr("ry", function(d){
+                    if (+d.agtid == +selection){
+                      return ry1*4;
+                    } else {
+                      return ry1;
+                    }
+                  })
                 .attr('transform', function(d){
                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                    return 'rotate(135,'+map.latLngToLayerPoint(d.LatLng).x+
@@ -539,12 +649,30 @@ function Drawflowers(){
                     return xvalue;
                     })
                 .attr("cy",function(d){
+                  if (+d.agtid == +selection){
+                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                    var yvalue=map.latLngToLayerPoint(d.LatLng).y;
+                    return yvalue-(ry1*4);
+                  } else {
                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                     var yvalue=map.latLngToLayerPoint(d.LatLng).y;
                     return yvalue-ry1;
+                  }
                   })
-                .attr('rx', rx1)
-                .attr("ry", ry1)
+                .attr('rx', function(d){
+                    if (+d.agtid == +selection){
+                      return rx1*4;
+                    } else {
+                      return rx1;
+                    }
+                  })
+                .attr("ry", function(d){
+                    if (+d.agtid == +selection){
+                      return ry1*4;
+                    } else {
+                      return ry1;
+                    }
+                  })
                 .attr('transform', function(d){
                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                    return 'rotate(270,'+map.latLngToLayerPoint(d.LatLng).x+
@@ -569,19 +697,37 @@ function Drawflowers(){
                     return xvalue;
                   })
                 .attr("cy",function(d){
+                  if (+d.agtid == +selection){
+                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
+                    var yvalue=map.latLngToLayerPoint(d.LatLng).y;
+                    if (d.tjmech ==1){ return yvalue-(ry1*4); }
+                    else if (d.tjmech ==2){ return yvalue-(ry2*4); }
+                    else if (d.tjmech ==3){ return yvalue-(ry3*4); }
+                  } else {
                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                     var yvalue=map.latLngToLayerPoint(d.LatLng).y;
                     if (d.tjmech ==1){ return yvalue-ry1; }
                     else if (d.tjmech ==2){ return yvalue-ry2; }
                     else if (d.tjmech ==3){ return yvalue-ry3; }
+                  }
                 })
                 .attr('rx', function(d){
-                    if (d.tjmech == 1){ return rx1; } else { return rx; }
+                    if (+d.agtid == +selection){
+                      if (d.tjmech == 1){ return rx1*4; } else { return rx*4; }
+                    } else {
+                      if (d.tjmech == 1){ return rx1; } else { return rx; }
+                    }
                 })
                 .attr("ry", function(d){
+                  if (+d.agtid == +selection){
+                    if (d.tjmech ==1){ return ry1*4; }
+                    else if (d.tjmech ==2){ return ry2*4; }
+                    else if (d.tjmech ==3){ return ry3*4; }
+                  } else {
                     if (d.tjmech ==1){ return ry1; }
                     else if (d.tjmech ==2){ return ry2; }
                     else if (d.tjmech ==3){ return ry3; }
+                  }
                 })
                  .attr('transform', function(d){
                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
@@ -607,7 +753,7 @@ function Drawflowers(){
                   d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                   return map.latLngToLayerPoint(d.LatLng).y;})
                 .attr('r', function(d){
-                  if (+d.agtid == +timeSelection){
+                  if (+d.agtid == +selection){
                     return r*4;
                   } else { return r; }
                 });
@@ -770,7 +916,7 @@ function Drawboundary(){
 function initial(){
     Drawboundary();
     Drawflowers();
-    window.localStorage.setItem("updatePaxMap", "false");
+    // window.localStorage.setItem("updatePaxMap", "false");
 
 
     }
@@ -784,7 +930,7 @@ function initial(){
       // d3.selectAll("circle").remove();
       Drawflowers();
       //Drawboundary();
-      window.localStorage.setItem("updatePaxMap", "false");
+      // window.localStorage.setItem("updatePaxMap", "false");
 
     }
 

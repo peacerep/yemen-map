@@ -13,8 +13,9 @@ Horizontal Timeline with Agreements Grouped by Date
 //     if (error) throw error;
 //     *do something with the data*
 // }
-window.localStorage.setItem("paxagtid", 1370); // default to an agreement that addresses all codes
-window.localStorage.setItem("paxTimeSelection", 0);
+
+// window.localStorage.setItem("paxagtid", 1370);
+// window.localStorage.setItem("paxselection", 1370);
 
 callFunction();
 d3.select(window).on("resize", callFunction);
@@ -54,8 +55,8 @@ function callFunction() {
   // Agreement in left sidebar
   var paxAgtId = window.localStorage.getItem("paxagtid");
   // Agreement clicked on map
-  var mapSelection = window.localStorage.getItem("paxMapSelection");
-  console.log("Map Selection: "+mapSelection);
+  var selection = window.localStorage.getItem("paxselection");
+  console.log("Selection: "+selection);
 
 
 
@@ -200,10 +201,10 @@ function callFunction() {
               .filter(function(d){ return setAgtCons(d); })
                 .attr("class","agt")
                 .attr("id",function(d){ return d.AgtId; })
-                .attr("fill",function(d){ if (+d.AgtId == +mapSelection){ return "white"; } else { return "black"; } })
-                .attr("stroke",function(d){ if (+d.AgtId == +mapSelection){ return "white"; } else { return "#737373"; } })  // same as html background-color
-                .attr("stroke-width","1px")
-                .style("opacity", function(d){ if (+d.AgtId == +mapSelection){ return "1"; } else { return "0.5"; } })
+                .attr("fill",function(d){ if (+d.AgtId == +selection){ return "white"; } else { return "black"; } })
+                .attr("stroke",function(d){ if (+d.AgtId == +selection){ return "white"; } else { return "#737373"; } })  // same as html background-color
+                .attr("stroke-width",function(d){ if (+d.AgtId == +selection){ return "4px"; } else { return "1px"; } })
+                .style("opacity", function(d){ if (+d.AgtId == +selection){ return "1"; } else { return "0.5"; } })
                 .attr("x", function(d){ return x(d.Dat); })
                 .attr("y",function(d,i){ return (height-xHeight-(agtHeight) + ((agtHeight/(dats[dat].values.length)) * i) )+"px"; })
                 .attr("width", function(d){ return agtWidth+"px"; })
@@ -215,13 +216,16 @@ function callFunction() {
               if (!clicked){
                 clicked = true;
                 this.style.opacity = 1;
-                window.localStorage.setItem("paxTimeSelection", d.AgtId);
+                window.localStorage.setItem("paxselection", d.AgtId);
                 window.localStorage.setItem("updatePaxMap", "true");
+                callFunction();
+
               } else { // if clicked
                 clicked = false;
                 this.style.opacity = 0.5;
-                window.localStorage.setItem("paxTimeSelection", 0);
+                window.localStorage.setItem("paxselection", 0);
                 window.localStorage.setItem("updatePaxMap", "true");
+                callFunction();
               }
             });
 
@@ -229,18 +233,16 @@ function callFunction() {
               if (!clicked){
                  this.style.fill = "#ffffff";
                  this.style.stroke = "#ffffff";
-                 this.style.opacity = 1;
-                 // window.localStorage.setItem("updatePaxVertical","false");
                  window.localStorage.setItem("updatePaxHorizontal","false");
                  window.localStorage.setItem("updatePaxMap", "false");
                  window.localStorage.setItem("paxagtid", d.AgtId);
                }
             });
             rects.on("mouseout",function(d) {
-                if (!clicked){
+                if ((!clicked) && (+this.id != +selection)){
+                 window.localStorage.setItem("paxagtid", 0);
                  this.style.fill = "black"
                  this.style.stroke = "#737373";
-                 this.style.opacity = 0.5;
                }
             });
 
