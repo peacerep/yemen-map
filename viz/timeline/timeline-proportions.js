@@ -161,7 +161,7 @@ function callFunction() {
                   .attr("stroke","#737373")  // same as html background-color
                   .attr("stroke-width","0.5px")
                   .style("opacity", "0.7")
-                  .attr("x", function(d){ return x(parseYear(d.Year)) - (agtWidth/2); })
+                  .attr("x", function(d){ return x(parseYear(d.Year)) - (agtWidth/2) + margin.left*2; })
                   .attr("y",function(d,i){ return (height-xHeight-margin.bottom-(agtHeight*1.5)-((agtHeight)*(i*agtSpacing)))+"px"; })
                   .attr("width", agtWidth+"px")
                   .attr("height", agtHeight+"px");
@@ -208,7 +208,6 @@ function callFunction() {
                 });
 
                var yrCount = selectedRects._groups[0].length;
-               console.log(selectedRects);
                var yrTotal = years[year].values.filter(function(d){ return setAgtCons(d); }).length;
                yrProps.push([(years[year].values[0].Year), yrCount, yrTotal]);
 
@@ -222,7 +221,7 @@ function callFunction() {
               .data(yrProps)   //yrProps format: [Year, yrCount, yrTotals]
             .enter().append("text")
               .attr("class","count")
-              .attr("x", function(d){ return x(parseYear(d[0]))+(margin.left*2.5); })
+              .attr("x", function(d){ return x(parseYear(d[0]))+(margin.left*4); })
               .attr("y", function(d){ return height-(xHeight*2)-(d[2]*agtHeight); })
               .text(function(d){ return getProp(d[1],d[2]); })
               .style("font-family", "sans-serif")
@@ -353,7 +352,21 @@ function callFunction() {
       from https://github.com/exupero/saveSvgAsPng
       */
       d3.select("#export").on("click", function(){
-        saveSvgAsPng(document.getElementsByTagName("svg")[0], "PA-X_HorizontalTimeline_Proportions.png", {scale: 2, backgroundColor: "#737373"});
+        var title = "PA-X_HorizontalTimeline_Proportions";
+        var cons = "";
+        for (i = 0; i < paxCons.length; i++){
+          cons += paxCons[i];
+        }
+        var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
+        var codeNames = ["HrGen", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
+        var codes = "";
+        for (i = 0; i < codeFilters.length; i++){
+          if (codeFilters[i] > 0){
+            codes += codeNames[i];
+          }
+        }
+        title = title + "_" + cons + "_" + codes + "_" + newMinDay + "-" + newMaxDay + ".png";
+        saveSvgAsPng(document.getElementsByTagName("svg")[0], title, {scale: 5, backgroundColor: "#737373"});
         // if IE need canvg: canvg passed between scale & backgroundColor
       });
 

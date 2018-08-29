@@ -291,7 +291,18 @@ function callFunction() {
       from https://github.com/exupero/saveSvgAsPng
       */
       d3.select("#exportV").on("click", function(){
-        saveSvgAsPng(document.getElementsByTagName("svg")[0], "PA-X_VerticalTimeline.png", {scale: 2, backgroundColor: "#737373"});
+        var title = "PA-X_VerticalTimeline";
+        var con = String(localStorage.getItem("paxVertConA"));
+        var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
+        var codeNames = ["HrGen", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
+        var codes = "";
+        for (i = 0; i < codeFilters.length; i++){
+          if (codeFilters[i] > 0){
+            codes += codeNames[i];
+          }
+        }
+        title = title + "_" + con + "_" + codes + "_" + "01_01_1900-31_12_2015.png";
+        saveSvgAsPng(document.getElementsByTagName("svg")[0], title, {scale: 5, backgroundColor: "#737373"});
         // if IE need canvg: canvg passed between scale & backgroundColor
       });
 

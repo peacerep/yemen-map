@@ -5,8 +5,9 @@
     <!-- for responsive web design -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Category Filters</title>
+    <title>Visualization Filters</title>
 
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c:400,700,900" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="select-style.css">
     <script type="text/javascript" src="viz/timeline/d3.v4.js"></script>
     <script type="text/javascript" src="select.js"></script>
@@ -15,8 +16,8 @@
   <body>
 
         <div class="selecter">
-          <h1>VISUALIZATION FILTERS</h1>
-          <br/><br/>
+          <h1>Visualizing Peace</h1>
+
           <p>Visualize agreements signed in:</p>
           <br/>
           <div class="timePeriod" id="timePeriod">
@@ -98,8 +99,7 @@
           <div id="dropdown" class="dropdown">
             <button class="dropbtn" id="ConDropBtn">Country/Entity Selections</button>
             <div id="ConDropdown" class="ConContent" onclick="callFilterFunction()">
-              &nbsp;<a href="#" id="SelectAllCons">Select All</a>
-              &nbsp;&nbsp;
+              <a href="#" id="SelectAllCons">Select All</a>
               <a href="#" id="DeselectAllCons">Deselect All</a>
               <br/>
               <div id="Cons">
@@ -272,10 +272,8 @@
             </div>
           </div>
           <br/>
-          <label for="conSelections"><b>Selected Countries/Entities:</b></label>
-          <br/>
           <div id="conSelections">
-            <p id="selectionsCon">None</p>
+            <p id="selectionsCon">None selected</p>
           </div>
 
           <br/>
@@ -287,18 +285,18 @@
             <input type="radio" id="any" name="filterRule" value="any">
             <label for="any">any</label>
           </div>
-          <p id="filters">
+          <!-- <p id="filters">
             <div id="dropdown" class="dropdown">
               <button class="dropbtn" id="CodeDropBtn">Code Selections</button>
-              <div id="CodeDropdown" class="CodeContent" onclick="callFilterFunction()">                         <!--onclick="callFilterFunction()">-->
+              <div id="CodeDropdown" class="CodeContent" onclick="callFilterFunction()">
                 &nbsp;<a href="#" id="SelectAllCodes">Select All</a>
                 &nbsp;&nbsp;
                 <a href="#" id="DeselectAllCodes">Deselect All</a>
                 <br/>
                   <div id="Codes">
-                    <!-- <input type="checkbox" id="paxHrFra" name="filter" value=1>
+                    <input type="checkbox" id="paxHrFra" name="filter" value=1>
                     <label for="HrFra">Human Rights Framework</label>
-                    <br/> -->
+                    <br/>
                     <input type="checkbox" id="paxHrGen" name="filter" value=1>
                     <label for="HrGen">Human Rights/Rule of Law</label>
                     <br/>
@@ -330,50 +328,53 @@
                     <input type="checkbox" id="paxGeWom" name="filter" value=1>
                     <label for="GeWom">Women, Girls and Gender</label>
                   </div>
+                </p>
             </div>
-          </div>
-          <br/>
+          </div> -->
+          <!-- <br/>
           <label for="codeSelections"><b>Selected Codes:</b></label>
           <div id="codeSelections">
             <p id="selectionsCode">None</p>
+          </div> -->
+              <!-- <p>Code Selections<p> -->
+              <table id="Codes" onclick="callFilterFunction()">
+                <tr id="paxHrGen" name="filter">
+                  <td id="paxHrGen" class="color">&nbsp;&nbsp;&nbsp;</td>
+                  <td id="paxHrGen" class="code" name="text">Human Rights/Rule of Law</td>
+                </tr>
+                <tr id="paxPol" name="filter">
+                  <td id="paxPol" class="color">&nbsp;&nbsp;&nbsp;</td>
+                  <td id="paxPol" class="code" name="text">Political Institutions</td>
+                </tr>
+                <tr id="paxEps" name="filter">
+                  <td id="paxEps" class="color">&nbsp;&nbsp;&nbsp;</td>
+                  <td id="paxEps" class="code" name="text">Power Sharing: Economic</td>
+                </tr>
+                <tr id="paxMps" name="filter">
+                  <td id="paxMps" class="color">&nbsp;&nbsp;&nbsp;</td>
+                  <td id="paxMps" class="code" name="text">Power Sharing: Military</td>
+                </tr>
+                  <tr id="paxPolps" name="filter">
+                    <td id="paxPolps" class="color">&nbsp;&nbsp;&nbsp;</td>
+                    <td id="paxPolps" class="code" name="text">Power Sharing: Political</td>
+                  </tr>
+                <tr id="paxTerps" name="filter">
+                  <td id="paxTerps" class="color">&nbsp;&nbsp;&nbsp;</td>
+                  <td id="paxTerps" class="code" name="text">Power Sharing: Territorial</td>
+                </tr>
+                <tr id="paxTjMech" name="filter">
+                  <td id="paxTjMech" class="color">&nbsp;&nbsp;&nbsp;</td>
+                  <td id="paxTjMech" class="code" name="text">Transitional Justice Past Mechanism</td>
+                </tr>
+                <tr id="paxGeWom" name="filter">
+                  <td id="paxGeWom" class="color">&nbsp;&nbsp;&nbsp;</td>
+                  <td id="paxGeWom" class="code" name="text">Women, Girls and Gender</td>
+                </tr>
+              </table>
+              <a href="#" id="SelectAllCodes">Select All Codes</a>
+              &nbsp;&nbsp;
+              <a href="#" id="DeselectAllCodes">Deselect All Codes</a>
           </div>
-          <br/>
-          <p>Code Legend<p>
-          <table id="codeLegend">
-            <tr>
-              <td id="paxHrGen" class="color">&nbsp;&nbsp;&nbsp;</td>
-              <td>Human Rights/Rule of Law (HrGen)</td>
-            </tr>
-            <tr>
-              <td id="paxPol" class="color">&nbsp;&nbsp;&nbsp;</td>
-              <td>Political Institutions (Pol)</td>
-            </tr>
-            <tr>
-              <td id="paxEps" class="color">&nbsp;&nbsp;&nbsp;</td>
-              <td>Power Sharing: Economic (Eps)</td>
-            </tr>
-            <tr>
-              <td id="paxMps" class="color">&nbsp;&nbsp;&nbsp;</td>
-              <td>Power Sharing: Military (Mps)</td>
-            </tr>
-              <tr>
-                <td id="paxPolps" class="color">&nbsp;&nbsp;&nbsp;</td>
-                <td>Power Sharing: Political (Polps)</td>
-              </tr>
-            <tr>
-              <td id="paxTerps" class="color">&nbsp;&nbsp;&nbsp;</td>
-              <td>Power Sharing: Territorial (Terps)</td>
-            </tr>
-            <tr>
-              <td id="paxTjMech" class="color">&nbsp;&nbsp;&nbsp;</td>
-              <td>Transitional Justice Past Mechanism (TjMech)</td>
-            </tr>
-            <tr>
-              <td id="paxGeWom" class="color">&nbsp;&nbsp;&nbsp;</td>
-              <td>Women, Girls and Gender (GeWom)</td>
-            </tr>
-          </table>
-          </p>
 
        </div> <!-- end of selecter div -->
        <br/>

@@ -154,16 +154,31 @@ window.onload = function() {
       // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       let target = event.target;
-      // console.log("Target.id: "+target.id);
-      if (localStorage.getItem(target.id) == 0){
-        localStorage.setItem(target.id, 1);
-        target.checked = true;
-        console.log("Checked "+target.id);
-      } else {
-        localStorage.setItem(target.id, 0);
-        target.checked = false;
-        console.log("Unchecked "+target.id);
+      var code = target.id;
+      var filters = document.getElementsByName("text");
+      for (i = 0; i < filters.length; i++) {
+        if (filters[i].id == code){
+          if (filters[i].style.color == "silver"){
+          filters[i].style.color = "black";
+          localStorage.setItem(code, 1);
+          console.log("Checked "+target.id);
+          } else {
+          filters[i].style.color = "silver";
+          localStorage.setItem(code, 0);
+          console.log("Unchecked "+target.id);
+          }
+        }
       }
+      // console.log("Target.id: "+target.id);
+      // if (target.style.color == "silver"){
+      //   localStorage.setItem(target.id, 1);
+      //   target.style.color = "black";
+      //   console.log("Checked "+target.id);
+      // } else {
+      //   localStorage.setItem(target.id, 0);
+      //   target.style.color = "silver";
+      //   console.log("Unchecked "+target.id);
+      // }
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
     }
@@ -287,17 +302,17 @@ function paxRuleAll() {
   console.log("Selected ALL")
 }
 function paxFilterUncheck() {
-  var filters = document.getElementsByName("filter");
+  var filters = document.getElementsByName("text");
   for (i = 0; i < filters.length; i++) {
-    filters[i].checked = false;
+    filters[i].style.color = "silver";
     localStorage.setItem(filters[i].id,0);
   }
   console.log("Unchecked all code filters");
 }
 function paxFilterCheck() {
-  var filters = document.getElementsByName("filter");
+  var filters = document.getElementsByName("text");
   for (i = 0; i < filters.length; i++) {
-    filters[i].checked = true;
+    filters[i].style.color = "black";
     localStorage.setItem(filters[i].id,1);
   }
   console.log("Checked all code filters");

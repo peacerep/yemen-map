@@ -75,20 +75,20 @@ function callInfoFunction() {
                   +con+"</p><br/><p>"+status+"</p><br/><p>"+agtp+"</p><br/><p>"
                   +stage+"</p><br/>"+"<p><b><a class='pdf' href="
                   +agtPDF+">Open PDF</a></b></p>"+
-                  "&nbsp;&nbsp;|&nbsp;&nbsp;<p><b><a class='cod' target='_blank' href="
+                  "<p><b><a class='cod' target='_blank' href="
                   +agtCod+">View Coding Detail</a></b></p>",                 //+stagesub+"<br/>",
         data = [paxAgtId, +paxAgtPol, +paxAgtPolps, +paxAgtTerps, +paxAgtEps, +paxAgtMps, +paxAgtHrGen, +paxAgtGeWom, +paxAgtTjMech];
 
-    var margin = {top: 160, right: 10, bottom: 30, left: 10}, //read clockwise from top
+    var margin = {top: 160, right: 10, bottom: 10, left: 10}, //read clockwise from top
         width = parseInt(d3.select("body").style("width"), 10),
         width = width - margin.left - margin.right,
         height = parseInt(d3.select(".selecter").style("height"), 10);
 
-    var spacing = 10,
-        flowerX = width/4,
+    var spacing = 16,
+        flowerX = width/3,
         flowerY =  height/8 + spacing;
         fontsize = 14,
-        ry1 = 25,ry2 = 35,ry3 = 40, r = 10, rx = 10, rx1 = 10,
+        ry1 = 20,ry2 = 30,ry3 = 35, r = 10, rx = 10, rx1 = 10,
         rPolX = 0, rPolY = 0,
         rPolpsX = 0, rPolpsY = 0,
         rTerpsX = 0, rTerpsY = 0,
@@ -97,7 +97,7 @@ function callInfoFunction() {
         rHrGenpsX = 0, rHrGenY = 0,
         rGeWomX = 0, rGeWomY = 0,
         rTjMechX = 0, rTjMechY = 0,
-        textposition = flowerY + ry3 + r + (spacing*3);
+        textposition = flowerY + ry3 + r + (spacing*2);
 
     var circle_opacity = .8,
         circle_stroke = '#343332',

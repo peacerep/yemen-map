@@ -97,7 +97,7 @@ function callFunction() {
               .style("position","absolute")
               .attr("class","tooltip");
 
-          var margin = {top: 4, right: 5, bottom: 5, left: 5}, //read clockwise from top
+          var margin = {top: 10, right: 10, bottom: 10, left: 10}, //read clockwise from top
               width = parseInt(d3.select("body").style("width"), 10),
               width = width - margin.left - margin.right,
               height = 170 - margin.top - margin.bottom,
@@ -201,8 +201,8 @@ function callFunction() {
                .attr("stroke","#737373")  // same as html background-color
                .attr("stroke-width","1px")
                .style("opacity", "0.7")
-               .attr("x", function(d){ return x(d[0]); })
-               .attr("y", function(d){ return (height-xHeight-(agtHeight*d[1]))+"px"; })
+               .attr("x", function(d){ return x(d[0]) + margin.left; })
+               .attr("y", function(d){ return (height-xHeight-margin.bottom-(agtHeight*d[1]))+"px"; })
                .attr("width", agtWidth+"px")
                .attr("height", function(d){ return (agtHeight*d[1])+"px"; });
 
@@ -314,7 +314,7 @@ function callFunction() {
            var gX = chartGroup.append("g")
                 .attr("class","xaxis")
                 .attr("id","dat")
-                .attr("transform","translate("+(margin.left)+","+(height-xHeight)+")")
+                .attr("transform","translate("+(margin.left)+","+(height-xHeight-margin.bottom)+")")
                 .call(xAxis);
 
       }) // end of .get(error,data)
@@ -326,7 +326,21 @@ function callFunction() {
       from https://github.com/exupero/saveSvgAsPng
       */
       d3.select("#export").on("click", function(){
-        saveSvgAsPng(document.getElementsByTagName("svg")[0], "PA-X_HorizontalTimeline_CountPerDay.png", {scale: 2, backgroundColor: "#737373"});
+        var title = "PA-X_HorizontalTimeline_CountPerDay";
+        var cons = "";
+        for (i = 0; i < paxCons.length; i++){
+          cons += paxCons[i];
+        }
+        var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
+        var codeNames = ["HrGen", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
+        var codes = "";
+        for (i = 0; i < codeFilters.length; i++){
+          if (codeFilters[i] > 0){
+            codes += codeNames[i];
+          }
+        }
+        title = title + "_" + cons + "_" + codes + "_" + newMinDay + "-" + newMaxDay + ".png";
+        saveSvgAsPng(document.getElementsByTagName("svg")[0], title, {scale: 5, backgroundColor: "#737373"});
         // if IE need canvg: canvg passed between scale & backgroundColor
       });
 

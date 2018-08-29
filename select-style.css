@@ -6,43 +6,92 @@ Style for Select iFrame
 }
 
 html {
-  /* background-color: #c4c4c4; */
+  font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 html, body {
-  height: 95%;
+  height: 100%;
+  overflow-y: hidden;
+}
+div.selecter {
+  margin: 0px;
+}
+
+/*
+Text
+*/
+a {
+  text-decoration: underline;
+  font-weight: 700;
+  color: #b3b3b3;
+  cursor: pointer;
+}
+button {
+  cursor: pointer;
 }
 
 h1 {
-  color:black;
-  font-size: 12px;
-  text-decoration: none;
-  display: inline;
-  font-family: "Helvetica", sans-serif;
-  font-weight: bolder;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  color: silver;
+  pointer-events: none;
 }
+h2 {
+  font-weight: 400;
+  font-size: 12px;
+  padding-bottom: 14px;
+  color: silver;
+}
+h4 {
+  font-weight: 700;
+  font-size: 16px;
+  padding-top: 0px;
+  color: silver;
+}
+p {
+  font-weight: 700;
+  font-size: 12px;
+}
+
 p, a, label {
   color:black;
   font-size: 12px;
-  text-decoration: none;
   display: inline;
-  font-family: "Helvetica", sans-serif;
-  font-weight: normal;
-  line-height: 20px;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 700;
+  line-height: 22px;
+}
+p#selectionsCon {
+  font-weight: 400;
+  font-style: italic;
+  padding-left: 5px;
 }
 a {
   text-decoration: underline;
 }
 a.pdf, a.cod {
-  text-decoration: none;
-  font-weight: bold;
+  font-weight: 700;
   margin: 0;
   padding: 0;
+  color: silver;
 }
+a.pdf { float: left; }
+a.cod { float: right; }
 input {
   margin-left: 8px;
 }
-
-a#SelectAllCodes:hover, a#DeselectAllCodes:hover, p.filterViews a:hover{
+a#SelectAllCodes {
+  float: left;
+  color: silver;
+  text-decoration: underline;
+}
+a#DeselectAllCodes {
+  float: right;
+  margin-right: 20px;
+  color: silver;
+  text-decoration: underline;
+}
+a#SelectAllCodes:hover, a#DeselectAllCodes:hover, p.filterViews a:hover, td.text:hover {
   color: #ffffff;
 }
 
@@ -85,9 +134,9 @@ g {
 
 }
 foreignObject {
-  font-family: "Helvetica", sans-serif;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
   font-size: 12px;
-  font-weight: normal;
+  font-weight: 700;
 }
 
 /*
@@ -98,9 +147,9 @@ DROPDOWNS
   color: silver;
   padding: 5px;
   /* margin: 2px; */
-  font-family: "Helvetica", sans-serif;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
   font-size: 12px;
-  font-weight: lighter;
+  font-weight: 700;
   border: none;
   cursor: pointer;
   border: 1px solid silver;
@@ -120,7 +169,7 @@ YEARS DROPDOWN
   display: none;
   position: absolute;
   background-color: silver;
-  width: 100%;
+  width: 120%;
   overflow: auto;
   padding: 4px;
   max-height: 250px;
@@ -131,14 +180,14 @@ YEARS DROPDOWN
 }
 .TimeContent input {
   color: #000000;
-  font-weight: bold;
+  font-weight: 700;
   padding: 4px;
   text-decoration: none;
   display: inline;
 }
 .TimeContent label, a {
   color: #000000;
-  font-weight: normal;
+  font-weight: 400;
   padding: 4px;
   display: inline;
 }
@@ -163,14 +212,14 @@ CON (COUNTRY & ENTITY) DROPDOWN
 }
 .ConContent input {
   color: #000000;
-  font-weight: bold;
+  font-weight: 700;
   padding: 4px;
   text-decoration: none;
   display: inline;
 }
 .ConContent label, a {
   color: #000000;
-  font-weight: normal;
+  font-weight: 400;
   padding: 4px;
   display: inline;
 }
@@ -190,14 +239,14 @@ CON (COUNTRY & ENTITY) DROPDOWN
 }
 .CodeContent input {
   color: #000000;
-  font-weight: bold;
+  font-weight: 700;
   padding: 4px;
   text-decoration: none;
   display: inline;
 }
 .CodeContent label, a {
   color: #000000;
-  font-weight: normal;
+  font-weight: 400;
   padding: 4px;
   display: inline;
 }
@@ -211,18 +260,23 @@ CODE & AGREEMENT STAGE LEGENDS
     var stageColors = ["#377eb8","#ffff33","#ff7f00","#4daf4a","#e41a1c","#a65628","#984ea3","#000"];
     var stageValues = ["Pre", "SubPar", "SubComp", "Imp", "Cea", "Other", "FrCons", "Ren"];
 */
+table {
+  margin-top: 5px;
+}
 table td {
-  font-family: "Helvetica", sans-serif;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
   text-align: left;
 }
 td, tr {
   padding: 4px;
   text-align: left;
-  font-weight: normal;
-  font-size: 10px;
+  font-weight: 400;
+  font-size: 12px;
+  cursor: pointer;
+  line-height: 10px;
 }
-td.color {
-  border: 0.5px solid black;
+tr:hover {
+  background-color: #838383;
 }
 /* Agreement Stages */
 td#Pre {
@@ -246,50 +300,31 @@ td#Other {
 td#FrCons {
   background-color: #80b1d3;
 }
-td#Ren{
+td#Ren {
   background-color: #bebada;
 }
 /* Codes (colors match map's flowers) */
-td#paxHrGen{
+td#paxHrGen.color{
   background-color: #f46c38;
 }
-td#paxPol{
+td#paxPol.color{
   background-color: #f5003d;
 }
-td#paxPolps{
+td#paxPolps.color{
   background-color: #01557a;
 }
-td#paxEps{
+td#paxEps.color{
   background-color: #7a56a0;
 }
-td#paxMps{
+td#paxMps.color{
   background-color: #029680;
 }
-td#paxTerps{
+td#paxTerps.color{
   background-color: #fbdd4b;
 }
-td#paxTjMech{
+td#paxTjMech.color{
   background-color: #fc96ab;
 }
-td#paxGeWom{
+td#paxGeWom.color{
   background-color: #59c9df;
 }
-
-
-/*CODE BUTTONS
-button.btn {
-  color: black;
-  padding: 5px;
-  margin: 2px;
-  width: 65%;
-  cursor: pointer;
-  opacity: 0.6;
-  border: 0.5px solid black;
-  text-align: left;
-}
-a.btn {
-  text-decoration: none;
-  font-family: "Helvetica", sans-serif;
-  font-size: 10px;
-  font-weight: lighter;
-}*/

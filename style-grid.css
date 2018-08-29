@@ -3,6 +3,40 @@
 }
 html{
   background-color: #737373; /*c4c4c4;*/
+  margin: 0px;
+  padding: 0px;
+}
+body {
+  margin-top: -20px;
+}
+h1 {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  color: silver;
+  pointer-events: none;
+  padding: 0px;
+  margin: -10px;
+}
+/* a.nav {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight:400;
+  font-size: 12px;
+  margin: 8px;
+  cursor: pointer;
+  color: silver;
+}
+a:hover{
+  color: "#ffffff";
+} */
+
+/* button#reset.btn, a#Reset{
+  text-decoration: none;
+  color: silver;
+  font-size: 12px;
+  padding-right: 8px;
+  float: right;
+  cursor: pointer;
 }
 
 button#reset.btn {
@@ -15,15 +49,19 @@ button#reset.btn {
   border: 1px solid silver;
 }
 button#reset.btn label {
-  font-family: "Helvetica", sans-serif;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
   font-size: 12px;
-  font-weight: lighter;
+  font-weight: 700;
   color: silver;
   text-decoration: none;
   text-align: left;
 }
-button.btn#reset:hover{
+button#reset.btn:hover{
   background-color: #838383;
+} */
+
+iframe {
+  border: none;
 }
 
 /*
@@ -34,7 +72,8 @@ Grid Layout
   /* grid-template-columns: auto auto auto auto auto; /*[col0] 10px [col1] 15% [col2] 17% [col3] 10px [endcol];  /*10px 1fr 1fr 1fr 1fr 1fr 1fr 10px;*/ */ */
   /* grid-template-rows: auto auto auto auto auto auto auto auto auto auto; /*[row0] 10px [row1] 10% [row2] 20% [row3] 70% [endrow]; */ */
   grid-template-areas:
-    'header header header header header header header'
+    /* 'header header header header header header header' */
+    'selecter timeline-h timeline-h timeline-h timeline-h timeline-h timeline-h'
     'selecter timeline-h timeline-h timeline-h timeline-h timeline-h timeline-h'
     'selecter timeline-h timeline-h timeline-h timeline-h timeline-h timeline-h'
     'selecter map map map map map map'
@@ -47,105 +86,67 @@ Grid Layout
     'selecter2 timeline-v1 timeline-v1 timeline-v2 timeline-v2 timeline-v3 timeline-v3'
     'selecter2 timeline-v1 timeline-v1 timeline-v2 timeline-v2 timeline-v3 timeline-v3'
     'selecter2 timeline-v1 timeline-v1 timeline-v2 timeline-v2 timeline-v3 timeline-v3';
-  grid-gap: 10px;
-  align-content: stretch;
-  justify-content: stretch;
+    grid-gap: 10px;
+      align-content: stretch;
+      justify-content: stretch;
 }
 .grid-container > div {
   color: black;
   text-align: left;
-  font-family: "Helvetica", sans-serif;
+  font-family: "Roboto", sans-serif;
   padding: 10px;
 }
 
-.item-a {
+/* .item-a {
   grid-area: header;
-  /* grid-column: 1 / 62; */
   grid-column: 1 / 8;
-  grid-row: 1 / 2;
-}
+  grid-row: 1 / 1;
+} */
 .item-b {
   grid-area: selecter;
   grid-column: 1 / 2;
-  grid-row: 2 / 100;
+  grid-row: 2 / 106;
   /* grid-row: 2 / 132; */
 }
 .item-c {
+  margin-top: 30px;
   grid-area: timeline-h;
   /* grid-column: 2 / 62; */
   grid-column: 2 / 8;
   /* grid-row: 2 / 32; */
-  grid-row: 2 / 34;
+  grid-row: 1 / 34;
 }
 .item-d {
   grid-area: map;
   /* grid-column: 2 / 62; */
   grid-column: 2 / 8;
   /* grid-row: 32 / 82; */
-  grid-row: 34 / 100;
+  grid-row: 34 / 106;
 }
 .item-e {
   grid-area: selecter2;
   grid-column: 1 / 2;
   /* grid-row: 82 / 232; */
-  grid-row: 112 / 226;
+  grid-row: 106 / 226;
 }
 .item-f {
   grid-area: timeline-v1;
   /* grid-column: 2 / 62; */
   grid-column: 2 / 4;
   /* grid-row: 82 / 232; */
-  grid-row: 112 / 226;
+  grid-row: 106 / 226;
 }
 .item-g {
   grid-area: timeline-v2;
   /* grid-column: 2 / 62;
   grid-row: 82 / 232; */
   grid-column: 4 / 6;
-  grid-row: 112 / 226;
+  grid-row: 106 / 226;
 }
 .item-h {
   grid-area: timeline-v3;
   /* grid-column: 2 / 62; */
   grid-column: 6 / 8;
   /* grid-row: 82 / 232; */
-  grid-row: 112 / 226;
-}
-
-/*
-Text
-*/
-a {
-  text-decoration: none;
-  font-weight: bold;
-  color: #b3b3b3;
-}
-a#Reset{
-  text-decoration: underline;
-  font-weight: normal;
-  color: black;
-  font-size: 12px;
-  padding-left: 8px;
-  float: right;
-}
-iframe {
-  border: none;
-}
-h1 {
-  font-weight: lighter;
-  font-size: 10px;
-  padding-bottom: 14px;
-}
-h2 {
-  font-weight: bolder;
-  font-size: 16px;
-}
-h3 {
-  font-weight:bolder;
-  font-style: oblique;
-  font-size: 12px;
-}
-p {
-  font-weight: 50;
-  font-size: 15px;
+  grid-row: 106 / 226;
 }

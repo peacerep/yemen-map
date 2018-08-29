@@ -17,7 +17,7 @@ Horizontal Timeline with Agreements Grouped by Date
 window.localStorage.setItem("paxagtid", 1370);
 window.localStorage.setItem("paxselection", 1370);
 
-// callFunction();
+callFunction();
 d3.select(window).on("resize", callFunction);
 window.addEventListener("storage", toUpdate);
 
@@ -115,7 +115,7 @@ function callFunction() {
             svgtest.remove();
           };
 
-          var margin = {top: 4, right: 5, bottom: 5, left: 5}, //read clockwise from top
+          var margin = {top: 10, right: 10, bottom: 10, left: 10}, //read clockwise from top
               width = parseInt(d3.select("body").style("width"), 10),
               width = width - margin.left - margin.right,
               height = 170 - margin.top - margin.bottom,
@@ -169,6 +169,8 @@ function callFunction() {
             window.localStorage.setItem("paxNewMinDay",formatDateShort(minDay));
             var maxDay = d3.max(data,function(d){ return (d.Dat); });
             window.localStorage.setItem("paxNewMaxDay",formatDateShort(maxDay));
+            newMinDay = localStorage.getItem("paxNewMinDay");
+            newMaxDay = localStorage.getItem("paxNewMaxDay");
             var x = d3.scaleTime()
                         .domain([minDay,maxDay])  // data space
                         .range([margin.left,(width-margin.right)]);  // display space
@@ -203,8 +205,8 @@ function callFunction() {
                 .attr("stroke",function(d){ if (+d.AgtId == +selection){ return "white"; } else { return "#737373"; } })  // same as html background-color
                 .attr("stroke-width",function(d){ if (+d.AgtId == +selection){ return "4px"; } else { return "1px"; } })
                 .style("opacity", function(d){ if (+d.AgtId == +selection){ return "1"; } else { return "0.5"; } })
-                .attr("x", function(d){ return x(d.Dat); })
-                .attr("y",function(d,i){ return (height-xHeight-(agtHeight) + ((agtHeight/(dats[dat].values.length)) * i) )+"px"; })
+                .attr("x", function(d){ return x(d.Dat) + margin.left; })
+                .attr("y",function(d,i){ return (height-xHeight-agtHeight-margin.bottom + ((agtHeight/(dats[dat].values.length)) * i) )+"px"; })
                 .attr("width", function(d){ return agtWidth+"px"; })
                 .attr("height", (agtHeight/dats[dat].values.length)+"px");
 
@@ -324,7 +326,7 @@ function callFunction() {
            var gX = chartGroup.append("g")
                 .attr("class","xaxis")
                 .attr("id","dat")
-                .attr("transform","translate("+(margin.left)+","+(height-xHeight)+")")
+                .attr("transform","translate("+(margin.left)+","+(height-xHeight-margin.bottom)+")")
                 .call(xAxis);
 
       }) // end of .get(error,data)
@@ -337,7 +339,21 @@ function callFunction() {
       from https://github.com/exupero/saveSvgAsPng
       */
       d3.select("#export").on("click", function(){
-        saveSvgAsPng(document.getElementsByTagName("svg")[0], "PA-X_HorizontalTimeline_Chronology.png", {scale: 2, backgroundColor: "#737373"});
+        var title = "PA-X_HorizontalTimeline_Chronology";
+        var cons = "";
+        for (i = 0; i < paxCons.length; i++){
+          cons += paxCons[i];
+        }
+        var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
+        var codeNames = ["HrGen", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
+        var codes = "";
+        for (i = 0; i < codeFilters.length; i++){
+          if (codeFilters[i] > 0){
+            codes += codeNames[i];
+          }
+        }
+        title = title + "_" + cons + "_" + codes + "_" + newMinDay + "-" + newMaxDay + ".png";
+        saveSvgAsPng(document.getElementsByTagName("svg")[0], title, {scale: 5, backgroundColor: "#737373"});
         // if IE need canvg: canvg passed between scale & backgroundColor
       });
 

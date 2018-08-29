@@ -10,16 +10,16 @@ p, input {
   font-size: 12px;
   text-decoration: none;
   display: inline;
-  font-family: "Helvetica", sans-serif;
-  font-weight: normal;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 700;
 }
 p.expl {
   color:black;
   font-size: 10px;
   text-decoration: none;
   display: inline;
-  font-family: "Helvetica", sans-serif;
-  font-weight: normal;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 700;
 }
 
 .description {
@@ -27,8 +27,8 @@ p.expl {
   font-size: 10px;
   text-decoration: none;
   display: inline;
-  font-family: "Helvetica", sans-serif;
-  font-weight: normal;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 700;
 }
 
 /*
@@ -41,7 +41,7 @@ button#exportV.btn {
   float: left;
 }
 
-button.horizTimeView, button#export.btn, button#exportV.btn  {
+button.horizTimeView_current, button.horizTimeView, button#export.btn, button#exportV.btn  {
   background-color: #737373;
   padding: 5px;
   margin: 2px;
@@ -51,18 +51,18 @@ button.horizTimeView, button#export.btn, button#exportV.btn  {
   border: 1px solid silver;
 }
 button.horizTimeView_current, button.horizTimeView, button#export.btn, button#exportV.btn {
-  font-family: "Helvetica", sans-serif;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
   font-size: 12px;
-  font-weight: lighter;
+  font-weight: 700;
   color: silver;
   text-decoration: none;
   text-align: left;
 }
-button.horizTimeView:hover, button#export.btn:hover, button#exportV.btn:hover {
+button.horizTimeView_current, button.horizTimeView:hover, button#export.btn:hover, button#exportV.btn:hover, button#ConDropBtn.dropbtn:hover {
   background-color: #838383;
 }
-button.horizTimeView_current, button#export.btn:hover, button#exportV.btn:hover {
-  background-color: #838383;
+button#export.btn, button#exportV.btn {
+  /* background-color: #838383; */
   padding: 5px;
   margin: 2px;
   width: auto;
@@ -80,7 +80,7 @@ button.horizTimeView_current, button#export.btn:hover, button#exportV.btn:hover 
 }
 #chart.col-9 g.tick text {
   font-size: 12px;
-  font-weight: normal;
+  font-weight: 400;
   color: #bfbfbf;
 }
 g.xaxis path.domain {
@@ -93,7 +93,7 @@ g.xaxis g.tick line {
   stroke-width: 1px;
 }
 g.xaxis g.tick text {
-  font-weight: normal;
+  font-weight: 400;
 }
 g.xaxis#dat g.tick text {
   text-anchor: start;
@@ -109,8 +109,8 @@ g.xaxis#dat g.tick text {
   width: auto;
   text-align: center;
   padding-left: 20px;
-  font-family: "Helvetica", sans-serif;
-  font-weight: 50;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 700;
   z-index: 1;
   pointer-events: none !important;
 }
