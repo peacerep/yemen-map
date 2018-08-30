@@ -145,7 +145,7 @@ function callFunction() {
                           .attr("id", String(years[year].key))
                           .attr("transform","translate("+(margin.left*2)+","+margin.top+")")
 
-              var rects = chartGroup.selectAll("rects")
+              var rects = chartGroup.selectAll("rect")
                   .data(years[year].values)
                 .enter().append("rect")
                 .filter(function(d){ return setAgtTimePeriod(d); })
