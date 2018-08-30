@@ -146,13 +146,13 @@ function callFunction() {
                   .data(years[year].values)
                 .enter().append("rect")
                 .filter(function(d){ return setAgtTimePeriod(d); })
-                .filter(function(d){ return setAgtFilters(d); })
+                // .filter(function(d){ return setAgtFilters(d); })
                 .filter(function(d){ return setAgtCons(d); })
-                  .attr("class","agt")
+                  .attr("class",function(d){ return String((setAgtColors(d))[1]); })  // .attr("class","agt")
                   .attr("id",function(d){ return d.AgtId; })
                   .attr("name",function(d){ return d.Agt; })
                   .attr("value",function(d){ return d.Year; })
-                  .attr("fill",function(d){ if (+d.AgtId == +selection){ return "white"; } else { return "black"; } })
+                  .attr("fill", function(d){ return (setAgtColors(d))[0]; })          //.attr("fill",function(d){ if (+d.AgtId == +selection){ return "white"; } else { return "black"; } })
                   .attr("stroke",function(d){ if (+d.AgtId == +selection){ return "white"; } else { return "#737373"; } })  // same as html background-color
                   .attr("stroke-width",function(d){ if (+d.AgtId == +selection){ return "2px"; } else { return "0.5px"; } })
                   .style("opacity", function(d){ if (+d.AgtId == +selection){ return "1"; } else { return "0.5"; } })
@@ -161,49 +161,50 @@ function callFunction() {
                   .attr("width", agtWidth+"px")
                   .attr("height", agtHeight+"px");
 
-              rects.on("click", function(d) {
-                if (!clicked){
-                  clicked = true;
-                  this.style.opacity = 1;
-                  console.log(this.id);
-                  if (+this.id == +selection){
+              var selectedRects = chartGroup.selectAll('rect.selected');
+              selectedRects.on("click", function(d) {
+                  if (!clicked){
+                    clicked = true;
+                    this.style.opacity = 1;
+                    console.log(this.id);
+                    if (+this.id == +selection){
+                      window.localStorage.setItem("paxselection", 0);
+                    } else {
+                      window.localStorage.setItem("paxselection", d.AgtId);
+                    }
+                    window.localStorage.setItem("updatePaxMap", "true");
+                    callFunction();
+
+                  } else { // if clicked
+                    clicked = false;
+                    this.style.opacity = 0.5;
                     window.localStorage.setItem("paxselection", 0);
-                  } else {
-                    window.localStorage.setItem("paxselection", d.AgtId);
+                    window.localStorage.setItem("updatePaxMap", "true");
+                    callFunction();
                   }
-                  window.localStorage.setItem("updatePaxMap", "true");
-                  callFunction();
-
-                } else { // if clicked
-                  clicked = false;
-                  this.style.opacity = 0.5;
-                  window.localStorage.setItem("paxselection", 0);
-                  window.localStorage.setItem("updatePaxMap", "true");
-                  callFunction();
-                }
+              });
+              selectedRects.on("mouseover",function(d){
+                  if (!clicked){
+                    this.style.fill = "#ffffff";
+                    this.style.stroke = "#ffffff";
+                    window.localStorage.setItem("updatePaxHorizontal","false");
+                    window.localStorage.setItem("updatePaxMap", "false");
+                    window.localStorage.setItem("paxagtid", d.AgtId);
+                   }
+              });
+              selectedRects.on("mouseout",function(d) {
+                  if ((!clicked) && (+this.id != +selection)){
+                    window.localStorage.setItem("updatePaxHorizontal","false");
+                    window.localStorage.setItem("updatePaxMap", "false");
+                    window.localStorage.setItem("paxagtid", 0);
+                    this.style.fill = "black"
+                    this.style.stroke = "#737373";
+                   }
               });
 
-              rects.on("mouseover",function(d){
-                if (!clicked){
-                  this.style.fill = "#ffffff";
-                  this.style.stroke = "#ffffff";
-                  window.localStorage.setItem("updatePaxHorizontal","false");
-                  window.localStorage.setItem("updatePaxMap", "false");
-                  window.localStorage.setItem("paxagtid", d.AgtId);
-                 }
-              });
-              rects.on("mouseout",function(d) {
-                if ((!clicked) && (+this.id != +selection)){
-                  window.localStorage.setItem("updatePaxHorizontal","false");
-                  window.localStorage.setItem("updatePaxMap", "false");
-                  window.localStorage.setItem("paxagtid", 0);
-                  this.style.fill = "black"
-                  this.style.stroke = "#737373";
-                 }
-              });
-
-               var yrCount = chartGroup.selectAll('rect.agt')._groups[0].length;
-               yrCounts.push([(years[year].values[0].Year), yrCount]);
+               var yrCount = rects._groups[0].length; //chartGroup.selectAll('rect.agt')._groups[0].length
+               var codeYrCount = selectedRects._groups[0].length;
+               yrCounts.push([(years[year].values[0].Year), yrCount, codeYrCount]);
 
              }
 
@@ -218,7 +219,7 @@ function callFunction() {
                .attr("class","count")
                .attr("x", function(d){ return x(parseYear(d[0]))+(margin.left*2.5); })
                .attr("y", function(d){ return height-(xHeight*2)-(d[1]*agtHeight); })
-               .text(function(d){ return d[1]; })
+               .text(function(d){ return d[2]; })
                .style("font-family", "sans-serif")
                .style("font-size", "10px")
                .style("fill","#000")
@@ -228,6 +229,7 @@ function callFunction() {
           /*
           FUNCTIONS
           */
+          // Only visualize agreements signed within the selected time period
           function setAgtTimePeriod(d){
             // console.log(newMinDay);
             // console.log(newMaxDay);
@@ -239,29 +241,91 @@ function callFunction() {
             }
           }
 
-          function setAgtFilters(d){
+          // Draw agreements with selected codes & countries/entities in black,
+          // those without selected codes & countries/entities in gray
+          function setAgtColors(d){
             var agmtCodes = [d.HrGen, d.Pol, d.Eps, d.Mps, d.Polps, d.Terps, d.TjMech, d.GeWom, ]; //d.HrFra,
             var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrFra,
             var codeFilterCount = codeFilters.length;
             if (paxANY == 1){
+              pass = false;
+              var codeValueTotal = 0;
               for (i = 0; i < codeFilterCount; i++){
-                if ((codeFilters[i] == 1) && (agmtCodes[i] > 0)){
-                  return d;
+                if (codeFilters[i] == 1){
+                  codeValueTotal += 1;
+                  if ((agmtCodes[i] > 0)){
+                    pass = true;
+                  }
                 }
               }
-            } else { // if paxALL == 1
+              if ((codeValueTotal > 0) && (pass)){
+                if (+d.AgtId == +selection){
+                  return ["white", "selected"];   // if an agreement is selected on the map
+                } else {
+                  return ["black", "selected"];
+                }
+                // return getAgtCons(d);
+              } else {
+                window.localStorage.setItem("paxselection","");
+                return ["#595959", "unselected"];
+              }
+            }
+            else { // if paxALL == 1
+              var codeValueTotal = 0;
               var mismatch = false;
               for (j = 0; j < codeFilterCount; j++){
-                if ((codeFilters[j] == 1) && agmtCodes[j] == 0){
-                  mismatch = true;
+                if (codeFilters[j] == 1){
+                  codeValueTotal += 1;
+                  if (agmtCodes[j] == 0){
+                    mismatch = true;
+                  }
                 }
               }
-              if (!mismatch){
-                return d;
+              if (codeValueTotal == 0){
+                if (+d.AgtId == +selection){
+                  return ["white", "selected"];   // if an agreement is selected on the map
+                } else {
+                  return ["black", "selected"];
+                }
+              } else if ((codeValueTotal > 0) && (!mismatch)){
+                if (+d.AgtId == +selection){
+                  return ["white", "selected"];   // if an agreement is selected on the map
+                } else {
+                  return ["black", "selected"];
+                }
+                // return getAgtCons(d);
+              } else {
+                window.localStorage.setItem("paxselection","");
+                return ["#595959", "unselected"];
               }
             }
           }
 
+          // Only visusalize agreements that address selected codes
+          // function setAgtFilters(d){
+          //   var agmtCodes = [d.HrGen, d.Pol, d.Eps, d.Mps, d.Polps, d.Terps, d.TjMech, d.GeWom, ]; //d.HrFra,
+          //   var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrFra,
+          //   var codeFilterCount = codeFilters.length;
+          //   if (paxANY == 1){
+          //     for (i = 0; i < codeFilterCount; i++){
+          //       if ((codeFilters[i] == 1) && (agmtCodes[i] > 0)){
+          //         return d;
+          //       }
+          //     }
+          //   } else { // if paxALL == 1
+          //     var mismatch = false;
+          //     for (j = 0; j < codeFilterCount; j++){
+          //       if ((codeFilters[j] == 1) && agmtCodes[j] == 0){
+          //         mismatch = true;
+          //       }
+          //     }
+          //     if (!mismatch){
+          //       return d;
+          //     }
+          //   }
+          // }
+
+          // Only visualize agreements that address selected countries/entities
           function setAgtCons(d){
             var agmtCon = String(d.Con);
             if (paxConRule == "any"){

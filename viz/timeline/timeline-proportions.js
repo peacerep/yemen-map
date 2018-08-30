@@ -155,12 +155,9 @@ function callFunction() {
                   .attr("name",function(d){ return d.Agt; })
                   .attr("value",function(d){ return d.Year; })
                   .attr("fill", function(d){ return (setAgtColors(d))[0]; })//"black")
-                  .attr("stroke",function(d){ if (+d.AgtId == +selection){ return "white"; } else { return "#737373"; } })  // same as html background-color
-                  .attr("stroke-width",function(d){ if (+d.AgtId == +selection){ return "2px"; } else { return "0.5px"; } })
-                  .style("opacity", function(d){ if (+d.AgtId == +selection){ return "1"; } else { return "0.5"; } })
-                  .attr("stroke","#737373")  // same as html background-color
-                  .attr("stroke-width","0.5px")
-                  .style("opacity", "0.7")
+                  .attr("stroke",function(d){ if (+d.AgtId == +selection){ return "white"; } else { return "#737373"; } })   //.attr("stroke","#737373")  // same as html background-color
+                  .attr("stroke-width",function(d){ if (+d.AgtId == +selection){ return "2px"; } else { return "0.5px"; } }) //.attr("stroke-width","0.5px")
+                  .style("opacity", function(d){ if (+d.AgtId == +selection){ return "1"; } else { return "0.5"; } })        //.style("opacity", "0.7")
                   .attr("x", function(d){ return x(parseYear(d.Year)) - (agtWidth/2) + margin.left*2; })
                   .attr("y",function(d,i){ return (height-xHeight-margin.bottom-(agtHeight*1.5)-((agtHeight)*(i*agtSpacing)))+"px"; })
                   .attr("width", agtWidth+"px")
@@ -234,6 +231,8 @@ function callFunction() {
           /*
           FUNCTIONS
           */
+          // Calculate the proportion of agreements that address selected codes
+          // Percentage calculated as: (# that address selected codes / total # for selected country/entity)*100
           function getProp(yrCount, yrTotal){
             var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrFra,
             var codeFilterCount = codeFilters.length;
@@ -252,6 +251,7 @@ function callFunction() {
             }
           }
 
+          // Visualize agreements signed in the selected years only
           function setAgtTimePeriod(d){
             var minDate = parseDate(newMinDay);
             var maxDate = parseDate(newMaxDay);
@@ -261,6 +261,8 @@ function callFunction() {
             }
           }
 
+          // Draw agreements with selected codes & countries/entities in black,
+          // those without selected codes & countries/entities in gray
           function setAgtColors(d){
             var agmtCodes = [d.HrGen, d.Pol, d.Eps, d.Mps, d.Polps, d.Terps, d.TjMech, d.GeWom, ]; //d.HrFra,
             var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrFra,
@@ -282,6 +284,7 @@ function callFunction() {
                 } else {
                   return ["black", "selected"];
                 }
+                // return getAgtCons(d);
               } else {
                 return ["#595959", "unselected"];
               }
@@ -303,22 +306,29 @@ function callFunction() {
                 } else {
                   return ["black", "selected"];
                 }
+                // return getAgtCons(d);
               } else {
                 return ["#595959", "unselected"];
               }
             }
           }
 
-          function setAgtCons(d){
+          function setAgtCons(d){         //getAgtCons(d){
             var agmtCon = String(d.Con);
             if (paxConRule == "any"){
               if (paxCons.length > 0){
                 for (i = 0; i < paxCons.length; i++){
                   if (agmtCon.includes(paxCons[i])){
+                    // if (+d.AgtId == +selection){
+                    //   return ["white", "selected"];
+                    // } else {
+                    //   return ["black", "selected"];
+                    // }
                     return d;
                   }
                 }
               }
+              return ["#595959", "unselected"];
             }
             if (paxConRule == "all") {
               var mismatch = false;
@@ -328,7 +338,14 @@ function callFunction() {
                 }
               }
               if (!mismatch){
+              //   if (+d.AgtId == +selection){
+              //     return ["white", "selected"];
+              //   } else {
+              //     return ["black", "selected"];
+              //   }
                 return d;
+              // } else {
+              //   return ["#595959", "unselected"];
               }
             }
           }
