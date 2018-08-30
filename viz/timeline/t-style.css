@@ -107,7 +107,7 @@ g.xaxis#dat g.tick text {
 .tooltip {
   background-color: #ffffff;
   width: auto;
-  text-align: center;
+  text-align: left;
   padding-left: 20px;
   font-family: 'M PLUS Rounded 1c', sans-serif;
   font-weight: 700;

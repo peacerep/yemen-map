@@ -212,7 +212,7 @@ function callFunction() {
                tooltip.style("opacity","0.9")
                  .style("left", function(d){
                    if (d3.event.pageX < (margin.left+10)){ return d3.event.pageX+10+"px"; }
-                   else if (d3.event.pageX > (margin.right+80)){ return d3.event.pageX-80+"px"; }
+                   else if (d3.event.pageX > (margin.right+150)){ return d3.event.pageX-150+"px"; }
                    else { return d3.event.pageX+"px"; }
                  })
                  .style("top", d3.event.pageY+"px")

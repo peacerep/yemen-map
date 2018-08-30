@@ -32,8 +32,8 @@ button {
 h1 {
   font-family: 'M PLUS Rounded 1c', sans-serif;
   font-weight: 900;
-  font-size: 24px;
-  color: silver;
+  font-size: 28px;
+  color: white;
   pointer-events: none;
 }
 h2 {
@@ -46,11 +46,14 @@ h4 {
   font-weight: 700;
   font-size: 16px;
   padding-top: 0px;
-  color: silver;
+  color: white;
 }
 p {
   font-weight: 700;
   font-size: 12px;
+}
+p#codes{
+  font-weight: 400;
 }
 
 p, a, label {
@@ -61,7 +64,7 @@ p, a, label {
   font-weight: 700;
   line-height: 22px;
 }
-p#selectionsCon {
+p#selectionsCon, p#selectionsCode {
   font-weight: 400;
   font-style: italic;
   padding-left: 5px;
@@ -75,8 +78,13 @@ a.pdf, a.cod {
   padding: 0;
   color: silver;
 }
-a.pdf { float: left; }
-a.cod { float: right; }
+a.pdf {
+  float: left;
+}
+a.cod {
+  float: left;
+  margin-left: 24px;
+}
 input {
   margin-left: 8px;
 }
@@ -86,8 +94,8 @@ a#SelectAllCodes {
   text-decoration: underline;
 }
 a#DeselectAllCodes {
-  float: right;
-  margin-right: 20px;
+  float: left;
+  margin-left: 24px;
   color: silver;
   text-decoration: underline;
 }
@@ -196,6 +204,7 @@ CON (COUNTRY & ENTITY) DROPDOWN
 */
 .ConDropBtn {
   width: 100%;
+
 }
 .ConContent {
   display: none;
@@ -262,6 +271,10 @@ CODE & AGREEMENT STAGE LEGENDS
 */
 table {
   margin-top: 5px;
+  margin-left: 4px;
+}
+table#legend{
+  pointer-events: none;
 }
 table td {
   font-family: 'M PLUS Rounded 1c', sans-serif;
@@ -275,7 +288,7 @@ td, tr {
   cursor: pointer;
   line-height: 10px;
 }
-tr:hover {
+table#Codes tr:hover {
   background-color: #838383;
 }
 /* Agreement Stages */
