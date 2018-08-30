@@ -1,10 +1,15 @@
 window.onload = function() {
-
   window.localStorage.setItem("updatePaxMap", "false");
   window.localStorage.setItem("updatePaxVerticalA","false");
   window.localStorage.setItem("updatePaxVerticalB","false");
   window.localStorage.setItem("updatePaxVerticalC","false");
   window.localStorage.setItem("updatePaxHorizontal","false");
+
+  // Agreement selection
+  window.localStorage.setItem("paxselectionV", 0);
+  // Hovered agreement
+  window.localStorage.setItem("paxagtidV", 0);
+
   paxFilterUncheck(); // Check all code filters
   paxRuleAll(); // Pick code filter rule ALL
   window.localStorage.setItem("updatePaxVerticalA","true");
@@ -84,6 +89,12 @@ window.onload = function() {
   // Page refresh listener
     if (window.performance) {
       if ((performance.navigation.TYPE_RELOAD) || (window.localStorage.getItem("paxReset") == "true")) {
+
+        // Agreement selection
+        window.localStorage.setItem("paxselectionV", 0);
+        // Hovered agreement
+        window.localStorage.setItem("paxagtidV", 0);
+
         paxFilterUncheck(); // Check all code filters
         paxRuleAll(); // Pick code filter rule ALL
         window.localStorage.setItem("updatePaxVerticalA","true");

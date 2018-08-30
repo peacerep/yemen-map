@@ -15,6 +15,8 @@ var paxTjMech = window.localStorage.setItem("paxGeWomV",0); // Transitional just
 var paxANY = window.localStorage.setItem("paxANYV",0); // Selected ANY filter rule
 var paxALL = window.localStorage.setItem("paxALLV",1); // Selected ALL filter rule
 
+var selectionV;
+
 d3.select(window).on("resize", callFunction);
 window.addEventListener("storage", toUpdate);
 
@@ -44,7 +46,9 @@ function callFunction() {
     paxPol = locStor.getItem("paxPolV");
     paxGeWom = locStor.getItem("paxGeWomV");
     paxTjMech = locStor.getItem("paxTjMechV");
-    // oldFilters = [+paxGeWom, +paxHrFra, +paxHrGen, +paxEps, +paxMps, +paxPol, +paxPolps, +paxTerps, +paxTjMech, +paxANY, +paxALL];
+    // Agreement selection
+    selectionV = window.localStorage.getItem("paxselectionV");
+    console.log("Vertical Selection: "+selectionV);
   };
 
   // Date parsers & formatters
@@ -96,9 +100,9 @@ function callFunction() {
           };
 
           // Create bar chart tooltip
-          var tooltip = d3.select("body").append("div")
-              .style("opacity","0")
-              .style("position","absolute");
+          // var tooltip = d3.select("body").append("div")
+          //     .style("opacity","0")
+          //     .style("position","absolute");
 
           // Group agreements by Year (create an array of objects whose key is the year and value is an array of objects (one per agreement))
           var years = d3.nest()
@@ -165,39 +169,43 @@ function callFunction() {
                 .attr("name",function(d){ return d.Agt; })
                 .attr("value",function(d){ return d.Year; })
                 .attr("fill", function(d){ return getStageFill(d, stageValues, stageColors); })//"black")
-                .attr("stroke","#737373")  // same as html background-color
+                .attr("stroke",function(d){ if (+d.AgtId == +selectionV){ return "#ffffff"; } else { return "#737373"; } })  // same as html background-color
                 .attr("stroke-width","1px")
-                .style("opacity", "0.7")
+                .style("opacity", function(d){ if (+d.AgtId == +selectionV){ return "1"; } else { return "0.7"; } })
                 .attr("x",function(d,i){ return (yWidth+margin.left+((agtWidth)*(i*agtSpacing)))+"px"; })
                 .attr("y", function(d){ return y(parseYear(d.Year)) - (agtHeight/2) + (margin.top*7); })
                 .attr("width", agtWidth+"px")
                 .attr("height", agtHeight+"px");
 
-            rects.on("mousemove",function(d){
-                  // Get core agreement information (name, date, region, country/entity, status, type & stage)
-                  agt = d.Agt;
-                  dat = formatDate(d.Dat);
-                  // reg = d.Reg;
-                  con = d.Con;
-                  status = d.Status;
-                  agtp = d.Agtp;
-                  stage = d.Stage;
-                  substage = d.StageSub;
-                  // Display core information in tooltip
-                  this.style.fill = "#ffffff";
-                  tooltip.style("opacity","0.9")
-                    .style("left", (d3.event.pageX/2)+"px")
-                    .style("top", d3.event.pageY+"px")
-                    .style("background","#ffffff")
-                    .style("padding","10px")
-                    .attr("class","tooltip");
-                  tooltip.html("<p><em>"+agt+"</em><br/><br/><b>Date Signed:</b> "+dat+"</br><b>Country/Entity:</b> "+con+"<br/><b>Status:</b> "+status+"<br/><b>Type:</b> "+agtp+"<br/><b>Stage:</b> "+stage+"<br/><b>Substage:</b> "+substage);
-                 });
+            rects.on("click", function(d) {
+              if (+d.AgtId != +selectionV){
+                // console.log(this.id); // this.id == d.AgtId
+                window.localStorage.setItem("paxselectionV", d.AgtId);
+                // selectionV = window.localStorage.getItem("paxselectionV");
+                window.localStorage.setItem("updatePaxVerticalA", "true"); // Deselect any selected agreement on left vertical timeline
+                window.localStorage.setItem("updatePaxVerticalB", "true"); // Deselect any selected agreement on middle vertical timeline
+                callFunction();
+              } else { // if clicked
+                // console.log(this.id);
+                window.localStorage.setItem("paxselectionV", 0);
+                // selectionV = window.localStorage.getItem("paxselectionV");
+                window.localStorage.setItem("updatePaxVerticalA", "true"); // Deselect any selected agreement on left vertical timeline
+                window.localStorage.setItem("updatePaxVerticalB", "true"); // Deselect any selected agreement on middle vertical timeline
+                callFunction();
+              }
+            });
+
+            rects.on("mouseover",function(d){
+                this.style.opacity = 1;
+                window.localStorage.setItem("paxagtidV", d.AgtId);
+            });
             rects.on("mouseout",function(d) {
-                   this.style.fill = getStageFill(d, stageValues, stageColors) //"black"
-                   this.style.stroke = "#737373"
-                   tooltip.style("opacity","0");
-                 });
+              window.localStorage.setItem("paxagtidV", 0);
+              if (+d.AgtId.id != +selectionV){
+                this.style.opacity = 0.7;
+                this.style.fill = getStageFill(d, stageValues, stageColors);
+               }
+            });
           }
 
           /*
@@ -270,7 +278,9 @@ function callFunction() {
           function getStageFill(d, stageValues, stageColors){
             // d.StageSub value to color: "FrCons"
             // d.Stage possible values to color: "Pre", "SubPar", "SubComp", "Imp", "Cea", "Other"
-            if (d.StageSub == stageValues[6]){ //"FrCons"
+            if (d.AgtId == selectionV){
+              return "#ffffff";
+            } else if (d.StageSub == stageValues[6]){ //"FrCons"
               return stageColors[6];
             } else {
               var stageI = stageValues.indexOf(d.Stage);

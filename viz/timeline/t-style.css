@@ -104,13 +104,21 @@ g.xaxis#dat g.tick text {
   fill:none;
   pointer-events: all;
 } */
-.tooltip {
-  background-color: #ffffff;
+/* .tooltip {
   width: auto;
   text-align: left;
   padding-left: 20px;
   font-family: 'M PLUS Rounded 1c', sans-serif;
   font-weight: 700;
   z-index: 1;
+  line-height: 16px;
   pointer-events: none !important;
 }
+.tooltip a {
+  margin-left: 0px;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 900;
+  line-height: 20px;
+  text-decoration: underline;
+  /* pointer-events: visible; */
+} */
