@@ -1,4 +1,4 @@
-# pax: Visualizing Peace
+# Visualizing Peace [pax]
 
 
 A Data Visualization Project for the Political Settlements Research Programme (http://www.politicalsettlements.org/)
