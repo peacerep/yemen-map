@@ -14,7 +14,7 @@ Documentation: https://paxviz.wordpress.com/
 
 <em>For the complete PA-X Codebook please visit www.peaceagreements.org</em>
 
-
+<br/>
 <b>Con: Country/Entity</b>
 Where the conflict originated, has territorial element, or relates to
 
