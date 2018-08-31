@@ -137,3 +137,17 @@ Women, girls and gender topics are women, women’s inclusion, women’s rights;
 Binary variable – 1 indicates topic addressed, 0 not addressed
 
 <em>Appears in visualization's left sidebar as a filter and petal in agreements' symbols (flowers) for "Agreements in Time and Space," and as a filter in the "Select Codes" dropdown for "Agreements Comparison"</em>
+
+
+<br/><br/>
+<b>TO UPDATE VISUALIZATIONS FOR NEW DATA (CSV FILE)</b>
+
+
+(1) Change the data source file to the newly exported CSV file.
+
+(2) Add the new years to the start year and end year drop down lists on the left-hand side of the visualization webpage (if the new CSV file contains agreements that are signed before 1990 or after 2015).
+
+(3) Add the new country and entity names to the two country/entity drop down lists on the left-hand side of the visualization webpage (if the new CSV file contains agreements that were signed by new countries or entities).
+
+
+Note: The timelines’ axes, the count and proportion calculations, and the size of the timeline visualizations are determined by the data source file, so those will adjust to new data automatically.
