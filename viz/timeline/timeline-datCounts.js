@@ -270,7 +270,7 @@ function callFunction() {
                   return d;
                 } else if (paxCons.length > 0){
                   for (i = 0; i < paxCons.length; i++){
-                    if (agmtCon.includes(paxCons[i])){
+                    if ((agmtCon.includes(paxCons[i])) || (paxCons[i].includes(agmtCon))){
                       return d;
                     }
                   }
@@ -279,7 +279,7 @@ function callFunction() {
               if (paxConRule == "all") {
                 var mismatch = false;
                 for (j = 0; j < paxCons.length; j++){
-                  if (!(agmtCon.includes(paxCons[j]))){
+                  if ((!(agmtCon.includes(paxCons[j]))) && (!(paxCons[j].includes(agmtCon)))){
                     mismatch = true;
                   }
                 }

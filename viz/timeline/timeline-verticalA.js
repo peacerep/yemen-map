@@ -250,7 +250,7 @@ function callFunction() {
           function pickAgtCon(d){
             var con = String(localStorage.getItem("paxVertConA"));
             var agmtCon = String(d.Con);
-            if (agmtCon.includes(con)){
+            if ((agmtCon.includes(con)) || (con.includes(agmtCon))){
              return d;
             }
           }
