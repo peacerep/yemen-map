@@ -144,6 +144,8 @@ function callFunction() {
           var y = d3.scaleTime()
                       .domain([minYear,maxYear])  // data space
                       .range([margin.top,(height-margin.bottom)]);  // display space
+          window.localStorage.setItem("paxMinYearV", minYear); // same for all vertical timelines
+          window.localStorage.setItem("paxMaxYearV", maxYear); // same for all vertical timelines
 
           // Define the full timeline chart SVG element
           var svg = d3.select("body").select("#chartA").append("svg")

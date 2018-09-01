@@ -1,5 +1,6 @@
 /* Filtering agreements by category
    Storing paxfilters in local storage
+   Updating URL based on filter selections
 */
 window.onload = function() {
     /*
@@ -31,63 +32,60 @@ window.onload = function() {
     // Time listeners
     document.getElementById("StartYears").onclick = function(event){
       window.localStorage.setItem("updatePaxHorizontal","false");
-      // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       let target = event.target;
       var startDate = "01/01/"+String(target.id);
       window.localStorage.setItem("paxNewMinDay",startDate);
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
+      //updateURL();
     }
     document.getElementById("EndYears").onclick = function(event){
       window.localStorage.setItem("updatePaxHorizontal","false");
-      // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       let target = event.target;
       var endDate = "31/12/"+String(target.id);
       window.localStorage.setItem("paxNewMaxDay",endDate);
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
+      //updateURL();
     }
 
     // Country/entity listeners
     document.getElementById("anyCon").onclick = function(event) {
       window.localStorage.setItem("updatePaxHorizontal","false");
-      // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       paxConRuleAny();
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
+      //updateURL();
     }
     document.getElementById("allCon").onclick = function(event) {
       window.localStorage.setItem("updatePaxHorizontal","false");
-      // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       paxConRuleAll();
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
+      //updateURL();
     }
     document.getElementById("DeselectAllCons").onclick = function(event) {
       window.localStorage.setItem("updatePaxHorizontal","false");
-      // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       paxConsAllUncheck();
-
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
+      //updateURL();
     }
     document.getElementById("SelectAllCons").onclick = function(event) {
       window.localStorage.setItem("updatePaxHorizontal","false");
-      // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       paxConsAllCheck();
-
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
+      //updateURL();
     }
     document.getElementById("Cons").onclick = function(event){
       window.localStorage.setItem("updatePaxHorizontal","false");
-      // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       let target = event.target;
       var con = target.id;
@@ -108,50 +106,48 @@ window.onload = function() {
       }
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
+      //updateURL();
     }
 
     // Filter rule listeners
     document.getElementById("any").onclick = function(event) {
       window.localStorage.setItem("updatePaxHorizontal","false");
-      // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       paxRuleAny();
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
+      //updateURL();
     }
     document.getElementById("all").onclick = function(event) {
       window.localStorage.setItem("updatePaxHorizontal","false");
-      // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       paxRuleAll();
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
+      //updateURL();
     }
 
     // Code filter listeners
     document.getElementById("DeselectAllCodes").onclick = function(event) {
       window.localStorage.setItem("updatePaxHorizontal","false");
-      // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       paxFilterUncheck();
-
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
+      //updateURL();
     }
     document.getElementById("SelectAllCodes").onclick = function(event) {
       window.localStorage.setItem("updatePaxHorizontal","false");
-      // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       paxFilterCheck();
-
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
+      //updateURL();
     }
 
     // Code filter listeners
     document.getElementById("Codes").onclick = function(event){
       window.localStorage.setItem("updatePaxHorizontal","false");
-      // window.localStorage.setItem("updatePaxVertical","false");
       window.localStorage.setItem("updatePaxMap", "false");
       let target = event.target;
       var code = target.id;
@@ -169,18 +165,9 @@ window.onload = function() {
           }
         }
       }
-      // console.log("Target.id: "+target.id);
-      // if (target.style.color == "silver"){
-      //   localStorage.setItem(target.id, 1);
-      //   target.style.color = "black";
-      //   console.log("Checked "+target.id);
-      // } else {
-      //   localStorage.setItem(target.id, 0);
-      //   target.style.color = "silver";
-      //   console.log("Unchecked "+target.id);
-      // }
       window.localStorage.setItem("updatePaxHorizontal","true");
       window.localStorage.setItem("updatePaxMap", "true");
+      //updateURL();
     }
 
     // Page refresh listener
@@ -317,3 +304,91 @@ function paxFilterCheck() {
   }
   console.log("Checked all code filters");
 }
+
+// // Put filter selections in website URL (replace state rather than push state)
+// function updateURL() {
+//   /*
+//   TOP: horizontal timeline and map
+//   */
+//   // Country/entity filter rule
+//   var paxConRule = localStorage.getItem("paxConRule");
+//   // Country/entity selections
+//   var paxCons = window.localStorage.getItem("paxCons");
+//   // Code filter rule
+//   var paxANY = localStorage.getItem("paxANY");
+//   var paxALL = localStorage.getItem("paxALL");
+//   var paxCodeRule = "";
+//   if (+paxANY == 1){
+//     paxCodeRule = "any";
+//   } else if (+paxALL == 1){
+//     paxCodeRule = "all";
+//   }
+//   // Code filter selections
+//   var paxHrGen = localStorage.getItem("paxHrGen");
+//   var paxPol = localStorage.getItem("paxPol");
+//   var paxEps = localStorage.getItem("paxEps");
+//   var paxMps = localStorage.getItem("paxMps");
+//   var paxPolps = localStorage.getItem("paxPolps");
+//   var paxTerps = localStorage.getItem("paxTerps");
+//   var paxTjMech = localStorage.getItem("paxTjMech");
+//   var paxGeWom = localStorage.getItem("paxGeWom");
+//   var codes = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
+//   var codeNames = ["HrGen", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
+//   var codeSelections = ""
+//   for (i = 0; i < codes.length; i++){
+//     if (+codes[i] > 0){
+//       codeSelections += codeNames[i];
+//     }
+//   }
+//   // Start and End Dates
+//   var paxNewMinDay = localStorage.getItem("paxNewMinDay");
+//   var paxNewMaxDay = localStorage.getItem("paxNewMaxDay");
+//
+//   /*
+//   Bottom: vertical timelines
+//   */
+//   // Country/entity selections for vertical timelines
+//   var paxVertConA = window.localStorage.getItem("paxVertConA"); // left
+//   var paxVertConB = window.localStorage.getItem("paxVertConB"); // middle
+//   var paxVertConC = window.localStorage.getItem("paxVertConC"); // right
+//   // Code filter rule
+//   var paxANYV = window.localStorage.getItem("paxANYV");
+//   var paxALLV = window.localStorage.getItem("paxALLV");
+//   var paxCodeRuleV = "";
+//   if (+paxANYV == 1){
+//     paxCodeRuleV = "any";
+//   } else if (+paxALLV == 1){
+//     paxCodeRuleV = "all";
+//   }
+//   // Code filter selections
+//   var paxHrFraV = window.localStorage.getItem("paxHrFraV");
+//   var paxHrGenV = window.localStorage.getItem("paxHrGenV");
+//   var paxMpsV = window.localStorage.getItem("paxMpsV");
+//   var paxEpsV = window.localStorage.getItem("paxEpsV");
+//   var paxTerpsV = window.localStorage.getItem("paxTerpsV");
+//   var paxPolpsV = window.localStorage.getItem("paxPolpsV");
+//   var paxPolV = window.localStorage.getItem("paxPolV");
+//   var paxGeWomV = window.localStorage.getItem("paxGeWomV");
+//   var paxTjMechV = window.localStorage.getItem("paxTjMechV");
+//   var codesV = [+paxHrGenV, +paxPolV, +paxEpsV, +paxMpsV, +paxPolpsV, +paxTerpsV, +paxTjMechV, +paxGeWomV];
+//   // same codeNames as above --> ["HrGen", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
+//   var codeSelectionsV = ""
+//   for (i = 0; i < codesV.length; i++){
+//     if (+codesV[i] > 0){
+//       codeSelectionsV += codeNames[i];
+//     }
+//   }
+//   // Start & end years
+//   var paxMinYearV = window.localStorage.getItem("paxMinYearV");
+//   var paxMaxYearV = window.localStorage.getItem("paxMaxYearV");
+//
+//   /*
+//   Create new state to replace current state
+//   (append filter selections to URL)
+//   */
+//   var top = "/top="+paxConRule+":"+paxCons+paxCodeRule+":"+codeSelections+paxNewMinDay+"-"+paxNewMaxDay;
+//   var bottom = "/bottom=A:"+paxVertConA+"B:"+paxVertConB+"C:"+paxVertConC+paxCodeRuleV+":"+codeSelectionsV+paxMinYearV+"-"+paxMaxYearV;
+//   var endURL = String(top+bottom);
+//   var filterState = { filterSelections : endURL }
+//   window.history.replaceState(filterState, "", endURL);
+// }

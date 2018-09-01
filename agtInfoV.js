@@ -1,8 +1,8 @@
-callInfoFunction();
-d3.select(window).on("resize", callInfoFunction);
-window.addEventListener("storage", callInfoFunction);
+callVInfoFunction();
+d3.select(window).on("resize", callVInfoFunction);
+window.addEventListener("storage", callVInfoFunction);
 
-function callInfoFunction() {
+function callVInfoFunction() {
   var svgtest = d3.select("body").select("svg");
   if (!svgtest.empty()) { svgtest.remove(); }
 

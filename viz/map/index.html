@@ -4,15 +4,16 @@
 
 <head>
   <meta charset='utf-8' />
-  <title>Peace agreement</title>
+  <title>Visualizing Peace Map</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
   <script src="http://d3js.org/d3.v3.min.js"></script>
   <link rel="stylesheet" href="css/leaflet1.css"  />
-  <script src="js/leaflet1.js" ></script>
+  <script src="js/leaflet1.js"></script>
+  <!-- <script src="dist/bundle.js"></script> -->
   <!-- include CARTO.js library -->
       <!-- <script src="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/cartodb.js"></script> -->
-      <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+  <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 
   <style>
     body { margin:0; padding:0; }
@@ -65,16 +66,19 @@
   </style>
 </head>
 <body>
+
+<!-- <button class="btn" id="exportMap"><label for="export">Export Map as PNG</label></button> -->
+
 <div id ='map'></div>
 
 <div id ="main"></div>
 
 <div id = 'info'></div>
 <div class="container">
-  <div class="social small">
+  <!-- <div class="social small"> -->
         <!-- <a class="facebook icon icon-facebook"></a> -->
-        <a class="icon icon-twitter twitter-link"></a>
-      </div>
+        <!-- <a class="icon icon-twitter twitter-link"></a> -->
+      <!-- </div> -->
   <!-- <div class="social large" style="display: block;">
       <a class="twitter-link" href="https://twitter.com/intent/tweet?text=http://localhost:8888/test_2/index.html"><button class="btn btn-large btn-primary btn-twitter" type="button"><i class="icon-twitter"></i> Share on Twitter</button></a> -->
 
@@ -97,7 +101,7 @@ var map = L.map('map').setView([20.5, 30.083333], 2);
 //   zoomSnap: 0.5
 // }).addTo(map);
 
-L.tileLayer('https://api.mapbox.com/styles/v1/mtbao/cjjyiskb605in2srt1301jl0m/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXRiYW8iLCJhIjoiY2pnaWY5NXh3MDFuMjMybXpkMjRsZzN1diJ9.QU8UYn66fAYh1f7ghsS89w', {
+var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/mtbao/cjjyiskb605in2srt1301jl0m/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXRiYW8iLCJhIjoiY2pnaWY5NXh3MDFuMjMybXpkMjRsZzN1diJ9.QU8UYn66fAYh1f7ghsS89w', {
   attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
                '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
                'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -107,7 +111,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/mtbao/cjjyiskb605in2srt1301jl0m/ti
   maxZoom: 10,
   zoomSnap: 0.5
 }).addTo(map);   //dark 2
-//
+
 // L.tileLayer('https://api.mapbox.com/styles/v1/mtbao/cjjyhpto001322spbco1nokc5/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXRiYW8iLCJhIjoiY2pnaWY5NXh3MDFuMjMybXpkMjRsZzN1diJ9.QU8UYn66fAYh1f7ghsS89w', {
 //   attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
 //                '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
@@ -933,6 +937,22 @@ function Drawboundary(){
     //Drawboundary();
   }
 
+  // To expot a PNG of the map
+  // var exportMap = L.easyPrint({
+  // 	title: 'Export Map as PNG',
+  // 	position: 'topright',
+  // 	sizeModes: ['A4Landscape'],
+  // }).addTo(map);
+  // exportMap.printMap('A4Landscape', 'PA-X_Map')
+// L.easyPrint().addTo(map)
+
+// var printer = L.easyPrint({
+//       tileLayer: tiles,
+//       sizeModes: ['Current', 'A4Landscape', 'A4Portrait'],
+//       filename: 'PA-X_Map',
+//       exportOnly: true,
+//       hideControlContainer: true
+// }).addTo(map);
 
 //Re-draw on reset, this keeps the markers where they should be on reset/zoom
 </script>

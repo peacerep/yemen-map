@@ -1,5 +1,20 @@
-/* required styles */
+button#exportMap.btn {
+	margin-top: -20px;
+  background-color: #737373;
+  color: silver;
+  padding: 5px;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  border: 1px solid silver;
+}
+.button#exportMap.btn:hover {
+	background-color: #838383;
+}
 
+/* required styles */
 .leaflet-pane,
 .leaflet-tile,
 .leaflet-marker-icon,
