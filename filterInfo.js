@@ -39,10 +39,10 @@ function callFilterFunction() {
   pCons.removeChild(pCons.childNodes[0]);
   pCons.appendChild(newTCons);
 
-  var newTCodes = document.createTextNode(codeText);
-  var pCodes = document.getElementById("selectionsCode");
-  pCodes.removeChild(pCodes.childNodes[0]);
-  pCodes.appendChild(newTCodes);
+  // var newTCodes = document.createTextNode(codeText);
+  // var pCodes = document.getElementById("selectionsCode");
+  // pCodes.removeChild(pCodes.childNodes[0]);
+  // pCodes.appendChild(newTCodes);
 
   // var newTStartYr = document.createTextNode(minDayText);
   // var pStartYr = document.getElementById("selectionsStartYr");

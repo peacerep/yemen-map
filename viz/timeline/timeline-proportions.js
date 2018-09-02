@@ -318,7 +318,7 @@ function callFunction() {
             if (paxConRule == "any"){
               if (paxCons.length > 0){
                 for (i = 0; i < paxCons.length; i++){
-                  if (agmtCon.includes(paxCons[i])){
+                  if ((agmtCon.includes(paxCons[i])) || (paxCons[i].includes(agmtCon))){
                     // if (+d.AgtId == +selection){
                     //   return ["white", "selected"];
                     // } else {
@@ -333,7 +333,7 @@ function callFunction() {
             if (paxConRule == "all") {
               var mismatch = false;
               for (j = 0; j < paxCons.length; j++){
-                if (!(agmtCon.includes(paxCons[j]))){
+                if ((!(agmtCon.includes(paxCons[j]))) || (!(paxCons[i].includes(agmtCon)))){
                   mismatch = true;
                 }
               }
