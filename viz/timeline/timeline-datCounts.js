@@ -1,5 +1,5 @@
 /*
-Horizontal Timeline with Agreements Grouped by Date
+Horizontal Timeline with Bar Chart of Total Agreements Signed Per Date
 */
 
 callFunction();

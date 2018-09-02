@@ -1,6 +1,6 @@
-/* Filtering agreements by category
-   Storing paxfilters in local storage
-   Updating URL based on filter selections
+/* Filtering agreements by category for the map and horizontal timeline
+   (Store paxfilters in local storage)
+   (Update URL based on filter selections) <-- NOT WORKING
 */
 window.onload = function() {
     /*

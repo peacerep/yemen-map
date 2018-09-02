@@ -1,3 +1,9 @@
+/*
+TOP SELECTER AGREEMENT INFORMATION
+Displays the symbol (flower) and details (core information) of the agreement
+from the map or horizontal timeline on which a user hovers or clicks
+*/
+
 window.localStorage.setItem("paxagtid", 0);
 window.localStorage.setItem("paxselection", 0);
 callInfoFunction();

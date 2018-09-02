@@ -1,5 +1,5 @@
 /*
-Vertical Timeline
+Left Vertical Timeline
 */
 
 // Code filter values

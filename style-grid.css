@@ -1,3 +1,8 @@
+/*
+CSS style for the main page with a grid layout of the iframes for
+each visualization and selecter (7 in total)
+*/
+
 * {
   shape-rendering: crispEdges;
 }

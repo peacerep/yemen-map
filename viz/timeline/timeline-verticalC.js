@@ -1,5 +1,5 @@
 /*
-Vertical Timeline
+Right Vertical Timeline
 */
 
 // var paxHrFra = window.localStorage.setItem("paxHrFraV",0); // Human rights framework

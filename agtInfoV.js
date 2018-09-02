@@ -1,3 +1,9 @@
+/*
+BOTTOM SELECTER AGREEMENT INFORMATION
+Displays the symbol (flower) and details (core information) of the agreement
+from the vertical timelines on which a user hovers or clicks
+*/
+
 callVInfoFunction();
 d3.select(window).on("resize", callVInfoFunction);
 window.addEventListener("storage", callVInfoFunction);

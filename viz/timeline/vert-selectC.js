@@ -1,3 +1,8 @@
+/*
+Updates right vertical timelines when the webpage is reloaded or a
+country/entity is selected from the dropdown list
+*/
+
 window.onload = function() {
   window.localStorage.setItem("updatePaxVerticalA","false");
   window.localStorage.setItem("updatePaxVerticalB","false");

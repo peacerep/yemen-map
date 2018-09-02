@@ -1,6 +1,6 @@
 /*
-Display selected filters
-(Countries/Entities, Codes)
+Display selected filters below the dropdown list in the top selecter
+(Names of Countries/Entities ("Con")) for the map and horizontal timeline
 */
 window.localStorage.setItem("paxagtid", 0);
 window.localStorage.setItem("paxselection", 0);
@@ -9,21 +9,23 @@ function callFilterFunction() {
   /*
   Retrieve possible filter values
   */
-  var paxANY = window.localStorage.getItem("paxANY"),
-      paxALL = window.localStorage.getItem("paxALL"),
-      // Code selections
-      // paxHrFra = window.localStorage.getItem("paxHrFra"),
-      paxGen = window.localStorage.getItem("paxHrFra"),
-      paxPol = window.localStorage.getItem("paxPol"),
-      paxEps = window.localStorage.getItem("paxEps"),
-      paxMps = window.localStorage.getItem("paxMps"),
-      paxPolps = window.localStorage.getItem("paxPolps"),
-      paxTerps = window.localStorage.getItem("paxTerps"),
-      paxTjMech = window.localStorage.getItem("paxTjMech"),
-      paxGeWom = window.localStorage.getItem("paxGeWom"),
-      // Country/entity selections
-      paxCons = JSON.parse(window.localStorage.getItem("paxCons")),
+  // var paxANY = window.localStorage.getItem("paxANY"),
+  //     paxALL = window.localStorage.getItem("paxALL"),
+  //     // Code selections
+  //     // paxHrFra = window.localStorage.getItem("paxHrFra"),
+  //     paxGen = window.localStorage.getItem("paxHrFra"),
+  //     paxPol = window.localStorage.getItem("paxPol"),
+  //     paxEps = window.localStorage.getItem("paxEps"),
+  //     paxMps = window.localStorage.getItem("paxMps"),
+  //     paxPolps = window.localStorage.getItem("paxPolps"),
+  //     paxTerps = window.localStorage.getItem("paxTerps"),
+  //     paxTjMech = window.localStorage.getItem("paxTjMech"),
+  //     paxGeWom = window.localStorage.getItem("paxGeWom"),
+
+  // Country/entity selections
+  var paxCons = JSON.parse(window.localStorage.getItem("paxCons")),
       paxConRule = localStorage.getItem("paxConRule");
+
       // // Time selections
       // newMinDay = window.localStorage.getItem("paxNewMinDay"),
       // newMaxDay = window.localStorage.getItem("paxNewMaxDay");
