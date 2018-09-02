@@ -6,8 +6,11 @@ window.onload = function() {
     /*
     Set defaults
     */
-    window.localStorage.setItem("paxagtid", 1370);
-    window.localStorage.setItem("paxselection", 1370);
+    window.localStorage.setItem("updatePaxHorizontal","false");
+    window.localStorage.setItem("updatePaxMap", "false");
+    
+    window.localStorage.setItem("paxagtid", 0);
+    window.localStorage.setItem("paxselection", 0);
 
     var allCons = document.getElementsByName("Con");
     var paxConsAll = [];

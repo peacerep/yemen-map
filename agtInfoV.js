@@ -1,3 +1,4 @@
+
 callVInfoFunction();
 d3.select(window).on("resize", callVInfoFunction);
 window.addEventListener("storage", callVInfoFunction);
@@ -51,7 +52,7 @@ function callVInfoFunction() {
   } else {
 
       // Agreement details and flower information
-      var agtVizData = JSON.parse(window.localStorage.getItem("paxVizData"));         // vizData[agt.AgtId] = [ agt.Agt,agt.Dat,agt.Con,agt.Status,agt.Agtp,agt.Stage,agt.StageSub,agt.Pol,agt.Polps,agt.Terps,agt.Eps,agt.Mps,agt. HrFra,agt.GeWom,agt.TjMech ]
+      var agtVizData = JSON.parse(window.localStorage.getItem("paxVizData"));         // vizData[agt.AgtId] = [ agt.Agt,agt.Dat,agt.Con,agt.Status,agt.Agtp,agt.Stage,agt.StageSub,agt.Pol,agt.Polps,agt.Terps,agt.Eps,agt.Mps,agt.HrGen,agt.GeWom,agt.TjMech ]
 
       // Agreement core information to display ("details")
       var agt = agtVizData[paxAgtId][0],

@@ -1,4 +1,7 @@
 window.onload = function() {
+  window.localStorage.setItem("updatePaxVerticalA","false");
+  window.localStorage.setItem("updatePaxVerticalB","false");
+  window.localStorage.setItem("updatePaxVerticalC","false");
   localStorage.setItem("paxVertConA","None selected");
   document.getElementById("None").checked = true;
   // window.localStorage.setItem("updatePaxVerticalA","true");
@@ -14,6 +17,7 @@ window.onload = function() {
       window.localStorage.setItem("updatePaxMap", "false");
       localStorage.setItem("paxVertConA",String(target.id));
       console.log("Set paxVertConA to "+target.id);
+      console.log("update A "+window.localStorage.getItem("updatePaxVerticalA"));
       //updateURL();
     }
   }

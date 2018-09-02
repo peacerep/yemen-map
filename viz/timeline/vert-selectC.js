@@ -1,4 +1,7 @@
 window.onload = function() {
+  window.localStorage.setItem("updatePaxVerticalA","false");
+  window.localStorage.setItem("updatePaxVerticalB","false");
+  window.localStorage.setItem("updatePaxVerticalC","false");
   localStorage.setItem("paxVertConC","None selected");
   document.getElementById("None").checked = true;
   // window.localStorage.setItem("updatePaxVerticalC","true");

@@ -1,3 +1,5 @@
+window.localStorage.setItem("paxagtid", 0);
+window.localStorage.setItem("paxselection", 0);
 callInfoFunction();
 d3.select(window).on("resize", callInfoFunction);
 window.addEventListener("storage", callInfoFunction);
@@ -48,7 +50,7 @@ function callInfoFunction() {
   } else {
 
       // Agreement details and flower information
-      var agtVizData = JSON.parse(window.localStorage.getItem("paxVizData"));         // vizData[agt.AgtId] = [ agt.Agt,agt.Dat,agt.Con,agt.Status,agt.Agtp,agt.Stage,agt.StageSub,agt.Pol,agt.Polps,agt.Terps,agt.Eps,agt.Mps,agt. HrFra,agt.GeWom,agt.TjMech ]
+      var agtVizData = JSON.parse(window.localStorage.getItem("paxVizData"));         // vizData[agt.AgtId] = [ agt.Agt,agt.Dat,agt.Con,agt.Status,agt.Agtp,agt.Stage,agt.StageSub,agt.Pol,agt.Polps,agt.Terps,agt.Eps,agt.Mps,agt.HrGen,agt.GeWom,agt.TjMech ]
 
       var agt = agtVizData[paxAgtId][0], // window.localStorage.getItem("paxagt"),
           dat = "<b>Date Signed:</b> "+ agtVizData[paxAgtId][1], // window.localStorage.getItem("paxdat"),
@@ -64,7 +66,7 @@ function callInfoFunction() {
           paxAgtTerps = agtVizData[paxAgtId][9], //window.localStorage.getItem("paxAgtTerps"),
           paxAgtEps = agtVizData[paxAgtId][10], //window.localStorage.getItem("paxAgtEps"),
           paxAgtMps = agtVizData[paxAgtId][11], //window.localStorage.getItem("paxAgtMps"),
-          paxAgt HrFra = agtVizData[paxAgtId][12], //window.localStorage.getItem("paxAgt HrFra"),
+          paxAgtHrGen = agtVizData[paxAgtId][12], //window.localStorage.getItem("paxAgtGen"),
           paxAgtGeWom = agtVizData[paxAgtId][13], //window.localStorage.getItem("paxAgtGeWom"),
           paxAgtTjMech = agtVizData[paxAgtId][14], //window.localStorage.getItem("paxAgtTjMech"),
 
@@ -77,7 +79,7 @@ function callInfoFunction() {
                   +agtPDF+">Open PDF</a></b></p>"+
                   "<p><b><a class='cod' target='_blank' href="
                   +agtCod+">View Coding Detail</a></b></p>",                 //+stagesub+"<br/>",
-        data = [paxAgtId, +paxAgtPol, +paxAgtPolps, +paxAgtTerps, +paxAgtEps, +paxAgtMps, +paxAgt HrFra, +paxAgtGeWom, +paxAgtTjMech];
+        data = [paxAgtId, +paxAgtPol, +paxAgtPolps, +paxAgtTerps, +paxAgtEps, +paxAgtMps, +paxAgtHrGen, +paxAgtGeWom, +paxAgtTjMech];
 
     var margin = {top: 160, right: 10, bottom: 10, left: 10}, //read clockwise from top
         width = parseInt(d3.select("body").style("width"), 10),
@@ -94,7 +96,7 @@ function callInfoFunction() {
         rTerpsX = 0, rTerpsY = 0,
         rEpsX = 0, rEpsY = 0,
         rMpsX = 0, rMpsY = 0,
-        r HrFrapsX = 0, r HrFraY = 0,
+        rHrGenX = 0, rHrGenY = 0,
         rGeWomX = 0, rGeWomY = 0,
         rTjMechX = 0, rTjMechY = 0,
         textposition = flowerY + ry3 + r + (spacing*2);
@@ -103,7 +105,7 @@ function callInfoFunction() {
         circle_stroke = '#343332',
         circle_color = '#dddcda',
         color_pol = '#f5003d',color_polps = '#01557a',color_terps = '#fbdd4b',
-        color_eps = '#7a56a0',color_mps = '#029680',color_ HrFra = '#f46c38',
+        color_eps = '#7a56a0',color_mps = '#029680',color_hrgen = '#f46c38',
         color_gewom = '#59c9df',color_tjmech = '#fc96ab';
 
     var svg = d3.select("body").select("#agt").append("svg")
@@ -245,12 +247,12 @@ function callInfoFunction() {
       }
 
       if (data[6] > 0){
-        var ellipse_ HrFra = g.selectAll("ellipse. HrFra")   //0/1
+        var ellipse_hrgen = g.selectAll("ellipse.hrgen")   //0/1
             .data([data[6]])
           .enter().append("ellipse")
-          .attr("class"," HrFra")
+          .attr("class","hrgen")
             .style("opacity", circle_opacity)
-            .style("fill", color_ HrFra)
+            .style("fill", color_hrgen)
             .attr('rx', rx1)
             .attr("ry", ry1)
             .attr("cx",flowerX)
