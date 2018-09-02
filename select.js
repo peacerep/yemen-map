@@ -184,7 +184,7 @@ window.onload = function() {
         paxRuleAll(); // Pick code filter rule ALL
         // Reset codes, countries/entities, & time period
         // window.localStorage.setItem("paxHrFra",0); // Human rights framework
-        window.localStorage.setItem("paxHrGen",0); // Human rights/Rule of law
+        window.localStorage.setItem("paxHrFra",0); // Human rights/Rule of law
         window.localStorage.setItem("paxPol",0); // Political institutions
         window.localStorage.setItem("paxEps",0); // Economic power sharing
         window.localStorage.setItem("paxMps",0); // Military power sharing

@@ -3,7 +3,7 @@ Vertical Timeline
 */
 
 // var paxHrFra = window.localStorage.setItem("paxHrFraV",0); // Human rights framework
-var paxHrGen = window.localStorage.setItem("paxHrGenV",0); // Human rights/Rule of law
+var paxHrFra = window.localStorage.setItem("paxHrFraV",0); // Human rights/Rule of law
 var paxMps = window.localStorage.setItem("paxPolV",0); // Military power sharing
 var paxEps = window.localStorage.setItem("paxEpsV",0); // Economic power sharing
 var paxTerps = window.localStorage.setItem("paxMpsV",0); // Territorial power sharing
@@ -38,7 +38,7 @@ function callFunction() {
     paxALL = locStor.getItem("paxALLV");
     // Filter codes
     // paxHrFra = locStor.getItem("paxHrFraV");
-    paxHrGen = locStor.getItem("paxHrGenV");
+    paxHrFra = locStor.getItem("paxHrFraV");
     paxMps = locStor.getItem("paxMpsV");
     paxEps = locStor.getItem("paxEpsV");
     paxTerps = locStor.getItem("paxTerpsV");
@@ -71,7 +71,7 @@ function callFunction() {
       agtSpacing = 1;
 
   // Obtain data
-  d3.csv("paxTimelineData_24Aug2018.csv")
+  d3.csv("data/paxTimelineData_02092018.csv")
       .row(function(d){ return{ Year:+d.Year,
                                 Dat:parseDate(d.Dat),
                                 AgtId:Number(d.AgtId),
@@ -88,7 +88,7 @@ function callFunction() {
                                 Eps:+d.Eps, // 1-3 indicating increasing level of detail given about Economic Power sharing; 0 if none given
                                 Mps:+d.Mps, // 1-3 indicating increasing level of detail given about Political Power sharing; 0 if none given
                                 Pol:+d.Pol, // 1-3 indicating increasing level of detail given about political institutions; 0 if none given
-                                HrGen:+d.HrGen, // 1 if topic of human rights/rule of law addressed; 0 if not
+                                HrFra:+d.HrFra, // 1 if topic of human rights/rule of law addressed; 0 if not
                                 //HrFra:+d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
                                 TjMech:+d.TjMech // 1-3 indicating increasing level of detail given about a body to deal with the past; 0 if none given
                               }; })
@@ -236,7 +236,7 @@ function callFunction() {
           FUNCTIONS
           */
           // function getCodeCount(){
-          //   var codeFilters = [+paxHrGen, +paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
+          //   var codeFilters = [+paxHrFra, +paxHrFra, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
           //   var codeFilterCount = codeFilters.length;
           //   var codeText = 0;
           //   for (i = 0; i < codeFilterCount; i++){
@@ -253,8 +253,8 @@ function callFunction() {
           }
 
           function setVertAgtFilters(d){
-            var agmtCodes = [d.GeWom, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech]; //d.HrFra,
-            var codeFilters = [+paxGeWom, +paxHrGen, +paxEps, +paxMps, +paxPol, +paxPolps, +paxTerps, +paxTjMech]; //+paxHrFra,
+            var agmtCodes = [d.GeWom, d.HrFra, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech]; //d.HrFra,
+            var codeFilters = [+paxGeWom, +paxHrFra, +paxEps, +paxMps, +paxPol, +paxPolps, +paxTerps, +paxTjMech]; //+paxHrFra,
             var codeFilterCount = codeFilters.length;
             if (paxANY == 1){
               for (i = 0; i < codeFilterCount; i++){
@@ -299,8 +299,8 @@ function callFunction() {
       d3.select("#exportV").on("click", function(){
         var title = "PA-X_VerticalTimeline";
         var con = String(localStorage.getItem("paxVertConC"));
-        var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
-        var codeNames = ["HrGen", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
+        var codeFilters = [+paxHrFra, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
+        var codeNames = ["HrFra", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
         var codes = "";
         for (i = 0; i < codeFilters.length; i++){
           if (codeFilters[i] > 0){

@@ -23,7 +23,7 @@ function callFunction() {
   var paxALL = localStorage.getItem("paxALL");
   // Code filters
   // var paxHrFra = localStorage.getItem("paxHrFra");
-  var paxHrGen = localStorage.getItem("paxHrGen");
+  var paxHrFra = localStorage.getItem("paxHrFra");
   var paxPol = localStorage.getItem("paxPol");
   var paxEps = localStorage.getItem("paxEps");
   var paxMps = localStorage.getItem("paxMps");
@@ -47,7 +47,7 @@ function callFunction() {
   var formatYear = d3.timeFormat("%Y");
 
   // Obtain data
-  d3.csv("paxTimelineData_24Aug2018.csv")
+  d3.csv("data/paxTimelineData_02092018.csv")
       .row(function(d){ return{ Year:+d.Year,
                                 Dat:parseDate(d.Dat),
                                 AgtId:Number(d.AgtId),
@@ -64,7 +64,7 @@ function callFunction() {
                                 Eps:d.Eps, // 1-3 indicating increasing level of detail given about Economic Power sharing; 0 if none given
                                 Mps:d.Mps, // 1-3 indicating increasing level of detail given about Political Power sharing; 0 if none given
                                 Pol:d.Pol, // 1-3 indicating increasing level of detail given about political institutions; 0 if none given
-                                HrGen:d.HrGen, // 1 if topic of human rights/rule of law addressed; 0 if not
+                                HrFra:d.HrFra, // 1 if topic of human rights/rule of law addressed; 0 if not
                                 //HrFra:d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
                                 TjMech:d.TjMech // 1-3 indicating increasing level of detail given about a body to deal with the past; 0 if none given
                               }; })
@@ -215,8 +215,8 @@ function callFunction() {
             FUNCTIONS
             */
             function setAgtFilters(d){
-              var agmtCodes = [d.HrGen, d.Pol, d.Eps, d.Mps, d.Polps, d.Terps, d.TjMech, d.GeWom, ]; //d.HrFra,
-              var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrFra,
+              var agmtCodes = [d.HrFra, d.Pol, d.Eps, d.Mps, d.Polps, d.Terps, d.TjMech, d.GeWom, ]; //d.HrFra,
+              var codeFilters = [+paxHrFra, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrFra,
               var codeFilterCount = codeFilters.length;
               if (paxANY == 1){
                 pass = false;
@@ -315,8 +315,8 @@ function callFunction() {
         for (i = 0; i < paxCons.length; i++){
           cons += paxCons[i];
         }
-        var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
-        var codeNames = ["HrGen", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
+        var codeFilters = [+paxHrFra, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
+        var codeNames = ["HrFra", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
         var codes = "";
         for (i = 0; i < codeFilters.length; i++){
           if (codeFilters[i] > 0){

@@ -13,7 +13,7 @@ function callFilterFunction() {
       paxALL = window.localStorage.getItem("paxALL"),
       // Code selections
       // paxHrFra = window.localStorage.getItem("paxHrFra"),
-      paxGen = window.localStorage.getItem("paxHrGen"),
+      paxGen = window.localStorage.getItem("paxHrFra"),
       paxPol = window.localStorage.getItem("paxPol"),
       paxEps = window.localStorage.getItem("paxEps"),
       paxMps = window.localStorage.getItem("paxMps"),
@@ -78,7 +78,7 @@ function callFilterFunction() {
   }
 
   // function getCodeText(){
-  //   var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrFra,
+  //   var codeFilters = [+paxHrFra, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrFra,
   //   var codeFilterCount = codeFilters.length;
   //   var codeText = "";
   //   var vizCodes = ["Human Rights/Rule of Law", "Political Institutions", "Power Sharing: Economic", "Power Sharing: Military", "Power Sharing: Political", "Power Sharing: Territorial", "Transitional Justice Past Mechanism", "Women, Girls and Gender"]; //"Human Rights Framework",

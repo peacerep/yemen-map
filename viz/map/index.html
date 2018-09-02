@@ -140,7 +140,7 @@ var circle_opacity = .8,
     circle_color = '#dddcda',
 
     color_pol = '#f5003d',color_polps = '#01557a',color_terps = '#fbdd4b',
-    color_eps = '#7a56a0',color_mps = '#029680',color_hrgen = '#f46c38',
+    color_eps = '#7a56a0',color_mps = '#029680',color_hrfra = '#f46c38',
     color_gewom = '#59c9df',color_tjmech = '#fc96ab',
 
     width = '180000px',
@@ -168,7 +168,7 @@ var circle_opacity = .8,
 //     terps = [],  //1,2,3
 //     eps = [],    //1,2,3
 //     mps = [],   //1,2,3
-//     hrgen = [],
+//     hrfra = [],
 //     gewom = [],
 //     tjmech = [];   //1,2,3
 
@@ -224,7 +224,7 @@ function Drawflowers(){
   var paxALL = window.localStorage.getItem("paxALL");
   // Code filters
   // var paxHrFra = window.localStorage.getItem("paxHrFra");
-  var paxHrGen = window.localStorage.getItem("paxHrGen");
+  var paxhrfra = window.localStorage.getItem("paxhrfra");
   var paxPol = window.localStorage.getItem("paxPol");
   var paxEps = window.localStorage.getItem("paxEps");
   var paxMps = window.localStorage.getItem("paxMps");
@@ -251,7 +251,7 @@ function Drawflowers(){
   /*
   LOAD MAP DATA & DRAW GLYPHS
   */
-  d3.json("json/mapTimeConData.json", function(collection) { //data file without core information: json/agreements3.json
+  d3.json("json/paxMapData1_02092018.json", function(collection) { // file without core information: json/agreements3.json
 
     // console.log(collection);
 
@@ -593,16 +593,16 @@ function Drawflowers(){
                  });
           }
 
-          if (data.hrgen){
-            var ellipse_hrgen = g.selectAll("ellipse.hrgen")   //0/1
+          if (data.hrfra){
+            var ellipse_hrfra = g.selectAll("ellipse.hrfra")   //0/1
                 .data([data])
               .enter().append("ellipse")
               .filter(function(d){ return setAgtCons(d); })
               .filter(function(d){ return setAgtFilters(d); })
               .filter(function(d){ return setAgtTimePeriod(d, newMinDay, newMaxDay); })
-                .attr("class","hrgen")
+                .attr("class","hrfra")
                 .style("opacity", circle_opacity)
-                .style("fill", color_hrgen)
+                .style("fill", color_hrfra)
                 .style('z-index',6)
                 .attr("cx",function(d){
                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
@@ -775,8 +775,8 @@ function Drawflowers(){
        FUNCTIONS
        */
        function setAgtFilters(d){
-         var agmtCodes = [d.hrgen, d.pol, d.eps, d.mps, d.polps, d.terps, d.tjmech, d.gewom, ];
-         var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
+         var agmtCodes = [d.hrfra, d.pol, d.eps, d.mps, d.polps, d.terps, d.tjmech, d.gewom, ];
+         var codeFilters = [+paxhrfra, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
          var codeFilterCount = codeFilters.length;
          if (paxANY == 1){
            for (i = 0; i < codeFilterCount; i++){
