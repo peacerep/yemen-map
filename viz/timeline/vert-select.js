@@ -91,7 +91,7 @@ window.onload = function() {
 
   // Page refresh listener
     if (window.performance) {
-      if ((performance.navigation.TYPE_RELOAD) || (window.localStorage.getItem("paxReset") == "true")) {
+      if ((performance.navigation.TYPE_RELOAD)) { //|| (window.localStorage.getItem("paxReset") == "true")
 
         // Agreement selection
         window.localStorage.setItem("paxselectionV", 0);

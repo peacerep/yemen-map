@@ -8,7 +8,7 @@ window.onload = function() {
     */
     window.localStorage.setItem("updatePaxHorizontal","false");
     window.localStorage.setItem("updatePaxMap", "false");
-    
+
     window.localStorage.setItem("paxagtid", 0);
     window.localStorage.setItem("paxselection", 0);
 
@@ -175,7 +175,7 @@ window.onload = function() {
 
     // Page refresh listener
     if (window.performance) {
-      if ((performance.navigation.TYPE_RELOAD) || (window.localStorage.getItem("paxReset") == "true")){
+      if ((performance.navigation.TYPE_RELOAD)){ //|| (window.localStorage.getItem("paxReset") == "true")
         localStorage.setItem("paxCons", JSON.stringify(document.getElementsByName("Con").id));
         paxCheckTime();
         paxConsAllUncheck(); // Check all country/entity values
@@ -184,7 +184,7 @@ window.onload = function() {
         paxRuleAll(); // Pick code filter rule ALL
         // Reset codes, countries/entities, & time period
         // window.localStorage.setItem("paxHrFra",0); // Human rights framework
-        window.localStorage.setItem("pax HrFra",0); // Human rights/Rule of law
+        window.localStorage.setItem("paxHrGen",0); // Human rights/Rule of law
         window.localStorage.setItem("paxPol",0); // Political institutions
         window.localStorage.setItem("paxEps",0); // Economic power sharing
         window.localStorage.setItem("paxMps",0); // Military power sharing
@@ -198,8 +198,8 @@ window.onload = function() {
         window.localStorage.setItem("paxNewMinDay", "01/01/1990");
         window.localStorage.setItem("paxNewMaxDay", "31/12/2015");
 
-        window.localStorage.setItem("paxagtid", 1370);
-        window.localStorage.setItem("paxselection", 1370);
+        window.localStorage.setItem("paxagtid", 0);
+        window.localStorage.setItem("paxselection", 0);
 
         window.localStorage.setItem("updatePaxHorizontal","true");
         window.localStorage.setItem("updatePaxMap", "true");

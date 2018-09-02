@@ -2,12 +2,13 @@
 Horizontal Timeline with Agreements Grouped by Year
 */
 
-// callFunction();
+callFunction();
 d3.select(window).on("resize", callFunction);
 window.addEventListener("storage", toUpdate);
 
 function toUpdate(){
   if (window.localStorage.getItem("updatePaxHorizontal") == "true"){
+    d3.selectAll("rects").remove();
     return callFunction();
   }
 }

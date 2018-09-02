@@ -17,7 +17,7 @@ Horizontal Timeline with Agreements Grouped by Date
 window.localStorage.setItem("paxagtid", 0);
 window.localStorage.setItem("paxselection", 0);
 
-// callFunction();
+callFunction();
 d3.select(window).on("resize", callFunction);
 window.addEventListener("storage", toUpdate);
 
