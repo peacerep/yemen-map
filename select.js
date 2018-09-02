@@ -181,7 +181,7 @@ window.onload = function() {
         paxRuleAll(); // Pick code filter rule ALL
         // Reset codes, countries/entities, & time period
         // window.localStorage.setItem("paxHrFra",0); // Human rights framework
-        window.localStorage.setItem("paxHrGen",0); // Human rights/Rule of law
+        window.localStorage.setItem("pax HrFra",0); // Human rights/Rule of law
         window.localStorage.setItem("paxPol",0); // Political institutions
         window.localStorage.setItem("paxEps",0); // Economic power sharing
         window.localStorage.setItem("paxMps",0); // Military power sharing
@@ -324,7 +324,7 @@ function paxFilterCheck() {
 //     paxCodeRule = "all";
 //   }
 //   // Code filter selections
-//   var paxHrGen = localStorage.getItem("paxHrGen");
+//   var pax HrFra = localStorage.getItem("pax HrFra");
 //   var paxPol = localStorage.getItem("paxPol");
 //   var paxEps = localStorage.getItem("paxEps");
 //   var paxMps = localStorage.getItem("paxMps");
@@ -332,8 +332,8 @@ function paxFilterCheck() {
 //   var paxTerps = localStorage.getItem("paxTerps");
 //   var paxTjMech = localStorage.getItem("paxTjMech");
 //   var paxGeWom = localStorage.getItem("paxGeWom");
-//   var codes = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
-//   var codeNames = ["HrGen", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
+//   var codes = [+pax HrFra, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
+//   var codeNames = [" HrFra", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
 //   var codeSelections = ""
 //   for (i = 0; i < codes.length; i++){
 //     if (+codes[i] > 0){
@@ -362,7 +362,7 @@ function paxFilterCheck() {
 //   }
 //   // Code filter selections
 //   var paxHrFraV = window.localStorage.getItem("paxHrFraV");
-//   var paxHrGenV = window.localStorage.getItem("paxHrGenV");
+//   var pax HrFraV = window.localStorage.getItem("pax HrFraV");
 //   var paxMpsV = window.localStorage.getItem("paxMpsV");
 //   var paxEpsV = window.localStorage.getItem("paxEpsV");
 //   var paxTerpsV = window.localStorage.getItem("paxTerpsV");
@@ -370,8 +370,8 @@ function paxFilterCheck() {
 //   var paxPolV = window.localStorage.getItem("paxPolV");
 //   var paxGeWomV = window.localStorage.getItem("paxGeWomV");
 //   var paxTjMechV = window.localStorage.getItem("paxTjMechV");
-//   var codesV = [+paxHrGenV, +paxPolV, +paxEpsV, +paxMpsV, +paxPolpsV, +paxTerpsV, +paxTjMechV, +paxGeWomV];
-//   // same codeNames as above --> ["HrGen", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
+//   var codesV = [+pax HrFraV, +paxPolV, +paxEpsV, +paxMpsV, +paxPolpsV, +paxTerpsV, +paxTjMechV, +paxGeWomV];
+//   // same codeNames as above --> [" HrFra", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
 //   var codeSelectionsV = ""
 //   for (i = 0; i < codesV.length; i++){
 //     if (+codesV[i] > 0){

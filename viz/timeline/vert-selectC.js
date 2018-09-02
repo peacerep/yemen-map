@@ -37,7 +37,7 @@ window.onload = function() {
   //     paxCodeRule = "all";
   //   }
   //   // Code filter selections
-  //   var paxHrGen = localStorage.getItem("paxHrGen");
+  //   var paxHrFra = localStorage.getItem("paxHrFra");
   //   var paxPol = localStorage.getItem("paxPol");
   //   var paxEps = localStorage.getItem("paxEps");
   //   var paxMps = localStorage.getItem("paxMps");
@@ -45,8 +45,8 @@ window.onload = function() {
   //   var paxTerps = localStorage.getItem("paxTerps");
   //   var paxTjMech = localStorage.getItem("paxTjMech");
   //   var paxGeWom = localStorage.getItem("paxGeWom");
-  //   var codes = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
-  //   var codeNames = ["HrGen", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
+  //   var codes = [+paxHrFra, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
+  //   var codeNames = ["HrFra", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
   //   var codeSelections = ""
   //   for (i = 0; i < codes.length; i++){
   //     if (+codes[i] > 0){
@@ -75,7 +75,7 @@ window.onload = function() {
   //   }
   //   // Code filter selections
   //   var paxHrFraV = window.localStorage.getItem("paxHrFraV");
-  //   var paxHrGenV = window.localStorage.getItem("paxHrGenV");
+  //   var paxHrFraV = window.localStorage.getItem("paxHrFraV");
   //   var paxMpsV = window.localStorage.getItem("paxMpsV");
   //   var paxEpsV = window.localStorage.getItem("paxEpsV");
   //   var paxTerpsV = window.localStorage.getItem("paxTerpsV");
@@ -83,8 +83,8 @@ window.onload = function() {
   //   var paxPolV = window.localStorage.getItem("paxPolV");
   //   var paxGeWomV = window.localStorage.getItem("paxGeWomV");
   //   var paxTjMechV = window.localStorage.getItem("paxTjMechV");
-  //   var codesV = [+paxHrGenV, +paxPolV, +paxEpsV, +paxMpsV, +paxPolpsV, +paxTerpsV, +paxTjMechV, +paxGeWomV];
-  //   // same codeNames as above --> ["HrGen", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
+  //   var codesV = [+paxHrFraV, +paxPolV, +paxEpsV, +paxMpsV, +paxPolpsV, +paxTerpsV, +paxTjMechV, +paxGeWomV];
+  //   // same codeNames as above --> ["HrFra", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
   //   var codeSelectionsV = ""
   //   for (i = 0; i < codesV.length; i++){
   //     if (+codesV[i] > 0){
