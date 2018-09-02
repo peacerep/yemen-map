@@ -371,11 +371,7 @@ function callFunction() {
               if (paxConRule == "all") {
                 var mismatch = false;
                 for (j = 0; j < paxCons.length; j++){
-<<<<<<< HEAD
                   if ((!(agmtCon.includes(paxCons[j]))) || (!(paxCons[i].includes(agmtCon)))){
-=======
-                  if ((!(agmtCon.includes(paxCons[j]))) && (!(paxCons[j].includes(agmtCon)))){
->>>>>>> dev3
                     mismatch = true;
                     // console.log("Mismatched: "+agmtCon);
                   }
