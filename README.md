@@ -140,7 +140,7 @@ Binary variable – 1 indicates topic addressed, 0 not addressed
 
 
 <br/><br/>
-<b>TO UPDATE VISUALIZATIONS FOR NEW DATA (CSV FILE)</b>
+<b>TO UPDATE TIMELINE VISUALIZATIONS FOR NEW DATA (CSV FILE)</b>
 
 
 (1) Change the data source file to the newly exported CSV file.
