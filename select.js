@@ -26,8 +26,8 @@ window.onload = function() {
     paxFilterUncheck(); // Check all code filters
     paxRuleAll(); // Pick code filter rule ALL
 
-    window.localStorage.setItem("updatePaxHorizontal","true");
-    window.localStorage.setItem("updatePaxMap", "true");
+    // window.localStorage.setItem("updatePaxHorizontal","true");
+    // window.localStorage.setItem("updatePaxMap", "true");
 
     /*
     Listeners

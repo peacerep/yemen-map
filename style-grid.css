@@ -93,7 +93,6 @@ Grid Layout
 .grid-container > div {
   color: black;
   text-align: left;
-  font-family: "Roboto", sans-serif;
   padding: 10px;
 }
 

@@ -37,8 +37,6 @@ function callFunction() {
   // Time period
   var newMinDay = localStorage.getItem("paxNewMinDay");
   var newMaxDay = localStorage.getItem("paxNewMaxDay");
-  // Agreement to display in left sidebar
-  var paxAgtId = window.localStorage.getItem("paxagtid");
   // Agreement clicked on map
   var selection = window.localStorage.getItem("paxselection");
   console.log("Selection: "+selection);
@@ -329,12 +327,12 @@ function callFunction() {
                   }
                 }
               }
-              return ["#595959", "unselected"];
+              // return ["#595959", "unselected"];
             }
             if (paxConRule == "all") {
               var mismatch = false;
               for (j = 0; j < paxCons.length; j++){
-                if ((!(agmtCon.includes(paxCons[j]))) || (!(paxCons[i].includes(agmtCon)))){
+                if ((!(agmtCon.includes(paxCons[j]))) || (!(paxCons[j].includes(agmtCon)))){
                   mismatch = true;
                 }
               }

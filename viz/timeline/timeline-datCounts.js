@@ -34,23 +34,6 @@ function callFunction() {
   // Time period
   var newMinDay = localStorage.getItem("paxNewMinDay");
   var newMaxDay = localStorage.getItem("paxNewMaxDay");
-  // Agreement information to display upon hover
-  var agt = "Hover over an agreement to view its details.",
-      dat = "",
-      // reg = "",
-      con = "",
-      status = "",
-      agtp = "",
-      stage = "",
-      substage = "";
-  window.localStorage.setItem("paxagt", agt);
-  window.localStorage.setItem("paxdat", dat);
-  // window.localStorage.setItem("paxreg", reg);
-  window.localStorage.setItem("paxcon", con);
-  window.localStorage.setItem("paxstatus", status);
-  window.localStorage.setItem("paxagtp", agtp);
-  window.localStorage.setItem("paxstage", stage);
-  window.localStorage.setItem("paxsubstage", substage);
 
   // Date parsers & formatters
   var parseDate = d3.timeParse("%d/%m/%Y");
@@ -280,7 +263,7 @@ function callFunction() {
               if (paxConRule == "all") {
                 var mismatch = false;
                 for (j = 0; j < paxCons.length; j++){
-                  if ((!(agmtCon.includes(paxCons[j]))) || (!(paxCons[i].includes(agmtCon)))){
+                  if ((!(agmtCon.includes(paxCons[j]))) || (!(paxCons[j].includes(agmtCon)))){
                     mismatch = true;
                   }
                 }

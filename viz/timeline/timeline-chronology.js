@@ -14,10 +14,12 @@ Horizontal Timeline with Agreements Grouped by Date
 //     *do something with the data*
 // }
 
-window.localStorage.setItem("paxagtid", 0);
-window.localStorage.setItem("paxselection", 0);
+if (!(window.localStorage.getItem("paxinitialized"))){
+  window.localStorage.setItem("paxagtid", 0);
+  window.localStorage.setItem("paxselection", 0);
+}
 
-callFunction();
+// callFunction();
 d3.select(window).on("resize", callFunction);
 window.addEventListener("storage", toUpdate);
 
@@ -160,20 +162,22 @@ function callFunction() {
 
           // Set up the x axis
           // Find the earliest & latest day of the year on which agreements are written
-          if ((newMinDay.length > 0) && (newMaxDay.length > 0)){
-            var x = d3.scaleTime()
-                  .domain([parseDate(newMinDay),parseDate(newMaxDay)])
-                  .range([margin.left,(width-margin.right)]);
-          } else {
-            var minDay = d3.min(data,function(d){ return (d.Dat); });
-            window.localStorage.setItem("paxNewMinDay",formatDateShort(minDay));
-            var maxDay = d3.max(data,function(d){ return (d.Dat); });
-            window.localStorage.setItem("paxNewMaxDay",formatDateShort(maxDay));
-            newMinDay = localStorage.getItem("paxNewMinDay");
-            newMaxDay = localStorage.getItem("paxNewMaxDay");
-            var x = d3.scaleTime()
-                        .domain([minDay,maxDay])  // data space
-                        .range([margin.left,(width-margin.right)]);  // display space
+          if (newMinDay && newMaxDay){
+            if ((newMinDay.length > 0) && (newMaxDay.length > 0)){
+              var x = d3.scaleTime()
+                    .domain([parseDate(newMinDay),parseDate(newMaxDay)])
+                    .range([margin.left,(width-margin.right)]);
+            } else {
+              var minDay = d3.min(data,function(d){ return (d.Dat); });
+              window.localStorage.setItem("paxNewMinDay",formatDateShort(minDay));
+              var maxDay = d3.max(data,function(d){ return (d.Dat); });
+              window.localStorage.setItem("paxNewMaxDay",formatDateShort(maxDay));
+              newMinDay = localStorage.getItem("paxNewMinDay");
+              newMaxDay = localStorage.getItem("paxNewMaxDay");
+              var x = d3.scaleTime()
+                          .domain([minDay,maxDay])  // data space
+                          .range([margin.left,(width-margin.right)]);  // display space
+            }
           }
 
           // Find the earliest & latest year in which agreements occur
@@ -371,7 +375,7 @@ function callFunction() {
               if (paxConRule == "all") {
                 var mismatch = false;
                 for (j = 0; j < paxCons.length; j++){
-                  if ((!(agmtCon.includes(paxCons[j]))) || (!(paxCons[i].includes(agmtCon)))){
+                  if ((!(agmtCon.includes(paxCons[j]))) || (!(paxCons[j].includes(agmtCon)))){
                     mismatch = true;
                     // console.log("Mismatched: "+agmtCon);
                   }
@@ -394,6 +398,7 @@ function callFunction() {
       }) // end of .get(error,data)
 
       window.localStorage.setItem("updatePaxHorizontal","false");
+      window.localStorage.setItem("paxinitialized", "true");
       console.log("horizontal complete.");
 
       /*

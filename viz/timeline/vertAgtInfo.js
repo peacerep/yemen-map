@@ -43,7 +43,7 @@ function callVertFilterFunction() {
     var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrFra,
     var codeFilterCount = codeFilters.length;
     var codeText = "";
-    var vizCodes = ["Human Rights/Rule of Law", "Political Institutions", "Power Sharing: Economic", "Power Sharing: Military", "Power Sharing: Political", "Power Sharing: Territorial", "Transitional Justice Past Mechanism", "Women, Girls and Gender"]; //"Human Rights Framework", 
+    var vizCodes = ["Human Rights/Rule of Law", "Political Institutions", "Power Sharing: Economic", "Power Sharing: Military", "Power Sharing: Political", "Power Sharing: Territorial", "Transitional Justice Past Mechanism", "Women, Girls and Gender"]; //"Human Rights Framework",
     var codeIndeces = [];
     for (i = 0; i < codeFilterCount; i++){
       if (codeFilters[i] > 0){
@@ -52,7 +52,7 @@ function callVertFilterFunction() {
       }
     }
     if (codeText.length == 0){
-      return " None";
+      return "None selected";
     }
     codeText = codeText.slice(0,-1);
     return codeText;

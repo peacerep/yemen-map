@@ -10,9 +10,9 @@ window.onload = function() {
   window.localStorage.setItem("paxagtidV", 0);
   paxFilterUncheck(); // Check all code filters
   paxRuleAll(); // Pick code filter rule ALL
-  window.localStorage.setItem("updatePaxVerticalA","true");
-  window.localStorage.setItem("updatePaxVerticalB","true");
-  window.localStorage.setItem("updatePaxVerticalC","true");
+  // window.localStorage.setItem("updatePaxVerticalA","true");
+  // window.localStorage.setItem("updatePaxVerticalB","true");
+  // window.localStorage.setItem("updatePaxVerticalC","true");
 
   // Filter rule listeners
   document.getElementById("anyV").onclick = function(event) {
@@ -92,6 +92,9 @@ window.onload = function() {
   // Page refresh listener
     if (window.performance) {
       if ((performance.navigation.TYPE_RELOAD)) { //|| (window.localStorage.getItem("paxReset") == "true")
+        window.localStorage.setItem("updatePaxVerticalA","false");
+        window.localStorage.setItem("updatePaxVerticalB","false");
+        window.localStorage.setItem("updatePaxVerticalC","false");
 
         // Agreement selection
         window.localStorage.setItem("paxselectionV", 0);
@@ -109,21 +112,21 @@ window.onload = function() {
 
 function paxRuleAny() {
   document.getElementById("anyV").checked = true;
-  localStorage.setItem("paxANYV",1);
-  localStorage.setItem("paxALLV",0);
+  window.localStorage.setItem("paxANYV",1);
+  window.localStorage.setItem("paxALLV",0);
   console.log("Selected ANY for vertical timelines")
 }
 function paxRuleAll() {
   document.getElementById("allV").checked = true;
-  localStorage.setItem("paxANYV",0);
-  localStorage.setItem("paxALLV",1);
+  window.localStorage.setItem("paxANYV",0);
+  window.localStorage.setItem("paxALLV",1);
   console.log("Selected ALL for vertical timelines")
 }
 function paxFilterUncheck() {
   var filters = document.getElementsByName("filterV");
   for (i = 0; i < filters.length; i++) {
   filters[i].checked = false;
-  localStorage.setItem(filters[i].id,0);
+  window.localStorage.setItem(filters[i].id,0);
 }
 console.log("Unchecked all code filters for vertical timelines");
 }
@@ -131,7 +134,7 @@ function paxFilterCheck() {
   var filters = document.getElementsByName("filterV");
   for (i = 0; i < filters.length; i++) {
   filters[i].checked = true;
-  localStorage.setItem(filters[i].id,1);
+  window.localStorage.setItem(filters[i].id,1);
 }
 console.log("Checked all code filters for vertical timelines");
 }

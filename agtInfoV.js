@@ -1,4 +1,3 @@
-
 callVInfoFunction();
 d3.select(window).on("resize", callVInfoFunction);
 window.addEventListener("storage", callVInfoFunction);

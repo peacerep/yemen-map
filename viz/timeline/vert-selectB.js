@@ -4,7 +4,7 @@ window.onload = function() {
   window.localStorage.setItem("updatePaxVerticalC","false");
   localStorage.setItem("paxVertConB","None selected");
   document.getElementById("None").checked = true;
-  // window.localStorage.setItem("updatePaxVerticalB","true");
+  window.localStorage.setItem("updatePaxVerticalB","true");
 
   // Country/entity listeners for vertical timelines (left to right)
   document.getElementById("VertConRadiosB").onclick = function(event){
@@ -13,8 +13,8 @@ window.onload = function() {
       window.localStorage.setItem("updatePaxVerticalB","true");
       window.localStorage.setItem("updatePaxVerticalA","false");
       window.localStorage.setItem("updatePaxVerticalC","false");
-      window.localStorage.setItem("updatePaxHorizontal","false");
-      window.localStorage.setItem("updatePaxMap", "false");
+      // window.localStorage.setItem("updatePaxHorizontal","false");
+      // window.localStorage.setItem("updatePaxMap", "false");
       localStorage.setItem("paxVertConB",String(target.id));
       console.log("Set paxVertConB to "+target.id);
       //updateURL();
@@ -111,18 +111,14 @@ window.onload = function() {
 
   // Page refresh listener
   if (window.performance) {
-    if ((performance.navigation.TYPE_RELOAD) || (window.localStorage.getItem("paxReset") == "true")) {
-
+    if ((performance.navigation.TYPE_RELOAD)) { //|| (window.localStorage.getItem("paxReset") == "true")
+      window.localStorage.setItem("updatePaxVerticalA","false");
+      window.localStorage.setItem("updatePaxVerticalB","false");
+      window.localStorage.setItem("updatePaxVerticalC","false");
       // Agreement selection
       window.localStorage.setItem("paxselectionV", 0);
       // Hovered agreement
       window.localStorage.setItem("paxagtidV", 0);
-
-      // paxFilterUncheck(); // Check all code filters
-      // paxRuleAll(); // Pick code filter rule ALL
-      window.localStorage.setItem("updatePaxVerticalA","true");
-      window.localStorage.setItem("updatePaxVerticalB","true");
-      window.localStorage.setItem("updatePaxVerticalC","true");
     }
   }
 
