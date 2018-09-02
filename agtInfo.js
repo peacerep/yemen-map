@@ -1,3 +1,5 @@
+window.localStorage.setItem("paxagtid", 0);
+window.localStorage.setItem("paxselection", 0);
 callInfoFunction();
 d3.select(window).on("resize", callInfoFunction);
 window.addEventListener("storage", callInfoFunction);
@@ -64,7 +66,7 @@ function callInfoFunction() {
           paxAgtTerps = agtVizData[paxAgtId][9], //window.localStorage.getItem("paxAgtTerps"),
           paxAgtEps = agtVizData[paxAgtId][10], //window.localStorage.getItem("paxAgtEps"),
           paxAgtMps = agtVizData[paxAgtId][11], //window.localStorage.getItem("paxAgtMps"),
-          paxAgtHrGen = agtVizData[paxAgtId][12], //window.localStorage.getItem("paxAgtHrGen"),
+          paxAgtHrGen = agtVizData[paxAgtId][12], //window.localStorage.getItem("paxAgtGen"),
           paxAgtGeWom = agtVizData[paxAgtId][13], //window.localStorage.getItem("paxAgtGeWom"),
           paxAgtTjMech = agtVizData[paxAgtId][14], //window.localStorage.getItem("paxAgtTjMech"),
 
@@ -94,7 +96,7 @@ function callInfoFunction() {
         rTerpsX = 0, rTerpsY = 0,
         rEpsX = 0, rEpsY = 0,
         rMpsX = 0, rMpsY = 0,
-        rHrGenpsX = 0, rHrGenY = 0,
+        rHrGenX = 0, rHrGenY = 0,
         rGeWomX = 0, rGeWomY = 0,
         rTjMechX = 0, rTjMechY = 0,
         textposition = flowerY + ry3 + r + (spacing*2);

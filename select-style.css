@@ -317,7 +317,7 @@ td#Ren {
   background-color: #bebada;
 }
 /* Codes (colors match map's flowers) */
-td#paxHrGen.color{
+td#paxHrGen.color{ /*HrFra*/
   background-color: #f46c38;
 }
 td#paxPol.color{

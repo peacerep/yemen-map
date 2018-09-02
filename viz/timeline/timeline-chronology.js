@@ -14,8 +14,8 @@ Horizontal Timeline with Agreements Grouped by Date
 //     *do something with the data*
 // }
 
-window.localStorage.setItem("paxagtid", 1370);
-window.localStorage.setItem("paxselection", 1370);
+window.localStorage.setItem("paxagtid", 0);
+window.localStorage.setItem("paxselection", 0);
 
 callFunction();
 d3.select(window).on("resize", callFunction);
@@ -88,7 +88,7 @@ function callFunction() {
                                 Mps:d.Mps, // 1-3 indicating increasing level of detail given about Political Power sharing; 0 if none given
                                 Pol:d.Pol, // 1-3 indicating increasing level of detail given about political institutions; 0 if none given
                                 HrGen:d.HrGen, // 1 if topic of human rights/rule of law addressed; 0 if not
-                                // HrFra:d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
+                                //HrGen:d.HrGen, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
                                 TjMech:d.TjMech // 1-3 indicating increasing level of detail given about a body to deal with the past; 0 if none given
                               }; })
       .get(function(error,data){
@@ -270,8 +270,8 @@ function callFunction() {
             // Draw agreements with selected codes & countries/entities in black,
             // those without selected codes & countries/entities in gray
             function setAgtColors(d){
-              var agmtCodes = [d.HrGen, d.Pol, d.Eps, d.Mps, d.Polps, d.Terps, d.TjMech, d.GeWom, ]; //d.HrFra,
-              var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrFra,
+              var agmtCodes = [d.HrGen, d.Pol, d.Eps, d.Mps, d.Polps, d.Terps, d.TjMech, d.GeWom, ]; //d.HrGen,
+              var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrGen,
               var codeFilterCount = codeFilters.length;
               if (paxANY == 1){
                 pass = false;
@@ -329,8 +329,8 @@ function callFunction() {
 
             // Only visualize agreements with the selected codes
             // function setAgtFilters(d){
-            //   var agmtCodes = [d.HrGen, d.Pol, d.Eps, d.Mps, d.Polps, d.Terps, d.TjMech, d.GeWom, ]; //d.HrFra,
-            //   var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrFra,
+            //   var agmtCodes = [d.HrGen, d.Pol, d.Eps, d.Mps, d.Polps, d.Terps, d.TjMech, d.GeWom, ]; //d.HrGen,
+            //   var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrGen,
             //   var codeFilterCount = codeFilters.length;
             //   if (paxANY == 1){
             //     for (i = 0; i < codeFilterCount; i++){
@@ -371,7 +371,11 @@ function callFunction() {
               if (paxConRule == "all") {
                 var mismatch = false;
                 for (j = 0; j < paxCons.length; j++){
+<<<<<<< HEAD
                   if ((!(agmtCon.includes(paxCons[j]))) || (!(paxCons[i].includes(agmtCon)))){
+=======
+                  if ((!(agmtCon.includes(paxCons[j]))) && (!(paxCons[j].includes(agmtCon)))){
+>>>>>>> dev3
                     mismatch = true;
                     // console.log("Mismatched: "+agmtCon);
                   }

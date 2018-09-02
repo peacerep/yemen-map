@@ -8,6 +8,7 @@ window.addEventListener("storage", toUpdate);
 
 function toUpdate(){
   if (window.localStorage.getItem("updatePaxHorizontal") == "true"){
+    d3.selectAll("rects").remove();
     return callFunction();
   }
 }
@@ -76,7 +77,7 @@ function callFunction() {
                                 Mps:d.Mps, // 1-3 indicating increasing level of detail given about Political Power sharing; 0 if none given
                                 Pol:d.Pol, // 1-3 indicating increasing level of detail given about political institutions; 0 if none given
                                 HrGen:d.HrGen, // 1 if topic of human rights/rule of law addressed; 0 if not
-                                // HrFra:d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
+                                //HrFra:d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
                                 TjMech:d.TjMech // 1-3 indicating increasing level of detail given about a body to deal with the past; 0 if none given
                               }; })
       .get(function(error,data){
@@ -303,8 +304,8 @@ function callFunction() {
 
           // Only visusalize agreements that address selected codes
           // function setAgtFilters(d){
-          //   var agmtCodes = [d.HrGen, d.Pol, d.Eps, d.Mps, d.Polps, d.Terps, d.TjMech, d.GeWom, ]; //d.HrFra,
-          //   var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrFra,
+          //   var agmtCodes = [d.HrFra, d.Pol, d.Eps, d.Mps, d.Polps, d.Terps, d.TjMech, d.GeWom, ]; //d.HrFra,
+          //   var codeFilters = [+paxHrFra, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrFra,
           //   var codeFilterCount = codeFilters.length;
           //   if (paxANY == 1){
           //     for (i = 0; i < codeFilterCount; i++){
@@ -343,7 +344,11 @@ function callFunction() {
             if (paxConRule == "all") {
               var mismatch = false;
               for (j = 0; j < paxCons.length; j++){
+<<<<<<< HEAD
                 if ((!(agmtCon.includes(paxCons[j]))) || (!(paxCons[i].includes(agmtCon)))){
+=======
+                if ((!(agmtCon.includes(paxCons[j]))) && (!(paxCons[j].includes(agmtCon)))){
+>>>>>>> dev3
                   mismatch = true;
                   // console.log("Mismatched: "+agmtCon);
                 }
@@ -376,8 +381,8 @@ function callFunction() {
         for (i = 0; i < paxCons.length; i++){
           cons += paxCons[i];
         }
-        var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
-        var codeNames = ["HrGen", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
+        var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrFra
+        var codeNames = ["HrGen", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"]; //+HrFra
         var codes = "";
         for (i = 0; i < codeFilters.length; i++){
           if (codeFilters[i] > 0){

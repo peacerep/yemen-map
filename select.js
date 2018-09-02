@@ -6,8 +6,11 @@ window.onload = function() {
     /*
     Set defaults
     */
-    window.localStorage.setItem("paxagtid", 1370);
-    window.localStorage.setItem("paxselection", 1370);
+    window.localStorage.setItem("updatePaxHorizontal","false");
+    window.localStorage.setItem("updatePaxMap", "false");
+
+    window.localStorage.setItem("paxagtid", 0);
+    window.localStorage.setItem("paxselection", 0);
 
     var allCons = document.getElementsByName("Con");
     var paxConsAll = [];
@@ -172,7 +175,7 @@ window.onload = function() {
 
     // Page refresh listener
     if (window.performance) {
-      if ((performance.navigation.TYPE_RELOAD) || (window.localStorage.getItem("paxReset") == "true")){
+      if ((performance.navigation.TYPE_RELOAD)){ //|| (window.localStorage.getItem("paxReset") == "true")
         localStorage.setItem("paxCons", JSON.stringify(document.getElementsByName("Con").id));
         paxCheckTime();
         paxConsAllUncheck(); // Check all country/entity values
@@ -195,8 +198,8 @@ window.onload = function() {
         window.localStorage.setItem("paxNewMinDay", "01/01/1990");
         window.localStorage.setItem("paxNewMaxDay", "31/12/2015");
 
-        window.localStorage.setItem("paxagtid", 1370);
-        window.localStorage.setItem("paxselection", 1370);
+        window.localStorage.setItem("paxagtid", 0);
+        window.localStorage.setItem("paxselection", 0);
 
         window.localStorage.setItem("updatePaxHorizontal","true");
         window.localStorage.setItem("updatePaxMap", "true");
@@ -324,7 +327,7 @@ function paxFilterCheck() {
 //     paxCodeRule = "all";
 //   }
 //   // Code filter selections
-//   var paxHrGen = localStorage.getItem("paxHrGen");
+//   var pax HrFra = localStorage.getItem("pax HrFra");
 //   var paxPol = localStorage.getItem("paxPol");
 //   var paxEps = localStorage.getItem("paxEps");
 //   var paxMps = localStorage.getItem("paxMps");
@@ -332,8 +335,8 @@ function paxFilterCheck() {
 //   var paxTerps = localStorage.getItem("paxTerps");
 //   var paxTjMech = localStorage.getItem("paxTjMech");
 //   var paxGeWom = localStorage.getItem("paxGeWom");
-//   var codes = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
-//   var codeNames = ["HrGen", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
+//   var codes = [+pax HrFra, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
+//   var codeNames = [" HrFra", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
 //   var codeSelections = ""
 //   for (i = 0; i < codes.length; i++){
 //     if (+codes[i] > 0){
@@ -362,7 +365,7 @@ function paxFilterCheck() {
 //   }
 //   // Code filter selections
 //   var paxHrFraV = window.localStorage.getItem("paxHrFraV");
-//   var paxHrGenV = window.localStorage.getItem("paxHrGenV");
+//   var pax HrFraV = window.localStorage.getItem("pax HrFraV");
 //   var paxMpsV = window.localStorage.getItem("paxMpsV");
 //   var paxEpsV = window.localStorage.getItem("paxEpsV");
 //   var paxTerpsV = window.localStorage.getItem("paxTerpsV");
@@ -370,8 +373,8 @@ function paxFilterCheck() {
 //   var paxPolV = window.localStorage.getItem("paxPolV");
 //   var paxGeWomV = window.localStorage.getItem("paxGeWomV");
 //   var paxTjMechV = window.localStorage.getItem("paxTjMechV");
-//   var codesV = [+paxHrGenV, +paxPolV, +paxEpsV, +paxMpsV, +paxPolpsV, +paxTerpsV, +paxTjMechV, +paxGeWomV];
-//   // same codeNames as above --> ["HrGen", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
+//   var codesV = [+pax HrFraV, +paxPolV, +paxEpsV, +paxMpsV, +paxPolpsV, +paxTerpsV, +paxTjMechV, +paxGeWomV];
+//   // same codeNames as above --> [" HrFra", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
 //   var codeSelectionsV = ""
 //   for (i = 0; i < codesV.length; i++){
 //     if (+codesV[i] > 0){

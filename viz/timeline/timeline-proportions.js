@@ -8,6 +8,7 @@ window.addEventListener("storage", toUpdate);
 
 function toUpdate(){
   if (window.localStorage.getItem("updatePaxHorizontal") == "true"){
+    d3.selectAll("rects").remove();
     return callFunction();
   }
 }
@@ -79,7 +80,7 @@ function callFunction() {
                                 Mps:d.Mps, // 1-3 indicating increasing level of detail given about Political Power sharing; 0 if none given
                                 Pol:d.Pol, // 1-3 indicating increasing level of detail given about political institutions; 0 if none given
                                 HrGen:d.HrGen, // 1 if topic of human rights/rule of law addressed; 0 if not
-                                // HrFra:d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
+                                //HrFra:d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
                                 TjMech:d.TjMech // 1-3 indicating increasing level of detail given about a body to deal with the past; 0 if none given
                               }; })
       .get(function(error,data){
@@ -333,7 +334,11 @@ function callFunction() {
             if (paxConRule == "all") {
               var mismatch = false;
               for (j = 0; j < paxCons.length; j++){
+<<<<<<< HEAD
                 if ((!(agmtCon.includes(paxCons[j]))) || (!(paxCons[i].includes(agmtCon)))){
+=======
+                if ((!(agmtCon.includes(paxCons[j]))) && (!(paxCons[j].includes(agmtCon)))){
+>>>>>>> dev3
                   mismatch = true;
                 }
               }

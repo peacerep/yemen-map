@@ -10,7 +10,7 @@ function callVertFilterFunction() {
   var paxANY = window.localStorage.getItem("paxANYV"),
       paxALL = window.localStorage.getItem("paxALLV"),
       // Code selections
-      paxHrFra = window.localStorage.getItem("paxHrFraV"),
+      // paxHrFra = window.localStorage.getItem("paxHrFraV"),
       paxHrGen = window.localStorage.getItem("paxHrGenV"),
       paxPol = window.localStorage.getItem("paxPolV"),
       paxEps = window.localStorage.getItem("paxEpsV"),
@@ -40,10 +40,10 @@ function callVertFilterFunction() {
   Functions to compose selections text
   */
   function getCodeText(){
-    var codeFilters = [+paxHrFra, +paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
+    var codeFilters = [+paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom]; //+paxHrFra,
     var codeFilterCount = codeFilters.length;
     var codeText = "";
-    var vizCodes = ["Human Rights Framework", "Human Rights/Rule of Law", "Political Institutions", "Power Sharing: Economic", "Power Sharing: Military", "Power Sharing: Political", "Power Sharing: Territorial", "Transitional Justice Past Mechanism", "Women, Girls and Gender"];
+    var vizCodes = ["Human Rights/Rule of Law", "Political Institutions", "Power Sharing: Economic", "Power Sharing: Military", "Power Sharing: Political", "Power Sharing: Territorial", "Transitional Justice Past Mechanism", "Women, Girls and Gender"]; //"Human Rights Framework", 
     var codeIndeces = [];
     for (i = 0; i < codeFilterCount; i++){
       if (codeFilters[i] > 0){

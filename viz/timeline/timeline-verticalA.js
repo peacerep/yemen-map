@@ -3,8 +3,8 @@ Vertical Timeline
 */
 
 // Code filter values
-var paxHrFra = window.localStorage.setItem("paxHrFraV",0); // Human rights framework
-var paxHrGen = window.localStorage.setItem("paxHrGenV",0); // Human rights/Rule of law
+var paxHrGen = window.localStorage.setItem("paxHrGenV",0); // Human rights framework
+// var paxHrFra = window.localStorage.setItem("paxHrFraV",0); // Human rights/Rule of law
 var paxMps = window.localStorage.setItem("paxPolV",0); // Military power sharing
 var paxEps = window.localStorage.setItem("paxEpsV",0); // Economic power sharing
 var paxTerps = window.localStorage.setItem("paxMpsV",0); // Territorial power sharing
@@ -38,7 +38,7 @@ function callFunction() {
     paxANY = locStor.getItem("paxANYV");
     paxALL = locStor.getItem("paxALLV");
     // Filter codes
-    paxHrFra = locStor.getItem("paxHrFraV");
+    // paxHrFra = locStor.getItem("paxHrFraV");
     paxHrGen = locStor.getItem("paxHrGenV");
     paxMps = locStor.getItem("paxMpsV");
     paxEps = locStor.getItem("paxEpsV");
@@ -49,7 +49,7 @@ function callFunction() {
     paxTjMech = locStor.getItem("paxTjMechV");
     // Agreement selection
     selectionV = +window.localStorage.getItem("paxselectionV");
-    console.log("Vertical Selection: "+selectionV);
+    // console.log("Vertical Selection: "+selectionV);
   };
 
   // Date parsers & formatters
@@ -90,7 +90,7 @@ function callFunction() {
                                 Mps:+d.Mps, // 1-3 indicating increasing level of detail given about Political Power sharing; 0 if none given
                                 Pol:+d.Pol, // 1-3 indicating increasing level of detail given about political institutions; 0 if none given
                                 HrGen:+d.HrGen, // 1 if topic of human rights/rule of law addressed; 0 if not
-                                HrFra:+d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
+                                // HrFra:+d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
                                 TjMech:+d.TjMech // 1-3 indicating increasing level of detail given about a body to deal with the past; 0 if none given
                               }; })
       .get(function(error,data){
@@ -239,7 +239,7 @@ function callFunction() {
           FUNCTIONS
           */
           // function getCodeCount(){
-          //   var codeFilters = [+paxHrFra, +paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
+          //   var codeFilters = [+paxHrGen, +paxHrGen, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
           //   var codeFilterCount = codeFilters.length;
           //   var codeText = 0;
           //   for (i = 0; i < codeFilterCount; i++){
@@ -256,8 +256,8 @@ function callFunction() {
           }
 
           function setVertAgtFilters(d){
-            var agmtCodes = [d.GeWom, d.HrFra, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech];
-            var codeFilters = [+paxGeWom, +paxHrFra, +paxHrGen, +paxEps, +paxMps, +paxPol, +paxPolps, +paxTerps, +paxTjMech];
+            var agmtCodes = [d.GeWom, d.HrGen, d.Eps, d.Mps, d.Pol, d.Polps, d.Terps, d.TjMech]; //d.HrFra,
+            var codeFilters = [+paxGeWom, +paxHrGen, +paxEps, +paxMps, +paxPol, +paxPolps, +paxTerps, +paxTjMech]; //+paxHrFra,
             var codeFilterCount = codeFilters.length;
             if (paxANY == 1){
              for (i = 0; i < codeFilterCount; i++){

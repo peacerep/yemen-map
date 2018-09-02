@@ -105,7 +105,7 @@ Grid Layout
 .item-b {
   grid-area: selecter;
   grid-column: 1 / 2;
-  grid-row: 2 / 112;
+  grid-row: 2 / 116;
   min-width: 368.433px;
 }
 .item-c {
