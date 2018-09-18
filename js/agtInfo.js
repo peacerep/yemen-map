@@ -127,9 +127,9 @@ function callInfoFunction() {
         .attr("pointer-events","all");
     // console.log(data[0]);
 
-    if (data[1] > 0){
+    if (data[7] > 0){
       var ellipse_pol = g.selectAll("ellipse.pol")//0 1 2 3
-             .data([data[1]])
+             .data([data[7]])
           .enter().append("ellipse")
             .attr("class","pol")
             .style("opacity", circle_opacity)
@@ -147,25 +147,11 @@ function callInfoFunction() {
             })
             .attr("cx",flowerX)
             .attr("cy",(flowerY-rPolY))
-            // .on("mouseover", function(d){
-            //   this.style.opacity = 1;
-            //   tooltip.style("opacity", "0.9")
-            //     .style("background","#ffffff")
-            //     .style("padding","10px")
-            //     .style("left", width/2)
-            //     .style("top", height/2)
-            //     .attr("class","tooltip");
-            //   tooltip.html("Political Institutions<br/><b>"+d+"</b>");
-            // })
-            // .on("mouseout",function(d){
-            //   this.style.opacity = circle_opacity;
-            //   tooltip.style("opacity","0");
-            // });
      } //end ellipse_pol
 
-     if (data[2] > 0){
+     if (data[8] > 0){
        var ellipse_polps = g.selectAll("ellipse.polps")  //0 1 2 3
-            .data([data[2]])
+            .data([data[8]])
           .enter().append("ellipse")
             .attr("class","polps")
             .style("opacity", circle_opacity)
@@ -185,9 +171,9 @@ function callInfoFunction() {
             .attr('transform', 'rotate(45,'+flowerX+','+flowerY+')');
      } //end ellipse_polps
 
-     if (data[3] > 0){
+     if (data[9] > 0){
        var ellipse_terps = g.selectAll("ellipse.terps")   //0 1 2 3
-           .data([data[3]])
+           .data([data[9]])
         .enter().append("ellipse")
            .attr("class","terps")
            .style("opacity", circle_opacity)
@@ -208,9 +194,9 @@ function callInfoFunction() {
            .attr('transform','rotate(90,'+flowerX+','+flowerY+')');
       } //ellipse_terps
 
-      if (data[4] > 0) {
+      if (data[10] > 0) {
         var ellipse_eps = g.selectAll("ellipse.eps")   // 0 1 2 3
-            .data([data[4]])
+            .data([data[10]])
            .enter().append("ellipse")
             .attr("class","eps")
             .style("opacity", circle_opacity)
@@ -230,9 +216,9 @@ function callInfoFunction() {
             .attr('transform','rotate(225,'+flowerX+','+flowerY+')');
       }//ellipse_eps
 
-      if (data[5] > 0){
+      if (data[11] > 0){
         var ellipse_mps = g.selectAll("ellipse.mps")   //0 1 2 3
-            .data([data[5]])
+            .data([data[11]])
           .enter().append("ellipse")
             .attr("class","mps")
             .style("opacity", circle_opacity)
@@ -252,9 +238,9 @@ function callInfoFunction() {
             .attr('transform','rotate(180,'+flowerX+','+flowerY+')');
       }
 
-      if (data[6] > 0){
+      if (data[12] > 0){
         var ellipse_HrFra = g.selectAll("ellipse.HrFra")   //0/1
-            .data([data[6]])
+            .data([data[12]])
           .enter().append("ellipse")
           .attr("class","HrFra")
             .style("opacity", circle_opacity)
@@ -266,9 +252,9 @@ function callInfoFunction() {
             .attr('transform','rotate(135,'+flowerX+','+flowerY+')');
       }
 
-      if (data[7] > 0){
+      if (data[13] > 0){
         var ellipse_gewom = g.selectAll("ellipse.gewom")   // 0/1
-            .data([data])
+            .data([data[13]])
           .enter().append("ellipse")
             .attr("class","gewom")
             .style("opacity", circle_opacity)
@@ -280,9 +266,9 @@ function callInfoFunction() {
             .attr('transform','rotate(270,'+flowerX+','+flowerY+')');
       }
 
-      if (data[8] > 0){
+      if (data[14] > 0){
         var ellipse_tjmech = g.selectAll("ellipse.tjmech")  //0/1/2/3
-            .data([data[8]])
+            .data([data[14]])
           .enter().append("ellipse")
             .attr("class","tjmech")
             .style("opacity", circle_opacity)
@@ -304,7 +290,7 @@ function callInfoFunction() {
 
         if (data[0]){
           var circle = g.selectAll("circle.agt")
-            .data([data])
+            .data([data[0]])
           .enter().append("circle")
             .attr("class","agt")
             .style("opacity", 1)
