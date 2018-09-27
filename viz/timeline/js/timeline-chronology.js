@@ -19,7 +19,7 @@ if (!(window.localStorage.getItem("paxinitialized"))){
   window.localStorage.setItem("paxhover", JSON.stringify([]));
 }
 
-// callFunction();
+callFunction();
 d3.select(window).on("resize", callFunction);
 window.addEventListener("storage", toUpdate);
 
