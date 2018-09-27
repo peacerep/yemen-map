@@ -172,6 +172,8 @@ function callFunction() {
                         window.localStorage.setItem("paxselection", 0);
                       } else {
                         window.localStorage.setItem("paxselection", d.AgtId);
+                        paxVizData = [d.AgtId,d.Agt,formatDate(d.Dat),d.Con,d.Status,d.Agtp,d.Stage,d.StageSub,d.Pol,d.Polps,d.Terps,d.Eps,d.Mps,d.HrFra,d.GeWom,d.TjMech];
+                        window.localStorage.setItem("paxVizData", JSON.stringify(paxVizData));
                       }
                       window.localStorage.setItem("updatePaxMap", "true");
                       callFunction();
@@ -191,6 +193,8 @@ function callFunction() {
                       window.localStorage.setItem("updatePaxHorizontal","false");
                       window.localStorage.setItem("updatePaxMap", "false");
                       window.localStorage.setItem("paxagtid", d.AgtId);
+                      paxVizData = [d.AgtId,d.Agt,formatDate(d.Dat),d.Con,d.Status,d.Agtp,d.Stage,d.StageSub,d.Pol,d.Polps,d.Terps,d.Eps,d.Mps,d.HrFra,d.GeWom,d.TjMech];
+                      window.localStorage.setItem("paxVizData", JSON.stringify(paxVizData));
                      }
                 });
                 selectedRects.on("mouseout",function(d) {
