@@ -161,7 +161,7 @@ var circle_opacity = .8,
 //   .attr('class', 'd3-tip')
 //   .offset([-10, 0])
 //   .html(function(d) {
-//     return "<strong>Frequency:</strong> <span style='color:red'>" + "d.frequency" + "</span>";
+//     return "<strong>Frequency:</strong> <span style='color:red'>" + "+d.frequency" + "</span>";
 //   })
 // var pol = [],
 //     polps = [],  //1,2,3
@@ -247,11 +247,12 @@ function Drawflowers(){
   console.log("Selection: "+selection);
 
   var clicked = false;
+  var paxVizData = [];
 
   /*
   LOAD MAP DATA & DRAW GLYPHS
   */
-  d3.json("json/paxMapData1_02092018.json", function(collection) { // file without core information: json/agreements3.json
+  d3.json("json/paxMapData3_27092018.json", function(collection) { // file without core information: json/agreements3.json
 
     // console.log(collection);
 
@@ -270,14 +271,14 @@ function Drawflowers(){
               r = 1.5+map.getZoom()/3, rx1 = 3,rx = map.getZoom();
         }
 
-        var data = d;
+        //var data = d;
 
         var g = svg.selectAll("g.flowers")
-            .data([data])
+            .data([d])
           .enter().append("g")
             .attr('class','flower')
             .attr("pointer-events","all")
-            .attr("id",function(d){ return d.agtid; })
+            .attr("id",function(d){ return +d.agtid; })
             .attr("z-index",6)
 
         g.on("mouseover", function(d){
@@ -286,6 +287,8 @@ function Drawflowers(){
               window.localStorage.setItem("updatePaxHorizontal","false");
               window.localStorage.setItem("updatePaxMap","false");
               window.localStorage.setItem("paxagtid", d.agtid);
+              paxVizData = [+d.agtid,d.agt,formatDate(parseDate(d.dat)),d.con,d.status,d.agtp,d.stage,d.stagesub,+d.pol,+d.polps,+d.terps,+d.eps,+d.mps,+d.hrfra,+d.gewom,+d.tjmech];
+              window.localStorage.setItem("paxVizData", JSON.stringify(paxVizData));
             }
          });
         g.on("mouseout",function(d){
@@ -299,11 +302,13 @@ function Drawflowers(){
         g.on("click", function(d){
           if (!clicked){
             clicked = true;
-            console.log(d.agtid);
+            console.log(+d.agtid);
             if (+d.agtid == +selection){
               window.localStorage.setItem("paxselection", 0);
             } else {
-              window.localStorage.setItem("paxselection", d.agtid);
+              window.localStorage.setItem("paxselection", +d.agtid);
+              paxVizData = [+d.agtid,d.agt,formatDate(parseDate(d.dat)),d.con,d.status,d.agtp,d.stage,d.stagesub,+d.pol,+d.polps,+d.terps,+d.eps,+d.mps,+d.hrfra,+d.gewom,+d.tjmech];
+              window.localStorage.setItem("paxVizData", JSON.stringify(paxVizData));
             }
             window.localStorage.setItem("updatePaxHorizontal", "true");
             d3.selectAll("g").remove();
@@ -317,9 +322,9 @@ function Drawflowers(){
           }
         });
 
-        if (data.pol){
+        if (+d.pol > 0){
           var ellipse_pol = g.selectAll("ellipse.pol")//0 1 2 3
-                 .data([data])
+                 .data([d])
               .enter().append("ellipse")
               .filter(function(d){ return setAgtCons(d); })
               .filter(function(d){ return setAgtFilters(d); })
@@ -338,40 +343,40 @@ function Drawflowers(){
                    if (+d.agtid == +selection){
                      d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                      var yvalue=map.latLngToLayerPoint(d.LatLng).y;
-                     if (d.pol ==1){ return yvalue-(ry1*4); }
-                     else if (d.pol ==2){ return yvalue-(ry2*4); }
-                     else if (d.pol ==3){ return yvalue-(ry3*4); }
+                     if (+d.pol == 1){ return yvalue-(ry1*4); }
+                     else if (+d.pol == 2){ return yvalue-(ry2*4); }
+                     else if (+d.pol == 3 ){ return yvalue-(ry3*4); }
                    } else {
                      d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                      var yvalue=map.latLngToLayerPoint(d.LatLng).y;
-                     if (d.pol ==1){ return yvalue-ry1; }
-                     else if (d.pol ==2){ return yvalue-ry2; }
-                     else if (d.pol ==3){ return yvalue-ry3; }
+                     if (+d.pol == 1){ return yvalue-ry1; }
+                     else if (+d.pol == 2){ return yvalue-ry2; }
+                     else if (+d.pol == 3){ return yvalue-ry3; }
                    }
                 })
                 .attr('rx', function(d){
                     if (+d.agtid == +selection){
-                      if (d.pol == 1){ return rx1*4; } else { return rx*4; }
+                      if (+d.pol == 1){ return rx1*4; } else { return rx*4; }
                     } else {
-                      if (d.pol == 1){ return rx1; } else { return rx; }
+                      if (+d.pol == 1){ return rx1; } else { return rx; }
                     }
                 })
                 .attr("ry", function(d){
                   if (+d.agtid == +selection){
-                    if (d.pol ==1){ return ry1*4; }
-                    else if (d.pol ==2){ return ry2*4; }
-                    else if (d.pol ==3){ return ry3*4; }
+                    if (+d.pol == 1){ return ry1*4; }
+                    else if (+d.pol == 2){ return ry2*4; }
+                    else if (+d.pol == 3){ return ry3*4; }
                   } else {
-                    if (d.pol ==1){ return ry1; }
-                    else if (d.pol ==2){ return ry2; }
-                    else if (d.pol ==3){ return ry3; }
+                    if (+d.pol == 1){ return ry1; }
+                    else if (+d.pol == 2){ return ry2; }
+                    else if (+d.pol == 3){ return ry3; }
                   }
                 });
          } //end ellipse_pol
 
-         if (data.polps){
+         if (+d.polps){
            var ellipse_polps = g.selectAll("ellipse.polps")  //0 1 2 3
-                .data([data])
+                .data([d])
               .enter().append("ellipse")
               .filter(function(d){ return setAgtCons(d); })
               .filter(function(d){ return setAgtFilters(d); })
@@ -389,33 +394,33 @@ function Drawflowers(){
                   if (+d.agtid == +selection){
                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                     var yvalue=map.latLngToLayerPoint(d.LatLng).y;
-                    if (d.polps ==1){ return yvalue-(ry1*4); }
-                    else if (d.polps ==2){ return yvalue-(ry2*4); }
-                    else if (d.polps ==3){ return yvalue-(ry3*4); }
+                    if (+d.polps == 1){ return yvalue-(ry1*4); }
+                    else if (+d.polps == 2){ return yvalue-(ry2*4); }
+                    else if (+d.polps == 3){ return yvalue-(ry3*4); }
                   } else {
                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                     var yvalue=map.latLngToLayerPoint(d.LatLng).y;
-                    if (d.polps ==1){ return yvalue-ry1; }
-                    else if (d.polps ==2){ return yvalue-ry2; }
-                    else if (d.polps ==3){ return yvalue-ry3; }
+                    if (+d.polps == 1){ return yvalue-ry1; }
+                    else if (+d.polps == 2){ return yvalue-ry2; }
+                    else if (+d.polps == 3){ return yvalue-ry3; }
                   }
                 })
                 .attr('rx', function(d){
                     if (+d.agtid == +selection){
-                      if (d.polps == 1){ return rx1*4; } else { return rx*4; }
+                      if (+d.polps == 1){ return rx1*4; } else { return rx*4; }
                     } else {
-                      if (d.polps == 1){ return rx1; } else { return rx; }
+                      if (+d.polps == 1){ return rx1; } else { return rx; }
                     }
                 })
                 .attr("ry", function(d){
                   if (+d.agtid == +selection){
-                    if (d.polps ==1){ return ry1*4; }
-                    else if (d.polps ==2){ return ry2*4; }
-                    else if (d.polps ==3){ return ry3*4; }
+                    if (+d.polps == 1){ return ry1*4; }
+                    else if (+d.polps == 2){ return ry2*4; }
+                    else if (+d.polps == 3){ return ry3*4; }
                   } else {
-                    if (d.polps ==1){ return ry1; }
-                    else if (d.polps ==2){ return ry2; }
-                    else if (d.polps ==3){ return ry3; }
+                    if (+d.polps == 1){ return ry1; }
+                    else if (+d.polps == 2){ return ry2; }
+                    else if (+d.polps == 3){ return ry3; }
                   }
                 })
                 .attr('transform', function(d){
@@ -425,9 +430,9 @@ function Drawflowers(){
                  });
          }//end ellipse_polps
 
-         if (data.terps){
+         if (+d.terps){
            var ellipse_terps = g.selectAll("ellipse.terps")   //0 1 2 3
-               .data([data])
+               .data([d])
             .enter().append("ellipse")
             .filter(function(d){ return setAgtCons(d); })
             .filter(function(d){ return setAgtFilters(d); })
@@ -445,33 +450,33 @@ function Drawflowers(){
                  if (+d.agtid == +selection){
                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                    var yvalue=map.latLngToLayerPoint(d.LatLng).y;
-                   if (d.terps ==1){ return yvalue-(ry1*4); }
-                   else if (d.terps ==2){ return yvalue-(ry2*4); }
-                   else if (d.terps ==3){ return yvalue-(ry3*4); }
+                   if (+d.terps == 1){ return yvalue-(ry1*4); }
+                   else if (+d.terps == 2){ return yvalue-(ry2*4); }
+                   else if (+d.terps == 3){ return yvalue-(ry3*4); }
                  } else {
                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                    var yvalue=map.latLngToLayerPoint(d.LatLng).y;
-                   if (d.terps ==1){ return yvalue-ry1; }
-                   else if (d.terps ==2){ return yvalue-ry2; }
-                   else if (d.terps ==3){ return yvalue-ry3; }
+                   if (+d.terps == 1){ return yvalue-ry1; }
+                   else if (+d.terps == 2){ return yvalue-ry2; }
+                   else if (+d.terps == 3){ return yvalue-ry3; }
                  }
                })
                .attr('rx', function(d){
                    if (+d.agtid == +selection){
-                     if (d.terps == 1){ return rx1*4; } else { return rx*4; }
+                     if (+d.terps == 1){ return rx1*4; } else { return rx*4; }
                    } else {
-                     if (d.terps == 1){ return rx1; } else { return rx; }
+                     if (+d.terps == 1){ return rx1; } else { return rx; }
                    }
                })
                .attr("ry", function(d){
                  if (+d.agtid == +selection){
-                   if (d.terps ==1){ return ry1*4; }
-                   else if (d.terps ==2){ return ry2*4; }
-                   else if (d.terps ==3){ return ry3*4; }
+                   if (+d.terps == 1){ return ry1*4; }
+                   else if (+d.terps == 2){ return ry2*4; }
+                   else if (+d.terps == 3){ return ry3*4; }
                  } else {
-                   if (d.terps ==1){ return ry1; }
-                   else if (d.terps ==2){ return ry2; }
-                   else if (d.terps ==3){ return ry3; }
+                   if (+d.terps == 1){ return ry1; }
+                   else if (+d.terps == 2){ return ry2; }
+                   else if (+d.terps == 3){ return ry3; }
                  }
                })
                 .attr('transform', function(d){
@@ -481,9 +486,9 @@ function Drawflowers(){
                 });
           } //ellipse_terps
 
-          if (data.eps) {
+          if (+d.eps) {
             var ellipse_eps = g.selectAll("ellipse.eps")   // 0 1 2 3
-                .data([data])
+                .data([d])
                .enter().append("ellipse")
                .filter(function(d){ return setAgtCons(d); })
                .filter(function(d){ return setAgtFilters(d); })
@@ -501,33 +506,33 @@ function Drawflowers(){
                   if (+d.agtid == +selection){
                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                     var yvalue=map.latLngToLayerPoint(d.LatLng).y;
-                    if (d.eps ==1){ return yvalue-(ry1*4); }
-                    else if (d.eps ==2){ return yvalue-(ry2*4); }
-                    else if (d.eps ==3){ return yvalue-(ry3*4); }
+                    if (+d.eps == 1){ return yvalue-(ry1*4); }
+                    else if (+d.eps == 2){ return yvalue-(ry2*4); }
+                    else if (+d.eps == 3){ return yvalue-(ry3*4); }
                   } else {
                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                     var yvalue=map.latLngToLayerPoint(d.LatLng).y;
-                    if (d.eps ==1){ return yvalue-ry1; }
-                    else if (d.eps ==2){ return yvalue-ry2; }
-                    else if (d.eps ==3){ return yvalue-ry3; }
+                    if (+d.eps == 1){ return yvalue-ry1; }
+                    else if (+d.eps == 2){ return yvalue-ry2; }
+                    else if (+d.eps == 3){ return yvalue-ry3; }
                   }
                 })
                 .attr('rx', function(d){
                     if (+d.agtid == +selection){
-                      if (d.eps == 1){ return rx1*4; } else { return rx*4; }
+                      if (+d.eps == 1){ return rx1*4; } else { return rx*4; }
                     } else {
-                      if (d.eps == 1){ return rx1; } else { return rx; }
+                      if (+d.eps == 1){ return rx1; } else { return rx; }
                     }
                 })
                 .attr("ry", function(d){
                   if (+d.agtid == +selection){
-                    if (d.eps ==1){ return ry1*4; }
-                    else if (d.eps ==2){ return ry2*4; }
-                    else if (d.eps ==3){ return ry3*4; }
+                    if (+d.eps == 1){ return ry1*4; }
+                    else if (+d.eps == 2){ return ry2*4; }
+                    else if (+d.eps == 3){ return ry3*4; }
                   } else {
-                    if (d.eps ==1){ return ry1; }
-                    else if (d.eps ==2){ return ry2; }
-                    else if (d.eps ==3){ return ry3; }
+                    if (+d.eps == 1){ return ry1; }
+                    else if (+d.eps == 2){ return ry2; }
+                    else if (+d.eps == 3){ return ry3; }
                   }
                 })
                  .attr('transform', function(d){
@@ -537,9 +542,9 @@ function Drawflowers(){
                  });
           }//ellipse_eps
 
-          if (data.mps){
+          if (+d.mps){
             var ellipse_mps = g.selectAll("ellipse.mps")   //0 1 2 3
-                .data([data])
+                .data([d])
               .enter().append("ellipse")
               .filter(function(d){ return setAgtCons(d); })
               .filter(function(d){ return setAgtFilters(d); })
@@ -557,33 +562,33 @@ function Drawflowers(){
                   if (+d.agtid == +selection){
                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                     var yvalue=map.latLngToLayerPoint(d.LatLng).y;
-                    if (d.mps ==1){ return yvalue-(ry1*4); }
-                    else if (d.mps ==2){ return yvalue-(ry2*4); }
-                    else if (d.mps ==3){ return yvalue-(ry3*4); }
+                    if (+d.mps == 1){ return yvalue-(ry1*4); }
+                    else if (+d.mps == 2){ return yvalue-(ry2*4); }
+                    else if (+d.mps == 3){ return yvalue-(ry3*4); }
                   } else {
                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                     var yvalue=map.latLngToLayerPoint(d.LatLng).y;
-                    if (d.mps ==1){ return yvalue-ry1; }
-                    else if (d.mps ==2){ return yvalue-ry2; }
-                    else if (d.mps ==3){ return yvalue-ry3; }
+                    if (+d.mps == 1){ return yvalue-ry1; }
+                    else if (+d.mps == 2){ return yvalue-ry2; }
+                    else if (+d.mps == 3){ return yvalue-ry3; }
                   }
                 })
                 .attr('rx', function(d){
                     if (+d.agtid == +selection){
-                      if (d.mps == 1){ return rx1*4; } else { return rx*4; }
+                      if (+d.mps == 1){ return rx1*4; } else { return rx*4; }
                     } else {
-                      if (d.mps == 1){ return rx1; } else { return rx; }
+                      if (+d.mps == 1){ return rx1; } else { return rx; }
                     }
                 })
                 .attr("ry", function(d){
                   if (+d.agtid == +selection){
-                    if (d.mps ==1){ return ry1*4; }
-                    else if (d.mps ==2){ return ry2*4; }
-                    else if (d.mps ==3){ return ry3*4; }
+                    if (+d.mps == 1){ return ry1*4; }
+                    else if (+d.mps == 2){ return ry2*4; }
+                    else if (+d.mps == 3){ return ry3*4; }
                   } else {
-                    if (d.mps ==1){ return ry1; }
-                    else if (d.mps ==2){ return ry2; }
-                    else if (d.mps ==3){ return ry3; }
+                    if (+d.mps == 1){ return ry1; }
+                    else if (+d.mps == 2){ return ry2; }
+                    else if (+d.mps == 3){ return ry3; }
                   }
                 })
                  .attr('transform', function(d){
@@ -593,9 +598,9 @@ function Drawflowers(){
                  });
           }
 
-          if (data.hrfra){
+          if (+d.hrfra){
             var ellipse_hrfra = g.selectAll("ellipse.hrfra")   //0/1
-                .data([data])
+                .data([d])
               .enter().append("ellipse")
               .filter(function(d){ return setAgtCons(d); })
               .filter(function(d){ return setAgtFilters(d); })
@@ -641,9 +646,9 @@ function Drawflowers(){
                  });
           }
 
-          if (data.gewom){
+          if (+d.gewom){
             var ellipse_gewom = g.selectAll("ellipse.gewom")   // 0/1
-                .data([data])
+                .data([d])
               .enter().append("ellipse")
               .filter(function(d){ return setAgtCons(d); })
               .filter(function(d){ return setAgtFilters(d); })
@@ -689,9 +694,9 @@ function Drawflowers(){
                 });
           }
 
-          if (data.tjmech){
+          if (+d.tjmech){
             var ellipse_tjmech = g.selectAll("ellipse.tjmech")  //0/1/2/3
-                .data([data])
+                .data([d])
               .enter().append("ellipse")
               .filter(function(d){ return setAgtCons(d); })
               .filter(function(d){ return setAgtFilters(d); })
@@ -709,33 +714,33 @@ function Drawflowers(){
                   if (+d.agtid == +selection){
                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                     var yvalue=map.latLngToLayerPoint(d.LatLng).y;
-                    if (d.tjmech ==1){ return yvalue-(ry1*4); }
-                    else if (d.tjmech ==2){ return yvalue-(ry2*4); }
-                    else if (d.tjmech ==3){ return yvalue-(ry3*4); }
+                    if (+d.tjmech == 1){ return yvalue-(ry1*4); }
+                    else if (+d.tjmech == 2){ return yvalue-(ry2*4); }
+                    else if (+d.tjmech == 3){ return yvalue-(ry3*4); }
                   } else {
                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                     var yvalue=map.latLngToLayerPoint(d.LatLng).y;
-                    if (d.tjmech ==1){ return yvalue-ry1; }
-                    else if (d.tjmech ==2){ return yvalue-ry2; }
-                    else if (d.tjmech ==3){ return yvalue-ry3; }
+                    if (+d.tjmech == 1){ return yvalue-ry1; }
+                    else if (+d.tjmech == 2){ return yvalue-ry2; }
+                    else if (+d.tjmech == 3){ return yvalue-ry3; }
                   }
                 })
                 .attr('rx', function(d){
                     if (+d.agtid == +selection){
-                      if (d.tjmech == 1){ return rx1*4; } else { return rx*4; }
+                      if (+d.tjmech == 1){ return rx1*4; } else { return rx*4; }
                     } else {
-                      if (d.tjmech == 1){ return rx1; } else { return rx; }
+                      if (+d.tjmech == 1){ return rx1; } else { return rx; }
                     }
                 })
                 .attr("ry", function(d){
                   if (+d.agtid == +selection){
-                    if (d.tjmech ==1){ return ry1*4; }
-                    else if (d.tjmech ==2){ return ry2*4; }
-                    else if (d.tjmech ==3){ return ry3*4; }
+                    if (+d.tjmech == 1){ return ry1*4; }
+                    else if (+d.tjmech == 2){ return ry2*4; }
+                    else if (+d.tjmech == 3){ return ry3*4; }
                   } else {
-                    if (d.tjmech ==1){ return ry1; }
-                    else if (d.tjmech ==2){ return ry2; }
-                    else if (d.tjmech ==3){ return ry3; }
+                    if (+d.tjmech == 1){ return ry1; }
+                    else if (+d.tjmech == 2){ return ry2; }
+                    else if (+d.tjmech == 3){ return ry3; }
                   }
                 })
                  .attr('transform', function(d){
@@ -746,7 +751,7 @@ function Drawflowers(){
             }
 
             var circle = g.selectAll("circle.agt")
-                .data([data])
+                .data([d])
               .enter().append("circle")
               .filter(function(d){ return setAgtCons(d); })
               .filter(function(d){ return setAgtFilters(d); })
@@ -775,7 +780,7 @@ function Drawflowers(){
        FUNCTIONS
        */
        function setAgtFilters(d){
-         var agmtCodes = [d.hrfra, d.pol, d.eps, d.mps, d.polps, d.terps, d.tjmech, d.gewom, ];
+         var agmtCodes = [+d.hrfra, +d.pol, +d.eps, +d.mps, +d.polps, +d.terps, +d.tjmech, +d.gewom, ];
          var codeFilters = [+paxhrfra, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
          var codeFilterCount = codeFilters.length;
          if (paxANY == 1){

@@ -90,27 +90,27 @@ function callFunction() {
                                 Mps:d.Mps, // 1-3 indicating increasing level of detail given about Political Power sharing; 0 if none given
                                 Pol:d.Pol, // 1-3 indicating increasing level of detail given about political institutions; 0 if none given
                                 HrFra:d.HrFra, // 1 if topic of human rights/rule of law addressed; 0 if not
-                                //HrFra:d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
                                 TjMech:d.TjMech // 1-3 indicating increasing level of detail given about a body to deal with the past; 0 if none given
                               }; })
       .get(function(error,data){
 
-        // Store data needed for viz in dictionary
-        var vizData = {};
-        for (i = 0; i < data.length; i++){
-          agt = data[i];
-          vizData[String(agt.AgtId)] = [String(agt.Agt),
-                                        String(formatDate(agt.Dat)),
-                                        String(agt.Con), String(agt.Status),
-                                        String(agt.Agtp), String(agt.Stage),
-                                        String(agt.StageSub), String(agt.Pol),
-                                        String(agt.Polps), String(agt.Terps),
-                                        String(agt.Eps), String(agt.Mps),
-                                        String(agt.HrFra), String(agt.GeWom),
-                                        String(agt.TjMech)];
-        }
-        // console.log(vizData);
-        window.localStorage.setItem("paxVizData", JSON.stringify(vizData));
+        // // Store data needed for viz in dictionary - BROKE SELECT SIDEBAR'S DISPLAY OF AGMT DETAILS FLOWER...WHY?
+        // var vizData = {};
+        // for (i = 0; i < data.length; i++){
+        //   agt = data[i];
+        //   vizData[String(agt.AgtId)] = [String(agt.Agt),
+        //                                 String(formatDate(agt.Dat)),
+        //                                 String(agt.Con), String(agt.Status),
+        //                                 String(agt.Agtp), String(agt.Stage),
+        //                                 String(agt.StageSub), String(agt.Pol),
+        //                                 String(agt.Polps), String(agt.Terps),
+        //                                 String(agt.Eps), String(agt.Mps),
+        //                                 String(agt.HrFra), String(agt.GeWom),
+        //                                 String(agt.TjMech)];
+        // }
+        // // console.log(vizData);
+        // window.localStorage.setItem("paxVizData", JSON.stringify(vizData));
+        var paxVizData = [];
 
           var svgtest = d3.select("body").select("svg");
           if (!svgtest.empty()) {
@@ -224,6 +224,8 @@ function callFunction() {
                   window.localStorage.setItem("paxselection", 0);
                 } else {
                   window.localStorage.setItem("paxselection", d.AgtId);
+                  paxVizData = [d.AgtId,d.Agt,formatDate(d.Dat),d.Con,d.Status,d.Agtp,d.Stage,d.StageSub,d.Pol,d.Polps,d.Terps,d.Eps,d.Mps,d.HrFra,d.GeWom,d.TjMech];
+                  window.localStorage.setItem("paxVizData", JSON.stringify(paxVizData));
                 }
                 window.localStorage.setItem("updatePaxMap", "true");
                 callFunction();
@@ -244,6 +246,8 @@ function callFunction() {
                 window.localStorage.setItem("updatePaxHorizontal","false");
                 window.localStorage.setItem("updatePaxMap", "false");
                 window.localStorage.setItem("paxagtid", d.AgtId);
+                paxVizData = [d.AgtId,d.Agt,formatDate(d.Dat),d.Con,d.Status,d.Agtp,d.Stage,d.StageSub,d.Pol,d.Polps,d.Terps,d.Eps,d.Mps,d.HrFra,d.GeWom,d.TjMech];
+                window.localStorage.setItem("paxVizData", JSON.stringify(paxVizData));
                }
             });
             selectedRects.on("mouseout",function(d) {

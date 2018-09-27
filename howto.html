@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <!-- for responsive web design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>How To</title>
+
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c:400,700,900" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style-grid.css">
+    <script type="text/javascript" src="viz/timeline/js/d3.v4.js"></script>
+  </head>
+  <body>
+
+      <div class="grid-container">
+
+        <div class="item-b">
+            <h1>How To</h1>
+        </div>
+
+        <div class="item-c">
+          <br/><br/>
+          <p>
+            With Visualizing Peace, you can view peace agreements across three
+            dimensions: time, geography, and category.  At the top of the webpage,
+            <em>Agreements in Time and Space</em> visualizes agreements on a
+            timeline and a map simultaneously.  At the bottom of the webpage,
+            <em>Agreement Sequence Comparison</em> visualizes agreements on three
+            timelines, with one geographic location represented on each timeline.
+            To understand the codes assigned to each peace agreement as
+            represented in the data visualizations, please visit
+            <a href="https://github.com/thegoose20/pax/wiki/Understanding-PA-X-Codes">
+            Understanding PA-X Codes</a>.  To download the complete PA-X Codebook,
+            please
+            <a href="http://www.peaceagreements.org/files/PA_X_codebook_Version1_Feb_20_20.pdf">
+            click here</a>.
+          </p>
+
+          <h4>Reading and Filtering the Visualizations</h4>
+
+          <h2>Agreements in Time and Space</h2>
+          <!-- INSERT GRAPHICAL EXPLANATION -->
+          <p>
+            On the timeline running horizontally across the top of the webpage,
+            black lines represent peace agreements.  You can select a start year,
+            an end year, locations ("countries/entities"), and categories
+            ("codes") to control which peace agreements the timeline and map
+            display.
+          </p>
+          <!-- INSERT GRAPHICAL EXPLANATION -->
+          <p>
+            On the map, flower-like graphics represent peace agreements,
+            with petals indicating how much detail the agreement contains about
+            codes in the left sidebar.  The larger the petal, the more detail the
+            agreement has about the code associated with that petal's color.
+            The absence of a petal means the agreement does not address the
+            associated code at all.
+          </p>
+          <p>
+            There are four timeline views that arrange the peace agreements
+            differently: Chronology (agreements by date), Count per Day
+            (totals by date), Yearly with Counts (agreements by year), and
+            Yearly with Code Proportions (agreements by year that address
+            selected codes).
+            <!-- INSERT GRAPHICAL EXPLANATION -->
+            <br/><em>Chronology</em> arranges peace agreements by the
+            date on which they were signed.  If there are multiple agreements
+            signed on the same day, then the height of the lines representing
+            agreements will shrink so the lines can be stacked on top of one
+            another.  Hovering or clicking a line displays the represented
+            agreement's details in the left sidebar.  When you click an
+            agreement, the corresponding agreement on the map (represented as
+            a flower-like graphic) grows in size.
+            <!-- INSERT GRAPHICAL EXPLANATION -->
+            <br/><em>Count per Day</em> also arranges peace agreements by the
+            date on which they were signed.  Unlike the Chronology view, though,
+            each line in Count per Day represents the total number of agreements
+            signed on that day (so this view can be read as a bar chart).
+            Hovering over a line displays a tooltip with the total number and
+            date.
+            <!-- INSERT GRAPHICAL EXPLANATION -->
+            <br/><em>Yearly with Counts</em> arranges peace agreements by the
+            year in which they were signed.  The agreements are stacked
+            chronologically from top to bottom (e.g. January at the top, December
+            at the bottom).  The number at the top of each yearly stack indicates
+            the total number of agreements signed in that year.
+            Hovering or clicking a line displays the represented agreement's
+            details in the left sidebar.  When you click an agreement, the
+            corresponding agreement on the map (represented as a flower-like
+            graphic) grows in size.
+            <!-- INSERT GRAPHICAL EXPLANATION -->
+            <br/><em>Yearly with Code Proportions</em> also arranges peace
+            agreements by the year in which they were signed, stacking the
+            agreements chronologically from top to bottom.  Agreements that
+            address codes you've selected in the left sidebar will appear as
+            black lines (other agreements will appear as dark gray lines).  The
+            percentage at the top of each yearly stack indicates the proportion
+            of agreements that address your code selections for that year.
+            Hovering or clicking a black line displays the represented agreement's
+            details in the left sidebar.  When you click an agreement, the
+            corresponding agreement on the map (represented as a flower-like
+            graphic) grows in size.
+          </p>
+
+          <h2>Agreements Sequence Comparison</h2>
+          <!-- INSERT GRAPHICAL EXPLANATION -->
+          <p>
+            On the timelines running vertically at the bottom of the webpage,
+            rectangles represent peace agreements.  You can select one location
+            ("countries/entities") for each vertical timeline, and categories
+            ("codes") to control which peace agreements the timeline and map
+            display.  The color of each rectangle indicates the type of agreement
+            (based on the stage of the associated conflict) represented.  Hovering
+            or clicking a rectangle displays the represented agreement's details
+            in the left sidebar.  When you click an agreement on one vertical
+            timeline, any rectangles representing that same agreement on the
+            other other vertical timelines will be highlighted.
+          </p>
+
+          <p>
+            When visiting the Visualizing Peace website, please use Firefox,
+            Chrome, or Safari from a laptop or desktop computer (the data
+            visualizations are incompatible with tablets and mobile devices).
+          </p>
+          <p>
+            <
+            <a href="file:///Users/lucy/Desktop/git_repo/pax/index.html">
+            Back to visualizations
+            </a>
+          </p>
+        </div>
+
+      </div>
+
+  </body>
+
+</html>

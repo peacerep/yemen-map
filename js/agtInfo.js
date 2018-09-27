@@ -56,26 +56,28 @@ function callInfoFunction() {
   } else {
 
       // Agreement details and flower information
-      var agtVizData = JSON.parse(window.localStorage.getItem("paxVizData"));         // vizData[agt.AgtId] = [ agt.Agt,agt.Dat,agt.Con,agt.Status,agt.Agtp,agt.Stage,agt.StageSub,agt.Pol,agt.Polps,agt.Terps,agt.Eps,agt.Mps,agt.HrFra,agt.GeWom,agt.TjMech ]
+      var agtVizData = JSON.parse(window.localStorage.getItem("paxVizData"));         // [ agt.AgtId, agt.Agt,agt.Dat,agt.Con,agt.Status,agt.Agtp,agt.Stage,agt.StageSub,agt.Pol,agt.Polps,agt.Terps,agt.Eps,agt.Mps,agt.HrFra,agt.GeWom,agt.TjMech ]
+      console.log("agmtVizData: "+agtVizData);
 
-      var agt = agtVizData[paxAgtId][0], // window.localStorage.getItem("paxagt"),
-          dat = "<b>Date Signed:</b> "+ agtVizData[paxAgtId][1], // window.localStorage.getItem("paxdat"),
+      var agt = agtVizData[1], // agtVizData[paxAgtId][0], // window.localStorage.getItem("paxagt"),
+          dat = "<b>Date Signed:</b> "+ agtVizData[2], // agtVizData[paxAgtId][1], // window.localStorage.getItem("paxdat"),
           // reg = "<b>Region:</b> "+ window.localStorage.getItem("paxreg"),
-          con = "<b>Country/Entity:</b> "+ agtVizData[paxAgtId][2], // window.localStorage.getItem("paxcon"),
-          status = "<b>Status:</b> "+ agtVizData[paxAgtId][3], // window.localStorage.getItem("paxstatus"),
-          agtp = "<b>Type:</b> "+ agtVizData[paxAgtId][4], // window.localStorage.getItem("paxagtp"),
-          stage = "<b>Stage:</b> "+ agtVizData[paxAgtId][5], // window.localStorage.getItem("paxstage"),
+          con = "<b>Country/Entity:</b> "+ agtVizData[3], // agtVizData[paxAgtId][2], // window.localStorage.getItem("paxcon"),
+          status = "<b>Status:</b> "+ agtVizData[4], // agtVizData[paxAgtId][3], // window.localStorage.getItem("paxstatus"),
+          agtp = "<b>Type:</b> "+ agtVizData[5], // agtVizData[paxAgtId][4], // window.localStorage.getItem("paxagtp"),
+          stage = "<b>Stage:</b> "+ agtVizData[6], // agtVizData[paxAgtId][5], // window.localStorage.getItem("paxstage"),
           // stagesub = "<b>Substage:</b> "+ agtVizData[paxAgtId][6], // window.localStorage.getItem("paxagtid"),
 
-          paxAgtPol = agtVizData[paxAgtId][7],//window.localStorage.getItem("paxAgtPol"),
-          paxAgtPolps = agtVizData[paxAgtId][8], //window.localStorage.getItem("paxAgtPolps"),
-          paxAgtTerps = agtVizData[paxAgtId][9], //window.localStorage.getItem("paxAgtTerps"),
-          paxAgtEps = agtVizData[paxAgtId][10], //window.localStorage.getItem("paxAgtEps"),
-          paxAgtMps = agtVizData[paxAgtId][11], //window.localStorage.getItem("paxAgtMps"),
-          paxAgtHrFra = agtVizData[paxAgtId][12], //window.localStorage.getItem("paxAgtGen"),
-          paxAgtGeWom = agtVizData[paxAgtId][13], //window.localStorage.getItem("paxAgtGeWom"),
-          paxAgtTjMech = agtVizData[paxAgtId][14], //window.localStorage.getItem("paxAgtTjMech"),
+          paxAgtPol = agtVizData[8], //agtVizData[paxAgtId][7],//window.localStorage.getItem("paxAgtPol"),
+          paxAgtPolps = agtVizData[9], //agtVizData[paxAgtId][8], //window.localStorage.getItem("paxAgtPolps"),
+          paxAgtTerps = agtVizData[10], //agtVizData[paxAgtId][9], //window.localStorage.getItem("paxAgtTerps"),
+          paxAgtEps = agtVizData[11], //agtVizData[paxAgtId][10], //window.localStorage.getItem("paxAgtEps"),
+          paxAgtMps = agtVizData[12], //agtVizData[paxAgtId][11], //window.localStorage.getItem("paxAgtMps"),
+          paxAgtHrFra = agtVizData[13], //agtVizData[paxAgtId][12], //window.localStorage.getItem("paxAgtGen"),
+          paxAgtGeWom = agtVizData[14], //agtVizData[paxAgtId][13], //window.localStorage.getItem("paxAgtGeWom"),
+          paxAgtTjMech = agtVizData[15], //agtVizData[paxAgtId][14], //window.localStorage.getItem("paxAgtTjMech"),
 
+          paxAgtId = agtVizData[0],
           agtPDF = "https://peaceagreements.org/masterdocument/"+String(paxAgtId),
           agtCod = "https://peaceagreements.org/view/"+String(paxAgtId)+"/"+String(agt);
 
@@ -85,7 +87,8 @@ function callInfoFunction() {
                   +agtPDF+">Open PDF</a></b></p>"+
                   "<p><b><a class='cod' target='_blank' href="
                   +agtCod+">View Coding Detail</a></b></p>",                 //+stagesub+"<br/>",
-        data = [paxAgtId, +paxAgtPol, +paxAgtPolps, +paxAgtTerps, +paxAgtEps, +paxAgtMps, +paxAgtHrFra, +paxAgtGeWom, +paxAgtTjMech];
+        data = [+paxAgtId, +paxAgtPol, +paxAgtPolps, +paxAgtTerps, +paxAgtEps, +paxAgtMps, +paxAgtHrFra, +paxAgtGeWom, +paxAgtTjMech];
+    console.log("data: "+data);
 
     var margin = {top: 160, right: 10, bottom: 10, left: 10}, //read clockwise from top
         width = parseInt(d3.select("body").style("width"), 10),
@@ -127,9 +130,9 @@ function callInfoFunction() {
         .attr("pointer-events","all");
     // console.log(data[0]);
 
-    if (data[7] > 0){
+    if (data[1] > 0){
       var ellipse_pol = g.selectAll("ellipse.pol")//0 1 2 3
-             .data([data[7]])
+             .data([data[1]])
           .enter().append("ellipse")
             .attr("class","pol")
             .style("opacity", circle_opacity)
@@ -149,9 +152,9 @@ function callInfoFunction() {
             .attr("cy",(flowerY-rPolY))
      } //end ellipse_pol
 
-     if (data[8] > 0){
+     if (data[2] > 0){
        var ellipse_polps = g.selectAll("ellipse.polps")  //0 1 2 3
-            .data([data[8]])
+            .data([data[2]])
           .enter().append("ellipse")
             .attr("class","polps")
             .style("opacity", circle_opacity)
@@ -171,9 +174,9 @@ function callInfoFunction() {
             .attr('transform', 'rotate(45,'+flowerX+','+flowerY+')');
      } //end ellipse_polps
 
-     if (data[9] > 0){
+     if (data[3] > 0){
        var ellipse_terps = g.selectAll("ellipse.terps")   //0 1 2 3
-           .data([data[9]])
+           .data([data[3]])
         .enter().append("ellipse")
            .attr("class","terps")
            .style("opacity", circle_opacity)
@@ -194,9 +197,9 @@ function callInfoFunction() {
            .attr('transform','rotate(90,'+flowerX+','+flowerY+')');
       } //ellipse_terps
 
-      if (data[10] > 0) {
+      if (data[4] > 0) {
         var ellipse_eps = g.selectAll("ellipse.eps")   // 0 1 2 3
-            .data([data[10]])
+            .data([data[4]])
            .enter().append("ellipse")
             .attr("class","eps")
             .style("opacity", circle_opacity)
@@ -216,9 +219,9 @@ function callInfoFunction() {
             .attr('transform','rotate(225,'+flowerX+','+flowerY+')');
       }//ellipse_eps
 
-      if (data[11] > 0){
+      if (data[5] > 0){
         var ellipse_mps = g.selectAll("ellipse.mps")   //0 1 2 3
-            .data([data[11]])
+            .data([data[5]])
           .enter().append("ellipse")
             .attr("class","mps")
             .style("opacity", circle_opacity)
@@ -238,9 +241,9 @@ function callInfoFunction() {
             .attr('transform','rotate(180,'+flowerX+','+flowerY+')');
       }
 
-      if (data[12] > 0){
+      if (data[6] > 0){
         var ellipse_HrFra = g.selectAll("ellipse.HrFra")   //0/1
-            .data([data[12]])
+            .data([data[6]])
           .enter().append("ellipse")
           .attr("class","HrFra")
             .style("opacity", circle_opacity)
@@ -252,9 +255,9 @@ function callInfoFunction() {
             .attr('transform','rotate(135,'+flowerX+','+flowerY+')');
       }
 
-      if (data[13] > 0){
+      if (data[7] > 0){
         var ellipse_gewom = g.selectAll("ellipse.gewom")   // 0/1
-            .data([data[13]])
+            .data([data[7]])
           .enter().append("ellipse")
             .attr("class","gewom")
             .style("opacity", circle_opacity)
@@ -266,9 +269,9 @@ function callInfoFunction() {
             .attr('transform','rotate(270,'+flowerX+','+flowerY+')');
       }
 
-      if (data[14] > 0){
+      if (data[8] > 0){
         var ellipse_tjmech = g.selectAll("ellipse.tjmech")  //0/1/2/3
-            .data([data[14]])
+            .data([data[8]])
           .enter().append("ellipse")
             .attr("class","tjmech")
             .style("opacity", circle_opacity)
