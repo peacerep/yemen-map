@@ -25,27 +25,27 @@ h1 {
   padding-left: 10px;
 }
 h2 {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
   font-weight: 400;
   font-size: 12px;
   padding-bottom: 14px;
   color: silver;
 }
+h3 {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  padding-top: 20px;
+  padding-left: 20px;
+  color: white;
+}
 h4 {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
   font-weight: 700;
   font-size: 16px;
   padding-top: 0px;
   color: white;
 }
-p {
-  font-weight: 700;
-  font-size: 12px;
-}
-
-img {
-  padding-left: 10px;
-  padding-top: 10px;
-}
-
 p {
   font-family: 'M PLUS Rounded 1c', sans-serif;
   font-weight: 400;
@@ -55,6 +55,21 @@ p {
   padding-top: 20px;
   padding-left: 20px;
   padding-right: 30px;
+}
+ol, li {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: white;
+  display: block;
+}
+li {
+  padding-top: 10px;
+}
+
+img {
+  padding-left: 10px;
+  padding-top: 10px;
 }
 
 footer, footer p {
