@@ -15,8 +15,8 @@ Horizontal Timeline with Agreements Grouped by Date
 // }
 
 if (!(window.localStorage.getItem("paxinitialized"))){
-  window.localStorage.setItem("paxagtid", 0);
-  window.localStorage.setItem("paxselection", 0);
+  window.localStorage.setItem("paxselection", JSON.stringify([]));
+  window.localStorage.setItem("paxhover", JSON.stringify([]));
 }
 
 // callFunction();
@@ -54,11 +54,9 @@ function callFunction() {
   // Time period
   var newMinDay = localStorage.getItem("paxNewMinDay");
   var newMaxDay = localStorage.getItem("paxNewMaxDay");
-  // Agreement in left sidebar
-  var paxAgtId = window.localStorage.getItem("paxagtid");
-  // Agreement clicked on map
-  var selection = window.localStorage.getItem("paxselection");
-  console.log("Selection: "+selection);
+  // Agreement clicked on map or timeline
+  var selection = JSON.parse(window.localStorage.getItem("paxselection"));
+  // console.log("Selection: "+selection);
 
   // Date parsers & formatters
   var parseDate = d3.timeParse("%d/%m/%Y");
@@ -193,6 +191,7 @@ function callFunction() {
                       .attr("transform","translate("+margin.left+","+margin.top+")");
 
           // Make one rectangle per agreement grouped by Dat
+          console.log("Highlight: "+selection[0]);
           for (dat = 0; dat < datList.length; dat++){
             var datGroup = chartGroup.append("g")
                 .attr("class","datGroup");
@@ -206,9 +205,9 @@ function callFunction() {
                 .attr("class",function(d){ return String((setAgtColors(d))[1]); })  // .attr("class","agt")
                 .attr("id",function(d){ return d.AgtId; })
                 .attr("fill", function(d){ return (setAgtColors(d))[0]; })          //.attr("fill",function(d){ if (+d.AgtId == +selection){ return "white"; } else { return "black"; } })
-                .attr("stroke",function(d){ if (+d.AgtId == +selection){ return "white"; } else { return "#737373"; } })  // same as html background-color
-                .attr("stroke-width",function(d){ if (+d.AgtId == +selection){ return "4px"; } else { return "1px"; } })
-                .style("opacity", function(d){ if (+d.AgtId == +selection){ return "1"; } else { return "0.5"; } })
+                .attr("stroke",function(d){ if (+d.AgtId == +selection[0]){ return "white"; } else { return "#737373"; } })  // same as html background-color
+                .attr("stroke-width",function(d){ if (+d.AgtId == +selection[0]){ return "4px"; } else { return "1px"; } })
+                .style("opacity", function(d){ if (+d.AgtId == +selection[0]){ return "1"; } else { return "0.5"; } })
                 .attr("x", function(d){ return x(d.Dat) + margin.left; })
                 .attr("y",function(d,i){ return (height-xHeight-agtHeight-margin.bottom + ((agtHeight/(dats[dat].values.length)) * i) )+"px"; })
                 .attr("width", function(d){ return agtWidth+"px"; })
@@ -216,24 +215,23 @@ function callFunction() {
 
             var selectedRects = chartGroup.selectAll('rect.selected');
             selectedRects.on("click", function(d) {
-              if (!clicked){
+              if (!clicked){ // if an agreement's been selected
                 clicked = true;
                 this.style.opacity = 1;
                 console.log(this.id);
-                if (+this.id == +selection){
-                  window.localStorage.setItem("paxselection", 0);
+                if (+this.id == +(selection[0])){
+                  window.localStorage.setItem("paxselection", JSON.stringify([]));
                 } else {
-                  window.localStorage.setItem("paxselection", d.AgtId);
                   paxVizData = [d.AgtId,d.Agt,formatDate(d.Dat),d.Con,d.Status,d.Agtp,d.Stage,d.StageSub,d.Pol,d.Polps,d.Terps,d.Eps,d.Mps,d.HrFra,d.GeWom,d.TjMech];
-                  window.localStorage.setItem("paxVizData", JSON.stringify(paxVizData));
+                  window.localStorage.setItem("paxselection", JSON.stringify(paxVizData));
                 }
                 window.localStorage.setItem("updatePaxMap", "true");
                 callFunction();
 
-              } else { // if clicked
+              } else { // if an agreement's not selected
                 clicked = false;
                 this.style.opacity = 0.5;
-                window.localStorage.setItem("paxselection", 0);
+                window.localStorage.setItem("paxselection", JSON.stringify([]));
                 window.localStorage.setItem("updatePaxMap", "true");
                 callFunction();
               }
@@ -245,16 +243,15 @@ function callFunction() {
                 this.style.stroke = "#ffffff";
                 window.localStorage.setItem("updatePaxHorizontal","false");
                 window.localStorage.setItem("updatePaxMap", "false");
-                window.localStorage.setItem("paxagtid", d.AgtId);
                 paxVizData = [d.AgtId,d.Agt,formatDate(d.Dat),d.Con,d.Status,d.Agtp,d.Stage,d.StageSub,d.Pol,d.Polps,d.Terps,d.Eps,d.Mps,d.HrFra,d.GeWom,d.TjMech];
-                window.localStorage.setItem("paxVizData", JSON.stringify(paxVizData));
+                window.localStorage.setItem("paxhover", JSON.stringify(paxVizData));
                }
             });
             selectedRects.on("mouseout",function(d) {
-              if ((!clicked) && (+this.id != +selection)){
+              if ((!clicked) && (+this.id != +selection[0])){
                 window.localStorage.setItem("updatePaxHorizontal","false");
                 window.localStorage.setItem("updatePaxMap", "false");
-                window.localStorage.setItem("paxagtid", 0);
+                window.localStorage.setItem("paxhover", JSON.stringify([]));
                 this.style.fill = "black"
                 this.style.stroke = "#737373";
                }
@@ -293,14 +290,16 @@ function callFunction() {
                   }
                 }
                 if ((codeValueTotal > 0) && (pass)){
-                  if (+d.AgtId == +selection){
+                  if (+d.AgtId == +selection[0]){
                     return ["white", "selected"];   // if an agreement is selected on the map
                   } else {
                     return ["black", "selected"];
                   }
                   // return getAgtCons(d);
                 } else {
-                  window.localStorage.setItem("paxselection","");
+                  // deselect agreements that don't meet filter criteria
+                  window.localStorage.setItem("paxselection", JSON.stringify([]));
+                  selection = JSON.parse(window.localStorage.getItem("paxselection"));
                   return ["#595959", "unselected"];
                 }
               }
@@ -316,20 +315,22 @@ function callFunction() {
                   }
                 }
                 if (codeValueTotal == 0){
-                  if (+d.AgtId == +selection){
+                  if (+d.AgtId == +selection[0]){
                     return ["white", "selected"];   // if an agreement is selected on the map
                   } else {
                     return ["black", "selected"];
                   }
                 } else if ((codeValueTotal > 0) && (!mismatch)){
-                  if (+d.AgtId == +selection){
+                  if (+d.AgtId == +selection[0]){
                     return ["white", "selected"];   // if an agreement is selected on the map
                   } else {
                     return ["black", "selected"];
                   }
                   // return getAgtCons(d);
                 } else {
-                  window.localStorage.setItem("paxselection","");
+                  // deselect agreements that don't meet filter criteria
+                  window.localStorage.setItem("paxselection", JSON.stringify([]));
+                  selection = JSON.parse(window.localStorage.getItem("paxselection"));
                   return ["#595959", "unselected"];
                 }
               }

@@ -14,14 +14,19 @@ function callInfoFunction() {
   var svgtest = d3.select("body").select("svg");
   if (!svgtest.empty()) { svgtest.remove(); }
 
-  var hovered = window.localStorage.getItem("paxagtid");
-  if (+hovered > 0){
-      var paxAgtId = +hovered;
+  var hovered = JSON.parse(window.localStorage.getItem("paxhover"));
+  if (hovered && (hovered.length > 1)){
+      var agtVizData = hovered;
   } else {
-      var paxAgtId = +window.localStorage.getItem("paxselection");
+      var selection = JSON.parse(window.localStorage.getItem("paxselection"));
+      if (selection && (selection.length > 1)){
+        var agtVizData = selection;
+      } else {
+        var agtVizData = 0;
+      }
   }
 
-  if (+paxAgtId == 0){
+  if (agtVizData == 0){
 
       var agt = "Hover over or click timeline and map elements to view details of the agreements they represent.",
           dat = "<b>Date Signed:</b> ",
@@ -56,8 +61,8 @@ function callInfoFunction() {
   } else {
 
       // Agreement details and flower information
-      var agtVizData = JSON.parse(window.localStorage.getItem("paxVizData"));         // [ agt.AgtId, agt.Agt,agt.Dat,agt.Con,agt.Status,agt.Agtp,agt.Stage,agt.StageSub,agt.Pol,agt.Polps,agt.Terps,agt.Eps,agt.Mps,agt.HrFra,agt.GeWom,agt.TjMech ]
-      console.log("agmtVizData: "+agtVizData);
+      // paxAgt = [ agt.AgtId, agt.Agt,agt.Dat,agt.Con,agt.Status,agt.Agtp,agt.Stage,agt.StageSub,agt.Pol,agt.Polps,agt.Terps,agt.Eps,agt.Mps,agt.HrFra,agt.GeWom,agt.TjMech ]
+      console.log("Display: "+agtVizData);
 
       var agt = agtVizData[1], // agtVizData[paxAgtId][0], // window.localStorage.getItem("paxagt"),
           dat = "<b>Date Signed:</b> "+ agtVizData[2], // agtVizData[paxAgtId][1], // window.localStorage.getItem("paxdat"),

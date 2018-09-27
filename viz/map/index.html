@@ -187,8 +187,8 @@ var circle_opacity = .8,
 //     topLeft = bounds[0],
 //     bottomRight = bounds[1];
 
-window.localStorage.setItem("paxagtid", 0);
-window.localStorage.setItem("paxselection", 0);
+// window.localStorage.setItem("paxhover", JSON.stringify([]));
+// window.localStorage.setItem("paxselection", JSON.stringify([]));
 
 // When new filter selected/deselected, update the map
 window.addEventListener("storage", toUpdate);
@@ -232,7 +232,7 @@ function Drawflowers(){
   var paxTerps = window.localStorage.getItem("paxTerps");
   var paxTjMech = window.localStorage.getItem("paxTjMech");
   var paxGeWom = window.localStorage.getItem("paxGeWom");
-  // // Time filters
+  // Time filters
   var newMinDay = window.localStorage.getItem("paxNewMinDay");
   var newMaxDay = window.localStorage.getItem("paxNewMaxDay");
   // Country/entity filters
@@ -241,10 +241,9 @@ function Drawflowers(){
   // Time parsers & formatters
   var parseDate = d3.time.format("%d/%m/%Y").parse;
   var formatDate = d3.time.format("%d %B %Y");
-  // Hovered agreement
-  var paxAgtId = window.localStorage.getItem("pagagtid");
-  var selection = window.localStorage.getItem("paxselection");
-  console.log("Selection: "+selection);
+  // Agreement selected on timeline or map
+  var selection = JSON.parse(window.localStorage.getItem("paxselection"));
+  // console.log("Selection: "+selection);
 
   var clicked = false;
   var paxVizData = [];
@@ -286,9 +285,8 @@ function Drawflowers(){
               this.style.opacity = 1;
               window.localStorage.setItem("updatePaxHorizontal","false");
               window.localStorage.setItem("updatePaxMap","false");
-              window.localStorage.setItem("paxagtid", d.agtid);
-              paxVizData = [+d.agtid,d.agt,formatDate(parseDate(d.dat)),d.con,d.status,d.agtp,d.stage,d.stagesub,+d.pol,+d.polps,+d.terps,+d.eps,+d.mps,+d.hrfra,+d.gewom,+d.tjmech];
-              window.localStorage.setItem("paxVizData", JSON.stringify(paxVizData));
+              paxVizData = [d.agtid,d.agt,formatDate(parseDate(d.dat)),d.con,d.status,d.agtp,d.stage,d.stagesub,d.pol,d.polps,d.terps,d.eps,d.mps,d.hrfra,d.gewom,d.tjmech];
+              window.localStorage.setItem("paxhover", JSON.stringify(paxVizData));
             }
          });
         g.on("mouseout",function(d){
@@ -296,26 +294,25 @@ function Drawflowers(){
             this.style.opacity = circle_opacity;
             window.localStorage.setItem("updatePaxHorizontal","false");
             window.localStorage.setItem("updatePaxMap","false");
-            window.localStorage.setItem("paxagtid", 0);
+            window.localStorage.setItem("paxhover", JSON.stringify([]));
           }
         });
         g.on("click", function(d){
           if (!clicked){
             clicked = true;
             console.log(+d.agtid);
-            if (+d.agtid == +selection){
-              window.localStorage.setItem("paxselection", 0);
+            if (+d.agtid == +selection[0]){
+              window.localStorage.setItem("paxselection", JSON.stringify([]));
             } else {
-              window.localStorage.setItem("paxselection", +d.agtid);
-              paxVizData = [+d.agtid,d.agt,formatDate(parseDate(d.dat)),d.con,d.status,d.agtp,d.stage,d.stagesub,+d.pol,+d.polps,+d.terps,+d.eps,+d.mps,+d.hrfra,+d.gewom,+d.tjmech];
-              window.localStorage.setItem("paxVizData", JSON.stringify(paxVizData));
+              paxVizData = [d.agtid,d.agt,formatDate(parseDate(d.dat)),d.con,d.status,d.agtp,d.stage,d.stagesub,d.pol,d.polps,d.terps,d.eps,d.mps,d.hrfra,d.gewom,d.tjmech];
+              window.localStorage.setItem("paxselection", JSON.stringify(paxVizData));
             }
             window.localStorage.setItem("updatePaxHorizontal", "true");
             d3.selectAll("g").remove();
             Drawflowers();
           } else { // if clicked
             clicked = false;
-            window.localStorage.setItem("paxselection", 0);
+            window.localStorage.setItem("paxselection", JSON.stringify([]));
             window.localStorage.setItem("updatePaxHorizontal", "true");
             d3.selectAll("g").remove();
             Drawflowers();
@@ -340,7 +337,7 @@ function Drawflowers(){
                      return xvalue;
                  })
                  .attr("cy",function(d){
-                   if (+d.agtid == +selection){
+                   if (+d.agtid == +selection[0]){
                      d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                      var yvalue=map.latLngToLayerPoint(d.LatLng).y;
                      if (+d.pol == 1){ return yvalue-(ry1*4); }
@@ -355,14 +352,14 @@ function Drawflowers(){
                    }
                 })
                 .attr('rx', function(d){
-                    if (+d.agtid == +selection){
+                    if (+d.agtid == +selection[0]){
                       if (+d.pol == 1){ return rx1*4; } else { return rx*4; }
                     } else {
                       if (+d.pol == 1){ return rx1; } else { return rx; }
                     }
                 })
                 .attr("ry", function(d){
-                  if (+d.agtid == +selection){
+                  if (+d.agtid == +selection[0]){
                     if (+d.pol == 1){ return ry1*4; }
                     else if (+d.pol == 2){ return ry2*4; }
                     else if (+d.pol == 3){ return ry3*4; }
@@ -391,7 +388,7 @@ function Drawflowers(){
                     return xvalue;
                 })
                 .attr("cy",function(d){
-                  if (+d.agtid == +selection){
+                  if (+d.agtid == +selection[0]){
                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                     var yvalue=map.latLngToLayerPoint(d.LatLng).y;
                     if (+d.polps == 1){ return yvalue-(ry1*4); }
@@ -406,14 +403,14 @@ function Drawflowers(){
                   }
                 })
                 .attr('rx', function(d){
-                    if (+d.agtid == +selection){
+                    if (+d.agtid == +selection[0]){
                       if (+d.polps == 1){ return rx1*4; } else { return rx*4; }
                     } else {
                       if (+d.polps == 1){ return rx1; } else { return rx; }
                     }
                 })
                 .attr("ry", function(d){
-                  if (+d.agtid == +selection){
+                  if (+d.agtid == +selection[0]){
                     if (+d.polps == 1){ return ry1*4; }
                     else if (+d.polps == 2){ return ry2*4; }
                     else if (+d.polps == 3){ return ry3*4; }
@@ -447,7 +444,7 @@ function Drawflowers(){
                    return xvalue;
                  })
                .attr("cy",function(d){
-                 if (+d.agtid == +selection){
+                 if (+d.agtid == +selection[0]){
                    d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                    var yvalue=map.latLngToLayerPoint(d.LatLng).y;
                    if (+d.terps == 1){ return yvalue-(ry1*4); }
@@ -462,14 +459,14 @@ function Drawflowers(){
                  }
                })
                .attr('rx', function(d){
-                   if (+d.agtid == +selection){
+                   if (+d.agtid == +selection[0]){
                      if (+d.terps == 1){ return rx1*4; } else { return rx*4; }
                    } else {
                      if (+d.terps == 1){ return rx1; } else { return rx; }
                    }
                })
                .attr("ry", function(d){
-                 if (+d.agtid == +selection){
+                 if (+d.agtid == +selection[0]){
                    if (+d.terps == 1){ return ry1*4; }
                    else if (+d.terps == 2){ return ry2*4; }
                    else if (+d.terps == 3){ return ry3*4; }
@@ -503,7 +500,7 @@ function Drawflowers(){
                     return xvalue;
                   })
                 .attr("cy",function(d){
-                  if (+d.agtid == +selection){
+                  if (+d.agtid == +selection[0]){
                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                     var yvalue=map.latLngToLayerPoint(d.LatLng).y;
                     if (+d.eps == 1){ return yvalue-(ry1*4); }
@@ -518,14 +515,14 @@ function Drawflowers(){
                   }
                 })
                 .attr('rx', function(d){
-                    if (+d.agtid == +selection){
+                    if (+d.agtid == +selection[0]){
                       if (+d.eps == 1){ return rx1*4; } else { return rx*4; }
                     } else {
                       if (+d.eps == 1){ return rx1; } else { return rx; }
                     }
                 })
                 .attr("ry", function(d){
-                  if (+d.agtid == +selection){
+                  if (+d.agtid == +selection[0]){
                     if (+d.eps == 1){ return ry1*4; }
                     else if (+d.eps == 2){ return ry2*4; }
                     else if (+d.eps == 3){ return ry3*4; }
@@ -559,7 +556,7 @@ function Drawflowers(){
                     return xvalue;
                   })
                 .attr("cy",function(d){
-                  if (+d.agtid == +selection){
+                  if (+d.agtid == +selection[0]){
                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                     var yvalue=map.latLngToLayerPoint(d.LatLng).y;
                     if (+d.mps == 1){ return yvalue-(ry1*4); }
@@ -574,14 +571,14 @@ function Drawflowers(){
                   }
                 })
                 .attr('rx', function(d){
-                    if (+d.agtid == +selection){
+                    if (+d.agtid == +selection[0]){
                       if (+d.mps == 1){ return rx1*4; } else { return rx*4; }
                     } else {
                       if (+d.mps == 1){ return rx1; } else { return rx; }
                     }
                 })
                 .attr("ry", function(d){
-                  if (+d.agtid == +selection){
+                  if (+d.agtid == +selection[0]){
                     if (+d.mps == 1){ return ry1*4; }
                     else if (+d.mps == 2){ return ry2*4; }
                     else if (+d.mps == 3){ return ry3*4; }
@@ -615,7 +612,7 @@ function Drawflowers(){
                     return xvalue;
                   })
                 .attr("cy",function(d){
-                  if (+d.agtid == +selection){
+                  if (+d.agtid == +selection[0]){
                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                     var yvalue=map.latLngToLayerPoint(d.LatLng).y;
                     return yvalue-(ry1*4);
@@ -626,14 +623,14 @@ function Drawflowers(){
                   }
                 })
                 .attr('rx', function(d){
-                    if (+d.agtid == +selection){
+                    if (+d.agtid == +selection[0]){
                       return rx1*4;
                     } else {
                       return rx1;
                     }
                   })
                 .attr("ry", function(d){
-                    if (+d.agtid == +selection){
+                    if (+d.agtid == +selection[0]){
                       return ry1*4;
                     } else {
                       return ry1;
@@ -663,7 +660,7 @@ function Drawflowers(){
                     return xvalue;
                     })
                 .attr("cy",function(d){
-                  if (+d.agtid == +selection){
+                  if (+d.agtid == +selection[0]){
                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                     var yvalue=map.latLngToLayerPoint(d.LatLng).y;
                     return yvalue-(ry1*4);
@@ -674,14 +671,14 @@ function Drawflowers(){
                   }
                   })
                 .attr('rx', function(d){
-                    if (+d.agtid == +selection){
+                    if (+d.agtid == +selection[0]){
                       return rx1*4;
                     } else {
                       return rx1;
                     }
                   })
                 .attr("ry", function(d){
-                    if (+d.agtid == +selection){
+                    if (+d.agtid == +selection[0]){
                       return ry1*4;
                     } else {
                       return ry1;
@@ -711,7 +708,7 @@ function Drawflowers(){
                     return xvalue;
                   })
                 .attr("cy",function(d){
-                  if (+d.agtid == +selection){
+                  if (+d.agtid == +selection[0]){
                     d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                     var yvalue=map.latLngToLayerPoint(d.LatLng).y;
                     if (+d.tjmech == 1){ return yvalue-(ry1*4); }
@@ -726,14 +723,14 @@ function Drawflowers(){
                   }
                 })
                 .attr('rx', function(d){
-                    if (+d.agtid == +selection){
+                    if (+d.agtid == +selection[0]){
                       if (+d.tjmech == 1){ return rx1*4; } else { return rx*4; }
                     } else {
                       if (+d.tjmech == 1){ return rx1; } else { return rx; }
                     }
                 })
                 .attr("ry", function(d){
-                  if (+d.agtid == +selection){
+                  if (+d.agtid == +selection[0]){
                     if (+d.tjmech == 1){ return ry1*4; }
                     else if (+d.tjmech == 2){ return ry2*4; }
                     else if (+d.tjmech == 3){ return ry3*4; }
@@ -767,7 +764,7 @@ function Drawflowers(){
                   d.LatLng = new L.LatLng(d.circle.coordinates[0],d.circle.coordinates[1])
                   return map.latLngToLayerPoint(d.LatLng).y;})
                 .attr('r', function(d){
-                  if (+d.agtid == +selection){
+                  if (+d.agtid == +selection[0]){
                     return r*4;
                   } else { return r; }
                 });

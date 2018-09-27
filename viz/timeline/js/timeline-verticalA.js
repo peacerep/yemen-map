@@ -48,7 +48,7 @@ function callFunction() {
     paxGeWom = locStor.getItem("paxGeWomV");
     paxTjMech = locStor.getItem("paxTjMechV");
     // Agreement selection
-    selectionV = +window.localStorage.getItem("paxselectionV");
+    selectionV = JSON.parse(window.localStorage.getItem("paxselectionV"));
     // console.log("Vertical Selection: "+selectionV);
   };
 
@@ -99,6 +99,8 @@ function callFunction() {
           if (!svgTest.empty()) {
             svgTest.remove();
           };
+
+          var paxVizData = [];
 
           // // Create bar chart tooltip
           // var tooltip = d3.select("body").append("div")
@@ -173,24 +175,24 @@ function callFunction() {
                 .attr("name",function(d){ return d.Agt; })
                 .attr("value",function(d){ return d.Year; })
                 .attr("fill", function(d){ return getStageFill(d, stageValues, stageColors); })//"black")
-                .attr("stroke",function(d){ if (+d.AgtId == +selectionV){ return "#ffffff"; } else { return "#737373"; } })  // same as html background-color
+                .attr("stroke",function(d){ if (+d.AgtId == +selectionV[0]){ return "#ffffff"; } else { return "#737373"; } })  // same as html background-color
                 .attr("stroke-width","1px")
-                .style("opacity", function(d){ if (+d.AgtId == +selectionV){ return "1"; } else { return "0.7"; } })
+                .style("opacity", function(d){ if (+d.AgtId == +selectionV[0]){ return "1"; } else { return "0.7"; } })
                 .attr("x",function(d,i){ return (yWidth+margin.left+((agtWidth)*(i*agtSpacing)))+"px"; })
                 .attr("y", function(d){ return y(parseYear(d.Year)) - (agtHeight/2) + (margin.top*7); })
                 .attr("width", agtWidth+"px")
                 .attr("height", agtHeight+"px");
 
             rects.on("click", function(d) {
-              if (+d.AgtId != +selectionV){
-                // console.log(this.id); // this.id == d.AgtId
-                window.localStorage.setItem("paxselectionV", d.AgtId);
+              if (+d.AgtId != +selectionV[0]){
+                paxVizData = [d.AgtId,d.Agt,formatDate(d.Dat),d.Con,d.Status,d.Agtp,d.Stage,d.StageSub,d.Pol,d.Polps,d.Terps,d.Eps,d.Mps,d.HrFra,d.GeWom,d.TjMech];
+                window.localStorage.setItem("paxselectionV", JSON.stringify(paxVizData));
                 window.localStorage.setItem("updatePaxVerticalB", "true"); // Deselect any selected agreement on middle vertical timeline
                 window.localStorage.setItem("updatePaxVerticalC", "true"); // Deselect any selected agreement on right vertical timeline
                 callFunction();
               } else { // if clicked
                 // console.log(this.id);
-                window.localStorage.setItem("paxselectionV", 0);
+                window.localStorage.setItem("paxselectionV", JSON.stringify([]));
                 window.localStorage.setItem("updatePaxVerticalB", "true"); // Deselect any selected agreement on middle vertical timeline
                 window.localStorage.setItem("updatePaxVerticalC", "true"); // Deselect any selected agreement on right vertical timeline
                 callFunction();
@@ -199,11 +201,12 @@ function callFunction() {
 
             rects.on("mouseover",function(d){
                 this.style.opacity = 1;
-                window.localStorage.setItem("paxagtidV", d.AgtId);
+                paxVizData = [d.AgtId,d.Agt,formatDate(d.Dat),d.Con,d.Status,d.Agtp,d.Stage,d.StageSub,d.Pol,d.Polps,d.Terps,d.Eps,d.Mps,d.HrFra,d.GeWom,d.TjMech];
+                window.localStorage.setItem("paxhoverV", JSON.stringify(paxVizData));
             });
             rects.on("mouseout",function(d) {
-              window.localStorage.setItem("paxagtidV", 0);
-              if (+d.AgtId.id != +selectionV){
+              window.localStorage.setItem("paxhoverV", JSON.stringify([]));
+              if (+d.AgtId.id != +selectionV[0]){
                 this.style.opacity = 0.7;
                 this.style.fill = getStageFill(d, stageValues, stageColors);
                }
@@ -281,7 +284,7 @@ function callFunction() {
           function getStageFill(d, stageValues, stageColors){
             // d.StageSub value to color: "FrCons"
             // d.Stage possible values to color: "Pre", "SubPar", "SubComp", "Imp", "Cea", "Other"
-            if (+d.AgtId == +selectionV){
+            if (+d.AgtId == +selectionV[0]){
               return "#ffffff";
             } else if (d.StageSub == stageValues[6]){ //"FrCons"
              return stageColors[6];

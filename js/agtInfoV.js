@@ -12,11 +12,16 @@ function callVInfoFunction() {
   var svgtest = d3.select("body").select("svg");
   if (!svgtest.empty()) { svgtest.remove(); }
 
-  var hovered = window.localStorage.getItem("paxagtidV");
-  if (+hovered > 0){
-      var paxAgtId = +hovered;
+  var hovered = JSON.parse(window.localStorage.getItem("paxhoverV"));
+  if (hovered && (hovered.length > 1)){
+      var agtVizData = hovered;
   } else {
-      var paxAgtId = +window.localStorage.getItem("paxselectionV");
+      var selection = JSON.parse(window.localStorage.getItem("paxselectionV"));
+      if (selection && (selection.length > 1)){
+        var agtVizData = selection;
+      } else {
+        var agtVizData = 0;
+      }
   }
 
   var margin = {top: 10, right: 10, bottom: 10, left: 10}, //read clockwise from top
@@ -30,7 +35,7 @@ function callVInfoFunction() {
 
   var textY = margin.top;
 
-  if (+paxAgtId == 0){
+  if (agtVizData == 0){
 
       var agt = "Hover over or click agreements on the vertical timelines to view their details.",
           dat = "<b>Date Signed:</b> ",
@@ -56,20 +61,21 @@ function callVInfoFunction() {
 
   } else {
 
-      // Agreement details and flower information
-      var agtVizData = JSON.parse(window.localStorage.getItem("paxVizData"));         // vizData[agt.AgtId] = [ agt.Agt,agt.Dat,agt.Con,agt.Status,agt.Agtp,agt.Stage,agt.StageSub,agt.Pol,agt.Polps,agt.Terps,agt.Eps,agt.Mps,agt.HrFra,agt.GeWom,agt.TjMech ]
+      // Agreement details
+      //  [agt.AgtId,agt.Agt,agt.Dat,agt.Con,agt.Status,agt.Agtp,agt.Stage,agt.StageSub,agt.Pol,agt.Polps,agt.Terps,agt.Eps,agt.Mps,agt.HrFra,agt.GeWom,agt.TjMech ]
 
       // Agreement core information to display ("details")
-      var agt = agtVizData[paxAgtId][0],
-          dat = "<b>Date Signed:</b> "+ agtVizData[paxAgtId][1],
+      var agt = agtVizData[1],
+          dat = "<b>Date Signed:</b> "+ agtVizData[2],
           // reg = "<b>Region:</b> "+ window.localStorage.getItem("paxreg"),
-          con = "<b>Country/Entity:</b> "+ agtVizData[paxAgtId][2],
-          status = "<b>Status:</b> "+ agtVizData[paxAgtId][3],
-          agtp = "<b>Type:</b> "+ agtVizData[paxAgtId][4],
-          stage = "<b>Stage:</b> "+ agtVizData[paxAgtId][5],
-          stagesub = "<b>Substage:</b> "+ agtVizData[paxAgtId][6],
+          con = "<b>Country/Entity:</b> "+ agtVizData[3],
+          status = "<b>Status:</b> "+ agtVizData[4],
+          agtp = "<b>Type:</b> "+ agtVizData[5],
+          stage = "<b>Stage:</b> "+ agtVizData[6],
+          stagesub = "<b>Substage:</b> "+ agtVizData[7],
 
       // Agreement's links in PA-X Database to include in "details"
+          paxAgtId = agtVizData[0],
           agtPDF = "https://peaceagreements.org/masterdocument/"+String(paxAgtId),        // PDF document of agreement (to download)
           agtCod = "https://peaceagreements.org/view/"+String(paxAgtId)+"/"+String(agt);  // Coding details of agreement (to view in browser)
 

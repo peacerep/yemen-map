@@ -9,8 +9,8 @@ window.onload = function() {
     window.localStorage.setItem("updatePaxHorizontal","false");
     window.localStorage.setItem("updatePaxMap", "false");
 
-    window.localStorage.setItem("paxagtid", 0);
-    window.localStorage.setItem("paxselection", 0);
+    window.localStorage.setItem("paxselection", JSON.stringify([]));
+    window.localStorage.setItem("paxhover", JSON.stringify([]));
 
     var allCons = document.getElementsByName("Con");
     var paxConsAll = [];
