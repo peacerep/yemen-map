@@ -1,0 +1,51 @@
+/* LANDING PAGE STYLESHEET */
+
+
+
+html{
+  background-color: #737373; /*c4c4c4;*/
+  margin-top: 40px;
+}
+body {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  text-align: center;
+}
+
+h1 {
+  font-weight: 900;
+  font-size: 64px;
+  color: white;
+}
+
+h2 {
+  font-weight: 400;
+  font-style: italic;
+  font-size: 20px;
+  color: white;
+  padding-bottom: 40px;
+}
+
+h3, h3 a {
+  font-weight: 700;
+  font-size: 24px;
+  color: white;
+  padding-bottom: 20px;
+  text-decoration: none;
+}
+
+h4, h4 a {
+  font-weight: 400;
+  font-size: 18px;
+  color: white;
+  padding-bottom: 20px;
+  text-decoration: none;
+}
+
+h5, h5 a {
+  font-weight: 400;
+  font-size: 18px;
+  color: silver;
+}
+h3 a:hover, h4 a:hover, h5 a:hover {
+  color: #333;
+}

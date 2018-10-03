@@ -1,6 +1,5 @@
 /*
-CSS style for the main page with a grid layout of the iframes for
-each visualization and selecter (7 in total)
+CSS style for the Agreements in Time and Space
 */
 
 * {
@@ -13,7 +12,7 @@ html{
   padding: 0px;
 }
 body {
-  margin-top: -20px;
+  margin-top: -44px;
 }
 
 h1 {
@@ -22,7 +21,9 @@ h1 {
   font-size: 28px;
   color: white;
   pointer-events: none;
-  padding-left: 10px;
+  padding-left: 8px;
+  margin-top: 32px;
+  margin-bottom: -8px;
 }
 h2 {
   font-family: 'M PLUS Rounded 1c', sans-serif;
@@ -109,12 +110,7 @@ Grid Layout
     'selecter map map map map map map'
     'selecter map map map map map map'
     'selecter map map map map map map'
-    'selecter map map map map map map'
-    'selecter2 timeline-v1 timeline-v1 timeline-v2 timeline-v2 timeline-v3 timeline-v3'
-    'selecter2 timeline-v1 timeline-v1 timeline-v2 timeline-v2 timeline-v3 timeline-v3'
-    'selecter2 timeline-v1 timeline-v1 timeline-v2 timeline-v2 timeline-v3 timeline-v3'
-    'selecter2 timeline-v1 timeline-v1 timeline-v2 timeline-v2 timeline-v3 timeline-v3'
-    'selecter2 timeline-v1 timeline-v1 timeline-v2 timeline-v2 timeline-v3 timeline-v3';
+    'selecter map map map map map map';
     grid-gap: 10px;
       align-content: stretch;
       justify-content: stretch;
@@ -147,25 +143,4 @@ Grid Layout
   grid-area: map;
   grid-column: 2 / 8;
   grid-row: 34 / 112;
-}
-.item-e {
-  grid-area: selecter2;
-  grid-column: 1 / 2;
-  grid-row: 116 / 232;
-  min-width: 368.433px;
-}
-.item-f {
-  grid-area: timeline-v1;
-  grid-column: 2 / 4;
-  grid-row: 112 / 232;
-}
-.item-g {
-  grid-area: timeline-v2;
-  grid-column: 4 / 6;
-  grid-row: 112 / 232;
-}
-.item-h {
-  grid-area: timeline-v3;
-  grid-column: 6 / 8;
-  grid-row: 112 / 232;
 }
