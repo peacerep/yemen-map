@@ -5,18 +5,34 @@
     <!-- for responsive web design -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Agreement Sequence Comparison</title>
+    <title>Visualizing Peace</title>
 
     <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c:400,700,900" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/style-grid-c.css">
+    <link rel="stylesheet" type="text/css" href="css/style-grid.css">
     <script type="text/javascript" src="viz/timeline/js/d3.v4.js"></script>
   </head>
   <body>
 
       <div class="grid-container">
 
-          <div class="item-e">
+          <!-- <div class="item-a">
+              <a class="nav" href="http://www.peaceagreements.org">PA-X HOME</a>
+              <a class="nav" href="http://www.peaceagreements.org/search">DATABASE</a>
+              <a class="nav" href="http://www.peaceagreements.org/files/PA_X_codebook_Version1_Feb_20_20.pdf" target="_blank">CODEBOOK</a>
               <h1>Visualizing Peace</h1>
+              <a href="index.html" id="Reset" onclick="resetFilters()"><button class="btn" id="reset"><label for="Reset">Reset Visualization</label></button></a>
+          </div> -->
+
+          <div class="item-b">
+              <iframe width="100%" height="100%" src="select.html" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <div class="item-c">
+              <iframe width="100%" height="100%" src="viz/timeline/index-t-chronology.html" frameborder="0" allowfullscreen id="mini-timeline"></iframe>
+          </div>
+          <div class="item-d">
+              <iframe width ="100%" height="100%" src="viz/map/index.html" frameborder="0" allowfullscreen id="map"></iframe>
+          </div>
+          <div class="item-e">
               <iframe width="100%" height="100%" src="vertical-select.html" id="vert-timeline-selecter" frameborder="0"></iframe>
           </div>
           <div class="item-f">
@@ -33,7 +49,7 @@
 
       <footer>
         <p>
-          <a href="index.html">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="landing.html">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
           By <a href="http://ljhavens.myportfolio.com">Lucy Havens</a> and Mengting Bao&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
           For the <a href="http://www.politicalsettlements.org/">Political Settlements Research Programme</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
           Summer 2018&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
