@@ -10,7 +10,7 @@ each visualization and selecter (7 in total)
 html{
   background-color: #737373; /*c4c4c4;*/
   margin: 0px;
-  padding: 0px;
+  padding-top: 0px;
 }
 body {
   margin-top: -20px;
@@ -20,7 +20,11 @@ body {
 .content {
   min-height: calc(100vh - 40px);
 }
-
+#landing, #landing a {
+  padding-left: 20px;
+  font-size: 18px;
+  color: silver;
+}
 h1 {
   font-family: 'M PLUS Rounded 1c', sans-serif;
   font-weight: 900;
@@ -28,28 +32,37 @@ h1 {
   color: white;
   pointer-events: none;
   padding-left: 10px;
+  padding-top: 16px;
 }
 h2 {
   font-family: 'M PLUS Rounded 1c', sans-serif;
   font-weight: 400;
-  font-size: 12px;
-  padding-bottom: 14px;
-  color: silver;
+  font-size: 20px;
+  padding-bottom: 40px;
+  padding-left: 10px;
+  color: white;
 }
-h3 {
+h3, h3 a {
   font-family: 'M PLUS Rounded 1c', sans-serif;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 24px;
   padding-top: 20px;
   padding-left: 20px;
   color: white;
+  text-decoration: none;
 }
-h4 {
+h4, h4 a {
   font-family: 'M PLUS Rounded 1c', sans-serif;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 18px;
   padding-top: 0px;
+  padding-left: 20px;
+  padding-bottom: 20px;
   color: white;
+  text-decoration: none;
+}
+h3 a:hover, h4 a:hover, h5 a:hover, #landing a:hover {
+  color: #333;
 }
 p {
   font-family: 'M PLUS Rounded 1c', sans-serif;
@@ -125,16 +138,16 @@ Grid Layout
 
 .item-b {
   grid-area: selecter;
-  grid-column: 1 / 2;
-  grid-row: 2 / 4; /*2 / 34;*/
-  min-width: 368.433px;
+  grid-column: 1 / 1;
+  grid-row: 1 / 5; /*2 / 34;*/
+  max-width: 368.433px;
 }
 .item-c {
   margin-top: 30px;
   grid-area: timeline-h;
   grid-column: 2 / 8;
-  grid-row: 1 / 4; /*1 / 34*/
-  min-width: 807.567px;
+  grid-row: 1 / 5; /*1 / 34*/
+  /* min-width: 807.567px; */
 }
 .footer {
   grid-column: 1 / 8;
