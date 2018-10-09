@@ -95,12 +95,14 @@ ol, li {
   display: block;
 }
 li {
-  padding-top: `0px;
+  padding-top: 0px;
 }
 
 img {
   padding-left: 10px;
   padding-top: 10px;
+  margin-top: -100px;
+  max-width: 150%;
 }
 
 
@@ -127,6 +129,7 @@ Grid Layout
   grid-column: 1 / 1;
   grid-row: 1 / 2; /*2 / 34;*/
   max-width: 368.433px;
+  /* height: auto; */
   max-height: 1824px;
 }
 .item-c {
