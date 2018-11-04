@@ -22,7 +22,7 @@ window.onload = function() {
     localStorage.setItem("paxCons", JSON.stringify([]));
     paxCheckTime();
     paxConsAllUncheck(); // Check all country/entity values
-    paxConRuleAll(); // Display agreements with any checked country/entity
+    paxConRuleAll(); // Display agreements with all checked country/entity values
     paxFilterUncheck(); // Check all code filters
     paxRuleAll(); // Pick code filter rule ALL
 

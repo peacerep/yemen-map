@@ -380,9 +380,8 @@ function callFunction() {
               if (paxConRule == "all") {
                 var mismatch = false;
                 for (j = 0; j < paxCons.length; j++){
-                  if ((!(agmtCon.includes(paxCons[j]))) || (!(paxCons[j].includes(agmtCon)))){
+                  if ((!(agmtCon.includes(paxCons[j]))) && (!(paxCons[j].includes(agmtCon)))){
                     mismatch = true;
-                    // console.log("Mismatched: "+agmtCon);
                   }
                 }
                 if (!mismatch){
