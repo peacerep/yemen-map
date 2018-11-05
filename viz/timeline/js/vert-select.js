@@ -5,9 +5,9 @@ window.onload = function() {
   window.localStorage.setItem("updatePaxVerticalC","false");
   // window.localStorage.setItem("updatePaxHorizontal","false");
 
-  window.localStorage.setItem("paxselection", JSON.stringify([])); // Agreement selection
+  window.localStorage.setItem("paxselectionV", JSON.stringify([])); // Agreement selection
   window.localStorage.setItem("paxhover", JSON.stringify([])); // Hovered agreement
-  
+
   paxFilterUncheck(); // Check all code filters
   paxRuleAll(); // Pick code filter rule ALL
   // window.localStorage.setItem("updatePaxVerticalA","true");
