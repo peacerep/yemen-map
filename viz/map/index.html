@@ -3,69 +3,64 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://opengraphprotocol.org/schema/" prefix="og: http://ogp.me/ns#">
 
 <head>
-  <meta charset='utf-8' />
-  <title>Visualizing Peace Map</title>
+	<meta charset='utf-8' />
+	<title>Visualizing Peace Map</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
-  <!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
-  <script type="text/javascript" src="d3/d3.min.js"></script>
-  <link rel="stylesheet" href="css/leaflet1.css"  />
-  <script src="js/leaflet1.js"></script>
-  <!-- include CARTO.js library -->
-      <!-- <script src="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/cartodb.js"></script> -->
+	<script type="text/javascript" src="../../lib/d3v3/d3.min.js"></script>
+	<link rel="stylesheet" href="../../lib/leaflet1.css"/>
+	<script src="../../lib/leaflet1.js"></script>
 
-  <!-- <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script> -->
+	<style>
+		body { margin:0; padding:0; }
+		#map {
+			position:absolute;
+			/* top:80px; */
+			z-index:1;
+			/* bottom:30px; */
+			/* right: 20px; */
+			width: 100%; /*1200px;*/
+			height: 100%; /*800px;*/
+		}
+		.bindTooltip {
+			background: rgba(255,255,255,0.85);
+			border: 1px solid silver;
+			border-radius: 3px;
+			box-shadow: 1px 1px 2px #888;
+			padding: 8px;
+			height:200px;
+			width:200px;
+		}
+		.d3-tip {
+			line-height: 1;
+			font-weight: bold;
+			padding: 30px;
+			background: #d3d3d3;
+			color: #fff;
+			border-radius: 2px;
+		}
 
-  <style>
-    body { margin:0; padding:0; }
-    #map {
-      position:absolute;
-      /* top:80px; */
-      z-index:1;
-      /* bottom:30px; */
-      /* right: 20px; */
-      width: 100%; /*1200px;*/
-      height: 100%; /*800px;*/
-    }
-    .bindTooltip {
-      background: rgba(255,255,255,0.85);
-    	border: 1px solid silver;
-    	border-radius: 3px;
-    	box-shadow: 1px 1px 2px #888;
-    	padding: 8px;
-      height:200px;
-      width:200px;
-}
-    .d3-tip {
-      line-height: 1;
-      font-weight: bold;
-      padding: 30px;
-      background: #d3d3d3;
-      color: #fff;
-      border-radius: 2px;
-    }
+		/* Creates a small triangle extender for the tooltip */
+		.d3-tip:after {
+			box-sizing: border-box;
+			display: inline;
+			font-size: 10px;
+			width: 100%;
+			line-height: 1;
+			color: rgba(0, 0, 0, 0.8);
+			content: "\25BC";
+			position: absolute;
+			text-align: center;
+		}
 
-    /* Creates a small triangle extender for the tooltip */
-    .d3-tip:after {
-      box-sizing: border-box;
-      display: inline;
-      font-size: 10px;
-      width: 100%;
-      line-height: 1;
-      color: rgba(0, 0, 0, 0.8);
-      content: "\25BC";
-      position: absolute;
-      text-align: center;
-    }
-
-    /* Style northward tooltips differently */
-    .d3-tip.n:after {
-      margin: -1px 0 0 0;
-      top: 100%;
-      left: 0;
-    }
-  </style>
+		/* Style northward tooltips differently */
+		.d3-tip.n:after {
+			margin: -1px 0 0 0;
+			top: 100%;
+			left: 0;
+		}
+	</style>
 </head>
+
 <body>
 
 <!-- <button class="btn" id="exportMap"><label for="export">Export Map as PNG</label></button> -->
