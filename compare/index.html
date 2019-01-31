@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<!-- for responsive web design -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Agreement Sequence Comparison</title>
+
+	<link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c:400,700,900" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../css/style-grid-c.css">
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
+	<link rel="stylesheet" type="text/css" href="../css/select-style.css">
+
+	<script type="text/javascript" src="../lib/d3v4/d3.min.js"></script>
+</head>
+
+<body>
+
+	<div class="grid-container">
+
+		<div class="item-e">
+			<h1>Visualizing Peace</h1>
+
+			<h4>Agreement Sequence Comparison</h4>
+
+			Display agreements that address: <br>
+			
+			<!-- any/all radio -->
+			<input type="radio" id="anyV" name="filterRule" value="any" checked>
+			<label for="any">ANY</label>
+			<input type="radio" id="allV" name="filterRule" value="all">
+			<label for="all">ALL</label><br>
+			of the below code selections. <br>
+			
+			<!-- fake dropdown for codes -->
+			<div class='dropdown'>
+			<button class="dropbtn" id="CodeDropBtn">Select Codes</button>
+			<div id="CodeDropdown" class="CodeContent">
+			<a href="#" id="SelectAllCodesV">Select All</a>&nbsp;&nbsp;
+			<a href="#" id="DeselectAllCodesV">Deselect All</a><br>
+			<label><input type="checkbox" id="paxHrFraV" checked>Human Rights Framework</label><br>
+			<label><input type="checkbox" id="paxPolV" checked>Political Institutions</label><br>
+			<label><input type="checkbox" id="paxEpsV" checked>Power Sharing: Economic</label><br>
+			<label><input type="checkbox" id="paxMpsV" checked>Power Sharing: Military</label><br>
+			<label><input type="checkbox" id="paxPolpsV" checked>Power Sharing: Political</label><br>
+			<label><input type="checkbox" id="paxTerpsV" checked>Power Sharing: Territorial</label><br>
+			<label><input type="checkbox" id="paxTjMechV" checked>Transitional Justice Past Mechanism</label><br>
+			<label><input type="checkbox" id="paxGeWomV" checked>Women, Girls and Gender</label>
+			</div>
+			</div> <br>
+
+			Selected codes: <br>			
+			<span id='selectionsCode'></span>
+		
+			<!-- legend for agreement codes (not clickable) -->
+			Agreement Stage Legend
+			<table>
+			<tr><td id="Cea" class="color">&nbsp;&nbsp;&nbsp;</td><td>Ceasefire/related</td></tr>
+			<tr><td id="Pre" class="color">&nbsp;&nbsp;&nbsp;</td><td>Prenegotiation</td></tr>
+			<tr><td id="SubPar" class="color">&nbsp;&nbsp;&nbsp;</td><td>Framework-substantive, partial</td></tr>
+			<tr><td id="SubComp" class="color">&nbsp;&nbsp;&nbsp;</td><td>Framework-substantive, comprehensive</td><tr>
+			<tr><td id="FrCons" class="color">&nbsp;&nbsp;&nbsp;</td><td>Constitution</td></tr>
+			<tr><td id="Imp" class="color">&nbsp;&nbsp;&nbsp;</td><td>Implementation</td></tr>
+			<tr><td id="Ren" class="color">&nbsp;&nbsp;&nbsp;</td><td>Renewal</td></tr>
+			<tr><td id="Other" class="color">&nbsp;&nbsp;&nbsp;</td><td>Other</td></tr>
+			</table>
+			
+
+			<br/>
+
+			<!-- agreements details - need js to update this -->
+			Agreement Details:
+			<div id="agtV"></div>
+			<!-- <script type="text/javascript" src="js/agtInfoV.js"></script> -->
+
+		</div> <!-- end item-e sidebar -->
+
+		<div class="item-f" id="timeline-v-a">  
+			<select id='timeline-v-a-select'>
+				<option value="0" disabled selected="selected">Select country/entity</option> 
+			</select><br>
+			<button class="btn" id="exportV">Export Timeline as PNG</button><br>
+			<!-- <iframe width="100%" height="100%" src="viz/timeline/index-t-verticalA.html" id="vert-timeline-a" frameborder="0"></iframe> -->
+		</div>
+		<div class="item-g">
+			<!-- <iframe width="100%" height="100%" src="../viz/timeline/index-t-verticalB.html" id="vert-timeline-b" frameborder="0"></iframe> -->
+		</div>
+		<div class="item-h">
+			<!-- <iframe width="100%" height="100%" src="../viz/timeline/index-t-verticalC.html" id="vert-timeline-c" frameborder="0"></iframe> -->
+		</div>
+	</div>
+
+	<script type="text/javascript" src="comparison-new.js"></script>
+
+</body>
+
+</html>
