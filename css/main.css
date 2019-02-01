@@ -3,7 +3,7 @@
 }
 
 html, body {
-	background-color: #737373;
+	background-color: #f0f0f0;
 	margin: 0px;
 	padding: 0px;
 	font-family: 'M PLUS Rounded 1c', sans-serif;
@@ -21,30 +21,29 @@ h1 {
   color: white;
   pointer-events: none;
   /*padding-left: 8px;*/
-  margin-top: 32px;
   margin-bottom: -8px;
 }
 
 h2 {
-  font-size: 12px;
-  padding-bottom: 14px;
-  color: silver;
+	font-weight: 700;
+	font-size: 16px;
+	padding-top: 0px;
+	color: white;
 }
 
 h3 {
-  font-weight: 700;
-  font-size: 16px;
-  padding-top: 20px;
-  padding-left: 20px;
-  color: white;
+	font-size: 14px;
+	margin: 20px 0 5px 0;
+	color: silver;
 }
 
-h4 {
-  font-weight: 700;
-  font-size: 16px;
-  padding-top: 0px;
-  color: white;
-}
+/*h4 {
+	font-weight: 700;
+	font-size: 16px;
+	padding-top: 20px;
+	padding-left: 20px;
+	color: white;	
+}*/
 
 p {
 

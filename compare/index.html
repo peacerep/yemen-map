@@ -9,21 +9,21 @@
 	<title>Agreement Sequence Comparison</title>
 
 	<link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c:400,700,900" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="../css/style-grid-c.css">
 	<link rel="stylesheet" type="text/css" href="../css/main.css">
 	<link rel="stylesheet" type="text/css" href="../css/select-style.css">
+	<link rel="stylesheet" type="text/css" href="../css/timeline-v.css">
 
 	<script type="text/javascript" src="../lib/d3v4/d3.min.js"></script>
 </head>
 
 <body>
-
 	<div class="grid-container">
-
-		<div class="item-e">
+		<div id="sidebar">
 			<h1>Visualizing Peace</h1>
 
-			<h4>Agreement Sequence Comparison</h4>
+			<h2>Agreement Sequence Comparison</h2>
+
+			<h3>Code Selection</h3>
 
 			Display agreements that address: <br>
 			
@@ -51,11 +51,11 @@
 			</div>
 			</div> <br>
 
-			Selected codes: <br>			
-			<span id='selectionsCode'></span>
+			Selected codes:	<span id='selectionsCode'></span>
+			<br>
 		
 			<!-- legend for agreement codes (not clickable) -->
-			Agreement Stage Legend
+			<h3>Agreement Stage Legend</h3>
 			<table>
 			<tr><td id="Cea" class="color">&nbsp;&nbsp;&nbsp;</td><td>Ceasefire/related</td></tr>
 			<tr><td id="Pre" class="color">&nbsp;&nbsp;&nbsp;</td><td>Prenegotiation</td></tr>
@@ -71,23 +71,30 @@
 			<br/>
 
 			<!-- agreements details - need js to update this -->
-			Agreement Details:
+			<h3>Agreement Details</h3>
 			<div id="agtV"></div>
 			<!-- <script type="text/javascript" src="js/agtInfoV.js"></script> -->
-
 		</div> <!-- end item-e sidebar -->
 
-		<div class="item-f" id="timeline-v-a">  
-			<select id='timeline-v-a-select'>
+		<div id="timeline-v0">  
+			<select id='timeline-v0-select'>
 				<option value="0" disabled selected="selected">Select country/entity</option> 
 			</select><br>
-			<button class="btn" id="exportV">Export Timeline as PNG</button><br>
+			<button class="btn" id="timeline-v0-export">Export Timeline as PNG</button><br>
 			<!-- <iframe width="100%" height="100%" src="viz/timeline/index-t-verticalA.html" id="vert-timeline-a" frameborder="0"></iframe> -->
 		</div>
-		<div class="item-g">
+		<div id="timeline-v1">
+			<select id='timeline-v1-select'>
+				<option value="0" disabled selected="selected">Select country/entity</option> 
+			</select><br>
+			<button class="btn" id="timeline-v1-export">Export Timeline as PNG</button><br>
 			<!-- <iframe width="100%" height="100%" src="../viz/timeline/index-t-verticalB.html" id="vert-timeline-b" frameborder="0"></iframe> -->
 		</div>
-		<div class="item-h">
+		<div id="timeline-v2">
+			<select id='timeline-v2-select'>
+				<option value="0" disabled selected="selected">Select country/entity</option> 
+			</select><br>
+			<button class="btn" id="timeline-v2-export">Export Timeline as PNG</button><br>
 			<!-- <iframe width="100%" height="100%" src="../viz/timeline/index-t-verticalC.html" id="vert-timeline-c" frameborder="0"></iframe> -->
 		</div>
 	</div>
