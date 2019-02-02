@@ -52,56 +52,43 @@ var formatYear = d3.timeFormat("%Y");
 
 var nTimelines = 3 // there are 3 timelines (they all need to be defined in html)
 
-// agtHeight defined in initialise function
-
-// initialise timelines
-
-// replace with calculated values
-var minYear = parseDate('30/06/1989');
-var maxYear = parseDate('30/06/2015');
-
+// define margin and dimensions of svg
 var margin = {top: 25, right: 5, bottom: 5, left: 45},
 	height = 880 - margin.top - margin.bottom,
-	width = 400 - margin.left - margin.right,
-	agtPadding = 2,
+	width = 400 - margin.left - margin.right;
+
+// define size and padding for agreement blocks
+var agtPadding = 2,
 	agtSpacing = 1,
 	agtWidth = 5;
-	agtHeight = (height / (Number(formatYear(maxYear)) - Number(formatYear(minYear)))) - agtPadding;
+	// agtHeight defined based on data
 
-// create time scale and y axis
-var y = d3.scaleTime()
-      .domain([minYear,maxYear])  // data space
-      .range([margin.top,(height-margin.bottom)]);  // display space
-
-var yAxis = d3.axisLeft(y)
-		.tickFormat(d3.timeFormat("%Y"))
-		.ticks(d3.timeYear.every(1))
-		.tickPadding([5]);
-
-// create svg and g
+// create svg and g for each timeline
 for (var i=0; i < nTimelines; i++) {
 
 	var svg = d3.select('#timeline-v' + i)
 		.append('svg')
 		.attr('height', height + margin.top + margin.bottom)
 		.attr('width', width + margin.left + margin.right)
-
-	var g = svg.append('g')
+		.append('g')
 		.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 		.attr('id', 'timeline-v' + i + '-g');
-
-	var gY = g.append("g")
-		.attr('transform', 'translate(-2, 0)')
-		.attr("class","yaxis")
-		.call(yAxis);
 }
 
 
 // Define the color scale for agreement stages
 // (Colors from: http://colorbrewer2.org/#type=qualitative&scheme=Set3&n=7)
 var stageColour = d3.scaleOrdinal()
-	.domain(["Pre", "SubPar", "SubComp", "Imp", "Cea", "Ren", "Other"])
-	.range(["#8dd3c7", "#ffffb3", "#fdb462", "#b3de69", "#fb8072","#bebada", "#8c8c8c"])
+	.domain(['Cea', 'Pre', 'SubPar', 'SubComp', 'Imp', 'Ren', 'Other'])
+	.range(["#fb8072", // red
+		"#8dd3c7", // turquoise
+		"#ffffb3", // yellow
+		"#fdb462", // orange
+		// Constitution -- blue
+		"#b3de69", // green
+		"#bebada", // purple
+		"#8c8c8c"])// grey
+var colourConstitution = "#80b1d3" // blue
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////			  DATA  				////////
@@ -130,30 +117,59 @@ d3.csv("../data/paxTimelineData_02092018.csv")
 	}; })
 	.get(function(error,data){
 
-		populateDropdowns(nTimelines, data);
+		console.log(data)
 
+		var years = getYears(data)
 
+		var minDate = parseDate('30/06/' + (years[0] - 1))
+		var maxDate = parseDate('30/06/' + years[1])
+
+		// create time scale and y axis
+		var y = d3.scaleTime()
+			.domain([minDate,maxDate])  // data space
+			.range([margin.top,(height-margin.bottom)]);  // display space
+
+		var yAxis = d3.axisLeft(y)
+			.tickFormat(d3.timeFormat("%Y"))
+			.ticks(d3.timeYear.every(1))
+			.tickPadding([5]);
+
+		// draw axis into each timeline svg
+		for (var i=0; i < nTimelines; i++) {
+			d3.select('#timeline-v' + i + '-g')
+				.append("g")
+				.attr('transform', 'translate(-2, 0)')
+				.attr("class","yaxis")
+				.call(yAxis);
+		}
+
+		populateDropdowns(nTimelines, data, y);
+
+		d3.selectAll('#sidebar input')
+			.on('change', function() {
+				for (var i = 0; i < nTimelines; i++) {
+					updateTimeline(i, data, y)				
+				}
+			})
 
 }) // end of .get(error,data)
 
 
-function populateDropdowns(n, data) {
+function populateDropdowns(nTimelines, data, yScale) {
 	
-	// replace this with code to extract all countries from the data
+	// extract all country/entity names from data and add to dropdowns
 	var selectCountries = getConNames(data);
 
-	for (var i=0; i < n; i++) {
+	for (var i=0; i < nTimelines; i++) {
 
 		// configure dropdowns to update timelines on change
 		var dropdown  = d3.select('#timeline-v' + i + '-select')
 			.data(selectCountries)
 			.on("change", function() {
 				// update timeline
-				var country = this.value;
-				console.log('update timeline: ', country)
 				// get index of current div
 				var index = this.id.match(/\d/g)[0] 
-				updateTimeline(index, country)
+				updateTimeline(index, data, yScale)
 			})
 
 		// add all countries/entities to dropdown
@@ -163,97 +179,107 @@ function populateDropdowns(n, data) {
 			.append("option")
 			.text(function(d) {return d})
 			.attr("value", function(d) {return d})
-
 	}
 }
 
-function updateTimeline(index, country, data) {
+function updateTimeline(index, data, yScale) {
 
+	// get country
+	var country = d3.select('#timeline-v' + index + '-select')
+		.property('value')
+
+	// if no country is selected, don't do anything
+	if (country == 0) { return; }
+
+	// filter the data for the current country only
+	var data_country = data.filter(function(d) {
+		return d.Con.search(country) != -1
+	})
+
+	// get filters from inputs on the left
 	var filters = getFilters();
 
+	// apply filters
+	var data_country = data_country.filter(function (d) {
+		return applyFilters(d, filters)
+	})
+
+	// Group agreements by Year (create an array of objects whose key is the
+	// year and value is an array of objects (one per agreement))
+	var years = d3.nest()
+		.key(function(d){ return d.Year; }).sortKeys(d3.ascending)
+		.sortValues(function(a,b){ return d3.descending(a.Dat, b.Dat) })
+		.entries(data_country);
+
 	// get current g
-	var g = d3.select('#timeline-v' + index + '-g')
+	var g = d3.select('#timeline-v' + index + '-g');
+	// console.log(g)
 
-	
+	// remove previous rectangles (if any)
+	g.selectAll('rect').remove()
 
-			window.conNames = getConNames(data)
-			console.log(conNames)
+	// calculate height of agreement rect
+	var yr = getYears(data);
+	var agtHeight = (height / (1 + yr[1] - yr[0])) - agtPadding;
+	console.log(agtHeight);
+	// maybe implement later:
 
-			// filter for current country only
-			data = data.filter(function(d) {
-				return d.Con.indexOf(country) !== -1;})
+	// Find the maximum number of agreements in a single year for a single country/entity
+	// var con_year_nest = d3.nest()
+	// 	.key(function(d){ return d.Con; })
+	// 	.key(function(d){ return d.Year; })
+	// 	.rollup(function(leaves){ return leaves.length; })
+	// 	.entries(data);
+	// var maxAgts = 1;
+	// for (c = 0; c < con_year_nest.length; c++){
+	// 	var sub = con_year_nest[c].values;
+	// 	// console.log(sub);
+	// 	var agts = d3.max(sub, function(d){ return d.value; });
+	// 	if (agts > maxAgts){
+	// 		maxAgts = agts;
+	// 	}
+	// }
+	// Set the agreement width (pixels) based on the maximum possible agts to display in a year
+	// var agtWidth = (width-yWidth)/(maxAgts);
+	console.log(years)
 
-			// remove previous rectangles (if any)
-			g.selectAll('rect').remove()
-
-			// Group agreements by Year (create an array of objects whose key is the year and value is an array of objects (one per agreement))
-			var years = d3.nest()
-				.key(function(d){ return d.Year; }).sortKeys(d3.ascending)
-				.sortValues(function(a,b){ return d3.descending(a.Dat, b.Dat); })
-				.entries(data);
-
-			// Find the maximum number of agreements in a single year for a single country/entity
-			// var con_year_nest = d3.nest()
-			// 	.key(function(d){ return d.Con; })
-			// 	.key(function(d){ return d.Year; })
-			// 	.rollup(function(leaves){ return leaves.length; })
-			// 	.entries(data);
-			// var maxAgts = 1;
-			// for (c = 0; c < con_year_nest.length; c++){
-			// 	var sub = con_year_nest[c].values;
-			// 	// console.log(sub);
-			// 	var agts = d3.max(sub, function(d){ return d.value; });
-			// 	if (agts > maxAgts){
-			// 		maxAgts = agts;
-			// 	}
-			// }
-			// Set the agreement width (pixels) based on the maximum possible agts to display in a year
-			// var agtWidth = (width-yWidth)/(maxAgts);
-
-			for (var i = 0; i < years.length; i++){
+	for (var i = 0; i < years.length; i++) {
+		console.log(years[i].values)
 				
-				var rects = g.selectAll("rect .y" + i)
-					.data(years[i].values.filter(function(d) {
-						return applyFilters(d, filters)
-					}))
-					.enter()
-					.append("rect")
-					.classed('y' + i, true)
-					// .filter(function(d){ 
-					// 	console.log(applyFilters(d, filters))
-					// 	return applyFilters(d, filters) })
-					// .attr("id",function(d){ return d.AgtId; })
-					// .attr("name",function(d){ return d.Agt; })
-					// .attr("value",function(d){ return d.Year; })
-					.attr("fill", function(d){ 
-						return (d.StageSub == 'FrCons' ? "#80b1d3" : stageColour(d.Stage));
-					})
-					.attr("x",function(d,i){ return (agtWidth + agtSpacing) * i })
-					.attr("y", function(d){ return y(parseYear(d.Year)) - (agtHeight/2); })
-					.attr("width", agtWidth)
-					.attr("height", agtHeight);
+		var rects = g.selectAll("rect .y" + i)
+			.data(years[i].values)
+			.enter()
+			.append("rect")
+			.classed('y' + i, true)
+			.attr("fill", function(d){ 
+				return (d.StageSub == 'FrCons' ? colourConstitution : stageColour(d.Stage));
+			})
+			.attr("x",function(d,i){ return (agtWidth + agtSpacing) * i })
+			.attr("y", function(d){ return yScale(parseYear(d.Year)) - (agtHeight/2); })
+			.attr("width", agtWidth)
+			.attr("height", agtHeight);
 
-				rects.on("click", function(d) {
-					// show info on the left
-					console.log('info to be shown on the left: ', d)
-				});
+		rects.on("click", function(d) {
+			// display infobox permanently (until click somewhere else in svg??)
+			console.log('info to be shown on the left: ', d)
+		});
 
-				rects.on("mouseover",function(d){
-					// style them to make clear they're being hovered
-					// this.style.opacity = 1;
-				});
-				rects.on("mouseout",function(d) {
-					// remove styling
-					// remove infobox
-				});
-			} // end for loop (years)
+		rects.on("mouseover",function(d){
+			// display infobox
+		});
+		rects.on("mouseout",function(d) {
+			// remove infobox
+		});
+	} // end for loop (years)
 
-			// chart header (country/entity name)
-			g.append("text")
-			.attr("x","5px")
-			.attr("y", margin.top-15)
-			.attr('font-weight', 'bold')
-			.text(country);
+	// chart header (country/entity name)
+	g.selectAll('.svg-header').remove()
+	g.append('text')
+		.classed('svg-header', true)
+		.attr('x','5px')
+		.attr('y', margin.top-15)
+		.attr('font-weight', 'bold')
+		.text(country);
 
 
 
@@ -261,21 +287,21 @@ function updateTimeline(index, country, data) {
 	      EXPORT PNG
 	      from https://github.com/exupero/saveSvgAsPng
 	      */
-	      d3.select("#exportV").on("click", function(){
-	        var title = "PA-X_VerticalTimeline";
-	        var con = String(localStorage.getItem("paxVertConA"));
-	        var codeFilters = [+paxHrFra, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
-	        var codeNames = ["HrFra", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
-	        var codes = "";
-	        for (i = 0; i < codeFilters.length; i++){
-	          if (codeFilters[i] > 0){
-	            codes += codeNames[i];
-	          }
-	        }
-	        title = title + "_" + con + "_" + codes + "_" + "01_01_1900-31_12_2015.png";
-	        saveSvgAsPng(document.getElementsByTagName("svg")[0], title, {scale: 5, backgroundColor: "#737373"});
-	        // if IE need canvg: canvg passed between scale & backgroundColor
-	      });
+	      // d3.select("#exportV").on("click", function(){
+	      //   var title = "PA-X_VerticalTimeline";
+	      //   var con = String(localStorage.getItem("paxVertConA"));
+	      //   var codeFilters = [+paxHrFra, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
+	      //   var codeNames = ["HrFra", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
+	      //   var codes = "";
+	      //   for (i = 0; i < codeFilters.length; i++){
+	      //     if (codeFilters[i] > 0){
+	      //       codes += codeNames[i];
+	      //     }
+	      //   }
+	      //   title = title + "_" + con + "_" + codes + "_" + "01_01_1900-31_12_2015.png";
+	      //   saveSvgAsPng(document.getElementsByTagName("svg")[0], title, {scale: 5, backgroundColor: "#737373"});
+	      //   // if IE need canvg: canvg passed between scale & backgroundColor
+	      // });
 
 } // end updateTimeline function
 
@@ -296,33 +322,26 @@ function getFilters(){
 	return filters;
 };
 
-// function applyFilters(d, filters) {
+function applyFilters(dat, filters) {
 
-// 	// 'any' rule
-// 	if (filters.any) {
-// 		for (var i=0; i<codesLong.length; i++) {
-// 			filters[codesLong[i]]
-// 		}
-// 		HrFra: 
-// 		Mps: 
-// 		Eps: 
-// 		Terps: 
-// 		Polps: 
-// 		Pol: 
-// 		GeWom: 
-// 		TjMech: 
-// 	}
-// 	// 'all' rule
-// 	else {
-
-// 	}
-	
-// 	// TO BE IMPLEMENTED
-// 	// applies the filters returned by getFilters() to a row of the data
-// 	// returns true/false depending on whether data conforms to filter
-// 	// console.log('filtering not yet implemented!')
-// 	return true
-// }
+	// if filters empty, everything passes the test
+	if (filters.codes.length == 0) {
+		return true
+	}
+	// otherwise we actually need to check
+	else {
+		// get an array of true/false for all filters
+		var tf = []
+		for (var i=0; i<filters.codes.length; i++) {
+			tf.push(dat[filters.codes[i]] > 0)
+		}
+		console.log(tf)
+		// for the ANY rule, it is enough if there is at least one true
+		if (filters.any) { return tf.some(function(d) {return d}) }
+		// for the ALL rule, everything in the array has to be true
+		else { return tf.every(function(d) {return d}) }
+	}
+}
 
 function getSelectedCodes() {
 	// returns a string with the selected codes separated by commas
@@ -376,4 +395,10 @@ function getConNames (dat) {
 
 	return cons
 
+}
+
+function getYears(data) {
+	var minYear = d3.min(data.map(function(d) {return d.Year}))
+	var maxYear = d3.max(data.map(function(d) {return d.Year}))
+	return [minYear, maxYear]
 }

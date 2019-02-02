@@ -6,13 +6,17 @@ rect:hover {
 	opacity: 1;
 }
 
+select {
+	width: 200px;
+}
+
 
 /*Grid layout*/
 
 .grid-container {
 	display: grid;
 	grid-template-columns: 350px 1fr 1fr 1fr; 
-	grid-template-rows: 100%;
+	grid-template-rows: 1fr;
 	align-content: stretch;
 	justify-content: stretch;
 }
