@@ -9,7 +9,7 @@ needs cleaning up!
 /*a {
   text-decoration: underline;
 }*/
-a.pdf, a.cod {
+/*a.pdf, a.cod {
   font-weight: 700;
   margin: 0;
   padding: 0;
@@ -38,7 +38,7 @@ a#DeselectAllCodes {
 }
 a#SelectAllCodes:hover, a#DeselectAllCodes:hover, p.filterViews a:hover, td.text:hover {
   color: #ffffff;
-}
+}*/
 
 
 /*
@@ -89,7 +89,7 @@ Dropdowns
   display: inline;
 }
 
-.dropcontent label, a {
+.dropcontent label, .dropcontent a {
   color: #000000;
   font-weight: 400;
   padding: 4px;
