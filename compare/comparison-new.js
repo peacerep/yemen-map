@@ -1,26 +1,21 @@
-	// d3.select(window).on("resize", callFunction);
-	// window.addEventListener("storage", toUpdate);
-
 // js for the filters on the left
 
 d3.select('#SelectAllCodesV')
 	.on('click', function() {
 		// check all checkboxes
-		d3.selectAll('#CodeDropdown input').property('checked', true)
-		d3.select('#selectionsCode').html(getSelectedCodes())
+		d3.selectAll('#codeDropdown input').property('checked', true)
 	})
 
 d3.select('#DeselectAllCodesV')
 	.on('click', function() {
 		// uncheck all checkboxes
-		d3.selectAll('#CodeDropdown input').property('checked', false)
-		d3.select('#selectionsCode').html(getSelectedCodes())
+		d3.selectAll('#codeDropdown input').property('checked', false)
 	})
 
-d3.selectAll('#CodeDropdown input')
-	.on('change', function() {
+d3.select('#codeDropdown')
+	.on('click', function() {
 		// update span with list of selected
-		d3.select('#selectionsCode').html(getSelectedCodes())
+		d3.select('#selectedCodes').html(getSelectedCodes())
 	})
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -221,7 +216,6 @@ function updateTimeline(index, data, yScale) {
 	// calculate height of agreement rect
 	var yr = getYears(data);
 	var agtHeight = (height / (1 + yr[1] - yr[0])) - agtPadding;
-	console.log(agtHeight);
 	// maybe implement later:
 
 	// Find the maximum number of agreements in a single year for a single country/entity
@@ -241,7 +235,6 @@ function updateTimeline(index, data, yScale) {
 	// }
 	// Set the agreement width (pixels) based on the maximum possible agts to display in a year
 	// var agtWidth = (width-yWidth)/(maxAgts);
-	console.log(years)
 
 	for (var i = 0; i < years.length; i++) {
 		console.log(years[i].values)

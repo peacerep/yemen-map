@@ -1,75 +1,11 @@
 /*
 Style for Select iFrame
+now used for select div on the left
+needs cleaning up! 
 */
-/** {
-  shape-rendering: crispEdges;
-}
 
-html {
-  font-family: 'M PLUS Rounded 1c', sans-serif;
-}
-html, body {
-  height: 100%;
-  overflow-y: hidden;
-}*/
-div.selecter {
-  margin: 0px;
-}
 
-/*
-Text
-*/
-/*a {
-  text-decoration: underline;
-  font-weight: 700;
-  color: #b3b3b3;
-  cursor: pointer;
-}
-button {
-  cursor: pointer;
-}
 
-h1 {
-  font-family: 'M PLUS Rounded 1c', sans-serif;
-  font-weight: 900;
-  font-size: 28px;
-  color: white;
-  pointer-events: none;
-}
-h2 {
-  font-weight: 400;
-  font-size: 12px;
-  padding-bottom: 14px;
-  color: silver;
-}
-h4 {
-  font-weight: 700;
-  font-size: 16px;
-  padding-top: 0px;
-  color: white;
-}
-p {
-  font-weight: 700;
-  font-size: 12px;
-}*/
-p#codes{
-  font-weight: 400;
-}
-
-/*p, a, label {
-  color:black;
-  font-size: 12px;
-  display: inline;
-  font-family: 'M PLUS Rounded 1c', sans-serif;
-  font-weight: 700;
-  line-height: 22px;
-}*/
-
-p#selectionsCon, p#selectionsCode {
-  font-weight: 400;
-  font-style: italic;
-  padding-left: 5px;
-}
 /*a {
   text-decoration: underline;
 }*/
@@ -104,165 +40,63 @@ a#SelectAllCodes:hover, a#DeselectAllCodes:hover, p.filterViews a:hover, td.text
   color: #ffffff;
 }
 
-svg {
-  display: flex;
-  flex-wrap: wrap;
-  display: -webkit-flex;
-  display:    -moz-flex;
-  display:     -ms-flex;
-  display:         flex;
-
-  -webkit-flex-direction: column;
-     -moz-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
-
-          -webkit-flex: 16.66%;
-             -moz-flex: 16.66%;
-              -ms-flex: 16.66%;
-                  flex: 16.66%;
-}
-
-g {
-  display: flex;
-  flex-wrap: wrap;
-  display: -webkit-flex;
-  display:    -moz-flex;
-  display:     -ms-flex;
-  display:         flex;
-
-  -webkit-flex-direction: column;
-     -moz-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
-
-          -webkit-flex: 16.66%;
-             -moz-flex: 16.66%;
-              -ms-flex: 16.66%;
-                  flex: 16.66%;
-
-}
-foreignObject {
-  font-family: 'M PLUS Rounded 1c', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-}
 
 /*
-DROPDOWNS
+Dropdowns
 */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  padding: 8px 2px;
+}
+
 .dropbtn {
   background-color: #737373;
   color: silver;
   padding: 5px;
-  /* margin: 2px; */
-  font-family: 'M PLUS Rounded 1c', sans-serif;
   font-size: 12px;
   font-weight: 700;
   border: none;
   cursor: pointer;
   border: 1px solid silver;
 }
+
 .dropbtn:hover {
   background-color: #838383;
 }
-.dropdown {
-  position: relative;
-  display: inline-block;
-  padding: 8px 2px;
-}
-/*
-YEARS DROPDOWN
-*/
-.TimeContent {
-  display: none;
-  position: absolute;
-  background-color: silver;
-  width: 120%;
-  overflow: auto;
-  padding: 4px;
-  max-height: 250px;
-  z-index: 1;
-}
-.dropdown:hover .TimeContent {
-  display: block;
-}
-.TimeContent input {
-  color: #000000;
-  font-weight: 700;
-  padding: 4px;
-  text-decoration: none;
-  display: inline;
-}
-.TimeContent label, a {
-  color: #000000;
-  font-weight: 400;
-  padding: 4px;
-  display: inline;
-}
-/*
-CON (COUNTRY & ENTITY) DROPDOWN
-*/
-.ConDropBtn {
-  width: 100%;
 
-}
-.ConContent {
+.dropcontent {
   display: none;
   position: absolute;
   background-color: silver;
-  min-width: 250px;
+  width: 250px;
   overflow: auto;
-  max-height: 250px;
   padding: 4px;
+  max-height: 250px;
   z-index: 1;
 }
-.dropdown:hover .ConContent {
+
+.dropdown:hover .dropcontent {
   display: block;
 }
-.ConContent input {
+
+.dropcontent input {
   color: #000000;
   font-weight: 700;
   padding: 4px;
   text-decoration: none;
   display: inline;
 }
-.ConContent label, a {
+
+.dropcontent label, a {
   color: #000000;
   font-weight: 400;
   padding: 4px;
   display: inline;
 }
 
-/* CODES (FILTER) DROPDOWN*/
-.CodeContent {
-  display: none;
-  position: absolute;
-  background-color: silver;
-  min-width: 250px;
-  overflow: auto;
-  padding: 4px;
-  z-index: 1;
-}
-.dropdown:hover .CodeContent {
-  display: block;
-}
-.CodeContent input {
-  color: #000000;
-  font-weight: 700;
-  padding: 4px;
-  text-decoration: none;
-  display: inline;
-}
-.CodeContent label, a {
-  color: #000000;
-  font-weight: 400;
-  padding: 4px;
-  display: inline;
-}
-.CodeDropBtn {
-  width: 100%;
-}
+
 
 /*
 CODE & AGREEMENT STAGE LEGENDS

@@ -11,7 +11,7 @@
 	<link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c:400,700,900" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="../css/main.css">
 	<link rel="stylesheet" type="text/css" href="../css/select-style.css">
-	<link rel="stylesheet" type="text/css" href="../css/timeline-v.css">
+	<link rel="stylesheet" type="text/css" href="../css/compare.css">
 
 	<script type="text/javascript" src="../lib/d3v4/d3.min.js"></script>
 </head>
@@ -36,8 +36,8 @@
 			
 			<!-- fake dropdown for codes -->
 			<div class='dropdown'>
-			<button class="dropbtn" id="CodeDropBtn">Select Codes</button>
-			<div id="CodeDropdown" class="CodeContent">
+			<button class="dropbtn">Select Codes</button>
+			<div id="codeDropdown" class="dropcontent">
 			<a href="#" id="SelectAllCodesV">Select All</a>&nbsp;&nbsp;
 			<a href="#" id="DeselectAllCodesV">Deselect All</a><br>
 			<label><input type="checkbox" id="paxHrFraV">Human Rights Framework</label><br>
@@ -51,7 +51,7 @@
 			</div>
 			</div> <br>
 
-			Selected codes:	<span id='selectionsCode'></span>
+			Selected codes:	<span id='selectedCodes'></span>
 			<br>
 		
 			<!-- legend for agreement codes (not clickable) -->
