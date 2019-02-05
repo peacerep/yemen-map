@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<!-- for responsive web design -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Agreements in Time and Space</title>
+
+	<link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c:400,700,900" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
+	<link rel="stylesheet" type="text/css" href="../css/select-style.css">
+	<link rel="stylesheet" type="text/css" href="../css/timeandspace.css">
+
+	<!-- Leaflet -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="crossorigin=""/>
+	<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+
+	<script type="text/javascript" src="../lib/d3v4/d3.min.js"></script>
+	<script type="text/javascript" src="../js/functions.js"></script>
+
+</head>
+<body>
+	<div class="grid-container">
+
+		<div id="sidebar">
+			<h1>Visualizing Peace</h1>
+
+			<h2>Agreements in Time and Space</h2>
+
+			<h3>Timeframe</h3>
+
+			Display agreements signed in years:
+			<select id='inputMinYear'>
+				<option value="0" disabled selected="selected">
+				Select Start Year</option> 
+			</select>
+			<select id='inputMaxYear'>
+				<option value="0" disabled selected="selected">
+				Select End Year</option> 
+			</select>
+
+			<h3>Country/Entity Selection</h3>
+
+			Display agreements involving: <br>
+			<!-- any/all radio -->
+			<input type="radio" id="allCon" name="conRule" value="all" checked>
+			<label for="all">ALL</label>
+			<input type="radio" id="anyCon" name="conRule" value="any">
+			<label for="any">ANY</label><br>
+			of the selected countries/entities.
+
+			<!-- fake dropdown for countries -->
+			<div class='dropdown'>
+			<button class="dropbtn">Select Countries/Entities</button>
+			<div id="conDropdown" class='dropcontent'>
+			<a href="#" id="SelectAllCons">Select All</a>&nbsp;&nbsp;
+			<a href="#" id="DeselectAllCons">Deselect All</a><br>
+			
+			</div>
+			</div> <br>
+
+			Selected countries/entities:<br>
+			<span id='selectedCons'></span>
+
+			<h3>Code Selection</h3>
+
+			Highlight agreements that address: <br>
+			<!-- any/all radio -->
+			<input type="radio" id="allCodes" name="codesRule" value="all" checked>
+			<label for="all">ALL</label>
+			<input type="radio" id="anyCodes" name="codesRule" value="any">
+			<label for="any">ANY</label><br>
+			of the selected codes.<br>
+			
+			<div id='codesCheckboxes'>
+			<label><input type="checkbox" id="paxHrFraV">Human Rights Framework</label><br>
+			<label><input type="checkbox" id="paxPolV">Political Institutions</label><br>
+			<label><input type="checkbox" id="paxEpsV">Power Sharing: Economic</label><br>
+			<label><input type="checkbox" id="paxMpsV">Power Sharing: Military</label><br>
+			<label><input type="checkbox" id="paxPolpsV">Power Sharing: Political</label><br>
+			<label><input type="checkbox" id="paxTerpsV">Power Sharing: Territorial</label><br>
+			<label><input type="checkbox" id="paxTjMechV">Transitional Justice Past Mechanism</label><br>
+			<label><input type="checkbox" id="paxGeWomV">Women, Girls and Gender</label>
+			</div>
+			
+			<a href="#" id="selectAllCodes">Select All</a>&nbsp;&nbsp;
+			<a href="#" id="deselectAllCodes">Deselect All</a><br>
+
+			<!-- agreements details - need js to update this -->
+			<h3>Agreement Details</h3>
+			<div id="agreementDetails"></div>
+		
+			<!-- <iframe width="100%" height="100%" src="select.html" frameborder="0" allowfullscreen></iframe> -->
+		</div>
+		<div id="timeline-top">
+			<!-- <iframe width="100%" height="100%" src="viz/timeline/index-t-chronology.html" frameborder="0" allowfullscreen id="mini-timeline"></iframe> -->
+		</div>
+		<div id="map">
+			<!-- <iframe width ="100%" height="100%" src="viz/map/index.html" frameborder="0" allowfullscreen id="map"></iframe> -->
+		</div>
+	</div>
+
+	<script type="text/javascript" src='timeandspace.js'></script>
+	<script type="text/javascript" src='map.js'></script>
+</body>
+
+</html>
