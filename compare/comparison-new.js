@@ -79,8 +79,8 @@ var colourConstitution = "#80b1d3" // blue
 ////////			  DATA  				////////
 ////////////////////////////////////////////////////////////////////////////////
 
-d3.csv("../data/paxTimelineData_02092018.csv")
-	.row(function(d){ return{ Year:+d.Year,
+d3.csv("../data/paxTimelineData_02092018.csv", function (d) {
+	return{ Year:+d.Year,
 		Dat:parseDate(d.Dat),
 		AgtId:+d.AgtId,
 		// Reg:d.Reg,
@@ -99,9 +99,8 @@ d3.csv("../data/paxTimelineData_02092018.csv")
 		HrFra:+d.HrFra, // 1 if topic of human rights/rule of law addressed; 0 if not
 		// HrFra:+d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
 		TjMech:+d.TjMech // 1-3 indicating increasing level of detail given about a body to deal with the past; 0 if none given
-	}; })
-	.get(function(error,data){
-		if (error) throw error;
+	}
+}).then(function(data) {
 
 		console.log(data)
 
@@ -138,8 +137,9 @@ d3.csv("../data/paxTimelineData_02092018.csv")
 				}
 			})
 
-}) // end of .get(error,data)
-
+}).catch(function(error) {
+	throw error;
+})
 
 function populateDropdowns(nTimelines, data, yScale) {
 	
