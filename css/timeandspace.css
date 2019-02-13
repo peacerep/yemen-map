@@ -22,7 +22,7 @@ Styles for page with timeline and map
 }
 
 #sidebar {
-	background-color: #555;
+	/*background-color: #555;*/
 	grid-column: 1;
 	grid-row: 1 / span 2;
 	color: #eee;
@@ -44,12 +44,15 @@ Map
 */
 
 #map {
-	background-color: #e0e0e0;
+	/*background-color: #e0e0e0;*/
+	background-color: #4E4F50;
 	padding: 0;
 	margin: 10px;
 }
 
 .land {
-	fill: #9a9a9a;
-	stroke: #e0e0e0;
+/*	fill: #9a9a9a;
+	stroke: #e0e0e0;*/
+	fill: #37363A;
+	stroke: #4E4F50;
 }

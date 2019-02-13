@@ -2,12 +2,12 @@
 main styles (all pages)
 */
 
-* {
+/** {
 	shape-rendering: crispEdges;
-}
+}*/
 
 html, body {
-	background-color: #f0f0f0;
+	background-color: #737373;
 	margin: 0px;
 	padding: 0px;
 	font-family: 'M PLUS Rounded 1c', sans-serif;
@@ -61,4 +61,8 @@ li {
 
 iframe {
   border: red 1px solid;
+}
+
+.hidden {
+	display: none;
 }

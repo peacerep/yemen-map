@@ -24,8 +24,9 @@ d3.select('#deselectAllCons')
 		d3.selectAll('#conDropdown input').property('checked', false)
 	})
 
-d3.csv("../data/paxTimelineData_02092018.csv")
-	.row(function(d){ return{ Year:+d.Year,
+d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
+	// preprocess rows
+	return {Year:+d.Year,
 		Dat:parseDate(d.Dat),
 		AgtId:+d.AgtId,
 		// Reg:d.Reg,
@@ -43,21 +44,17 @@ d3.csv("../data/paxTimelineData_02092018.csv")
 		Pol:+d.Pol, // 1-3 indicating increasing level of detail given about political institutions; 0 if none given
 		HrFra:+d.HrFra, // 1 if topic of human rights/rule of law addressed; 0 if not
 		// HrFra:+d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
-		TjMech:+d.TjMech // 1-3 indicating increasing level of detail given about a body to deal with the past; 0 if none given
-	}; })
-	.get(function(error,data){
-		if (error) throw error;
+		TjMech:+d.TjMech} // 1-3 indicating increasing level of detail given about a body to deal with the past; 0 if none given
+	}).then(function(data) {
 
-		console.log(data)
-
+		// INITIAL SETUP
 		// add years to year dropdowns
 		var years = getYears(data)
 		populateYearDropdowns(years)
 
 		// add countries/entities to dropdown
 		var cons = getConNames(data)
-
-		var labels = d3.select('#conDropdown')
+		d3.select('#conDropdown')
 			.selectAll('span')
 			.data(cons)
 			.enter()
@@ -74,12 +71,17 @@ d3.csv("../data/paxTimelineData_02092018.csv")
 				d3.select('#selectedCons').html(getSelectedConsString(cons))
 			})
 
+	})
+	.catch(function(error){
+		throw error;
+	})
 
-
-	}) // end data
 
 
 function populateYearDropdowns(years) {
+	// populates the start and end year dropdowns with all years in between
+	// and including the years given in the input 'years'
+	// years is an array like so: [minyear, maxyear]
 
 	var minYear = years[0]
 	var maxYear = years[1]
@@ -103,7 +105,8 @@ function populateYearDropdowns(years) {
 }
 
 function getSelectedCons(conlist) {
-	// function to get selected countries from 'dropdown'
+	// checks which countries are selected in the dropdown and returns an
+	// array containing the names of those countries
 	var check = []
 	for (var i = 0; i < conlist.length; i++) {
 		if (document.getElementById('con' + i).checked) {
@@ -114,6 +117,8 @@ function getSelectedCons(conlist) {
 }
 
 function getSelectedConsString(conlist) {
+	// check which countries are selected in the dropdown and returns a string
+	// with all those countries separated by commas
 	var selected = getSelectedCons(conlist)
 
 	if (selected.length == conlist.length) {
