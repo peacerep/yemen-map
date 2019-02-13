@@ -1,3 +1,5 @@
+"use strict"
+
 // get width and height
 var w = parseInt(d3.select("#map").style("width"))
 var h = parseInt(d3.select("#map").style("height"))
@@ -9,8 +11,8 @@ var svg = d3.select("#map")
 	.attr("height", h);
 
 // initial scale and translation (makes mercator projection fit screen)
-scaleInit = h/(2*Math.PI) * 1.3
-transInit = [w/2, h*0.6]
+var scaleInit = h/(2*Math.PI) * 1.3
+var transInit = [w/2, h*0.6]
 
 // define projection
 var projection = d3.geoMercator()

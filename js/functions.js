@@ -1,3 +1,7 @@
+"use strict"
+
+// FUNCTIONS AND VARS USED FOR ALL PAXVIS VISUALISATIONS
+
 // Date parsers & formatters
 var parseDate = d3.timeParse("%d/%m/%Y");
 var parseMonth = d3.timeParse("%m");
@@ -92,24 +96,4 @@ function agtDetails(d) {
 		'" target = "_blank">View Coding Detail</a>'
 	}
 	d3.select('#agreementDetails').html(infoString)
-	// 	d3.select('#detailsDate').html('')
-	// 	d3.select('#detailsCon').html('')
-	// 	d3.select('#detailsStatus').html('')
-	// 	d3.select('#detailsType').html('')
-	// 	d3.select('#detailsStage').html('')
-	// 	d3.select('#detailsSubstage').html('')
-	// } else {
-	// 	// updates agreement details on the left
-	// 	d3.select('#detailsTitle').html(d.Agt)
-	// 	d3.select('#detailsDate').html(formatDate(d.Dat))
-	// 	d3.select('#detailsCon').html(d.Con)
-	// 	d3.select('#detailsStatus').html(d.Status)
-	// 	d3.select('#detailsType').html(d.Agtp)
-	// 	d3.select('#detailsStage').html(d.Stage)
-	// 	d3.select('#detailsSubstage').html(d.StageSub)
-	// 	d3.select('#detailsLinks').html('<a href="https://www.peaceagreements.org/masterdocument/' + 
-	// 		d.AgtId + '" target = "_blank">Open PDF</a>&nbsp;<a href="' + 
-	// 		'https://www.peaceagreements.org/view/' + 
-	// 		d.AgtId + '" target = "_blank">View Coding Detail</a>')
-	// }
 }
