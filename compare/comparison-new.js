@@ -1,4 +1,6 @@
-// js for the filters on the left
+////////////////////////////////////////////////////////////////////////////////
+//////////////////////////// EVENT LISTENERS ///////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 d3.select('#SelectAllCodesV')
 	.on('click', function() {
@@ -18,22 +20,17 @@ d3.select('#codeDropdown')
 		d3.select('#selectedCodes').html(getSelectedCodes())
 	})
 
-////////////////////////////////////////////////////////////////////////////////
-// general def's
-
-var codesLong = {HrFra: 'Human Rights Framework',
-		Mps: 'Power Sharing: Military',
-		Eps: 'Power Sharing: Economic',
-		Terps: 'Power Sharing: Territorial',
-		Polps: 'Power Sharing: Political',
-		Pol: 'Political Institutions',
-		GeWom: 'Women, Girls and Gender',
-		TjMech: 'Transitional Justice Past Mechanism'}
-
-var codes = Object.keys(codesLong)
+// clicking anywhere in any of the svg's will reset the agreement details
+var selectedAgtDetails = null;
+d3.selectAll('svg').on('click', function() {
+	selectedAgtDetails = null;
+	agtDetails(null)
+})
 
 ////////////////////////////////////////////////////////////////////////////////
-// set up svg
+////////////////////////// SET UP SVG //////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
 
 var nTimelines = 3 // there are 3 timelines (they all need to be defined in html)
 
@@ -55,28 +52,28 @@ for (var i=0; i < nTimelines; i++) {
 		.append('svg')
 		.attr('height', height + margin.top + margin.bottom)
 		.attr('width', width + margin.left + margin.right)
+		.attr('id', 'svg' + i)
 		.append('g')
 		.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 		.attr('id', 'timeline-v' + i + '-g');
 }
 
+////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////// PNG EXPORT /////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
-// Define the color scale for agreement stages
-// (Colors from: http://colorbrewer2.org/#type=qualitative&scheme=Set3&n=7)
-var stageColour = d3.scaleOrdinal()
-	.domain(['Cea', 'Pre', 'SubPar', 'SubComp', 'Imp', 'Ren', 'Other'])
-	.range(["#fb8072", // red
-		"#8dd3c7", // turquoise
-		"#ffffb3", // yellow
-		"#fdb462", // orange
-		// Constitution -- blue
-		"#b3de69", // green
-		"#bebada", // purple
-		"#8c8c8c"])// grey
-var colourConstitution = "#80b1d3" // blue
+d3.select('#timeline-v0-export').on('click', function() {
+	saveSvgAsPng(document.getElementById("svg0"), 'paxvis-image', {scale: 5, backgroundColor: "#737373"});
+})
+d3.select('#timeline-v1-export').on('click', function() {
+	saveSvgAsPng(document.getElementById("svg0"), 'paxvis-image', {scale: 5, backgroundColor: "#737373"});
+})
+d3.select('#timeline-v0-export').on('click', function() {
+	saveSvgAsPng(document.getElementById("svg0"), 'paxvis-image', {scale: 5, backgroundColor: "#737373"});
+})
 
 ////////////////////////////////////////////////////////////////////////////////
-////////			  DATA  				////////
+//////////////////////////////// DATA //////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
 d3.csv("../data/paxTimelineData_02092018.csv", function (d) {
@@ -140,6 +137,11 @@ d3.csv("../data/paxTimelineData_02092018.csv", function (d) {
 }).catch(function(error) {
 	throw error;
 })
+
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////// FUNCTIONS ///////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 function populateDropdowns(nTimelines, data, yScale) {
 	
@@ -235,9 +237,7 @@ function updateTimeline(index, data, yScale) {
 			.enter()
 			.append("rect")
 			.classed('y' + i, true)
-			.attr("fill", function(d){ 
-				return (d.StageSub == 'FrCons' ? colourConstitution : stageColour(d.Stage));
-			})
+			.attr("fill", stageColour) // see functions.js
 			.attr("x",function(d,i){ return (agtWidth + agtSpacing) * i })
 			.attr("y", function(d){ return yScale(parseYear(d.Year)) - (agtHeight/2); })
 			.attr("width", agtWidth)
@@ -245,14 +245,22 @@ function updateTimeline(index, data, yScale) {
 
 		rects.on("click", function(d) {
 			// display infobox permanently (until click somewhere else in svg??)
-			console.log('info to be shown on the left: ', d)
+			if (selectedAgtDetails == d) {
+				selectedAgtDetails = null
+			} else {
+				selectedAgtDetails = d;
+			}
+			agtDetails(d)
+			event.stopPropagation();
 		});
 
 		rects.on("mouseover",function(d){
 			// display infobox
+			agtDetails(d)
 		});
 		rects.on("mouseout",function(d) {
 			// remove infobox
+			agtDetails(selectedAgtDetails)
 		});
 	} // end for loop (years)
 
@@ -264,28 +272,6 @@ function updateTimeline(index, data, yScale) {
 		.attr('y', margin.top-15)
 		.attr('font-weight', 'bold')
 		.text(country);
-
-
-
-	      /*
-	      EXPORT PNG
-	      from https://github.com/exupero/saveSvgAsPng
-	      */
-	      // d3.select("#exportV").on("click", function(){
-	      //   var title = "PA-X_VerticalTimeline";
-	      //   var con = String(localStorage.getItem("paxVertConA"));
-	      //   var codeFilters = [+paxHrFra, +paxPol, +paxEps, +paxMps, +paxPolps, +paxTerps, +paxTjMech, +paxGeWom];
-	      //   var codeNames = ["HrFra", "Pol", "Eps", "Mps", "Polps", "Terps", "TjMech", "GeWom"];
-	      //   var codes = "";
-	      //   for (i = 0; i < codeFilters.length; i++){
-	      //     if (codeFilters[i] > 0){
-	      //       codes += codeNames[i];
-	      //     }
-	      //   }
-	      //   title = title + "_" + con + "_" + codes + "_" + "01_01_1900-31_12_2015.png";
-	      //   saveSvgAsPng(document.getElementsByTagName("svg")[0], title, {scale: 5, backgroundColor: "#737373"});
-	      //   // if IE need canvg: canvg passed between scale & backgroundColor
-	      // });
 
 } // end updateTimeline function
 

@@ -3,7 +3,6 @@
 
 <head>
 	<meta charset="UTF-8">
-	<!-- for responsive web design -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<title>Agreement Sequence Comparison</title>
@@ -14,8 +13,8 @@
 	<link rel="stylesheet" type="text/css" href="../css/compare.css">
 
 	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<script src="../lib/saveSvgAsPng.js"></script>
 
-	<!-- <script type="text/javascript" src="../lib/d3v4/d3.min.js"></script> -->
 	<script type="text/javascript" src="../js/functions.js"></script>
 	
 </head>
@@ -60,7 +59,7 @@
 		
 			<!-- legend for agreement codes (not clickable) -->
 			<h3>Agreement Stage Legend</h3>
-			<table>
+			<table class='legend'>
 			<tr><td id="Cea" class="color">&nbsp;&nbsp;&nbsp;</td><td>Ceasefire/related</td></tr>
 			<tr><td id="Pre" class="color">&nbsp;&nbsp;&nbsp;</td><td>Prenegotiation</td></tr>
 			<tr><td id="SubPar" class="color">&nbsp;&nbsp;&nbsp;</td><td>Framework-substantive, partial</td></tr>
@@ -74,11 +73,11 @@
 
 			<br/>
 
-			<!-- agreements details - need js to update this -->
 			<h3>Agreement Details</h3>
-			<div id="agtV"></div>
-			<!-- <script type="text/javascript" src="js/agtInfoV.js"></script> -->
-		</div> <!-- end item-e sidebar -->
+			<i>Hover over or click timeline and map elements to view details of the agreements they represent.</i><br>
+			<div id='agreementDetails'></div>
+
+		</div>
 
 		<div id="timeline-v0">  
 			<select id='timeline-v0-select'>

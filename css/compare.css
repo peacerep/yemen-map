@@ -27,7 +27,7 @@ select {
 }
 
 #sidebar {
-	background-color: #555;
+	/*background-color: #555;*/
 	grid-column: 1;
 	color: #eee;
 }

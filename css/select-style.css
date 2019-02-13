@@ -1,45 +1,6 @@
 /*
-Style for Select iFrame
-now used for select div on the left
-needs cleaning up! 
+Styles for filters on the left
 */
-
-
-
-/*a {
-  text-decoration: underline;
-}*/
-/*a.pdf, a.cod {
-  font-weight: 700;
-  margin: 0;
-  padding: 0;
-  color: silver;
-}
-a.pdf {
-  float: left;
-}
-a.cod {
-  float: left;
-  margin-left: 24px;
-}
-input {
-  margin-left: 8px;
-}
-a#SelectAllCodes {
-  float: left;
-  color: silver;
-  text-decoration: underline;
-}
-a#DeselectAllCodes {
-  float: left;
-  margin-left: 24px;
-  color: silver;
-  text-decoration: underline;
-}
-a#SelectAllCodes:hover, a#DeselectAllCodes:hover, p.filterViews a:hover, td.text:hover {
-  color: #ffffff;
-}*/
-
 
 /*
 Dropdowns
@@ -96,36 +57,36 @@ Dropdowns
   display: inline;
 }
 
+#agreementDetails table {
+	table-layout: fixed;
+	word-break: break-word;
+	width: 100%;
+	/*vertical-align: top;*/
+}
+
+#agreementDetails td {
+	/*border: 1px solid #000;*/
+	width: 120px;
+	/*font-weight: bold;*/
+}
+#agreementDetails td+td {
+	width: auto;
+}
 
 
-/*
-CODE & AGREEMENT STAGE LEGENDS
-  From timeline-v-A|B|C.js:
-    var stageColors = ["#377eb8","#ffff33","#ff7f00","#4daf4a","#e41a1c","#a65628","#984ea3","#000"];
-    var stageValues = ["Pre", "SubPar", "SubComp", "Imp", "Cea", "Other", "FrCons", "Ren"];
-*/
-table {
+/*Legend*/
+.legend {
   margin-top: 5px;
   margin-left: 4px;
-}
-table#legend{
   pointer-events: none;
 }
-table td {
-  text-align: left;
-}
-td, tr {
+
+.legend td, .legend tr {
   padding: 4px;
-  text-align: left;
-  font-weight: 400;
   font-size: 12px;
-  cursor: pointer;
   line-height: 10px;
 }
-table#Codes tr:hover {
-  background-color: #838383;
-}
-/* Agreement Stages */
+
 td#Pre {
   background-color: #8dd3c7;
 }
@@ -175,3 +136,5 @@ td#paxTjMech.color{
 td#paxGeWom.color{
   background-color: #59c9df;
 }
+
+

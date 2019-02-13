@@ -24,6 +24,8 @@ d3.select('#deselectAllCons')
 		d3.selectAll('#conDropdown input').property('checked', false)
 	})
 
+var selectedAgtDetails = null;
+
 d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 	// preprocess rows
 	return {Year:+d.Year,
@@ -136,3 +138,25 @@ function getSelectedConsString(conlist) {
 		return str
 	}
 }
+
+
+// to update agreement details!
+// rects.on("click", function(d) {
+// 	// display infobox permanently (until click somewhere else in svg??)
+// 	if (selectedAgtDetails == d) {
+// 		selectedAgtDetails = null
+// 	} else {
+// 		selectedAgtDetails = d;
+// 	}
+// 	agtDetails(d)
+// 	event.stopPropagation();
+// });
+
+// rects.on("mouseover",function(d){
+// 	// display infobox
+// 	agtDetails(d)
+// });
+// rects.on("mouseout",function(d) {
+// 	// remove infobox
+// 	agtDetails(selectedAgtDetails)
+// });

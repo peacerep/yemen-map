@@ -8,6 +8,34 @@ var formatMonth = d3.timeFormat("%m");
 var formatDay = d3.timeFormat("%j");  // day of the year as decimal number
 var formatYear = d3.timeFormat("%Y");
 
+// Codes
+var codesLong = {HrFra: 'Human Rights Framework',
+		Mps: 'Power Sharing: Military',
+		Eps: 'Power Sharing: Economic',
+		Terps: 'Power Sharing: Territorial',
+		Polps: 'Power Sharing: Political',
+		Pol: 'Political Institutions',
+		GeWom: 'Women, Girls and Gender',
+		TjMech: 'Transitional Justice Past Mechanism'}
+
+var codes = Object.keys(codesLong)
+
+// Colour Scales
+function stageColour(d) {
+	// can't just be a d3 scale because the colour could be either from
+	// d.Stage or d.StageSub
+	// (Colors from: http://colorbrewer2.org/#type=qualitative&scheme=Set3&n=7)
+	var stage = d3.scaleOrdinal()
+		.domain(['Cea', 'Pre', 'SubPar', 'SubComp', 'Imp', 'Ren', 'Other'])
+		.range(["#fb8072", "#8dd3c7", "#ffffb3", "#fdb462", "#b3de69", "#bebada", "#8c8c8c"])
+		// red turquoise yellow orange green purple grey
+	var cons = "#80b1d3" // blue
+	var col = (d.StageSub == 'FrCons' ? cons : stage(d.Stage));
+	return col
+}
+
+
+
 function getYears(data) {
 	var minYear = d3.min(data.map(function(d) {return d.Year}))
 	var maxYear = d3.max(data.map(function(d) {return d.Year}))
@@ -43,4 +71,45 @@ function getConNames (dat) {
 	cons = cons.sort()
 
 	return cons
+}
+
+function agtDetails(d) {
+	if (d==null) {
+		//clear
+		var infoString = 'No agreement selected.'
+	} else {
+		var infoString = "<table><tr><td>Title:</td><td>" + d.Agt +
+		"</td></tr><tr><td>Date Signed:</td><td>" + formatDate(d.Dat) + 
+		"</td></tr><tr><td>Country/Entity:</td><td>"+ d.Con +
+		"</td></tr><tr><td>Status:</td><td>"+ d.Status +
+		"</td></tr><tr><td>Type:</td><td>"+ d.Agtp +
+		"</td></tr><tr><td>Stage:</td><td>"+ d.Stage +
+		"</td></tr><tr><td>Sub-Stage:</td><td>"+ d.StageSub +
+		"</td></tr></table><br>" +
+		'<a href="https://www.peaceagreements.org/masterdocument/' + d.AgtId +
+		'" target = "_blank">Open PDF</a>&nbsp;<a href="' + 
+		'https://www.peaceagreements.org/view/' + d.AgtId + 
+		'" target = "_blank">View Coding Detail</a>'
+	}
+	d3.select('#agreementDetails').html(infoString)
+	// 	d3.select('#detailsDate').html('')
+	// 	d3.select('#detailsCon').html('')
+	// 	d3.select('#detailsStatus').html('')
+	// 	d3.select('#detailsType').html('')
+	// 	d3.select('#detailsStage').html('')
+	// 	d3.select('#detailsSubstage').html('')
+	// } else {
+	// 	// updates agreement details on the left
+	// 	d3.select('#detailsTitle').html(d.Agt)
+	// 	d3.select('#detailsDate').html(formatDate(d.Dat))
+	// 	d3.select('#detailsCon').html(d.Con)
+	// 	d3.select('#detailsStatus').html(d.Status)
+	// 	d3.select('#detailsType').html(d.Agtp)
+	// 	d3.select('#detailsStage').html(d.Stage)
+	// 	d3.select('#detailsSubstage').html(d.StageSub)
+	// 	d3.select('#detailsLinks').html('<a href="https://www.peaceagreements.org/masterdocument/' + 
+	// 		d.AgtId + '" target = "_blank">Open PDF</a>&nbsp;<a href="' + 
+	// 		'https://www.peaceagreements.org/view/' + 
+	// 		d.AgtId + '" target = "_blank">View Coding Detail</a>')
+	// }
 }
