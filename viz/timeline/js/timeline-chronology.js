@@ -205,7 +205,7 @@ function callFunction() {
                 .attr("class",function(d){ return String((setAgtColors(d))[1]); })  // .attr("class","agt")
                 .attr("id",function(d){ return d.AgtId; })
                 .attr("fill", function(d){ return (setAgtColors(d))[0]; })          //.attr("fill",function(d){ if (+d.AgtId == +selection){ return "white"; } else { return "black"; } })
-                .attr("stroke",function(d){ if (+d.AgtId == +selection[0]){ return "white"; } else { return "#737373"; } })  // same as html background-color
+                .attr("stroke",function(d){ if (+d.AgtId == +selection[0]){ return "white"; } else { return "#dee3e8"; } })  // same as html background-color
                 .attr("stroke-width",function(d){ if (+d.AgtId == +selection[0]){ return "4px"; } else { return "1px"; } })
                 .style("opacity", function(d){ if (+d.AgtId == +selection[0]){ return "1"; } else { return "0.5"; } })
                 .attr("x", function(d){ return x(d.Dat) + margin.left; })

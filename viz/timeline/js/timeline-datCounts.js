@@ -182,7 +182,7 @@ function callFunction() {
                .attr("class","count")
                .attr("id", function(d){ return d[0]; })
                .attr("fill","black")
-               .attr("stroke","#737373")  // same as html background-color
+               .attr("stroke","#dee3e8")  // same as html background-color
                .attr("stroke-width","1px")
                .style("opacity", "0.7")
                .attr("x", function(d){ return x(d[0]) + margin.left; })

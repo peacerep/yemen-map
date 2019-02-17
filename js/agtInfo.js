@@ -117,7 +117,8 @@ function callInfoFunction() {
 
     var circle_opacity = .8,
         circle_stroke = '#343332',
-        circle_color = '#dddcda',
+        // circle_color = '#dddcda',
+        circle_color = '#ffffff',
         color_pol = '#f5003d',color_polps = '#01557a',color_terps = '#fbdd4b',
         color_eps = '#7a56a0',color_mps = '#029680',color_HrFra = '#f46c38',
         color_gewom = '#59c9df',color_tjmech = '#fc96ab';
