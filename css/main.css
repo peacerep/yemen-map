@@ -2,56 +2,47 @@
 main styles (all pages)
 */
 
-/** {
-	shape-rendering: crispEdges;
-}*/
-
 html, body {
-	background-color: #737373;
+	background-color: #eee;
+	color: #000;
 	margin: 0px;
 	padding: 0px;
-	font-family: 'M PLUS Rounded 1c', sans-serif;
-	font-weight: 400;
-	font-size: 14px;
-	/*background-color: #444*/
+	font-family: 'Karla', sans-serif;
 }
 
 h1 {
-	font-weight: 900;
-	font-size: 28px;
-	color: white;
-	pointer-events: none;
-	margin-bottom: -8px;
+	font-weight: bold;
+	font-size: 34px;
+	margin: 20px 0 0 0;
 }
 
 h2 {
-	font-weight: 700;
-	font-size: 16px;
-	padding-top: 0px;
-	color: white;
+	font-weight: normal;
+	font-size: 20px;
+	margin: 10px 0 0 0;
 }
 
 h3 {
-	font-size: 14px;
-	margin: 20px 0 5px 0;
-	color: silver;
+	font-size: 1em;
+	margin: 25px 0 3px 0;
+	font-weight: bold;
+}
+
+h3 span, h3 a {
+	background-color: #fff;
+	text-decoration: none;
+	padding: 0 3px;
 }
 
 a {
-	color: white;
+	color: black;
 }
 
-/*p {
+a:hover {
+	border-bottom: solid 1px black;
+}
 
-  color: white;
-  display: block;
-  padding-top: 20px;
-  padding-left: 20px;
-  padding-right: 30px;
-}*/
-
-ol, li {
-  color: white;
+/*ol, li {
   display: block;
 }
 
@@ -61,7 +52,7 @@ li {
 
 iframe {
   border: red 1px solid;
-}
+}*/
 
 .hidden {
 	display: none;

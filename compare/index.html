@@ -7,7 +7,7 @@
 
 	<title>Agreement Sequence Comparison</title>
 
-	<link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c:400,700,900" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="../css/main.css">
 	<link rel="stylesheet" type="text/css" href="../css/select-style.css">
 	<link rel="stylesheet" type="text/css" href="../css/compare.css">
@@ -25,15 +25,15 @@
 			<h1>Visualizing Peace</h1>
 			<h2>Agreement Sequence Comparison</h2>
 
-			<h3>Code Selection</h3>
+			<h3><span>Code Selection</span></h3>
 
-			Display agreements that address: <br>
+			Display agreements that address
 			
 			<!-- any/all radio -->
 			<input type="radio" id="allV" name="filterRule" value="all" checked>
-			<label for="all">ALL</label><br>
+			<label for="allV">all</label> / 
 			<input type="radio" id="anyV" name="filterRule" value="any">
-			<label for="any">ANY</label>
+			<label for="anyV">any</label>
 			of the below code selections. <br>
 			
 			<!-- dropdown for codes -->
@@ -57,7 +57,7 @@
 			<br>
 		
 			<!-- legend for agreement codes (not clickable) -->
-			<h3>Agreement Stage Legend</h3>
+			<h3><span>Agreement Stage Legend</span></h3>
 			<table class='legend'>
 			<tr><td id="Cea" class="color">&nbsp;&nbsp;&nbsp;</td><td>Ceasefire/related</td></tr>
 			<tr><td id="Pre" class="color">&nbsp;&nbsp;&nbsp;</td><td>Prenegotiation</td></tr>
@@ -70,7 +70,7 @@
 			</table>
 			
 			<!-- div for agreement details - content added by script -->
-			<h3>Agreement Details</h3>
+			<h3><span>Agreement Details</span></h3>
 			<i>Hover over or click timeline and map elements to view details of the agreements they represent.</i><br>
 			<div id='agreementDetails'></div>
 

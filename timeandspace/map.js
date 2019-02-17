@@ -26,63 +26,38 @@ var path = d3.geoPath()
 var mapG = svg.append('g').attr('id', 'mapG') // g for the map
 var dotG = svg.append('g').attr('id', 'dotG') // g for dots or anything else we plot on top
 
-// load world map geojson
-d3.json("../data/world-110m.geojson").then(function(world) {
+function combineDataLoc(data, locations) {
 
-	mapG
-	.append("path")
-	.attr("d", path(world))
-	.classed("land", true)
-
-	d3.json("../data/paxMapData3_27092018.json").then(function(collection) {
-
-		// initialise zoom
-		var zoom = d3.zoom()
-			.scaleExtent([1,10])
-			.on("start", zoomStart)
-			.on("zoom", zooming)
-			.on("end", zoomEnd)
-
-		svg.call(zoom)
-
-		function zoomStart() {
-			dotG.classed("hidden", true)
-		}
-
-		function zooming() {
-			// keep stroke-width constant at different zoom levels
-			mapG.style("stroke-width", 1.5 / d3.event.transform.k + "px");
-			// zoom map
-			mapG.attr("transform", d3.event.transform);
-			// dotG.attr("transform", d3.event.transform);
-		}
-
-		function zoomEnd() {
-			// update projection
-			projection
-			.translate([d3.event.transform.x + d3.event.transform.k*transInit[0], d3.event.transform.y + d3.event.transform.k*transInit[1]])
-			.scale(d3.event.transform.k * scaleInit)
-			// drawFlowers(collection)
-			dotG.classed("hidden", false)
-
-			// re-plot dots
-			updateGlyphs(collection)
-		}
-
-		// initial display
-		updateGlyphs(collection)
-
+	// attach all agreements for a country to the centroid
+	// filter for intra agreements only
+	var data_intra = data.filter(function(d) {
+		return d.Agtp == 'Intra'
 	})
-	.catch(function(error){
-		throw error;
-	}) // end data
-}).catch(function(error){
-	throw error;
-}) // end geojson
 
-function updateGlyphs(data) {
+	// nest by the first country on the list
+	data_intra = d3.group(data_intra, d => d.Con[0])
+	// console.log(data_intra)
+
+	// add locations and log, then delete the ones where no locations can be found
+	for (const [con, agts] of data_intra.entries()) {
+		var cen = locations.find(function(d) {
+			return d.name == con})
+		if (cen != undefined) {
+			agts.loc = {lat: cen.latitude, lon: cen.longitude}		
+		} else {
+			console.log('no loc for: ', con)
+			data_intra.delete(con)
+		}
+	}
+
+	data_intra = new Array(...data_intra.entries())
+
+	return data_intra
+}
+
+
+function updateGlyphs(locdata) {
 	// draw glyphs onto dotG
-	console.log(data)
 
 	var circle_opacity = .8,
 		circle_stroke = '#343332',
@@ -100,14 +75,14 @@ function updateGlyphs(data) {
 	var bbox = getBoundingBox();
 
 	// filter data for the visible dots only
-	var visible = data.objects.filter(function(d) {
-		return filterBBox(bbox, d.circle.coordinates[1], d.circle.coordinates[0])
+	var locdata = locdata.filter(function(d) {
+		return filterBBox(bbox, d[1].loc.lon, d[1].loc.lat)
 	})
 
 	// bind new data to circles
 	var circle = dotG
 		.selectAll(".glyph")
-		.data(visible)
+		.data(locdata)
 
 	// remove surplus circles
 	circle.exit().remove()
@@ -118,15 +93,15 @@ function updateGlyphs(data) {
 		.append("circle")
 		.classed("glyph", true)
 		.merge(circle)
-		.attr("cx", function(d) {
-			d.loc = projection([d.circle.coordinates[1],
-					  d.circle.coordinates[0]])
-			return d.loc[0]
+		.attr('cx', function(d) {
+			d[1].pos = projection([d[1].loc.lon, d[1].loc.lat]); 
+					return d[1].pos[0]})
+		.attr('cy', function(d) {return d[1].pos[1]})
+		.attr('r', function(d) {
+			return Math.sqrt(d[1].length * 2)
 		})
-		.attr("cy", function(d) {return d.loc[1]})
-		.attr("r", 3)
-		.attr('fill', circle_color)
-		.attr('fill-opacity', circle_opacity)
+		.style('fill','#000')
+		.style('fill-opacity', 0.5)
 }
 
 function getBoundingBox() {

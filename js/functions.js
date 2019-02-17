@@ -46,35 +46,55 @@ function getYears(data) {
 	return [minYear, maxYear]
 }
 
+// replace this! 
 function getConNames (dat) {
+
 	// get all unique Con values
-	var cons = d3.map(dat, function(d){return d.Con;}).keys()
-	// split by '/' and flatten resulting array
-	cons = cons.map(d => d.split('/'))
+	var cons = dat.map(function(d){return d.Con;})
+
 	cons = cons.reduce((acc, val) => acc.concat(val))
+		// get the unique ones
+	cons = [...new Set(cons)]
+	// sort alphabetically
+	cons = cons.sort()
+
+	return cons
+}
+
+function splitConNames(item) {
+	// input is one data point d.Con
+	// split into array of con names
+	var cons = item.split('/')
+
 	// deal with a special case which has slashes in its name
 	// "Rebolusyonaryong Partido ng Manggagawa-Pilipineas (RPMP/RPA/ABB)"
-	while (cons.findIndex(element => element.search('(RPMP)$') != -1) != -1) {
-		var i = cons.findIndex(element => element.search('(RPMP)$') != -1)
-		cons[i] = [cons[i], cons[i+1], cons[i+2]].join('/')
-		cons.splice(i+1, 2)
+	var rpmp = cons.findIndex(element => element.search('(RPMP)$') != -1)
+	if (rpmp != -1) {
+		cons[rpmp] = [cons[rpmp], cons[rpmp+1], cons[rpmp+2]].join('/')
+		cons.splice(rpmp+1, 2)
 	}
+
 	// remove brackets if they both open and close a string
 	// this is so that names like 'Yugoslavia (former)' stay intact
 	cons = cons.map(function(d) {
-		// check if string starts with ( and ends with )
+		// check if string is enclosed in brackets ()
 		if (d.search( '^[(].*[)]$' ) != -1) {
 			// return the string minus the 1st and last character
 			return d.substr(1,d.length-2)
 		} 
 		else { return d } // otherwise return the original string
 	})
-	// get the unique ones
-	cons = [...new Set(cons)]
-	// sort alphabetically
-	cons = cons.sort()
 
 	return cons
+}
+
+function uniqueCons(data) {
+	var allCons = []
+	for (var i = 0; i < data.length; i++) {
+		allCons.push(...data[i].Con)
+	}
+	var uniqueCons = [...new Set(allCons)]
+	return uniqueCons
 }
 
 function agtDetails(d) {

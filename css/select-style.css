@@ -83,7 +83,7 @@ Dropdowns
 
 .legend td, .legend tr {
   padding: 4px;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 10px;
 }
 
@@ -138,3 +138,19 @@ td#paxGeWom.color{
 }
 
 
+input[type="radio"] {
+	display: none;
+}
+
+input[type="radio"]+label {
+	font-weight: bold;
+	padding: 0 3px;
+}
+
+input[type="radio"]+label:hover {
+	border-bottom: solid 2px black;
+}
+
+input[type="radio"]:checked+label {
+	background-color: #11c2f9;
+}

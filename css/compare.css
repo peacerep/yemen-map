@@ -15,21 +15,22 @@ select {
 
 .grid-container {
 	display: grid;
-	grid-template-columns: 350px 1fr 1fr 1fr; 
+	grid-template-columns: 400px 1fr 1fr 1fr; 
 	grid-template-rows: 1fr;
 	align-content: stretch;
 	justify-content: stretch;
 }
 
-#sidebar, #timeline-v0, #timeline-v1, #timeline-v2 {
+#timeline-v0, #timeline-v1, #timeline-v2 {
 	grid-row: 1;
 	padding: 15px;
 }
 
 #sidebar {
-	/*background-color: #555;*/
 	grid-column: 1;
-	color: #eee;
+	padding: 0 15px;
+	margin: 15px 0;
+	border-right: solid 1px black;
 }
 
 #timeline-v0 {

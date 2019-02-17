@@ -83,7 +83,7 @@ d3.csv("../data/paxTimelineData_02092018.csv", function (d) {
 		Dat:parseDate(d.Dat),
 		AgtId:+d.AgtId,
 		// Reg:d.Reg,
-		Con:d.Con,
+		Con:splitConNames(d.Con),
 		Status:d.Status,
 		Agtp:d.Agtp,
 		Stage:d.Stage, // "Pre", "SubPar", "SubComp", "Imp", "Cea", "Other"
@@ -183,7 +183,7 @@ function updateTimeline(index, data, yScale) {
 
 	// filter the data for the current country only
 	var data_country = data.filter(function(d) {
-		return d.Con.search(country) != -1
+		return d.Con.indexOf(country) != -1
 	})
 
 	// get filters from inputs on the left

@@ -41,7 +41,7 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 		Dat:parseDate(d.Dat),
 		AgtId:+d.AgtId,
 		// Reg:d.Reg,
-		Con:d.Con,
+		Con:splitConNames(d.Con),
 		Status:d.Status,
 		Agtp:d.Agtp,
 		Stage:d.Stage, // "Pre", "SubPar", "SubComp", "Imp", "Cea", "Other"
@@ -56,36 +56,95 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 		HrFra:+d.HrFra, // 1 if topic of human rights/rule of law addressed; 0 if not
 		// HrFra:+d.HrFra, // 1-3 indicating increasing level of detail given about human rights framework to be established; 0 if none given
 		TjMech:+d.TjMech} // 1-3 indicating increasing level of detail given about a body to deal with the past; 0 if none given
-	}).then(function(data) {
+}).then(function(data) {
 
-		// INITIAL SETUP
-		// add years to year dropdowns
-		var years = getYears(data)
-		populateYearDropdowns(years)
+	// INITIAL SETUP
+	// add years to year dropdowns
+	var years = getYears(data)
+	populateYearDropdowns(years)
 
-		// add countries/entities to dropdown
-		var cons = getConNames(data)
-		d3.select('#conDropdown')
-			.selectAll('span')
-			.data(cons)
+	// add countries/entities to dropdown
+	var cons = getConNames(data)
+	d3.select('#conDropdown')
+		.selectAll('span')
+		.data(cons)
+		.enter()
+		.append('span')
+		.html(function(d,i) {
+			return "<label><input type='checkbox' id='con" + i +
+			"' name='Con'>"+ d + "</label><br/>"
+		})
+
+	// update list of selected countries on change
+	d3.select('#conDropdown')
+		.on('click', function() {
+			// update span with list of selected
+			d3.select('#selectedCons').html(getSelectedConsString(cons))
+		})
+
+	// draw timeline
+	initTimeline(data)
+
+	d3.json("../data/world-110m.geojson").then(function(world) {
+	d3.csv('../data/country_centroids.csv').then(function(centroids) {
+		mapG.append('g')
+			.selectAll("path")
+			.data(world.features)
 			.enter()
-			.append('span')
-			.html(function(d,i) {
-				return "<label><input type='checkbox' id='con" + i +
-				"' name='Con'>"+ d + "</label><br/>"
-			})
+			.append('path')
+			.attr('id', function(d) {return d.id})
+			.attr('d', path)
+			.classed('land', true)
 
-		// update list of selected countries on change
-		d3.select('#conDropdown')
-			.on('click', function() {
-				// update span with list of selected
-				d3.select('#selectedCons').html(getSelectedConsString(cons))
-			})
+		var locdata = combineDataLoc(data, centroids)
 
-	})
-	.catch(function(error){
+		// initialise zoom
+		var zoom = d3.zoom()
+			.scaleExtent([1,10])
+			.on("start", zoomStart)
+			.on("zoom", zooming)
+			.on("end", zoomEnd)
+
+		svg.call(zoom)
+
+		function zoomStart() {
+			dotG.classed("hidden", true)
+		}
+
+		function zooming() {
+			// keep stroke-width constant at different zoom levels
+			mapG.style("stroke-width", 1 / d3.event.transform.k + "px");
+			// zoom map
+			mapG.attr("transform", d3.event.transform);
+			// dotG.attr("transform", d3.event.transform);
+		}
+
+		function zoomEnd() {
+			// update projection
+			projection
+			.translate([d3.event.transform.x + d3.event.transform.k*transInit[0], d3.event.transform.y + d3.event.transform.k*transInit[1]])
+			.scale(d3.event.transform.k * scaleInit)
+			// drawFlowers(collection)
+			dotG.classed("hidden", false)
+
+			// re-plot dots
+			updateGlyphs(locdata)
+		}
+		
+		// initial display
+		updateGlyphs(locdata)
+	
+	}).catch(function(error){
 		throw error;
 	})
+	}).catch(function(error){
+		throw error;
+	})
+
+
+}).catch(function(error){
+	throw error;
+})
 
 ////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////// FUNCTIONS /////////////////////////////////////
