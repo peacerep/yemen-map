@@ -164,29 +164,30 @@ function callFunction() {
                   .attr("width", agtWidth+"px")
                   .attr("height", agtHeight+"px");
 
-              var selectedRects = chartGroup.selectAll('rect.selected');
-              selectedRects.on("click", function(d) {
-                  if (!clicked){
-                    clicked = true;
-                    this.style.opacity = 1;
-                    console.log(this.id);
-                    if (+this.id == +(selection[0])){
-                      window.localStorage.setItem("paxselection", JSON.stringify([]));
-                    } else {
-                      paxVizData = [d.AgtId,d.Agt,formatDate(d.Dat),d.Con,d.Status,d.Agtp,d.Stage,d.StageSub,d.Pol,d.Polps,d.Terps,d.Eps,d.Mps,d.HrFra,d.GeWom,d.TjMech];
-                      window.localStorage.setItem("paxselection", JSON.stringify(paxVizData));
-                    }
-                    window.localStorage.setItem("updatePaxMap", "true");
-                    callFunction();
+                  var selectedRects = chartGroup.selectAll('rect.selected');
+                  selectedRects.on("click", function(d) {
+                    if (!clicked){ // if an agreement's been selected
+                      clicked = true;
+                      this.style.opacity = 1;
+                      console.log(this.id);
+                      if (+this.id == +(selection[0])){
+                        window.localStorage.setItem("paxselection", JSON.stringify([]));
+                      } else {
+                        paxVizData = [d.AgtId,d.Agt,formatDate(d.Dat),d.Con,d.Status,d.Agtp,d.Stage,d.StageSub,d.Pol,d.Polps,d.Terps,d.Eps,d.Mps,d.HrFra,d.GeWom,d.TjMech];
+                        window.localStorage.setItem("paxselection", JSON.stringify(paxVizData));
+                      }
+                      window.localStorage.setItem("updatePaxMap", "true");
+                      callFunction();
 
-                  } else { // if clicked
-                    clicked = false;
-                    this.style.opacity = 0.5;
-                    window.localStorage.setItem("paxselection", JSON.stringify([]));
-                    window.localStorage.setItem("updatePaxMap", "true");
-                    callFunction();
-                  }
-              });
+                    } else { // if an agreement's not selected
+                      clicked = false;
+                      this.style.opacity = 0.5;
+                      window.localStorage.setItem("paxselection", JSON.stringify([]));
+                      window.localStorage.setItem("updatePaxMap", "true");
+                      callFunction();
+                    }
+                  });
+
               selectedRects.on("mouseover",function(d){
                   if (!clicked){
                     this.style.fill = "#ffffff";

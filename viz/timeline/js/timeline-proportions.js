@@ -164,9 +164,9 @@ function callFunction() {
                   .attr("width", agtWidth+"px")
                   .attr("height", agtHeight+"px");
 
-                var selectedRects = chartGroup.selectAll('rect.selected');
-                selectedRects.on("click", function(d) {
-                    if (!clicked){
+                  var selectedRects = chartGroup.selectAll('rect.selected');
+                  selectedRects.on("click", function(d) {
+                    if (!clicked){ // if an agreement's been selected
                       clicked = true;
                       this.style.opacity = 1;
                       console.log(this.id);
@@ -179,14 +179,15 @@ function callFunction() {
                       window.localStorage.setItem("updatePaxMap", "true");
                       callFunction();
 
-                    } else { // if clicked
+                    } else { // if an agreement's not selected
                       clicked = false;
                       this.style.opacity = 0.5;
                       window.localStorage.setItem("paxselection", JSON.stringify([]));
                       window.localStorage.setItem("updatePaxMap", "true");
                       callFunction();
                     }
-                });
+                  });
+
                 selectedRects.on("mouseover",function(d){
                     if (!clicked){
                       this.style.fill = "#ffffff";

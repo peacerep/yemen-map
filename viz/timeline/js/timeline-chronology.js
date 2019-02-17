@@ -191,7 +191,7 @@ function callFunction() {
                       .attr("transform","translate("+margin.left+","+margin.top+")");
 
           // Make one rectangle per agreement grouped by Dat
-          console.log("Highlight: "+selection[0]);
+          console.log("Highlight: ",selection[0]);
           for (dat = 0; dat < datList.length; dat++){
             var datGroup = chartGroup.append("g")
                 .attr("class","datGroup");
