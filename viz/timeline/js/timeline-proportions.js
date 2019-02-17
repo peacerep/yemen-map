@@ -203,7 +203,7 @@ function callFunction() {
                       window.localStorage.setItem("updatePaxMap", "false");
                       window.localStorage.setItem("paxhover", JSON.stringify([]));
                       this.style.fill = "black"
-                      this.style.stroke = "#737373";
+                      this.style.stroke = "#dee3e8";
                      }
                 });
 
@@ -285,14 +285,14 @@ function callFunction() {
                 if (+d.AgtId == +selection[0]){
                   return ["white", "selected"];
                 } else {
-                  return ["black", "selected"];
+                  return ["#4f545e", "selected"];
                 }
                 // return getAgtCons(d);
               } else {
                 // deselect agreements that don't meet filter criteria
                 window.localStorage.setItem("paxselection", JSON.stringify([]));
                 selection = JSON.parse(window.localStorage.getItem("paxselection"));
-                return ["#595959", "unselected"];
+                return ["silver", "unselected"];
               }
             }
             else { // if paxALL == 1
@@ -310,14 +310,14 @@ function callFunction() {
                 if (+d.AgtId == +selection[0]){
                   return ["white", "selected"];
                 } else {
-                  return ["black", "selected"];
+                  return ["#4f545e", "selected"];
                 }
                 // return getAgtCons(d);
               } else {
                 // deselect agreements that don't meet filter criteria
                 window.localStorage.setItem("paxselection", JSON.stringify([]));
                 selection = JSON.parse(window.localStorage.getItem("paxselection"));
-                return ["#595959", "unselected"];
+                return ["silver", "unselected"];
               }
             }
           }
@@ -392,7 +392,7 @@ function callFunction() {
           }
         }
         title = title + "_" + cons + "_" + codes + "_" + newMinDay + "-" + newMaxDay + ".png";
-        saveSvgAsPng(document.getElementsByTagName("svg")[0], title, {scale: 5, backgroundColor: "#737373"});
+        saveSvgAsPng(document.getElementsByTagName("svg")[0], title, {scale: 5, backgroundColor: "#dee3e8"});
         // if IE need canvg: canvg passed between scale & backgroundColor
       });
 

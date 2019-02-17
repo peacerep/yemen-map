@@ -318,7 +318,7 @@ function callFunction() {
           }
         }
         title = title + "_" + con + "_" + codes + "_" + "01_01_1900-31_12_2015.png";
-        saveSvgAsPng(document.getElementsByTagName("svg")[0], title, {scale: 5, backgroundColor: "#737373"});
+        saveSvgAsPng(document.getElementsByTagName("svg")[0], title, {scale: 5, backgroundColor: "#dee3e8"});
         // if IE need canvg: canvg passed between scale & backgroundColor
       });
 
