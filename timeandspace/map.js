@@ -36,28 +36,39 @@ function combineDataLoc(data, locations) {
 
 	// nest by the first country on the list
 	data_intra = d3.group(data_intra, d => d.Con[0])
-	// console.log(data_intra)
+
+
+	// turn into array where [0] = key and [1] = values
+	// data_intra = new Array(...data_intra.entries())
+
+	var newData = []
 
 	// add locations and log, then delete the ones where no locations can be found
 	for (const [con, agts] of data_intra.entries()) {
 		var cen = locations.find(function(d) {
 			return d.name == con})
 		if (cen != undefined) {
-			agts.loc = {lat: cen.latitude, lon: cen.longitude}		
-		} else {
-			console.log('no loc for: ', con)
-			data_intra.delete(con)
-		}
+			newData.push({con: con, agts: agts,
+				loc: {lat: cen.latitude, lon: cen.longitude}})
+			// agts.loc = {lat: cen.latitude, lon: cen.longitude}		
+		} 
+		// else {
+		// 	console.log('no loc for: ', con)
+		// 	data_intra.delete(con)
+		// }
 	}
 
-	data_intra = new Array(...data_intra.entries())
+	
+	console.log(newData)
 
-	return data_intra
+	return newData
 }
 
 
 function updateGlyphs(locdata) {
 	// draw glyphs onto dotG
+
+	console.log(locdata)
 
 	var circle_opacity = .8,
 		circle_stroke = '#343332',
@@ -76,32 +87,51 @@ function updateGlyphs(locdata) {
 
 	// filter data for the visible dots only
 	var locdata = locdata.filter(function(d) {
-		return filterBBox(bbox, d[1].loc.lon, d[1].loc.lat)
+		return filterBBox(bbox, d.loc.lon, d.loc.lat)
 	})
 
-	// bind new data to circles
-	var circle = dotG
-		.selectAll(".glyph")
-		.data(locdata)
+	// var circle = dotG
+	// 	.selectAll(".glyph")
+	// 	.data(locdata)
 
-	// remove surplus circles
-	circle.exit().remove()
+	// // remove surplus circles
+	// circle.exit().remove()
+	dotG.selectAll('*').remove()
 
 	// add new ones
-	circle
+	var circle = dotG.selectAll('g')
+		.data(locdata)
 		.enter()
-		.append("circle")
+		.append("g")
 		.classed("glyph", true)
-		.merge(circle)
-		.attr('cx', function(d) {
-			d[1].pos = projection([d[1].loc.lon, d[1].loc.lat]); 
-					return d[1].pos[0]})
-		.attr('cy', function(d) {return d[1].pos[1]})
-		.attr('r', function(d) {
-			return Math.sqrt(d[1].length * 2)
+		// .merge(circle)
+		.attr('transform', function(d) {
+			var pos = projection([d.loc.lon, d.loc.lat])
+			return 'translate(' + pos[0] + ',' + pos[1] + ')'
 		})
-		.style('fill','#000')
-		.style('fill-opacity', 0.5)
+
+	circle.append('circle')
+		.attr('cx', d => d.outercircle.x)
+		.attr('cy', d => d.outercircle.y)
+		.attr('r',  d => d.outercircle.r)
+		.style('fill', 'none')
+		.style('stroke', '#bbb')
+		.style('stroke-width', '1px')
+
+	var subcircle = circle.selectAll('.subcircle')
+		.data(function(d) {return d.agts})
+		.enter()
+		.append('circle')
+		.classed('subcircle', true)
+		.attr('cx', d => d.x)
+		.attr('cy', d => d.y)
+		.attr('r', d => d.r)
+		.style('fill', '#11C2F9')
+		.style('fill-opacity', 0.7)
+		.on('mouseover', function(d) {
+			agtDetails(d)
+		})
+
 }
 
 function getBoundingBox() {

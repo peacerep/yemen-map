@@ -31,6 +31,9 @@ d3.select('#deselectAllCons')
 var selectedAgtDetails = null;
 // add something to deselect
 
+// initialise infobox
+agtDetails(null)
+
 ////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////// DATA //////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -97,6 +100,16 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 			.classed('land', true)
 
 		var locdata = combineDataLoc(data, centroids)
+
+		// prepare for circle packing
+		for (var i=0; i < locdata.length; i++) {
+			d3.packSiblings(locdata[i].agts
+						.map(function(d) {
+							d.r = 3;
+							return d
+						}))
+			locdata[i].outercircle = d3.packEnclose(locdata[i].agts)
+		}
 
 		// initialise zoom
 		var zoom = d3.zoom()

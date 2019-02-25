@@ -100,7 +100,7 @@ function uniqueCons(data) {
 function agtDetails(d) {
 	if (d==null) {
 		//clear
-		var infoString = 'No agreement selected.'
+		var infoString = '<i>Hover over or click timeline and map elements to view details of the agreements they represent.</i>'
 	} else {
 		var infoString = "<table><tr><td>Title:</td><td>" + d.Agt +
 		"</td></tr><tr><td>Date Signed:</td><td>" + formatDate(d.Dat) + 

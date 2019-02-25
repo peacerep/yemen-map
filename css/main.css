@@ -36,23 +36,12 @@ h3 span, h3 a {
 
 a {
 	color: black;
+	text-decoration: none;
 }
 
 a:hover {
 	border-bottom: solid 1px black;
 }
-
-/*ol, li {
-  display: block;
-}
-
-li {
-  padding-top: 0px;
-}
-
-iframe {
-  border: red 1px solid;
-}*/
 
 .hidden {
 	display: none;
