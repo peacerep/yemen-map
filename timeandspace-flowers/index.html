@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Agreements in Time and Space</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Karla:400,700&amp;subset=latin-ext" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
+	<link rel="stylesheet" type="text/css" href="../css/select-style.css">
+	<link rel="stylesheet" type="text/css" href="../css/timeandspace.css">
+
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<script src="https://d3js.org/d3-polygon.v1.min.js"></script>
+	<script src="https://d3js.org/d3-array.v2.min.js"></script>
+	<!-- <script src="https://d3js.org/topojson.v1.min.js"></script> -->
+	<script type="text/javascript" src="../js/functions.js"></script>
+	<script type="text/javascript" src='timeline.js'></script>
+	
+
+</head>
+<body>
+	<div class="grid-container">
+
+		<div id="sidebar">
+			<h1>Visualizing Peace</h1>
+			<h2>Agreements in Time and Space</h2>
+
+			<h3><span>Timeframe</span></h3>
+			Display agreements signed in years:<br>
+			<select id='inputMinYear'>
+				<option value="0" disabled selected="selected">
+				Select Start Year</option> 
+			</select>
+			<select id='inputMaxYear'>
+				<option value="0" disabled selected="selected">
+				Select End Year</option> 
+			</select>
+
+
+			<h3><span>Country/Entity Selection</span></h3>
+			<!-- any/all radio -->
+			Display agreements involving
+			<input type="radio" id="allCon" name="conRule" value="all" checked>
+			<label for="allCon">all</label> / 
+			<input type="radio" id="anyCon" name="conRule" value="any">
+			<label for="anyCon">any</label>
+			of the selected countries/entities.<br>
+
+			<!-- fake dropdown for countries -->
+			<div class='dropdown'>
+			<button class="dropbtn">Select Countries/Entities</button>
+			<div id="conDropdown" class='dropcontent'>
+			<a href="#" id="SelectAllCons">Select All</a>&nbsp;&nbsp;
+			<a href="#" id="DeselectAllCons">Deselect All</a><br>
+			</div></div><br>
+			Selected countries/entities:<br>
+			<span id='selectedCons'></span>
+
+			<h3><span>Code Selection</span></h3>
+			<!-- any/all radio -->
+			Highlight agreements that address
+			<input type="radio" id="allCodes" name="codesRule" value="all" checked>
+			<label for="allCodes">all</label> / 
+			<input type="radio" id="anyCodes" name="codesRule" value="any">
+			<label for="anyCodes">any</label>
+			of the selected codes.<br>
+			
+			<div id='codesCheckboxes'>
+			<label><input type="checkbox" id="paxHrFraV">Human Rights Framework</label><br>
+			<label><input type="checkbox" id="paxPolV">Political Institutions</label><br>
+			<label><input type="checkbox" id="paxEpsV">Power Sharing: Economic</label><br>
+			<label><input type="checkbox" id="paxMpsV">Power Sharing: Military</label><br>
+			<label><input type="checkbox" id="paxPolpsV">Power Sharing: Political</label><br>
+			<label><input type="checkbox" id="paxTerpsV">Power Sharing: Territorial</label><br>
+			<label><input type="checkbox" id="paxTjMechV">Transitional Justice Past Mechanism</label><br>
+			<label><input type="checkbox" id="paxGeWomV">Women, Girls and Gender</label>
+			</div>
+			
+			<a href="#" id="selectAllCodes">Select All</a>&nbsp;&nbsp;
+			<a href="#" id="deselectAllCodes">Deselect All</a><br>
+
+			<h3><span>Agreement Details</span></h3>
+			<div id='agreementDetails'></div>
+
+		</div>
+		<div id="timeline-top"></div>
+		<div id="map"></div>
+	</div>
+
+	<script type="text/javascript" src='timeandspace.js'></script>
+	<script type="text/javascript" src='map.js'></script>
+</body>
+
+</html>
