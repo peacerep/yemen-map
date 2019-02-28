@@ -2,6 +2,9 @@
 
 // FUNCTIONS AND VARS USED FOR ALL PAXVIS VISUALISATIONS
 
+// tau
+var tau = 2 * Math.PI;
+
 // Date parsers & formatters
 var parseDate = d3.timeParse("%d/%m/%Y");
 var parseMonth = d3.timeParse("%m");
@@ -24,6 +27,11 @@ var codesLong = {HrFra: 'Human Rights Framework',
 
 var codes = Object.keys(codesLong)
 
+var codeColour = d3.scaleOrdinal()
+	.domain(['Pol', 'Polps', 'Terps', 'Eps', 'Mps', 'HrFra', 'GeWom', 'TjMech'])
+	.range(['#f5003d','#01557a','#fbdd4b','#7a56a0','#029680','#f46c38','#59c9df','#fc96ab'])
+
+
 // Colour Scales
 function stageColour(d) {
 	// can't just be a d3 scale because the colour could be either from
@@ -37,7 +45,6 @@ function stageColour(d) {
 	var col = (d.StageSub == 'FrCons' ? cons : stage(d.Stage));
 	return col
 }
-
 
 
 function getYears(data) {

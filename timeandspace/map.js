@@ -110,13 +110,13 @@ function updateGlyphs(locdata) {
 			return 'translate(' + pos[0] + ',' + pos[1] + ')'
 		})
 
-	circle.append('circle')
-		.attr('cx', d => d.outercircle.x)
-		.attr('cy', d => d.outercircle.y)
-		.attr('r',  d => d.outercircle.r)
-		.style('fill', 'none')
-		.style('stroke', '#bbb')
-		.style('stroke-width', '1px')
+	// circle.append('circle')
+	// 	.attr('cx', d => d.outercircle.x)
+	// 	.attr('cy', d => d.outercircle.y)
+	// 	.attr('r',  d => d.outercircle.r)
+	// 	.style('fill', 'none')
+	// 	.style('stroke', '#bbb')
+	// 	.style('stroke-width', '1px')
 
 	var subcircle = circle.selectAll('.subcircle')
 		.data(function(d) {return d.agts})
