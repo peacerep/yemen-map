@@ -26,6 +26,10 @@ var path = d3.geoPath()
 var mapG = svg.append('g').attr('id', 'mapG') // g for the map
 var dotG = svg.append('g').attr('id', 'dotG') // g for dots or anything else we plot on top
 
+var arc = d3.arc()
+	.innerRadius(0)
+	.outerRadius(3)
+
 function combineDataLoc(data, locations) {
 
 	// attach all agreements for a country to the centroid
@@ -110,6 +114,7 @@ function updateGlyphs(locdata) {
 			return 'translate(' + pos[0] + ',' + pos[1] + ')'
 		})
 
+	// circle surrounding each 'cluster'
 	// circle.append('circle')
 	// 	.attr('cx', d => d.outercircle.x)
 	// 	.attr('cy', d => d.outercircle.y)
@@ -121,16 +126,60 @@ function updateGlyphs(locdata) {
 	var subcircle = circle.selectAll('.subcircle')
 		.data(function(d) {return d.agts})
 		.enter()
-		.append('circle')
+		.append('g')
 		.classed('subcircle', true)
-		.attr('cx', d => d.x)
-		.attr('cy', d => d.y)
-		.attr('r', d => d.r)
-		.style('fill', '#11C2F9')
-		.style('fill-opacity', 0.7)
-		.on('mouseover', function(d) {
-			agtDetails(d)
+		.attr('transform', function(d) { 
+			return 'translate(' + d.x + ',' + d.y + ')' 
 		})
+	subcircle.on("click", function(d) {
+		// display infobox permanently (until click somewhere else in svg??)
+		if (selectedAgtDetails == d) {
+			selectedAgtDetails = null
+		} else {
+			selectedAgtDetails = d;
+		}
+		agtDetails(d)
+		event.stopPropagation();
+	})
+	.on("mouseover",function(d){
+		// display infobox
+		agtDetails(d)
+	})
+	.on("mouseout",function(d) {
+		// remove infobox
+		agtDetails(selectedAgtDetails)
+	});
+
+	subcircle.selectAll('.arc')
+		.data(function(d) {
+			var activeCodes = []
+			for (var i = 0; i < codes.length; i++) {
+				if (d[codes[i]]) {
+					activeCodes.push(codes[i])
+				}
+			}
+			if (!activeCodes.length) {
+				return [{startAngle: 0,
+					endAngle: tau,
+					colour: '#ccc'}]
+			} else {
+				var incr = tau / activeCodes.length;
+				var obj = []
+				for (var i=0; i<activeCodes.length; i++) {
+					obj.push({
+						startAngle: i * incr,
+						endAngle: (i+1) * incr,
+						colour: codeColour(activeCodes[i])
+					})
+				}
+				return obj
+			}
+		})
+		.enter()
+		.append('path')
+		.attr('d', arc)
+		.style('fill', d => d.colour)
+		
 
 }
 
