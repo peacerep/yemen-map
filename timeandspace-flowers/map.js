@@ -28,7 +28,8 @@ var dotG = svg.append('g').attr('id', 'dotG') // g for dots or anything else we 
 
 var arc = d3.arc()
 	.innerRadius(0)
-	.outerRadius(5)
+	.outerRadius(15)
+	.cornerRadius(5)
 
 
 function combineDataPoly(data, world) {
@@ -108,6 +109,12 @@ function updateGlyphs(locdata) {
 			var pos = projection(d.loc)
 			return 'translate(' + pos[0] + ',' + pos[1] + ')'
 		})
+	
+	circle.append('circle')
+		.attr('cx', 0)
+		.attr('cy', 0)
+		.attr('r', 5)
+		.style('fill', '#c4ccd0')
 
 	circle.selectAll('.arc')
 		.data(function(d) {
@@ -117,19 +124,19 @@ function updateGlyphs(locdata) {
 					activeCodes.push(codes[i])
 				}
 			}
-			if (!activeCodes.length) {
-				return {startAngle: 0,
-					endAngle: tau,
-					colour: '#fff'}
-			} else {
-				var incr = tau / activeCodes.length;
+			if (!activeCodes.length) { return [] } 
+			else {
+				var incr = tau / codes.length;
 				var obj = []
-				for (var i=0; i<activeCodes.length; i++) {
-					obj.push({
+				for (var i=0; i<codes.length; i++) {
+					if (activeCodes.includes(codes[i])) {
+						obj.push({
 						startAngle: i * incr,
 						endAngle: (i+1) * incr,
-						colour: codeColour(activeCodes[i])
+						colour: codeColour(codes[i])
 					})
+					}
+					
 				}
 				return obj
 			}
@@ -139,23 +146,30 @@ function updateGlyphs(locdata) {
 		.attr('d', arc)
 		.style('fill', d => d.colour)
 
-// var pathData = arcGenerator({
-//   startAngle: 0,
-//   endAngle: 0.25 * Math.PI,
-//   innerRadius: 50,
-//   outerRadius: 100
-// });
+	circle.on("click", function(d) {
+		// display infobox permanently (until click somewhere else in svg??)
+		if (selectedAgtDetails == d) {
+			selectedAgtDetails = null
+		} else {
+			selectedAgtDetails = d;
+		}
+		agtDetails(d)
 
-		
-		// .attr('cx', d => d.x)
-		// .attr('cy', d => d.y)
-		// .attr('r', d => d.r)
-		// .style('fill', '#11C2F9')
-		// .style('fill-opacity', 0.7)
-		// .on('mouseover', function(d) {
-		// 	agtDetails(d)
-		// })
+		event.stopPropagation();
+	});
 
+	circle.on("mouseover",function(d){
+		// display infobox
+		agtDetails(d)
+		// arc.outerRadius(25)
+		d3.select(this).style('stroke', '#fff').moveToFront()
+		// d3.select(this).selectAll('arc').attr('d', d)
+	});
+	circle.on("mouseout",function(d) {
+		// remove infobox
+		agtDetails(selectedAgtDetails)
+		d3.select(this).style('stroke', 'none')
+	});
 }
 
 function getBoundingBox() {

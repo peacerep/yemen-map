@@ -104,7 +104,7 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 
 		// initialise zoom
 		var zoom = d3.zoom()
-			.scaleExtent([1,10])
+			.scaleExtent([1,15])
 			.on("start", zoomStart)
 			.on("zoom", zooming)
 			.on("end", zoomEnd)
