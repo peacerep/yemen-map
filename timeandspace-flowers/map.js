@@ -113,8 +113,9 @@ function updateGlyphs(locdata) {
 	circle.append('circle')
 		.attr('cx', 0)
 		.attr('cy', 0)
-		.attr('r', 5)
+		.attr('r', 2.5)
 		.style('fill', '#c4ccd0')
+		.style('fill-opacity', 0.6)
 
 	circle.selectAll('.arc')
 		.data(function(d) {
