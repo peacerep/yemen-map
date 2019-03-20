@@ -29,7 +29,23 @@ d3.select('#deselectAllCons')
 	})
 
 var selectedAgtDetails = null;
-// add something to deselect
+// add something to deselect ??
+
+// add codes checkboxes
+var codesCheckboxes = d3.select('#codesCheckboxes')
+	.selectAll('label')
+	.data(codes)
+	.enter()
+	.append('label')
+	.classed('cb-container', true)
+codesCheckboxes.html(d => codesLong[d] + '<br>')
+codesCheckboxes.append('input')
+	.attr('type', 'checkbox')
+	.attr('id', d => 'checkbox' + d)
+	.property('checked', true)
+codesCheckboxes.append('span')
+	.classed('checkmark', true)
+	.style('background-color', d => codeColour(d))
 
 // initialise infobox
 agtDetails(null)
@@ -89,7 +105,6 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 	initTimeline(data)
 
 	d3.json("../data/world-110m.geojson").then(function(world) {
-	d3.csv('../data/country_centroids.csv').then(function(centroids) {
 
 		mapG.append('g')
 			.selectAll("path")
@@ -137,10 +152,70 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 		
 		// initial display
 		updateGlyphs(locdata)
+
+		// buttons for zoom
+		var zoomG = svg.append('g')
+			.attr('transform', 'translate(' + (w-35) + ',' + (h-60) + ')')
+
+		zoomG.append('rect')
+			.attr('x', 0)
+			.attr('y', 0)
+			.attr('width', 25)
+			.attr('height', 25)
+			.style('fill', '#fff')
+			.style('stroke', '#000')
+			.style('stroke-width', '#1px')
+			.on('mouseover', function() {
+				d3.select(this).style('fill', '#ccc')
+			})
+			.on('mouseout', function() {
+				d3.select(this).style('fill', '#fff')
+			})
+			.on('click', function() {
+				// zoom in
+				zoom.scaleBy(svg.transition().duration(400), 1.3)
+			})
+
+		zoomG.append('rect')
+			.attr('x', 0)
+			.attr('y', 25)
+			.attr('width', 25)
+			.attr('height', 25)
+			.style('fill', '#fff')
+			.style('stroke', '#000')
+			.style('stroke-width', '#1px')
+			.on('mouseover', function() {
+				d3.select(this).style('fill', '#ccc')
+			})
+			.on('mouseout', function() {
+				d3.select(this).style('fill', '#fff')
+			})
+			.on('click', function() {
+				zoom.scaleBy(svg.transition().duration(400), 1/1.3)
+				// zoom out
+			})
+
+		// plus sign
+		zoomG.append('line')
+			.attr('x1', 7.5).attr('x2', 17.5)
+			.attr('y1', 12.5).attr('y2', 12.5)
+			.style('stroke', '#000').attr('stroke-width', '2px')
+			.attr('pointer-events', 'none')
+
+		zoomG.append('line')
+			.attr('x1', 12.5).attr('x2', 12.5)
+			.attr('y1', 7.5).attr('y2', 17.5)
+			.style('stroke', '#000').attr('stroke-width', '2px')
+			.attr('pointer-events', 'none')
+
+		// minus sign
+		zoomG.append('line')
+			.attr('x1', 7.5).attr('x2', 17.5)
+			.attr('y1', 37.5).attr('y2', 37.5)
+			.style('stroke', '#000').attr('stroke-width', '2px')
+			.attr('pointer-events', 'none')
+		
 	
-	}).catch(function(error){
-		throw error;
-	})
 	}).catch(function(error){
 		throw error;
 	})

@@ -44,3 +44,59 @@ select {
 #timeline-v2 {
 	grid-column: 4;
 }
+
+
+/*select styles */
+#agreementDetails table {
+	table-layout: fixed;
+	word-break: break-word;
+	width: 100%;
+	/*vertical-align: top;*/
+}
+
+#agreementDetails td {
+	/*border: 1px solid #000;*/
+	width: 120px;
+	/*font-weight: bold;*/
+}
+#agreementDetails td+td {
+	width: auto;
+}
+
+/*Legend*/
+.legend {
+  margin-top: 5px;
+  margin-left: 4px;
+  pointer-events: none;
+}
+
+.legend td, .legend tr {
+  padding: 4px;
+  font-size: 14px;
+  line-height: 10px;
+}
+
+td#Pre {
+  background-color: #8dd3c7;
+}
+td#SubPar {
+  background-color: #ffffb3;
+}
+td#SubComp {
+  background-color: #fdb462;
+}
+td#Imp {
+  background-color: #b3de69;
+}
+td#Cea {
+  background-color: #fb8072; /*#e41a1c;*/
+}
+td#Other {
+  background-color: #8c8c8c;
+}
+td#FrCons {
+  background-color: #80b1d3;
+}
+td#Ren {
+  background-color: #bebada;
+}

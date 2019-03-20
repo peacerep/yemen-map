@@ -2,9 +2,9 @@
 Styles for filters on the left
 */
 
-/*
-Dropdowns
-*/
+/*----------------------------------------------------------------------------*/
+/*Dropdowns*/
+/*----------------------------------------------------------------------------*/
 
 .dropdown {
   position: relative;
@@ -12,25 +12,23 @@ Dropdowns
   padding: 8px 2px;
 }
 
-.dropbtn {
-  background-color: #737373;
-  color: silver;
-  padding: 5px;
-  font-size: 12px;
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-  border: 1px solid silver;
+.button {
+	background-color: #fff;
+	padding: 3px 6px 3px 6px;
+	border: #555 1px solid;
+	border-radius: 5px;
+	cursor: pointer;
+	display: inline-block;
 }
 
-.dropbtn:hover {
-  background-color: #838383;
+.button:hover {
+  background-color: transparent;
 }
 
 .dropcontent {
   display: none;
   position: absolute;
-  background-color: silver;
+  background-color: #fff;
   width: 250px;
   overflow: auto;
   padding: 4px;
@@ -40,6 +38,14 @@ Dropdowns
 
 .dropdown:hover .dropcontent {
   display: block;
+}
+
+#selectAllCons, #deselectAllCons {
+	padding: 1px 4px;
+}
+
+#selectAllCons:hover, #deselectAllCons:hover {
+	background-color: #eee;
 }
 
 .dropcontent input {
@@ -57,87 +63,8 @@ Dropdowns
   display: inline;
 }
 
-#agreementDetails table {
-	table-layout: fixed;
-	word-break: break-word;
-	width: 100%;
-	/*vertical-align: top;*/
-}
 
-#agreementDetails td {
-	/*border: 1px solid #000;*/
-	width: 120px;
-	/*font-weight: bold;*/
-}
-#agreementDetails td+td {
-	width: auto;
-}
-
-
-/*Legend*/
-.legend {
-  margin-top: 5px;
-  margin-left: 4px;
-  pointer-events: none;
-}
-
-.legend td, .legend tr {
-  padding: 4px;
-  font-size: 14px;
-  line-height: 10px;
-}
-
-td#Pre {
-  background-color: #8dd3c7;
-}
-td#SubPar {
-  background-color: #ffffb3;
-}
-td#SubComp {
-  background-color: #fdb462;
-}
-td#Imp {
-  background-color: #b3de69;
-}
-td#Cea {
-  background-color: #fb8072; /*#e41a1c;*/
-}
-td#Other {
-  background-color: #8c8c8c;
-}
-td#FrCons {
-  background-color: #80b1d3;
-}
-td#Ren {
-  background-color: #bebada;
-}
-/* Codes (colors match map's flowers) */
-td#paxHrFra.color{ /*HrFra*/
-  background-color: #f46c38;
-}
-td#paxPol.color{
-  background-color: #f5003d;
-}
-td#paxPolps.color{
-  background-color: #01557a;
-}
-td#paxEps.color{
-  background-color: #7a56a0;
-}
-td#paxMps.color{
-  background-color: #029680;
-}
-td#paxTerps.color{
-  background-color: #fbdd4b;
-}
-td#paxTjMech.color{
-  background-color: #fc96ab;
-}
-td#paxGeWom.color{
-  background-color: #59c9df;
-}
-
-
+/*all/any selectors in-text*/
 input[type="radio"] {
 	display: none;
 }
@@ -154,3 +81,96 @@ input[type="radio"]+label:hover {
 input[type="radio"]:checked+label {
 	background-color: #11c2f9;
 }
+
+
+/*----------------------------------------------------------------------------*/
+/*custom checkboxes*/
+/*https://www.w3schools.com/howto/howto_css_custom_checkbox.asp*/
+/*----------------------------------------------------------------------------*/
+#codesCheckboxes {
+	padding: 3px 0 9px 0;
+}
+
+/* Customize the label (the container) */
+.cb-container {
+  display: block;
+  position: relative;
+  padding-left: 27px;
+  margin: 3px 0;
+  cursor: pointer;
+  /*font-size: 22px;*/
+  line-height: 20px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.cb-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border-radius: 5px;
+  /*background-color set in js*/
+}
+
+/* On mouse-over, add a grey background color */
+.cb-container:hover input ~ .checkmark {
+	opacity: 0.5;
+  /*background-color: #ccc;*/
+}
+
+/* When the checkbox is checked, add a blue background */
+.cb-container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.cb-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.cb-container .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+/*select and deselect buttons*/
+/*a#selectAllCodes, a#deselectAllCodes {
+	background-color: #fff;
+	padding: 3px 6px;
+	border: #555 1px solid;
+	border-radius: 5px;
+}
+
+a#selectAllCodes:hover, a#deselectAllCodes:hover {
+	background-color: transparent;
+}*/

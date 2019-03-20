@@ -51,10 +51,10 @@
 
 			<!-- fake dropdown for countries -->
 			<div class='dropdown'>
-			<button class="dropbtn">Select Countries/Entities</button>
+			<div class="button">Select Countries/Entities <span class='arrowdown'>&#9660;</span></div>
 			<div id="conDropdown" class='dropcontent'>
-			<a href="#" id="SelectAllCons">Select All</a>&nbsp;&nbsp;
-			<a href="#" id="DeselectAllCons">Deselect All</a><br>
+			<a href="#" id="selectAllCons" class='button'>Select All</a>&nbsp;&nbsp;
+			<a href="#" id="deselectAllCons" class='button'>Deselect All</a><br>
 			</div></div><br>
 			Selected countries/entities:<br>
 			<span id='selectedCons'></span>
@@ -62,25 +62,18 @@
 			<h3><span>Code Selection</span></h3>
 			<!-- any/all radio -->
 			Highlight agreements that address
-			<input type="radio" id="allCodes" name="codesRule" value="all" checked>
+			<input type="radio" id="allCodes" name="codesRule" value="all">
 			<label for="allCodes">all</label> / 
-			<input type="radio" id="anyCodes" name="codesRule" value="any">
+			<input type="radio" id="anyCodes" name="codesRule" value="any" checked>
 			<label for="anyCodes">any</label>
 			of the selected codes.<br>
 			
-			<div id='codesCheckboxes'>
-			<label><input type="checkbox" id="paxHrFraV">Human Rights Framework</label><br>
-			<label><input type="checkbox" id="paxPolV">Political Institutions</label><br>
-			<label><input type="checkbox" id="paxEpsV">Power Sharing: Economic</label><br>
-			<label><input type="checkbox" id="paxMpsV">Power Sharing: Military</label><br>
-			<label><input type="checkbox" id="paxPolpsV">Power Sharing: Political</label><br>
-			<label><input type="checkbox" id="paxTerpsV">Power Sharing: Territorial</label><br>
-			<label><input type="checkbox" id="paxTjMechV">Transitional Justice Past Mechanism</label><br>
-			<label><input type="checkbox" id="paxGeWomV">Women, Girls and Gender</label>
-			</div>
+			<div id='codesCheckboxes'></div>
 			
-			<a href="#" id="selectAllCodes">Select All</a>&nbsp;&nbsp;
-			<a href="#" id="deselectAllCodes">Deselect All</a><br>
+			<span>
+				<a href="#" id="selectAllCodes" class='button'>Select All</a>&nbsp;&nbsp;
+				<a href="#" id="deselectAllCodes" class='button'>Deselect All</a><br>
+			</span>
 
 			<h3><span>Agreement Details</span></h3>
 			<div id='agreementDetails'></div>

@@ -31,8 +31,18 @@ var codeColour = d3.scaleOrdinal()
 	.domain(['Pol', 'Polps', 'Terps', 'Eps', 'Mps', 'HrFra', 'GeWom', 'TjMech'])
 	.range(['#f5003d','#01557a','#fbdd4b','#7a56a0','#029680','#f46c38','#59c9df','#fc96ab'])
 
+// Stages
+var stagesLong = {Cea: 'Ceasefire/related',
+		Pre: 'Prenegotiation',
+		SubPar: 'Framework-substantive, partial',
+		SubComp: 'Framework-substantive, comprehensive',
+		FrCons: 'Constitution',
+		Imp: 'Implementation',
+		Ren: 'Renewal',
+		Other: 'Other'}
 
-// Colour Scales
+var stages = Object.keys(stagesLong)
+
 function stageColour(d) {
 	// can't just be a d3 scale because the colour could be either from
 	// d.Stage or d.StageSub
