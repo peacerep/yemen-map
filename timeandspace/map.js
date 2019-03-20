@@ -28,11 +28,12 @@ var dotG = svg.append('g').attr('id', 'dotG') // g for dots or anything else we 
 
 var arc = d3.arc()
 	.innerRadius(0)
-	.outerRadius(3)
+	.outerRadius(15)
+	.cornerRadius(5)
 
-function combineDataLoc(data, locations) {
 
-	// attach all agreements for a country to the centroid
+function combineDataPoly(data, world) {
+
 	// filter for intra agreements only
 	var data_intra = data.filter(function(d) {
 		return d.Agtp == 'Intra'
@@ -41,65 +42,60 @@ function combineDataLoc(data, locations) {
 	// nest by the first country on the list
 	data_intra = d3.group(data_intra, d => d.Con[0])
 
-
-	// turn into array where [0] = key and [1] = values
-	// data_intra = new Array(...data_intra.entries())
-
 	var newData = []
 
-	// add locations and log, then delete the ones where no locations can be found
 	for (const [con, agts] of data_intra.entries()) {
-		var cen = locations.find(function(d) {
-			return d.name == con})
+
+		var cen = world.features.find(function(d) {return d.properties.name == con})
+		
 		if (cen != undefined) {
-			newData.push({con: con, agts: agts,
-				loc: {lat: cen.latitude, lon: cen.longitude}})
-			// agts.loc = {lat: cen.latitude, lon: cen.longitude}		
-		} 
-		// else {
-		// 	console.log('no loc for: ', con)
-		// 	data_intra.delete(con)
-		// }
+
+			// bounding box in lat/lon
+			var bbox = d3.geoBounds(cen.geometry)
+
+			// array for random points
+			var pts = []
+			
+			for (var i = 0; i<1000; i++) {
+				// bbox: [[left, bottom],[right, top]]
+				// point has to be [lon, lat]
+				var randomPoint = [bbox[0][0] + Math.random() * (bbox[1][0] - bbox[0][0]),
+								   bbox[0][1] + Math.random() * (bbox[1][1] - bbox[0][1])]
+
+				var contained = d3.geoContains(cen.geometry, randomPoint)
+
+				if (contained) { pts.push(randomPoint) }
+				if (pts.length == agts.length) { break; }
+			}
+
+			// log warning if there are not enough points
+			if (pts.length < agts.length) {
+				console.log('WARNING! In ' + i + ' iterations, \
+				not enough points could be generated for ' + con, pts)
+			}
+
+			// create one long list of all agreements
+			newData.push(...agts.map(function(d,i) { d.loc = pts[i]; return d }))
+
+		}
+		else {console.log(con + ' cannot be found on the map')}
 	}
 
-	
-	console.log(newData)
-
 	return newData
-}
 
+}
 
 function updateGlyphs(locdata) {
 	// draw glyphs onto dotG
 
-	console.log(locdata)
-
-	var circle_opacity = .8,
-		circle_stroke = '#343332',
-		circle_color = '#dddcda',
-		color_pol = '#f5003d',
-		color_polps = '#01557a',
-		color_terps = '#fbdd4b',
-		color_eps = '#7a56a0',
-		color_mps = '#029680',
-		color_hrfra = '#f46c38',
-		color_gewom = '#59c9df',
-		color_tjmech = '#fc96ab';
-
 	// get current bounding box (in lat lon)
 	var bbox = getBoundingBox();
 
-	// filter data for the visible dots only
+	// filter data for the visible dots only, also filter out undef ones
 	var locdata = locdata.filter(function(d) {
-		return filterBBox(bbox, d.loc.lon, d.loc.lat)
+		return filterBBox(bbox, d.loc)
 	})
 
-	// var circle = dotG
-	// 	.selectAll(".glyph")
-	// 	.data(locdata)
-
-	// // remove surplus circles
-	// circle.exit().remove()
 	dotG.selectAll('*').remove()
 
 	// add new ones
@@ -110,47 +106,18 @@ function updateGlyphs(locdata) {
 		.classed("glyph", true)
 		// .merge(circle)
 		.attr('transform', function(d) {
-			var pos = projection([d.loc.lon, d.loc.lat])
+			var pos = projection(d.loc)
 			return 'translate(' + pos[0] + ',' + pos[1] + ')'
 		})
+	
+	circle.append('circle')
+		.attr('cx', 0)
+		.attr('cy', 0)
+		.attr('r', 2.5)
+		.style('fill', '#c4ccd0')
+		.style('fill-opacity', 0.6)
 
-	// circle surrounding each 'cluster'
-	// circle.append('circle')
-	// 	.attr('cx', d => d.outercircle.x)
-	// 	.attr('cy', d => d.outercircle.y)
-	// 	.attr('r',  d => d.outercircle.r)
-	// 	.style('fill', 'none')
-	// 	.style('stroke', '#bbb')
-	// 	.style('stroke-width', '1px')
-
-	var subcircle = circle.selectAll('.subcircle')
-		.data(function(d) {return d.agts})
-		.enter()
-		.append('g')
-		.classed('subcircle', true)
-		.attr('transform', function(d) { 
-			return 'translate(' + d.x + ',' + d.y + ')' 
-		})
-	subcircle.on("click", function(d) {
-		// display infobox permanently (until click somewhere else in svg??)
-		if (selectedAgtDetails == d) {
-			selectedAgtDetails = null
-		} else {
-			selectedAgtDetails = d;
-		}
-		agtDetails(d)
-		event.stopPropagation();
-	})
-	.on("mouseover",function(d){
-		// display infobox
-		agtDetails(d)
-	})
-	.on("mouseout",function(d) {
-		// remove infobox
-		agtDetails(selectedAgtDetails)
-	});
-
-	subcircle.selectAll('.arc')
+	circle.selectAll('.arc')
 		.data(function(d) {
 			var activeCodes = []
 			for (var i = 0; i < codes.length; i++) {
@@ -158,19 +125,19 @@ function updateGlyphs(locdata) {
 					activeCodes.push(codes[i])
 				}
 			}
-			if (!activeCodes.length) {
-				return [{startAngle: 0,
-					endAngle: tau,
-					colour: '#ccc'}]
-			} else {
-				var incr = tau / activeCodes.length;
+			if (!activeCodes.length) { return [] } 
+			else {
+				var incr = tau / codes.length;
 				var obj = []
-				for (var i=0; i<activeCodes.length; i++) {
-					obj.push({
+				for (var i=0; i<codes.length; i++) {
+					if (activeCodes.includes(codes[i])) {
+						obj.push({
 						startAngle: i * incr,
 						endAngle: (i+1) * incr,
-						colour: codeColour(activeCodes[i])
+						colour: codeColour(codes[i])
 					})
+					}
+					
 				}
 				return obj
 			}
@@ -179,8 +146,31 @@ function updateGlyphs(locdata) {
 		.append('path')
 		.attr('d', arc)
 		.style('fill', d => d.colour)
-		
 
+	circle.on("click", function(d) {
+		// display infobox permanently (until click somewhere else in svg??)
+		if (selectedAgtDetails == d) {
+			selectedAgtDetails = null
+		} else {
+			selectedAgtDetails = d;
+		}
+		agtDetails(d)
+
+		event.stopPropagation();
+	});
+
+	circle.on("mouseover",function(d){
+		// display infobox
+		agtDetails(d)
+		// arc.outerRadius(25)
+		d3.select(this).style('stroke', '#fff').moveToFront()
+		// d3.select(this).selectAll('arc').attr('d', d)
+	});
+	circle.on("mouseout",function(d) {
+		// remove infobox
+		agtDetails(selectedAgtDetails)
+		d3.select(this).style('stroke', 'none')
+	});
 }
 
 function getBoundingBox() {
@@ -203,7 +193,8 @@ function getBoundingBox() {
 	return {l: l, r: r, t: t, b: b}
 }
 
-function filterBBox(bbox, lon, lat) {
+function filterBBox(bbox, loc) {
 	// check if point at lon/lat is within the visible part of the map
-	return (bbox.l < lon && lon < bbox.r && bbox.b < lat && lat < bbox.t)
+	return (loc != undefined) && (bbox.l < loc[0] && loc[0] < bbox.r && bbox.b < loc[1] && loc[1] < bbox.t)
 }
+

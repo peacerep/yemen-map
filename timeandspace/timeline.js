@@ -78,12 +78,13 @@ function initTimeline(data) {
 			}
 			agtDetails(d)
 			event.stopPropagation();
-		})
-		.on("mouseover",function(d){
+		});
+
+		rects.on("mouseover",function(d){
 			// display infobox
 			agtDetails(d)
-		})
-		.on("mouseout",function(d) {
+		});
+		rects.on("mouseout",function(d) {
 			// remove infobox
 			agtDetails(selectedAgtDetails)
 		});

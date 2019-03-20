@@ -90,6 +90,7 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 
 	d3.json("../data/world-110m.geojson").then(function(world) {
 	d3.csv('../data/country_centroids.csv').then(function(centroids) {
+
 		mapG.append('g')
 			.selectAll("path")
 			.data(world.features)
@@ -99,21 +100,11 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 			.attr('d', path)
 			.classed('land', true)
 
-		var locdata = combineDataLoc(data, centroids)
-
-		// prepare for circle packing
-		for (var i=0; i < locdata.length; i++) {
-			d3.packSiblings(locdata[i].agts
-						.map(function(d) {
-							d.r = 3;
-							return d
-						}))
-			locdata[i].outercircle = d3.packEnclose(locdata[i].agts)
-		}
+		var locdata = combineDataPoly(data, world)
 
 		// initialise zoom
 		var zoom = d3.zoom()
-			.scaleExtent([1,10])
+			.scaleExtent([1,15])
 			.on("start", zoomStart)
 			.on("zoom", zooming)
 			.on("end", zoomEnd)
