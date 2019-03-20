@@ -149,3 +149,10 @@ d3.selection.prototype.moveToBack = function() {
 		} 
 	});
 };
+
+function transform(t) {
+  return function(d) {
+  	// console.log(d)
+    return "translate(" + t.apply(d.loc) + ")";
+  };
+}

@@ -116,42 +116,27 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 			.classed('land', true)
 
 		var locdata = combineDataPoly(data, world)
+		// initial display
+		var circle = updateGlyphs(locdata)
+		console.log(circle)
 
 		// initialise zoom
 		var zoom = d3.zoom()
 			.scaleExtent([1,15])
-			.on("start", zoomStart)
 			.on("zoom", zooming)
-			.on("end", zoomEnd)
 
 		svg.call(zoom)
-
-		function zoomStart() {
-			dotG.classed("hidden", true)
-		}
 
 		function zooming() {
 			// keep stroke-width constant at different zoom levels
 			mapG.style("stroke-width", 1 / d3.event.transform.k + "px");
 			// zoom map
 			mapG.attr("transform", d3.event.transform);
-			// dotG.attr("transform", d3.event.transform);
+			// semantic zoom flowers
+			circle.attr("transform", function(d) {
+				return 'translate(' + d3.event.transform.apply(projection(d.loc)) + ')';
+			});
 		}
-
-		function zoomEnd() {
-			// update projection
-			projection
-			.translate([d3.event.transform.x + d3.event.transform.k*transInit[0], d3.event.transform.y + d3.event.transform.k*transInit[1]])
-			.scale(d3.event.transform.k * scaleInit)
-			// drawFlowers(collection)
-			dotG.classed("hidden", false)
-
-			// re-plot dots
-			updateGlyphs(locdata)
-		}
-		
-		// initial display
-		updateGlyphs(locdata)
 
 		// buttons for zoom
 		var zoomG = svg.append('g')

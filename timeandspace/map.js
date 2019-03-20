@@ -171,6 +171,8 @@ function updateGlyphs(locdata) {
 		agtDetails(selectedAgtDetails)
 		d3.select(this).style('stroke', 'none')
 	});
+
+	return circle
 }
 
 function getBoundingBox() {
@@ -198,43 +200,4 @@ function filterBBox(bbox, loc) {
 	return (loc != undefined) && (bbox.l < loc[0] && loc[0] < bbox.r && bbox.b < loc[1] && loc[1] < bbox.t)
 }
 
-// http://bl.ocks.org/linssen/7352810
-function interpolateZoom (translate, scale) {
-    var self = this;
-    return d3.transition().duration(350).tween("zoom", function () {
-        var iTranslate = d3.interpolate(zoom.translate(), translate),
-            iScale = d3.interpolate(zoom.scale(), scale);
-        return function (t) {
-            zoom
-                .scale(iScale(t))
-                .translate(iTranslate(t));
-            zoomed();
-        };
-    });
-}
 
-function zoomClick(direction, zoom) {
-    var clicked = d3.event.target,
-        factor = 0.2,
-        target_zoom = 1,
-        center = [w / 2, w / 2],
-        extent = zoom.scaleExtent(),
-        translate = zoom.translate(),
-        translate0 = [],
-        l = [],
-        view = {x: translate[0], y: translate[1], k: zoom.scale()};
-
-    d3.event.preventDefault();
-    target_zoom = zoom.scale() * (1 + factor * direction);
-
-    if (target_zoom < extent[0] || target_zoom > extent[1]) { return false; }
-
-    translate0 = [(center[0] - view.x) / view.k, (center[1] - view.y) / view.k];
-    view.k = target_zoom;
-    l = [translate0[0] * view.k + view.x, translate0[1] * view.k + view.y];
-
-    view.x += center[0] - l[0];
-    view.y += center[1] - l[1];
-
-    interpolateZoom([view.x, view.y], view.k);
-}
