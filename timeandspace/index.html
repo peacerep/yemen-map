@@ -17,8 +17,7 @@
 	<script src="https://d3js.org/d3-array.v2.min.js"></script>
 	<!-- <script src="https://d3js.org/topojson.v1.min.js"></script> -->
 	<script type="text/javascript" src="../js/functions.js"></script>
-	<script type="text/javascript" src='timeline.js'></script>
-	
+	<script type="text/javascript" src='timeline.js'></script>	
 
 </head>
 <body>
@@ -30,7 +29,10 @@
 
 			<h3><span>Timeframe</span></h3>
 			Display agreements signed in years:<br>
-			<select id='inputMinYear'>
+			<div id="timeslider"></div>
+			<script type="text/javascript" src='inputs.js'></script>
+
+<!-- 			<select id='inputMinYear'>
 				<option value="0" disabled selected="selected">
 				Select Start Year</option> 
 			</select>
@@ -38,7 +40,7 @@
 				<option value="0" disabled selected="selected">
 				Select End Year</option> 
 			</select>
-
+ -->
 
 			<h3><span>Country/Entity Selection</span></h3>
 			<!-- any/all radio -->
