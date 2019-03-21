@@ -24,60 +24,54 @@
 	<div class="grid-container">
 
 		<div id="sidebar">
-			<h1>Visualizing Peace</h1>
+			<h1><a href='..'>Visualizing Peace</a></h1>
 			<h2>Agreements in Time and Space</h2>
 
-			<h3><span>Timeframe</span></h3>
-			Display agreements signed in years:<br>
-			<div id="timeslider"></div>
-			<script type="text/javascript" src='inputs.js'></script>
+			<div class='selectSection'>
+				<h3>Timeframe</h3>
+				Display agreements signed in years:<br>
+				<div id="timeslider"></div>
+				<script type="text/javascript" src='inputs.js'></script>
+			</div>
 
-<!-- 			<select id='inputMinYear'>
-				<option value="0" disabled selected="selected">
-				Select Start Year</option> 
-			</select>
-			<select id='inputMaxYear'>
-				<option value="0" disabled selected="selected">
-				Select End Year</option> 
-			</select>
- -->
+			<div class='selectSection'>
+				<h3>Country/Entity Selection</h3>
+				<!-- any/all radio -->
+				Display agreements involving
+				<div class='switchContainer'>
+					<input type="radio" id="allCon" name="conRule" value="all" checked>				<label for="allCon" class='button left'>all</label><input type="radio" id="anyCon" name="conRule" value="any"><label for="anyCon" class='button right'>any</label>
+				</div>
+				of the selected countries/entities.<br>
 
-			<h3><span>Country/Entity Selection</span></h3>
-			<!-- any/all radio -->
-			Display agreements involving
-			<input type="radio" id="allCon" name="conRule" value="all" checked>
-			<label for="allCon">all</label> / 
-			<input type="radio" id="anyCon" name="conRule" value="any">
-			<label for="anyCon">any</label>
-			of the selected countries/entities.<br>
+				<!-- fake dropdown for countries -->
+				<div class='dropdown'>
+				<div class="button">Select Countries/Entities <span class='arrowdown'>&#9660;</span></div>
+				<div id="conDropdown" class='dropcontent'>
+				<a href="#" id="selectAllCons" class='button'>Select All</a>&nbsp;&nbsp;
+				<a href="#" id="deselectAllCons" class='button'>Deselect All</a><br>
+				</div></div><br>
+				Selected countries/entities:<br>
+				<span id='selectedCons'></span>
+			</div>
 
-			<!-- fake dropdown for countries -->
-			<div class='dropdown'>
-			<div class="button">Select Countries/Entities <span class='arrowdown'>&#9660;</span></div>
-			<div id="conDropdown" class='dropcontent'>
-			<a href="#" id="selectAllCons" class='button'>Select All</a>&nbsp;&nbsp;
-			<a href="#" id="deselectAllCons" class='button'>Deselect All</a><br>
-			</div></div><br>
-			Selected countries/entities:<br>
-			<span id='selectedCons'></span>
+			<div class='selectSection'>
+				<h3>Code Selection</h3>
+				<!-- any/all radio -->
+				Highlight agreements that address
+				<div class='switchContainer'>
+					<input type="radio" id="allCodes" name="codesRule" value="all"><label for="allCodes" class='button left'>all</label><input type="radio" id="anyCodes" name="codesRule" value="any" checked><label for="anyCodes" class='button right'>any</label>
+				</div>
+				of the selected codes.<br>
+				
+				<div id='codesCheckboxes'></div>
+				
+				<span>
+					<a href="#" id="selectAllCodes" class='button'>Select All</a>&nbsp;&nbsp;
+					<a href="#" id="deselectAllCodes" class='button'>Deselect All</a><br>
+				</span>
+			</div>
 
-			<h3><span>Code Selection</span></h3>
-			<!-- any/all radio -->
-			Highlight agreements that address
-			<input type="radio" id="allCodes" name="codesRule" value="all">
-			<label for="allCodes">all</label> / 
-			<input type="radio" id="anyCodes" name="codesRule" value="any" checked>
-			<label for="anyCodes">any</label>
-			of the selected codes.<br>
-			
-			<div id='codesCheckboxes'></div>
-			
-			<span>
-				<a href="#" id="selectAllCodes" class='button'>Select All</a>&nbsp;&nbsp;
-				<a href="#" id="deselectAllCodes" class='button'>Deselect All</a><br>
-			</span>
-
-			<h3><span>Agreement Details</span></h3>
+			<h3>Agreement Details</h3>
 			<div id='agreementDetails'></div>
 
 		</div>

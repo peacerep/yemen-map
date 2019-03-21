@@ -31,6 +31,94 @@ var arc = d3.arc()
 	.outerRadius(15)
 	.cornerRadius(5)
 
+// set up zoom
+var zoom = d3.zoom()
+	.scaleExtent([1,15])
+	.on("zoom", zooming)
+	.on("end", zoomEnd)
+
+svg.call(zoom)
+
+function zooming() {
+	// keep stroke-width constant at different zoom levels
+	mapG.style("stroke-width", 1 / d3.event.transform.k + "px");
+	// zoom map
+	mapG.attr("transform", d3.event.transform);
+	// semantic zoom flowers
+	dotG.selectAll('g').attr("transform", function(d) {
+		return 'translate(' + d3.event.transform.apply(projection(d.loc)) + ')';
+	});
+}
+
+function zoomEnd() {
+	// update projection
+	// projection
+	// .translate([d3.event.transform.x + d3.event.transform.k*transInit[0], d3.event.transform.y + d3.event.transform.k*transInit[1]])
+	// .scale(d3.event.transform.k * scaleInit)
+}
+
+// buttons for zoom
+var zoomG = svg.append('g')
+	.attr('transform', 'translate(' + (w-35) + ',' + (h-60) + ')')
+
+zoomG.append('rect')
+	.attr('x', 0)
+	.attr('y', 0)
+	.attr('width', 25)
+	.attr('height', 25)
+	.style('fill', '#fff')
+	.style('stroke', '#000')
+	.style('stroke-width', '#1px')
+	.on('mouseover', function() {
+		d3.select(this).style('fill', '#ccc')
+	})
+	.on('mouseout', function() {
+		d3.select(this).style('fill', '#fff')
+	})
+	.on('click', function() {
+		// zoom in
+		zoom.scaleBy(svg.transition().duration(200), 1.3)
+	})
+
+zoomG.append('rect')
+	.attr('x', 0)
+	.attr('y', 25)
+	.attr('width', 25)
+	.attr('height', 25)
+	.style('fill', '#fff')
+	.style('stroke', '#000')
+	.style('stroke-width', '#1px')
+	.on('mouseover', function() {
+		d3.select(this).style('fill', '#ccc')
+	})
+	.on('mouseout', function() {
+		d3.select(this).style('fill', '#fff')
+	})
+	.on('click', function() {
+		zoom.scaleBy(svg.transition().duration(200), 1/1.3)
+		// zoom out
+	})
+
+// plus sign
+zoomG.append('line')
+	.attr('x1', 7.5).attr('x2', 17.5)
+	.attr('y1', 12.5).attr('y2', 12.5)
+	.style('stroke', '#000').attr('stroke-width', '2px')
+	.attr('pointer-events', 'none')
+
+zoomG.append('line')
+	.attr('x1', 12.5).attr('x2', 12.5)
+	.attr('y1', 7.5).attr('y2', 17.5)
+	.style('stroke', '#000').attr('stroke-width', '2px')
+	.attr('pointer-events', 'none')
+
+// minus sign
+zoomG.append('line')
+	.attr('x1', 7.5).attr('x2', 17.5)
+	.attr('y1', 37.5).attr('y2', 37.5)
+	.style('stroke', '#000').attr('stroke-width', '2px')
+	.attr('pointer-events', 'none')
+
 
 function combineDataPoly(data, world) {
 
@@ -104,6 +192,7 @@ function updateGlyphs(locdata) {
 		.enter()
 		.append("g")
 		.classed("glyph", true)
+		.attr('id', d => 'glyph' + d.AgtId)
 		// .merge(circle)
 		.attr('transform', function(d) {
 			var pos = projection(d.loc)
@@ -113,9 +202,9 @@ function updateGlyphs(locdata) {
 	circle.append('circle')
 		.attr('cx', 0)
 		.attr('cy', 0)
-		.attr('r', 2.5)
-		.style('fill', '#c4ccd0')
-		.style('fill-opacity', 0.6)
+		.attr('r', rCircle)
+		.style('fill', fillCircle)
+		.style('fill-opacity', 1)
 
 	circle.selectAll('.arc')
 		.data(function(d) {
@@ -148,29 +237,11 @@ function updateGlyphs(locdata) {
 		.style('fill', d => d.colour)
 
 	circle.on("click", function(d) {
-		// display infobox permanently (until click somewhere else in svg??)
-		if (selectedAgtDetails == d) {
-			selectedAgtDetails = null
-		} else {
-			selectedAgtDetails = d;
-		}
-		agtDetails(d)
-
+		selectedAgt.set(d)
 		event.stopPropagation();
-	});
-
-	circle.on("mouseover",function(d){
-		// display infobox
-		agtDetails(d)
-		// arc.outerRadius(25)
-		d3.select(this).style('stroke', '#fff').moveToFront()
-		// d3.select(this).selectAll('arc').attr('d', d)
-	});
-	circle.on("mouseout",function(d) {
-		// remove infobox
-		agtDetails(selectedAgtDetails)
-		d3.select(this).style('stroke', 'none')
-	});
+	})
+	.on("mouseover", onmouseover)
+	.on("mouseout", onmouseout)
 
 	return circle
 }

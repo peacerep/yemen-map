@@ -1,17 +1,20 @@
-slider('#timeslider', 1990, 2015)
+slider('timeslider', 1990, 2015)
 
 function slider(divID, min, max) {
-console.log('loading slider')
+	console.log('loading slider')
 
-  var range = [min, max + 1]
+	var range = [min, max + 1]
 
-  // set width and height of svg
-  var w = 300
-  var h = 65
-  var margin = {top: 10,
-                bottom: 25,
-                left: 10,
-                right: 10}
+	// set width and height of svg
+	var w = parseInt(window.getComputedStyle(document.getElementById(divID)).width)
+	console.log(w)
+	var h = 65
+	var margin = {top: 10,
+				bottom: 15,
+				left: 10,
+				right: 10}
+	var labelpadding = 38; // keeps the labels from sliding out of sight
+
 
   // dimensions of slider bar
   var width = w - margin.left - margin.right;
@@ -23,7 +26,7 @@ console.log('loading slider')
     .range([0, width]);  // display space
   
   // create svg and translated g
-  var svg = d3.select(divID).append('svg').attr('width', w).attr('height', h)
+  var svg = d3.select('#' + divID).append('svg').attr('width', w).attr('height', h)
   const g = svg.append('g')
   	.attr('transform', `translate(${margin.left}, ${margin.top})`)
   
@@ -40,13 +43,13 @@ console.log('loading slider')
   var labelL = g.append('text')
     .attr('id', 'labelleft')
     .attr('x', 0)
-    .attr('y', height + 5)
+    .attr('y', height)
     .text(range[0])
 
   var labelR = g.append('text')
     .attr('id', 'labelright')
     .attr('x', 0)
-    .attr('y', height + 5)
+    .attr('y', height)
     .text(range[1])
 
   // define brush
@@ -55,9 +58,10 @@ console.log('loading slider')
     .on('brush', function() {
       var s = d3.event.selection;
       // update and move labels
-      labelL.attr('x', s[0])
+      labelL.attr('x', (s[0] < labelpadding ? labelpadding : s[0]))
         .text(Math.round(x.invert(s[0])))
-      labelR.attr('x', s[1])
+      labelR.attr('x', (s[1] > (width - labelpadding) ?
+      					(width - labelpadding) : s[1]))
         .text(Math.round(x.invert(s[1])) - 1)
       // move brush handles      
       handle.attr("display", null).attr("transform", function(d, i) { return "translate(" + [ s[i], - height / 4] + ")"; });

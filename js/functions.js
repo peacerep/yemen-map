@@ -2,6 +2,10 @@
 
 // FUNCTIONS AND VARS USED FOR ALL PAXVIS VISUALISATIONS
 
+// vars for glyphs
+const rCircle = 4;
+const fillCircle = '#c4ccd0';
+
 // tau
 var tau = 2 * Math.PI;
 
@@ -119,16 +123,16 @@ function agtDetails(d) {
 		//clear
 		var infoString = '<i>Hover over or click timeline and map elements to view details of the agreements they represent.</i>'
 	} else {
-		var infoString = "<table><tr><td>Title:</td><td>" + d.Agt +
-		"</td></tr><tr><td>Date Signed:</td><td>" + formatDate(d.Dat) + 
+		var infoString = "<b>" + d.Agt + '</b><br>' +
+		"<table><tr><td>Date Signed:</td><td>" + formatDate(d.Dat) + 
 		"</td></tr><tr><td>Country/Entity:</td><td>"+ d.Con +
 		"</td></tr><tr><td>Status:</td><td>"+ d.Status +
 		"</td></tr><tr><td>Type:</td><td>"+ d.Agtp +
 		"</td></tr><tr><td>Stage:</td><td>"+ d.Stage +
 		"</td></tr><tr><td>Sub-Stage:</td><td>"+ d.StageSub +
-		"</td></tr></table><br>" +
-		'<a href="https://www.peaceagreements.org/masterdocument/' + d.AgtId +
-		'" target = "_blank">Open PDF</a>&nbsp;<a href="' + 
+		"</td></tr></table>" +
+		'<a class="button" href="https://www.peaceagreements.org/masterdocument/' + d.AgtId +
+		'" target = "_blank">Open PDF</a>&nbsp;<a class="button" href="' + 
 		'https://www.peaceagreements.org/view/' + d.AgtId + 
 		'" target = "_blank">View Coding Detail</a>'
 	}
@@ -150,9 +154,105 @@ d3.selection.prototype.moveToBack = function() {
 	});
 };
 
-function transform(t) {
-  return function(d) {
-  	// console.log(d)
-    return "translate(" + t.apply(d.loc) + ")";
-  };
+
+
+
+// https://stackoverflow.com/questions/17824145/parse-svg-transform-attribute-with-javascript
+function parseTransform (a)
+{
+    var b={};
+    for (var i in a = a.match(/(\w+\((\-?\d+\.?\d*e?\-?\d*,?)+\))+/g))
+    {
+        var c = a[i].match(/[\w\.\-]+/g);
+        b[c.shift()] = c;
+    }
+    return b;
+}
+
+var selectedAgt = new function() {
+	var agt = null;
+	var agtPrev = null;
+
+	this.set = function(d) {
+
+		console.log('new selected agreement: ', agt)
+		
+		// if there was a previous selected one, remove highlights
+		if (agt) {
+			// reset scale
+			d3.select('#glyph' + agt.AgtId)
+				.attr('transform', function(d) {
+					var t = parseTransform(d3.select(this).attr('transform'))
+					return `translate(${t.translate}) scale(1)`
+				})
+
+			d3.select('#glyph' + agt.AgtId).select('circle')
+				.attr('r', rCircle)
+				.style('fill', fillCircle)
+				.style('fill-opacity', 1)
+				.transition()
+
+			// de-highlight all other timeline items
+			d3.select('#rect' + agt.AgtId)
+			.attr('transform', '')
+			.attr('height', 1)
+			.style('fill', '#000')
+			.transition()
+		}
+		
+		// set new agt
+		agt = d;
+		
+		// infobox is already displayed
+		// highlight the flower
+		var glyph = d3.select('#glyph' + agt.AgtId)
+		glyph.select('circle')
+			.attr('r', 17)
+			.style('fill', '#333')
+			.style('fill-opacity', 0.9)
+			.transition()
+
+		// highlight the timeline item
+		d3.select('#rect' + agt.AgtId)
+			.attr('transform', 'translate(0,-1)')
+			.attr('height', 3)
+			.style('fill', '#eb1515')
+			.transition()
+		
+	}
+
+	this.get = function() {return agt}
+}
+
+
+function onmouseover(d) {
+	// only run if this is not the selected event or there is no selected event
+	if ((selectedAgt.get() === null) || (!(d.AgtId == selectedAgt.get().AgtId))) {
+		agtDetails(d)
+		d3.select('#glyph' + d.AgtId).moveToFront()
+		// scale 200%
+		d3.select('#glyph' + d.AgtId).attr('transform', function(d) {
+			var t = parseTransform(d3.select(this).attr('transform'))
+			return `translate(${t.translate}) scale(2)`
+		})
+		d3.select('#rect' + d.AgtId)
+			.style('fill', '#ccc')
+			.transition()
+	}
+}
+
+function onmouseout(d) {
+	// only run if this is not the selected event or there is no selected event
+	if ((selectedAgt.get() === null) || (!(d.AgtId == selectedAgt.get().AgtId))) {
+		// remove infobox
+		agtDetails(selectedAgt.get())
+		// reset scale
+		d3.select('#glyph' + d.AgtId).attr('transform', function(d) {
+			var t = parseTransform(d3.select(this).attr('transform'))
+			return `translate(${t.translate}) scale(1)`
+		})
+		d3.select('#rect' + d.AgtId)
+			.style('fill', '#000')
+			.transition()
+	}
 }

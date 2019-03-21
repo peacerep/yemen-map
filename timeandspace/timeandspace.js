@@ -116,90 +116,9 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 			.classed('land', true)
 
 		var locdata = combineDataPoly(data, world)
-		// initial display
-		var circle = updateGlyphs(locdata)
-		console.log(circle)
-
-		// initialise zoom
-		var zoom = d3.zoom()
-			.scaleExtent([1,15])
-			.on("zoom", zooming)
-
-		svg.call(zoom)
-
-		function zooming() {
-			// keep stroke-width constant at different zoom levels
-			mapG.style("stroke-width", 1 / d3.event.transform.k + "px");
-			// zoom map
-			mapG.attr("transform", d3.event.transform);
-			// semantic zoom flowers
-			circle.attr("transform", function(d) {
-				return 'translate(' + d3.event.transform.apply(projection(d.loc)) + ')';
-			});
-		}
-
-		// buttons for zoom
-		var zoomG = svg.append('g')
-			.attr('transform', 'translate(' + (w-35) + ',' + (h-60) + ')')
-
-		zoomG.append('rect')
-			.attr('x', 0)
-			.attr('y', 0)
-			.attr('width', 25)
-			.attr('height', 25)
-			.style('fill', '#fff')
-			.style('stroke', '#000')
-			.style('stroke-width', '#1px')
-			.on('mouseover', function() {
-				d3.select(this).style('fill', '#ccc')
-			})
-			.on('mouseout', function() {
-				d3.select(this).style('fill', '#fff')
-			})
-			.on('click', function() {
-				// zoom in
-				zoom.scaleBy(svg.transition().duration(400), 1.3)
-			})
-
-		zoomG.append('rect')
-			.attr('x', 0)
-			.attr('y', 25)
-			.attr('width', 25)
-			.attr('height', 25)
-			.style('fill', '#fff')
-			.style('stroke', '#000')
-			.style('stroke-width', '#1px')
-			.on('mouseover', function() {
-				d3.select(this).style('fill', '#ccc')
-			})
-			.on('mouseout', function() {
-				d3.select(this).style('fill', '#fff')
-			})
-			.on('click', function() {
-				zoom.scaleBy(svg.transition().duration(400), 1/1.3)
-				// zoom out
-			})
-
-		// plus sign
-		zoomG.append('line')
-			.attr('x1', 7.5).attr('x2', 17.5)
-			.attr('y1', 12.5).attr('y2', 12.5)
-			.style('stroke', '#000').attr('stroke-width', '2px')
-			.attr('pointer-events', 'none')
-
-		zoomG.append('line')
-			.attr('x1', 12.5).attr('x2', 12.5)
-			.attr('y1', 7.5).attr('y2', 17.5)
-			.style('stroke', '#000').attr('stroke-width', '2px')
-			.attr('pointer-events', 'none')
-
-		// minus sign
-		zoomG.append('line')
-			.attr('x1', 7.5).attr('x2', 17.5)
-			.attr('y1', 37.5).attr('y2', 37.5)
-			.style('stroke', '#000').attr('stroke-width', '2px')
-			.attr('pointer-events', 'none')
 		
+		// initial display
+		updateGlyphs(locdata)
 	
 	}).catch(function(error){
 		throw error;

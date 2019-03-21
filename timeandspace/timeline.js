@@ -64,30 +64,19 @@ function initTimeline(data) {
 			.enter()
 			.append("rect")
 			.classed('y' + i, true)
+			.attr('id', d => 'rect' + d.AgtId)
 			.attr("x", function(d){ return xScale(parseYear(d.Year)) - (agtWidth/2); })
 			.attr("y",function(d,i){ return height - ((agtHeight + agtSpacing) * i) })
 			.attr("width", agtWidth)
-			.attr("height", agtHeight);
+			.attr("height", agtHeight)
+			.style('fill', '#000');
 
 		rects.on("click", function(d) {
-			// display infobox permanently (until click somewhere else in svg??)
-			if (selectedAgtDetails == d) {
-				selectedAgtDetails = null
-			} else {
-				selectedAgtDetails = d;
-			}
-			agtDetails(d)
+			selectedAgt.set(d)
 			event.stopPropagation();
-		});
-
-		rects.on("mouseover",function(d){
-			// display infobox
-			agtDetails(d)
-		});
-		rects.on("mouseout",function(d) {
-			// remove infobox
-			agtDetails(selectedAgtDetails)
-		});
+		})
+		.on("mouseover", onmouseover)
+		.on("mouseout", onmouseout);
 
 	} // end for loop (years)
 

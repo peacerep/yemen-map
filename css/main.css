@@ -8,6 +8,7 @@ html, body {
 	margin: 0px;
 	padding: 0px;
 	font-family: 'Karla', sans-serif;
+	font-size: 15px;
 }
 
 h1 {
@@ -23,15 +24,9 @@ h2 {
 }
 
 h3 {
-	font-size: 1em;
-	margin: 25px 0 3px 0;
+	font-size: 18px;
+	margin: 3px 0;
 	font-weight: bold;
-}
-
-h3 span, h3 a {
-	background-color: #fff;
-	text-decoration: none;
-	padding: 0 3px;
 }
 
 a {
@@ -42,6 +37,11 @@ a {
 a:hover {
 	border-bottom: solid 1px black;
 }
+
+h1 a:hover {
+	border-bottom: solid 2px black;
+}
+
 
 .hidden {
 	display: none;
