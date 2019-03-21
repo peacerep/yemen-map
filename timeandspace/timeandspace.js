@@ -98,7 +98,7 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 	// draw timeline
 	initTimeline(data, years)
 
-	d3.json("../data/world-110m.geojson").then(function(world) {
+	d3.json("../data/world-110m-custom.geojson").then(function(world) {
 
 		// draw map
 		mapG.append('g')
