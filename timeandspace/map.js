@@ -35,9 +35,10 @@ var arc = d3.arc()
 var zoom = d3.zoom()
 	.scaleExtent([1,15])
 	.on("zoom", zooming)
-	.on("end", zoomEnd)
 
 svg.call(zoom)
+
+svg.on('click', selectedAgt.clear)
 
 function zooming() {
 	// keep stroke-width constant at different zoom levels
@@ -46,16 +47,8 @@ function zooming() {
 	mapG.attr("transform", d3.event.transform);
 	// semantic zoom flowers
 	dotG.selectAll('g').attr("transform", function(d) {
-		// console.log(projection(d.loc), d3.event.transform, d3.event.transform.apply(projection(d.loc)))
 		return 'translate(' + d3.event.transform.apply(projection(d.loc)) + ')';		
 	});
-}
-
-function zoomEnd() {
-	// update projection
-	// projection
-	// .translate([d3.event.transform.x + d3.event.transform.k*transInit[0], d3.event.transform.y + d3.event.transform.k*transInit[1]])
-	// .scale(d3.event.transform.k * scaleInit)
 }
 
 // buttons for zoom
@@ -237,7 +230,7 @@ function updateGlyphs(locdata) {
 		.style('fill', d => d.colour)
 
 	circle.on("click", function(d) {
-		selectedAgt.set(d)
+		selectedAgt.clickOn(d)
 		event.stopPropagation();
 	})
 	.on("mouseover", onmouseover)

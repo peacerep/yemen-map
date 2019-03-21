@@ -73,7 +73,7 @@ function initTimeline(data, years) {
 			.style('fill', '#000');
 
 		rects.on("click", function(d) {
-			selectedAgt.set(d)
+			selectedAgt.clickOn(d)
 			event.stopPropagation();
 		})
 		.on("mouseover", onmouseover)

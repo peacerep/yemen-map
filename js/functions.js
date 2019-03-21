@@ -98,20 +98,6 @@ function stageColour(d) {
 }
 
 
-// function getConSelection(){
-// 	// reads the code checkboxes and returns an object with their status
-// 	var filters = {any: document.getElementById('anyCon').checked, //otherwise ALL
-// 		cons: []}
-
-// 	for (var i=0; i<cons.length; i++) {
-// 		if (document.getElementById('checkboxCon' + i).checked) {
-// 			filters.codes.push(codes[i])
-// 		}
-// 	}
-// 	return filters;
-// };
-
-
 function getYears(data) {
 	var minYear = d3.min(data.map(function(d) {return d.Year}))
 	var maxYear = d3.max(data.map(function(d) {return d.Year}))
@@ -225,26 +211,61 @@ function parseTransform (a)
 
 var selectedAgt = new function() {
 	var agt = null;
-	var agtPrev = null;
 
-	this.set = function(d) {
+	this.clickOn = function(d) {
 		
-		// if there was a previous selected one, remove highlights
-		if (agt) {
-			// reset scale
-			d3.select('#glyph' + agt.AgtId)
-				.attr('transform', function(d) {
-					var t = parseTransform(d3.select(this).attr('transform'))
-					return `translate(${t.translate}) scale(1)`
-				})
+		// if it's the same that's already selected
+		if (agt == d) {this.clear(); return}
 
+		// else it's new
+		else { 
+			// if there's an old one, get rid of it
+			if (agt) {this.clear()}
+
+			//highlight new one
+			agt = d;
+			
+			// infobox is already displayed
+			// highlight the flower
+			var glyph = d3.select('#glyph' + agt.AgtId)
+			glyph.select('circle')
+				.attr('r', 17)
+				.style('fill', '#333')
+				.style('fill-opacity', 0.9)
+				.transition()
+
+			// highlight the timeline item
+			d3.select('#rect' + agt.AgtId)
+				.attr('transform', 'translate(0,-1)')
+				.attr('height', 3)
+				.style('fill', '#eb1515')
+				.transition()
+		}
+	}
+
+	this.get = function() {
+		return agt
+	}
+
+	this.clear = function() {
+		// remove all highlights and reset agt
+
+		if (agt) {
+
+			// remove glyph highlight
 			d3.select('#glyph' + agt.AgtId).select('circle')
 				.attr('r', rCircle)
 				.style('fill', fillCircle)
 				.style('fill-opacity', 1)
 				.transition()
 
-			// de-highlight all other timeline items
+			d3.select('#glyph' + agt.AgtId)
+				.attr('transform', function(d) {
+					var t = parseTransform(d3.select(this).attr('transform'))
+					return `translate(${t.translate}) scale(1)`
+				})
+
+			// remove timeline highlight
 			d3.select('#rect' + agt.AgtId)
 			.attr('transform', '')
 			.attr('height', 1)
@@ -252,28 +273,9 @@ var selectedAgt = new function() {
 			.transition()
 		}
 		
-		// set new agt
-		agt = d;
-		
-		// infobox is already displayed
-		// highlight the flower
-		var glyph = d3.select('#glyph' + agt.AgtId)
-		glyph.select('circle')
-			.attr('r', 17)
-			.style('fill', '#333')
-			.style('fill-opacity', 0.9)
-			.transition()
-
-		// highlight the timeline item
-		d3.select('#rect' + agt.AgtId)
-			.attr('transform', 'translate(0,-1)')
-			.attr('height', 3)
-			.style('fill', '#eb1515')
-			.transition()
-		
+		// reset agt
+		agt = null
 	}
-
-	this.get = function() {return agt}
 }
 
 
