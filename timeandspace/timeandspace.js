@@ -8,47 +8,40 @@ d3.select('#selectAllCodes')
 	.on('click', function() {
 		// check all checkboxes
 		d3.selectAll('#codesCheckboxes input').property('checked', true)
+		let event = new Event("change");
+		eventHandler.dispatchEvent(event);
 	})
 
 d3.select('#deselectAllCodes')
 	.on('click', function() {
 		// uncheck all checkboxes
 		d3.selectAll('#codesCheckboxes input').property('checked', false)
+		let event = new Event("change");
+		eventHandler.dispatchEvent(event);
 	})
 
 d3.select('#selectAllCons')
 	.on('click', function() {
 		// check all checkboxes
 		d3.selectAll('#conDropdown input').property('checked', true)
+		let event = new Event("change");
+		eventHandler.dispatchEvent(event);
 	})
 
 d3.select('#deselectAllCons')
 	.on('click', function() {
 		// uncheck all checkboxes
 		d3.selectAll('#conDropdown input').property('checked', false)
+		let event = new Event("change");
+		eventHandler.dispatchEvent(event);
 	})
 
-var selectedAgtDetails = null;
-// add something to deselect ??
-
 // add codes checkboxes
-var codesCheckboxes = d3.select('#codesCheckboxes')
-	.selectAll('label')
-	.data(codes)
-	.enter()
-	.append('label')
-	.classed('cb-container', true)
-codesCheckboxes.html(d => codesLong[d] + '<br>')
-codesCheckboxes.append('input')
-	.attr('type', 'checkbox')
-	.attr('id', d => 'checkbox' + d)
-	.property('checked', true)
-codesCheckboxes.append('span')
-	.classed('checkmark', true)
-	.style('background-color', d => codeColour(d))
+makeCodesCheckboxes(true)
 
 // initialise infobox
 agtDetails(null)
+
 
 ////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////// DATA //////////////////////////////////////////
@@ -78,19 +71,20 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 }).then(function(data) {
 
 	// INITIAL SETUP
-	// add years to year dropdowns
+	// setup year slider
 	var years = getYears(data)
-	populateYearDropdowns(years)
+	var myslider = slider('timeslider', years[0], years[1])
 
 	// add countries/entities to dropdown
 	var cons = getConNames(data)
+
 	d3.select('#conDropdown')
 		.selectAll('span')
 		.data(cons)
 		.enter()
 		.append('span')
 		.html(function(d,i) {
-			return "<label><input type='checkbox' id='con" + i +
+			return "<label><input type='checkbox' id='checkboxCon" + i +
 			"' name='Con'>"+ d + "</label><br/>"
 		})
 
@@ -102,10 +96,11 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 		})
 
 	// draw timeline
-	initTimeline(data)
+	initTimeline(data, years)
 
 	d3.json("../data/world-110m.geojson").then(function(world) {
 
+		// draw map
 		mapG.append('g')
 			.selectAll("path")
 			.data(world.features)
@@ -115,15 +110,30 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 			.attr('d', path)
 			.classed('land', true)
 
+		// match data points with locations on the map
 		var locdata = combineDataPoly(data, world)
-		
-		// initial display
+		console.log(locdata)
+
+		// draw glyphs
 		updateGlyphs(locdata)
+
+		// UPDATING
+		// Listen for changes in filters
+		d3.selectAll('input, #eventHandler').on('change', function() {
+			var filters = {year: myslider(),
+						cons: getSelectedCons(cons),
+						codes: getSelectedCodes()}
+
+			var newData = filterData(data, filters)
+			var newLocdata = filterData(locdata, filters)
+
+			initTimeline(newData, filters.year)
+			updateGlyphs(newLocdata)
+		})
 	
 	}).catch(function(error){
 		throw error;
 	})
-
 
 }).catch(function(error){
 	throw error;
@@ -133,50 +143,26 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 //////////////////////////////// FUNCTIONS /////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function populateYearDropdowns(years) {
-	// populates the start and end year dropdowns with all years in between
-	// and including the years given in the input 'years'
-	// years is an array like so: [minyear, maxyear]
 
-	var minYear = years[0]
-	var maxYear = years[1]
-	var lst = d3.range(minYear, maxYear+1)
+function getSelectedCons(cons) {
+	// reads the con checkboxes and returns an object with their status
+	var filters = {any: document.getElementById('anyCon').checked, //otherwise ALL
+		cons: []}
 
-	d3.select('#inputMinYear')
-		.selectAll('option .new')
-		.data(lst)
-		.enter()
-		.append('option')
-		.text(function(d) {return d})
-		.attr('value', function(d) {return d})
-
-	d3.select('#inputMaxYear')
-		.selectAll('option .new')
-		.data(lst)
-		.enter()
-		.append('option')
-		.text(function(d) {return d})
-		.attr('value', function(d) {return d})
-}
-
-function getSelectedCons(conlist) {
-	// checks which countries are selected in the dropdown and returns an
-	// array containing the names of those countries
-	var check = []
-	for (var i = 0; i < conlist.length; i++) {
-		if (document.getElementById('con' + i).checked) {
-			check.push(conlist[i])
+	for (var i=0; i<cons.length; i++) {
+		if (document.getElementById('checkboxCon' + i).checked) {
+			filters.cons.push(cons[i])
 		}
 	}
-	return check
+	return filters;
 }
 
-function getSelectedConsString(conlist) {
+function getSelectedConsString(cons) {
 	// check which countries are selected in the dropdown and returns a string
 	// with all those countries separated by commas
-	var selected = getSelectedCons(conlist)
+	var selected = getSelectedCons(cons)
 
-	if (selected.length == conlist.length) {
+	if (selected.length == cons.length) {
 		return 'All'
 	}
 	else if (selected.length == 0) {
@@ -191,25 +177,3 @@ function getSelectedConsString(conlist) {
 		return str
 	}
 }
-
-
-// to update agreement details!
-// rects.on("click", function(d) {
-// 	// display infobox permanently (until click somewhere else in svg??)
-// 	if (selectedAgtDetails == d) {
-// 		selectedAgtDetails = null
-// 	} else {
-// 		selectedAgtDetails = d;
-// 	}
-// 	agtDetails(d)
-// 	event.stopPropagation();
-// });
-
-// rects.on("mouseover",function(d){
-// 	// display infobox
-// 	agtDetails(d)
-// });
-// rects.on("mouseout",function(d) {
-// 	// remove infobox
-// 	agtDetails(selectedAgtDetails)
-// });

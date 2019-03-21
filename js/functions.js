@@ -46,7 +46,7 @@ function makeCodesCheckboxes(colour) {
 	codesCheckboxes.append('input')
 		.attr('type', 'checkbox')
 		.attr('id', d => 'checkbox' + d)
-		.property('checked', true)
+		.property('checked', false)
 	var checkmark = codesCheckboxes.append('span')
 		.classed('checkmark', true)
 
@@ -59,7 +59,7 @@ function makeCodesCheckboxes(colour) {
 
 }
 
-function getCodeSelection(){
+function getSelectedCodes() {
 	// reads the code checkboxes and returns an object with their status
 	var filters = {any: document.getElementById('anyCodes').checked, //otherwise ALL
 		codes: []}

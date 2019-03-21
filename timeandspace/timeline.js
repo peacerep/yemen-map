@@ -1,7 +1,10 @@
 // maybe split into init and update function
 // add filters
 
-function initTimeline(data) {
+function initTimeline(data, years) {
+
+	// empty div
+	d3.select('#timeline-top').selectAll('*').remove()
 
 	var margin = {top: 5, right: 5, bottom: 25, left: 5}, //read clockwise from top
 		width = parseInt(d3.select("#timeline-top").style("width"), 10) - margin.left - margin.right,
@@ -16,8 +19,6 @@ function initTimeline(data) {
 		.append('g')
 		.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 		.attr('id', 'g-timeline-top')
-
-	var years = getYears(data)
 
 	var minDate = parseDate('30/06/' + (years[0] - 1))
 	var maxDate = parseDate('30/06/' + years[1])

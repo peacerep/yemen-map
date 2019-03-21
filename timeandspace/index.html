@@ -18,20 +18,25 @@
 	<!-- <script src="https://d3js.org/topojson.v1.min.js"></script> -->
 	<script type="text/javascript" src="../js/functions.js"></script>
 	<script type="text/javascript" src='timeline.js'></script>	
+	<script type="text/javascript" src='inputs.js'></script>
+
 
 </head>
 <body>
+	
 	<div class="grid-container">
 
 		<div id="sidebar">
 			<h1><a href='..'>Visualizing Peace</a></h1>
 			<h2>Agreements in Time and Space</h2>
 
+			<!-- for receiving custom input events -->
+			<div id='eventHandler' class='hidden'></div>
+
 			<div class='selectSection'>
 				<h3>Timeframe</h3>
 				Display agreements signed in years:<br>
 				<div id="timeslider"></div>
-				<script type="text/javascript" src='inputs.js'></script>
 			</div>
 
 			<div class='selectSection'>
@@ -59,7 +64,7 @@
 				<!-- any/all radio -->
 				Highlight agreements that address
 				<div class='switchContainer'>
-					<input type="radio" id="allCodes" name="codesRule" value="all"><label for="allCodes" class='button left'>all</label><input type="radio" id="anyCodes" name="codesRule" value="any" checked><label for="anyCodes" class='button right'>any</label>
+					<input type="radio" id="allCodes" name="codesRule" value="all" checked><label for="allCodes" class='button left'>all</label><input type="radio" id="anyCodes" name="codesRule" value="any"><label for="anyCodes" class='button right'>any</label>
 				</div>
 				of the selected codes.<br>
 				
