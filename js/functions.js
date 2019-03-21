@@ -35,6 +35,36 @@ var codeColour = d3.scaleOrdinal()
 	.domain(['Pol', 'Polps', 'Terps', 'Eps', 'Mps', 'HrFra', 'GeWom', 'TjMech'])
 	.range(['#f5003d','#01557a','#fbdd4b','#7a56a0','#029680','#f46c38','#59c9df','#fc96ab'])
 
+function makeCodesCheckboxes() {
+	var codesCheckboxes = d3.select('#codesCheckboxes')
+		.selectAll('label')
+		.data(codes)
+		.enter()
+		.append('label')
+		.classed('cb-container', true)
+	codesCheckboxes.html(d => codesLong[d] + '<br>')
+	codesCheckboxes.append('input')
+		.attr('type', 'checkbox')
+		.attr('id', d => 'checkbox' + d)
+		.property('checked', true)
+	codesCheckboxes.append('span')
+		.classed('checkmark', true)
+		.style('background-color', d => codeColour(d))
+}
+
+function getCodeSelection(){
+	// reads the code checkboxes and returns an object with their status
+	var filters = {any: document.getElementById('anyCodes').checked, //otherwise ALL
+		codes: []}
+
+	for (var i=0; i<codes.length; i++) {
+		if (document.getElementById('checkbox' + codes[i]).checked) {
+			filters.codes.push(codes[i])
+		}
+	}
+	return filters;
+};
+
 // Stages
 var stagesLong = {Cea: 'Ceasefire/related',
 		Pre: 'Prenegotiation',
@@ -59,6 +89,20 @@ function stageColour(d) {
 	var col = (d.StageSub == 'FrCons' ? cons : stage(d.Stage));
 	return col
 }
+
+
+// function getConSelection(){
+// 	// reads the code checkboxes and returns an object with their status
+// 	var filters = {any: document.getElementById('anyCon').checked, //otherwise ALL
+// 		cons: []}
+
+// 	for (var i=0; i<cons.length; i++) {
+// 		if (document.getElementById('checkboxCon' + i).checked) {
+// 			filters.codes.push(codes[i])
+// 		}
+// 	}
+// 	return filters;
+// };
 
 
 function getYears(data) {
@@ -139,6 +183,7 @@ function agtDetails(d) {
 	d3.select('#agreementDetails').html(infoString)
 }
 
+
 // https://github.com/wbkd/d3-extended
 d3.selection.prototype.moveToFront = function() {  
 	return this.each(function(){
@@ -155,8 +200,6 @@ d3.selection.prototype.moveToBack = function() {
 };
 
 
-
-
 // https://stackoverflow.com/questions/17824145/parse-svg-transform-attribute-with-javascript
 function parseTransform (a)
 {
@@ -169,13 +212,15 @@ function parseTransform (a)
     return b;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+// selecting and mousing over agreements
+////////////////////////////////////////////////////////////////////////////////
+
 var selectedAgt = new function() {
 	var agt = null;
 	var agtPrev = null;
 
 	this.set = function(d) {
-
-		console.log('new selected agreement: ', agt)
 		
 		// if there was a previous selected one, remove highlights
 		if (agt) {

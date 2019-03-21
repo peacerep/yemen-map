@@ -24,37 +24,24 @@
 		<div id="sidebar">
 			<h1>Visualizing Peace</h1>
 			<h2>Agreement Sequence Comparison</h2>
-
-			<h3><span>Code Selection</span></h3>
-
-			Display agreements that address
-			
-			<!-- any/all radio -->
-			<input type="radio" id="allV" name="filterRule" value="all" checked>
-			<label for="allV">all</label> / 
-			<input type="radio" id="anyV" name="filterRule" value="any">
-			<label for="anyV">any</label>
-			of the below code selections. <br>
-			
-			<!-- dropdown for codes -->
-			<div class='dropdown'>
-			<button class="dropbtn">Select Codes</button>
-			<div id="codeDropdown" class="dropcontent">
-			<a href="#" id="SelectAllCodesV">Select All</a>&nbsp;&nbsp;
-			<a href="#" id="DeselectAllCodesV">Deselect All</a><br>
-			<label><input type="checkbox" id="paxHrFraV">Human Rights Framework</label><br>
-			<label><input type="checkbox" id="paxPolV">Political Institutions</label><br>
-			<label><input type="checkbox" id="paxEpsV">Power Sharing: Economic</label><br>
-			<label><input type="checkbox" id="paxMpsV">Power Sharing: Military</label><br>
-			<label><input type="checkbox" id="paxPolpsV">Power Sharing: Political</label><br>
-			<label><input type="checkbox" id="paxTerpsV">Power Sharing: Territorial</label><br>
-			<label><input type="checkbox" id="paxTjMechV">Transitional Justice Past Mechanism</label><br>
-			<label><input type="checkbox" id="paxGeWomV">Women, Girls and Gender</label>
+		
+			<!-- code selection -->
+			<div class='selectSection'>
+				<h3>Code Selection</h3>
+				<!-- any/all radio -->
+				Show only agreements that address
+				<div class='switchContainer'>
+					<input type="radio" id="allCodes" name="codesRule" value="all"><label for="allCodes" class='button left'>all</label><input type="radio" id="anyCodes" name="codesRule" value="any" checked><label for="anyCodes" class='button right'>any</label>
+				</div>
+				of the selected codes.<br>
+				
+				<div id='codesCheckboxes'></div>
+				
+				<span>
+					<a href="#" id="selectAllCodes" class='button'>Select All</a>&nbsp;&nbsp;
+					<a href="#" id="deselectAllCodes" class='button'>Deselect All</a><br>
+				</span>
 			</div>
-			</div> <br>
-
-			Selected codes:	<span id='selectedCodes'></span>
-			<br>
 		
 			<!-- legend for agreement codes (not clickable) -->
 			<h3><span>Agreement Stage Legend</span></h3>

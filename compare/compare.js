@@ -16,12 +16,6 @@ d3.select('#DeselectAllCodesV')
 		d3.selectAll('#codeDropdown input').property('checked', false)
 	})
 
-d3.select('#codeDropdown')
-	.on('click', function() {
-		// update span with list of selected
-		d3.select('#selectedCodes').html(getSelectedCodes())
-	})
-
 // clicking anywhere in any of the svg's will reset the agreement details
 var selectedAgtDetails = null;
 d3.selectAll('svg').on('click', function() {
@@ -29,6 +23,7 @@ d3.selectAll('svg').on('click', function() {
 	agtDetails(null)
 })
 
+makeCodesCheckboxes()
 
 // initialise infobox
 agtDetails(null)
@@ -105,8 +100,6 @@ d3.csv("../data/paxTimelineData_02092018.csv", function (d) {
 		TjMech:+d.TjMech // 1-3 indicating increasing level of detail given about a body to deal with the past; 0 if none given
 	}
 }).then(function(data) {
-
-		console.log(data)
 
 		var years = getYears(data)
 
@@ -192,7 +185,7 @@ function updateTimeline(index, data, yScale) {
 	})
 
 	// get filters from inputs on the left
-	var filters = getFilters();
+	var filters = getCodeSelection();
 
 	// apply filters
 	var data_country = data_country.filter(function (d) {
@@ -208,7 +201,6 @@ function updateTimeline(index, data, yScale) {
 
 	// get current g
 	var g = d3.select('#timeline-v' + index + '-g');
-	// console.log(g)
 
 	// remove previous rectangles (if any)
 	g.selectAll('rect').remove()
@@ -236,9 +228,7 @@ function updateTimeline(index, data, yScale) {
 	// Set the agreement width (pixels) based on the maximum possible agts to display in a year
 	// var agtWidth = (width-yWidth)/(maxAgts);
 
-	for (var i = 0; i < years.length; i++) {
-		console.log(years[i].values)
-				
+	for (var i = 0; i < years.length; i++) {				
 		var rects = g.selectAll("rect .y" + i)
 			.data(years[i].values)
 			.enter()
@@ -283,22 +273,6 @@ function updateTimeline(index, data, yScale) {
 } // end updateTimeline function
 
 
-function getFilters(){
-
-	// reads all filters and returns an object with their status
-
-	var filters = {any: document.getElementById('anyV').checked, //otherwise ALL
-		codes: []}
-
-	for (var i=0; i<codes.length; i++) {
-
-		if (document.getElementById('pax' + codes[i] + 'V').checked) {
-			filters.codes.push(codes[i])
-		}
-	}
-	return filters;
-};
-
 function applyFilters(dat, filters) {
 
 	// if filters empty, everything passes the test
@@ -312,32 +286,9 @@ function applyFilters(dat, filters) {
 		for (var i=0; i<filters.codes.length; i++) {
 			tf.push(dat[filters.codes[i]] > 0)
 		}
-		console.log(tf)
 		// for the ANY rule, it is enough if there is at least one true
 		if (filters.any) { return tf.some(function(d) {return d}) }
 		// for the ALL rule, everything in the array has to be true
 		else { return tf.every(function(d) {return d}) }
 	}
-}
-
-function getSelectedCodes() {
-	// returns a string with the selected codes separated by commas
-
-	var filters = getFilters().codes
-	// var keys = Object.keys(codesLong)
-	// var activeFilters = ''
-	if (filters.length == codes.length) {
-		return 'all'
-	}
-	else if (filters.length == 0) {
-		return 'none'
-	}
-	else {
-		var activeFilters = ''
-		for (var i=0; i<filters.length; i++) {
-			activeFilters += codesLong[filters[i]] + ', '
-		}
-		activeFilters = activeFilters.slice(0, -2)
-		return activeFilters
-	}	
 }
