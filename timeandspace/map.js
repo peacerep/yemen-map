@@ -46,7 +46,8 @@ function zooming() {
 	mapG.attr("transform", d3.event.transform);
 	// semantic zoom flowers
 	dotG.selectAll('g').attr("transform", function(d) {
-		return 'translate(' + d3.event.transform.apply(projection(d.loc)) + ')';
+		// console.log(projection(d.loc), d3.event.transform, d3.event.transform.apply(projection(d.loc)))
+		return 'translate(' + d3.event.transform.apply(projection(d.loc)) + ')';		
 	});
 }
 
@@ -195,8 +196,7 @@ function updateGlyphs(locdata) {
 		.attr('id', d => 'glyph' + d.AgtId)
 		// .merge(circle)
 		.attr('transform', function(d) {
-			var pos = projection(d.loc)
-			return 'translate(' + pos[0] + ',' + pos[1] + ')'
+			return 'translate(' + d3.zoomTransform(svg.node()).apply(projection(d.loc)) + ')';
 		})
 	
 	circle.append('circle')
