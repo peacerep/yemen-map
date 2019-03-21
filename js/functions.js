@@ -272,9 +272,10 @@ var selectedAgt = new function() {
 			.style('fill', '#000')
 			.transition()
 		}
-		
+
 		// reset agt
 		agt = null
+		agtDetails(null)
 	}
 }
 

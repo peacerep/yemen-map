@@ -47,8 +47,15 @@ function zooming() {
 	mapG.attr("transform", d3.event.transform);
 	// semantic zoom flowers
 	dotG.selectAll('g').attr("transform", function(d) {
-		return 'translate(' + d3.event.transform.apply(projection(d.loc)) + ')';		
+		return 'translate(' + d3.event.transform.apply(projection(d.loc)) + ')';
 	});
+	// make sure selected glyph, if any, stays 2x size
+	if (selectedAgt.get()) {
+		d3.select('#glyph' + selectedAgt.get().AgtId)
+			.attr('transform', function(d) {
+				return 'translate(' + d3.event.transform.apply(projection(d.loc)) + ') scale(2)';
+			})
+	}
 }
 
 // buttons for zoom
