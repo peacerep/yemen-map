@@ -136,6 +136,11 @@ function combineDataPoly(data, world) {
 	for (const [con, agts] of data_intra.entries()) {
 
 		var cen = world.features.find(function(d) {return d.properties.name == con})
+
+		// Palestine and Kurdistan are not internationally recognised and therefore not on the map
+		// place them at their approximate location/within the recognised country
+		if (con == 'Palestine') {cen = world.features.find(function(d) {return d.properties.name == 'Israel'})}
+		if (con == 'Kurds-Kurdistan') {cen = world.features.find(function(d) {return d.properties.name == 'Iraq'})}
 		
 		if (cen != undefined) {
 
