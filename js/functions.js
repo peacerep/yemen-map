@@ -35,7 +35,7 @@ var codeColour = d3.scaleOrdinal()
 	.domain(['Pol', 'Polps', 'Terps', 'Eps', 'Mps', 'HrFra', 'GeWom', 'TjMech'])
 	.range(['#f5003d','#01557a','#fbdd4b','#7a56a0','#029680','#f46c38','#59c9df','#fc96ab'])
 
-function makeCodesCheckboxes() {
+function makeCodesCheckboxes(colour) {
 	var codesCheckboxes = d3.select('#codesCheckboxes')
 		.selectAll('label')
 		.data(codes)
@@ -47,9 +47,16 @@ function makeCodesCheckboxes() {
 		.attr('type', 'checkbox')
 		.attr('id', d => 'checkbox' + d)
 		.property('checked', true)
-	codesCheckboxes.append('span')
+	var checkmark = codesCheckboxes.append('span')
 		.classed('checkmark', true)
-		.style('background-color', d => codeColour(d))
+
+	if (colour) {
+		checkmark.style('background-color', d => codeColour(d))
+	}
+	else {
+		checkmark.style('background-color', '#444')
+	}
+
 }
 
 function getCodeSelection(){

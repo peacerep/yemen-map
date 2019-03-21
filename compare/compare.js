@@ -23,7 +23,7 @@ d3.selectAll('svg').on('click', function() {
 	agtDetails(null)
 })
 
-makeCodesCheckboxes()
+makeCodesCheckboxes(false)
 
 // initialise infobox
 agtDetails(null)
