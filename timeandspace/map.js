@@ -144,29 +144,7 @@ function combineDataPoly(data, world) {
 		
 		if (cen != undefined) {
 
-			// bounding box in lat/lon
-			var bbox = d3.geoBounds(cen.geometry)
-
-			// array for random points
-			var pts = []
-			
-			for (var i = 0; i<1000; i++) {
-				// bbox: [[left, bottom],[right, top]]
-				// point has to be [lon, lat]
-				var randomPoint = [bbox[0][0] + Math.random() * (bbox[1][0] - bbox[0][0]),
-								   bbox[0][1] + Math.random() * (bbox[1][1] - bbox[0][1])]
-
-				var contained = d3.geoContains(cen.geometry, randomPoint)
-
-				if (contained) { pts.push(randomPoint) }
-				if (pts.length == agts.length) { break; }
-			}
-
-			// log warning if there are not enough points
-			if (pts.length < agts.length) {
-				console.log('WARNING! In ' + i + ' iterations, \
-				not enough points could be generated for ' + con, pts)
-			}
+			var pts = randomGeoPoints(cen.geometry, agts.length)
 
 			// create one long list of all agreements
 			newData.push(...agts.map(function(d,i) { d.loc = pts[i]; return d }))
@@ -276,4 +254,52 @@ function filterBBox(bbox, loc) {
 	return (loc != undefined) && (bbox.l < loc[0] && loc[0] < bbox.r && bbox.b < loc[1] && loc[1] < bbox.t)
 }
 
+function randomGeoPoints(geometry, nPoints) {
+	// creates a random point in a country as defined by its geometry
+	var bbox = d3.geoBounds(geometry)
+	var w = bbox[0][0],
+		s = bbox[0][1],
+		e = bbox[1][0],
+		n = bbox[1][1];
 
+		// array for random points
+		var pts = []
+
+		// if the longitude at the west end of the country is larger than at the
+		// east end, the country must span across the 180 line
+		if (w > e) { 
+			var prop = [[w, 180], [-180, e]].map(d => d[1] - d[0])
+			var cut = prop[0] / (prop[0] + prop[1])
+
+			// a while loop would be more elegant but also more dangerous
+			for (var i = 0; i<1000; i++) {
+
+				var rand = Math.random()
+				var randLon = (rand < cut ? 
+							   w + rand * d3.sum(prop) :
+							   -180 + (rand * d3.sum(prop)) - prop[0])
+				var randomPoint = [randLon,
+								   s + Math.random() * (n - s)];
+				var contained = d3.geoContains(geometry, randomPoint)
+				if (contained) { pts.push(randomPoint) }
+				if (pts.length >= nPoints) { break; }
+			}
+		}
+		// if this isn't the case it's just regular maths
+		else { 
+			for (var i = 0; i<1000; i++) {
+				var randomPoint = [w + Math.random() * (e - w),
+								   s + Math.random() * (n - s)];
+				var contained = d3.geoContains(geometry, randomPoint)
+				if (contained) { pts.push(randomPoint) }
+				if (pts.length >= nPoints) { break; }
+			}
+		}
+
+		// log warning if there are not enough points
+		if (pts.length < nPoints) {
+			console.log('WARNING! In ' + i + ' iterations, \
+			not enough points could be generated for ' + geometry)
+		}
+		return pts
+}
