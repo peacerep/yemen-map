@@ -39,7 +39,7 @@ const fillCircle = '#c4ccd0';
 
 // set up zoom
 var zoom = d3.zoom()
-	.scaleExtent([1,15])
+	.scaleExtent([0.7,50])
 	.on("zoom", zooming)
 
 svg.call(zoom)
