@@ -202,14 +202,23 @@ var selectedAgt = new function() {
 			//highlight new one
 			agt = d;
 			
-			// infobox is already displayed
+			// display infobox
+			agtDetails(agt)
+
 			// highlight the flower
 			var glyph = d3.select('#glyph' + agt.AgtId)
 			glyph.select('circle')
 				.attr('r', 17)
-				.style('fill', '#333')
+				.style('fill', '#fff')
 				.style('fill-opacity', 0.9)
+				.style('stroke', 'black')
+				.style('stroke-width', 0.5)
 				.transition()
+
+				// fill: rgb(255, 255, 255);
+    // fill-opacity: 0.9;
+    // stroke: black;
+    // stroke-width: 0.5;
 
 			// highlight the timeline item
 			d3.select('#rect' + agt.AgtId)
@@ -234,6 +243,7 @@ var selectedAgt = new function() {
 				.attr('r', rCircle)
 				.style('fill', fillCircle)
 				.style('fill-opacity', 1)
+				.style('stroke', 'none')
 				.transition()
 
 			d3.select('#glyph' + agt.AgtId)
@@ -261,9 +271,15 @@ function onmouseover(d) {
 	// only run if this is not the selected event or there is no selected event
 	if ((selectedAgt.get() === null) || (!(d.AgtId == selectedAgt.get().AgtId))) {
 		agtDetails(d)
-		d3.select('#glyph' + d.AgtId).moveToFront()
+		var glyph = d3.select('#glyph' + d.AgtId)
+		glyph.moveToFront()
+		glyph.select('circle')
+			.attr('r', 17)
+			.style('fill', '#fff')
+			.style('fill-opacity', 0.9)
+
 		// scale 200%
-		d3.select('#glyph' + d.AgtId).attr('transform', function(d) {
+		glyph.attr('transform', function(d) {
 			var t = parseTransform(d3.select(this).attr('transform'))
 			return `translate(${t.translate}) scale(2)`
 		})
@@ -278,8 +294,16 @@ function onmouseout(d) {
 	if ((selectedAgt.get() === null) || (!(d.AgtId == selectedAgt.get().AgtId))) {
 		// remove infobox
 		agtDetails(selectedAgt.get())
+
+		var glyph = d3.select('#glyph' + d.AgtId)
+		glyph.select('circle')
+				.attr('r', rCircle)
+				.style('fill', fillCircle)
+				.style('fill-opacity', 1)
+				.transition()
+
 		// reset scale
-		d3.select('#glyph' + d.AgtId).attr('transform', function(d) {
+		glyph.attr('transform', function(d) {
 			var t = parseTransform(d3.select(this).attr('transform'))
 			return `translate(${t.translate}) scale(1)`
 		})
