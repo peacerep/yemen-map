@@ -85,7 +85,7 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 		.append('span')
 		.html(function(d,i) {
 			return "<label><input type='checkbox' id='checkboxCon" + i +
-			"' name='Con'>"+ d + "</label><br/>"
+			"' name='Con' class='input'>"+ d + "</label><br/>"
 		})
 
 	// update list of selected countries on change
@@ -96,7 +96,10 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 		})
 
 	// draw timeline
-	initTimeline(data, years)
+	initTimeline(data, years, 'lines')
+
+	// d3.selectAll('.chartType input').on('change', function() {
+	// 	initTimeline(data, years, this.value)})
 
 	d3.json("../data/world-110m-custom.geojson").then(function(world) {
 
@@ -119,7 +122,7 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 
 		// UPDATING
 		// Listen for changes in filters
-		d3.selectAll('input, #eventHandler').on('change', function() {
+		d3.selectAll('.input, #eventHandler').on('change', function() {
 			var filters = {year: myslider(),
 						cons: getSelectedCons(cons),
 						codes: getSelectedCodes()}
@@ -127,7 +130,7 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 			var newData = filterData(data, filters)
 			var newLocdata = filterData(locdata, filters)
 
-			initTimeline(newData, filters.year)
+			initTimeline(newData, filters.year, 'lines')
 			updateGlyphs(newLocdata)
 		})
 	

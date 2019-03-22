@@ -31,7 +31,7 @@
 			<h2>Agreements in Time and Space</h2>
 
 			<!-- for receiving custom input events -->
-			<div id='eventHandler' class='hidden'></div>
+			<div id='eventHandler' class='input hidden'></div>
 
 			<div class='selectSection'>
 				<h3>Timeframe</h3>
@@ -44,7 +44,7 @@
 				<!-- any/all radio -->
 				Display agreements involving
 				<div class='switchContainer'>
-					<input type="radio" id="allCon" name="conRule" value="all" checked>				<label for="allCon" class='button left'>all</label><input type="radio" id="anyCon" name="conRule" value="any"><label for="anyCon" class='button right'>any</label>
+					<input type="radio" id="allCon" name="conRule" value="all" class='input' checked><label for="allCon" class='button left'>all</label><input type="radio" id="anyCon" name="conRule" value="any" class='input'><label for="anyCon" class='button right'>any</label>
 				</div>
 				of the selected countries/entities.<br>
 
@@ -64,7 +64,7 @@
 				<!-- any/all radio -->
 				Highlight agreements that address
 				<div class='switchContainer'>
-					<input type="radio" id="allCodes" name="codesRule" value="all" checked><label for="allCodes" class='button left'>all</label><input type="radio" id="anyCodes" name="codesRule" value="any"><label for="anyCodes" class='button right'>any</label>
+					<input type="radio" id="allCodes" name="codesRule" value="all" class='input' checked><label for="allCodes" class='button left'>all</label><input type="radio" id="anyCodes" name="codesRule" value="any" class='input'><label for="anyCodes" class='button right'>any</label>
 				</div>
 				of the selected codes.<br>
 				
@@ -75,6 +75,10 @@
 					<a href="#" id="deselectAllCodes" class='button'>Deselect All</a><br>
 				</span>
 			</div>
+
+			<!-- <div class='switchContainer chartType'>
+				<input type="radio" id="chartLines" name="chart" value="lines" checked><label for="chartLines" class='button left'>Lines</label><input type="radio" id="chartRidge" name="chart" value="ridge"><label for="chartRidge" class='button right'>Ridge</label>
+			</div> -->
 
 			<h3>Agreement Details</h3>
 			<div id='agreementDetails'></div>

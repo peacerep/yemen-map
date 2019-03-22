@@ -35,8 +35,6 @@ function filterData(data, f) {
 		else {return false} // year check failed
 	
 	})
-
-	console.log(f, filtered)
 	return filtered
 }
 

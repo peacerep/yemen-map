@@ -46,6 +46,7 @@ function makeCodesCheckboxes(colour) {
 	codesCheckboxes.append('input')
 		.attr('type', 'checkbox')
 		.attr('id', d => 'checkbox' + d)
+		.classed('input', true)
 		.property('checked', false)
 	var checkmark = codesCheckboxes.append('span')
 		.classed('checkmark', true)
