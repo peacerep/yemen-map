@@ -16,8 +16,8 @@ html{
 DROPDOWNS
 */
 .dropbtn {
-  background-color: #737373;
-  color: silver;
+  background-color: #dee3e8;
+  color: #4f545e;
   padding: 10px;
   font-family: 'M PLUS Rounded 1c', sans-serif;
   font-size: 12px;
@@ -25,7 +25,7 @@ DROPDOWNS
   border: none;
   cursor: pointer;
   border-width: 1px;
-  border-color: silver;
+  border-color: #4f545e;
   border-style: solid;
 
 }
@@ -40,7 +40,7 @@ CON (COUNTRY & ENTITY) DROPDOWN
 .ConContent {
   display: none;
   position: absolute;
-  background-color: silver;
+  background-color: white;
   min-width: 250px;
   overflow: auto;
   max-height: 250px;
@@ -51,14 +51,14 @@ CON (COUNTRY & ENTITY) DROPDOWN
   display: block;
 }
 .ConContent input {
-  color: #000000;
+  color: #4f545e;
   font-weight: bold;
   padding: 4px;
   text-decoration: none;
   display: inline;
 }
 .ConContent label, a {
-  color: #000000;
+  color: #4f545e;
   font-weight: normal;
   padding: 4px;
   display: inline;
@@ -69,7 +69,7 @@ CODES (FILTER) DROPDOWN
 .CodeContent {
   display: none;
   position: absolute;
-  background-color: silver;
+  background-color: white;
   min-width: 250px;
   overflow: auto;
   padding: 4px;
@@ -79,14 +79,14 @@ CODES (FILTER) DROPDOWN
   display: block;
 }
 .CodeContent input {
-  color: #000000;
+  color: #4f545e;
   font-weight: bold;
   padding: 4px;
   text-decoration: none;
   display: inline;
 }
 .CodeContent label, a {
-  color: #000000;
+  color: #4f545e;
   font-weight: normal;
   padding: 4px;
   display: inline;

@@ -8,7 +8,7 @@ each visualization and selecter (7 in total)
 }
 
 html{
-  background-color: #737373; /*c4c4c4;*/
+  background-color: #dee3e8; /*c4c4c4;*/
   margin: 0px;
   padding: 0px;
 }
@@ -83,10 +83,10 @@ footer, footer p {
 }
 
 footer a, p a {
-  color: white;
+  color: #4f545e;
 }
 footer a:hover, p a:hover {
-  color: silver;
+  color: black;
 }
 
 iframe {
@@ -120,7 +120,7 @@ Grid Layout
       justify-content: stretch;
 }
 .grid-container > div {
-  color: black;
+  color: #4f545e;
   text-align: left;
   padding: 10px;
 }

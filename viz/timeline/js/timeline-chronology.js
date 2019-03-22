@@ -191,7 +191,7 @@ function callFunction() {
                       .attr("transform","translate("+margin.left+","+margin.top+")");
 
           // Make one rectangle per agreement grouped by Dat
-          console.log("Highlight: "+selection[0]);
+          console.log("Highlight: ",selection[0]);
           for (dat = 0; dat < datList.length; dat++){
             var datGroup = chartGroup.append("g")
                 .attr("class","datGroup");
@@ -205,7 +205,7 @@ function callFunction() {
                 .attr("class",function(d){ return String((setAgtColors(d))[1]); })  // .attr("class","agt")
                 .attr("id",function(d){ return d.AgtId; })
                 .attr("fill", function(d){ return (setAgtColors(d))[0]; })          //.attr("fill",function(d){ if (+d.AgtId == +selection){ return "white"; } else { return "black"; } })
-                .attr("stroke",function(d){ if (+d.AgtId == +selection[0]){ return "white"; } else { return "#737373"; } })  // same as html background-color
+                .attr("stroke",function(d){ if (+d.AgtId == +selection[0]){ return "white"; } else { return "#dee3e8"; } })  // same as html background-color
                 .attr("stroke-width",function(d){ if (+d.AgtId == +selection[0]){ return "4px"; } else { return "1px"; } })
                 .style("opacity", function(d){ if (+d.AgtId == +selection[0]){ return "1"; } else { return "0.5"; } })
                 .attr("x", function(d){ return x(d.Dat) + margin.left; })
@@ -252,8 +252,8 @@ function callFunction() {
                 window.localStorage.setItem("updatePaxHorizontal","false");
                 window.localStorage.setItem("updatePaxMap", "false");
                 window.localStorage.setItem("paxhover", JSON.stringify([]));
-                this.style.fill = "black"
-                this.style.stroke = "#737373";
+                this.style.fill = "#4f545e"
+                this.style.stroke = "#dee3e8";
                }
             });
 
@@ -293,14 +293,14 @@ function callFunction() {
                   if (+d.AgtId == +selection[0]){
                     return ["white", "selected"];   // if an agreement is selected on the map
                   } else {
-                    return ["black", "selected"];
+                    return ["#4f545e", "selected"];
                   }
                   // return getAgtCons(d);
                 } else {
                   // deselect agreements that don't meet filter criteria
                   window.localStorage.setItem("paxselection", JSON.stringify([]));
                   selection = JSON.parse(window.localStorage.getItem("paxselection"));
-                  return ["#595959", "unselected"];
+                  return ["silver", "unselected"];
                 }
               }
               else { // if paxALL == 1
@@ -318,20 +318,20 @@ function callFunction() {
                   if (+d.AgtId == +selection[0]){
                     return ["white", "selected"];   // if an agreement is selected on the map
                   } else {
-                    return ["black", "selected"];
+                    return ["#4f545e", "selected"];
                   }
                 } else if ((codeValueTotal > 0) && (!mismatch)){
                   if (+d.AgtId == +selection[0]){
                     return ["white", "selected"];   // if an agreement is selected on the map
                   } else {
-                    return ["black", "selected"];
+                    return ["#4f545e", "selected"];
                   }
                   // return getAgtCons(d);
                 } else {
                   // deselect agreements that don't meet filter criteria
                   window.localStorage.setItem("paxselection", JSON.stringify([]));
                   selection = JSON.parse(window.localStorage.getItem("paxselection"));
-                  return ["#595959", "unselected"];
+                  return ["silver", "unselected"];
                 }
               }
             }
@@ -424,7 +424,7 @@ function callFunction() {
           }
         }
         title = title + "_" + cons + "_" + codes + "_" + newMinDay + "-" + newMaxDay + ".png";
-        saveSvgAsPng(document.getElementsByTagName("svg")[0], title, {scale: 5, backgroundColor: "#737373"});
+        saveSvgAsPng(document.getElementsByTagName("svg")[0], title, {scale: 5, backgroundColor: "#dee3e8"});
         // if IE need canvg: canvg passed between scale & backgroundColor
       });
 

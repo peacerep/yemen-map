@@ -19,7 +19,7 @@ p, input {
   font-weight: 700;
 }
 p.expl {
-  color:black;
+  color: #4f545e;
   font-size: 10px;
   text-decoration: none;
   display: inline;
@@ -28,7 +28,7 @@ p.expl {
 }
 
 .description {
-  color:black;
+  color: #4f545e;
   font-size: 10px;
   text-decoration: none;
   display: inline;
@@ -47,33 +47,32 @@ button#exportV.btn {
 }
 
 button.horizTimeView_current, button.horizTimeView, button#export.btn, button#exportV.btn  {
-  background-color: #737373;
+  background-color: #dee3e8;
   padding: 5px;
   margin: 2px;
   width: auto;
   cursor: pointer;
   opacity: 1;
-  border: 1px solid silver;
+  border: 1px solid #4f545e;
 }
 button.horizTimeView_current, button.horizTimeView, button#export.btn, button#exportV.btn {
   font-family: 'M PLUS Rounded 1c', sans-serif;
   font-size: 12px;
   font-weight: 700;
-  color: silver;
+  color: #4f545e;
   text-decoration: none;
   text-align: left;
 }
 button.horizTimeView_current, button.horizTimeView:hover, button#export.btn:hover, button#exportV.btn:hover, button#ConDropBtn.dropbtn:hover {
-  background-color: #838383;
+  background-color: white;
 }
 button#export.btn, button#exportV.btn {
-  /* background-color: #838383; */
   padding: 5px;
   margin: 2px;
   width: auto;
   cursor: pointer;
   opacity: 1;
-  border: 1px solid silver;
+  border: 1px solid #4f545e;
 }
 
 #chart{
@@ -125,5 +124,5 @@ g.xaxis#dat g.tick text {
   font-weight: 900;
   line-height: 20px;
   text-decoration: underline;
-  /* pointer-events: visible; */
+  /* pointer-events: visible;
 } */

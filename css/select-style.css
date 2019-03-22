@@ -7,6 +7,7 @@ Style for Select iFrame
 
 html {
   font-family: 'M PLUS Rounded 1c', sans-serif;
+  color: #4f545e;
 }
 html, body {
   height: 100%;
@@ -22,7 +23,7 @@ Text
 a {
   text-decoration: underline;
   font-weight: 700;
-  color: #b3b3b3;
+  color: #4f545e;
   cursor: pointer;
 }
 button {
@@ -33,20 +34,20 @@ h1 {
   font-family: 'M PLUS Rounded 1c', sans-serif;
   font-weight: 900;
   font-size: 28px;
-  color: white;
+  color: #4f545e;
   pointer-events: none;
 }
 h2 {
   font-weight: 400;
   font-size: 12px;
   padding-bottom: 14px;
-  color: silver;
+  color: #4f545e;
 }
 h4 {
   font-weight: 700;
   font-size: 16px;
   padding-top: 0px;
-  color: white;
+  color: #4f545e;
 }
 p {
   font-weight: 700;
@@ -57,7 +58,7 @@ p#codes{
 }
 
 p, a, label {
-  color:black;
+  color: #4f545e;
   font-size: 12px;
   display: inline;
   font-family: 'M PLUS Rounded 1c', sans-serif;
@@ -76,7 +77,10 @@ a.pdf, a.cod {
   font-weight: 700;
   margin: 0;
   padding: 0;
-  color: silver;
+  color: #4f545e;
+}
+a.pdf:hover, a.cod:hover {
+  color: black;
 }
 a.pdf {
   float: left;
@@ -90,17 +94,17 @@ input {
 }
 a#SelectAllCodes {
   float: left;
-  color: silver;
+  color: #4f545e;
   text-decoration: underline;
 }
 a#DeselectAllCodes {
   float: left;
   margin-left: 24px;
-  color: silver;
+  color: #4f545e;
   text-decoration: underline;
 }
 a#SelectAllCodes:hover, a#DeselectAllCodes:hover, p.filterViews a:hover, td.text:hover {
-  color: #ffffff;
+  color: black;
 }
 
 svg {
@@ -151,8 +155,8 @@ foreignObject {
 DROPDOWNS
 */
 .dropbtn {
-  background-color: #737373;
-  color: silver;
+  background-color: #dee3e8;
+  color: #4f545e;
   padding: 5px;
   /* margin: 2px; */
   font-family: 'M PLUS Rounded 1c', sans-serif;
@@ -160,10 +164,10 @@ DROPDOWNS
   font-weight: 700;
   border: none;
   cursor: pointer;
-  border: 1px solid silver;
+  border: 1px solid #4f545e;
 }
 .dropbtn:hover {
-  background-color: #838383;
+  background-color: white;
 }
 .dropdown {
   position: relative;
@@ -176,7 +180,7 @@ YEARS DROPDOWN
 .TimeContent {
   display: none;
   position: absolute;
-  background-color: silver;
+  background-color: white;
   width: 120%;
   overflow: auto;
   padding: 4px;
@@ -187,14 +191,14 @@ YEARS DROPDOWN
   display: block;
 }
 .TimeContent input {
-  color: #000000;
+  color: #4f545e;
   font-weight: 700;
   padding: 4px;
   text-decoration: none;
   display: inline;
 }
 .TimeContent label, a {
-  color: #000000;
+  color: #4f545e;
   font-weight: 400;
   padding: 4px;
   display: inline;
@@ -209,7 +213,7 @@ CON (COUNTRY & ENTITY) DROPDOWN
 .ConContent {
   display: none;
   position: absolute;
-  background-color: silver;
+  background-color: white;
   min-width: 250px;
   overflow: auto;
   max-height: 250px;
@@ -220,14 +224,14 @@ CON (COUNTRY & ENTITY) DROPDOWN
   display: block;
 }
 .ConContent input {
-  color: #000000;
+  color: #4f545e;
   font-weight: 700;
   padding: 4px;
   text-decoration: none;
   display: inline;
 }
 .ConContent label, a {
-  color: #000000;
+  color: #4f545e;
   font-weight: 400;
   padding: 4px;
   display: inline;
@@ -237,7 +241,7 @@ CON (COUNTRY & ENTITY) DROPDOWN
 .CodeContent {
   display: none;
   position: absolute;
-  background-color: silver;
+  background-color: white;
   min-width: 250px;
   overflow: auto;
   padding: 4px;
@@ -247,14 +251,14 @@ CON (COUNTRY & ENTITY) DROPDOWN
   display: block;
 }
 .CodeContent input {
-  color: #000000;
+  color: #4f545e;
   font-weight: 700;
   padding: 4px;
   text-decoration: none;
   display: inline;
 }
 .CodeContent label, a {
-  color: #000000;
+  color: #4f545e;
   font-weight: 400;
   padding: 4px;
   display: inline;
@@ -280,6 +284,7 @@ table td {
   font-family: 'M PLUS Rounded 1c', sans-serif;
   text-align: left;
 }
+
 td, tr {
   padding: 4px;
   text-align: left;
@@ -289,8 +294,9 @@ td, tr {
   line-height: 10px;
 }
 table#Codes tr:hover {
-  background-color: #838383;
+  background-color: white;
 }
+
 /* Agreement Stages */
 td#Pre {
   background-color: #8dd3c7;
