@@ -36,6 +36,7 @@ d3.select('#deselectAllCons')
 		eventHandler.dispatchEvent(event);
 	})
 
+
 // add codes checkboxes
 makeCodesCheckboxes(true)
 
@@ -95,8 +96,13 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 			d3.select('#selectedCons').html(getSelectedConsString(cons))
 		})
 
+	d3.select('#reset-filters').on('click', resetFilters)
+	resetFilters()
+
 	// draw timeline
 	initTimeline(data, years, 'lines')
+
+
 
 	// d3.selectAll('.chartType input').on('change', function() {
 	// 	initTimeline(data, years, this.value)})
@@ -123,7 +129,7 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 		// UPDATING
 		// Listen for changes in filters
 		d3.selectAll('.input, #eventHandler').on('change', function() {
-			var filters = {year: myslider(),
+			var filters = {year: myslider.getRange(),
 						cons: getSelectedCons(cons),
 						codes: getSelectedCodes()}
 
@@ -137,6 +143,24 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 	}).catch(function(error){
 		throw error;
 	})
+
+	function resetFilters() {
+		console.log('resetting filters')
+
+		// Time
+		myslider.resetBrush()
+
+		// Countries/Entities
+		d3.select('#anyCon').property('checked', true)
+		d3.selectAll('#conDropdown input').property('checked', false)
+
+		// Codes
+		d3.select('#anyCodes').property('checked', true)
+		d3.selectAll('#codesCheckboxes input').property('checked', false)
+
+		let event = new Event("change");
+		eventHandler.dispatchEvent(event);
+	}
 
 }).catch(function(error){
 	throw error;
@@ -215,16 +239,11 @@ var selectedAgt = new function() {
 				.style('stroke-width', 0.5)
 				.transition()
 
-				// fill: rgb(255, 255, 255);
-    // fill-opacity: 0.9;
-    // stroke: black;
-    // stroke-width: 0.5;
-
 			// highlight the timeline item
 			d3.select('#rect' + agt.AgtId)
 				.attr('transform', 'translate(0,-1)')
 				.attr('height', 3)
-				.style('fill', '#eb1515')
+				.style('fill', '#4682b4')
 				.transition()
 		}
 	}

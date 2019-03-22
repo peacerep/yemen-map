@@ -154,13 +154,16 @@ function slider (divID, min, max) {
 	}
 
 	// select entire range
-	gBrush.call(brush.move, range.map(x))
+	var resetBrush = function() {
+		gBrush.call(brush.move, range.map(x))
+	}
 
 	var getRange = function() {
 		var range = d3.brushSelection(gBrush.node()).map(d => Math.round(x.invert(d)))
 		return [range[0], range[1] - 1]
 	}
 
-	return getRange
+	resetBrush()
 
+	return {getRange: getRange, resetBrush: resetBrush}
 }
