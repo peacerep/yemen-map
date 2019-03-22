@@ -185,7 +185,7 @@ function updateTimeline(index, data, yScale) {
 	})
 
 	// get filters from inputs on the left
-	var filters = getCodeSelection();
+	var filters = getSelectedCodes();
 
 	// apply filters
 	var data_country = data_country.filter(function (d) {

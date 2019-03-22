@@ -1,10 +1,6 @@
 "use strict"
 
-// FUNCTIONS AND VARS USED FOR ALL PAXVIS VISUALISATIONS
-
-// vars for glyphs
-const rCircle = 4;
-const fillCircle = '#c4ccd0';
+// Definitions and functions for both PaxVis pages
 
 // tau
 var tau = 2 * Math.PI;
@@ -20,7 +16,7 @@ var formatDay = d3.timeFormat("%j");  // day of the year as decimal number
 var formatYear = d3.timeFormat("%Y");
 
 // Codes
-var codesLong = {HrFra: 'Human Rights Framework',
+const codesLong = {HrFra: 'Human Rights Framework',
 		Mps: 'Power Sharing: Military',
 		Eps: 'Power Sharing: Economic',
 		Terps: 'Power Sharing: Territorial',
@@ -29,7 +25,17 @@ var codesLong = {HrFra: 'Human Rights Framework',
 		GeWom: 'Women, Girls and Gender',
 		TjMech: 'Transitional Justice Past Mechanism'}
 
-var codes = Object.keys(codesLong)
+const codes = Object.keys(codesLong)
+
+
+const codesRange = {HrFra: [0, 3],
+		Mps: [0, 3],
+		Eps: [0, 3],
+		Terps: [0, 3],
+		Polps: [0, 3],
+		Pol: [0, 3],
+		GeWom: [0, 1],
+		TjMech: [0, 3]}
 
 var codeColour = d3.scaleOrdinal()
 	.domain(['Pol', 'Polps', 'Terps', 'Eps', 'Mps', 'HrFra', 'GeWom', 'TjMech'])
@@ -74,6 +80,7 @@ function getSelectedCodes() {
 };
 
 // Stages
+
 var stagesLong = {Cea: 'Ceasefire/related',
 		Pre: 'Prenegotiation',
 		SubPar: 'Framework-substantive, partial',
@@ -98,28 +105,26 @@ function stageColour(d) {
 	return col
 }
 
-
+// extract min and max year from data
 function getYears(data) {
 	var minYear = d3.min(data.map(function(d) {return d.Year}))
 	var maxYear = d3.max(data.map(function(d) {return d.Year}))
 	return [minYear, maxYear]
 }
 
-// replace this! 
+// gets unique con names from the data
 function getConNames (dat) {
-
 	// get all unique Con values
 	var cons = dat.map(function(d){return d.Con;})
-
 	cons = cons.reduce((acc, val) => acc.concat(val))
-		// get the unique ones
+	// get the unique ones
 	cons = [...new Set(cons)]
 	// sort alphabetically
 	cons = cons.sort()
-
 	return cons
 }
 
+// split con names into array when loading in data
 function splitConNames(item) {
 	// input is one data point d.Con
 	// split into array of con names
@@ -147,15 +152,16 @@ function splitConNames(item) {
 	return cons
 }
 
-function uniqueCons(data) {
-	var allCons = []
-	for (var i = 0; i < data.length; i++) {
-		allCons.push(...data[i].Con)
-	}
-	var uniqueCons = [...new Set(allCons)]
-	return uniqueCons
-}
+// function uniqueCons(data) {
+// 	var allCons = []
+// 	for (var i = 0; i < data.length; i++) {
+// 		allCons.push(...data[i].Con)
+// 	}
+// 	var uniqueCons = [...new Set(allCons)]
+// 	return uniqueCons
+// }
 
+// update agreement info box
 function agtDetails(d) {
 	if (d==null) {
 		//clear
@@ -193,7 +199,7 @@ d3.selection.prototype.moveToBack = function() {
 	});
 };
 
-
+// parse transform attribute
 // https://stackoverflow.com/questions/17824145/parse-svg-transform-attribute-with-javascript
 function parseTransform (a)
 {
@@ -206,109 +212,3 @@ function parseTransform (a)
     return b;
 }
 
-////////////////////////////////////////////////////////////////////////////////
-// selecting and mousing over agreements
-////////////////////////////////////////////////////////////////////////////////
-
-var selectedAgt = new function() {
-	var agt = null;
-
-	this.clickOn = function(d) {
-		
-		// if it's the same that's already selected
-		if (agt == d) {this.clear(); return}
-
-		// else it's new
-		else { 
-			// if there's an old one, get rid of it
-			if (agt) {this.clear()}
-
-			//highlight new one
-			agt = d;
-			
-			// infobox is already displayed
-			// highlight the flower
-			var glyph = d3.select('#glyph' + agt.AgtId)
-			glyph.select('circle')
-				.attr('r', 17)
-				.style('fill', '#333')
-				.style('fill-opacity', 0.9)
-				.transition()
-
-			// highlight the timeline item
-			d3.select('#rect' + agt.AgtId)
-				.attr('transform', 'translate(0,-1)')
-				.attr('height', 3)
-				.style('fill', '#eb1515')
-				.transition()
-		}
-	}
-
-	this.get = function() {
-		return agt
-	}
-
-	this.clear = function() {
-		// remove all highlights and reset agt
-
-		if (agt) {
-
-			// remove glyph highlight
-			d3.select('#glyph' + agt.AgtId).select('circle')
-				.attr('r', rCircle)
-				.style('fill', fillCircle)
-				.style('fill-opacity', 1)
-				.transition()
-
-			d3.select('#glyph' + agt.AgtId)
-				.attr('transform', function(d) {
-					var t = parseTransform(d3.select(this).attr('transform'))
-					return `translate(${t.translate}) scale(1)`
-				})
-
-			// remove timeline highlight
-			d3.select('#rect' + agt.AgtId)
-			.attr('transform', '')
-			.attr('height', 1)
-			.style('fill', '#000')
-			.transition()
-		}
-
-		// reset agt
-		agt = null
-		agtDetails(null)
-	}
-}
-
-
-function onmouseover(d) {
-	// only run if this is not the selected event or there is no selected event
-	if ((selectedAgt.get() === null) || (!(d.AgtId == selectedAgt.get().AgtId))) {
-		agtDetails(d)
-		d3.select('#glyph' + d.AgtId).moveToFront()
-		// scale 200%
-		d3.select('#glyph' + d.AgtId).attr('transform', function(d) {
-			var t = parseTransform(d3.select(this).attr('transform'))
-			return `translate(${t.translate}) scale(2)`
-		})
-		d3.select('#rect' + d.AgtId)
-			.style('fill', '#ccc')
-			.transition()
-	}
-}
-
-function onmouseout(d) {
-	// only run if this is not the selected event or there is no selected event
-	if ((selectedAgt.get() === null) || (!(d.AgtId == selectedAgt.get().AgtId))) {
-		// remove infobox
-		agtDetails(selectedAgt.get())
-		// reset scale
-		d3.select('#glyph' + d.AgtId).attr('transform', function(d) {
-			var t = parseTransform(d3.select(this).attr('transform'))
-			return `translate(${t.translate}) scale(1)`
-		})
-		d3.select('#rect' + d.AgtId)
-			.style('fill', '#000')
-			.transition()
-	}
-}

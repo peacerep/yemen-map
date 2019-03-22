@@ -28,8 +28,14 @@ var dotG = svg.append('g').attr('id', 'dotG') // g for dots or anything else we 
 
 var arc = d3.arc()
 	.innerRadius(0)
-	.outerRadius(15)
+	.outerRadius(function(d) {
+		return d3.scaleSqrt().domain(codesRange[d.code]).range([0,15])(d.score)
+	})
 	.cornerRadius(5)
+
+// vars for glyphs
+const rCircle = 4;
+const fillCircle = '#c4ccd0';
 
 // set up zoom
 var zoom = d3.zoom()
@@ -191,33 +197,25 @@ function updateGlyphs(locdata) {
 
 	circle.selectAll('.arc')
 		.data(function(d) {
-			var activeCodes = []
+			var incr = tau / codes.length;
+			var obj = []
+
 			for (var i = 0; i < codes.length; i++) {
 				if (d[codes[i]]) {
-					activeCodes.push(codes[i])
-				}
-			}
-			if (!activeCodes.length) { return [] } 
-			else {
-				var incr = tau / codes.length;
-				var obj = []
-				for (var i=0; i<codes.length; i++) {
-					if (activeCodes.includes(codes[i])) {
-						obj.push({
+					obj.push({
 						startAngle: i * incr,
 						endAngle: (i+1) * incr,
-						colour: codeColour(codes[i])
+						code: codes[i],
+						score: d[codes[i]]
 					})
-					}
-					
 				}
-				return obj
 			}
+			return obj
 		})
 		.enter()
 		.append('path')
 		.attr('d', arc)
-		.style('fill', d => d.colour)
+		.style('fill', d => codeColour(d.code))
 
 	circle.on("click", function(d) {
 		selectedAgt.clickOn(d)
