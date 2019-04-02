@@ -120,7 +120,7 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 			.classed('land', true)
 
 		// match data points with locations on the map
-		var locdata = combineDataPoly(data, world)
+		const locdata = combineDataPoly(data, world)
 		console.log(locdata)
 
 		// draw glyphs
@@ -133,11 +133,8 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 						cons: getSelectedCons(cons),
 						codes: getSelectedCodes()}
 
-			var newData = filterData(data, filters)
-			var newLocdata = filterData(locdata, filters)
-
-			initTimeline(newData, filters.year, 'lines')
-			updateGlyphs(newLocdata)
+			initTimeline(filterData(data, filters), filters.year, 'lines')
+			updateGlyphs(filterData(locdata, filters))
 		})
 	
 	}).catch(function(error){
