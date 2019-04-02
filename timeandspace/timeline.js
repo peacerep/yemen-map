@@ -39,7 +39,7 @@ function initTimeline(data, years, chart) {
 
 	gChart = g.append('g')
 
-	if (chart == '1') {
+	if (chart === 1) {
 
 		var agtHeight = 1,
 			agtSpacing = 1;
@@ -89,12 +89,12 @@ function initTimeline(data, years, chart) {
 			.text(function(d){ return d.values.length; })
 	} // end lines chart
 
-	if (chart == '2') {
+	else if (chart === 2) {
 
 	}
 
 	else {
 		// chart == 'ridge'
-		consol.log('error: unknown chart type', chart)
+		console.log('error: unknown chart type', chart)
 	}
 }

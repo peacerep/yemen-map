@@ -100,7 +100,7 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 	resetFilters()
 
 	// draw timeline
-	initTimeline(data, years, 'lines')
+	initTimeline(data, years, 1)
 
 
 
@@ -133,7 +133,7 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 						cons: getSelectedCons(cons),
 						codes: getSelectedCodes()}
 
-			initTimeline(filterData(data, filters), filters.year, 'lines')
+			initTimeline(filterData(data, filters), filters.year, 1)
 			updateGlyphs(filterData(locdata, filters))
 		})
 	
