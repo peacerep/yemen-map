@@ -1,3 +1,4 @@
+"use strict"
 // maybe split into init and update function
 // add filters
 
@@ -113,7 +114,6 @@ function initTimeline(data, years) {
 
 	// LINE CHART --------------------------------------------------------------
 
-	// console.log(years)
 	var tooltip = gLines.append("g")
 	    .attr("transform", "translate(-100,-100)")
 	    .attr("id", "tooltip")
@@ -141,9 +141,7 @@ function initTimeline(data, years) {
 	var flatDataLines = []
 
 	for (var year = years[0]; year <= years[1]; year++) {
-		console.log(year)
 		var index = dataLines.findIndex(function(d) {return d.key == year})
-		console.log(index)
 		if (index == -1) {
 			codes.forEach(function(code) {
 				flatDataLines.push({
@@ -164,14 +162,9 @@ function initTimeline(data, years) {
 		}
 	}
 
-	console.log(dataLines)
-
-
 	dataLines = d3.nest()
 		.key(function(d) {return d.code})
 		.entries(flatDataLines)
-
-	console.log(flatDataLines)
 
 	var maxCount = d3.max(flatDataLines, d => d.count)
 
