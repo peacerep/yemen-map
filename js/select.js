@@ -157,14 +157,14 @@ window.onload = function() {
       var filters = document.getElementsByName("text");
       for (i = 0; i < filters.length; i++) {
         if (filters[i].id == code){
-          if (localStorage.getItem(code) == 0) {
-            filters[i].style.color = "#4f545e";
-            localStorage.setItem(code, 1);
-            console.log("Checked "+target.id);
+          if (filters[i].style.color == "silver"){
+          filters[i].style.color = "black";
+          localStorage.setItem(code, 1);
+          console.log("Checked "+target.id);
           } else {
-            filters[i].style.color = "#929caf";
-            localStorage.setItem(code, 0);
-            console.log("Unchecked "+target.id);
+          filters[i].style.color = "silver";
+          localStorage.setItem(code, 0);
+          console.log("Unchecked "+target.id);
           }
         }
       }
@@ -294,7 +294,7 @@ function paxRuleAll() {
 function paxFilterUncheck() {
   var filters = document.getElementsByName("text");
   for (i = 0; i < filters.length; i++) {
-    filters[i].style.color = "#929caf";
+    filters[i].style.color = "silver";
     localStorage.setItem(filters[i].id,0);
   }
   console.log("Unchecked all code filters");
@@ -302,7 +302,7 @@ function paxFilterUncheck() {
 function paxFilterCheck() {
   var filters = document.getElementsByName("text");
   for (i = 0; i < filters.length; i++) {
-    filters[i].style.color = "#4f545e";
+    filters[i].style.color = "black";
     localStorage.setItem(filters[i].id,1);
   }
   console.log("Checked all code filters");
