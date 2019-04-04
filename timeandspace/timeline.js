@@ -71,7 +71,7 @@ function initTimeline(data, years) {
 		.sortValues(function(a,b){ return d3.descending(a.Dat, b.Dat) })
 		.entries(data);
 
-	for (var i = 0; i < years.length; i++) {
+	for (var i = 0; i < dataByYear.length; i++) {
 				
 		var rects = gBars.selectAll("rect .y" + i)
 			.data(dataByYear[i].values)
