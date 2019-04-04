@@ -197,8 +197,8 @@ function initTimeline(data, years) {
 		.attr('id', function(d) {return 'line' + d[0].code})
 		.style('stroke', d => codeColour(d[0].code))
 		.style('stroke-linejoin', "round")
-		.style('stroke-width', '4px')
-		.style('opacity', 0.8)
+		.style('stroke-width', '2.5px')
+		.style('opacity', 0.6)
 		.style('fill', 'none')
 		.attr('pointer-events', 'none')
 
@@ -225,7 +225,7 @@ function initTimeline(data, years) {
 	//Voronoi mouseover and mouseout functions	
 	function mouseover(d) {
 		lines1.style('opacity', 0.1)
-		d3.select('#line' + d.code).style('opacity', 0.8).moveToFront()
+		d3.select('#line' + d.code).style('opacity', 0.6).moveToFront()
 		
 		tooltip.moveToFront();
 	    tooltip.attr("transform", "translate(" + xScale(parseYear(d.year)) + "," + yLines(d.count) + ")");
@@ -234,7 +234,7 @@ function initTimeline(data, years) {
 	}
 
 	function mouseout(d) {
-		lines1.style('opacity', 0.8)	    
+		lines1.style('opacity', 0.6)	    
 		tooltip.attr("transform", "translate(-100,-100)");
 	}
 
