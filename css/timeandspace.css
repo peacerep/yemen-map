@@ -8,7 +8,7 @@ Styles for page with timeline and map
 
 .grid-container {
 	display: grid;
-	grid-template-columns: 325px 1fr 20%; 
+	grid-template-columns: 305px 1fr 20%; 
 	grid-template-rows: 250px 1fr;
 	width: 100vw;
 	height: 100vh;
@@ -17,7 +17,7 @@ Styles for page with timeline and map
 	overflow: hidden;
 }
 
-#timeline-top, #map {
+#map {
 	padding: 15px;
 }
 
@@ -32,6 +32,7 @@ Styles for page with timeline and map
 #timeline-top {
 	grid-column: 2;
 	grid-row: 1;
+	position: relative;
 }
 
 #info-box {
@@ -83,4 +84,21 @@ Map
 
 #info-box .selectSection {
 	margin: 0;
+}
+
+#timeline-top .charts {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+#selectTimeline {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
+.tooltipText {
+	text-anchor: middle;
+	text-shadow: 0 1px 0 #eee, 1px 0 0 #eee, 0 -1px 0 #eee, -1px 0 0 #eee;
 }

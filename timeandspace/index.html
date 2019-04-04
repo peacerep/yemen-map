@@ -15,6 +15,7 @@
 	<script src="../lib/d3.v5.min.js"></script>
 	<script src="../lib/d3-polygon.v1.min.js"></script>
 	<script src="../lib/d3-array.v2.min.js"></script>
+	<script src="../lib/d3-delaunay.min.js"></script>
 	<!-- <script src="https://d3js.org/topojson.v1.min.js"></script> -->
 	<script type="text/javascript" src="../js/functions.js"></script>
 	<script type="text/javascript" src='timeline.js'></script>	
@@ -78,12 +79,13 @@
 
 			<div id='reset-filters' class=button>Reset Filters</div>
 
-			<!-- <div class='switchContainer chartType'>
-				<input type="radio" id="chartLines" name="chart" value="lines" checked><label for="chartLines" class='button left'>Lines</label><input type="radio" id="chartRidge" name="chart" value="ridge"><label for="chartRidge" class='button right'>Ridge</label>
-			</div> -->
-
 		</div>
-		<div id="timeline-top"></div>
+		<div id="timeline-top">
+			<div id='selectTimeline' class='switchContainer'>
+				<input type="radio" id="timeline-lines" name="timeline" value="lines" checked><label for="timeline-lines" class='button left'>Codes Count</label><input type="radio" id="timeline-bars" name="timeline" value="bars"><label for="timeline-bars" class="button right">Individual Agreements</label>
+			</div>
+			<div class='charts'></div>
+		</div>
 		<div id="info-box" ><div class='selectSection'>
 				<h3>Agreement Details</h3>
 				<div id='agreementDetails'></div>

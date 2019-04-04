@@ -98,19 +98,19 @@ rect.selection {
 	display: inline-block;
 }
 
-input[type="radio"] {
+.switchContainer input[type="radio"] {
 	display: none;
 }
 
-input[type="radio"]+label {
+.switchContainer input[type="radio"]+label {
 	padding: 0 3px;
 }
 
-input[type="radio"]+label:hover {
+.switchContainer input[type="radio"]+label:hover {
 	/*border-bottom: solid 2px black;*/
 }
 
-input[type="radio"]:checked+label {
+.switchContainer input[type="radio"]:checked+label {
 	background-color: #347bb6;
 	color: #fff;
 }
@@ -202,17 +202,4 @@ input[type="radio"]:checked+label {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
-}
-
-
-/*select and deselect buttons*/
-/*a#selectAllCodes, a#deselectAllCodes {
-	background-color: #fff;
-	padding: 3px 6px;
-	border: #555 1px solid;
-	border-radius: 5px;
-}
-
-a#selectAllCodes:hover, a#deselectAllCodes:hover {
-	background-color: transparent;
 }
