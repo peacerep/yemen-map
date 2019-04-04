@@ -1,0 +1,71 @@
+rect {
+	opacity: 1;
+}
+
+rect:hover {
+	opacity: 0.7;
+}
+
+select {
+	width: 200px;
+}
+
+
+/*Grid layout*/
+
+.grid-container {
+	display: grid;
+	grid-template-columns: 305px 1fr 1fr 1fr; 
+	grid-template-rows: 1fr;
+	align-content: stretch;
+	justify-content: stretch;
+}
+
+#timeline-v0, #timeline-v1, #timeline-v2 {
+	grid-row: 1;
+	padding: 15px;
+}
+
+#sidebar {
+	grid-column: 1;
+	padding: 0 10px;
+	margin: 10px 0;
+}
+
+#timeline-v0 {
+	grid-column: 2;
+}
+
+#timeline-v1 {
+	grid-column: 3;
+}
+
+#timeline-v2 {
+	grid-column: 4;
+}
+
+.timeline .button {
+	margin-top: 3px;
+}
+
+.timeline .button:hover {
+	background-color: #fff;
+}
+
+/*Legend*/
+
+#legend .cb-container {
+	cursor: auto;
+}
+
+.openclose span {
+	float: right;
+}
+
+.openclose h3 {
+	cursor: pointer;
+}
+
+#codeSelectionSection {
+	user-select: none;
+}

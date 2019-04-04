@@ -1,0 +1,48 @@
+/*
+main styles (all pages)
+*/
+
+html, body {
+	background-color: #eee;
+	color: #000;
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Karla', sans-serif;
+	font-size: 15px;
+}
+
+h1 {
+	font-weight: bold;
+	font-size: 34px;
+	margin: 20px 0 0 0;
+}
+
+h2 {
+	font-weight: normal;
+	font-size: 20px;
+	margin: 10px 0 0 0;
+}
+
+h3 {
+	font-size: 18px;
+	margin: 3px 0;
+	font-weight: bold;
+}
+
+a {
+	color: black;
+	text-decoration: none;
+}
+
+a:hover {
+	border-bottom: solid 1px black;
+}
+
+h1 a:hover {
+	border-bottom: solid 2px black;
+}
+
+
+.hidden {
+	display: none;
+}
