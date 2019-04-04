@@ -6,7 +6,6 @@ function initTimeline(data, years) {
 	// empty div
 	const chart = d3.select('#timeline-top .charts')
 	chart.selectAll('*').remove()
-	console.log(chart)
 
 	var margin = {top: 25, right: 20, bottom: 40, left: 40}, //read clockwise from top
 		width = parseInt(chart.style("width"), 10) - margin.left - margin.right,
@@ -66,7 +65,7 @@ function initTimeline(data, years) {
 	
 	// Group agreements by Year (create an array of objects whose key is the
 	// year and value is an array of objects (one per agreement))
-	var years = d3.nest()
+	var dataByYear = d3.nest()
 		.key(function(d){ return d.Year; }).sortKeys(d3.ascending)
 		.sortValues(function(a,b){ return d3.descending(a.Dat, b.Dat) })
 		.entries(data);
@@ -74,7 +73,7 @@ function initTimeline(data, years) {
 	for (var i = 0; i < years.length; i++) {
 				
 		var rects = gBars.selectAll("rect .y" + i)
-			.data(years[i].values)
+			.data(dataByYear[i].values)
 			.enter()
 			.append("rect")
 			.classed('y' + i, true)
@@ -97,7 +96,7 @@ function initTimeline(data, years) {
 	// add count at the top of each bar
 	var text = gBars.append('g')
 		.selectAll("text .count")
-		.data(years)   //yrCounts format: [Year, yrCount]
+		.data(dataByYear)   //yrCounts format: [Year, yrCount]
 		.enter()
 		.append("text")
 		.attr("class","count")
@@ -133,27 +132,46 @@ function initTimeline(data, years) {
 		.rollup(function(v) {
 			var arr = [];
 			codes.forEach(function(code) {
-				if (code == 'GeWom') {console.log(v)}
-				arr.push([code, d3.sum(v, function(d) { return d[code] > 0; })]); 
+				arr.push([code, d3.sum(v, function(d) { return d[code] > 2; })]); 
 			})
 			return arr
 			}) 
 		.entries(data);
 
 	var flatDataLines = []
-	dataLines.forEach(function(yr) {
-		yr.value.forEach(function(arr) {
-			flatDataLines.push({
-				year: yr.key,
-				code: arr[0],
-				count: arr[1]
+
+	for (var year = years[0]; year <= years[1]; year++) {
+		console.log(year)
+		var index = dataLines.findIndex(function(d) {return d.key == year})
+		console.log(index)
+		if (index == -1) {
+			codes.forEach(function(code) {
+				flatDataLines.push({
+					year: year,
+					code: code,
+					count: 0
+				})
 			})
-		})
-	})
+		}
+		else {
+			dataLines[index].value.forEach(function(arr) {
+				flatDataLines.push({
+					year: year,
+					code: arr[0],
+					count: arr[1]
+				})
+			})
+		}
+	}
+
+	console.log(dataLines)
+
 
 	dataLines = d3.nest()
 		.key(function(d) {return d.code})
 		.entries(flatDataLines)
+
+	console.log(flatDataLines)
 
 	var maxCount = d3.max(flatDataLines, d => d.count)
 
@@ -170,16 +188,19 @@ function initTimeline(data, years) {
 		.attr("class","yaxis")
 		.call(yAxis);
 
+	// define line generator
 	var line = d3.line()
 		.x(d => xScale(parseYear(d.year))) // set the x values for the line generator
 		.y(d => yLines(d.count)) // set the y values for the line generator 
 
+	// draw lines
 	var lines1 = gLines.selectAll('.codeline')
 		.data(dataLines)
 		.enter()
 		.append("path")
 		.datum(d => d.values.sort(function(a,b) {return d3.ascending(a.year,b.year)}))
 		.attr("d", line)
+		.classed('codeline', true)
 		.attr('id', function(d) {return 'line' + d[0].code})
 		.style('stroke', d => codeColour(d[0].code))
 		.style('stroke-linejoin', "round")
@@ -188,12 +209,14 @@ function initTimeline(data, years) {
 		.style('fill', 'none')
 		.attr('pointer-events', 'none')
 
+	// compute voronoi diagram for better mouseover interaction
 	const delaunay = d3.Delaunay.from(flatDataLines,
 		d => xScale(parseYear(d.year)), // x accessor
 		d => yLines(d.count)) 			// y accessor
 
 	const voronoi = delaunay.voronoi([0, 0, width, height]);
 
+	// draw (invisible) voronoi diagram
 	gLines.append('g')
 		.selectAll('path')
 		.data(flatDataLines)

@@ -121,7 +121,6 @@ d3.csv("../data/paxTimelineData_02092018.csv", function(d) {
 
 		// match data points with locations on the map
 		const locdata = combineDataPoly(data, world)
-		console.log(locdata)
 
 		// draw glyphs
 		updateGlyphs(locdata)
