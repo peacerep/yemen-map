@@ -13,7 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/compare.css">
 
 	<script src="../lib/d3.v5.min.js"></script>
-	<!-- <script src="../lib/saveSvgAsPng.js"></script> -->
+	<script src="../lib/saveSvgAsPng.js"></script>
 
 	<script type="text/javascript" src="../js/functions.js"></script>
 	
@@ -24,62 +24,61 @@
 		<div id="sidebar">
 			<h1><a href='..'>Visualizing Peace</a></h1>
 			<h2>Agreement Sequence Comparison</h2>
+
+			<!-- for receiving custom input events -->
+			<div id='eventHandler' class='input hidden'></div>
 		
 			<!-- code selection -->
-			<div class='selectSection'>
-				<h3>Code Selection</h3>
+			<div class='selectSection' id='codeSelectionSection'>
+				<div class='openclose'><h3>Code Selection<span>&#9660;</span></h3></div>
 				<!-- any/all radio -->
-				Show only agreements that address
-				<div class='switchContainer'>
-					<input type="radio" id="allCodes" name="codesRule" value="all"><label for="allCodes" class='button left'>all</label><input type="radio" id="anyCodes" name="codesRule" value="any" checked><label for="anyCodes" class='button right'>any</label>
+				<div class='hideshow hidden'>
+					Show only agreements that address
+					<div class='switchContainer'>
+						<input type="radio" id="allCodes" name="codesRule" value="all"><label for="allCodes" class='button left'>all</label><input type="radio" id="anyCodes" name="codesRule" value="any" checked><label for="anyCodes" class='button right'>any</label>
+					</div>
+					of the selected codes.<br>
+					
+					<div id='codesCheckboxes'></div>
+					
+					<span>
+						<a href="#" id="selectAllCodes" class='button'>Select All</a>&nbsp;&nbsp;
+						<a href="#" id="deselectAllCodes" class='button'>Deselect All</a><br>
+					</span>
 				</div>
-				of the selected codes.<br>
-				
-				<div id='codesCheckboxes'></div>
-				
-				<span>
-					<a href="#" id="selectAllCodes" class='button'>Select All</a>&nbsp;&nbsp;
-					<a href="#" id="deselectAllCodes" class='button'>Deselect All</a><br>
-				</span>
 			</div>
 		
 			<!-- legend for agreement codes (not clickable) -->
-			<h3><span>Agreement Stage Legend</span></h3>
-			<table class='legend'>
-			<tr><td id="Cea" class="color">&nbsp;&nbsp;&nbsp;</td><td>Ceasefire/related</td></tr>
-			<tr><td id="Pre" class="color">&nbsp;&nbsp;&nbsp;</td><td>Prenegotiation</td></tr>
-			<tr><td id="SubPar" class="color">&nbsp;&nbsp;&nbsp;</td><td>Framework-substantive, partial</td></tr>
-			<tr><td id="SubComp" class="color">&nbsp;&nbsp;&nbsp;</td><td>Framework-substantive, comprehensive</td><tr>
-			<tr><td id="FrCons" class="color">&nbsp;&nbsp;&nbsp;</td><td>Constitution</td></tr>
-			<tr><td id="Imp" class="color">&nbsp;&nbsp;&nbsp;</td><td>Implementation</td></tr>
-			<tr><td id="Ren" class="color">&nbsp;&nbsp;&nbsp;</td><td>Renewal</td></tr>
-			<tr><td id="Other" class="color">&nbsp;&nbsp;&nbsp;</td><td>Other</td></tr>
-			</table>
-			
-			<!-- div for agreement details - content added by script -->
-			<h3><span>Agreement Details</span></h3>
-			<div id='agreementDetails'></div>
+			<div class='selectSection'>
+				<h3><span>Agreement Stage Legend</span></h3>
+				<div id='legend'></div>
+			</div>
 
-		</div>
+			<!-- div for agreement details - content added by script -->
+			<div class='selectSection'>
+				<h3><span>Agreement Details</span></h3>
+				<div id='agreementDetails'></div>
+			</div>
+		</div> <!-- sidebar -->
 
 		<!-- div's for timelines 1-3 -->
-		<div id="timeline-v0">  
-			<select id='timeline-v0-select'>
+		<div id="timeline-v0" class='timeline'>  
+			<select class="button" id='timeline-v0-select'>
 				<option value="0" disabled selected="selected">Select country/entity</option> 
 			</select><br>
-			<button class="btn" id="timeline-v0-export">Export Timeline as PNG</button><br>
+			<button class="button" id="timeline-v0-export">Export Timeline as PNG</button><br>
 		</div>
-		<div id="timeline-v1">
-			<select id='timeline-v1-select'>
+		<div id="timeline-v1" class='timeline'>
+			<select class="button" id='timeline-v1-select'>
 				<option value="0" disabled selected="selected">Select country/entity</option> 
 			</select><br>
-			<button class="btn" id="timeline-v1-export">Export Timeline as PNG</button><br>
+			<button class="button" id="timeline-v1-export">Export Timeline as PNG</button><br>
 		</div>
-		<div id="timeline-v2">
-			<select id='timeline-v2-select'>
+		<div id="timeline-v2" class='timeline'>
+			<select class="button" id='timeline-v2-select'>
 				<option value="0" disabled selected="selected">Select country/entity</option> 
 			</select><br>
-			<button class="btn" id="timeline-v2-export">Export Timeline as PNG</button><br>
+			<button class="button" id="timeline-v2-export">Export Timeline as PNG</button><br>
 		</div>
 	</div>
 

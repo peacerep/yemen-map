@@ -4,16 +4,20 @@
 //////////////////////////// EVENT LISTENERS ///////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-d3.select('#SelectAllCodesV')
+d3.select('#selectAllCodes')
 	.on('click', function() {
 		// check all checkboxes
-		d3.selectAll('#codeDropdown input').property('checked', true)
+		d3.selectAll('#codesCheckboxes input').property('checked', true)
+		let event = new Event("change");
+		eventHandler.dispatchEvent(event);
 	})
 
-d3.select('#DeselectAllCodesV')
+d3.select('#deselectAllCodes')
 	.on('click', function() {
 		// uncheck all checkboxes
-		d3.selectAll('#codeDropdown input').property('checked', false)
+		d3.selectAll('#codesCheckboxes input').property('checked', false)
+		let event = new Event("change");
+		eventHandler.dispatchEvent(event);
 	})
 
 // clicking anywhere in any of the svg's will reset the agreement details
@@ -28,6 +32,25 @@ makeCodesCheckboxes(false)
 // initialise infobox
 agtDetails(null)
 
+// expand Code Selection div
+d3.select('#codeSelectionSection h3').on('click', function() {
+	console.log('toggle', d3.select(this).classed('hidden'))
+	d3.select('#codeSelectionSection .hideshow')
+		.classed('hidden', !d3.select('#codeSelectionSection .hideshow').classed('hidden'))
+})
+
+// Legend
+// abuse checkmark styles to create legend
+var codesCheckboxes = d3.select('#legend')
+	.selectAll('span')
+	.data(stages)
+	.enter()
+	.append('span')
+	.classed('cb-container', true)
+codesCheckboxes.html(d => stagesLong[d] + '<br>')
+var checkmark = codesCheckboxes.append('span')
+	.classed('checkmark', true)
+	.style('background-color', d => stageColour(d, true))
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////// SET UP SVG //////////////////////////////////////////
@@ -39,7 +62,7 @@ var nTimelines = 3 // there are 3 timelines (they all need to be defined in html
 // define margin and dimensions of svg
 var margin = {top: 25, right: 5, bottom: 5, left: 45},
 	height = 880 - margin.top - margin.bottom,
-	width = 400 - margin.left - margin.right;
+	width = 320 - margin.left - margin.right;
 
 // define size and padding for agreement blocks
 var agtPadding = 2,
@@ -65,13 +88,13 @@ for (var i=0; i < nTimelines; i++) {
 ////////////////////////////////////////////////////////////////////////////////
 
 d3.select('#timeline-v0-export').on('click', function() {
-	saveSvgAsPng(document.getElementById("svg0"), 'paxvis-image', {scale: 5, backgroundColor: "#737373"});
+	saveSvgAsPng(document.getElementById("svg0"), 'paxvis-image', {scale: 5, backgroundColor: "#fff"});
 })
 d3.select('#timeline-v1-export').on('click', function() {
-	saveSvgAsPng(document.getElementById("svg0"), 'paxvis-image', {scale: 5, backgroundColor: "#737373"});
+	saveSvgAsPng(document.getElementById("svg1"), 'paxvis-image', {scale: 5, backgroundColor: "#fff"});
 })
-d3.select('#timeline-v0-export').on('click', function() {
-	saveSvgAsPng(document.getElementById("svg0"), 'paxvis-image', {scale: 5, backgroundColor: "#737373"});
+d3.select('#timeline-v2-export').on('click', function() {
+	saveSvgAsPng(document.getElementById("svg2"), 'paxvis-image', {scale: 5, backgroundColor: "#fff"});
 })
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -127,7 +150,7 @@ d3.csv("../data/paxTimelineData_02092018.csv", function (d) {
 
 		populateDropdowns(nTimelines, data, y);
 
-		d3.selectAll('#sidebar input')
+		d3.selectAll('#sidebar input, .input')
 			.on('change', function() {
 				for (var i = 0; i < nTimelines; i++) {
 					updateTimeline(i, data, y)				
@@ -234,7 +257,7 @@ function updateTimeline(index, data, yScale) {
 			.enter()
 			.append("rect")
 			.classed('y' + i, true)
-			.attr("fill", stageColour) // see functions.js
+			.attr("fill", d => stageColour(d)) // see functions.js
 			.attr("x",function(d,i){ return (agtWidth + agtSpacing) * i })
 			.attr("y", function(d){ return yScale(parseYear(d.Year)) - (agtHeight/2); })
 			.attr("width", agtWidth)

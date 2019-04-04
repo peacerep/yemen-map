@@ -92,16 +92,23 @@ var stagesLong = {Cea: 'Ceasefire/related',
 
 var stages = Object.keys(stagesLong)
 
-function stageColour(d) {
+function stageColour(d, fake = false) {
 	// can't just be a d3 scale because the colour could be either from
 	// d.Stage or d.StageSub
-	// (Colors from: http://colorbrewer2.org/#type=qualitative&scheme=Set3&n=7)
 	var stage = d3.scaleOrdinal()
-		.domain(['Cea', 'Pre', 'SubPar', 'SubComp', 'Imp', 'Ren', 'Other'])
-		.range(["#fb8072", "#8dd3c7", "#ffffb3", "#fdb462", "#b3de69", "#bebada", "#8c8c8c"])
-		// red turquoise yellow orange green purple grey
-	var cons = "#80b1d3" // blue
-	var col = (d.StageSub == 'FrCons' ? cons : stage(d.Stage));
+		.domain(['Other', 'Cea', 'Pre', 'SubPar', 'SubComp', 'FrCons', 'Imp', 'Ren'])
+		.range(["#8c8c8c", "#ffe41c", "#FDB32F", "#ED7953", "#CC4678", "#9C179E", "#5D01A6", "#0D0887"])
+		// .range(["#8c8c8c", "#440154", "#443A83", "#31688E", "#21908C", "#35B779", "#8FD744", "#FDE725"])
+
+	// old colours 
+	// .range(["#fb8072", "#8dd3c7", "#ffffb3", "#fdb462", "#b3de69", "#bebada", "#8c8c8c"])
+	// var cons = "#80b1d3"
+
+	if (fake) {var col = stage(d) } 
+	else {
+		var cons = stage('FrCons')
+		var col = (d.StageSub == 'FrCons' ? cons : stage(d.Stage));
+	}
 	return col
 }
 

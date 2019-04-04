@@ -1,9 +1,9 @@
 rect {
-	opacity: 0.7;
+	opacity: 1;
 }
 
 rect:hover {
-	opacity: 1;
+	opacity: 0.7;
 }
 
 select {
@@ -15,7 +15,7 @@ select {
 
 .grid-container {
 	display: grid;
-	grid-template-columns: 400px 1fr 1fr 1fr; 
+	grid-template-columns: 305px 1fr 1fr 1fr; 
 	grid-template-rows: 1fr;
 	align-content: stretch;
 	justify-content: stretch;
@@ -28,9 +28,8 @@ select {
 
 #sidebar {
 	grid-column: 1;
-	padding: 0 15px;
-	margin: 15px 0;
-	border-right: solid 1px black;
+	padding: 0 10px;
+	margin: 10px 0;
 }
 
 #timeline-v0 {
@@ -45,58 +44,28 @@ select {
 	grid-column: 4;
 }
 
-
-/*select styles */
-#agreementDetails table {
-	table-layout: fixed;
-	word-break: break-word;
-	width: 100%;
-	/*vertical-align: top;*/
+.timeline .button {
+	margin-top: 3px;
 }
 
-#agreementDetails td {
-	/*border: 1px solid #000;*/
-	width: 120px;
-	/*font-weight: bold;*/
-}
-#agreementDetails td+td {
-	width: auto;
+.timeline .button:hover {
+	background-color: #fff;
 }
 
 /*Legend*/
-.legend {
-  margin-top: 5px;
-  margin-left: 4px;
-  pointer-events: none;
+
+#legend .cb-container {
+	cursor: auto;
 }
 
-.legend td, .legend tr {
-  padding: 4px;
-  font-size: 14px;
-  line-height: 10px;
+.openclose span {
+	float: right;
 }
 
-td#Pre {
-  background-color: #8dd3c7;
+.openclose h3 {
+	cursor: pointer;
 }
-td#SubPar {
-  background-color: #ffffb3;
-}
-td#SubComp {
-  background-color: #fdb462;
-}
-td#Imp {
-  background-color: #b3de69;
-}
-td#Cea {
-  background-color: #fb8072; /*#e41a1c;*/
-}
-td#Other {
-  background-color: #8c8c8c;
-}
-td#FrCons {
-  background-color: #80b1d3;
-}
-td#Ren {
-  background-color: #bebada;
+
+#codeSelectionSection {
+	user-select: none;
 }
