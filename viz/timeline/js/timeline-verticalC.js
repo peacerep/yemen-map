@@ -171,7 +171,7 @@ function callFunction() {
                 .attr("name",function(d){ return d.Agt; })
                 .attr("value",function(d){ return d.Year; })
                 .attr("fill", function(d){ return getStageFill(d, stageValues, stageColors); })//"black")
-                .attr("stroke",function(d){ if (+d.AgtId == +selectionV[0]){ return "#ffffff"; } else { return "#dee3e8"; } })  // same as html background-color
+                .attr("stroke",function(d){ if (+d.AgtId == +selectionV[0]){ return "#ffffff"; } else { return "#737373"; } })  // same as html background-color
                 .attr("stroke-width","1px")
                 .style("opacity", function(d){ if (+d.AgtId == +selectionV[0]){ return "1"; } else { return "0.7"; } })
                 .attr("x",function(d,i){ return (yWidth+margin.left+((agtWidth)*(i*agtSpacing)))+"px"; })
@@ -309,7 +309,7 @@ function callFunction() {
           }
         }
         title = title + "_" + con + "_" + codes + "_" + "01_01_1900-31_12_2015.png";
-        saveSvgAsPng(document.getElementsByTagName("svg")[0], title, {scale: 5, backgroundColor: "#dee3e8"});
+        saveSvgAsPng(document.getElementsByTagName("svg")[0], title, {scale: 5, backgroundColor: "#737373"});
         // if IE need canvg: canvg passed between scale & backgroundColor
       });
 

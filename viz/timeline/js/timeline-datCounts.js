@@ -181,8 +181,8 @@ function callFunction() {
              .enter().append("rect")
                .attr("class","count")
                .attr("id", function(d){ return d[0]; })
-               .attr("fill","#4f545e")
-               .attr("stroke","#dee3e8")  // same as html background-color
+               .attr("fill","black")
+               .attr("stroke","#737373")  // same as html background-color
                .attr("stroke-width","1px")
                .style("opacity", "0.7")
                .attr("x", function(d){ return x(d[0]) + margin.left; })
@@ -206,8 +206,8 @@ function callFunction() {
                tooltip.html("<p>Agreements signed on<br/>"+formatDate(d[0])+":<br/><b>"+d[1]+"</b></p>");
            });
            rects.on("mouseout",function(d) {
-              this.style.fill = "#4f545e";
-              this.style.stroke = "#dee3e8";
+              this.style.fill = "black";
+              this.style.stroke = "#737373";
               tooltip.style("opacity","0");
             });
 
@@ -324,7 +324,7 @@ function callFunction() {
           }
         }
         title = title + "_" + cons + "_" + codes + "_" + newMinDay + "-" + newMaxDay + ".png";
-        saveSvgAsPng(document.getElementsByTagName("svg")[0], title, {scale: 5, backgroundColor: "#dee3e8"});
+        saveSvgAsPng(document.getElementsByTagName("svg")[0], title, {scale: 5, backgroundColor: "#737373"});
         // if IE need canvg: canvg passed between scale & backgroundColor
       });
 

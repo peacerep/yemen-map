@@ -156,7 +156,7 @@ function callFunction() {
                   .attr("name",function(d){ return d.Agt; })
                   .attr("value",function(d){ return d.Year; })
                   .attr("fill", function(d){ return (setAgtColors(d))[0]; })//"black")
-                  .attr("stroke",function(d){ if (+d.AgtId == +selection[0]){ return "white"; } else { return "#dee3e8"; } })   //.attr("stroke","#737373")  // same as html background-color
+                  .attr("stroke",function(d){ if (+d.AgtId == +selection[0]){ return "white"; } else { return "#737373"; } })   //.attr("stroke","#737373")  // same as html background-color
                   .attr("stroke-width",function(d){ if (+d.AgtId == +selection[0]){ return "2px"; } else { return "0.5px"; } }) //.attr("stroke-width","0.5px")
                   .style("opacity", function(d){ if (+d.AgtId == +selection[0]){ return "1"; } else { return "0.5"; } })        //.style("opacity", "0.7")
                   .attr("x", function(d){ return x(parseYear(d.Year)) - (agtWidth/2) + margin.left*2; })
@@ -164,9 +164,9 @@ function callFunction() {
                   .attr("width", agtWidth+"px")
                   .attr("height", agtHeight+"px");
 
-                  var selectedRects = chartGroup.selectAll('rect.selected');
-                  selectedRects.on("click", function(d) {
-                    if (!clicked){ // if an agreement's been selected
+                var selectedRects = chartGroup.selectAll('rect.selected');
+                selectedRects.on("click", function(d) {
+                    if (!clicked){
                       clicked = true;
                       this.style.opacity = 1;
                       console.log(this.id);
@@ -179,15 +179,14 @@ function callFunction() {
                       window.localStorage.setItem("updatePaxMap", "true");
                       callFunction();
 
-                    } else { // if an agreement's not selected
+                    } else { // if clicked
                       clicked = false;
                       this.style.opacity = 0.5;
                       window.localStorage.setItem("paxselection", JSON.stringify([]));
                       window.localStorage.setItem("updatePaxMap", "true");
                       callFunction();
                     }
-                  });
-
+                });
                 selectedRects.on("mouseover",function(d){
                     if (!clicked){
                       this.style.fill = "#ffffff";
@@ -204,7 +203,7 @@ function callFunction() {
                       window.localStorage.setItem("updatePaxMap", "false");
                       window.localStorage.setItem("paxhover", JSON.stringify([]));
                       this.style.fill = "black"
-                      this.style.stroke = "#dee3e8";
+                      this.style.stroke = "#737373";
                      }
                 });
 
@@ -286,14 +285,14 @@ function callFunction() {
                 if (+d.AgtId == +selection[0]){
                   return ["white", "selected"];
                 } else {
-                  return ["#4f545e", "selected"];
+                  return ["black", "selected"];
                 }
                 // return getAgtCons(d);
               } else {
                 // deselect agreements that don't meet filter criteria
                 window.localStorage.setItem("paxselection", JSON.stringify([]));
                 selection = JSON.parse(window.localStorage.getItem("paxselection"));
-                return ["silver", "unselected"];
+                return ["#595959", "unselected"];
               }
             }
             else { // if paxALL == 1
@@ -311,14 +310,14 @@ function callFunction() {
                 if (+d.AgtId == +selection[0]){
                   return ["white", "selected"];
                 } else {
-                  return ["#4f545e", "selected"];
+                  return ["black", "selected"];
                 }
                 // return getAgtCons(d);
               } else {
                 // deselect agreements that don't meet filter criteria
                 window.localStorage.setItem("paxselection", JSON.stringify([]));
                 selection = JSON.parse(window.localStorage.getItem("paxselection"));
-                return ["silver", "unselected"];
+                return ["#595959", "unselected"];
               }
             }
           }
@@ -393,7 +392,7 @@ function callFunction() {
           }
         }
         title = title + "_" + cons + "_" + codes + "_" + newMinDay + "-" + newMaxDay + ".png";
-        saveSvgAsPng(document.getElementsByTagName("svg")[0], title, {scale: 5, backgroundColor: "#dee3e8"});
+        saveSvgAsPng(document.getElementsByTagName("svg")[0], title, {scale: 5, backgroundColor: "#737373"});
         // if IE need canvg: canvg passed between scale & backgroundColor
       });
 
