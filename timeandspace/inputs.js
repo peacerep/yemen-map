@@ -3,7 +3,7 @@ function filterData(data, f) {
 
 	var filtered = data.filter(function(d) {
 
-		if (d.Year >= f.year[0] && d.Year <= f.year[1]) { // year check passed
+		if (d.year >= f.year[0] && d.year <= f.year[1]) { // year check passed
 			if (f.codes.codes.length == 0) {
 				var c1 = true
 			}
@@ -22,10 +22,10 @@ function filterData(data, f) {
 				}
 				else {
 					if (f.cons.any) {
-						return f.cons.cons.some(function(con) { return d.Con.findIndex(c => c == con) != -1})
+						return f.cons.cons.some(function(con) { return d.con.findIndex(c => c == con) != -1})
 					}
 					else {
-						return f.cons.cons.every(function(con) { return d.Con.findIndex(c => c == con) != -1})
+						return f.cons.cons.every(function(con) { return d.con.findIndex(c => c == con) != -1})
 					}			
 				}
 
