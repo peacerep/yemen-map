@@ -119,14 +119,17 @@ function clickCountry(con, data, world) {
 	// draw map
 	var all_cons_map = popG
 		.append("g")
-		.attr("transform",
+		.attr(
+			"transform",
 			"scale(" + scale + ") translate(" + translate_x + "," + translate_y + ")"
 		)
 		.selectAll("path")
 		.data(all_cons_geo)
 		.enter()
 		.append("path")
-		.attr("id", function(d) { return "popup_" + d.id; })
+		.attr("id", function(d) {
+			return "popup_" + d.id;
+		})
 		.attr("d", path)
 		.classed("popup land", true);
 

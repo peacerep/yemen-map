@@ -63,15 +63,21 @@ Map
 	fill-opacity: 1;
 }
 
-.zoombutton {
+.zoomButton rect {
 	fill: #fff;
 	stroke: #555;
 	stroke-width: 1;
 }
 
-.zoombutton:hover {
+.zoomButton rect:hover {
 	fill: #ccc;
 	stroke: #000;
+}
+
+.zoomButton line {
+	stroke: #000;
+	stroke-width: 2;
+	pointer-events: none;
 }
 
 /*Timeline*/

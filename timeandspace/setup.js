@@ -1,8 +1,6 @@
 "use strict";
 
-////////////////////////////////////////////////////////////////////////////////
-//////////////////////////// SET UP FILTERS ////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
+// Set up filters
 
 d3.select("#selectAllCodes").on("click", function() {
 	// check all checkboxes
@@ -32,26 +30,21 @@ d3.select("#deselectAllCons").on("click", function() {
 	eventHandler.dispatchEvent(event);
 });
 
-// add codes checkboxes
+// Add codes checkboxes
 makeCodesCheckboxes(true);
 
-// initialise infobox
+// Initialise infobox
 agtDetails(null);
 
-////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////// DATA //////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-
+// Load data
 d3.csv("../data/pa-x.csv", parseData)
 	.then(function(data) {
-		// INITIAL SETUP
-		// setup year slider
+		// Set up year slider
 		var years = getYears(data);
 		var myslider = slider("timeslider", years[0], years[1]);
 
-		// add countries/entities to dropdown
+		// Add countries/entities to dropdown
 		var cons = getConNames(data);
-
 		d3.select("#conDropdown")
 			.selectAll("span")
 			.data(cons)
@@ -67,18 +60,20 @@ d3.csv("../data/pa-x.csv", parseData)
 				);
 			});
 
-		// update list of selected countries on change
+		// Update list of selected countries on change
 		d3.select("#conDropdown").on("click", function() {
 			// update span with list of selected
 			d3.select("#selectedCons").html(getSelectedConsString(cons));
 		});
 
+		// Initialise reset button for filters
 		d3.select("#reset-filters").on("click", resetFilters);
 		resetFilters();
 
-		// draw timeline
+		// Draw timeline
 		initTimeline(data, years);
 
+		// Load geojson world map
 		d3.json("../data/world-110m-custom.geojson")
 			.then(function(world) {
 				// draw map
@@ -103,11 +98,10 @@ d3.csv("../data/pa-x.csv", parseData)
 						clickCountry(d.properties.name, data, world);
 					});
 
-				// match data points with locations on the map
+				// Match data points with locations on the map and draw dot map
 				const locdata = makeDotmapData(data, world);
 				drawDotmap(locdata);
 
-				// UPDATING
 				// Listen for changes in filters
 				d3.selectAll(".input").on("change", function() {
 					var filters = {
@@ -124,6 +118,7 @@ d3.csv("../data/pa-x.csv", parseData)
 				throw error;
 			});
 
+		// Function to reset filters and visualisation
 		function resetFilters() {
 			console.log("resetting filters");
 
@@ -146,9 +141,7 @@ d3.csv("../data/pa-x.csv", parseData)
 		throw error;
 	});
 
-////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////// FUNCTIONS /////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
+// Functions
 
 function getSelectedCons(cons) {
 	// reads the con checkboxes and returns an object with their status
@@ -184,10 +177,7 @@ function getSelectedConsString(cons) {
 	}
 }
 
-////////////////////////////////////////////////////////////////////////////////
-// selecting and mousing over agreements
-////////////////////////////////////////////////////////////////////////////////
-
+// Selecting and mousing over agreements
 var selectedAgt = new function() {
 	var agt = null;
 
