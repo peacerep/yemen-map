@@ -283,7 +283,7 @@ function initTimeline(data, years) {
 			.select(".tooltipCircle")
 			.style("fill", codeColour(d.code))
 			.attr("r", 5);
-		tooltip.select(".tooltipText").text(d.code + ": " + d.count);
+		tooltip.select(".tooltipText").text(codesLong[d.code] + ": " + d.count);
 	}
 
 	function mouseout(d) {
