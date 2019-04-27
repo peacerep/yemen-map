@@ -24,7 +24,7 @@ function makeDotmapData(data, world) {
 		if (cen != undefined) {
 			var pts = randomGeoPoints(cen.geometry, count);
 
-			newData.push({ con: con, count: count, points: pts });
+			newData.push({ id: cen.id, con: con, count: count, points: pts });
 		} else {
 			// console.log(con + ' cannot be found on the map')
 		}
@@ -50,7 +50,8 @@ function drawDotmap(locdata) {
 		.selectAll("g")
 		.data(locdata)
 		.enter()
-		.append("g");
+		.append("g")
+		.attr('id', d => ('dots' + d.id));
 
 	var circle = con
 		.selectAll("circle")

@@ -82,12 +82,42 @@ Map
 
 /*Timeline*/
 
-#timeline-top rect {
+/*#timeline-top rect {
 	cursor: pointer;
+}*/
+
+/*#timeline-top rect:hover {
+	fill: #ccc;
+}*/
+
+.agtTimelineBlock {
+	cursor: pointer;
+	fill: #555;
 }
 
-#timeline-top rect:hover {
+.agtTimelineBlock:hover {
 	fill: #ccc;
+}
+
+.codeLine {
+	stroke-linejoin: round;
+	stroke-width: 2.5;
+	opacity: 0.8;
+	fill: none;
+	pointer-events: none;
+}
+
+.codeLine.background {
+	opacity: 0.1;
+}
+
+.codeLine.foreground {
+	opacity: 0.8;
+}
+
+.voronoiCell {
+	/*stroke: black; (uncomment to see voronoi cells)*/
+	fill: transparent;
 }
 
 .count {

@@ -3,11 +3,23 @@ function mouseoverCountry(that, d) {
 
 	polygon.classed("hover", true).moveToFront();
 
-	// grow flowers out of dots
+	// grow flowers out of dots (for now just grow dots)
+	d3.select("#dots" + d.id)
+		.selectAll("circle")
+		.transition()
+		.duration(200)
+		.attr("r", 3);
 }
 
 function mouseoutCountry(that, d) {
 	d3.select(that).classed("hover", false);
+
+	// shrink dots again
+	d3.select("#dots" + d.id)
+		.selectAll("circle")
+		.transition()
+		.duration(200)
+		.attr("r", rCircle);
 
 	// delete petals again
 }

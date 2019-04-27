@@ -71,9 +71,9 @@ var codeColour = d3
 		"#DFBA47",
 		"#BD6221",
 		"#A33A36",
-		"#B65665",
-		"#78387D",
-		"#335B8E"
+		"#e4549b",//"#B65665",
+		"#335B8E",
+		"#78387D"	
 	]);
 
 function makeCodesCheckboxes(colour) {

@@ -84,7 +84,7 @@ d3.csv("../data/pa-x.csv", parseData)
 					.enter()
 					.append("path")
 					.attr("id", function(d) {
-						return d.id;
+						return 'path' + d.id;
 					})
 					.attr("d", path)
 					.classed("land", true)
@@ -202,15 +202,15 @@ var selectedAgt = new function() {
 			agtDetails(agt);
 
 			// highlight the flower
-			var glyph = d3.select("#glyph" + agt.AgtId);
-			glyph
-				.select("circle")
-				.attr("r", 17)
-				.style("fill", "#fff")
-				.style("fill-opacity", 0.9)
-				.style("stroke", "black")
-				.style("stroke-width", 0.5)
-				.transition();
+			// var glyph = d3.select("#glyph" + agt.AgtId);
+			// glyph
+			// 	.select("circle")
+			// 	.attr("r", 17)
+			// 	.style("fill", "#fff")
+			// 	.style("fill-opacity", 0.9)
+			// 	.style("stroke", "black")
+			// 	.style("stroke-width", 0.5)
+			// 	.transition();
 
 			// highlight the timeline item
 			d3.select("#rect" + agt.AgtId)
@@ -230,18 +230,18 @@ var selectedAgt = new function() {
 
 		if (agt) {
 			// remove glyph highlight
-			d3.select("#glyph" + agt.AgtId)
-				.select("circle")
-				.attr("r", rCircle)
-				.style("fill", fillCircle)
-				.style("fill-opacity", 1)
-				.style("stroke", "none")
-				.transition();
-
-			d3.select("#glyph" + agt.AgtId).attr("transform", function(d) {
-				var t = parseTransform(d3.select(this).attr("transform"));
-				return `translate(${t.translate}) scale(1)`;
-			});
+			// d3.select("#glyph" + agt.AgtId)
+			// 	.select("circle")
+			// 	.attr("r", rCircle)
+			// 	.style("fill", fillCircle)
+			// 	.style("fill-opacity", 1)
+			// 	.style("stroke", "none")
+			// 	.transition();
+			// 
+			// d3.select("#glyph" + agt.AgtId).attr("transform", function(d) {
+			// 	var t = parseTransform(d3.select(this).attr("transform"));
+			// 	return `translate(${t.translate}) scale(1)`;
+			// });
 
 			// remove timeline highlight
 			d3.select("#rect" + agt.AgtId)
@@ -257,50 +257,50 @@ var selectedAgt = new function() {
 	};
 }();
 
-function onmouseover(d) {
-	// only run if this is not the selected event or there is no selected event
-	if (selectedAgt.get() === null || !(d.AgtId == selectedAgt.get().AgtId)) {
-		agtDetails(d);
-		var glyph = d3.select("#glyph" + d.AgtId);
-		glyph.moveToFront();
-		glyph
-			.select("circle")
-			.attr("r", 17)
-			.style("fill", "#fff")
-			.style("fill-opacity", 0.9);
+// function onmouseover(d) {
+// 	// only run if this is not the selected event or there is no selected event
+// 	if (selectedAgt.get() === null || !(d.AgtId == selectedAgt.get().AgtId)) {
+// 		agtDetails(d);
+// 		var glyph = d3.select("#glyph" + d.AgtId);
+// 		glyph.moveToFront();
+// 		glyph
+// 			.select("circle")
+// 			.attr("r", 17)
+// 			.style("fill", "#fff")
+// 			.style("fill-opacity", 0.9);
 
-		// scale 200%
-		glyph.attr("transform", function(d) {
-			var t = parseTransform(d3.select(this).attr("transform"));
-			return `translate(${t.translate}) scale(2)`;
-		});
-		d3.select("#rect" + d.AgtId)
-			.style("fill", "#ccc")
-			.transition();
-	}
-}
+// 		// scale 200%
+// 		glyph.attr("transform", function(d) {
+// 			var t = parseTransform(d3.select(this).attr("transform"));
+// 			return `translate(${t.translate}) scale(2)`;
+// 		});
+// 		d3.select("#rect" + d.AgtId)
+// 			.style("fill", "#ccc")
+// 			.transition();
+// 	}
+// }
 
-function onmouseout(d) {
-	// only run if this is not the selected event or there is no selected event
-	if (selectedAgt.get() === null || !(d.AgtId == selectedAgt.get().AgtId)) {
-		// remove infobox
-		agtDetails(selectedAgt.get());
+// function onmouseout(d) {
+// 	// only run if this is not the selected event or there is no selected event
+// 	if (selectedAgt.get() === null || !(d.AgtId == selectedAgt.get().AgtId)) {
+// 		// remove infobox
+// 		agtDetails(selectedAgt.get());
 
-		var glyph = d3.select("#glyph" + d.AgtId);
-		glyph
-			.select("circle")
-			.attr("r", rCircle)
-			.style("fill", fillCircle)
-			.style("fill-opacity", 1)
-			.transition();
+// 		var glyph = d3.select("#glyph" + d.AgtId);
+// 		glyph
+// 			.select("circle")
+// 			.attr("r", rCircle)
+// 			.style("fill", fillCircle)
+// 			.style("fill-opacity", 1)
+// 			.transition();
 
-		// reset scale
-		glyph.attr("transform", function(d) {
-			var t = parseTransform(d3.select(this).attr("transform"));
-			return `translate(${t.translate}) scale(1)`;
-		});
-		d3.select("#rect" + d.AgtId)
-			.style("fill", "#000")
-			.transition();
-	}
-}
+// 		// reset scale
+// 		glyph.attr("transform", function(d) {
+// 			var t = parseTransform(d3.select(this).attr("transform"));
+// 			return `translate(${t.translate}) scale(1)`;
+// 		});
+// 		d3.select("#rect" + d.AgtId)
+// 			.style("fill", "#000")
+// 			.transition();
+// 	}
+// }

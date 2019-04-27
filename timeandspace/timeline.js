@@ -63,10 +63,10 @@ function initTimeline(data, years) {
 	// STACKED RECTANGLES BAR CHART --------------------------------------------
 
 	var agtHeight = 1,
-		agtSpacing = 1;
+		agtSpacing = 0;
 
 	// calculate agtWidth
-	var agtWidth = width / (1 + years[1] - years[0]) - agtSpacing;
+	var agtWidth = width / (1 + years[1] - years[0]) - 1;
 
 	// Group agreements by Year (create an array of objects whose key is the
 	// year and value is an array of objects (one per agreement))
@@ -88,6 +88,7 @@ function initTimeline(data, years) {
 			.enter()
 			.append("rect")
 			.classed("y" + i, true)
+			.classed("agtTimelineBlock", true)
 			.attr("id", d => "rect" + d.id)
 			.attr("x", function(d) {
 				return xScale(parseYear(d.year)) - agtWidth / 2;
@@ -97,15 +98,14 @@ function initTimeline(data, years) {
 			})
 			.attr("width", agtWidth)
 			.attr("height", agtHeight)
-			.style("fill", "#000");
 
 		rects
 			.on("click", function(d) {
 				selectedAgt.clickOn(d);
 				event.stopPropagation();
 			})
-			.on("mouseover", onmouseover)
-			.on("mouseout", onmouseout);
+			.on("mouseover", mouseoverTimeline)
+			.on("mouseout", mouseoutTimeline);
 	} // end for loop (years)
 
 	// add count at the top of each bar
@@ -224,16 +224,11 @@ function initTimeline(data, years) {
 			})
 		)
 		.attr("d", line)
-		.classed("codeline", true)
+		.classed("codeLine", true)
 		.attr("id", function(d) {
 			return "line" + d[0].code;
 		})
 		.style("stroke", d => codeColour(d[0].code))
-		.style("stroke-linejoin", "round")
-		.style("stroke-width", "2.5px")
-		.style("opacity", 0.6)
-		.style("fill", "none")
-		.attr("pointer-events", "none");
 
 	// compute voronoi diagram for better mouseover interaction
 	const delaunay = d3.Delaunay.from(
@@ -254,20 +249,19 @@ function initTimeline(data, years) {
 		.attr("d", function(d, i) {
 			return voronoi.renderCell(i);
 		})
-		.classed("voronoicell", true)
-		// .style('stroke', 'black') // uncomment to see voronoi cells
-		.style("fill", "transparent")
+		.classed("voronoiCell", true)
 		.on("mouseover", mouseover)
 		.on("mouseout", mouseout);
 
 	//Voronoi mouseover and mouseout functions
 	function mouseover(d) {
-		lines1.style("opacity", 0.1);
+		lines1.classed("background", true);
 		d3.select("#line" + d.code)
-			.style("opacity", 0.6)
-			.moveToFront();
+			.classed("background", false)
+			.moveToFront();		
 
 		tooltip.moveToFront();
+		
 		tooltip.attr(
 			"transform",
 			"translate(" + xScale(parseYear(d.year)) + "," + yLines(d.count) + ")"
@@ -283,4 +277,12 @@ function initTimeline(data, years) {
 		lines1.style("opacity", 0.6);
 		tooltip.attr("transform", "translate(-100,-100)");
 	}
+}
+
+function mouseoverTimeline(d) {
+	console.log(d.id)
+}
+
+function mouseoutTimeline(d) {
+
 }
