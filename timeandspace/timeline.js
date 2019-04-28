@@ -97,7 +97,7 @@ function initTimeline(data, years) {
 				return height - (agtHeight + agtSpacing) * i;
 			})
 			.attr("width", agtWidth)
-			.attr("height", agtHeight)
+			.attr("height", agtHeight);
 
 		rects
 			.on("click", function(d) {
@@ -228,7 +228,7 @@ function initTimeline(data, years) {
 		.attr("id", function(d) {
 			return "line" + d[0].code;
 		})
-		.style("stroke", d => codeColour(d[0].code))
+		.style("stroke", d => codeColour(d[0].code));
 
 	// compute voronoi diagram for better mouseover interaction
 	const delaunay = d3.Delaunay.from(
@@ -258,10 +258,10 @@ function initTimeline(data, years) {
 		lines1.classed("background", true);
 		d3.select("#line" + d.code)
 			.classed("background", false)
-			.moveToFront();		
+			.moveToFront();
 
 		tooltip.moveToFront();
-		
+
 		tooltip.attr(
 			"transform",
 			"translate(" + xScale(parseYear(d.year)) + "," + yLines(d.count) + ")"
@@ -270,20 +270,17 @@ function initTimeline(data, years) {
 			.select(".tooltipCircle")
 			.style("fill", codeColour(d.code))
 			.attr("r", 5);
-		tooltip.select(".tooltipText").text(d.code + ": " + d.count);
+		tooltip.select(".tooltipText").text(codesLong[d.code] + ": " + d.count);
 	}
 
 	function mouseout(d) {
-
-		lines1.classed('background', false)
+		lines1.classed("background", false);
 		tooltip.attr("transform", "translate(-100,-100)");
 	}
 }
 
 function mouseoverTimeline(d) {
-	console.log(d.id)
+	console.log(d.id);
 }
 
-function mouseoutTimeline(d) {
-
-}
+function mouseoutTimeline(d) {}

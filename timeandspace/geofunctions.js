@@ -28,7 +28,7 @@ function makeDotmapData(data, world) {
 			});
 			pts.forEach(function(pt, i) {
 				dat[i].loc = pt.loc;
-			})
+			});
 
 			newData.push({
 				id: cen.id,
@@ -69,11 +69,16 @@ function drawDotmap(locdata) {
 		.data(d => d.agts)
 		.enter()
 		.append("g")
-		.classed('glyphContainer', true)
+		.classed("glyphContainer", true)
 		.attr(
-			"transform", d => ("translate(" + d3.zoomTransform(svg.node()).apply(projection(d.loc)) + ")")
+			"transform",
+			d =>
+				"translate(" +
+				d3.zoomTransform(svg.node()).apply(projection(d.loc)) +
+				")"
 		);
-		circle.append("circle")
+	circle
+		.append("circle")
 		.attr("r", rCircle)
 		.attr("pointer-events", "none");
 }

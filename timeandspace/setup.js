@@ -84,7 +84,7 @@ d3.csv("../data/pa-x.csv", parseData)
 					.enter()
 					.append("path")
 					.attr("id", function(d) {
-						return 'path' + d.id;
+						return "path" + d.id;
 					})
 					.attr("d", path)
 					.classed("land", true)
@@ -237,7 +237,7 @@ var selectedAgt = new function() {
 			// 	.style("fill-opacity", 1)
 			// 	.style("stroke", "none")
 			// 	.transition();
-			// 
+			//
 			// d3.select("#glyph" + agt.AgtId).attr("transform", function(d) {
 			// 	var t = parseTransform(d3.select(this).attr("transform"));
 			// 	return `translate(${t.translate}) scale(1)`;

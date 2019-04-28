@@ -71,9 +71,9 @@ var codeColour = d3
 		"#DFBA47",
 		"#BD6221",
 		"#A33A36",
-		"#e4549b",//"#B65665",
+		"#e4549b", //"#B65665",
 		"#335B8E",
-		"#78387D"	
+		"#78387D"
 	]);
 
 function makeCodesCheckboxes(colour) {
@@ -127,6 +127,30 @@ var stagesLong = {
 	Other: "Other"
 };
 
+var substagesLong = {
+	Proc: "Process",
+	Prin: "Principles",
+	Conf: "Confidence-building measure",
+	PreMix: "Mixed",
+	PreOth: "Other",
+	Iss: "Core issues",
+	MultIss: "Partial but multiple issues",
+	FrparOth: "Other",
+	FrAg: "Comprehensive",
+	FrCons: "Constitution",
+	ImpMod: "Implementation modalities",
+	ExtSub: "Substantive Extending",
+	ExtPar: "Partial Extending",
+	ImpOth: "Other",
+	Reimp: "Renewal of an implementation agreement",
+	Repre: "Renewal of a pre-negotiation agreement",
+	Resub: "Renewal of an agreement dealing with substantive issues",
+	Reoth: "Renewal of other type of agreement",
+	Ceas: "Ceasefire agreement",
+	Rel: "Ceasefire-related",
+	CeaMix: "Ceasefire-mixed"
+};
+
 var stages = Object.keys(stagesLong);
 
 function stageColour(d, fake = false) {
@@ -163,6 +187,13 @@ function stageColour(d, fake = false) {
 	}
 	return col;
 }
+
+// Type
+const agreementTypes = {
+	Inter: "Interstate/interstate  conflict",
+	InterIntra: "Interstate/mixed or intrastate conflict",
+	Intra: "Intrastate conflict"
+};
 
 // extract min and max year from data
 function getYears(data) {
@@ -240,11 +271,11 @@ function agtDetails(d) {
 			"</td></tr><tr><td>Status:</td><td>" +
 			d.status +
 			"</td></tr><tr><td>Type:</td><td>" +
-			d.type +
+			agreementTypes[d.type] +
 			"</td></tr><tr><td>Stage:</td><td>" +
-			d.stage +
+			stagesLong[d.stage] +
 			"</td></tr><tr><td>Sub-Stage:</td><td>" +
-			d.substage +
+			substagesLong[d.substage] +
 			"</td></tr></table>" +
 			'<a class="button" href="https://www.peaceagreements.org/masterdocument/' +
 			d.id +
