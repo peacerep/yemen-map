@@ -7,41 +7,42 @@ function makeDotmapData(data, world) {
 
 	cons = tally(cons);
 
-	var newData = [];
-
-	for (const [con, count] of Object.entries(cons)) {
+	var newData = Object.entries(cons).map(function([con, count]) {
 		var cen = world.features.find(d => d.properties.name === con);
 
-		// Palestine and Kurdistan are not internationally recognised and therefore not on the map
-		// place them at their approximate location/within the recognised country
 		if (con == "Palestine") {
 			cen = world.features.find(d => d.properties.name === "Israel");
 		}
 		if (con == "Kurds-Kurdistan") {
 			cen = world.features.find(d => d.properties.name === "Iraq");
 		}
-
 		if (cen != undefined) {
 			var pts = randomGeoPoints(cen.geometry, count);
-			var dat = data.filter(function(d) {
-				return d.con.indexOf(con) != -1;
-			});
-			pts.forEach(function(pt, i) {
-				dat[i].loc = pt.loc;
-			});
 
-			newData.push({
+			return {
 				id: cen.id,
 				con: con,
 				count: count,
-				agts: dat
-			});
+				// json parse stuff to deep clone the object
+				agts: JSON.parse(
+					JSON.stringify(
+						data
+							.filter(function(d) {
+								return d.con.indexOf(con) != -1;
+							})
+							.map(function(d, i) {
+								return Object.assign(d, pts[i]);
+							})
+					)
+				)
+			};
 		} else {
 			// console.log(con + ' cannot be found on the map')
+			return null;
 		}
-	}
+	});
 
-	return newData;
+	return newData.filter(d => d !== null);
 }
 
 function drawDotmap(locdata) {
@@ -144,6 +145,7 @@ function randomGeoPoints(geometry, nPoints) {
 				geometry
 		);
 	}
+
 	return pts;
 }
 
