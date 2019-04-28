@@ -68,8 +68,27 @@ Map
 }
 
 #bgRect {
-	fill: #fff;
+	fill: #f1f1f1;
 	fill-opacity: 0.7;
+}
+
+.popupBgCircle {
+	fill: #fff; /*3A3A3A*/
+}
+
+.popupGlyphCircle {
+	fill: #555;
+	pointer-events: none;
+}
+
+.popupGlyphPetal {
+	pointer-events: none;
+}
+
+.popupHeading {
+	text-anchor: middle;
+	font-size: 20px;
+	font-weight: bold;
 }
 
 #closeButton {

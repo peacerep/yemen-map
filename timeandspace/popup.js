@@ -197,7 +197,7 @@ function clickCountry(con, data, world) {
 			.attr("x", 0)
 			.attr("y", 0)
 			.attr("r", d => outercircle.r)
-			.style("fill", "#3A3A3A");
+			.classed("popupBgCircle", true);
 
 		// g for each agreement, positioned correctly
 		var glyph = g
@@ -205,22 +205,45 @@ function clickCountry(con, data, world) {
 			.data(con_data)
 			.enter()
 			.append("g")
-			.classed("glyph", true)
+			.classed("popupGlyph", true)
 			.attr("transform", d => "translate(" + d.x + "," + d.y + ")");
+
+		// heading
+		g.append("text")
+			.attr("x", 0)
+			.attr("y", d => -30 - outercircle.r)
+			.classed("popupHeading", true)
+			.text("Agreements signed by " + con);
 	}
+
+	// draw invisible circle for info on mouseover
+	glyph
+		.append("circle")
+		.attr("fill", "transparent")
+		.attr("r", glyphR)
+		.on("mouseover", function(d) {
+			agtDetails(d);
+			d3.select(this).style("fill", "#eee");
+			// console.log(d);
+		})
+		.on("mouseout", function(d) {
+			agtDetails(null);
+			d3.select(this).style("fill", "transparent");
+		});
 
 	// draw centre circle for each agreement
 	glyph
 		.append("circle")
-		.attr("r", glyphR * 0.3)
-		.style("fill", "#EAE4E2");
+		.attr("r", glyphR * 0.15)
+		.classed("popupGlyphCircle", true);
 
 	// add petals
 	glyph
-		.selectAll(".arc")
+		.selectAll(".petal")
 		.data(d => petalData(d))
 		.enter()
 		.append("path")
+		.classed("popupGlyphPetal", true)
 		.attr("d", arc)
 		.style("fill", d => d.colour);
 }
