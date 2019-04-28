@@ -26,7 +26,16 @@ var path = d3.geoPath().projection(projection);
 
 var mapG = svg.append("g").attr("id", "mapG"); // g for the map
 var dotG = svg.append("g").attr("id", "dotG"); // g for dots or anything else we plot on top
+var labG = svg.append("g").attr("id", "labG"); // g for country labels
 var popG = svg.append("g").attr("id", "popG"); // g for popup circles
+
+// tooltip for country names
+var tooltipMap = labG
+	.attr("transform", "translate(-100,-100)")
+	.attr("id", "tooltipMap")
+	.style("pointer-events", "none")
+	.append("text")
+	.attr("class", "tooltipText");
 
 // vars for dots
 const rCircle = 1.5;
@@ -44,14 +53,14 @@ svg.on("click", selectedAgt.clear);
 function zooming() {
 	mapG.style("stroke-width", 1 / d3.event.transform.k + "px");
 	mapG.attr("transform", d3.event.transform);
+
 	// semantic zoom
 	dotG
-		.selectAll("circle")
-		.attr("cx", function(d) {
-			d.pos = d3.event.transform.apply(projection(d.loc));
-			return d.pos[0];
-		})
-		.attr("cy", d => d.pos[1]);
+		.selectAll(".glyphContainer")
+		.attr(
+			"transform",
+			d => "translate(" + d3.event.transform.apply(projection(d.loc)) + ")"
+		);
 }
 
 // zoom buttons (bottom right of map)

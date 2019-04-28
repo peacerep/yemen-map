@@ -58,9 +58,36 @@ Map
 	fill: #dae4ed;
 }
 
+#dotG {
+	pointer-events: none;
+}
+
 #dotG circle {
 	fill: #555;
 	fill-opacity: 1;
+}
+
+#bgRect {
+	fill: #fff;
+	fill-opacity: 0.7;
+}
+
+#closeButton {
+	fill: #ddd;
+	fill-opacity: 1;
+	pointer-events: none;
+}
+
+#closeButton.hover {
+	fill: #ccc;
+}
+
+.closeButtonLines {
+	pointer-events: none;
+	stroke: #555;
+	stroke-width: 3;
+	stroke-linecap: round;
+	fill: none;
 }
 
 .zoomButton rect {

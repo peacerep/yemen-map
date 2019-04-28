@@ -23,8 +23,19 @@ function makeDotmapData(data, world) {
 
 		if (cen != undefined) {
 			var pts = randomGeoPoints(cen.geometry, count);
+			var dat = data.filter(function(d) {
+				return d.con.indexOf(con) != -1;
+			});
+			pts.forEach(function(pt, i) {
+				dat[i].loc = pt.loc;
+			})
 
-			newData.push({ id: cen.id, con: con, count: count, points: pts });
+			newData.push({
+				id: cen.id,
+				con: con,
+				count: count,
+				agts: dat
+			});
 		} else {
 			// console.log(con + ' cannot be found on the map')
 		}
@@ -51,18 +62,18 @@ function drawDotmap(locdata) {
 		.data(locdata)
 		.enter()
 		.append("g")
-		.attr('id', d => ('dots' + d.id));
+		.attr("id", d => "dots" + d.id);
 
 	var circle = con
-		.selectAll("circle")
-		.data(d => d.points)
+		.selectAll("g")
+		.data(d => d.agts)
 		.enter()
-		.append("circle")
-		.attr("cx", function(d) {
-			d.pos = d3.zoomTransform(svg.node()).apply(projection(d.loc));
-			return d.pos[0];
-		})
-		.attr("cy", d => d.pos[1])
+		.append("g")
+		.classed('glyphContainer', true)
+		.attr(
+			"transform", d => ("translate(" + d3.zoomTransform(svg.node()).apply(projection(d.loc)) + ")")
+		);
+		circle.append("circle")
 		.attr("r", rCircle)
 		.attr("pointer-events", "none");
 }
