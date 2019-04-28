@@ -109,14 +109,6 @@ Map
 
 /*Timeline*/
 
-/*#timeline-top rect {
-	cursor: pointer;
-}*/
-
-/*#timeline-top rect:hover {
-	fill: #ccc;
-}*/
-
 .agtTimelineBlock {
 	cursor: pointer;
 	fill: #555;
@@ -136,10 +128,6 @@ Map
 
 .codeLine.background {
 	opacity: 0.1;
-}
-
-.codeLine.foreground {
-	opacity: 0.8;
 }
 
 .voronoiCell {

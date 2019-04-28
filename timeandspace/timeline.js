@@ -274,7 +274,8 @@ function initTimeline(data, years) {
 	}
 
 	function mouseout(d) {
-		lines1.style("opacity", 0.6);
+
+		lines1.classed('background', false)
 		tooltip.attr("transform", "translate(-100,-100)");
 	}
 }
