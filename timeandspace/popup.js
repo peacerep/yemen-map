@@ -136,10 +136,6 @@ function clickCountry(con, data, world) {
 		});
 
 		d3.packSiblings(con_data_process);
-		// console.log(con_data)
-
-		// scale
-		// translate
 
 		// draw circles
 		// g for each big circle
@@ -160,15 +156,15 @@ function clickCountry(con, data, world) {
 			.attr("x", 0)
 			.attr("y", 0)
 			.attr("r", d => d.outercircle.r)
-			.style("fill", "#3A3A3A");
+			.classed("popupBgCircle", true);
 
 		// g for each agreement, positioned correctly
 		var glyph = g
-			.selectAll(".glyph")
+			.selectAll(".popupGlyph")
 			.data(d => d.values)
 			.enter()
 			.append("g")
-			.classed("glyph", true)
+			.classed("popupGlyph", true)
 			.attr("transform", d => "translate(" + d.x + "," + d.y + ")");
 	}
 
@@ -176,42 +172,94 @@ function clickCountry(con, data, world) {
 	else {
 		console.log(con_data);
 
-		d3.packSiblings(
-			con_data.map(function(d) {
-				d.r = glyphR;
-				return d;
-			})
-		);
-		var outercircle = d3.packEnclose(con_data);
-
-		// g for big circle
-		var g = d3
+		// g centered in svg for all the popup stuff
+		var popG = d3
 			.select("#popG")
 			.append("g")
 			.attr("transform", function(d) {
 				return "translate(" + 0.5 * w_map + "," + 0.5 * h_map + ")";
 			});
 
-		// draw big background circle
-		g.append("circle")
-			.attr("x", 0)
-			.attr("y", 0)
-			.attr("r", d => outercircle.r)
-			.classed("popupBgCircle", true);
+		var bgG = popG.append("g").attr("id", "popupBgG");
+		var spiralG = popG.append("g").attr("id", "popupSpiralG");
+		var glyphG = popG.append("g").attr("id", "popupGlyphG");
+
+		// d3.packSiblings(
+		// 	con_data.map(function(d) {
+		// 		d.r = glyphR;
+		// 		return d;
+		// 	})
+		// );
+
+		// SPIRAL -------------------------------------------
+
+		var start = 0,
+			end = 1,
+			numSpirals = 20, // 1 = a half turn
+			spiralRadius = numSpirals * glyphR * 1.1;
+
+		var theta = function(r) {
+			return numSpirals * Math.PI * r;
+		};
+
+		var radius = d3
+			.scaleLinear()
+			.domain([start, end])
+			.range([10, spiralRadius]);
+
+		var points = d3.range(start, end + 0.001, (end - start) / 1000);
+
+		var spiral = d3
+			.radialLine()
+			.curve(d3.curveCardinal)
+			.angle(theta)
+			.radius(radius);
+
+		var path = spiralG
+			.append("path")
+			.datum(points)
+			.attr("id", "spiral")
+			.attr("d", spiral)
+			.style("fill", "none")
+			.style("stroke", "none");
+
+		var spiralLength = path.node().getTotalLength();
+		// console.log(spiralLength);
+
+		var delta = glyphR * 2.1;
+
+		// --------------------------------------------------
 
 		// g for each agreement, positioned correctly
-		var glyph = g
-			.selectAll(".glyph")
+		var glyph = glyphG
+			.selectAll(".popupGlyph")
 			.data(con_data)
 			.enter()
 			.append("g")
 			.classed("popupGlyph", true)
-			.attr("transform", d => "translate(" + d.x + "," + d.y + ")");
+			.attr("transform", function(d, i) {
+				var posOnPath = path.node().getPointAtLength(i * delta);
+				return "translate(" + posOnPath.x + "," + posOnPath.y + ")";
+			});
+
+		var tr = parseTransform(glyph.last().attr("transform")).translate;
+		// console.log(tr);
+		var outercircle_r =
+			Math.sqrt(Math.pow(+tr[0], 2) + Math.pow(+tr[1], 2)) + glyphR;
+
+		// draw big background circle
+		bgG
+			.append("circle")
+			.attr("x", 0)
+			.attr("y", 0)
+			.attr("r", outercircle_r)
+			.classed("popupBgCircle", true);
 
 		// heading
-		g.append("text")
+		popG
+			.append("text")
 			.attr("x", 0)
-			.attr("y", d => -30 - outercircle.r)
+			.attr("y", d => -30 - outercircle_r)
 			.classed("popupHeading", true)
 			.text("Agreements signed by " + con);
 	}
@@ -220,16 +268,11 @@ function clickCountry(con, data, world) {
 	glyph
 		.append("circle")
 		.attr("fill", "transparent")
+		.classed("glyphHighlightCircle", true)
 		.attr("r", glyphR)
-		.on("mouseover", function(d) {
-			agtDetails(d);
-			d3.select(this).style("fill", "#eee");
-			// console.log(d);
-		})
-		.on("mouseout", function(d) {
-			agtDetails(null);
-			d3.select(this).style("fill", "transparent");
-		});
+		.on("mouseover", onmouseover)
+		.on("mouseout", onmouseout)
+		.on("click", selectedAgt.clickOn);
 
 	// draw centre circle for each agreement
 	glyph
@@ -272,6 +315,8 @@ function petalData(d) {
 		return obj;
 	}
 }
+
+function dotsOnSpiral(r, n) {}
 
 var arc = d3
 	.arc()
