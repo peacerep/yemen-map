@@ -23,18 +23,19 @@ function makeDotmapData(data, world) {
 				id: cen.id,
 				con: con,
 				count: count,
-				// json parse stuff to deep clone the object
-				agts: JSON.parse(
-					JSON.stringify(
-						data
-							.filter(function(d) {
-								return d.con.indexOf(con) != -1;
-							})
-							.map(function(d, i) {
-								return Object.assign(d, pts[i]);
-							})
-					)
-				)
+				agts: data
+					.filter(function(d) {
+						// filter for agreements signed by the selected country
+						return d.con.indexOf(con) != -1;
+					})
+					.map(function(d, i) {
+						// add point location to each agreement record
+						return Object.assign(d, pts[i]);
+					})
+					.map(function(d) {
+						// to clone
+						return Object.assign({}, d);
+					})
 			};
 		} else {
 			// console.log(con + ' cannot be found on the map')

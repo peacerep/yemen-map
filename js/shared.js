@@ -6,7 +6,7 @@
 var tau = 2 * Math.PI;
 
 // Date parsers & formatters
-var parseDate = d3.timeParse("%d/%m/%Y");
+var parseDate = d3.timeParse("%Y-%m-%d"); //e.g. 2011-12-05
 var parseYear = d3.timeParse("%Y");
 var formatDate = d3.timeFormat("%d %B %Y");
 var formatYear = d3.timeFormat("%Y");
@@ -300,6 +300,13 @@ d3.selection.prototype.moveToBack = function() {
 			this.parentNode.insertBefore(this, firstChild);
 		}
 	});
+};
+
+d3.selection.prototype.first = function() {
+	return d3.select(this.nodes()[0]);
+};
+d3.selection.prototype.last = function() {
+	return d3.select(this.nodes()[this.size() - 1]);
 };
 
 // parse transform attribute

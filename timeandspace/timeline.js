@@ -20,8 +20,8 @@ function initTimeline(data, years) {
 		.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 		.attr("id", "g-timeline-top");
 
-	var minDate = parseDate("30/06/" + (years[0] - 1));
-	var maxDate = parseDate("30/06/" + years[1]);
+	var minDate = parseDate(years[0] - 1 + "-06-30");
+	var maxDate = parseDate(years[1] + "-06-30");
 
 	// create time scale and x axis
 	var xScale = d3
@@ -104,8 +104,8 @@ function initTimeline(data, years) {
 				selectedAgt.clickOn(d);
 				event.stopPropagation();
 			})
-			.on("mouseover", mouseoverTimeline)
-			.on("mouseout", mouseoutTimeline);
+			.on("mouseover", onmouseover)
+			.on("mouseout", onmouseout);
 	} // end for loop (years)
 
 	// add count at the top of each bar
@@ -278,9 +278,3 @@ function initTimeline(data, years) {
 		tooltip.attr("transform", "translate(-100,-100)");
 	}
 }
-
-function mouseoverTimeline(d) {
-	console.log(d.id);
-}
-
-function mouseoutTimeline(d) {}

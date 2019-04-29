@@ -81,6 +81,14 @@ Map
 	pointer-events: none;
 }
 
+.glyphHighlightCircle {
+	fill: transparent;
+}
+
+.glyphHighlightCircle:hover {
+	fill: #eee;
+}
+
 .popupGlyphPetal {
 	pointer-events: none;
 }
