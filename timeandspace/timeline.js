@@ -150,7 +150,7 @@ function initTimeline(data, years) {
 		.rollup(function(v) {
 			var arr = [];
 			codes.forEach(function(code) {
-				arr.push([code, d3.sum(v, d => d[code] > 2)]);
+				arr.push([code, d3.sum(v, d => d[code] > 0)]);
 			});
 			return arr;
 		})
