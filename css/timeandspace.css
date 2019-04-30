@@ -85,8 +85,13 @@ Map
 	fill: transparent;
 }
 
-.glyphHighlightCircle:hover {
+.glyphHighlightCircle.hover {
 	fill: #eee;
+}
+
+.glyphHighlightCircle.selected {
+	fill: #eee;
+	stroke: #333;
 }
 
 .popupGlyphPetal {
@@ -99,20 +104,20 @@ Map
 	font-weight: bold;
 }
 
-.popupSortButton circle {
+.popupSortButtons circle {
 	fill: #333;
 	stroke: none;
 }
 
-.popupSortButton circle:hover {
+.popupSortButtons circle:hover {
 	fill: #555;
 }
 
-.popupSortButton circle.selected {
+.popupSortButtons circle.selected {
 	fill: steelblue;
 }
 
-.popupSortButton text {
+.popupSortButtons text {
 	fill: #fff;
 	text-anchor: middle;
 	alignment-baseline: center;
@@ -121,6 +126,16 @@ Map
 }
 
 .popupSortCodeCircle.selected {
+	stroke: #555;
+	stroke-width: 3;
+}
+
+.popupSortCodeCircle:hover {
+	stroke: #555;
+	stroke-width: 1;
+}
+
+.popupSortCodeCircle.selected:hover {
 	stroke: #555;
 	stroke-width: 3;
 }
@@ -172,7 +187,7 @@ Map
 	fill: #555;
 }
 
-.agtTimelineBlock:hover {
+.agtTimelineBlock.hover {
 	fill: #ccc;
 }
 

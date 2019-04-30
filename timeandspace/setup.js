@@ -184,7 +184,6 @@ var selectedAgt = new function() {
 
 	this.clickOn = function(d) {
 		// if it's the same that's already selected
-		console.log(agt != null && agt.id === d.id);
 		if (agt != null && agt.id === d.id) {
 			this.clear();
 			return;
@@ -199,20 +198,12 @@ var selectedAgt = new function() {
 
 			//highlight new one
 			agt = d;
-			console.log(agt);
+
 			// display infobox
 			agtDetails(agt);
 
-			// highlight the flower
-			// var glyph = d3.select("#glyph" + agt.AgtId);
-			// glyph
-			// 	.select("circle")
-			// 	.attr("r", 17)
-			// 	.style("fill", "#fff")
-			// 	.style("fill-opacity", 0.9)
-			// 	.style("stroke", "black")
-			// 	.style("stroke-width", 0.5)
-			// 	.transition();
+			// highlight the glyph (if it exists)
+			d3.select("#glyph" + agt.id).classed("selected", true);
 
 			// highlight the timeline item
 			d3.select("#rect" + agt.id).style("fill", "#9ed3ff");
@@ -225,21 +216,9 @@ var selectedAgt = new function() {
 
 	this.clear = function() {
 		// remove all highlights and reset agt
-
 		if (agt) {
 			// remove glyph highlight
-			// d3.select("#glyph" + agt.AgtId)
-			// 	.select("circle")
-			// 	.attr("r", rCircle)
-			// 	.style("fill", fillCircle)
-			// 	.style("fill-opacity", 1)
-			// 	.style("stroke", "none")
-			// 	.transition();
-			//
-			// d3.select("#glyph" + agt.AgtId).attr("transform", function(d) {
-			// 	var t = parseTransform(d3.select(this).attr("transform"));
-			// 	return `translate(${t.translate}) scale(1)`;
-			// });
+			d3.select("#glyph" + agt.id).classed("selected", false);
 
 			// remove timeline highlight
 			d3.select("#rect" + agt.id).style("fill", null);
@@ -254,14 +233,22 @@ var selectedAgt = new function() {
 function onmouseover(d) {
 	// only run if this is not the selected event or there is no selected event
 	if (selectedAgt.get() === null || !(d.id == selectedAgt.get().id)) {
+		// show info box
 		agtDetails(d);
+		// hover effects on glyph + timeline
+		d3.select("#glyph" + d.id).classed("hover", true);
+		d3.select("#rect" + d.id).classed("hover", true);
 	}
 }
 
 function onmouseout(d) {
+	// remove hover effects on glyph + timeline
+	d3.select("#glyph" + d.id).classed("hover", false);
+	d3.select("#rect" + d.id).classed("hover", false);
+
 	// only run if this is not the selected event or there is no selected event
 	if (selectedAgt.get() === null || !(d.id == selectedAgt.get().id)) {
-		// remove infobox
+		// reset info box to selected agreement
 		agtDetails(selectedAgt.get());
 	}
 }

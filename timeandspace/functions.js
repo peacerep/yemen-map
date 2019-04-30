@@ -2,6 +2,7 @@
 
 // define sizes etc
 var glyphR = 20; //radius of one glyph including margin
+var delta = glyphR * 2.1; // distance between glyphs on spiral
 
 function tally(arr) {
 	var counts = {};

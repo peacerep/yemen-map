@@ -1,5 +1,4 @@
 function mouseoverCountry(that, d) {
-	// console.log(d, that)
 	var polygon = d3.select(that);
 
 	polygon.classed("hover", true).moveToFront();
@@ -78,7 +77,11 @@ function clickCountry(con, data, world) {
 			d3.select("#popG")
 				.selectAll("*")
 				.remove();
+
+			// hide controls
+			d3.select("#popupControlsG").attr("transform", "translate(-100, -100)");
 		});
+
 	// (X) button to close
 	bgRect
 		.append("circle")
@@ -99,7 +102,7 @@ function clickCountry(con, data, world) {
 		.attr("y1", d => d[1][0])
 		.attr("y2", d => d[1][1]);
 
-	// filter for selected country only, nest by process ID
+	// filter for selected country only
 	var con_data = data.filter(function(d) {
 		return d.con.indexOf(con) != -1;
 	});
@@ -170,8 +173,6 @@ function clickCountry(con, data, world) {
 
 	// do not split by process
 	else {
-		console.log(con_data);
-
 		// g centered in svg for all the popup stuff
 		var popG = d3
 			.select("#popG")
@@ -224,13 +225,9 @@ function clickCountry(con, data, world) {
 			.style("stroke", "none");
 
 		var spiralLength = path.node().getTotalLength();
-		// console.log(spiralLength);
-
-		var delta = glyphR * 2.1;
 
 		// --------------------------------------------------
 
-		console.log(con_data);
 		// g for each agreement, positioned correctly
 		var glyph = glyphG
 			.selectAll(".popupGlyph")
@@ -247,6 +244,12 @@ function clickCountry(con, data, world) {
 		var outercircle_r =
 			Math.sqrt(Math.pow(+tr[0], 2) + Math.pow(+tr[1], 2)) + glyphR;
 
+		// show controls
+		d3.select("#popupControlsG").attr(
+			"transform",
+			"translate(" + (w_map / 2 + (80 + outercircle_r)) + "," + h_map / 2 + ")"
+		);
+
 		// draw big background circle
 		bgG
 			.append("circle")
@@ -261,7 +264,6 @@ function clickCountry(con, data, world) {
 			var pt = path.node().getPointAtLength(d);
 			return [pt.x, pt.y];
 		});
-		console.log(locs);
 
 		var lineGenerator = d3.line().curve(d3.curveCardinal);
 		var pathData = lineGenerator(locs);
@@ -271,133 +273,11 @@ function clickCountry(con, data, world) {
 			.attr("d", pathData)
 			.classed("popupBackgroundSpiral", true);
 
-		// add buttons to the side of the circle
-		var button = bgG
-			.append("g")
-			.classed("popupSortButton", true)
-			.attr("transform", "translate(" + (outercircle_r + 50) + ", 0)");
-
-		var textOffset = 5;
-		var fontSize = 15;
-
-		// Heading
-		button
-			.append("text")
-			.text("SORT BY:")
-			.attr("y", -120)
-			.style("fill", "#333");
-
-		// Date
-
-		button
-			.append("circle")
-			.classed("selected", true)
-			.attr("cy", -75)
-			.attr("r", 35)
-			.on("click", function() {
-				sortGlyphsBy(sortByDate, this);
-			});
-
-		button
-			.append("text")
-			.style("font-size", fontSize + "px")
-			.text("Date")
-			.attr("y", -75 + textOffset);
-
-		// Number of Codes
-
-		button
-			.append("circle")
-			.attr("cy", 0)
-			.attr("r", 35)
-			.on("click", function() {
-				sortGlyphsBy(sortByNCodes, this);
-			});
-
-		var text1 = button.append("text").attr("y", textOffset);
-		text1
-			.selectAll("tspan")
-			.data(["Number", "of Codes"])
-			.enter()
-			.append("tspan")
-			.attr("x", 0)
-			.attr("y", text1.attr("y"))
-			.attr("dy", function(d, i) {
-				return ((i * 2 - 1) * fontSize) / 2;
-			})
-			.text(d => d);
-
-		// Specific Code
-
-		button
-			.append("circle")
-			.attr("id", "popupSort3")
-			.attr("cy", 75)
-			.attr("r", 35)
-			.on("click", function() {
-				// wiggle dots to show this can't be clicked
-				d3.selectAll(".popupSortCodeCircle")
-					.transition()
-					.duration(100)
-					.attr("r", 13)
-					.transition()
-					.duration(100)
-					.attr("r", 10);
-			});
-
-		var text2 = button.append("text").attr("y", 75 + textOffset);
-		text2
-			.selectAll("tspan")
-			.data(["Specific", "Code"])
-			.enter()
-			.append("tspan")
-			.attr("x", 0)
-			.attr("y", text2.attr("y"))
-			.attr("dy", function(d, i) {
-				return ((i * 2 - 1) * fontSize) / 2;
-			})
-			.text(d => d);
-
-		button
-			.append("g")
-			.attr("transform", "translate(0, 75)")
-			.selectAll("circle")
-			.data(codes)
-			.enter()
-			.append("circle")
-			.classed("popupSortCodeCircle", true)
-			.attr("r", 10)
-			.attr("cx", function(d, i) {
-				var alpha = i * (tau / 16) - 0.0625 * tau;
-				return Math.cos(alpha) * 55;
-			})
-			.attr("cy", function(d, i) {
-				var alpha = i * (tau / 16) - 0.0625 * tau;
-				return Math.sin(alpha) * 55;
-			})
-			.style("fill", d => codeColour(d))
-			.on("click", function(d) {
-				d3.selectAll(".popupSortButton .selected").classed("selected", false);
-				d3.select("#popupSort3").classed("selected", true);
-				d3.select(this).classed("selected", true);
-
-				d3.selectAll(".popupGlyph")
-					.sort(function(a, b) {
-						return sortByCode(a, b, d);
-					})
-					.transition()
-					.duration(100)
-					.attr("transform", function(d, i) {
-						var posOnPath = path.node().getPointAtLength(i * delta);
-						return "translate(" + posOnPath.x + "," + posOnPath.y + ")";
-					});
-			});
-
 		// heading
 		popG
 			.append("text")
 			.attr("x", 0)
-			.attr("y", d => -30 - outercircle_r)
+			.attr("y", d3.min([-30 - outercircle_r, -160]))
 			.classed("popupHeading", true)
 			.text("Agreements signed by " + con);
 	}
@@ -407,10 +287,14 @@ function clickCountry(con, data, world) {
 		.append("circle")
 		.attr("fill", "transparent")
 		.classed("glyphHighlightCircle", true)
+		.attr("id", d => "glyph" + d.id)
 		.attr("r", glyphR)
 		.on("mouseover", onmouseover)
 		.on("mouseout", onmouseout)
-		.on("click", selectedAgt.clickOn);
+		.on("click", function(d) {
+			selectedAgt.clickOn(d);
+			event.stopPropagation();
+		});
 
 	// draw centre circle for each agreement
 	glyph
@@ -427,20 +311,23 @@ function clickCountry(con, data, world) {
 		.classed("popupGlyphPetal", true)
 		.attr("d", arc)
 		.style("fill", d => d.colour);
+}
 
-	function sortGlyphsBy(sortingFunction, that) {
-		d3.selectAll(".popupSortButton .selected").classed("selected", false);
-		d3.select(that).classed("selected", true);
+function sortGlyphsBy(sortingFunction, that) {
+	d3.selectAll(".popupSortButtons .selected").classed("selected", false);
+	d3.select(that).classed("selected", true);
 
-		d3.selectAll(".popupGlyph")
-			.sort(sortingFunction)
-			.transition()
-			.duration(100)
-			.attr("transform", function(d, i) {
-				var posOnPath = path.node().getPointAtLength(i * delta);
-				return "translate(" + posOnPath.x + "," + posOnPath.y + ")";
-			});
-	}
+	d3.selectAll(".popupGlyph")
+		.sort(sortingFunction)
+		.transition()
+		.duration(100)
+		.attr("transform", function(d, i) {
+			var posOnPath = d3
+				.select(".popupBackgroundSpiral")
+				.node()
+				.getPointAtLength(i * delta);
+			return "translate(" + posOnPath.x + "," + posOnPath.y + ")";
+		});
 }
 
 function sortByDate(a, b) {
@@ -485,8 +372,6 @@ function petalData(d) {
 		return obj;
 	}
 }
-
-function dotsOnSpiral(r, n) {}
 
 var arc = d3
 	.arc()
