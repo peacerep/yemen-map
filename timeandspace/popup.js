@@ -230,10 +230,11 @@ function clickCountry(con, data, world) {
 
 		// --------------------------------------------------
 
+		console.log(con_data);
 		// g for each agreement, positioned correctly
 		var glyph = glyphG
 			.selectAll(".popupGlyph")
-			.data(con_data)
+			.data(con_data.sort(sortByDate))
 			.enter()
 			.append("g")
 			.classed("popupGlyph", true)
@@ -254,6 +255,128 @@ function clickCountry(con, data, world) {
 			.attr("y", 0)
 			.attr("r", outercircle_r)
 			.classed("popupBgCircle", true);
+
+		// add buttons to the side of the circle
+		var button = bgG
+			.append("g")
+			.classed("popupSortButton", true)
+			.attr("transform", "translate(" + (outercircle_r + 50) + ", 0)");
+
+		var textOffset = 5;
+		var fontSize = 15;
+
+		// Heading
+		button
+			.append("text")
+			.text("SORT BY:")
+			.attr("y", -120)
+			.style("fill", "#333");
+
+		// Date
+
+		button
+			.append("circle")
+			.classed("selected", true)
+			.attr("cy", -75)
+			.attr("r", 35)
+			.on("click", function() {
+				sortGlyphsBy(sortByDate, this);
+			});
+
+		button
+			.append("text")
+			.style("font-size", fontSize + "px")
+			.text("Date")
+			.attr("y", -75 + textOffset);
+
+		// Number of Codes
+
+		button
+			.append("circle")
+			.attr("cy", 0)
+			.attr("r", 35)
+			.on("click", function() {
+				sortGlyphsBy(sortByNCodes, this);
+			});
+
+		var text1 = button.append("text").attr("y", textOffset);
+		text1
+			.selectAll("tspan")
+			.data(["Number", "of Codes"])
+			.enter()
+			.append("tspan")
+			.attr("x", 0)
+			.attr("y", text1.attr("y"))
+			.attr("dy", function(d, i) {
+				return ((i * 2 - 1) * fontSize) / 2;
+			})
+			.text(d => d);
+
+		// Specific Code
+
+		button
+			.append("circle")
+			.attr("id", "popupSort3")
+			.attr("cy", 75)
+			.attr("r", 35)
+			.on("click", function() {
+				// wiggle dots to show this can't be clicked
+				d3.selectAll(".popupSortCodeCircle")
+					.transition()
+					.duration(100)
+					.attr("r", 13)
+					.transition()
+					.duration(100)
+					.attr("r", 10);
+			});
+
+		var text2 = button.append("text").attr("y", 75 + textOffset);
+		text2
+			.selectAll("tspan")
+			.data(["Specific", "Code"])
+			.enter()
+			.append("tspan")
+			.attr("x", 0)
+			.attr("y", text2.attr("y"))
+			.attr("dy", function(d, i) {
+				return ((i * 2 - 1) * fontSize) / 2;
+			})
+			.text(d => d);
+
+		button
+			.append("g")
+			.attr("transform", "translate(0, 75)")
+			.selectAll("circle")
+			.data(codes)
+			.enter()
+			.append("circle")
+			.classed("popupSortCodeCircle", true)
+			.attr("r", 10)
+			.attr("cx", function(d, i) {
+				var alpha = i * (tau / 16) - 0.0625 * tau;
+				return Math.cos(alpha) * 55;
+			})
+			.attr("cy", function(d, i) {
+				var alpha = i * (tau / 16) - 0.0625 * tau;
+				return Math.sin(alpha) * 55;
+			})
+			.style("fill", d => codeColour(d))
+			.on("click", function(d) {
+				d3.selectAll(".popupSortButton .selected").classed("selected", false);
+				d3.select("#popupSort3").classed("selected", true);
+				d3.select(this).classed("selected", true);
+
+				d3.selectAll(".popupGlyph")
+					.sort(function(a, b) {
+						return sortByCode(a, b, d);
+					})
+					.transition()
+					.duration(100)
+					.attr("transform", function(d, i) {
+						var posOnPath = path.node().getPointAtLength(i * delta);
+						return "translate(" + posOnPath.x + "," + posOnPath.y + ")";
+					});
+			});
 
 		// heading
 		popG
@@ -289,6 +412,38 @@ function clickCountry(con, data, world) {
 		.classed("popupGlyphPetal", true)
 		.attr("d", arc)
 		.style("fill", d => d.colour);
+
+	function sortGlyphsBy(sortingFunction, that) {
+		d3.selectAll(".popupSortButton .selected").classed("selected", false);
+		d3.select(that).classed("selected", true);
+
+		d3.selectAll(".popupGlyph")
+			.sort(sortingFunction)
+			.transition()
+			.duration(100)
+			.attr("transform", function(d, i) {
+				var posOnPath = path.node().getPointAtLength(i * delta);
+				return "translate(" + posOnPath.x + "," + posOnPath.y + ")";
+			});
+	}
+}
+
+function sortByDate(a, b) {
+	return a.date > b.date;
+}
+
+function sortByNCodes(a, b) {
+	var scoreA = 0;
+	var scoreB = 0;
+	codes.forEach(function(code) {
+		scoreA = a[code] > 0 ? scoreA + 1 : scoreA;
+		scoreB = b[code] > 0 ? scoreB + 1 : scoreB;
+	});
+	return scoreA < scoreB;
+}
+
+function sortByCode(a, b, code) {
+	return a[code] < b[code];
 }
 
 function petalData(d) {

@@ -99,6 +99,32 @@ Map
 	font-weight: bold;
 }
 
+.popupSortButton circle {
+	fill: #333;
+	stroke: none;
+}
+
+.popupSortButton circle:hover {
+	fill: #555;
+}
+
+.popupSortButton circle.selected {
+	fill: steelblue;
+}
+
+.popupSortButton text {
+	fill: #fff;
+	text-anchor: middle;
+	alignment-baseline: center;
+	font-weight: bold;
+	pointer-events: none;
+}
+
+.popupSortCodeCircle.selected {
+	stroke: #555;
+	stroke-width: 3;
+}
+
 #closeButton {
 	fill: #ddd;
 	fill-opacity: 1;
