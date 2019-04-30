@@ -125,6 +125,11 @@ Map
 	stroke-width: 3;
 }
 
+.popupBackgroundSpiral {
+	fill: none;
+	stroke: #ccc;
+}
+
 #closeButton {
 	fill: #ddd;
 	fill-opacity: 1;

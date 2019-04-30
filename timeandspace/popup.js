@@ -244,7 +244,6 @@ function clickCountry(con, data, world) {
 			});
 
 		var tr = parseTransform(glyph.last().attr("transform")).translate;
-		// console.log(tr);
 		var outercircle_r =
 			Math.sqrt(Math.pow(+tr[0], 2) + Math.pow(+tr[1], 2)) + glyphR;
 
@@ -255,6 +254,22 @@ function clickCountry(con, data, world) {
 			.attr("y", 0)
 			.attr("r", outercircle_r)
 			.classed("popupBgCircle", true);
+
+		// calculate path for visible part of spiral and draw
+		var len = con_data.length * delta;
+		var locs = d3.range(0, len, delta / 2).map(function(d) {
+			var pt = path.node().getPointAtLength(d);
+			return [pt.x, pt.y];
+		});
+		console.log(locs);
+
+		var lineGenerator = d3.line().curve(d3.curveCardinal);
+		var pathData = lineGenerator(locs);
+
+		var path = bgG
+			.append("path")
+			.attr("d", pathData)
+			.classed("popupBackgroundSpiral", true);
 
 		// add buttons to the side of the circle
 		var button = bgG
