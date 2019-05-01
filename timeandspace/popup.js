@@ -59,7 +59,7 @@ function mouseoutCountry(that, d) {
 		.remove();
 }
 
-function clickCountry(con, data, world) {
+function clickCountry(con, data, world, filters) {
 	// white 70% opaque rectangle to cover entire map
 	var bgRect = d3.select("#popG").append("g");
 	bgRect
@@ -80,6 +80,10 @@ function clickCountry(con, data, world) {
 
 			// hide controls
 			d3.select("#popupControlsG").attr("transform", "translate(-100, -100)");
+
+			// reset timeline by triggering filter update
+			let event = new Event("change");
+			eventHandler.dispatchEvent(event);
 		});
 
 	// (X) button to close

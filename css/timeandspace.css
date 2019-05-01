@@ -120,7 +120,6 @@ Map
 .popupSortButtons text {
 	fill: #fff;
 	text-anchor: middle;
-	alignment-baseline: center;
 	font-weight: bold;
 	pointer-events: none;
 }
@@ -212,6 +211,7 @@ Map
 	font-size: 10px;
 	font-weight: bold;
 	text-anchor: middle;
+	pointer-events: none;
 }
 
 /*Info box top right*/

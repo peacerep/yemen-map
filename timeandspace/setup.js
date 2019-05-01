@@ -98,9 +98,10 @@ d3.csv("../data/pa-x.csv", parseData)
 					.on("click", function(d) {
 						var filters = {
 							year: myslider.getRange(),
-							cons: getSelectedCons(cons),
+							cons: { any: true, cons: [d.properties.name] },
 							codes: getSelectedCodes()
 						};
+						console.log(filters.cons);
 						clickCountry(
 							d.properties.name,
 							filterData(
@@ -110,6 +111,8 @@ d3.csv("../data/pa-x.csv", parseData)
 							),
 							world
 						);
+						// update timeline
+						initTimeline(filterData(data, filters), filters.year);
 					});
 
 				// Match data points with locations on the map and draw dot map
