@@ -101,7 +101,6 @@ d3.csv("../data/pa-x.csv", parseData)
 							cons: { any: true, cons: [d.properties.name] },
 							codes: getSelectedCodes()
 						};
-						console.log(filters.cons);
 						clickCountry(
 							d.properties.name,
 							filterData(

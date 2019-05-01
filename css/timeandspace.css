@@ -104,20 +104,24 @@ Map
 	font-weight: bold;
 }
 
-.popupSortButtons circle {
+.popupSortButtons circle,
+.popupSplitButtons circle {
 	fill: #333;
 	stroke: none;
 }
 
-.popupSortButtons circle:hover {
+.popupSortButtons circle:hover,
+.popupSplitButtons circle:hover {
 	fill: #555;
 }
 
-.popupSortButtons circle.selected {
+.popupSortButtons circle.selected,
+.popupSplitButtons circle.selected {
 	fill: steelblue;
 }
 
-.popupSortButtons text {
+.popupSortButtons text,
+.popupSplitButtons text {
 	fill: #fff;
 	text-anchor: middle;
 	font-weight: bold;

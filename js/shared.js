@@ -268,6 +268,8 @@ function agtDetails(d) {
 			formatDate(d.date) +
 			"</td></tr><tr><td>Country/Entity:</td><td>" +
 			printArray(d.con) +
+			"</td></tr><tr><td>Process:</td><td>" +
+			d.process +
 			"</td></tr><tr><td>Status:</td><td>" +
 			d.status +
 			"</td></tr><tr><td>Type:</td><td>" +

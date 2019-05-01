@@ -59,7 +59,7 @@ function mouseoutCountry(that, d) {
 		.remove();
 }
 
-function clickCountry(con, data, world, filters) {
+function clickCountry(con, con_data, world, filters) {
 	// white 70% opaque rectangle to cover entire map
 	var bgRect = d3.select("#popG").append("g");
 	bgRect
@@ -106,216 +106,281 @@ function clickCountry(con, data, world, filters) {
 		.attr("y1", d => d[1][0])
 		.attr("y2", d => d[1][1]);
 
-	// filter for selected country only
-	var con_data = data;
-	// var con_data = data.filter(function(d) {
-	// 	return d.con.indexOf(con) != -1;
-	// });
-
-	var splitByProcess = false;
-
-	// split agreements into circles by peace process
-	if (splitByProcess) {
-		var con_data_process = d3
-			.nest()
-			.key(d => d.processid)
-			.entries(con_data);
-
-		// calculate circle pack for each peace process separately
-		con_data_process.forEach(function(pr, i) {
-			// list of all countries involved in the PP
-			pr.cons = new Set(
-				pr.values
-					.map(d => d.con)
-					.reduce(function(a, b) {
-						return a.concat(b);
-					})
-			);
-
-			// circle pack
-			d3.packSiblings(
-				pr.values.map(function(d) {
-					d.r = glyphR;
-					return d;
-				})
-			);
-			pr.outercircle = d3.packEnclose(pr.values);
-			pr.r = pr.outercircle.r * 1.2;
+	// g centered in svg for all the popup stuff
+	var popG = d3
+		.select("#popG")
+		.append("g")
+		.attr("transform", function(d) {
+			return "translate(" + 0.5 * w_map + "," + 0.5 * h_map + ")";
 		});
 
-		d3.packSiblings(con_data_process);
+	// SPIRAL -------------------------------------------
 
-		// draw circles
-		// g for each big circle
-		var g = d3
-			.select("#popG")
-			.selectAll("g")
-			.data(con_data_process)
-			.enter()
-			.append("g")
-			.attr("transform", function(d) {
-				return (
-					"translate(" + (0.5 * w_map + d.x) + "," + (0.5 * h_map + d.y) + ")"
+	var hiddenG = popG.append("g").attr("transform", "translate(-600, -600)");
+
+	var start = 0,
+		end = 1,
+		numSpirals = 20, // 1 = a half turn
+		spiralRadius = numSpirals * glyphR * 1.1;
+
+	var theta = function(r) {
+		return numSpirals * Math.PI * r;
+	};
+
+	var radius = d3
+		.scaleLinear()
+		.domain([start, end])
+		.range([10, spiralRadius]);
+
+	var points = d3.range(start, end + 0.001, (end - start) / 1000);
+
+	var spiral = d3
+		.radialLine()
+		.curve(d3.curveCardinal)
+		.angle(theta)
+		.radius(radius);
+
+	var path = hiddenG
+		.append("path")
+		.datum(points)
+		.attr("id", "spiral")
+		.attr("d", spiral)
+		.style("fill", "none")
+		.style("stroke", "none");
+
+	var spiralLength = path.node().getTotalLength();
+
+	// --------------------------------------------------
+
+	// initial display
+	drawPopupCircles(
+		con_data,
+		d3.select("#splitButtonYes").classed("selected"),
+		path
+	);
+
+	d3.select("#splitButtonNo").on("click", function() {
+		console.log("split no");
+		d3.select(this).classed("selected", true);
+		d3.select("#splitButtonYes").classed("selected", false);
+		drawPopupCircles(con_data, false, path);
+	});
+	d3.select("#splitButtonYes").on("click", function() {
+		console.log("split yes");
+		d3.select(this).classed("selected", true);
+		d3.select("#splitButtonNo").classed("selected", false);
+		drawPopupCircles(con_data, true, path);
+	});
+
+	function drawPopupCircles(con_data, split, path) {
+		// empty g
+		popG.selectAll("*").remove();
+
+		// SPLIT ------------------------------------------------------------------
+		if (split) {
+			var con_data_process = d3
+				.nest()
+				.key(d => d.processid)
+				.entries(con_data);
+
+			var radii = [];
+
+			// do this for each peace process separately
+			con_data_process.forEach(function(pr_data, index) {
+				var popG_current = popG.append("g").attr("id", "bubble" + index);
+				// create g's for different parts of vis
+				var bgG = popG_current.append("g").attr("id", ".popupBgG");
+				var spiralG = popG_current.append("g").attr("id", ".popupSpiralG");
+				var glyphG = popG_current.append("g").attr("id", ".popupGlyphG");
+
+				// ---------------------------------------------------------------------
+				// g for each agreement, positioned correctly
+				var glyph = glyphG
+					.selectAll(".popupGlyph")
+					.data(pr_data.values.sort(sortByDate))
+					.enter()
+					.append("g")
+					.classed("popupGlyph", true)
+					.attr("transform", function(d, i) {
+						var posOnPath = path.node().getPointAtLength(i * delta);
+						return "translate(" + posOnPath.x + "," + posOnPath.y + ")";
+					});
+
+				var tr = parseTransform(glyph.last().attr("transform")).translate;
+				radii.push({
+					r: Math.sqrt(Math.pow(+tr[0], 2) + Math.pow(+tr[1], 2)) + glyphR
+				});
+
+				// draw big background circle
+				bgG
+					.append("circle")
+					.attr("x", 0)
+					.attr("y", 0)
+					.attr("r", radii[index].r)
+					.classed("popupBgCircle", true);
+
+				// calculate path for visible part of spiral and draw
+				var len = pr_data.values.length * delta;
+				var locs = d3.range(0, len, delta / 2).map(function(d) {
+					var pt = path.node().getPointAtLength(d);
+					return [pt.x, pt.y];
+				});
+
+				console.log(len, locs);
+
+				var lineGenerator = d3.line().curve(d3.curveCardinal);
+				var pathData = lineGenerator(locs);
+
+				bgG
+					.append("path")
+					.attr("d", pathData)
+					.classed("popupBackgroundSpiral", true);
+				// ---------------------------------------------------------------------
+			});
+
+			d3.packSiblings(radii);
+			radii.forEach(function(r, i) {
+				d3.select("#bubble" + i).attr(
+					"transform",
+					"translate(" + r.x + "," + r.y + ")"
 				);
 			});
 
-		// draw big background circle
-		g.append("circle")
-			.attr("x", 0)
-			.attr("y", 0)
-			.attr("r", d => d.outercircle.r)
-			.classed("popupBgCircle", true);
+			var offsetControls = d3.max(radii, d => d.r + d.x) + 80;
+			var offsetHeading = d3.max([
+				20 - h_map / 2,
+				d3.min(radii, d => d.y - d.r)
+			]);
 
-		// g for each agreement, positioned correctly
-		var glyph = g
-			.selectAll(".popupGlyph")
-			.data(d => d.values)
-			.enter()
-			.append("g")
-			.classed("popupGlyph", true)
-			.attr("transform", d => "translate(" + d.x + "," + d.y + ")");
-	}
+			// draw circles
+			// // g for each big circle
+			// var g = d3
+			// 	.select("#popG")
+			// 	.selectAll("g")
+			// 	.data(con_data_process)
+			// 	.enter()
+			// 	.append("g")
+			// 	.attr("transform", function(d) {
+			// 		return (
+			// 			"translate(" + (0.5 * w_map + d.x) + "," + (0.5 * h_map + d.y) + ")"
+			// 		);
+			// 	});
 
-	// do not split by process
-	else {
-		// g centered in svg for all the popup stuff
-		var popG = d3
-			.select("#popG")
-			.append("g")
-			.attr("transform", function(d) {
-				return "translate(" + 0.5 * w_map + "," + 0.5 * h_map + ")";
+			// // draw big background circle
+			// g.append("circle")
+			// 	.attr("x", 0)
+			// 	.attr("y", 0)
+			// 	.attr("r", d => d.outercircle.r)
+			// 	.classed("popupBgCircle", true);
+
+			// // g for each agreement, positioned correctly
+			// var glyph = g
+			// 	.selectAll(".popupGlyph")
+			// 	.data(d => d.values)
+			// 	.enter()
+			// 	.append("g")
+			// 	.classed("popupGlyph", true)
+			// 	.attr("transform", d => "translate(" + d.x + "," + d.y + ")");
+		}
+		// NO SPLIT ----------------------------------------------------------------
+		else {
+			// create g's for different parts of vis
+			var bgG = popG.append("g").attr("id", ".popupBgG");
+			var spiralG = popG.append("g").attr("id", ".popupSpiralG");
+			var glyphG = popG.append("g").attr("id", ".popupGlyphG");
+
+			// g for each agreement, positioned correctly
+			var glyph = glyphG
+				.selectAll(".popupGlyph")
+				.data(con_data.sort(sortByDate))
+				.enter()
+				.append("g")
+				.classed("popupGlyph", true)
+				.attr("transform", function(d, i) {
+					var posOnPath = path.node().getPointAtLength(i * delta);
+					return "translate(" + posOnPath.x + "," + posOnPath.y + ")";
+				});
+
+			var tr = parseTransform(glyph.last().attr("transform")).translate;
+			var outercircle_r =
+				Math.sqrt(Math.pow(+tr[0], 2) + Math.pow(+tr[1], 2)) + glyphR;
+
+			// draw big background circle
+			bgG
+				.append("circle")
+				.attr("x", 0)
+				.attr("y", 0)
+				.attr("r", outercircle_r)
+				.classed("popupBgCircle", true);
+
+			// calculate path for visible part of spiral and draw
+			var len = con_data.length * delta;
+			var locs = d3.range(0, len, delta / 2).map(function(d) {
+				var pt = path.node().getPointAtLength(d);
+				return [pt.x, pt.y];
 			});
 
-		var bgG = popG.append("g").attr("id", "popupBgG");
-		var spiralG = popG.append("g").attr("id", "popupSpiralG");
-		var glyphG = popG.append("g").attr("id", "popupGlyphG");
+			var lineGenerator = d3.line().curve(d3.curveCardinal);
+			var pathData = lineGenerator(locs);
 
-		// d3.packSiblings(
-		// 	con_data.map(function(d) {
-		// 		d.r = glyphR;
-		// 		return d;
-		// 	})
-		// );
+			var path = bgG
+				.append("path")
+				.attr("d", pathData)
+				.classed("popupBackgroundSpiral", true);
 
-		// SPIRAL -------------------------------------------
+			var offsetControls = 80 + outercircle_r;
+			var offsetHeading = d3.min([-30 - outercircle_r, -160]);
+		}
 
-		var start = 0,
-			end = 1,
-			numSpirals = 20, // 1 = a half turn
-			spiralRadius = numSpirals * glyphR * 1.1;
-
-		var theta = function(r) {
-			return numSpirals * Math.PI * r;
-		};
-
-		var radius = d3
-			.scaleLinear()
-			.domain([start, end])
-			.range([10, spiralRadius]);
-
-		var points = d3.range(start, end + 0.001, (end - start) / 1000);
-
-		var spiral = d3
-			.radialLine()
-			.curve(d3.curveCardinal)
-			.angle(theta)
-			.radius(radius);
-
-		var path = spiralG
-			.append("path")
-			.datum(points)
-			.attr("id", "spiral")
-			.attr("d", spiral)
-			.style("fill", "none")
-			.style("stroke", "none");
-
-		var spiralLength = path.node().getTotalLength();
-
-		// --------------------------------------------------
-
-		// g for each agreement, positioned correctly
-		var glyph = glyphG
-			.selectAll(".popupGlyph")
-			.data(con_data.sort(sortByDate))
-			.enter()
-			.append("g")
-			.classed("popupGlyph", true)
-			.attr("transform", function(d, i) {
-				var posOnPath = path.node().getPointAtLength(i * delta);
-				return "translate(" + posOnPath.x + "," + posOnPath.y + ")";
-			});
-
-		var tr = parseTransform(glyph.last().attr("transform")).translate;
-		var outercircle_r =
-			Math.sqrt(Math.pow(+tr[0], 2) + Math.pow(+tr[1], 2)) + glyphR;
-
-		// show controls
-		d3.select("#popupControlsG").attr(
-			"transform",
-			"translate(" + (w_map / 2 + (80 + outercircle_r)) + "," + h_map / 2 + ")"
-		);
-
-		// draw big background circle
-		bgG
-			.append("circle")
-			.attr("x", 0)
-			.attr("y", 0)
-			.attr("r", outercircle_r)
-			.classed("popupBgCircle", true);
-
-		// calculate path for visible part of spiral and draw
-		var len = con_data.length * delta;
-		var locs = d3.range(0, len, delta / 2).map(function(d) {
-			var pt = path.node().getPointAtLength(d);
-			return [pt.x, pt.y];
-		});
-
-		var lineGenerator = d3.line().curve(d3.curveCardinal);
-		var pathData = lineGenerator(locs);
-
-		var path = bgG
-			.append("path")
-			.attr("d", pathData)
-			.classed("popupBackgroundSpiral", true);
+		// BOTH --------------------------------------------------------------------
 
 		// heading
 		popG
 			.append("text")
 			.attr("x", 0)
-			.attr("y", d3.min([-30 - outercircle_r, -160]))
+			.attr("y", offsetHeading)
 			.classed("popupHeading", true)
 			.text("Agreements signed by " + con);
+
+		// show controls
+		d3.select("#popupControlsG").attr(
+			"transform",
+			"translate(" + (w_map / 2 + offsetControls) + "," + h_map / 2 + ")"
+		);
+
+		// draw invisible circle for info on mouseover
+		// glyph
+		var glyph = d3.selectAll(".popupGlyph");
+
+		glyph
+			.append("circle")
+			.attr("fill", "transparent")
+			.classed("glyphHighlightCircle", true)
+			.attr("id", d => "glyph" + d.id)
+			.attr("r", glyphR)
+			.on("mouseover", onmouseover)
+			.on("mouseout", onmouseout)
+			.on("click", function(d) {
+				selectedAgt.clickOn(d);
+				event.stopPropagation();
+			});
+
+		// draw centre circle for each agreement
+		glyph
+			.append("circle")
+			.attr("r", glyphR * 0.15)
+			.classed("popupGlyphCircle", true);
+
+		// add petals
+		glyph
+			.selectAll(".petal")
+			.data(d => petalData(d))
+			.enter()
+			.append("path")
+			.classed("popupGlyphPetal", true)
+			.attr("d", arc)
+			.style("fill", d => d.colour);
 	}
-
-	// draw invisible circle for info on mouseover
-	glyph
-		.append("circle")
-		.attr("fill", "transparent")
-		.classed("glyphHighlightCircle", true)
-		.attr("id", d => "glyph" + d.id)
-		.attr("r", glyphR)
-		.on("mouseover", onmouseover)
-		.on("mouseout", onmouseout)
-		.on("click", function(d) {
-			selectedAgt.clickOn(d);
-			event.stopPropagation();
-		});
-
-	// draw centre circle for each agreement
-	glyph
-		.append("circle")
-		.attr("r", glyphR * 0.15)
-		.classed("popupGlyphCircle", true);
-
-	// add petals
-	glyph
-		.selectAll(".petal")
-		.data(d => petalData(d))
-		.enter()
-		.append("path")
-		.classed("popupGlyphPetal", true)
-		.attr("d", arc)
-		.style("fill", d => d.colour);
 }
 
 function sortGlyphsBy(sortingFunction, that) {

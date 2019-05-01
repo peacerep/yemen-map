@@ -110,14 +110,14 @@ zoomG
 // hidden: popup controls
 
 // add buttons to the side of the circle
-var button = popupControlsG
-	.classed("popupSortButtons", true)
-	.attr("transform", "translate(-100, -100)");
+popupControlsG.attr("transform", "translate(-100, -100)");
+var button = popupControlsG.append("g").classed("popupSortButtons", true);
+var button2 = popupControlsG.append("g").classed("popupSplitButtons", true);
 
 var textOffset = 5;
 var fontSize = 15;
 
-// Heading
+// Headings
 button
 	.append("text")
 	.text("SORT BY:")
@@ -232,3 +232,56 @@ button
 				return "translate(" + posOnPath.x + "," + posOnPath.y + ")";
 			});
 	});
+
+// split by peace process?
+
+button2.attr("transform", "translate(100,0)");
+
+var text0 = button2.append("text").attr("y", -55);
+text0
+	.selectAll("tspan")
+	.data(["SPLIT BY", "PEACE PROCESS?"])
+	.enter()
+	.append("tspan")
+	.attr("x", 0)
+	.attr("y", text0.attr("y"))
+	.attr("dy", function(d, i) {
+		return ((i * 2 - 1) * fontSize) / 2;
+	})
+	.text(d => d)
+	.style("fill", "#333");
+
+button2
+	.append("circle")
+	.attr("id", "splitButtonYes")
+	.attr("cy", -20)
+	.attr("r", 20);
+// .on("click", function() {
+// 	console.log("split yes");
+// 	d3.select(this).classed("selected", true);
+// 	d3.select("#splitButtonNo").classed("selected", false);
+// });
+
+button2
+	.append("text")
+	.style("font-size", fontSize + "px")
+	.text("Yes")
+	.attr("y", -20 + textOffset);
+
+button2
+	.append("circle")
+	.attr("id", "splitButtonNo")
+	.classed("selected", true)
+	.attr("cy", 25)
+	.attr("r", 20);
+// .on("click", function() {
+// 	console.log("split no");
+// 	d3.select(this).classed("selected", true);
+// 	d3.select("#splitButtonYes").classed("selected", false);
+// });
+
+button2
+	.append("text")
+	.style("font-size", fontSize + "px")
+	.text("No")
+	.attr("y", 25 + textOffset);
