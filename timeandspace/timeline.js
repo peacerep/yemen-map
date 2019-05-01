@@ -42,22 +42,22 @@ function initTimeline(data, years) {
 		.call(xAxis);
 
 	// SWITCH BETWEEN TIMELINES ------------------------------------------------
-	const gBars = g.append("g").attr("visibility", "hidden");
+	const gBars = g
+		.append("g")
+		.classed("hidden", !d3.select("#timeline-bars").property("checked"));
+	//attr("visibility", "hidden");
 	const gLines = g
 		.append("g")
 		.attr("id", "gLines")
-		.attr("visibility", "visible");
-
+		.classed("hidden", !d3.select("#timeline-lines").property("checked"));
 	d3.select("#timeline-top")
 		.selectAll("input")
 		.on("change", function() {
-			if (this.value == "bars") {
-				gBars.attr("visibility", "visible");
-				gLines.attr("visibility", "hidden");
-			} else {
-				gBars.attr("visibility", "hidden");
-				gLines.attr("visibility", "visible");
-			}
+			gLines.classed(
+				"hidden",
+				!d3.select("#timeline-lines").property("checked")
+			);
+			gBars.classed("hidden", !d3.select("#timeline-bars").property("checked"));
 		});
 
 	// STACKED RECTANGLES BAR CHART --------------------------------------------
@@ -230,51 +230,54 @@ function initTimeline(data, years) {
 		})
 		.style("stroke", d => codeColour(d[0].code));
 
-	// compute voronoi diagram for better mouseover interaction
-	const delaunay = d3.Delaunay.from(
-		flatDataLines,
-		d => xScale(parseYear(d.year)), // x accessor
-		d => yLines(d.count)
-	); // y accessor
+	// BAD SOLUTION
+	if (dataByYear.length > 1) {
+		// compute voronoi diagram for better mouseover interaction
+		const delaunay = d3.Delaunay.from(
+			flatDataLines,
+			d => xScale(parseYear(d.year)), // x accessor
+			d => yLines(d.count)
+		); // y accessor
 
-	const voronoi = delaunay.voronoi([0, 0, width, height]);
+		const voronoi = delaunay.voronoi([0, 0, width, height]);
 
-	// draw (invisible) voronoi diagram
-	gLines
-		.append("g")
-		.selectAll("path")
-		.data(flatDataLines)
-		.enter()
-		.append("path")
-		.attr("d", function(d, i) {
-			return voronoi.renderCell(i);
-		})
-		.classed("voronoiCell", true)
-		.on("mouseover", mouseover)
-		.on("mouseout", mouseout);
+		// draw (invisible) voronoi diagram
+		gLines
+			.append("g")
+			.selectAll("path")
+			.data(flatDataLines)
+			.enter()
+			.append("path")
+			.attr("d", function(d, i) {
+				return voronoi.renderCell(i);
+			})
+			.classed("voronoiCell", true)
+			.on("mouseover", mouseover)
+			.on("mouseout", mouseout);
 
-	//Voronoi mouseover and mouseout functions
-	function mouseover(d) {
-		lines1.classed("background", true);
-		d3.select("#line" + d.code)
-			.classed("background", false)
-			.moveToFront();
+		//Voronoi mouseover and mouseout functions
+		function mouseover(d) {
+			lines1.classed("background", true);
+			d3.select("#line" + d.code)
+				.classed("background", false)
+				.moveToFront();
 
-		tooltip.moveToFront();
+			tooltip.moveToFront();
 
-		tooltip.attr(
-			"transform",
-			"translate(" + xScale(parseYear(d.year)) + "," + yLines(d.count) + ")"
-		);
-		tooltip
-			.select(".tooltipCircle")
-			.style("fill", codeColour(d.code))
-			.attr("r", 5);
-		tooltip.select(".tooltipText").text(codesLong[d.code] + ": " + d.count);
-	}
+			tooltip.attr(
+				"transform",
+				"translate(" + xScale(parseYear(d.year)) + "," + yLines(d.count) + ")"
+			);
+			tooltip
+				.select(".tooltipCircle")
+				.style("fill", codeColour(d.code))
+				.attr("r", 5);
+			tooltip.select(".tooltipText").text(codesLong[d.code] + ": " + d.count);
+		}
 
-	function mouseout(d) {
-		lines1.classed("background", false);
-		tooltip.attr("transform", "translate(-100,-100)");
+		function mouseout(d) {
+			lines1.classed("background", false);
+			tooltip.attr("transform", "translate(-100,-100)");
+		}
 	}
 }

@@ -96,7 +96,20 @@ d3.csv("../data/pa-x.csv", parseData)
 						mouseoutCountry(this, d);
 					})
 					.on("click", function(d) {
-						clickCountry(d.properties.name, data, world);
+						var filters = {
+							year: myslider.getRange(),
+							cons: getSelectedCons(cons),
+							codes: getSelectedCodes()
+						};
+						clickCountry(
+							d.properties.name,
+							filterData(
+								locdata[locdata.findIndex(e => e.con == d.properties.name)]
+									.agts,
+								filters
+							),
+							world
+						);
 					});
 
 				// Match data points with locations on the map and draw dot map
@@ -112,7 +125,16 @@ d3.csv("../data/pa-x.csv", parseData)
 					};
 
 					initTimeline(filterData(data, filters), filters.year);
-					updateGlyphs(filterData(locdata, filters));
+					drawDotmap(
+						locdata.map(function(d) {
+							return {
+								agts: filterData(d.agts, filters),
+								con: d.con,
+								count: d.count,
+								id: d.id
+							};
+						})
+					);
 				});
 			})
 			.catch(function(error) {

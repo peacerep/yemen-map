@@ -103,9 +103,10 @@ function clickCountry(con, data, world) {
 		.attr("y2", d => d[1][1]);
 
 	// filter for selected country only
-	var con_data = data.filter(function(d) {
-		return d.con.indexOf(con) != -1;
-	});
+	var con_data = data;
+	// var con_data = data.filter(function(d) {
+	// 	return d.con.indexOf(con) != -1;
+	// });
 
 	var splitByProcess = false;
 

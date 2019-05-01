@@ -1,8 +1,9 @@
 function filterData(data, f) {
-	// console.log(data, f)
+	// console.log(data);
 
 	var filtered = data.filter(function(d) {
 		if (d.year >= f.year[0] && d.year <= f.year[1]) {
+			// console.log("passed");
 			// year check passed
 			if (f.codes.codes.length == 0) {
 				var c1 = true;

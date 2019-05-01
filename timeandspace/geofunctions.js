@@ -50,7 +50,7 @@ function drawDotmap(locdata) {
 	// draw glyphs onto dotG
 
 	// get current bounding box (in lat lon)
-	var bbox = getBoundingBox();
+	// var bbox = getBoundingBox();
 
 	// filter data for the visible dots only, also filter out undef ones
 	// var locdata = locdata.filter(function(d) {
