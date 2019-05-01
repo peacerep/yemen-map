@@ -256,11 +256,6 @@ button2
 	.attr("id", "splitButtonYes")
 	.attr("cy", -20)
 	.attr("r", 20);
-// .on("click", function() {
-// 	console.log("split yes");
-// 	d3.select(this).classed("selected", true);
-// 	d3.select("#splitButtonNo").classed("selected", false);
-// });
 
 button2
 	.append("text")
@@ -274,11 +269,6 @@ button2
 	.classed("selected", true)
 	.attr("cy", 25)
 	.attr("r", 20);
-// .on("click", function() {
-// 	console.log("split no");
-// 	d3.select(this).classed("selected", true);
-// 	d3.select("#splitButtonYes").classed("selected", false);
-// });
 
 button2
 	.append("text")

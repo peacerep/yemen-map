@@ -160,13 +160,11 @@ function clickCountry(con, con_data, world, filters) {
 	);
 
 	d3.select("#splitButtonNo").on("click", function() {
-		console.log("split no");
 		d3.select(this).classed("selected", true);
 		d3.select("#splitButtonYes").classed("selected", false);
 		drawPopupCircles(con_data, false, path);
 	});
 	d3.select("#splitButtonYes").on("click", function() {
-		console.log("split yes");
 		d3.select(this).classed("selected", true);
 		d3.select("#splitButtonNo").classed("selected", false);
 		drawPopupCircles(con_data, true, path);
@@ -226,8 +224,6 @@ function clickCountry(con, con_data, world, filters) {
 					return [pt.x, pt.y];
 				});
 
-				console.log(len, locs);
-
 				var lineGenerator = d3.line().curve(d3.curveCardinal);
 				var pathData = lineGenerator(locs);
 
@@ -249,38 +245,8 @@ function clickCountry(con, con_data, world, filters) {
 			var offsetControls = d3.max(radii, d => d.r + d.x) + 80;
 			var offsetHeading = d3.max([
 				20 - h_map / 2,
-				d3.min(radii, d => d.y - d.r)
+				d3.min([d3.min(radii, d => d.y - d.r) - 30, -160])
 			]);
-
-			// draw circles
-			// // g for each big circle
-			// var g = d3
-			// 	.select("#popG")
-			// 	.selectAll("g")
-			// 	.data(con_data_process)
-			// 	.enter()
-			// 	.append("g")
-			// 	.attr("transform", function(d) {
-			// 		return (
-			// 			"translate(" + (0.5 * w_map + d.x) + "," + (0.5 * h_map + d.y) + ")"
-			// 		);
-			// 	});
-
-			// // draw big background circle
-			// g.append("circle")
-			// 	.attr("x", 0)
-			// 	.attr("y", 0)
-			// 	.attr("r", d => d.outercircle.r)
-			// 	.classed("popupBgCircle", true);
-
-			// // g for each agreement, positioned correctly
-			// var glyph = g
-			// 	.selectAll(".popupGlyph")
-			// 	.data(d => d.values)
-			// 	.enter()
-			// 	.append("g")
-			// 	.classed("popupGlyph", true)
-			// 	.attr("transform", d => "translate(" + d.x + "," + d.y + ")");
 		}
 		// NO SPLIT ----------------------------------------------------------------
 		else {
@@ -435,7 +401,9 @@ function petalData(d) {
 				obj.push({
 					startAngle: i * incr,
 					endAngle: (i + 1) * incr,
-					colour: codeColour(codes[i])
+					colour: codeColour(codes[i]),
+					code: codes[i],
+					score: d[codes[i]]
 				});
 			}
 		}
@@ -446,7 +414,13 @@ function petalData(d) {
 var arc = d3
 	.arc()
 	.innerRadius(0)
-	.outerRadius(glyphR * 0.8)
+	// .outerRadius(glyphR * 0.8)
+	.outerRadius(function(d) {
+		return d3
+			.scaleSqrt()
+			.domain(codesRange[d.code])
+			.range([0, glyphR * 0.8])(d.score);
+	})
 	.cornerRadius(5);
 
 var arc_mini = d3
