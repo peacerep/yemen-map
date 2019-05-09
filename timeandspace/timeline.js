@@ -77,7 +77,7 @@ function initTimeline(data, years) {
 		})
 		.sortKeys(d3.ascending)
 		.sortValues(function(a, b) {
-			return d3.descending(a.date, b.date);
+			return a.date > b.date;
 		})
 		.entries(data);
 
