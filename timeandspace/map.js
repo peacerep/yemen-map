@@ -221,7 +221,8 @@ button
 		d3.select(this).classed("selected", true);
 		d3.selectAll(".popupDateLabel").classed("hidden", true);
 
-		d3.selectAll(".popupGlyph")
+		d3.selectAll(".popupGlyphG")
+			.selectAll(".popupGlyph")
 			.sort(function(a, b) {
 				return sortByCode(a, b, d);
 			})

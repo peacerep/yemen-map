@@ -187,9 +187,9 @@ function clickCountry(con, con_data, world, filters) {
 			con_data_process.forEach(function(pr_data, index) {
 				var popG_current = popG.append("g").attr("id", "bubble" + index);
 				// create g's for different parts of vis
-				var bgG = popG_current.append("g").attr("id", ".popupBgG");
-				var spiralG = popG_current.append("g").attr("id", ".popupSpiralG");
-				var glyphG = popG_current.append("g").attr("id", ".popupGlyphG");
+				var bgG = popG_current.append("g").classed("popupBgG", true);
+				var spiralG = popG_current.append("g").classed("popupSpiralG", true);
+				var glyphG = popG_current.append("g").classed("popupGlyphG", true);
 
 				// ---------------------------------------------------------------------
 				// g for each agreement, positioned correctly
@@ -251,9 +251,9 @@ function clickCountry(con, con_data, world, filters) {
 		// NO SPLIT ----------------------------------------------------------------
 		else {
 			// create g's for different parts of vis
-			var bgG = popG.append("g").attr("id", ".popupBgG");
-			var spiralG = popG.append("g").attr("id", ".popupSpiralG");
-			var glyphG = popG.append("g").attr("id", ".popupGlyphG");
+			var bgG = popG.append("g").classed("popupBgG", true);
+			var spiralG = popG.append("g").classed("popupSpiralG", true);
+			var glyphG = popG.append("g").classed("popupGlyphG", true);
 
 			// g for each agreement, positioned correctly
 			var glyph = glyphG
@@ -374,7 +374,8 @@ function sortGlyphsBy(sortingFunction, that) {
 	d3.selectAll(".popupSortButtons .selected").classed("selected", false);
 	d3.select(that).classed("selected", true);
 
-	d3.selectAll(".popupGlyph")
+	d3.selectAll(".popupGlyphG")
+		.selectAll(".popupGlyph")
 		.sort(sortingFunction)
 		.transition()
 		.duration(100)
