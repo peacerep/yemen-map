@@ -132,6 +132,7 @@ button
 	.attr("cy", -75)
 	.attr("r", 35)
 	.on("click", function() {
+		d3.selectAll(".popupDateLabel").classed("hidden", false);
 		sortGlyphsBy(sortByDate, this);
 	});
 
@@ -148,6 +149,7 @@ button
 	.attr("cy", 0)
 	.attr("r", 35)
 	.on("click", function() {
+		d3.selectAll(".popupDateLabel").classed("hidden", true);
 		sortGlyphsBy(sortByNCodes, this);
 	});
 
@@ -217,6 +219,7 @@ button
 		d3.selectAll(".popupSortButtons .selected").classed("selected", false);
 		d3.select("#popupSort3").classed("selected", true);
 		d3.select(this).classed("selected", true);
+		d3.selectAll(".popupDateLabel").classed("hidden", true);
 
 		d3.selectAll(".popupGlyph")
 			.sort(function(a, b) {
@@ -228,7 +231,7 @@ button
 				var posOnPath = d3
 					.select(".popupBackgroundSpiral")
 					.node()
-					.getPointAtLength(i * delta);
+					.getPointAtLength((i + 1) * delta);
 				return "translate(" + posOnPath.x + "," + posOnPath.y + ")";
 			});
 	});

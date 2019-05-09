@@ -263,7 +263,7 @@ function clickCountry(con, con_data, world, filters) {
 				.append("g")
 				.classed("popupGlyph", true)
 				.attr("transform", function(d, i) {
-					var posOnPath = path.node().getPointAtLength(i * delta);
+					var posOnPath = path.node().getPointAtLength((i + 1) * delta);
 					return "translate(" + posOnPath.x + "," + posOnPath.y + ")";
 				});
 
@@ -280,7 +280,7 @@ function clickCountry(con, con_data, world, filters) {
 				.classed("popupBgCircle", true);
 
 			// calculate path for visible part of spiral and draw
-			var len = con_data.length * delta;
+			var len = (con_data.length + 1.5) * delta;
 			var locs = d3.range(0, len, delta / 2).map(function(d) {
 				var pt = path.node().getPointAtLength(d);
 				return [pt.x, pt.y];
@@ -293,6 +293,27 @@ function clickCountry(con, con_data, world, filters) {
 				.append("path")
 				.attr("d", pathData)
 				.classed("popupBackgroundSpiral", true);
+
+			// for sorting by date: add year labels
+			glyphG
+				.append("g")
+				.classed("popupDateLabel", true)
+				.attr("transform", function(d, i) {
+					var posOnPath = path.node().getPointAtLength(0);
+					return "translate(" + posOnPath.x + "," + posOnPath.y + ")";
+				})
+				.append("text")
+				.text(d3.min(con_data, d => d.year));
+
+			glyphG
+				.append("g")
+				.classed("popupDateLabel", true)
+				.attr("transform", function(d, i) {
+					var posOnPath = path.node().getPointAtLength(len);
+					return "translate(" + posOnPath.x + "," + posOnPath.y + ")";
+				})
+				.append("text")
+				.text(d3.max(con_data, d => d.year));
 
 			var offsetControls = 80 + outercircle_r;
 			var offsetHeading = d3.min([-30 - outercircle_r, -160]);
@@ -361,7 +382,7 @@ function sortGlyphsBy(sortingFunction, that) {
 			var posOnPath = d3
 				.select(".popupBackgroundSpiral")
 				.node()
-				.getPointAtLength(i * delta);
+				.getPointAtLength((i + 1) * delta);
 			return "translate(" + posOnPath.x + "," + posOnPath.y + ")";
 		});
 }

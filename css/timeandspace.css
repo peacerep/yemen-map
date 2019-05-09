@@ -148,6 +148,11 @@ Map
 	stroke: #ccc;
 }
 
+.popupDateLabel text {
+	text-anchor: middle;
+	dominant-baseline: middle;
+}
+
 #closeButton {
 	fill: #ddd;
 	fill-opacity: 1;
