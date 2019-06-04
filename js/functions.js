@@ -106,30 +106,6 @@ var stagesLong = {
 	Other: "Other"
 };
 
-var substagesLong = {
-	Proc: "Process",
-	Prin: "Principles",
-	Conf: "Confidence-building measure",
-	PreMix: "Mixed",
-	PreOth: "Other",
-	Iss: "Core issues",
-	MultIss: "Partial but multiple issues",
-	FrparOth: "Other",
-	FrAg: "Comprehensive",
-	FrCons: "Constitution",
-	ImpMod: "Implementation modalities",
-	ExtSub: "Substantive Extending",
-	ExtPar: "Partial Extending",
-	ImpOth: "Other",
-	Reimp: "Renewal of an implementation agreement",
-	Repre: "Renewal of a pre-negotiation agreement",
-	Resub: "Renewal of an agreement dealing with substantive issues",
-	Reoth: "Renewal of other type of agreement",
-	Ceas: "Ceasefire agreement",
-	Rel: "Ceasefire-related",
-	CeaMix: "Ceasefire-mixed"
-};
-
 var stages = Object.keys(stagesLong);
 
 function stageColour(d, fake = false) {
@@ -171,13 +147,6 @@ function stageColour(d, fake = false) {
 	}
 	return col;
 }
-
-// Type
-const agreementTypes = {
-	Inter: "Interstate/interstate  conflict",
-	InterIntra: "Interstate/mixed or intrastate conflict",
-	Intra: "Intrastate conflict"
-};
 
 // extract min and max year from data
 function getYears(data) {
@@ -260,15 +229,15 @@ function agtDetails(d) {
 			"<table><tr><td>Date Signed:</td><td>" +
 			formatDate(d.Dat) +
 			"</td></tr><tr><td>Country/Entity:</td><td>" +
-			printArray(d.Con) +
+			d.Con +
 			"</td></tr><tr><td>Status:</td><td>" +
 			d.Status +
 			"</td></tr><tr><td>Type:</td><td>" +
-			agreementTypes[d.Agtp] +
+			d.Agtp +
 			"</td></tr><tr><td>Stage:</td><td>" +
-			stagesLong[d.Stage] +
+			d.Stage +
 			"</td></tr><tr><td>Sub-Stage:</td><td>" +
-			substagesLong[d.StageSub] +
+			d.StageSub +
 			"</td></tr></table>" +
 			'<a class="button" href="https://www.peaceagreements.org/masterdocument/' +
 			d.AgtId +
@@ -304,13 +273,4 @@ function parseTransform(a) {
 		b[c.shift()] = c;
 	}
 	return b;
-}
-
-function printArray(arr) {
-	var str = "";
-	arr.forEach(function(d) {
-		str = str + d + ", ";
-	});
-	str = str.slice(0, str.length - 2);
-	return str;
 }
