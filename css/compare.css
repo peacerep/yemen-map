@@ -10,19 +10,18 @@ select {
 	width: 200px;
 }
 
+
 /*Grid layout*/
 
 .grid-container {
 	display: grid;
-	grid-template-columns: 305px 1fr 1fr 1fr;
+	grid-template-columns: 305px 1fr 1fr 1fr; 
 	grid-template-rows: 1fr;
 	align-content: stretch;
 	justify-content: stretch;
 }
 
-#timeline-v0,
-#timeline-v1,
-#timeline-v2 {
+#timeline-v0, #timeline-v1, #timeline-v2 {
 	grid-row: 1;
 	padding: 15px;
 }

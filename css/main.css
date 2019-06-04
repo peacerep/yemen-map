@@ -2,13 +2,12 @@
 main styles (all pages)
 */
 
-html,
-body {
+html, body {
 	background-color: #eee;
 	color: #000;
 	margin: 0px;
 	padding: 0px;
-	font-family: "Karla", sans-serif;
+	font-family: 'Karla', sans-serif;
 	font-size: 15px;
 }
 
@@ -42,6 +41,7 @@ a:hover {
 h1 a:hover {
 	border-bottom: solid 2px black;
 }
+
 
 .hidden {
 	display: none;

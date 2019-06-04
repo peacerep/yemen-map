@@ -1,5 +1,4 @@
-body,
-html {
+body, html {
 	text-align: center;
 }
 
@@ -8,7 +7,7 @@ h1 {
 }
 
 h2 {
-	margin-bottom: 30px;
+	margin-bottom: 30px; 
 }
 
 h3 {
@@ -18,11 +17,11 @@ h3 {
 .indexCard {
 	display: inline-block;
 	background-color: white;
-	width: 400px;
-	padding: 10px;
-	margin: 15px;
-	box-shadow: 0px 2px 9px #c7c7c7;
-	text-align: left;
+    width: 400px;
+    padding: 10px;
+    margin: 15px;
+    box-shadow: 0px 2px 9px #c7c7c7;
+    text-align: left;
 }
 
 .indexCard:hover {
@@ -52,3 +51,4 @@ a:hover {
 .container img {
 	margin-right: 15px;
 }
+
