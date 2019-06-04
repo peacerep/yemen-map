@@ -155,7 +155,7 @@ function initTimeline(data, years) {
 				arr.push([
 					code,
 					d3.sum(v, function(d) {
-						return d[code] > 0;
+						return d[code] > 2;
 					})
 				]);
 			});
