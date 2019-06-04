@@ -15,11 +15,42 @@ var svg = d3
 var scaleInit = (h_map / (2 * Math.PI)) * 1.7;
 var transInit = [w_map / 2, h_map * 0.6];
 
+var yemenZoom = {
+	k: 9.606427419881701,
+	x: -6152.44702457447,
+	y: -3387.537350434757
+};
+
 // define projection
 var projection = d3
 	.geoMercator()
 	.scale(scaleInit)
 	.translate(transInit);
+
+var yemenBox = {
+	l: 38,
+	r: 60,
+	t: 22,
+	b: 10
+};
+
+var bbox_yemen = {
+	type: "Polygon",
+	coordinates: [
+		[
+			[yemenBox.l, yemenBox.t],
+			[yemenBox.r, yemenBox.t],
+			[yemenBox.r, yemenBox.b],
+			[yemenBox.l, yemenBox.b],
+			[yemenBox.l, yemenBox.t]
+		]
+	]
+};
+
+projection.fitSize([w_map, h_map], bbox_yemen);
+
+// // define projection
+// var projection = d3.geoMercator().fitSize([w_map, h_map], bbox);
 
 // define path generator
 var path = d3.geoPath().projection(projection);
@@ -44,7 +75,7 @@ const rCircle = 1.5;
 // set up zoom
 var zoom = d3
 	.zoom()
-	.scaleExtent([0.7, 50])
+	.scaleExtent([0, 50])
 	.on("zoom", zooming);
 
 svg.call(zoom);

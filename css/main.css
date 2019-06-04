@@ -1,14 +1,17 @@
-/*
-main styles (all pages)
-*/
+/* main styles (all pages) */
 
-html, body {
-	background-color: #eee;
+html,
+body {
+	background-color: #f1f1f1;
 	color: #000;
 	margin: 0px;
 	padding: 0px;
-	font-family: 'Karla', sans-serif;
+	font-family: "Karla", sans-serif;
 	font-size: 15px;
+}
+
+svg {
+	shape-rendering: geometricPrecision;
 }
 
 h1 {
@@ -41,7 +44,6 @@ a:hover {
 h1 a:hover {
 	border-bottom: solid 2px black;
 }
-
 
 .hidden {
 	display: none;

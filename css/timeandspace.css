@@ -1,15 +1,9 @@
-/*
-Styles for page with timeline and map
-*/
-
-
-
 /*Grid layout*/
 
 .grid-container {
 	display: grid;
-	grid-template-columns: 305px 1fr 20%; 
-	grid-template-rows: 250px 1fr;
+	grid-template-columns: 305px 1fr 20%;
+	grid-template-rows: 20% 1fr;
 	width: 100vw;
 	height: 100vh;
 	align-content: stretch;
@@ -56,23 +50,177 @@ Map
 
 .land {
 	fill: #fff;
-	stroke: #eee;
+	stroke: #555;
+}
+
+.land.hover {
+	/*stroke: #000;*/
+	fill: #dae4ed;
+}
+
+#dotG {
+	pointer-events: none;
+}
+
+#dotG circle {
+	fill: #555;
+	fill-opacity: 1;
+}
+
+#bgRect {
+	fill: #f1f1f1;
+	fill-opacity: 0.7;
+}
+
+.popupBgCircle {
+	fill: #fff; /*3A3A3A*/
+}
+
+.popupGlyphCircle {
+	fill: #555;
+	pointer-events: none;
+}
+
+.glyphHighlightCircle {
+	fill: transparent;
+}
+
+.glyphHighlightCircle.hover {
+	fill: #eee;
+}
+
+.glyphHighlightCircle.selected {
+	fill: #eee;
+	stroke: #333;
+}
+
+.popupGlyphPetal {
+	pointer-events: none;
+}
+
+.popupHeading {
+	text-anchor: middle;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.popupSortButtons circle,
+.popupSplitButtons circle {
+	fill: #333;
+	stroke: none;
+}
+
+.popupSortButtons circle:hover,
+.popupSplitButtons circle:hover {
+	fill: #555;
+}
+
+.popupSortButtons circle.selected,
+.popupSplitButtons circle.selected {
+	fill: steelblue;
+}
+
+.popupSortButtons text,
+.popupSplitButtons text {
+	fill: #fff;
+	text-anchor: middle;
+	font-weight: bold;
+	pointer-events: none;
+}
+
+.popupSortCodeCircle.selected {
+	stroke: #555;
+	stroke-width: 3;
+}
+
+.popupSortCodeCircle:hover {
+	stroke: #555;
+	stroke-width: 1;
+}
+
+.popupSortCodeCircle.selected:hover {
+	stroke: #555;
+	stroke-width: 3;
+}
+
+.popupBackgroundSpiral {
+	fill: none;
+	stroke: #ccc;
+}
+
+.popupDateLabel text {
+	text-anchor: middle;
+	dominant-baseline: middle;
+}
+
+#closeButton {
+	fill: #ddd;
+	fill-opacity: 1;
+	pointer-events: none;
+}
+
+#closeButton.hover {
+	fill: #ccc;
+}
+
+.closeButtonLines {
+	pointer-events: none;
+	stroke: #555;
+	stroke-width: 3;
+	stroke-linecap: round;
+	fill: none;
+}
+
+.zoomButton rect {
+	fill: #fff;
+	stroke: #555;
+	stroke-width: 1;
+}
+
+.zoomButton rect:hover {
+	fill: #ccc;
+	stroke: #000;
+}
+
+.zoomButton line {
+	stroke: #000;
+	stroke-width: 2;
+	pointer-events: none;
 }
 
 /*Timeline*/
 
-#timeline-top rect {
+.agtTimelineBlock {
 	cursor: pointer;
+	fill: #555;
 }
 
-#timeline-top rect:hover {
+.agtTimelineBlock.hover {
 	fill: #ccc;
+}
+
+.codeLine {
+	stroke-linejoin: round;
+	stroke-width: 2.5;
+	opacity: 0.8;
+	fill: none;
+	pointer-events: none;
+}
+
+.codeLine.background {
+	opacity: 0.1;
+}
+
+.voronoiCell {
+	/*stroke: black; (uncomment to see voronoi cells)*/
+	fill: transparent;
 }
 
 .count {
 	font-size: 10px;
 	font-weight: bold;
 	text-anchor: middle;
+	pointer-events: none;
 }
 
 /*Info box top right*/
@@ -101,4 +249,8 @@ Map
 .tooltipText {
 	text-anchor: middle;
 	text-shadow: 0 1px 0 #eee, 1px 0 0 #eee, 0 -1px 0 #eee, -1px 0 0 #eee;
+}
+
+.popup.land {
+	fill: #768ead;
 }
