@@ -12,8 +12,8 @@ var svg = d3
 	.attr("height", h_map);
 
 // initial scale and translation (makes mercator projection fit screen)
-var scaleInit = (h_map / (2 * Math.PI)) * 1.7;
-var transInit = [w_map / 2, h_map * 0.6];
+var scaleInit = (h_map / (2 * Math.PI)) * 2.3;
+var transInit = [w_map * 0.5, h_map * 0.75];
 
 // define projection
 var projection = d3

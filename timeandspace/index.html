@@ -32,91 +32,101 @@
 		<div id="eventHandler" class="input hidden"></div>
 
 		<div class="grid-container">
-			<div id="sidebar">
+			<div id="header">
 				<h1><a href="..">Visualizing Peace</a></h1>
 				<h2>Agreements in Time and Space</h2>
-
-				<div class="selectSection">
-					<h3>Timeframe</h3>
-					Drag the slider to select years:<br />
-					<div id="timeslider"></div>
-				</div>
-
-				<div class="selectSection">
-					<h3>Country/Entity Selection</h3>
-					<!-- any/all radio -->
-					Display agreements involving
-					<div class="switchContainer">
-						<input
-							type="radio"
-							id="anyCon"
-							name="conRule"
-							value="any"
-							class="input"
-							checked
-						/><label for="anyCon" class="button left">any</label
-						><input
-							type="radio"
-							id="allCon"
-							name="conRule"
-							value="all"
-							class="input"
-						/><label for="allCon" class="button right">all</label>
-					</div>
-					of the selected countries/entities.<br />
-
-					<!-- fake dropdown for countries -->
-					<div class="dropdown">
-						<div class="button">
-							Select Countries/Entities <span class="arrowdown">&#9660;</span>
-						</div>
-						<div id="conDropdown" class="dropcontent">
-							<a href="#" id="selectAllCons" class="button">Select All</a
-							>&nbsp;&nbsp;
-							<a href="#" id="deselectAllCons" class="button">Deselect All</a
-							><br />
-						</div>
-					</div>
-					<br />
-					Selected countries/entities:<br />
-					<span id="selectedCons"></span>
-				</div>
-
-				<div class="selectSection">
-					<h3>Code Selection</h3>
-					<!-- any/all radio -->
-					Highlight agreements that address
-					<div class="switchContainer">
-						<input
-							type="radio"
-							id="anyCodes"
-							name="codesRule"
-							value="any"
-							class="input"
-							checked
-						/><label for="anyCodes" class="button left">any</label
-						><input
-							type="radio"
-							id="allCodes"
-							name="codesRule"
-							value="all"
-							class="input"
-						/><label for="allCodes" class="button right">all</label>
-					</div>
-					of the selected codes.<br />
-
-					<div id="codesCheckboxes"></div>
-
-					<span>
-						<a href="#" id="selectAllCodes" class="button">Select All</a
-						>&nbsp;&nbsp;
-						<a href="#" id="deselectAllCodes" class="button">Deselect All</a
-						><br />
-					</span>
-				</div>
-
+				<div class="button" id="expandFilters">Show Filters</div>
 				<div id="reset-filters" class="button">Reset Filters</div>
 			</div>
+
+			<div id="sidebar">
+				<div id="filterContainer" class="hidden">
+					<div class="selectSection">
+						<h3>Timeframe</h3>
+						Drag the slider to select years:<br />
+						<div id="timeslider"></div>
+					</div>
+
+					<hr />
+
+					<div class="selectSection">
+						<h3>Country/Entity Selection</h3>
+						<!-- any/all radio -->
+						Display agreements involving
+						<div class="switchContainer">
+							<input
+								type="radio"
+								id="anyCon"
+								name="conRule"
+								value="any"
+								class="input"
+								checked
+							/><label for="anyCon" class="button left">any</label
+							><input
+								type="radio"
+								id="allCon"
+								name="conRule"
+								value="all"
+								class="input"
+							/><label for="allCon" class="button right">all</label>
+						</div>
+						of the selected countries/entities.<br />
+
+						<!-- fake dropdown for countries -->
+						<div class="dropdown">
+							<div class="button">
+								Select Countries/Entities
+								<span class="arrowdown">&#9660;</span>
+							</div>
+							<div id="conDropdown" class="dropcontent">
+								<a href="#" id="selectAllCons" class="button">Select All</a
+								>&nbsp;&nbsp;
+								<a href="#" id="deselectAllCons" class="button">Deselect All</a
+								><br />
+							</div>
+						</div>
+						<br />
+						Selected countries/entities:<br />
+						<span id="selectedCons"></span>
+					</div>
+
+					<hr />
+
+					<div class="selectSection">
+						<h3>Code Selection</h3>
+						<!-- any/all radio -->
+						Highlight agreements that address
+						<div class="switchContainer">
+							<input
+								type="radio"
+								id="anyCodes"
+								name="codesRule"
+								value="any"
+								class="input"
+								checked
+							/><label for="anyCodes" class="button left">any</label
+							><input
+								type="radio"
+								id="allCodes"
+								name="codesRule"
+								value="all"
+								class="input"
+							/><label for="allCodes" class="button right">all</label>
+						</div>
+						of the selected codes.<br />
+
+						<div id="codesCheckboxes"></div>
+
+						<span>
+							<a href="#" id="selectAllCodes" class="button">Select All</a
+							>&nbsp;&nbsp;
+							<a href="#" id="deselectAllCodes" class="button">Deselect All</a
+							><br />
+						</span>
+					</div>
+				</div>
+			</div>
+
 			<div id="timeline-top">
 				<div id="selectTimeline" class="switchContainer">
 					<input

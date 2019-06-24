@@ -49,7 +49,9 @@ function slider(divID, min, max) {
 
 	// set width and height of svg
 	var w = parseInt(
-		window.getComputedStyle(document.getElementById(divID)).width
+		// window.getComputedStyle(document.getElementById(divID)).width
+		// ugly fix
+		window.getComputedStyle(document.getElementById("sidebar")).width
 	);
 	// var w = 270
 	var h = 65;

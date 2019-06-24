@@ -2,6 +2,18 @@
 
 // Set up filters
 
+d3.select("#expandFilters").on("click", function() {
+	var currentState = d3.select("#filterContainer").classed("hidden");
+
+	// change button text
+	d3.select("#expandFilters").text(
+		currentState ? "Hide Filters" : "Show Filters"
+	);
+
+	// toggle filter visibility
+	d3.select("#filterContainer").classed("hidden", !currentState);
+});
+
 d3.select("#selectAllCodes").on("click", function() {
 	// check all checkboxes
 	d3.selectAll("#codesCheckboxes input").property("checked", true);

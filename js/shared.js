@@ -264,6 +264,12 @@ function agtDetails(d) {
 			"<b>" +
 			d.title +
 			"</b><br>" +
+			'<a class="button" href="https://www.peaceagreements.org/masterdocument/' +
+			d.id +
+			'" target = "_blank">Open PDF</a>&nbsp;<a class="button" href="' +
+			"https://www.peaceagreements.org/view/" +
+			d.id +
+			'" target = "_blank">View Coding Detail</a>' +
 			"<table><tr><td>Date Signed:</td><td>" +
 			formatDate(d.date) +
 			"</td></tr><tr><td>Country/Entity:</td><td>" +
@@ -278,13 +284,7 @@ function agtDetails(d) {
 			stagesLong[d.stage] +
 			"</td></tr><tr><td>Sub-Stage:</td><td>" +
 			substagesLong[d.substage] +
-			"</td></tr></table>" +
-			'<a class="button" href="https://www.peaceagreements.org/masterdocument/' +
-			d.id +
-			'" target = "_blank">Open PDF</a>&nbsp;<a class="button" href="' +
-			"https://www.peaceagreements.org/view/" +
-			d.id +
-			'" target = "_blank">View Coding Detail</a>';
+			"</td></tr></table>";
 	}
 	d3.select("#agreementDetails").html(infoString);
 }
