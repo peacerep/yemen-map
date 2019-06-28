@@ -2,7 +2,7 @@
 <head>
 	<meta charset="utf-8">
 	<script src="//d3js.org/d3.v4.min.js"></script>
-	<script src="https://d3js.org/queue.v1.min.js"></script>
+	<script src="http://d3js.org/queue.v1.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
 	<style> 
@@ -59,8 +59,6 @@
 </div>
 <script>
 'use strict'
-
-//var parseTime = d3.timeParse("%Y/%m/%d");
 var parseTime = d3.timeParse("%d/%m/%Y");
 var width = document.getElementById('chart').clientWidth
 var margin = 150
@@ -68,12 +66,12 @@ var height = 370
 var fixed = null
 
 var sequence = [
-	{"key": "Cea",		"name": ["Ceasefire","related"], "count": 0, "color": d3.rgb(241,80,31,.8), 'position': 	1},
-	{"key": "Pre",	 	"name": ["Pre-negotiation","process"], "count": 0, "color": d3.rgb(251,173,68,.8), 'position': 2},
-	{"key": "SubPar",	"name": ["Partial","Framework-substantive"], "count": 0, "color": d3.rgb(252,202,70,.8), 'position': 3},
-	{"key": "SubComp",	"name": ["Comprehensive","Framework-substantive"], "count": 0, "color": d3.rgb(172,176,140,.8), 'position': 4},
-	{"key": "Imp",		"name": ["Implementation","Renegotiation/Renewal"], "count": 0, "color": d3.rgb(74,144,226,.8), 'position': 5},
-	{"key": "Ren",		"name": [], "count": 0, "color": d3.rgb(74,144,226,8), 'position': 5},
+	{"key": "Cea",		"name": ["Ceasefire","related"],					"color": d3.rgb(241,80,31,.8),		'position': 1},
+	{"key": "Pre",	 	"name": ["Pre-negotiation","process"],				"color": d3.rgb(251,173,68,.8),		'position': 2},
+	{"key": "SubPar",	"name": ["Partial","Framework-substantive"],		"color": d3.rgb(252,202,70,.8),		'position': 3},
+	{"key": "SubComp",	"name": ["Comprehensive","Framework-substantive"],	"color": d3.rgb(172,176,140,.8),	'position': 4},
+	{"key": "Imp",		"name": ["Implementation","Renegotiation/Renewal"],	"color": d3.rgb(74,144,226,.8),		'position': 5},
+	{"key": "Ren",		"name": [],											"color": d3.rgb(74,144,226,8),		'position': 5},
 ]
 
 queue()
@@ -81,12 +79,15 @@ queue()
   .await(init);
 
 function init(error,pax) {
+
+	//Filter & Sort agreement data
 	pax = pax.filter((d,i) => d.Stage !== "Oth")
 	pax.sort(function(a,b){
 		function getDate(d) {return parseTime(d.Date)}
 		return getDate(a) - getDate(b)
 	})
 
+	//Create Objects for Agreements in the same process
 	var processes = {}
 	pax.forEach(function(agreement){
 		if (typeof sequence.find(x => x.key == agreement.Stage) !== 'undefined') sequence.find(x => x.key == agreement.Stage).count++
@@ -95,48 +96,48 @@ function init(error,pax) {
 	 	processes[name].push(agreement)
 	})
 
-	var svg = d3.select("#chart").append("svg")
-	.attr("viewBox","0 0 "+width+" "+height)
-	.attr("preserveAspectRatio","xMidYMid meet")
+	console.log(processes)
+
+	//create canvas
+	var svg = d3.select("#chart")
+		.append("svg")
+			.attr("viewBox","0 0 "+width+" "+height)
+			.attr("preserveAspectRatio","xMidYMid meet")
 	
-	var scaleColor = d3.scaleLinear().domain([-350,0,350]).range([d3.rgb("#FF3B00"), d3.rgb("#555555"), d3.rgb("#0075FF")])
-	var scaleY = d3.scaleLinear().domain([1,sequence.length-1]).range([20,350])
+	//Scales & Axes
+	var scaleColor = d3.scaleLinear()
+		.domain([-350,0,350])
+		.range([d3.rgb("#FF3B00"), d3.rgb("#555555"), d3.rgb("#0075FF")])
+	var scaleY = d3.scaleLinear()
+		.domain([1,sequence.length-1])
+		.range([20,350])
 	var scaleX = d3.scaleTime()
-	    .domain(d3.extent(pax,function(d){return parseTime(d.Date)}))
-    	.range([0,width-margin-10])
-
+		.domain(d3.extent(pax,function(d){return parseTime(d.Date)}))
+		.range([0,width-margin-10])
     var xAxis = d3.axisTop(scaleX);
-    var zoom = d3.zoom()
-    .scaleExtent([1, Infinity])
-    .translateExtent([[0, 0], [width, height]])
-    .extent([[0, 0], [width, height]])
-    .on("zoom", zoomed);
-    svg.call(zoom)
+    var years = svg
+    	.append("g")
+    	.attr("class", "axis axis--x")
+    	.attr("transform", "translate(0,20)")
+    	.call(xAxis);
 
-    function zoomed(){
-		var zoomScale = d3.event.transform.rescaleX(scaleX)
-		years.call(xAxis.scale(zoomScale));
-		process.attr("d",(d,i)=>segment(d,i,zoomScale))
-		circles.attr("cx",d=>Math.round(zoomScale(parseTime(d.Date))))
-	};
+    //legend
+	var legend = svg.append("g")
+		.attr("class","lines")
+		.selectAll("g")
+		.data(sequence).enter()
+		.append("text")
+			.attr("y",d=>scaleY(d.position) -15)
+			.attr("font-size","10pt")
+			.attr("text-anchor","start")
+			.selectAll("tspan").data(d=>d.name).enter().append("tspan")
+				.text(d=>d)
+				.attr("x",width-margin)
+				.attr("dy","10pt")
 
-    var years = svg.append("g")
-    .attr("class", "axis axis--x")
-    .attr("transform", "translate(0,20)")
-    .call(xAxis);
-
-	var legend = svg.append("g").attr("class","lines").selectAll("g").data(sequence).enter().append("text")
-		.attr("y",d=>scaleY(d.position) -15)
-		.attr("font-size","10pt")
-		.attr("text-anchor","start")
-		.selectAll("tspan").data(d=>d.name).enter().append("tspan")
-			.text(d=>d)
-			.attr("x",width-margin)
-			.attr("dy","10pt")
-
+	//compute line segments
 	var segment = function(d,i,scale) {
 		if(i < processes[d.PPName].length-1) {
-
 			var start = {
 				"x": Math.round(scale(parseTime(d.Date))),
 				"y": scaleY(sequence.find(x=>x.key == d.Stage).position)
@@ -150,54 +151,41 @@ function init(error,pax) {
 		}
 	}
 
+	//draw paths for processes
 	svg.append("clipPath")
-    .attr("id", "ellipse-clip")
-  .append("rect")
-    .attr("x", 0)
-    .attr("y", 0)
-    .attr("width", width-margin-10)
-    .attr("height", height);       
+		.attr("id", "ellipse-clip")
+		.append("rect")
+			.attr("x", 0)
+			.attr("y", 0)
+			.attr("width", width-margin-10)
+			.attr("height", height);  //clipPath for zoomed processes
+	
+	var processContainer = svg.append("g")
+		.attr("class","processes")
+		.attr("clip-path", "url(#ellipse-clip)")
+		.attr("pointer-events", "all")
+		.on("click",d=>{console.log(d)})
 
-	var process = svg.append("g").attr("class","processes").attr("clip-path", "url(#ellipse-clip)").selectAll("g").data(Object.entries(processes)).enter()
-	.append("g").attr("class",d=>"PP-"+d[1][0].PP).selectAll("path").data(d=>d[1]).enter().append("path")
-		.attr("fill-opacity", 0)
-		.attr("stroke-width", 1)
-		.attr("stroke-opacity", .2)
-		.attr("stroke", (d,i)=>{
-			if(i < processes[d.PPName].length-1) {
-				var tendency = scaleY(sequence.find(x=>x.key == processes[d.PPName][i+1].Stage).position) - scaleY(sequence.find(x=>x.key == d.Stage).position)
-				return scaleColor(tendency)
-			}
-		})
-		.attr("pointer-events","all")
-		.attr("d",(d,i)=>segment(d,i,scaleX))
-		
-	process.on("mouseover",function(d){
-			if(!fixed) {
-				process.attr("stroke-opacity",0.05)
-				d3.selectAll("g.PP-"+d.PP+" path").attr("stroke-opacity",1).attr("stroke-width",3)
-				d3.selectAll(".ideal path").attr("stroke-opacity",0.1)
-				d3.select("#details .ProcessName").html(d.PPName)
-			}
-		})
-		.on("click",function(d){
-			if(fixed) {
-				fixed = null;
-				circles.attr("opacity",0).attr("pointer-events", "none")
-				process.attr("stroke-opacity", .2).attr("stroke-width",1)
-			} else {
-				fixed = d.PPName
-				d3.selectAll("circle.PP-"+d.PP).attr("opacity",.7).attr("pointer-events", "all")
-			}
-		})
-		.on("mouseout",function(d) {
-			if(!fixed) {
-				process.attr("stroke-opacity", .2).attr("stroke-width",1)
-				d3.selectAll(".ideal path").attr("stroke-opacity",1)
-				d3.select("#details .ProcessName").html('<span class="inactive">Click on line to select process</span>')
-			}
-		})
+	var process = processContainer.selectAll("g")
+		.data(Object.entries(processes)).enter()
+		.append("g")
+			.attr("class",d=>"PP-"+d[1][0].PP)
+			.selectAll("path").data(d=>d[1])
+			.enter()
+			.append("path")
+				.attr("pointer-events","all")
+				.attr("fill-opacity", 0)
+				.attr("stroke-width", 1)
+				.attr("stroke-opacity", .2)
+				.attr("d",(d,i)=>segment(d,i,scaleX))
+				.attr("stroke", (d,i)=>{
+					if(i < processes[d.PPName].length-1) {
+						var tendency = scaleY(sequence.find(x=>x.key == processes[d.PPName][i+1].Stage).position) - scaleY(sequence.find(x=>x.key == d.Stage).position)
+						return scaleColor(tendency)
+					}
+				})
 
+	//draw circles for each agreement
 	var circles = svg.append("g").attr("class","circles").selectAll("circle").data(pax).enter().append("circle")
 		.attr("class",d=>"PP-"+d.PP)
 		.attr("cx",d=>Math.round(scaleX(parseTime(d.Date))))
@@ -210,28 +198,25 @@ function init(error,pax) {
 		.attr("opacity",0)
 		.attr("pointer-events", "none")
 		.on("mouseover",function(d) {
-			d3.select(this).transition().duration(50).attr("r",10)
-			d3.select(".Agreement").html("<strong>"+d.Date+":</strong> "+d.Agt)
+			d3.select(this)
+				.transition()
+				.duration(50)
+				.attr("r",10)
+			d3.select(".Agreement")
+				.html("<strong>"+d.Date+":</strong> "+d.Agt)
 		})
 		.on("mouseout",function(d) {
-			d3.select(this).transition().duration(50).attr("r",5)
-			d3.select(".Agreement").html('<span class="inactive">Hover circle to select agreement</span>')
+			d3.select(this)
+				.transition()
+				.duration(50)
+				.attr("r",5)
+			d3.select(".Agreement")
+				.html('<span class="inactive">Hover circle to select agreement</span>')
 		})
 
-	var ideal = [
-			{"Date": "01/01/1990", "Stage": "Cea"},
-			{"Date": "01/01/1995", "Stage": "Pre"},
-			{"Date": "01/01/2000", "Stage": "SubPar"},
-			{"Date": "01/01/2005", "Stage": "SubComp"},
-			{"Date": "01/01/2010", "Stage": "Ren"},
-			{"Date": "01/01/2019", "Stage": "Ren"}
-		]
-
-	svg.append("g").attr("class","ideal").selectAll("path").data(ideal).enter().append("path")
-		.attr("fill-opacity", 0)
-		.attr("stroke-width", 2)
-		.attr("stroke-opacity", 1)
-		.attr("stroke", "#0075FF")
+	/*//Idealized process line
+	var ideal = [{"Date": "01/01/1990", "Stage": "Cea"},{"Date": "01/01/1995", "Stage": "Pre"},{"Date": "01/01/2000", "Stage": "SubPar"},{"Date": "01/01/2005", "Stage": "SubComp"},{"Date": "01/01/2010", "Stage": "Ren"},{"Date": "01/01/2019", "Stage": "Ren"}]
+	svg.append("g").attr("class","ideal").selectAll("path").data(ideal).enter().append("path").attr("fill-opacity", 0).attr("stroke-width", 2).attr("stroke-opacity", 1).attr("stroke", "#0075FF")
 		.attr("d",function(d,i){
 			if(i <ideal.length-1) {
 				var start = {
@@ -245,27 +230,98 @@ function init(error,pax) {
 				var distance = (stop.x - start.x) / 1.5
 				return "M "+start.x+" "+start.y+" C "+(start.x + distance)+" "+start.y+", "+(stop.x - distance)+" "+stop.y+", "+stop.x+" "+stop.y
 			}
-		})
+		})*/
 
-	var overview = d3.select("#overview").append("svg")
-		.attr("viewBox","0 0 "+width+" 500")
-		.attr("preserveAspectRatio","xMidYMid meet")
+	var overview = d3.select("#overview")
+		.append("svg")
+			.attr("viewBox","0 0 "+width+" 500")
+			.attr("preserveAspectRatio","xMidYMid meet")
 
-	overview.append("g").selectAll("line").data(Object.values(processes)).enter().append("line")
-    .attr("stroke",d3.rgb(0,0,0,1))
-    .attr("stroke-width",.2)
-    .attr("x1",d=> Math.round(scaleX(parseTime(d[0].Date))))
-    .attr("x2",d=> Math.round(scaleX(parseTime(d[d.length-1].Date))))
-    .attr("y1",(d,i) => (i *1))
-    .attr("y2",(d,i) => (i *1))
+	overview.append("g")
+		.selectAll("line")
+		.data(Object.values(processes))
+		.enter()
+		.append("line")
+    		.attr("stroke",d3.rgb(0,0,0,1))
+    		.attr("stroke-width",.2)
+    		.attr("x1",d=> Math.round(scaleX(parseTime(d[0].Date))))
+    		.attr("x2",d=> Math.round(scaleX(parseTime(d[d.length-1].Date))))
+    		.attr("y1",(d,i) => (i *1))
+    		.attr("y2",(d,i) => (i *1))
+
+    //INTERACTION
+	var zoom = d3.zoom()
+		.scaleExtent([1, Infinity])
+		.translateExtent([[0, 0], [width-margin, height]])
+		.extent([[0, 0], [width-margin, height]])
+		.on("zoom", zoomed);
+    svg.call(zoom)
+
+    function zoomed(){
+		var zoomScale = d3.event.transform.rescaleX(scaleX)
+		years.call(xAxis.scale(zoomScale));
+		process.attr("d",(d,i)=>segment(d,i,zoomScale))
+		circles.attr("cx",d=>Math.round(zoomScale(parseTime(d.Date))))
+	};
 
 	document.onkeydown = function(e) {
 		if(e.key == "Escape") {
-			fixed = null;
-			circles.attr("opacity",0).attr("pointer-events", "none")
-			process.attr("stroke-opacity", .2).attr("stroke-width",1)
+			exitProcess();
 		}
-	};
+	}
+
+	process
+		.on("mouseover",d=>highlightProcess(d))
+		.on("click",d=>fixed ? exitProcess(d) : enterProcess(d))
+		.on("mouseout",d=>deHighlightProcess(d))
+
+	/*svg.on("click",function(){
+		if(fixed) exitProcess();
+	})*/
+
+	var highlightProcess = function(d) {
+		if(!fixed) {
+			process.attr("stroke-opacity",0.05)
+			d3.selectAll("g.PP-"+d.PP+" path").attr("stroke-opacity",1).attr("stroke-width",3)
+			d3.selectAll(".ideal path").attr("stroke-opacity",0.1)
+			d3.select("#details .ProcessName").html(d.PPName)
+		}
+	}
+
+	var deHighlightProcess = function(d) {
+		if(!fixed) {
+			process.attr("stroke-opacity", .2).attr("stroke-width",1)
+			d3.selectAll(".ideal path").attr("stroke-opacity",1)
+			d3.select("#details .ProcessName").html('<span class="inactive">Click on line to select process</span>')
+		}
+	}
+
+	var enterProcess = function(d) {
+		fixed = d.PPName
+		d3.selectAll("circle.PP-"+d.PP).attr("opacity",.7).attr("pointer-events", "all")
+		process.attr("pointer-events","none")
+
+		var d0 = parseTime(processes[d.PPName][0].Date)
+		var d1 = parseTime(processes[d.PPName][processes[d.PPName].length-1].Date)
+
+		svg.call(zoom).transition().duration(1500)
+      		.call(zoom.transform,
+      			d3.zoomIdentity
+       			  .scale( (width - margin - 60) / (scaleX(d1) - scaleX(d0)) )
+       			  .translate(30-scaleX(d0), 0));
+	}
+
+	var exitProcess = function() {
+		fixed = null;
+		svg.call(zoom).transition().duration(1500)
+      		.call(zoom.transform,
+      			d3.zoomIdentity
+       			  .scale(1)
+       			  .translate(0, 0)
+       		);
+		circles.attr("opacity",0).attr("pointer-events", "none")
+		process.attr("stroke-opacity", .2).attr("stroke-width",1)
+	}
 }
 </script>
 </body>
