@@ -339,7 +339,7 @@ function init(error,pax) {
 
 	var deHighlightProcess = function(d) {
 		if(!fixed) {
-			processPath.attr("stroke-opacity", .2).attr("stroke-width",1)
+			processPath.attr("stroke-opacity", .9).attr("stroke-width",1)
 			d3.select("#details .ProcessName").html('<span class="inactive">Click on line to select process</span>')
 		}
 	}
@@ -367,7 +367,7 @@ function init(error,pax) {
        			  .translate(0, 0)
        		);*/
 		circles.attr("opacity",0).attr("pointer-events", "none")
-		processPath.attr("stroke-opacity", .2).attr("stroke-width",1)
+		processPath.attr("stroke-opacity", .9).attr("stroke-width",1)
 	}
 }
 </script>
