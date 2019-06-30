@@ -17,26 +17,12 @@ function mouseoverCountry(that, d) {
 	// select all glyph containers
 	var dots_con = d3.select("#dots" + d.id).selectAll(".glyphContainer");
 
-	// grow circles and change colour
-	dots_con
-		.selectAll("circle")
-		.transition()
-		.duration(200)
-		.attr("r", rCircle * 2)
-		.style("fill", "#888");
-
 	// grow flower petals
-	dots_con
-		.selectAll("path")
-		.data(d => petalData(d))
-		.enter()
-		.append("path")
-		.classed("petal", true)
-		.attr("d", arc_mini)
-		.style("fill", d => d.colour)
-		.transition()
-		.duration(200)
-		.attr("d", arc);
+	// dots_con
+	// 	.selectAll(".petal")
+	// 	.transition()
+	// 	.duration(200)
+	// 	.attr("d", arcMax);
 }
 
 function mouseoutCountry(that, d) {
@@ -45,18 +31,15 @@ function mouseoutCountry(that, d) {
 	// hide tooltip
 	d3.select("#tooltipMap").attr("transform", "translate(-100, -100)");
 
-	// shrink dots again
-	d3.select("#dots" + d.id)
-		.selectAll("circle")
-		.transition()
-		.duration(200)
-		.attr("r", rCircle)
-		.style("fill", null);
+	// select all glyph containers
+	var dots_con = d3.select("#dots" + d.id).selectAll(".glyphContainer");
 
-	// delete petals again
-	d3.select("#dots" + d.id)
-		.selectAll(".petal")
-		.remove();
+	// shrink petals again
+	// dots_con
+	// 	.selectAll(".petal")
+	// 	.transition()
+	// 	.duration(200)
+	// 	.attr("d", arcMin);
 }
 
 function clickCountry(con, con_data, world, filters) {
@@ -344,7 +327,7 @@ function clickCountry(con, con_data, world, filters) {
 			.attr("fill", "transparent")
 			.classed("glyphHighlightCircle", true)
 			.attr("id", d => "glyph" + d.id)
-			.attr("r", glyphR)
+			.attr("r", popupGlyphR)
 			.on("mouseover", onmouseover)
 			.on("mouseout", onmouseout)
 			.on("click", function(d) {
@@ -355,7 +338,7 @@ function clickCountry(con, con_data, world, filters) {
 		// draw centre circle for each agreement
 		glyph
 			.append("circle")
-			.attr("r", glyphR * 0.15)
+			.attr("r", popupGlyphR * 0.15)
 			.classed("popupGlyphCircle", true);
 
 		// add petals
@@ -365,7 +348,7 @@ function clickCountry(con, con_data, world, filters) {
 			.enter()
 			.append("path")
 			.classed("popupGlyphPetal", true)
-			.attr("d", arc)
+			.attr("d", arcPopup)
 			.style("fill", d => d.colour);
 	}
 }
@@ -433,20 +416,35 @@ function petalData(d) {
 	}
 }
 
-var arc = d3
+var arcMin = d3
 	.arc()
 	.innerRadius(0)
-	// .outerRadius(glyphR * 0.8)
 	.outerRadius(function(d) {
 		return d3
 			.scaleSqrt()
 			.domain(codesRange[d.code])
-			.range([0, glyphR * 0.8])(d.score);
+			.range([0, glyphR])(d.score);
 	})
 	.cornerRadius(5);
 
-var arc_mini = d3
+var arcPopup = d3
 	.arc()
 	.innerRadius(0)
-	.outerRadius(1)
+	.outerRadius(function(d) {
+		return d3
+			.scaleSqrt()
+			.domain(codesRange[d.code])
+			.range([0, popupGlyphR * 0.8])(d.score);
+	})
+	.cornerRadius(5);
+
+var arcMax = d3
+	.arc()
+	.innerRadius(0)
+	.outerRadius(function(d) {
+		return d3
+			.scaleSqrt()
+			.domain(codesRange[d.code])
+			.range([0, glyphR * 1.3])(d.score);
+	})
 	.cornerRadius(5);

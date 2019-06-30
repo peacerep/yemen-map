@@ -1,8 +1,9 @@
 "use strict";
 
 // define sizes etc
-var glyphR = 20; //radius of one glyph including margin
-var delta = glyphR * 2.1; // distance between glyphs on spiral
+const glyphR = 15; // radius of one glyph on the map
+const popupGlyphR = 20; // radius incl margin of one glyph in the popup
+var delta = popupGlyphR * 2.1; // distance between glyphs on spiral
 
 function tally(arr) {
 	var counts = {};

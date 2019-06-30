@@ -17,8 +17,7 @@
 
 	z-index: 1;
 	padding: 0 15px 0 10px;
-	/*margin: 10px 0;*/
-	/*min-height: 0;*/
+	pointer-events: none; /*make sure map works*/
 }
 
 #sidebar {
@@ -29,6 +28,7 @@
 	z-index: 1;
 	overflow-y: auto;
 	overflow-x: hidden;
+	pointer-events: none; /*make sure map works*/
 }
 
 #timeline-top {
@@ -64,6 +64,7 @@
 	box-shadow: 0px 2px 9px #c7c7c7;
 	width: 100%;
 	background-color: #fff;
+	pointer-events: all;
 }
 
 #expandFilters {
@@ -96,8 +97,9 @@ Map
 	pointer-events: none;
 }
 
+/*glyph inner circle*/
 #dotG circle {
-	fill: #555;
+	fill: #555; /*#888*/
 	fill-opacity: 1;
 }
 
@@ -283,4 +285,13 @@ Map
 }
 .hidden {
 	display: none;
+}
+
+/*hide sorting buttons*/
+g.popupSortButtons {
+	display: none;
+}
+
+g.popupSplitButtons {
+	transform: translate(50, 0);
 }

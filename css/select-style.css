@@ -38,6 +38,7 @@ rect.selection {
 	border-radius: 5px;
 	cursor: pointer;
 	display: inline-block;
+	pointer-events: all;
 }
 
 .button:hover {

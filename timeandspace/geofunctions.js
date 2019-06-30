@@ -81,8 +81,18 @@ function drawDotmap(locdata) {
 		);
 	circle
 		.append("circle")
-		.attr("r", rCircle)
+		.attr("r", glyphR * 0.15)
 		.attr("pointer-events", "none");
+
+	// grow flower petals
+	circle
+		.selectAll("path")
+		.data(d => petalData(d))
+		.enter()
+		.append("path")
+		.classed("petal", true)
+		.attr("d", arcMin)
+		.style("fill", d => d.colour);
 }
 
 function randomGeoPoints(geometry, nPoints) {

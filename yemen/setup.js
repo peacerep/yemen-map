@@ -2,6 +2,18 @@
 
 // Set up filters
 
+d3.select("#expandFilters").on("click", function() {
+	var currentState = d3.select("#filterContainer").classed("hidden");
+
+	// change button text
+	d3.select("#expandFilters").text(
+		currentState ? "Hide Filters" : "Show Filters"
+	);
+
+	// toggle filter visibility
+	d3.select("#filterContainer").classed("hidden", !currentState);
+});
+
 d3.select("#selectAllCodes").on("click", function() {
 	// check all checkboxes
 	d3.selectAll("#codesCheckboxes input").property("checked", true);
@@ -92,12 +104,12 @@ d3.csv("../data/pa-x.csv", parseData)
 					})
 					.attr("d", path)
 					.classed("land", true)
-					.on("mouseover", function(d) {
+					.each(function(d) {
 						mouseoverCountry(this, d);
 					})
-					.on("mouseout", function(d) {
-						mouseoutCountry(this, d);
-					})
+					// .on("mouseout", function(d) {
+					// 	mouseoutCountry(this, d);
+					// })
 					.on("click", function(d) {
 						var filters = {
 							year: myslider.getRange(),
@@ -116,6 +128,12 @@ d3.csv("../data/pa-x.csv", parseData)
 						// update timeline
 						initTimeline(filterData(data, filters), filters.year);
 					});
+
+				// highlight Yemen ("permanent mouseover")
+				// d3.select("#pathYEM").each(function(d) {
+				// 	console.log(d, this);
+				// 	mouseoverCountry(this, d);
+				// });
 
 				// Match data points with locations on the map and draw dot map
 				const locdata = makeDotmapData(data, world);

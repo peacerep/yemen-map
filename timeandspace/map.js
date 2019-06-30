@@ -239,7 +239,8 @@ button
 
 // split by peace process?
 
-button2.attr("transform", "translate(100,0)");
+// button2.attr("transform", "translate(100,0)");
+button2.attr("transform", "translate(50,0)");
 
 var text0 = button2.append("text").attr("y", -55);
 text0
