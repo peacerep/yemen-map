@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Amiri:400,700|Karla:400,700&display=swap&subset=arabic" rel="stylesheet">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/solid.css" integrity="sha384-QokYePQSOwpBDuhlHOsX0ymF6R/vLk/UQVz3WHa6wygxI5oGTmDTv8wahFOSspdm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/fontawesome.css" integrity="sha384-vd1e11sR28tEK9YANUtpIOdjGW14pS87bUBuOIoBILVWLFnS+MCX9T6MMf0VdPGq" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
+</head>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-mid-4" id="overview"></div>
+    <div class="col-mid-6" id="timeline"><div class="intro"><p><a href="timeline.html?lang=english" class="english">english</a> / <a href="timeline.html?lang=arabic" class="arabic">عربى</a></p><h1>PA-X: Yemen Agreements and Conflicts overview</h1><p class="desc">Timeline of the Yemen Conflict, scroll or click to choose <span style="color: #FCCA46; font-weight: bold">Prenegotiation</span>, <span style="color: #FE7F2D ; font-weight: bold">Substantive-Partial</span>, <span style="color: #579C87; font-weight: bold">Ceasefire</span>, <span style="color: #A1C181; font-weight: bold">Implementation</span>, or <strong>Events</strong>. Full text of agreements can be accessed by using links. The timeline draws from the PA-X Peace Agreement Database.</p></div>
+
+    <a href="#"><i id="previous" class="fas fa-arrow-alt-circle-up"></i></a>
+    <a href="#"><i id="next" class="fas fa-arrow-alt-circle-down"></i></a>
+  </div>
+  </div>
+</div>
+<div id="tooltip"></div>
+
+<div id="form">
+  <form>
+  <div class="form-group">
+    <input class="form-control" id="date" type="date" value="2011-08-19" id="example-date-input">
+  </div>
+  <div class="form-group">
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2">Enter text</textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+  <input class="btn btn-secondary" id="button-reset" type="reset" value="Reset">
+</form>
+</div>
+
+<script>
+var urlParams = new URLSearchParams(window.location.search);
+var language = (urlParams.get('lang') == "arabic") ? "arabic" : "english"
+d3.select("body").attr("class",language)
+
+var margin = {top: 40, right: 40, bottom: 40, left: 40},
+    width = $("#overview").width()
+    height = $("#overview").height()
+    svg = d3.select("#overview").append("svg").attr("width",width).attr("height",height)
+    parseTime = d3.timeParse("%d/%m/%Y");
+    formatTime = d3.timeFormat("%Y-%m-%d");
+    var y, connector, line, timeline;
+    var items, connectors;
+
+var categories = [
+  {arabic: "وقف إطلاق النار", english: "Ceasefire", color: d3.rgb(165,46,104,1), position: 40, bool: true},
+  {arabic: "Prenegotiation", english: "Prenegotiation", color: d3.rgb(150,68,135,1), position: 70, bool: true},
+  {arabic: "الأسماء-الجزئية", english: "Substantive-Partial", color: d3.rgb(133,91,169,1), position: 100, bool: true},
+  {arabic: "تطبيق", english: "Implementation", color: d3.rgb(117,113,199,1), position: 130, bool: true},
+  {arabic: "حدث", english: "Event", color: d3.rgb(45,45,45,1), position: 160, bool: true},
+  //{arabic: "مذكرة", english: "Comment", color: d3.rgb(254,127,45,1), position: 190, bool: true}
+]
+
+var languages = {
+  "english": {
+    "header": "PA-X: Yemen Agreements and Conflicts overview",
+    "desc": 'Timeline of the Yemen Conflict, scroll or click to choose <span style="color: #FCCA46; font-weight: bold">Prenegotiation</span>, <span style="color: #FE7F2D ; font-weight: bold">Substantive-Partial</span>, <span style="color: #579C87; font-weight: bold">Ceasefire</span>, <span style="color: #A1C181; font-weight: bold">Implementation</span>, or <strong>Events</strong>. Full text of agreements can be accessed by using links. The timeline draws from the PA-X Peace Agreement Database.',
+    "itemHeadline": "Headline",
+    "itemText": "Text"
+  },
+  "arabic": {
+    "header": "PA-X: نظرة عامة على الاتفاقات والصراعات اليمنية",
+    "desc": 'الجدول الزمني للصراع في اليمن ، قم بالتمرير أو انقر فوق "اختيار سلطة التفاوض المسبق أو الجزئي أو وقف إطلاق النار أو التنفيذ أو الأحداث". يمكن الوصول إلى النص الكامل للاتفاقيات باستخدام الروابط. يعتمد الجدول الزمني على قاعدة بيانات اتفاق السلام PA-X.',
+    "itemHeadline": "Headline Arabic",
+    "itemText": "Text Arabic"
+  }
+}
+
+
+$(".intro h1").html(languages[language].header)
+$(".intro p.desc").html(languages[language].desc)
+
+
+d3.csv("en-ar-tab.csv", function(error, data) {
+  if (error) throw error;
+  data = data.filter(d => d.Year !== "") // filter empty rows
+  data.sort(function(a,b) {return parseTime(a.Day+"/"+a.Month+"/"+a.Year) - parseTime(b.Day+"/"+b.Month+"/"+b.Year)})
+  data.forEach(function(d,i) {
+    d.id=i;
+    d.type = (d["Agreement/Event"] == "Event") ? "Event" : d.Stage 
+  })
+
+  //scales
+  y = d3.scaleTime()
+    .domain(d3.extent(data,function(d){return parseTime(d.Day+"/"+d.Month+"/"+d.Year)}))
+    .range([190,height-20])
+  x = d3.scaleOrdinal()
+    .domain(categories.map(function(d){return d.english}))
+    .range(categories.map(function(d){return d.position}))
+  color = d3.scaleOrdinal()
+    .domain(categories.map(function(d){return d.english}))
+    .range(categories.map(function(d){return d.color}))
+
+
+  var simulation = d3.forceSimulation(data)
+    .force("x", d3.forceX(d => x(d.type)).strength(1))
+    .force("y", d3.forceY(d => y(parseTime(d.Day+"/"+d.Month+"/"+d.Year))).strength(1))
+    .force("collide", d3.forceCollide(4))
+    .stop();
+    for (var i = 0; i < 60; ++i) simulation.tick();
+  
+  
+    //generate divs for each event / agreemnt
+    timeline = d3.select("#timeline").append("div").attr("class","items")
+  
+    function linkify(text) {
+      var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+      return text.replace(urlRegex, function(url) {
+          return '<a href="' + url + '">' + url + '</a>';
+      });
+  }
+
+
+  //horizontal lines + paths
+  function constructPath (d) {
+    var lineGenerator = d3.line().curve(d3.curveBasis);
+    var element = $('#item-'+d.id)
+    var y = (element.offset().top - $(window).scrollTop() + (element.height() / 2))
+    var start = [d.x, d.y]
+    //var center = [(d.x + ((element.offset().left  - d.x) / 2)),d.y]
+    var smooth1 = [180, d.y]
+    var smooth2 = [300, d.y]
+    var smooth3 = [element.offset().left-50, y]
+    var target = [element.offset().left, y]
+    return lineGenerator([start, smooth1, smooth2, smooth3, target])
+  }
+  
+  //construct overview + connectirs
+  barcode = svg.append("g").attr("class","barcode")//.attr("transform","translate(0,50)")
+  timespan = barcode.append("rect").attr("class","timespan").attr("x",0).attr("width",205).attr("pointer-events","none").attr("fill",d3.rgb(0,0,0,.05))
+
+  
+  function draw(data) {
+    items = timeline.selectAll("div").data(data)
+
+    item = items.enter()
+    .append("div").attr("class",d=>"year-"+d.Year).attr("id", d=> "item-"+d.id)
+    .append("div").attr("class",d => (d["Agreement/Event"] == "Event") ? "Event" : d.Stage )
+    .style("background",d => {
+      var col = categories.find(x => x.english == d.type).color
+      var opacity = (d["Agreement/Event"] == "Event") ? .2 : 0.4
+      return d3.rgb(col.r,col.g,col.b,opacity)
+    })
+
+    item.append("span").attr("class","date").text(d => d.Day + "/" + d.Month + "/" + d.Year)
+    item.append("h4").text(d => d[languages[language].itemHeadline])
+    item.append("p").html(d => linkify(d[languages[language].itemText]))
+
+
+    connectors = barcode.append("g").attr("class","connectors").selectAll("g").data(data)
+    connector = connectors.enter().append("g").attr("class","connector")
+  
+    line = connector.append("path").attr("d", d => constructPath(d))
+      .attr("stroke",d => color(d.type))
+      .attr("fill-opacity",0)
+      .attr("class",d => d.type)
+      .attr("stroke-width",d => (d.type == "Event") ? 1 : 2)
+      .attr("stroke-opacity",d => (d.type == "Event") ? .3 : .5)
+      .attr("pointer-events","none")
+      //.attr("stroke-opacity",.5)
+
+    circles = svg.append("g").attr("class","circles").selectAll("circle").data(data).enter().append("circle")
+    .attr("cx",d => d.x)
+    .attr("class",d => d.type)
+    .attr("cy",d => d.y)
+    .attr("fill",d => color(d.type))
+    //.attr("r", d => (d.type == "Event")? 2 : 3)
+    .attr("r", 3)
+    .style("opacity", 1)
+    .on("mouseover",function(d){
+      d3.select(this).transition().duration(100).attr("r",7)
+      d3.select("#tooltip").style("opacity",0.8).html(d[languages[language].itemHeadline]).style("top",(d.y-5)+"px").style("left","200px")
+    })
+    .on("mouseout",function(){
+      d3.select(this).transition().duration(100).attr("r",4)
+      d3.select("#tooltip").style("opacity",0)
+    })
+    .on("click",function(d){
+      $('html, body').animate({
+        scrollTop: $("#item-"+d.id).offset().top - d.y + ($("#item-"+d.id).height() / 2)
+      }, 750);
+    })
+    resizeTimeSpan();
+  }
+
+
+//check if elements are in view 
+$.fn.inView = function(){
+    var win = $(window);
+    var scrollPosition = win.scrollTop();
+    var visibleArea = win.scrollTop() + win.height();
+    var objEndPos = ($(this).offset().top + $(this).outerHeight());
+    return(visibleArea >= objEndPos && scrollPosition <= objEndPos ? true : false)
+};
+
+function resizeTimeSpan() {
+  var arr = []
+    $(".items div").each(function(){
+      if($(this).inView()) arr.push(parseTime($(this).find(".date")[0].innerHTML))
+    })
+    arr.sort(function(a,b){return a-b})
+    var start = y(arr[0]) - 20
+    var stop =  y(arr[arr.length-1]) - start + 20;
+    timespan.transition().duration(100).attr("y",start).attr("height",stop)
+}
+
+
+  var category = barcode.append("g").attr("class","categories").selectAll("line").data(categories).enter()
+
+  category.append("rect")
+  .attr("class",d=>d.english)
+  .attr("x",d => d.position)
+  .attr("y",(d,i) => 50 + i*20)
+  .attr("width",1)
+  .attr("height",height)
+  .attr("fill",d => d.color)
+  .attr("full-opacity",1)
+  .attr("stroke-width",5)
+  .attr("stroke-color","white")
+  .on("mousemove",(d,i) => {
+    commentCircle.attr("transform","translate("+d.position+","+(d3.event.pageY - $(document).scrollTop())+")").style("opacity",1)
+  })
+  .on("mouseout",_=>{
+    commentCircle.style("opacity",0)
+  })
+
+  var commentCircle = svg.append("g").attr("class","commentCircle").style("opacity",0).attr("pointer-events","none").attr("transform","translate(0,0)")
+  commentCircle.append("circle").attr("fill","white").attr("stroke","black").attr("r",12)//.attr("cx",commentLine.attr("x1"))
+  var addComment = commentCircle.append("text").text("+").style("font-size",20).style("font-weight","bold").attr("text-anchor","middle").attr("y",5)
+
+  commentCircle.attr("pointer-events","stroke").on("click", _ => {
+    d3.select("#form").transition().duration(100).style("opacity",1).style("top",(d3.event.pageY - $(document).scrollTop())+"px").style("left",(d3.event.pageX+15)+"px")
+    
+    date = formatTime(y.invert((d3.event.pageY - $(document).scrollTop())))
+    $("#date").val(date)
+  })
+
+  d3.select("#button-reset").on("click",_=>{
+    d3.select("#form").transition().duration(100).style("opacity",0) 
+  })
+
+
+  
+
+  svg.append("g").attr("class","filters").selectAll("text").data(categories).enter().append("text")
+  .text(d => d[language])
+  .attr("x",(d,i)=>45+i*30)
+  .attr("y",(d,i) => 55 + i*20)
+  .attr("fill",d => d.color)
+  .style("font-size","13pt")
+  .on("mouseover",function(d,i){d3.select(this).transition().duration(100).attr("x",50+i*30)})
+  .on("mouseout",function(d,i){d3.select(this).transition().duration(100).attr("x",45+i*30)})
+  .on("click",function(d){
+    if(d.bool) {
+      d3.select(this).transition().duration(100).style("opacity",0.5)
+    }else {
+      d3.select(this).transition().duration(100).style("opacity",1)
+    }
+    d.bool = !d.bool
+
+    var first = true
+    $("."+d.english).toggle("slow",function(){
+      if(first) {
+        move();
+        first = false
+      }
+    })
+  })
+
+  //years text
+  var years = []
+  var extent = d3.extent(data, function(d) {return +d.Year})
+  for(var  i = extent[0]; i <= extent[1]; i++) years.push(i)
+
+  barcode.append("g").attr("class","years").selectAll("text").data(years).enter().append("text").text(d => d)
+  .attr("y",d => y(parseTime("01/01/"+d)) + 7).attr("x",2).on("click",function(d){
+    var year = d;
+    
+    var element = []
+    while(!element.length) {
+      element = $(".year-"+year).first();
+      year++
+    }
+
+    $('html, body').animate({
+      scrollTop: (element.offset().top - 50)
+    }, 1000);
+  })
+
+  draw(data);
+
+
+  years.forEach(function(year){
+    $('.year-'+year).last().addClass("last")
+  })
+
+
+  $("#start").click(function(){
+    $('html, body').animate({
+      scrollTop: $(".items div").first().offset().top - 30
+    }, 500);
+  })
+
+  $("#next").click(function(){
+    $('html, body').animate({
+      scrollTop: $(window).scrollTop() + 400
+    }, 500);
+  })
+
+  $("#previous").click(function(){
+    $('html, body').animate({
+      scrollTop: $(window).scrollTop() -400
+    }, 500);
+  })
+
+  d3.selectAll("#previous, #next").style("left",function(){
+    return ($("#timeline").width() / 2) + $("#overview").width() + "px"
+  })
+
+  function move() {
+    line.data(data).each(function(d,i){
+        date = d3.select(this).attr("d",d=>constructPath(d))
+    })
+    resizeTimeSpan();
+  }
+
+  $(window).scroll(function () {
+    move();
+    $("#previous").show("slow");
+    
+  });
+});
+</script>
