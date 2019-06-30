@@ -3,156 +3,169 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/png" href="../img/pax-logo-square.png" />
-
-		<title>Visualizing Peace</title>
-
 		<link
-			href="https://fonts.googleapis.com/css?family=Karla:400,700"
-			rel="stylesheet"
+			rel="icon"
+			type="image/png"
+			href="https://pax-vis.github.io/pax-styles/logo/pax-logo-square.png"
 		/>
 
+		<title>PaxVis</title>
+
+		<link
+			href="https://fonts.googleapis.com/css?family=Karla:400,700&amp;subset=latin-ext"
+			rel="stylesheet"
+		/>
 		<link rel="stylesheet" type="text/css" href="css/main.css" />
-		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/select-style.css" />
+		<link rel="stylesheet" type="text/css" href="css/timeandspace.css" />
+
+		<script src="lib/d3.v5.min.js"></script>
+		<script src="lib/d3-polygon.v1.min.js"></script>
+		<script src="lib/d3-array.v2.min.js"></script>
+		<script src="lib/d3-delaunay.min.js"></script>
+
+		<script type="text/javascript" src="js/shared.js"></script>
+		<script type="text/javascript" src="js/geofunctions.js"></script>
+		<script type="text/javascript" src="js/functions.js"></script>
+		<script type="text/javascript" src="js/popup.js"></script>
+		<script type="text/javascript" src="js/timeline.js"></script>
+		<script type="text/javascript" src="js/inputs.js"></script>
 	</head>
 	<body>
-		<div class="content">
-			<h1>Visualizing Peace</h1>
-			<h2>
-				Data Visualizations to Explore Peace Agreements Worldwide from 1990
-				through 2015
-			</h2>
+		<!-- for receiving custom input events -->
+		<div id="eventHandler" class="input hidden"></div>
 
-			<a href="timeandspace"
-				><div class="indexCard">
-					<h3>Agreements in Time and Space</h3>
-					A timeline and map of peace agreements that you may filter
-					simultaneously by year, location, and topic.<br />
-					<img src="img/timeandspace.png" /></div
-			></a>
-
-			<a href="compare"
-				><div class="indexCard">
-					<h3>Agreement Sequence Comparison</h3>
-					Three timelines of peace agreements for locations of your choice,
-					colour-coded by agreement stage.<br />
-					<img src="img/timeline.png" /></div
-			></a>
-
-			<a href="yemen"
-				><div class="indexCard">
-					<h3>The Yemen Conflict</h3>
-					A timeline and map of peace agreements, centered on Yemen.<br />
-					<img src="img/yemen.png" /></div
-			></a>
-
-			<br />
-
-			<div class="container">
-				<em
-					>Please view these visualisations on a laptop or desktop computer
-					using a recent version of Chrome or Firefox. On mobile devices such as
-					smartphones and tablets, the visualisations might not display
-					correctly.</em
-				>
-
-				<h3>About</h3>
-				<p>
-					The Political Settlements Research Programme (PSRP) at the University
-					of Edinburgh has created the PA-X Peace Agreements Database, which
-					provides those studying and participating in peace processes with a
-					repository of over 1,500 documents that address over 140 peace
-					processes around the world between 1990 and 2015. The interactive
-					visualisations on this website provide a more visual access to the
-					database, complementing the
-					<a href="https://www.peaceagreements.org/search">
-						Database's search interface</a
-					>.
-				</p>
-
-				<p>
-					The visualisations were originally developed by Lucy Havens and
-					Mengting Bao in the summer of 2018, and updated by Sarah Schöttler in
-					early 2019.
-				</p>
-
-				<p>
-					Visualizing Peace provides a map and timelines that illustrate
-					temporal, geographic, and categorical trends in peace agreements. The
-					map and timelines can be filtered by time, location, and category.
-					Hovering and clicking on an agreement in any of the visualizations
-					displays the agreement's details, with links to a digitized version of
-					the document and its complete PA-X coding.
-				</p>
-
-				<h3>How to read the visualisations</h3>
-				<p>
-					With Visualizing Peace, you can view peace agreements across three
-					dimensions: time, geography, and category. <br />
-					Both visualisations have options for filtering displayed on the left,
-					which allow you to view a subset of the data, e.g. a particular
-					timeframe, specific countries or entities, or agreements with certain
-					codes (categories) assigned.<br />
-					To understand the codes assigned to each peace agreement as
-					represented in the data visualizations, please refer to the
-					<a
-						href="http://www.peaceagreements.org/files/PA_X_codebook_Version1_Feb_20_20.pdf"
-						>PA-X Codebook</a
-					>.
-				</p>
-
-				<p>
-					<b>Agreements in Time and Space</b> visualizes agreements on a
-					timeline and a map simultaneously.<br />
-					On the map, dots represent peace agreements. Clicking a country will
-					open a new view showing all peace agreements signed by that country,
-					sorted on a spiral. Each agreement is represented by a flower-like
-					symbol. The larger a petal, the more detail the agreement has about
-					the code associated with that petal's color. The absence of a petal
-					means the agreement does not address the associated code at all. If an
-					agreement does not address any of the codes, it is displayed as a grey
-					dot.
-				</p>
-
-				<p>The video below explains how to use the interface.</p>
-
-				<iframe
-					width="840"
-					height="473"
-					src="https://www.youtube.com/embed/PGv5BsS8MF0"
-					frameborder="0"
-					allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-					allowfullscreen
-				></iframe>
-
-				<p>
-					The <b>Agreement Sequence Comparison</b> visualizes agreements on
-					three timelines, with one geographic location represented on each
-					timeline.<br />
-					You can select one location ("countries/entities") for each vertical
-					timeline, and categories ("codes") to control which peace agreements
-					the timeline and map display. Each rectangle on a timeline represents
-					one peace agreement; the colour of each rectangle indicates the peace
-					process stage the agreements is associated with. Hovering or clicking
-					a rectangle displays the represented agreement's details in the left
-					sidebar.
-				</p>
-
-				<h3>
-					<a href="https://paxviz.wordpress.com/"
-						>Read the Project Blog &#8599;</a
-					>
-				</h3>
-				<br />
-				<a href="https://www.peaceagreements.org/"
-					><img src="img/pax-logo.png" height="60px"
-				/></a>
-				<a href="https://www.ed.ac.uk/"
-					><img src="img/uni-logo.png" height="60px"
-				/></a>
+		<div class="grid-container">
+			<div id="header">
+				<h1><a href="..">Visualizing Peace</a></h1>
+				<h2>Agreements in Time and Space</h2>
+				<div class="button highlight" id="expandFilters">Show Filters</div>
+				<div id="reset-filters" class="button highlight">Reset Filters</div>
+				<a href="about" target="_blank" class="button">About</a>
 			</div>
 
-			<h3></h3>
+			<div id="sidebar">
+				<div id="filterContainer" class="hidden">
+					<div class="selectSection">
+						<h3>Timeframe</h3>
+						Drag the slider to select years:<br />
+						<div id="timeslider"></div>
+					</div>
+
+					<hr />
+
+					<div class="selectSection">
+						<h3>Country/Entity Selection</h3>
+						<!-- any/all radio -->
+						Display agreements involving
+						<div class="switchContainer">
+							<input
+								type="radio"
+								id="anyCon"
+								name="conRule"
+								value="any"
+								class="input"
+								checked
+							/><label for="anyCon" class="button left">any</label
+							><input
+								type="radio"
+								id="allCon"
+								name="conRule"
+								value="all"
+								class="input"
+							/><label for="allCon" class="button right">all</label>
+						</div>
+						of the selected countries/entities.<br />
+
+						<!-- fake dropdown for countries -->
+						<div class="dropdown">
+							<div class="button">
+								Select Countries/Entities
+								<span class="arrowdown">&#9660;</span>
+							</div>
+							<div id="conDropdown" class="dropcontent">
+								<div id="selectAllCons" class="button">Select All</div>
+								&nbsp;&nbsp;
+								<div href="#" id="deselectAllCons" class="button">
+									Deselect All
+								</div>
+								<br />
+							</div>
+						</div>
+						<br />
+						Selected countries/entities:<br />
+						<span id="selectedCons"></span>
+					</div>
+
+					<hr />
+
+					<div class="selectSection">
+						<h3>Code Selection</h3>
+						<!-- any/all radio -->
+						Highlight agreements that address
+						<div class="switchContainer">
+							<input
+								type="radio"
+								id="anyCodes"
+								name="codesRule"
+								value="any"
+								class="input"
+								checked
+							/><label for="anyCodes" class="button left">any</label
+							><input
+								type="radio"
+								id="allCodes"
+								name="codesRule"
+								value="all"
+								class="input"
+							/><label for="allCodes" class="button right">all</label>
+						</div>
+						of the selected codes.<br />
+
+						<div id="codesCheckboxes"></div>
+
+						<span>
+							<a href="#" id="selectAllCodes" class="button">Select All</a
+							>&nbsp;&nbsp;
+							<a href="#" id="deselectAllCodes" class="button">Deselect All</a
+							><br />
+						</span>
+					</div>
+				</div>
+			</div>
+
+			<div id="timeline-top">
+				<div id="selectTimeline" class="switchContainer">
+					<input
+						type="radio"
+						id="timeline-lines"
+						name="timeline"
+						value="lines"
+						autocomplete="off"
+						checked
+					/><label for="timeline-lines" class="button left">Codes Count</label
+					><input
+						type="radio"
+						id="timeline-bars"
+						name="timeline"
+						value="bars"
+						autocomplete="off"
+					/><label for="timeline-bars" class="button right"
+						>Individual Agreements</label
+					>
+				</div>
+				<div class="charts"></div>
+			</div>
+			<div id="info-box">
+				<div class="selectSection">
+					<h3>Agreement Details</h3>
+					<div id="agreementDetails"></div>
+				</div>
+			</div>
+			<div id="map"></div>
 		</div>
+
+		<script type="text/javascript" src="js/setup.js"></script>
+		<script type="text/javascript" src="js/map.js"></script>
 	</body>
 </html>

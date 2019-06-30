@@ -49,7 +49,7 @@ makeCodesCheckboxes(true);
 agtDetails(null);
 
 // Load data
-d3.csv("../data/pa-x.csv", parseData)
+d3.csv("data/pa-x.csv", parseData)
 	.then(function(data) {
 		console.log(data);
 		// Set up year slider
@@ -87,7 +87,7 @@ d3.csv("../data/pa-x.csv", parseData)
 		initTimeline(data, years);
 
 		// Load geojson world map
-		d3.json("../data/world-110m-custom.geojson")
+		d3.json("data/world-110m-custom.geojson")
 			.then(function(world) {
 				// draw map
 				mapG
