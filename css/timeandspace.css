@@ -1,4 +1,6 @@
-/*Grid layout*/
+/*------------------------------------------------------------------------------
+  Grid Layout
+------------------------------------------------------------------------------*/
 
 .grid-container {
 	display: grid;
@@ -71,16 +73,9 @@
 	margin: 15px 0 5px 0;
 }
 
-hr {
-	height: 1px;
-	border: none;
-	color: #999;
-	background-color: #999;
-}
-
-/*
-Map
-*/
+/*------------------------------------------------------------------------------
+  Map + Popup
+------------------------------------------------------------------------------*/
 
 .land {
 	fill: #fff;
@@ -224,7 +219,9 @@ Map
 	pointer-events: none;
 }
 
-/*Timeline*/
+/*------------------------------------------------------------------------------
+  Timeline
+------------------------------------------------------------------------------*/
 
 .agtTimelineBlock {
 	cursor: pointer;
@@ -281,13 +278,4 @@ Map
 }
 .hidden {
 	display: none;
-}
-
-/*hide sorting buttons*/
-g.popupSortButtons {
-	display: none;
-}
-
-g.popupSplitButtons {
-	transform: translate(50, 0);
 }
