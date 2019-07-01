@@ -97,50 +97,17 @@ function clickCountry(con, con_data, world, filters) {
 			return "translate(" + 0.5 * w_map + "," + 0.5 * h_map + ")";
 		});
 
-	// SPIRAL -------------------------------------------
-
-	var hiddenG = popG.append("g").attr("transform", "translate(-600, -600)");
-
-	var start = 0,
-		end = 1,
-		numSpirals = 20, // 1 = a half turn
-		spiralRadius = numSpirals * glyphR * 1.1;
-
-	var theta = function(r) {
-		return numSpirals * Math.PI * r;
-	};
-
-	var radius = d3
-		.scaleLinear()
-		.domain([start, end])
-		.range([10, spiralRadius]);
-
-	var points = d3.range(start, end + 0.001, (end - start) / 1000);
-
-	var spiral = d3
-		.radialLine()
-		.curve(d3.curveCardinal)
-		.angle(theta)
-		.radius(radius);
-
-	var path = hiddenG
-		.append("path")
-		.datum(points)
-		.attr("id", "spiral")
-		.attr("d", spiral)
-		.style("fill", "none")
-		.style("stroke", "none");
-
-	var spiralLength = path.node().getTotalLength();
+	// Spiral
 
 	// --------------------------------------------------
 
 	// initial display
-	drawPopupCircles(
-		con_data,
-		d3.select("#splitButtonYes").classed("selected"),
-		path
-	);
+	drawPopupCircles(con_data, path);
+
+	// update when filters are changed
+	// d3.selectAll(".input").on("change", function() {
+	// 	drawPopupCircles(con_data, path);
+	// });
 
 	d3.select("#splitButtonNo").on("click", function() {
 		d3.select(this).classed("selected", true);
@@ -153,7 +120,10 @@ function clickCountry(con, con_data, world, filters) {
 		drawPopupCircles(con_data, true, path);
 	});
 
-	function drawPopupCircles(con_data, split, path) {
+	function drawPopupCircles(con_data, path) {
+		// get split setting
+		var split = d3.select("#splitButtonYes").classed("selected");
+
 		// empty g
 		popG.selectAll("*").remove();
 
@@ -183,7 +153,7 @@ function clickCountry(con, con_data, world, filters) {
 					.append("g")
 					.classed("popupGlyph", true)
 					.attr("transform", function(d, i) {
-						var posOnPath = path.node().getPointAtLength(i * delta);
+						var posOnPath = spiralPath.node().getPointAtLength(i * delta);
 						return "translate(" + posOnPath.x + "," + posOnPath.y + ")";
 					});
 
@@ -203,7 +173,7 @@ function clickCountry(con, con_data, world, filters) {
 				// calculate path for visible part of spiral and draw
 				var len = pr_data.values.length * delta;
 				var locs = d3.range(0, len, delta / 2).map(function(d) {
-					var pt = path.node().getPointAtLength(d);
+					var pt = spiralPath.node().getPointAtLength(d);
 					return [pt.x, pt.y];
 				});
 
@@ -246,7 +216,7 @@ function clickCountry(con, con_data, world, filters) {
 				.append("g")
 				.classed("popupGlyph", true)
 				.attr("transform", function(d, i) {
-					var posOnPath = path.node().getPointAtLength((i + 1) * delta);
+					var posOnPath = spiralPath.node().getPointAtLength((i + 1) * delta);
 					return "translate(" + posOnPath.x + "," + posOnPath.y + ")";
 				});
 
@@ -265,14 +235,14 @@ function clickCountry(con, con_data, world, filters) {
 			// calculate path for visible part of spiral and draw
 			var len = (con_data.length + 1.5) * delta;
 			var locs = d3.range(0, len, delta / 2).map(function(d) {
-				var pt = path.node().getPointAtLength(d);
+				var pt = spiralPath.node().getPointAtLength(d);
 				return [pt.x, pt.y];
 			});
 
 			var lineGenerator = d3.line().curve(d3.curveCardinal);
 			var pathData = lineGenerator(locs);
 
-			var path = bgG
+			bgG
 				.append("path")
 				.attr("d", pathData)
 				.classed("popupBackgroundSpiral", true);
@@ -282,7 +252,7 @@ function clickCountry(con, con_data, world, filters) {
 				.append("g")
 				.classed("popupDateLabel", true)
 				.attr("transform", function(d, i) {
-					var posOnPath = path.node().getPointAtLength(0);
+					var posOnPath = spiralPath.node().getPointAtLength(0);
 					return "translate(" + posOnPath.x + "," + posOnPath.y + ")";
 				})
 				.append("text")
@@ -292,7 +262,7 @@ function clickCountry(con, con_data, world, filters) {
 				.append("g")
 				.classed("popupDateLabel", true)
 				.attr("transform", function(d, i) {
-					var posOnPath = path.node().getPointAtLength(len);
+					var posOnPath = spiralPath.node().getPointAtLength(len);
 					return "translate(" + posOnPath.x + "," + posOnPath.y + ")";
 				})
 				.append("text")

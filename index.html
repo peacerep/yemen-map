@@ -24,19 +24,18 @@
 		<script src="lib/d3-array.v2.min.js"></script>
 		<script src="lib/d3-delaunay.min.js"></script>
 
-		<script type="text/javascript" src="js/shared.js"></script>
+		<script type="text/javascript" src="js/globals.js"></script>
 		<script type="text/javascript" src="js/geofunctions.js"></script>
-		<script type="text/javascript" src="js/functions.js"></script>
 		<script type="text/javascript" src="js/popup.js"></script>
 		<script type="text/javascript" src="js/timeline.js"></script>
-		<script type="text/javascript" src="js/inputs.js"></script>
+		<!-- <script type="text/javascript" src="js/inputs.js"></script> -->
 	</head>
 	<body>
 		<!-- for receiving custom input events -->
 		<div id="eventHandler" class="input hidden"></div>
 
 		<div class="grid-container">
-			<div id="header">
+			<div id="title">
 				<h1><a href="..">Visualizing Peace</a></h1>
 				<h2>Agreements in Time and Space</h2>
 				<div class="button highlight" id="expandFilters">Show Filters</div>
@@ -134,7 +133,7 @@
 				</div>
 			</div>
 
-			<div id="timeline-top">
+			<div id="timeline">
 				<div id="selectTimeline" class="switchContainer">
 					<input
 						type="radio"
@@ -156,16 +155,14 @@
 				</div>
 				<div class="charts"></div>
 			</div>
-			<div id="info-box">
-				<div class="selectSection">
-					<h3>Agreement Details</h3>
-					<div id="agreementDetails"></div>
-				</div>
+
+			<div id="infobox">
+				<h3>Agreement Details</h3>
+				<div id="agreementDetails"></div>
 			</div>
 			<div id="map"></div>
 		</div>
 
 		<script type="text/javascript" src="js/setup.js"></script>
-		<script type="text/javascript" src="js/map.js"></script>
 	</body>
 </html>

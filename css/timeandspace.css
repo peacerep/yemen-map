@@ -11,7 +11,7 @@
 	overflow: hidden;
 }
 
-#header {
+#title {
 	grid-column: 1;
 	grid-row: 1;
 
@@ -31,7 +31,7 @@
 	pointer-events: none; /*make sure map works*/
 }
 
-#timeline-top {
+#timeline {
 	grid-column: 2;
 	grid-row: 3;
 
@@ -39,7 +39,7 @@
 	position: relative;
 }
 
-#info-box {
+#infobox {
 	grid-column: 1;
 	grid-row: 3;
 
@@ -259,11 +259,7 @@ Map
 	pointer-events: none;
 }
 
-#info-box .selectSection {
-	margin: 0;
-}
-
-#timeline-top .charts {
+#timeline .charts {
 	display: block;
 	width: 100%;
 	height: 100%;

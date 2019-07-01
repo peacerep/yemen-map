@@ -2,9 +2,9 @@
 // maybe split into init and update function
 // add filters
 
-function initTimeline(data, years) {
+function initTimeline(data) {
 	// empty div
-	const chart = d3.select("#timeline-top .charts");
+	const chart = d3.select("#timeline .charts");
 	chart.selectAll("*").remove();
 
 	var margin = { top: 25, right: 20, bottom: 40, left: 40 }, //read clockwise from top
@@ -15,13 +15,13 @@ function initTimeline(data, years) {
 		.append("svg")
 		.attr("height", height + margin.top + margin.bottom)
 		.attr("width", width + margin.left + margin.right)
-		.attr("id", "svg-timeline-top")
+		.attr("id", "svg-timeline")
 		.append("g")
 		.attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-		.attr("id", "g-timeline-top");
+		.attr("id", "g-timeline");
 
-	var minDate = parseDate(years[0] - 1 + "-06-30");
-	var maxDate = parseDate(years[1] + "-06-30");
+	var minDate = parseDate(minYear - 1 + "-06-30");
+	var maxDate = parseDate(maxYear + "-06-30");
 
 	// create time scale and x axis
 	var xScale = d3
@@ -45,12 +45,13 @@ function initTimeline(data, years) {
 	const gBars = g
 		.append("g")
 		.classed("hidden", !d3.select("#timeline-bars").property("checked"));
-	//attr("visibility", "hidden");
+
 	const gLines = g
 		.append("g")
 		.attr("id", "gLines")
 		.classed("hidden", !d3.select("#timeline-lines").property("checked"));
-	d3.select("#timeline-top")
+
+	d3.select("#timeline")
 		.selectAll("input")
 		.on("change", function() {
 			gLines.classed(
@@ -66,7 +67,7 @@ function initTimeline(data, years) {
 		agtSpacing = 0;
 
 	// calculate agtWidth
-	var agtWidth = width / (1 + years[1] - years[0]) - 1;
+	var agtWidth = width / (maxYear - minYear);
 
 	// Group agreements by Year (create an array of objects whose key is the
 	// year and value is an array of objects (one per agreement))
@@ -158,7 +159,7 @@ function initTimeline(data, years) {
 
 	var flatDataLines = [];
 
-	for (var year = years[0]; year <= years[1]; year++) {
+	for (var year = minYear; year <= maxYear; year++) {
 		var index = dataLines.findIndex(function(d) {
 			return d.key == year;
 		});

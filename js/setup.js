@@ -1,8 +1,301 @@
 "use strict";
 
-// Set up filters
+// Wait for the DOM to finish loading
+// if (document.readyState === "interactive") { init(); }
 
+////////////////////////////////////////////////////////////////////////////////
+// Initialise svg and group elements for map and timeline
+////////////////////////////////////////////////////////////////////////////////
+
+// Map
+var w_map = parseInt(d3.select("#map").style("width"));
+var h_map = parseInt(d3.select("#map").style("height"));
+
+var svg = d3
+	.select("#map")
+	.append("svg")
+	.attr("width", w_map)
+	.attr("height", h_map);
+
+var mapG = svg.append("g").attr("id", "mapG"); // g for the map
+var dotG = svg.append("g").attr("id", "dotG"); // g for dots or anything else we plot on top
+var labG = svg.append("g").attr("id", "labG"); // g for country labels
+var popG = svg.append("g").attr("id", "popG"); // g for popup circles
+var popupControlsG = svg.append("g").attr("id", "popupControlsG");
+
+////////////////////////////////////////////////////////////////////////////////
+// Set up map
+////////////////////////////////////////////////////////////////////////////////
+
+// initial scale and translation (makes mercator projection fit screen)
+var scaleInit = (h_map / (2 * Math.PI)) * 2.3;
+var transInit = [w_map * 0.5, h_map * 0.75];
+
+// define projection
+var projection = d3
+	.geoMercator()
+	.scale(scaleInit)
+	.translate(transInit);
+
+// define path generator
+var path = d3.geoPath().projection(projection);
+
+// tooltip for country names
+var tooltipMap = labG
+	.attr("transform", "translate(-100,-100)")
+	.attr("id", "tooltipMap")
+	.style("pointer-events", "none")
+	.append("text")
+	.attr("class", "tooltipText");
+
+// set up zoom
+var zoom = d3
+	.zoom()
+	.scaleExtent([0.7, 50])
+	.on("zoom", zooming);
+
+svg.call(zoom);
+
+svg.on("click", selectedAgt.clear);
+
+function zooming() {
+	mapG.style("stroke-width", 1 / d3.event.transform.k + "px");
+	mapG.attr("transform", d3.event.transform);
+
+	// semantic zoom
+	dotG
+		.selectAll(".glyphContainer")
+		.attr(
+			"transform",
+			d => "translate(" + d3.event.transform.apply(projection(d.loc)) + ")"
+		);
+}
+
+// zoom buttons (bottom right of map)
+var zoomG = svg
+	.append("g")
+	.attr("transform", "translate(" + (w_map - 35) + "," + (h_map - 60) + ")")
+	.classed("zoomButton", true);
+
+// zoom in (+) button
+zoomG
+	.append("rect")
+	.attr("x", 0)
+	.attr("y", 0)
+	.attr("width", 25)
+	.attr("height", 25)
+	.on("click", function() {
+		zoom.scaleBy(svg.transition().duration(200), 1.3);
+	});
+
+// zoom out (-) button
+zoomG
+	.append("rect")
+	.attr("x", 0)
+	.attr("y", 25)
+	.attr("width", 25)
+	.attr("height", 25)
+	.on("click", function() {
+		zoom.scaleBy(svg.transition().duration(200), 1 / 1.3);
+	});
+
+// plus and minus signs on buttons
+zoomG
+	.selectAll(".zoomLabel")
+	.data([
+		{ x1: 7.5, x2: 17.5, y1: 12.5, y2: 12.5 },
+		{ x1: 12.5, x2: 12.5, y1: 7.5, y2: 17.5 },
+		{ x1: 7.5, x2: 17.5, y1: 37.5, y2: 37.5 }
+	])
+	.enter()
+	.append("line")
+	.attr("x1", d => d.x1)
+	.attr("x2", d => d.x2)
+	.attr("y1", d => d.y1)
+	.attr("y2", d => d.y2);
+
+// hidden: popup controls
+
+// add buttons to the side of the circle
+popupControlsG.attr("transform", "translate(-100, -100)");
+var button2 = popupControlsG.append("g").classed("popupSplitButtons", true);
+
+var textOffset = 5;
+var fontSize = 15;
+
+// split by peace process?
+
+// button2.attr("transform", "translate(100,0)");
+button2.attr("transform", "translate(50,0)");
+
+var text0 = button2.append("text").attr("y", -55);
+text0
+	.selectAll("tspan")
+	.data(["SPLIT BY", "PEACE PROCESS?"])
+	.enter()
+	.append("tspan")
+	.attr("x", 0)
+	.attr("y", text0.attr("y"))
+	.attr("dy", function(d, i) {
+		return ((i * 2 - 1) * fontSize) / 2;
+	})
+	.text(d => d)
+	.style("fill", "#333");
+
+button2
+	.append("circle")
+	.attr("id", "splitButtonYes")
+	.attr("cy", -20)
+	.attr("r", 20);
+
+button2
+	.append("text")
+	.style("font-size", fontSize + "px")
+	.text("Yes")
+	.attr("y", -20 + textOffset);
+
+button2
+	.append("circle")
+	.attr("id", "splitButtonNo")
+	.classed("selected", true)
+	.attr("cy", 25)
+	.attr("r", 20);
+
+button2
+	.append("text")
+	.style("font-size", fontSize + "px")
+	.text("No")
+	.attr("y", 25 + textOffset);
+
+// var button = popupControlsG.append("g").classed("popupSortButtons", true);
+
+// // Headings
+// button
+// 	.append("text")
+// 	.text("SORT BY:")
+// 	.attr("y", -120)
+// 	.style("fill", "#333");
+
+// // Date
+
+// button
+// 	.append("circle")
+// 	.classed("selected", true)
+// 	.attr("cy", -75)
+// 	.attr("r", 35)
+// 	.on("click", function() {
+// 		d3.selectAll(".popupDateLabel").classed("hidden", false);
+// 		sortGlyphsBy(sortByDate, this);
+// 	});
+
+// button
+// 	.append("text")
+// 	.style("font-size", fontSize + "px")
+// 	.text("Date")
+// 	.attr("y", -75 + textOffset);
+
+// // Number of Codes
+
+// button
+// 	.append("circle")
+// 	.attr("cy", 0)
+// 	.attr("r", 35)
+// 	.on("click", function() {
+// 		d3.selectAll(".popupDateLabel").classed("hidden", true);
+// 		sortGlyphsBy(sortByNCodes, this);
+// 	});
+
+// var text1 = button.append("text").attr("y", textOffset);
+// text1
+// 	.selectAll("tspan")
+// 	.data(["Number", "of Codes"])
+// 	.enter()
+// 	.append("tspan")
+// 	.attr("x", 0)
+// 	.attr("y", text1.attr("y"))
+// 	.attr("dy", function(d, i) {
+// 		return ((i * 2 - 1) * fontSize) / 2;
+// 	})
+// 	.text(d => d);
+
+// // Specific Code
+
+// button
+// 	.append("circle")
+// 	.attr("id", "popupSort3")
+// 	.attr("cy", 75)
+// 	.attr("r", 35)
+// 	.on("click", function() {
+// 		// wiggle dots to show this can't be clicked
+// 		d3.selectAll(".popupSortCodeCircle")
+// 			.transition()
+// 			.duration(100)
+// 			.attr("r", 13)
+// 			.transition()
+// 			.duration(100)
+// 			.attr("r", 10);
+// 	});
+
+// var text2 = button.append("text").attr("y", 75 + textOffset);
+// text2
+// 	.selectAll("tspan")
+// 	.data(["Specific", "Code"])
+// 	.enter()
+// 	.append("tspan")
+// 	.attr("x", 0)
+// 	.attr("y", text2.attr("y"))
+// 	.attr("dy", function(d, i) {
+// 		return ((i * 2 - 1) * fontSize) / 2;
+// 	})
+// 	.text(d => d);
+
+// button
+// 	.append("g")
+// 	.attr("transform", "translate(0, 75)")
+// 	.selectAll("circle")
+// 	.data(codes)
+// 	.enter()
+// 	.append("circle")
+// 	.classed("popupSortCodeCircle", true)
+// 	.attr("r", 10)
+// 	.attr("cx", function(d, i) {
+// 		var alpha = i * (tau / 16) - 0.0625 * tau;
+// 		return Math.cos(alpha) * 55;
+// 	})
+// 	.attr("cy", function(d, i) {
+// 		var alpha = i * (tau / 16) - 0.0625 * tau;
+// 		return Math.sin(alpha) * 55;
+// 	})
+// 	.style("fill", d => codeColour(d))
+// 	.on("click", function(d) {
+// 		d3.selectAll(".popupSortButtons .selected").classed("selected", false);
+// 		d3.select("#popupSort3").classed("selected", true);
+// 		d3.select(this).classed("selected", true);
+// 		d3.selectAll(".popupDateLabel").classed("hidden", true);
+
+// 		d3.selectAll(".popupGlyphG")
+// 			.selectAll(".popupGlyph")
+// 			.sort(function(a, b) {
+// 				return sortByCode(a, b, d);
+// 			})
+// 			.transition()
+// 			.duration(100)
+// 			.attr("transform", function(d, i) {
+// 				var posOnPath = d3
+// 					.select(".popupBackgroundSpiral")
+// 					.node()
+// 					.getPointAtLength((i + 1) * delta);
+// 				return "translate(" + posOnPath.x + "," + posOnPath.y + ")";
+// 			});
+// 	});
+
+////////////////////////////////////////////////////////////////////////////////
+// Initialise event listeners, buttons, etc.
+////////////////////////////////////////////////////////////////////////////////
+
+// Button to hide / show global filters
 d3.select("#expandFilters").on("click", function() {
+	// check if currently hidden
 	var currentState = d3.select("#filterContainer").classed("hidden");
 
 	// change button text
@@ -13,6 +306,8 @@ d3.select("#expandFilters").on("click", function() {
 	// toggle filter visibility
 	d3.select("#filterContainer").classed("hidden", !currentState);
 });
+
+// Buttons to select all / deselect all in the global filters box
 
 d3.select("#selectAllCodes").on("click", function() {
 	// check all checkboxes
@@ -48,13 +343,16 @@ makeCodesCheckboxes(true);
 // Initialise infobox
 agtDetails(null);
 
+// Initialise slider
+var timeSlider = initSlider();
+
+////////////////////////////////////////////////////////////////////////////////
 // Load data
+////////////////////////////////////////////////////////////////////////////////
+
 d3.csv("data/pa-x.csv", parseData)
 	.then(function(data) {
 		console.log(data);
-		// Set up year slider
-		var years = getYears(data);
-		var myslider = slider("timeslider", years[0], years[1]);
 
 		// Add countries/entities to dropdown
 		var cons = getConNames(data);
@@ -84,7 +382,7 @@ d3.csv("data/pa-x.csv", parseData)
 		resetFilters();
 
 		// Draw timeline
-		initTimeline(data, years);
+		initTimeline(data);
 
 		// Load geojson world map
 		d3.json("data/world-110m-custom.geojson")
@@ -109,7 +407,7 @@ d3.csv("data/pa-x.csv", parseData)
 					})
 					.on("click", function(d) {
 						var filters = {
-							year: myslider.getRange(),
+							year: timeSlider.getRange(),
 							cons: { any: true, cons: [d.properties.name] },
 							codes: getSelectedCodes()
 						};
@@ -133,7 +431,7 @@ d3.csv("data/pa-x.csv", parseData)
 				// Listen for changes in filters
 				d3.selectAll(".input").on("change", function() {
 					var filters = {
-						year: myslider.getRange(),
+						year: timeSlider.getRange(),
 						cons: getSelectedCons(cons),
 						codes: getSelectedCodes()
 					};
@@ -154,137 +452,48 @@ d3.csv("data/pa-x.csv", parseData)
 			.catch(function(error) {
 				throw error;
 			});
-
-		// Function to reset filters and visualisation
-		function resetFilters() {
-			console.log("resetting filters");
-
-			// Time
-			myslider.resetBrush();
-
-			// Countries/Entities
-			d3.select("#anyCon").property("checked", true);
-			d3.selectAll("#conDropdown input").property("checked", false);
-
-			// Codes
-			d3.select("#anyCodes").property("checked", true);
-			d3.selectAll("#codesCheckboxes input").property("checked", false);
-
-			let event = new Event("change");
-			eventHandler.dispatchEvent(event);
-		}
 	})
 	.catch(function(error) {
 		throw error;
 	});
 
-// Functions
+// SPIRAL
 
-function getSelectedCons(cons) {
-	// reads the con checkboxes and returns an object with their status
-	var filters = {
-		any: document.getElementById("anyCon").checked, //otherwise ALL
-		cons: []
+function drawSpiral() {
+	var hiddenG = popG.append("g").attr("transform", "translate(-600, -600)");
+
+	var start = 0,
+		end = 1,
+		numSpirals = 20, // 1 = a half turn
+		spiralRadius = numSpirals * glyphR * 1.1;
+
+	var theta = function(r) {
+		return numSpirals * Math.PI * r;
 	};
 
-	for (var i = 0; i < cons.length; i++) {
-		if (document.getElementById("checkboxCon" + i).checked) {
-			filters.cons.push(cons[i]);
-		}
-	}
-	return filters;
+	var radius = d3
+		.scaleLinear()
+		.domain([start, end])
+		.range([10, spiralRadius]);
+
+	var points = d3.range(start, end + 0.001, (end - start) / 1000);
+
+	var spiral = d3
+		.radialLine()
+		.curve(d3.curveCardinal)
+		.angle(theta)
+		.radius(radius);
+
+	var path = hiddenG
+		.append("path")
+		.datum(points)
+		.attr("id", "spiral")
+		.attr("d", spiral)
+		.style("fill", "none")
+		.style("stroke", "none");
+
+	return path;
 }
 
-function getSelectedConsString(cons) {
-	// check which countries are selected in the dropdown and returns a string
-	// with all those countries separated by commas
-	var selected = getSelectedCons(cons);
-
-	if (selected.length == cons.length) {
-		return "All";
-	} else if (selected.length == 0) {
-		return "None";
-	} else {
-		var str = "";
-		for (var i = 0; i < selected.length; i++) {
-			str += selected[i] + ", ";
-		}
-		str = str.slice(0, -2);
-		return str;
-	}
-}
-
-// Selecting and mousing over agreements
-var selectedAgt = new function() {
-	var agt = null;
-
-	this.clickOn = function(d) {
-		// if it's the same that's already selected
-		if (agt != null && agt.id === d.id) {
-			this.clear();
-			return;
-		}
-
-		// else it's new
-		else {
-			// if there's an old one, get rid of it
-			if (agt) {
-				this.clear();
-			}
-
-			//highlight new one
-			agt = d;
-
-			// display infobox
-			agtDetails(agt);
-
-			// highlight the glyph (if it exists)
-			d3.select("#glyph" + agt.id).classed("selected", true);
-
-			// highlight the timeline item
-			d3.select("#rect" + agt.id).style("fill", "#9ed3ff");
-		}
-	};
-
-	this.get = function() {
-		return agt;
-	};
-
-	this.clear = function() {
-		// remove all highlights and reset agt
-		if (agt) {
-			// remove glyph highlight
-			d3.select("#glyph" + agt.id).classed("selected", false);
-
-			// remove timeline highlight
-			d3.select("#rect" + agt.id).style("fill", null);
-		}
-
-		// reset agt
-		agt = null;
-		agtDetails(null);
-	};
-}();
-
-function onmouseover(d) {
-	// only run if this is not the selected event or there is no selected event
-	if (selectedAgt.get() === null || !(d.id == selectedAgt.get().id)) {
-		// show info box
-		agtDetails(d);
-		// hover effects on glyph + timeline
-		d3.select("#glyph" + d.id).classed("hover", true);
-		d3.select("#rect" + d.id).classed("hover", true);
-	}
-}
-
-function onmouseout(d) {
-	// remove hover effects on glyph + timeline
-	d3.select("#glyph" + d.id).classed("hover", false);
-	d3.select("#rect" + d.id).classed("hover", false);
-
-	// only run if this is not the selected event or there is no selected event
-	if (selectedAgt.get() === null || !(d.id == selectedAgt.get().id)) {
-		// reset info box to selected agreement
-		agtDetails(selectedAgt.get());
-	}
-}
+const spiralPath = drawSpiral();
+const spiralLength = spiralPath.node().getTotalLength();
