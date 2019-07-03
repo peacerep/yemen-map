@@ -58,6 +58,10 @@ function drawYemenMap(data) {
 		.classed("petal", true)
 		.attr("d", arcMin)
 		.style("fill", d => d.colour);
+
+	d3.selectAll(".glyphContainer")
+		.on("mouseover", mouseoverAgt)
+		.on("mouseout", mouseoutAgt);
 }
 
 function squarePos(i) {

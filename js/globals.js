@@ -6,11 +6,13 @@ const tau = 2 * Math.PI;
 
 // Visualisation Parameters: Define sizes etc.
 const glyphR = 20; // radius of one glyph on the map
+
+// National Level Agreements Box
 const natBoxW = 250; // width of national level agreements box
 const natBoxN = 4; // number of agreements in one row in the nat. level agt. box
 // 25 national level agreements
-const natBoxT = 30;
-const natBoxH = natBoxT + (natBoxW / natBoxN) * Math.ceil(25 / 4);
+const natBoxT = 30; // top margin
+const natBoxH = natBoxT + (natBoxW / natBoxN) * Math.ceil(25 / 4); // height
 
 // Year range of the data
 const minYear = 1990;
@@ -381,40 +383,40 @@ function getSelectedCodes() {
 }
 
 // Checking which countries/entities are selected in the filter pane
-function getSelectedCons(cons) {
-	// reads the con checkboxes and returns an object with their status
-	var filters = {
-		any: document.getElementById("anyCon").checked, //otherwise ALL
-		cons: []
-	};
+// function getSelectedCons(cons) {
+// 	// reads the con checkboxes and returns an object with their status
+// 	var filters = {
+// 		any: document.getElementById("anyCon").checked, //otherwise ALL
+// 		cons: []
+// 	};
 
-	for (var i = 0; i < cons.length; i++) {
-		if (document.getElementById("checkboxCon" + i).checked) {
-			filters.cons.push(cons[i]);
-		}
-	}
-	return filters;
-}
+// 	for (var i = 0; i < cons.length; i++) {
+// 		if (document.getElementById("checkboxCon" + i).checked) {
+// 			filters.cons.push(cons[i]);
+// 		}
+// 	}
+// 	return filters;
+// }
 
 // Create a list of the selected countries/entities
-function getSelectedConsString(cons) {
-	// check which countries are selected in the dropdown and returns a string
-	// with all those countries separated by commas
-	var selected = getSelectedCons(cons);
+// function getSelectedConsString(cons) {
+// 	// check which countries are selected in the dropdown and returns a string
+// 	// with all those countries separated by commas
+// 	var selected = getSelectedCons(cons);
 
-	if (selected.length == cons.length) {
-		return "All";
-	} else if (selected.length == 0) {
-		return "None";
-	} else {
-		var str = "";
-		for (var i = 0; i < selected.length; i++) {
-			str += selected[i] + ", ";
-		}
-		str = str.slice(0, -2);
-		return str;
-	}
-}
+// 	if (selected.length == cons.length) {
+// 		return "All";
+// 	} else if (selected.length == 0) {
+// 		return "None";
+// 	} else {
+// 		var str = "";
+// 		for (var i = 0; i < selected.length; i++) {
+// 			str += selected[i] + ", ";
+// 		}
+// 		str = str.slice(0, -2);
+// 		return str;
+// 	}
+// }
 
 // Draw time slider into the #timeslider div (very long function)
 function initSlider() {
@@ -582,8 +584,8 @@ function resetFilters() {
 	timeSlider.resetBrush();
 
 	// Countries/Entities
-	d3.select("#anyCon").property("checked", true);
-	d3.selectAll("#conDropdown input").property("checked", false);
+	// d3.select("#anyCon").property("checked", true);
+	// d3.selectAll("#conDropdown input").property("checked", false);
 
 	// Codes
 	d3.select("#anyCodes").property("checked", true);
@@ -641,7 +643,7 @@ var selectedAgt = new function() {
 	};
 }();
 
-function onmouseover(d) {
+function mouseoverAgt(d) {
 	// only run if this is not the selected event or there is no selected event
 	if (selectedAgt.get() === null || !(d.id == selectedAgt.get().id)) {
 		// show info box
@@ -652,7 +654,7 @@ function onmouseover(d) {
 	}
 }
 
-function onmouseout(d) {
+function mouseoutAgt(d) {
 	// remove hover effects on glyph + timeline
 	d3.select("#glyph" + d.id).classed("hover", false);
 	d3.select("#rect" + d.id).classed("hover", false);
