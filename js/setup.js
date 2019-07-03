@@ -28,7 +28,7 @@ var popupControlsG = svg.append("g").attr("id", "popupControlsG");
 ////////////////////////////////////////////////////////////////////////////////
 
 // initial scale and translation (makes mercator projection fit screen)
-var scaleInit = (h_map / (2 * Math.PI)) * 2.3;
+var scaleInit = (h_map / tau) * 2.3;
 var transInit = [w_map * 0.5, h_map * 0.75];
 
 // define projection
@@ -36,6 +36,29 @@ var projection = d3
 	.geoMercator()
 	.scale(scaleInit)
 	.translate(transInit);
+
+// zoom to Yemen
+var yemenBox = {
+	l: 38,
+	r: 60,
+	t: 22,
+	b: 10
+};
+
+var bbox_yemen = {
+	type: "Polygon",
+	coordinates: [
+		[
+			[yemenBox.l, yemenBox.t],
+			[yemenBox.r, yemenBox.t],
+			[yemenBox.r, yemenBox.b],
+			[yemenBox.l, yemenBox.b],
+			[yemenBox.l, yemenBox.t]
+		]
+	]
+};
+
+projection.fitSize([w_map, h_map], bbox_yemen);
 
 // define path generator
 var path = d3.geoPath().projection(projection);
