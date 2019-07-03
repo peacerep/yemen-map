@@ -9,7 +9,7 @@
 			href="https://pax-vis.github.io/pax-styles/logo/pax-logo-square.png"
 		/>
 
-		<title>PaxVis</title>
+		<title>Yemen Peace Process</title>
 
 		<link
 			href="https://fonts.googleapis.com/css?family=Karla:400,700&amp;subset=latin-ext"
@@ -28,7 +28,6 @@
 		<script type="text/javascript" src="js/geofunctions.js"></script>
 		<script type="text/javascript" src="js/popup.js"></script>
 		<script type="text/javascript" src="js/timeline.js"></script>
-		<!-- <script type="text/javascript" src="js/inputs.js"></script> -->
 	</head>
 	<body>
 		<!-- for receiving custom input events -->
@@ -37,7 +36,7 @@
 		<div class="grid-container">
 			<div id="title">
 				<h1><a href="..">Visualizing Peace</a></h1>
-				<h2>Agreements in Time and Space</h2>
+				<h2>Yemen</h2>
 				<div class="button highlight" id="expandFilters">Show Filters</div>
 				<div id="reset-filters" class="button highlight">Reset Filters</div>
 				<a href="about" target="_blank" class="button">About</a>
@@ -49,51 +48,6 @@
 						<h3>Timeframe</h3>
 						Drag the slider to select years:<br />
 						<div id="timeslider"></div>
-					</div>
-
-					<hr />
-
-					<div class="selectSection">
-						<h3>Country/Entity Selection</h3>
-						<!-- any/all radio -->
-						Display agreements involving
-						<div class="switchContainer">
-							<input
-								type="radio"
-								id="anyCon"
-								name="conRule"
-								value="any"
-								class="input"
-								checked
-							/><label for="anyCon" class="button left">any</label
-							><input
-								type="radio"
-								id="allCon"
-								name="conRule"
-								value="all"
-								class="input"
-							/><label for="allCon" class="button right">all</label>
-						</div>
-						of the selected countries/entities.<br />
-
-						<!-- fake dropdown for countries -->
-						<div class="dropdown">
-							<div class="button">
-								Select Countries/Entities
-								<span class="arrowdown">&#9660;</span>
-							</div>
-							<div id="conDropdown" class="dropcontent">
-								<div id="selectAllCons" class="button">Select All</div>
-								&nbsp;&nbsp;
-								<div href="#" id="deselectAllCons" class="button">
-									Deselect All
-								</div>
-								<br />
-							</div>
-						</div>
-						<br />
-						Selected countries/entities:<br />
-						<span id="selectedCons"></span>
 					</div>
 
 					<hr />
