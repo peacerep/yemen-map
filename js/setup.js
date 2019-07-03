@@ -22,6 +22,25 @@ var dotG = svg.append("g").attr("id", "dotG"); // g for dots or anything else we
 var labG = svg.append("g").attr("id", "labG"); // g for country labels
 var popG = svg.append("g").attr("id", "popG"); // g for popup circles
 var popupControlsG = svg.append("g").attr("id", "popupControlsG");
+var natG = svg.append("g").attr("id", "natG"); // g for box with national agreements
+
+natG.attr(
+	"transform",
+	"translate(" + (w_map - natBoxW - 10) + "," + (h_map - natBoxH) / 2 + ")"
+);
+
+natG
+	.append("rect")
+	.attr("x", 0)
+	.attr("y", 0)
+	.attr("width", natBoxW)
+	.attr("height", natBoxH);
+
+natG
+	.append("text")
+	.attr("x", natBoxW / 2)
+	.attr("y", 10)
+	.text("National Level Agreements");
 
 ////////////////////////////////////////////////////////////////////////////////
 // Set up map
@@ -90,7 +109,10 @@ function zooming() {
 		.selectAll(".glyphContainer")
 		.attr(
 			"transform",
-			d => "translate(" + d3.event.transform.apply(projection(d.loc)) + ")"
+			d =>
+				"translate(" +
+				d3.event.transform.apply(projection([d.localLon, d.localLat])) +
+				")"
 		);
 }
 
@@ -377,29 +399,6 @@ d3.csv("data/yemen_merge.csv", parseData)
 	.then(function(data) {
 		console.log(data);
 
-		// Add countries/entities to dropdown
-		var cons = getConNames(data);
-		d3.select("#conDropdown")
-			.selectAll("span")
-			.data(cons)
-			.enter()
-			.append("span")
-			.html(function(d, i) {
-				return (
-					"<label><input type='checkbox' id='checkboxCon" +
-					i +
-					"' name='Con' class='input'>" +
-					d +
-					"</label><br/>"
-				);
-			});
-
-		// Update list of selected countries on change
-		d3.select("#conDropdown").on("click", function() {
-			// update span with list of selected
-			d3.select("#selectedCons").html(getSelectedConsString(cons));
-		});
-
 		// Initialise reset button for filters
 		d3.select("#reset-filters").on("click", resetFilters);
 		resetFilters();
@@ -421,35 +420,38 @@ d3.csv("data/yemen_merge.csv", parseData)
 						return "path" + d.id;
 					})
 					.attr("d", path)
-					.classed("land", true)
-					.on("mouseover", function(d) {
-						mouseoverCountry(this, d);
-					})
-					.on("mouseout", function(d) {
-						mouseoutCountry(this, d);
-					})
-					.on("click", function(d) {
-						var filters = {
-							year: timeSlider.getRange(),
-							cons: { any: true, cons: [d.properties.name] },
-							codes: getSelectedCodes()
-						};
-						clickCountry(
-							d.properties.name,
-							filterData(
-								locdata[locdata.findIndex(e => e.con == d.properties.name)]
-									.agts,
-								filters
-							),
-							world
-						);
-						// update timeline
-						initTimeline(filterData(data, filters), filters.year);
-					});
+					.classed("land", true);
+				// .on("mouseover", function(d) {
+				// 	mouseoverCountry(this, d);
+				// })
+				// .on("mouseout", function(d) {
+				// 	mouseoutCountry(this, d);
+				// })
+				// .on("click", function(d) {
+				// 	var filters = {
+				// 		year: timeSlider.getRange(),
+				// 		cons: { any: true, cons: [d.properties.name] },
+				// 		codes: getSelectedCodes()
+				// 	};
+				// 	clickCountry(
+				// 		d.properties.name,
+				// 		filterData(
+				// 			locdata[locdata.findIndex(e => e.con == d.properties.name)]
+				// 				.agts,
+				// 			filters
+				// 		),
+				// 		world
+				// 	);
+				// 	// update timeline
+				// 	initTimeline(filterData(data, filters), filters.year);
+				// });
 
 				// Match data points with locations on the map and draw dot map
-				const locdata = makeDotmapData(data, world);
-				drawDotmap(locdata);
+				// const locdata = makeDotmapData(data, world);
+				// drawDotmap(locdata);
+
+				// Draw all agreements
+				drawYemenMap(data);
 
 				// Listen for changes in filters
 				d3.selectAll(".input").on("change", function() {

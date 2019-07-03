@@ -5,9 +5,12 @@
 const tau = 2 * Math.PI;
 
 // Visualisation Parameters: Define sizes etc.
-const glyphR = 15; // radius of one glyph on the map
-const popupGlyphR = 20; // radius incl margin of one glyph in the popup
-var delta = popupGlyphR * 2.1; // distance between glyphs on spiral
+const glyphR = 20; // radius of one glyph on the map
+const natBoxW = 250; // width of national level agreements box
+const natBoxN = 4; // number of agreements in one row in the nat. level agt. box
+// 25 national level agreements
+const natBoxT = 30;
+const natBoxH = natBoxT + (natBoxW / natBoxN) * Math.ceil(25 / 4);
 
 // Year range of the data
 const minYear = 1990;
@@ -279,6 +282,45 @@ function filterData(data, f) {
 	});
 	return filtered;
 }
+
+// Data for petals
+function petalData(d) {
+	var activeCodes = [];
+	for (var i = 0; i < codes.length; i++) {
+		if (d[codes[i]]) {
+			activeCodes.push(codes[i]);
+		}
+	}
+	if (!activeCodes.length) {
+		return [];
+	} else {
+		var incr = tau / codes.length;
+		var obj = [];
+		for (var i = 0; i < codes.length; i++) {
+			if (activeCodes.includes(codes[i])) {
+				obj.push({
+					startAngle: i * incr,
+					endAngle: (i + 1) * incr,
+					colour: codeColour(codes[i]),
+					code: codes[i],
+					score: d[codes[i]]
+				});
+			}
+		}
+		return obj;
+	}
+}
+
+var arcMin = d3
+	.arc()
+	.innerRadius(0)
+	.outerRadius(function(d) {
+		return d3
+			.scaleSqrt()
+			.domain(codesRange[d.code])
+			.range([0, glyphR])(d.score);
+	})
+	.cornerRadius(5);
 
 // extract min and max year from data
 // function getYears(data) {

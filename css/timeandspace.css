@@ -4,7 +4,7 @@
 
 .grid-container {
 	display: grid;
-	grid-template-columns: 310px 1fr /*20%*/;
+	grid-template-columns: 310px 1fr; /*200px;*/
 	grid-template-rows: 140px 1fr 25%;
 	width: 100vw;
 	height: 100vh;
@@ -60,6 +60,12 @@
 	border-bottom: 1px solid #999;
 	z-index: 0;
 }
+
+/*#mapsidebar {
+	grid-column: 3;
+	grid-row: 1 / span 2;
+	background-color: steelblue;
+}*/
 
 #filterContainer {
 	padding: 6px;
@@ -276,6 +282,15 @@
 .popup.land {
 	fill: #768ead;
 }
-.hidden {
-	display: none;
+
+#natG rect {
+	fill: #ccc;
+	opacity: 0.6;
+}
+
+#natG text {
+	dominant-baseline: hanging;
+	font-weight: bold;
+	text-anchor: middle;
+	font-size: 16px;
 }

@@ -43,4 +43,4 @@ merged$Local[is.na(merged$Local)] <- FALSE
 sum(duplicated(merged$AgtId))
 
 # save merged file
-write_csv(merged, 'yemen_merge.csv')
+write_csv(merged, 'yemen_merge.csv', na='')
