@@ -80,7 +80,7 @@
 }
 
 /*------------------------------------------------------------------------------
-  Map + Popup
+  Map
 ------------------------------------------------------------------------------*/
 
 .land {
@@ -89,14 +89,9 @@
 	stroke: #9f9f9f;
 }
 
-.land.hover {
-	/*stroke: #000;*/
+/*.land.hover {
 	fill: #dae4ed;
-}
-
-#dotG {
-	pointer-events: none;
-}
+}*/
 
 /*glyph inner circle*/
 #dotG circle {
@@ -104,108 +99,17 @@
 	fill-opacity: 1;
 }
 
-#bgRect {
-	fill: #f1f1f1;
-	fill-opacity: 0.7;
-}
-
-.popupBgCircle {
-	fill: #fff; /*3A3A3A*/
-}
-
-.popupGlyphCircle {
-	fill: #555;
-	pointer-events: none;
-}
-
 .glyphHighlightCircle {
 	fill: transparent;
 }
 
-.glyphHighlightCircle.hover {
+.glyphContainer.hover .glyphHighlightCircle {
 	fill: #eee;
 }
 
-.glyphHighlightCircle.selected {
+.glyphContainer.selected .glyphHighlightCircle {
 	fill: #eee;
 	stroke: #333;
-}
-
-.popupGlyphPetal {
-	pointer-events: none;
-}
-
-.popupHeading {
-	text-anchor: middle;
-	font-size: 20px;
-	font-weight: bold;
-}
-
-.popupSortButtons circle,
-.popupSplitButtons circle {
-	fill: #333;
-	stroke: none;
-}
-
-.popupSortButtons circle:hover,
-.popupSplitButtons circle:hover {
-	fill: #555;
-}
-
-.popupSortButtons circle.selected,
-.popupSplitButtons circle.selected {
-	fill: steelblue;
-}
-
-.popupSortButtons text,
-.popupSplitButtons text {
-	fill: #fff;
-	text-anchor: middle;
-	font-weight: bold;
-	pointer-events: none;
-}
-
-.popupSortCodeCircle.selected {
-	stroke: #555;
-	stroke-width: 3;
-}
-
-.popupSortCodeCircle:hover {
-	stroke: #555;
-	stroke-width: 1;
-}
-
-.popupSortCodeCircle.selected:hover {
-	stroke: #555;
-	stroke-width: 3;
-}
-
-.popupBackgroundSpiral {
-	fill: none;
-	stroke: #ccc;
-}
-
-.popupDateLabel text {
-	text-anchor: middle;
-	dominant-baseline: middle;
-}
-
-#closeButton {
-	fill: #ddd;
-	fill-opacity: 1;
-	pointer-events: none;
-}
-
-#closeButton.hover {
-	fill: #ccc;
-}
-
-.closeButtonLines {
-	pointer-events: none;
-	stroke: #555;
-	stroke-width: 3;
-	stroke-linecap: round;
-	fill: none;
 }
 
 .zoomButton rect {

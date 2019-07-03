@@ -83,12 +83,12 @@ projection.fitSize([w_map, h_map], bbox_yemen);
 var path = d3.geoPath().projection(projection);
 
 // tooltip for country names
-var tooltipMap = labG
-	.attr("transform", "translate(-100,-100)")
-	.attr("id", "tooltipMap")
-	.style("pointer-events", "none")
-	.append("text")
-	.attr("class", "tooltipText");
+// var tooltipMap = labG
+// 	.attr("transform", "translate(-100,-100)")
+// 	.attr("id", "tooltipMap")
+// 	.style("pointer-events", "none")
+// 	.append("text")
+// 	.attr("class", "tooltipText");
 
 // set up zoom
 var zoom = d3
@@ -112,6 +112,16 @@ function zooming() {
 			d =>
 				"translate(" +
 				d3.event.transform.apply(projection([d.localLon, d.localLat])) +
+				")"
+		);
+
+	labG
+		.selectAll("text")
+		.attr(
+			"transform",
+			d =>
+				"translate(" +
+				d3.event.transform.apply(projection([d.lon, d.lat])) +
 				")"
 		);
 }
@@ -306,3 +316,17 @@ d3.csv("data/yemen_merge.csv", parseData)
 	.catch(function(error) {
 		throw error;
 	});
+
+labG
+	.selectAll("text")
+	.data(countryLabels)
+	.enter()
+	.append("text")
+	.text(d => d.label)
+	.attr(
+		"transform",
+		d =>
+			"translate(" +
+			d3.zoomTransform(svg.node()).apply(projection([d.lon, d.lat])) +
+			")"
+	);
