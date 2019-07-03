@@ -1,0 +1,1402 @@
+﻿Con,Contp,PP,PPName,Reg,AgtId,Agt,Dat,Status,Lgt,N_characters,Agtp,Stage,StageSub,Part,ThrdPart,OthAgr,Loc1ISO,Loc2ISO,Loc1GWNO,Loc2GWNO,UcdpCon,UcdpAgr,PamAgr,CowWar,GCh,GChRhet,GChAntid,GChSubs,GChOth,GDis,GDisRhet,GDisAntid,GDisSubs,GDisOth,GAge,GAgeRhet,GAgeAntid,GAgeSubs,GAgeOth,GMig,GMigRhet,GMigAntid,GMigSubs,GMigOth,GRa,GRaRhet,GRaAntid,GRaSubs,GRaOth,GRe,GReRhet,GReAntid,GReSubs,GReOth,GInd,GIndRhet,GIndAntid,GIndSubs,GIndOth,GOth,GOthRhet,GOthAntid,GOthSubs,GOthOth,GRef,GRefRhet,GRefSubs,GRefOth,GSoc,GSocRhet,GSocAntid,GSocSubs,GSocOth,GeWom,GeMe,GeMeNu,GeMeOth,GeSo,GeLgbti,GeLgbtiPos,GeLgbtiNeg,GeFa,StDef,StGen,StCon,StSd,StRef,StSym,StInd,StUni,StBor,StXbor,Pol,PolGen,PolNewInd,PolNewTemp,ConRen,Cons,Ele,ElecComm,PolPar,PolParTrans,PolParOth,Civso,Tral,Pubad,Polps,PpsSt,PpsSub,PpsEx,PpsOro,PpsOthPr,PpsVet,PpsAut,PpsInt,PpsOth,Terps,TpsSub,TpsLoc,TpsAut,TpsOth,Eps,EpsRes,EpsFis,EpsOth,Mps,MpsMe,MpsJt,MpsPro,MpsOth,HrGen,EqGen,HrDem,Prot,ProtCiv,ProtGrp,ProtLgl,ProtOth,HrFra,HrfSp,HrfBor,HrfTinc,HrfOth,HrCp,CprLife,CprTort,CprEq,CprSlav,CprLib,CprDet,CprFmov,CprFspe,CprFass,CprTria,CprPriv,CprVote,CprReli,CprOth,HrSec,SerProp,SerWork,SerHeal,SerEdu,SerStdl,SerShel,SerSs,SerCult,SerOth,HrNi,HrNiMe,HrNiNe,HrNiOth,HrIi,HrIiMon,HrIiBod,HrIiOth,HrMob,HrDet,Med,MedGov,MedSubs,MedLog,MedOth,HrCit,CitGen,CitRights,CitDef,CitOth,JusCr,JusCrSp,JusCrSys,JusCrPow,JusEm,JusJu,JusPri,JusTra,Dev,DevSoc,DevHum,DevInfra,NEC,NatRes,IntFu,Bus,Tax,TaxPo,TaxRef,TaxOth,Ban,CenBan,BanPers,BanInt,BanXb,LaRef,LaRefMan,LaRefRet,LaRefOth,LaNom,LaCH,LaCHTa,LaCHIt,LaCHPro,LaCHOth,LaEn,Wat,SsrGua,Ce,CeProv,CeGen,SsrPol,SsrArm,SsrDdr,DdrDemil,DdrProg,SsrInt,SsrPsf,SsrFf,Cor,SsrCrOcr,SsrDrugs,Terr,TjGen,TjAm,TjAmPro,TjSan,TjPower,TjAmBan,TjCou,TjJaNc,TjJaIc,TjMech,TjPrire,TjVet,TjVic,TjMis,TjRep,TjRSym,TjRMa,TjNR,ImUN,ImOth,ImRef,ImPK,ImE,ImSrc
+"Saudi Arabia/Yemen",Territory,103,"Saudi Arabia - Yemen Border process","Middle East and North Africa",408,"International Border Treaty between the Republic of Yemen and the Kingdom of Saudi Arabia",2000-06-12,"Multiparty signed/agreed",21,11599,Inter,Imp,ExtSub,"Government of the Kingdom of Saudi Arabia: Saud Al-Faisal, Minister for Foreign Affairs. Government of the Republic of Yemen: Abdul-Qader Abdul, Deputy Prime Minister and Rahman Ba-Jammal, Minister for Foreign Affairs. 
+
+ 
+",,"Page 1, Untitled Preamble 
+...
+with respect to both the boundaries determined by the Treaty of Taif signed by the two kingdoms in A.H. 1353, corresponding to A.D. 1934... 
+
+Page 1, Article 1
+The two contracting parties affirm that the Treaty of Taif and its annexes, including the boundary reports appended thereto, are binding and valid. They also affirm their commitment to the Memorandum of Understanding signed by the two countries on 27 Ramadan A.H. 1415 [26 February A.D. 1995].
+
+Page 1, Article 2
+The identity of the villages located along the path of the line in this section, including their tribal affiliation, shall be determined in accordance with the provisions of the Treaty of Taif and its annexes.
+
+Page 2, Article 3
+...
+The company concerned and the joint team of the two contracting parties shall adhere strictly to the distances and bearings from one point to the next and to the other specifications set forth in the boundary reports annexed to the Treaty of Taif, these provisions being binding on both parties.
+
+Page 2, Article 4
+The two contracting parties undertake to abide by the terms of article 5 of the Treaty of Taif as they relate to the removal of any military position located less than five kilometres from the boundary line delimited on the basis of the boundary reports annexed to the same Treaty of Taif.",YEM,SAU,678,670,NA,NA,NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+"Saudi Arabia/Yemen",Territory,103,"Saudi Arabia - Yemen Border process","Middle East and North Africa",535,"Saudi-Yemeni Memorandum of Understanding",1995-02-26,"Multiparty signed/agreed",3,3880,Inter,Imp,ExtSub,"Government of the Kingdom of Saudi Arabia: Special Advisor to the Custodian of the Two Holy Mosques, Ibrahim Bin Abdullah Al Angeri. Government of the Republic of Yemen:
+Deputy Prime Minister and Minister of Planning and Development, Abdulqader Abdurrahman Bajammal
+",,"Page 1, Article 1
+The Two Parties confirm their commitment to the legality and binding Treaty of Taif signed on the 6th of Safar 1353H, corresponding to the 20th of May 1934, and its annexes, which is known as the ""Treaty of Taif""...
+
+Page 2, Article 10
+This Memorandum contains no amendment to the ""Treaty of Taif"" and its annexes, including the border reports.",YEM,SAU,678,670,NA,NA,NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+Yemen,Government/territory,138,"Yemen peace process","Middle East and North Africa",2123,"Agreement for the exchange prisoners, detainees, missing persons, arbitrarily detained and forcibly disappeared persons, and those under house arrest
+
+",2018-12-17,"Multiparty signed/agreed",3,6191,Intra,Pre,Conf,"First Party Represented by 
+Sheikh. Hadi Ahmed Heij
+President of Prisoners and Detainees
+Foundation and Representative Prisoners Affairs & Missing Persons
+of the Arab Coalition
+
+Second Party Represented by 
+Mr. Abdelqader Hassan Al-Mortada
+Chairman of the National Committee
+
+
+",,,YEM,,678,,230,NA,NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,1,1
+Yemen,Government/territory,138,"Yemen peace process","Middle East and North Africa",2120,"Agreement on the City of Hodeidah and Ports of Hodeidah, Salif, and Ras Isa (Hodeidah Agreement)
+
+",2018-12-13,"Multiparty signed/agreed",1,3339,Intra,Cea,Ceas,"Yemeni government and the Houthi movement",,,YEM,,678,,230,NA,NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,1,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+Yemen,Government/territory,138,"Yemen peace process","Middle East and North Africa",2121,"Stockholm Agreement",2018-12-13,"Multiparty signed/agreed",1,1305,Intra,Pre,PreMix,"Yemeni government and Houthi movement",,,YEM,,678,,230,NA,NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,1,1
+Yemen,Government/territory,138,"Yemen peace process","Middle East and North Africa",2122,"Statement of Understanding on Ta'iz",2018-12-13,"Multiparty signed/agreed",1,720,Intra,Pre,Proc,"Yemeni government and Houthi movement",,,YEM,,678,,230,NA,NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Yemen,Inter-group,45,"Yemen Inter-group Agreements","Middle East and North Africa",2176,"Minutes of Agreement - Ta'iz",2018-04-27,"Multiparty signed/agreed",1,2100,IntraLocal,Oth,,"committee tasked by the Governor:
+Muhammad Najib: Signature: [signed]
+Ridhwan al-Hashidi: Signature: [signed]
+‘Abduh Qassim al-Jar’i: Signature: [signed] 
+Colonel Abd al-‘Aziz al-Majidi: Signature: [signed]",,,YEM,,678,,230,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,2,0,1,0,0,0,0,0,1,1
+Yemen,Government,45,"Yemen Inter-group Agreements","Middle East and North Africa",2119,"Agreement regarding the Exchange of Prisoners, Detainees, Remains and Missing Persons",2018-01-18,"Multiparty signed/agreed",2,4154,IntraLocal,Cea,CeaMix,"First Party Represented by 
+
+Sheikh. Hadi Ahmed Heij 
+President of Prisoners and Detainees 
+Foundation and Representative of the Arab Coalition 
+
+Second Party Represented by
+Mr. Abdelqader Hassan Al-Mortada
+Chairman of the National Committee
+e Prisoners Affairs & Missing Persons
+",,,YEM,,678,,230,NA,NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,3,0,0,3,0,0,0,0,0,0,0,0,1,1
+Yemen,Government,138,"Yemen peace process","Middle East and North Africa",2014,Statement,2016-11-16,"Multiparty signed/agreed",1,841,Intra,Pre,Proc,"Muhammad ‘Abd al-Salam [Spokesman for Ansar Allah] 
+[Signed] 
+‘Arif al-Zuka [General Secretary of General People’s Congress] 
+[Signed] ",,,YEM,,678,,230,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+Yemen,Inter-group,138,"Yemen peace process","Middle East and North Africa",2089,"al-Baydah Ceasefire",2016-04-20,"Multiparty signed/agreed",2,2209,IntraLocal,Cea,Ceas,"17 Signatories:
+",,"Based on the agreement signed between the two sides in the South Dhahran, in 10/04/2016",YEM,,678,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,1,1
+Yemen,Government/territory,138,"Yemen peace process","Middle East and North Africa",2009,"Dhalea Ceasefire",2016-04-20,"Multiparty signed/agreed",2,2809,IntraLocal,Cea,Ceas,"Representatives of Government of President Abd Rabbu Mansour Hadi:
+Ahmad ‘Abadi al-Mu’akar 
+Mohammad Ghalib al- Dhahiri 
+Lieutenant Colonel ‘Ail ‘Abdu al- Ghriani 
+Tahir ‘Abad al-Assad 
+Feysal Satah Shooqran 
+Ahmad Naji al-Sarari 
+Mohammad Mahmood Safian 
+Mohammad ‘Abad al- Shajri 
+
+Representatives of Ansar Allah and the General People's Congress:
+Abdu Salah al-Salami 
+‘Abdu Salah al-Mashraqi 
+Murad Ghalib Mazahim 
+Na’ran ‘Abdu al-Jalil al-Siadi 
+Mohammad Salah al- Niham 
+‘Ali Ahmad al- Siadi 
+Mohammad Hussein al- Na’iri 
+Sa’id ‘Ali al- ‘Ansoob 
+
+","Kingdom of Saudi Arabia","Page 1, Based on the agreement signed in South Dhahran in the Kingdom of Saudi Arabia on 10/4/2016 between us as the two sides,",YEM,,678,,230,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,1,0,0,0,0,0,0,0,0,0,1,1
+Yemen,Government/territory,138,"Yemen peace process","Middle East and North Africa",2010,"Implementation Mechanism of the Ceasefire Agreement in the Governorate of Marib ",2016-04-17,"Multiparty signed/agreed",2,3540,IntraLocal,Cea,Ceas,"Representatives of Government of President Abd Rabbu Mansour Hadi:
+‘Abd Āllah ‘Alī al- Jimālī 
+Ra’id ‘Abd Āllah al- Thābatī 
+Nājī ‘Alī Manīf 
+Āhmad ‘Alī Rabī’ 
+‘Abd al-Hakīm Rāshid al-Zūmhī 
+Muhammad Qāsim ‘Alwa 
+‘Abd Āllah Muhammad Kawīr 
+‘Abduh Hamid Shamalān 
+Mahmūd Sālih Haliyān 
+‘Abd al-Rahman ‘Alī ‘Āmur 
+
+Representatives of Ansar Allah and General People's Congress
+Muhammad bin ‘Alī Ta’ymān 
+Sālim Hādī Raqīb 
+Sa’īd ‘Alī Salāmah 
+Sālih Sawda Ta’ymān 
+Sālih Yahya al-Suqāf 
+Khalid Sālih al-Āmīr 
+‘Abd Āllah Sālih al- Sharīf 
+Fāyaz Muhsin al- Suqāf 
+
+","Kingdom of Saudi Arabia","Based on the agreement signed in Dhahran al-Janub in the Kingdom of Saudi Arabia on 10 April 2016 between us as the two sides. 
+",YEM,,678,,230,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,1,0,0,0,0,0,0,0,0,0,1,1
+Yemen,Government/territory,138,"Yemen peace process","Middle East and North Africa",1826,"Ta'iz Ceasefire Agreement",2016-04-16,"Multiparty signed/agreed",2,3347,IntraLocal,Cea,Ceas,"Islah MP/NDC Member, Abdulkareem Shaiban
+Southern Group NDC Member, Ali Mohammed Ahmed Al Ma’amari
+Chairman of the of the De-escalation and Ceasefire Committee, Sheikh Mohammed Abdullah Nayef
+Republican Guard, Brigadier Zakaria Al Muta’a","United Nations, GCC","Dharan al-Janoub ceasefire agreement (Taiz)",YEM,,678,,230,NA,NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,3,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1
+Yemen,Government/territory,138,"Yemen peace process","Middle East and North Africa",1586,"Dhahran al-Janoub Agreements on the Cessation of Hostilities in Yemen for Shabwah, al-Dhali’, al-Baydah, al-Jawf, Ma’rib, Ta’iz and Terms and Conditions",2016-04-10,"Multiparty signed/agreed",11,39876,Intra,Cea,Rel,"General People's Congress, Ansar Allah, Arab Coalition and Internationally recognised Government of Yemen [Hadi]","United Nations
+Certified by the Representative of the Kingdom of Saudi Arabia
+","constitution of the Yemeni Republic and UN Security Council resolution 2216 (2015) and other relevant Security Council resolutions, as well as the outputs of the national dialogue conference and the initiative of the Gulf Cooperation Council",YEM,,678,,230,,,,2,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,2,0,0,2,0,0,0,0,1,1,0,0,0,1
+Yemen,Government/territory,138,"Yemen peace process","Middle East and North Africa",2008,"Yemeni Military Ceasefire Order (with Signature by Ansar Allah Representative)",2016-04-10,"Status unclear",2,1789,Intra,Cea,Ceas,"Representative of Government of President Abd Rabbu Mansour Hadi [illegible]
+
+Multiple news articles claim that the other signatory is a representative from Ansar Allah.",,,YEM,,678,,230,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Yemen,Government/territory,138,"Yemen peace process","Middle East and North Africa",1825,"Ceasefire Implementation Agreement for the Governorate of Hajjah, signed in Dhahran al-Janoub",2016-04-04,"Multiparty signed/agreed",2,2645,Intra,Cea,Rel,"Government of Yemen; Ansar Allah-General People's Congress Alliance;
+
+Representatives
+Ahsan Salah Almarrani
+Naser Hussein Al-Shajani","Representative of the Kingdom of Saudi Arabia",,YEM,,678,,230,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,1
+Yemen,Government/territory,138,"Yemen peace process","Middle East and North Africa",1824,"Ceasefire Agreement for the Governorate of al-Hajjah between Ansar Allah and the legitimate Government of Yemen, signed in Dhahran al-Janoub",2016-04-02,"Multiparty signed/agreed",1,2105,Intra,Cea,Ceas,"Representative of Ansarallah and their Allies, Hasan Saleh Almarrani and Ali Al-Qahoom;
+Legitimate Government Representative, Brigadier General Askar Zu'ail
+","Coalition Countries under the leadership of Saudi Arabia","UN Security Council Resolution 2216",YEM,,678,,230,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+Yemen,Government/territory,45,"Yemen Inter-group Agreements","Middle East and North Africa",2007,"Agreement to Solve the Problem regarding al-Ma'ashiq Palace",2016-02-29,"Multiparty signed/agreed",1,1530,IntraLocal,Pre,Conf,"Southern Resistance in Krater;
+al-Maʿāshīq guards",,,YEM,,678,,230,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,1,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+Yemen,Government,138,"Yemen peace process","Middle East and North Africa",1734,"Seven Point Peace Plan (Muscat Principles)",2015-10-19,"Agreement with subsequent status",1,636,Intra,Pre,Prin,"Yemeni Government led by President Hadi; Ansar Allah led by Abdel Malik al-Houthi; General People's Congress led by ex-President Saleh; ","Omani Government",,YEM,,678,,230,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+Yemen,Inter-group,45,"Yemen Inter-group Agreements","Middle East and North Africa",2214,"Agreement between al-Rabadi Resistance and Ansar Allah, Ibb Governorate",2015-08-15,"Multiparty signed/agreed",1,2104,IntraLocal,Cea,CeaMix,"This is what the first party, the representative of Ansar Allah, Capt. Ali bin Hasan Abd Allah [illegible] and the second party, to represent the people of al-Rabadi, Muhammad Qassim Lutf, Ahmad Ali Ahmad Aqil, [illegible], Sheikh Abd al-Hamid Qassim al-Qat’ah, Sheikh Ameen Muhammad Abdullah Hasan [illegible], Capt. Sadiq al-Salahi, have signed","written by the mediator [illegible]",,YEM,,678,,230,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,2,0,2,0,0,0,0,0,0,0,0,0,0,1
+Yemen,Government/territory,138,"Yemen peace process","Middle East and North Africa",1823,"Statement on Security in Governorate of Ibb",2015-06-02,"Multiparty signed/agreed",3,1982,IntraLocal,Pre,PreOth,"63 Imams and preachers",,,YEM,,678,,230,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+Yemen,Inter-group,45,"Yemen Inter-group Agreements","Middle East and North Africa",1676,"Agreement between the Tribes of ʿUbaydah and Ansar Allah",2014-12-04,"Multiparty signed/agreed",2,4821,IntraLocal,SubPar,Iss,"Ansar Allah (the Houthis) as the first party and the 'Ubaydah Tribes and those under their auspices in Ma’rib governorate from the valley to the city as the second party ",,,YEM,,678,,230,NA,NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1
+Yemen,Government/territory,138,"Yemen peace process","Middle East and North Africa",1884,"Peace and National Partnership Implementation Agreement ",2014-11-01,"Multiparty signed/agreed",1,1689,Intra,Imp,ExtPar,"Hassan Mohamed Mohamed Zayd, al-Haqq Party;
+ Dr. Ahmed Ubaid Bin Dagher, General People's Congress;
+ Abdul Wahab al-Ansi, Islah Party ;
+[No Signature], Arab Baath Socialist Party ;
+Yahya Mansour Abu Asbaa, Yemeni Socialist Party;
+ Abdul Aziz Ahmed Jabari, Justice and Construction Party;
+ Mohammed Sulayman Mohammed al-Samman, al-Rashad Party;
+ Nabil Abdullah, Union of Popular Forces;
+ Ahmed Ali Kalez, Unionist Union Party ;
+Saleh Ali al-Samad, Ansar Allah ;
+Yassin Omar Makkawi, Southern Movement;
+ Shayef Azi Saghir, National Democratic Alliance;
+ Dr. Abdullah Mohammed Dahan, Popular Unificationist Nasserite Organization",,"Peace and National Partnership Agreement",YEM,,678,,230,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+Yemen,Inter-group,45,"Yemen Inter-group Agreements","Middle East and North Africa",2006,"Agreement to Cease Fire between the Tihami Movement in Harah al-Yamin and Ansar Allah",2014-10-24,"Multiparty signed/agreed",1,1450,IntraLocal,Cea,Ceas,"On behalf of the Tihama Movement (Hārah al-Yamin): 
+Mamdūh Muhammad ‘Issā Zayla’ī Muhammad ‘Aysh Āhmad Muhammad Āhmad Jamālī Muhammad ‘Aysh Hassan 
+Shahab Muhammad al-‘Adīn Hassan Hādī Muhammad ‘Abd al-Rizāq 
+
+On behalf of Ansar Allah: 
+Ābū Taha ",,,YEM,,678,,230,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+Yemen,Inter-group,45,"Yemen Inter-group Agreements","Middle East and North Africa",2087,"Untitled Agreement [in Yarim, Ibb Governorate]",2014-10-23,"Multiparty signed/agreed",1,1334,IntraLocal,Cea,Rel,"""meeting was held between sheikhs, dignitaries, representatives of political parties, local, military and security authorities, representatives of civil society and representatives of Ansar Allah and the Popular Committees""",,,YEM,,678,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Yemen,Government/territory,138,"Yemen peace process","Middle East and North Africa",798,"The Peace and National Partnership Agreement",2014-09-21,"Multiparty signed/agreed",6,19217,Intra,SubPar,MultIss,"Not signed, agreement mentions the following parties as having produced it: all Yemeni constituencies represented in the National Dialogue Conference. It is presumed to include  President Abd Rabbo Mansour Hadi, representatives of Ansarallah and representatives of the Southern Movement. 
+",,,YEM,,678,,230,1535,,,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,1,1,0,1,0,0,0,0,0,1,1,0,0,0,2,1,0,0,0,0,1,0,2,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,1,0,1,0,0,0,0,0,0,0,1,0,0,2,1,0,1,1,1,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,1,0,0,2,2,1,0,0,1,0,3,0,0,1,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1
+Yemen,Inter-group,45,"Yemen Inter-group Agreements","Middle East and North Africa",2082,"Agreement document between the disputed parties in Bani Al-Amiriya, Bikal Chamber, Mazhar District",2014-08-07,"Multiparty signed/agreed",2,1909,IntraLocal,SubPar,Iss,"Bikal Chamber
+Houthis
+Governor
+Director of Security
+Popular Committees
+[7 other parties]",,,YEM,,678,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Yemen,Inter-group,45,"Yemen Inter-group Agreements","Middle East and North Africa",2083,"al-Qa'alah and al-Aghbarah Reconciliation Agreement",2014-08-04,"Multiparty signed/agreed",1,1213,IntraLocal,Cea,Ceas,"two tribes of al-Qa’alah and al-Aghbarah
+[9 signatories]","good endeavour blessed by Al-Sayyid Ahmed Bihay al-Din Salih al-Sarwari",,YEM,,678,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,1,0,0,0,0,0,0,1
+Yemen,Inter-group,45,"Yemen Inter-group Agreements","Middle East and North Africa",2086,"al-Qa'alah and Shubayqa Reconciliation Agreement",2014-08-02,"Multiparty signed/agreed",1,1183,IntraLocal,Cea,Ceas,"al-Qaalah and Shubayqa
+[9 signatories, including finger prints]","Al-Sayyid Ahmed Bihay al-Din Salih al-Sarwari ",,YEM,,678,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1
+Yemen,Inter-group,45,"Yemen Inter-group Agreements","Middle East and North Africa",2084,"Agreement between Ansar Allah and the al-Shilali Tribe in al-Ridmah, Ibb",2014-07-15,"Multiparty signed/agreed",1,1572,IntraLocal,Cea,Ceas,"Zayd Mohammed bin Yahya al-Dhari [On behalf of Ansar Allah]
+Sheikh Abd al-Wahid Hizam al-Shilali al-Du’am [On behalf of al-Shilali Tribes]","Sheikh Ahmed Salah al-Muqbali [Mediator]","Page 1, This reconciliation is the renewal and extension of the former reconciliation.",YEM,,678,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,1,0,0,0,0,0,1,1
+Yemen,Inter-group,45,"Yemen Inter-group Agreements","Middle East and North Africa",1883,"Agreement between Ansar Allah and Salafists from the al-Noor Centre ",2014-06-26,"Multiparty signed/agreed",1,1850,IntraLocal,Pre,Prin,"The first side: Mr Abd al-Malik Badr al-Din al-Houthi, signed by his representative, Yusuf Abdallah for Ansar Allah [The Houthis]
+The second side: Sheikh Muhammad bin Abdullah al-Imam [for the Salafists of the Noor Center]
+",,,YEM,,678,,230,NA,NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+Yemen,Inter-group,45,"Yemen Inter-group Agreements","Middle East and North Africa",1597,"Agreement between al-ʿAwlaqī Tribe and al-Qaeda",2014-05-02,"Multiparty signed/agreed",1,2101,IntraLocal,Cea,Ceas,"al-ʿAwlaqī Tribe: Sheikh Abū Bakr Farīd al-ʿAwlaqī, Chief of the al-Ṣaʿīd District, ʿAlī Bin Hammad al-ʿAwāliq
+
+al-Qaeda: Ahmad ʿĀṭif al-ʿĀtīqī, al-Habashī al-Bārās [al-ʿAwlaqī], Sāliḥ bin Bilʿaīd al-Sālimī.",,,YEM,,678,,230,NA,NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+Yemen,Government,138,"Yemen peace process","Middle East and North Africa",1509,"Decision on the President of the Republic No. (27) of 2014 forming the Constitutional Drafting Committee",2014-03-08,"Unilateral document",1,2644,Intra,Imp,ExtSub,"President Abd Rabbu Mansour Hadi, Yemen.",,"And the Decision of the President of the Republic No. (5) of 2013 on the establishment of a General Secretary of the Comprehensive National Dialogue Conference,
+And the Decision of the President of the Republic No. (10) of 2013 on the establishment of the rules of procedure of the Comprehensive National Dialogue Conference,
+And the Decision of the President of the Republic No. (11) of 2013 on the formation of the internal system for the Comprehensive National Dialogue Conference,
+And the Decision of the President of the Republic No. (41) of 2013 on the formation of the Conciliation Commission for the Comprehensive National Dialogue Conference,
+And the Decision of the President of the Republic No. (2) of 2014 on the Committee for the Delimitation of the Regions,
+And the Decision of the President of the Republic No. (26) of 2014 on the determination of the work of the Constitutional Drafting Mechanism,
+And on the Comprehensive National Dialogue Conference document,",YEM,,678,,230,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+Yemen,Government,138,"Yemen peace process","Middle East and North Africa",1508,"Final Decision on the delimitation of the Federal Regions",2014-02-10,"Unilateral document",5,2638,Intra,Imp,ExtSub,"Regional Delimitation Committee (Government of President Hadi):
+Dr ʿAbd al-Karīm ʿAlī al-Iryānī
+Muhammad Muhammad Qahtān
+Abū Bakr ʿAbd al-Rizaq Bādhīb
+Sultān Hizām al-ʿAtwānī
+Yāssīn ʿUmar Makāwī
+Sālih Ahmad Hubrah
+Ghālib ʿAbd Allah Matliq al-Dālʿaī
+Dr ʿAbd Allah Sālim Lamlis
+Nādiyyah ʿAbd al-ʿAzīz al-Saqāf
+Dr Afrāh ʿAbd al-ʿAzīz al-Zūbah
+Khālid Abū Bakr Bārās
+ʿAbd al-Qādr ʿAlī Hilāl
+Muhammad ʿAlī Abū Lahūm
+Dr Mʿaīn ʿAbd al-Malik Sʿaīd
+Ahmad Abū Bakr Bāzrʿah
+Yāssar Ahmad Sālim al-ʿAwādī
+Sʿaīd Sālim Bāhqībah
+Dr al-ʿAzzi Hibah Allah ʿAlī Sharīm
+Muqbil Nāsr Lakrash
+ʿAwad Muhammad bin al-Wazīr al-Awlaqī
+Ahmad Muhammad al-Qardʿaī
+Dr Ahmad ʿAwad bin Mubārak – Rapporteur of the Committee
+Approved by:ʿAbdrabbuh Mansūr Hādī, President of the Republic Chairman",,,YEM,,678,,230,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,0,0,1,0,0,0,0,0,3,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,0,1,2,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+Yemen,Inter-group,45,"Yemen Inter-group Agreements","Middle East and North Africa",2226,"Agreement Between the Houthis and the Arhab Tribes",2014-02-09,"Multiparty signed/agreed",1,5894,IntraLocal,Cea,Ceas,"The Representatives of the Two Sides:
+Sheikh Faris Mujahid Al Jabari
+Sheikh Mansour Ali Al Hanq
+","The Committee Tasked with Resolving the Conflict and Its Effects in Arhab:
+Gen. Ali bin Ali Al Jaifi, Committee Head and Commander of Reserve Forces
+Sheikh Muhammad Abdullah Badr Al Din
+Sheikh Rabees Ali Wahban
+Sheikh Abdulkareem Ahmad Al Maqdashi
+Sheikh Mardhi bin Ka’lan
+Sheikh Naif Al Awaj
+Sheikh Hunain Muhammad Qatinah
+Sheikh Ahmad bin Ahmad Mijawhan
+Sheikh Naji Murait
+Gen. Abdulqadir bin Ali Hilal
+Sheikh Omar Al Arhabi
+
+Guarantors:
+1.	Sheikh Nabeeh Muhsin Abu Nashtan / Sheikh Muhammad Jaber Al Jamrah
+2.	Sheikh Muhammad Sawa / Sheikh Muhammad Nawfal
+3.	Sheikh Fadhel Al Qaseer / Sheikh Hayel Saeed Muhsin Marih
+4.	Sheikh Muhsin Abu Hadi / Sheikh Abdullah Muhammad Sinan
+5.	Hisham Radman / Sheikh Ali Alwan Al Marrani
+6.	Abdoh Mahmoud Al Subahi / Sheikh Dakam Muhammad Sawa
+7.	Muhammad Ali Al Mahras / Sheikh Mabkhout Bakir
+8.	Sheikh Ali Nawfal / Sheikh Ali Muhammad Radman
+",,YEM,,678,,230,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,1,1,0,0,0,0,1,1
+Yemen,Inter-group,45,"Yemen Inter-group Agreements","Middle East and North Africa",2005,"Ajmar Agreement",2014-02-04,"Multiparty signed/agreed",1,1186,IntraLocal,Cea,CeaMix,"Signed by the two parties in the Ajmar Nayābita area by Sheikhs of Bani Sarīm Hāshid including Sheikh Ālī Hamīd Jalaydān, Sheikh ‘Adel Hamūd ‘Ataf and other elders, in addition to Ansar Allah representatives and in the presence of dignitaries of Hamdān municipality.
+",,,YEM,,678,,230,NA,NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1
+Yemen,Government,138,"Yemen peace process","Middle East and North Africa",1400,"National Dialogue Conference Outcomes Document",2014-01-25,"Multiparty signed/agreed",236,652959,Intra,SubPar,FrparOth,"565 participants from the General Congress Party; Joint Meeting Parties; Ansar Allah and the al-Hiraak. 
+
+1.Abbas Ismail Issak
+
+2.Abboud Yahya Abu Shiryan Abu Lohoom
+
+3.Abdel Wahed Mohamed Abdel Wahed Al-Sharafi
+
+4.Abdo Mehdi Hassan Al-Adla
+
+5.Abdo Mohammed Radman Rafie
+
+6.Abdu Ghalib Qaid Saleh Odaini
+
+7.Abdu Naji Mohammed Aburas
+
+8.Abdu Rabu Mansour Hadi
+
+9.Abdul Aziz bin Abdul Hamid Maflahi
+
+10.Arwa Khaled Fadel Mansour
+
+11.Abdul Karim Qasim Damaj
+
+12.Abdul Khaliq Abdul Majeed
+
+13.Abdul Nasser Abdulqawi Naji Arabi
+
+14.Abdul Qadir Mahdi Hadi Al-Nafili
+
+15.Ali Ahmed al-Salami
+
+16.Abdul Rashid Abdalhafez Abdallowasa Sa'eed
+
+17.Abdul Razak Ahmad Abdul Razak
+
+18.Abdulaziz Ahmed Jabari
+
+19.Abdulaziz Ahmed Mohammed Bakar
+
+20.Abdulaziz Ahmed Salim Crowe
+
+21.Abdulaziz Mohamed Hamza Mohamed
+
+22.Abdulaziz Rajeh Hassan Abdullah
+
+23.Abdulaziz Saleh Bin Habtoor
+
+24.Abdulhakim Abdullah Darwish Aziba
+
+25.Abdulkadir Ali Hilal
+
+26.Abdulkarim Ahmed Jadban Ali
+
+27.Abdulkarim Ali Iryani
+
+28.Abdulkarim Mohamed Yahya Al-Khaiwani
+
+29.Randa Mohamed Salem Ali
+
+30.Abdullah Ahmed Daifallah Mgidea
+
+31.Abdullah Ahmed Ghanim
+
+32.Abdullah Ahmed Hussein Kibsi
+
+33.Abdullah Al Noman Mohammed Shrine
+
+34.Abdullah Ali Hassan Hazal
+
+35.Abdullah Ali Mohsen
+
+36.Abdullah Ali Sa'ater
+
+37.Abdullah Ali Saleh Sabri
+
+38.Abdullah Hassan Al-Nakhebi
+
+39.Abdullah Hassan Mutaharc Al-Washli
+
+40.Abdullah Naji Rashid
+
+41.Abdullah Nasher Murshid
+
+42.Abdullah Salem Al-Amlas
+
+43.Abdulmalik Suleiman Mohammed Al-Mua'alimi
+
+44.Abdulqawi Rashad Al-Sha'abi
+
+45.Abdulrahman Mohammed Abdullah Ali Akwa
+
+46.Abdulrahman Saleh Alsamte
+
+47.Abdulwahab Ahmed Al-Ansi
+
+48.Abdulwahab Mohammed Abdulrahman Homaiqani
+
+49.Abu Bakr Abdullah Al-Qerbi
+
+50.Abu Bakr Abdurazaq Ba Theeb
+
+51.Abu Bakr Abdurrahman Al-Saqaf
+
+52.Abubakar Abdul Qader Ba Raja'a
+
+53.Adel Abbas Fare'a Mukbil
+
+54.Adel Ahmed Ali Al-Maqadh
+
+55.Adel Ali Abdu Omar
+
+56.Adnan Omar Al-Jafari
+
+57.Afif Rahim Mohammed Abdulmalik Almasne
+
+58.Afra'a Khaled Ibrahim Al-Hariri
+
+59.Afrah Ali Mohammed Saif
+
+60.Afrah Mohamed Saleh Badwylan
+
+61.Afrah Saeed Ahmed Saeed
+
+62.Afrah Zaid Mohammed Uyoon
+
+63.Ahmed Abbadi Hasan Al-Ma'aker
+
+64.Ahmed Abdulkareem Saif Al-Mas'aabi
+
+65.Ahmed Abdullah Ali Aqabat
+
+66.Ahmed Abdullah Al-Maysari
+
+67.Ahmed Abdurrahman Hasan Sharaf Al-Deen
+
+68.Ahmed Abu Bakr Bazarah
+
+69.Ahmed Ahmed Muhsen Al-Nwairah
+
+70.Ahmed Ali Ali Kelz
+
+71.Ahmed al-Sha'er Ba Sardah
+
+72.Ahmed Awadh Ahmed Al-Batrah   
+
+73.Ahmed Bin Ahmed Al-Zawqari
+
+74.Khaled Abu Baker Ali Ba Ras
+
+75.Ahmed Bin Saleh Taher Al-Manee'i
+
+76.Ahmed Haimad Haimad Al-Matari
+
+77.Ahmed Issa Ahmed Ra'afeet
+
+78.Ahmed Mohamed Yahya Kahlani
+
+79.Ahmed mohammed Abdullah Rizq Al-zuhairi
+
+80.Ahmed Mohammed Abdullah Sofan
+
+81.Ahmed Mohammed Al-Asbahi
+
+82.Ahmed Mohammed Al-Qarda'ai
+
+83.Ahmed Mohammed Nasser Ahmed
+
+84.Ahmed Mohammed Qa'atabi
+
+85.Ahmed Mohammed Qasim Atiq
+
+86.Ahmed Mosa'id Hussein
+
+87.Ahmed Nasser Saeed Gerfush
+
+88.Ahmed Obaid Mubarak Bin Dagher
+
+89.Ahmed Othman Muraibesh
+
+90.Ahmed Sa,eed Abdu
+
+91.Ahmed Sa'eed Al-Za'awari
+
+92.Ahmed Sa'eed Jum'aan Bilhaf
+
+93.Hadi Ahmed Ali al-Qanesi
+
+94.Ahmed Saleh Abdullah Al-Qane'a
+
+95.Mabkhot Abdullah Ahmed Break
+
+96.Ahmed Saleh Saif Al-Mas'aabi
+
+97.Ahmed Yassin Slimani
+
+98.Ahmed Zubain Mubarak Atiya
+
+99.Ahsan Ubaid Sa'ad Sa'eed
+
+100.Aida Hassan Ashour Abdullah
+
+101.Aidroos Abubakar Bazaraa
+
+102.Aisha Abdullah Sailan
+
+103.Aisha Ali Youssef Harba
+
+104.Akhlaq Abdurrahman Ali Al-Shami
+
+105.Alawi Ali Al-Mashhoor
+
+106.Ali Abdul Karim Mohammed Murshid
+
+107.Ali Abdullah Ahmed Abdullah Abu Haleeqa
+
+108.Ali Abdullah Al-Sallal
+
+109.Ali Abdullah Mohammed Azzan
+
+110.Ali Abdullah Saeed Aldhalaa
+
+111.Ali Abed Rabbo Al-Qadhi
+
+112.Ali Abed Rabbo Awadi
+
+113.Ali Ahmed Ali Al-Asemi
+
+114.Ali Ahmed Al-Sayed Al-Waleedi
+
+115.Ali Ahmed bin Shaba
+
+116.Ali Ahmed Balkhidr
+
+117.Ali Ali Yahya Al-Emad
+
+118.Ali Hassan Bhedr
+
+119.Ali Hassan Zaki
+
+120.Ali Haythami Abdahelm
+
+121.Ali Hussein Osman Achel
+
+122.Ali Mohamed Abdou Abara
+
+123.Ali Mohamed Mohamed Ahmed Al-Mekdashi
+
+124.Ali Mohammed Ahmed Ma'amari
+
+125.Ali Nasser Qaid Bukhaiti
+
+126.Ali Saeed Shalma Awadi
+
+127.Ali Saif Hassan Saleh Al-Dhalaa
+
+128.Ali Saleh Shatif
+
+129.Ali Salem Al-Khademi
+
+130.Ali Shaif Ahmed Hussein
+
+131.Saleh Ali Melawi al-Harethi
+
+132.Alia Faisal Abdul Latif Al-Sha'abi
+
+133.al-Izzi Hebat Allah Shareem
+
+134.Bassel Abdul Rahman al-Salami
+
+135.al-Khansa'a Abdurrahman Al-Shu'aibi
+
+136.al-Sayed Mustafa Zain Al-Aidroos
+
+137.al-Shareef Mohammed Abdul Aziz Abdurrahman Al-Ameer
+
+138.al-Sheikh Tareq Mohammed Abdullah Al-Muhami
+
+139.Amal Ali Maknoon Qita'ai
+
+140.Amal Mohammed Abbas Basha
+
+141.Amal Mohammed Ali Al-Ma'akhathi
+
+142.Amal Musleh Muhssen Al-Syadi
+
+143.Amani Ahmed Hassan Al-Ma'akhathi
+
+144.Amat Al Aleem Alsoswa
+
+145.Amat al-Mujeeb Hamood Naji Al-Khahoom
+
+146.Amat Al-Qaddus Abdul Bari Mohammed Al-Ghurbani
+
+147.Amat al-Raheem Dhab'an Naji Dhab'an
+
+148.Amat al-Salam Abdullah Abdu Al-Haj
+
+149.Amat Rahman Ahmad Yahya Othman
+
+150.Ameen Ahmed Hussein Al-Ghaish
+
+151.Ameera Ali Salahi Al-Arasi
+
+152.Amer Saad Ali Khat
+
+153.Aminah Mohammed Mashghoof Al-Aslami
+
+154.Amira Hussein Hammoud Al-Zaidi
+
+155.Anis Hussein Ali Al Ya'aqoob
+
+156.Anwar Jilani Ahmed Osman
+
+157.Areej Ahmad Hydra Taleb
+
+158.Arwa Ahmed Al-Hyal
+
+159.Arwa Mohammad Ali Osman
+
+160.Arwa Yahya Hassan Dram
+
+161.Ashjan Shurayh Ahmed Ali
+
+162.Jamilla Ali Mohamed Rajaa
+
+163.Asrar Abdullah Ahmad Abbad
+
+164.Auloof Sa'eed Ba Khubaira
+
+165.Awad Abdullah Awad Hatem
+
+166.Jalal Saeed Mohamed Al-Morem
+
+167.Awad Mohamed Al-Awbthani
+
+168.Awad Mohammed Abdullah Al-Awlaki
+
+169.Aws Ahmed Abdullah Hadi Al-Awlaqi
+
+170.Awsan Mohammed Sa'eed Ali
+
+171.Ayban Mohammed Abdulrahman Al-Samei
+
+172.Ba Salma Badr Mohammed Mubarak
+
+173.Badr Gibran Saleh Al-M'anaqi
+
+174.Badr Salem Saad Kelshat
+
+175.Bahia Hassan Mohammed Al-Saqqaf
+
+176.Bahria Shamsher Ali Wajid Ali
+
+177.Baraa Abdulla Sharaf Shiban
+
+178.Baraka Farid Faraj Haidra
+
+179.Bari Abdullah Dgesh Abdullah
+
+180.Basharaheel Hisham Mohamed Basharaheel
+
+181.Bassem Mohammed Abdulrahman Al-Hakimi
+
+182.Bassima Ibrahim Ahmed Bamadhaf
+
+183.Bilqis Abdullah Abdu Saif Abdali
+
+184.Bilqis Ali Saleh Al-Lahabi
+
+185.Bilqis Ibrahim Elhoudrani
+
+186.Bodoor Ahmad Faqih Saleh
+
+187.Bushra Ahmed Abdullah Al-Zerafi
+
+188.Jamal Mahmoud Mohamed Sadeq
+
+189.Dina Ahmed Abdul Bari Mohammed
+
+190.Dina Yassin Mahmoud Al-Dubai
+
+191.Duais Wafa Ahmed Abdullah
+
+192.Elfat Mohammed Abdul Wali Al-Dubai
+
+193.Fadel Afif Ali Radwan
+
+194.Fadel Ali Mohammed Awadi
+
+195.Fadel Hassan Al-Jadi
+
+196.Fadel Mohammed Mohammed Ahmed Al-Muta'a
+
+197.Fadel Nasser Hydra Makwa'a
+
+198.Fadel Saeed Atef Sa'eed
+
+199.Fadhl Nasser Amtheeb Salem
+
+200.Fahad Salim Kavain Ravon
+
+201.Fahd Hamoud Mohammed Aburas
+
+202.Fahd Meftah Sagheer Dahshosh
+
+203.Fahmi Awad Yaslum Badhaoui
+
+204.Fahmi Nasser Abdullah Al-Saqqaf
+
+205.Fa'ida Mohammed Abdullah Asbahi
+
+206.Fa'iqa Al-Sayed Ahmed Ba'alawy
+
+207.Faisal Ahmed Mohsen Khulaifi
+
+208.Faisal Ahmed Qaid Haider
+
+209.Faisal Saeed Fare
+
+210.Faiz Abdullah Hamis Al-Awjari
+
+211.Faiza Ahmed Mutawakkil
+
+212.Faiza Muthana Abdullah Al-Basha
+
+213.Faris Ali Ahmad Al-Saqqaf
+
+214.Fathia Abdullah Ali Attab
+
+215.Fatima Abdullah Abdullah Al-Khatri
+
+216.Fatimah Qahtan
+
+217.Fauzia Wahab Yahya Al-Shahari
+
+218.Fayza Ahmad Saleh Al-Aqel
+
+219.Fouad Hassan Abdakadira Al-Hymiari
+
+220.Fouad Kaid Ahmed Hudhaifi
+
+221.Ghalib Abdullah Massad Mutlaq
+
+222.Golan Ali Abdu
+
+223.Hadi Hammoud Hadi Al-Ameri
+
+224.Hadi Mohammed Awad Bajpar
+
+225.Hafhid Fakher Mohammed Qaid Maaad
+
+226.Haider bin Saleh Al-Habili
+
+227.Hamdan Muthanna Massad Al-Hakab
+
+228.Hameed Ahmed Ali Hariz
+
+229.Hadi Tarshan Abdullah Tarshan
+
+230.Hamid Marzook Saleh Al-Harthy
+
+231.Hamoud Hashim Abdullah Al-Tharihi
+
+232.Hamza Amin Ali Kamali
+
+233.Hana Ahmed Mohammed Warsma
+
+234.Hana Ali Abdullah Hashim Al-Alawi
+
+235.Hanaa Abdel Fattah Mukbil Saif
+
+236.Hanan Mohammed Sallam Ali
+
+237.Hani Abdul Hameed Qard
+
+238.Hassan Abdullah Yahya Al-Sa'adi
+
+239.Hassan Mohamed Yahya Abdul Razak
+
+240.Hassan Shukri Zawar
+
+241.Hassoun Saleh Musleh Qasim
+
+242.Hatem Ali Hadi Abu Hatem
+
+243.Heba Mohamed Ahmed Murshed
+
+244.Hiam Faisal Nasher Hassan
+
+245.Hiam Talib Saleh Al-Qurmoshi
+
+246.Hizam Mohammed Yahya Al-Assad
+
+247.Hossam Abdalhabib Shargabi
+
+248.Huda Abdullah Salem Al-Yafei
+
+249.Huda Ali Al-Ban
+
+250.Hussain Mansoor Saeed Saif
+
+251.Hussam Mustafa Sallam Qasim
+
+252.Hussein Abdu Abdullah
+
+253.Hussein Ahmed Nasser Saada
+
+254.Hussein Ali Abed Rabbo Hazeb
+
+255.Hussein Hammoud Dirham Izzi
+
+256.Hussein Mohammed Arab
+
+257.Hussein Nasher Ali
+
+258.Hwaida Abbas Himmat Ali
+
+259.Hyat Ahmed Salim Hakami
+
+260.Hymiar Abdullah Hussein Al-Ahmer
+
+261.I'atraf Muslem Ali Ba Far
+
+262.Ibrahim Malik Yahiya Shuja'a Al-Deen
+
+263.Ibtisam Hashim Sharaf Al-Deen
+
+264.Ilham Ali Siaeed Sallam
+
+265.Ilham Najeeb Sa'eed Fare'a
+
+266.Iman Jafan Ghalib Ahmed
+
+267.Iman Shaif Qasim Al-Khatib
+
+268.Iman Yahiya Mohssen Al-Nashiri
+
+269.Ind Ahmed Hussein Al-Fadhli
+
+270.Ind Salem Azma Akbari
+
+271.Insaf Ali Mohammed Mayu
+
+272.Intilaq Mohammed Malik Mutawakkil
+
+273.Intisar Ali Abdu Rabu Al-Qadhi
+
+274.Intisar Mohammed Abdu Numan
+
+275.Intisar Omar Abdullah Khaled
+
+276.Issam Saleh Abdullah Al-Qaisi
+
+277.Jaafar Mohammed Saad
+
+278.Jaber Abdullah Ghalib Al-Wahbani
+
+279.Jaffer Saeed Abdullah Ba Saleh
+
+280.Jahhaf Abdulsalam Mahmoud Mahdi
+
+281.Jahhaf Halima Abdullah Nasser
+
+282.Jahhaf Rdainah Mohammed Ahmed
+
+283.Jalal Nasser Ali Ebadi
+
+284.Jamal Abdul Khaliq Ali Khawlani
+
+285.Jamil Abdul Majeed Rhabit
+
+286.Julaidan Mahmoud Hamid Julaidan
+
+287.Kahlan Mujahid Mujahid Abu Swarib
+
+288.Kamal Abdul Qadir Tayyip Rahman Bamakhrama
+
+289.Karim Saleh Shaif Ahmed
+
+290.Kasim Osman Ahmed Al-Da’ara
+
+291.Khadija Ali Arhabi
+
+292.Khadija Ali Nasser Elewa
+
+293.Khaled Abdel Wahed Noman
+
+294.Khaled Abu Bakr Ali Barras
+
+295.Khaled Ahmed Ali Al-Salami
+
+296.Khaled Ibrahim Ahmed Bamadhaf
+
+297.Khaled Rajeh Sheikh
+
+298.Khaled Tawfiq Ali Al-Aublj
+
+299.Khalid Abdulla Alawi Al-Jafari
+
+300.Khalid Abdulla Khalil
+
+301.Khalid Amin Ahmed Al-Gesh
+
+302.Labib Abdulaziz Ibrahim
+
+303.Labooza Qasim Muhammad Ghalib
+
+304.Lamia Ahmed Abdulrahman Charafeddine
+
+305.Lamia Yahia Mahdi
+
+306.Libya Saeed Mubarak bin Abadan
+
+307.Lisa Hydra Mohammed Salem
+
+308.Lisa Mohammed Ahmad Haidar
+
+309.Lula Karim Saleh
+
+310.Lutfi Jafar Shattara
+
+311.Ma'al Naji Ali al-Awlaki
+
+312.Mabkhout Abboud Rabee'a Sharif
+
+313.Maddah Mohammed Ahmed Awad
+
+314.Ma'een Malik Saeed Abdu
+
+315.Magdi Captain Mohsen Ali
+
+316.Maha Hussein Mohamed
+
+317.Maha Saleh Abdullah Al-Absi
+
+318.Mahdi Ali Abdulsalam Abdullah
+
+319.Mahmoud Abdul Qadir Abdullah Al-Juneid
+
+320.Mahmoud Nasser Solvent Salem
+
+321.Mahmoud Shaif Hussein Hassan
+
+322.Majeed Naji Kaid Hanash
+
+323.Majid Ali Ahmed Fada'el
+
+324.Majida Taleb Abdul Rab Al-Sufra'a Al-Katiri
+
+325.Malik Abdul Jalil Ali Mikhlafi
+
+326.Malik Ahmed Humaid Al-Suwaidi
+
+327.Man'ea Daifallah Saleh Al-Matari
+
+328.Mansour Aziz Al-Zindani
+
+329.Mariam Mohammed Muslim Sulaimi
+
+330.Mayada Askari Hadjiran Farah
+
+331.Mirvat Fadhl Hassan Mojaly
+
+332.Mohamed Abdelmageed Qubati
+
+333.Mohamed Ahmed Mohamed Al-Qabali
+
+334.Mohamed Fadl Al-Dobahi
+
+335.Mohamed Ibrahim Seddon
+
+336.Mohamed Mansour Abdullah
+
+337.Mohamed Mohamed Hassan Alqaz
+
+338.Mohamed Mohamed Nasser Al-Awlaki
+
+339.Mohamed Mohamed Tayeb
+
+340.Mohamed Muqbel Ahmed Azaala
+
+341.Mohamed Rageh Aerasa
+
+342.Mohamed Zain Ahmed Jafar
+
+343.Mohammad Hadi Shouba
+
+344.Mohammad Hashim Fari Moqbil
+
+345.Mohammad Qasim Al-Thawr
+
+346.Mohammad Qasim Noman
+
+347.Mohammed Abdo Yahya Murad
+
+348.Mohammed Abdul Qader Aumar Al-Jafri
+
+349.Mohammed Abdullah Abdullah Al-Edoma
+
+350.Mohammed Abdullah Abdulqawi
+
+351.Mohammed Abdullah Al-Ghanim Ali Abu Ghanem
+
+352.Adel Qassem Abdu Al-Shujaa
+
+353.Mohammed Abdullah Rakan
+
+354.Mohammed Abdullah Saleh Aharaba
+
+355.Mohammed Ahmed Al-Afandi
+
+356.Mohammed Ahmed bin Ahmed Afif
+
+357.Mohammed Ahmed Saeed Ahmed Zwaidi
+
+358.Mohammed Ali Ahmed Sheikh
+
+359.Mohammed Ali Mohammed Yasser bin Yasir
+
+360.Mohammed Ali Nasser Mohammed
+
+361.Mohammed Ali Salem Shaddadi
+
+362.Mohammed Ayash Mohammed Quhaim
+
+363.Mohammed bin Naji Abdul Aziz Shayef
+
+364.Mohammed bin Naji Al-Ghadir
+
+365.Mohammed Daifallah Hashim
+
+366.Mohammed Eida Mahdi Shabiba
+
+367.Mohammed Ghalib Ahmed
+
+368.Mohammed Hassan Saeed Halbob
+
+369.Mohammed Hussain Ahmed Aidarous
+
+370.Mohammed Hussein Ali Hussein Amarmi
+
+371.Mohammed Khaled Ghulam Hassan
+
+372.Mohammed Massad Ahmed Al-Radai
+
+373.Mohammed Massad Said Salami
+
+374.Mohammed Mohammed Bashir
+
+375.Mohammed Mohammed Qahtan Qaid
+
+376.Mohammed Mohsen Atroch
+
+377.Mohammed Muqbel Ali al-Hymiari
+
+378.Mohammed Naji Saleh Alao
+
+379.Mohammed Nasser Ahmed Mokbily
+
+380.Mohammed Nasser Awadh Al-Maslami
+
+381.Mohammed Nasser Bukhaiti
+
+382.Mohammed Saeed Dhafer Al-Shami
+
+383.Mohammed Saleh Al-Saadi
+
+384.Mohammed Saleh Jumaih
+
+385.Mohammed Saleh Qarah
+
+386.Mohammed Saleh Saleh Bukhaiti
+
+387.Mohammed Salem Ekosh
+
+388.Mohammed Yahya Abdullah Al-Sabri
+
+389.Mohsen Ahmed bin Shamlan
+
+390.Mohsen Ali Naji Al-Naqib
+
+391.Mohsen Ali Omar Basurah
+
+392.Mokbel Nasser Omar Kersh
+
+393.Mokhtar Mohamed Saeed bin Awaed
+
+394.Mona Ali Kulaib Ali
+
+395.Mona Basheer Abdullah Khalifa
+
+396.Mona Saleh Aliyu
+
+397.Mubarak Abdul Rahman Mubarak Al-Bahhar
+
+398.Muhammad Ali Aboulihom
+
+399.Muhammad Ali Ajlan
+
+400.Muhammad Ali Ghaleb Al-Qadhi
+
+401.Muhammad Ali Marm
+
+402.Muhammad AliSalmin bin Taleb
+
+403.Muhammad Musa Al-Amiri
+
+404.Mujahid bin Mujahid Algahali
+
+405.Mujibur Rahman Hussein Mohammed Naji
+
+406.Mulook Mohsen Ali Al-Fadhli
+
+407.Munir Ahmed Sufian Saleh
+
+408.Munir Yahya Saleh Maori
+
+409.Munira Abdul Karim Awadi
+
+410.Murad Ali Mohamed Alhalmi
+
+411.Mut'ab Mubarak Saleh Ba Zyad
+
+412.Mutee'a Ahmed Kassem Damaj
+
+413.Mutlaq Abdul Jalil Osman Alakhali
+
+414.Naaman Qaid Hudhaifi
+
+415.Nabil Abdullah Ali Al-Wazeer
+
+416.Nabil Khaled Hassan Maisari
+
+417.Nabil Sadiq Ali Mohsen Pasha
+
+418.Nabila Abdullah bin Abdullah
+
+419.Nabila Ali Mohsen Al-Zubayr
+
+420.Nabila Mufti Mohammed Ismail
+
+421.Nada Ali Bin Ali Mohammed
+
+422.Nadia Abdulaziz Al-Saqqaf
+
+423.Nadia Abdullah Faisal Al-Akram
+
+424.Nadia Yahya Hussein Al-Kwkabani
+
+425.Wafa'a Ali Awad al-Najar
+
+426.Najat Mohammed Jamaan
+
+427.Najeeba Mohammed Mutahar Al-Areeqi
+
+428.Naji Abdul Aziz al-Shaif
+
+429.Najiba Abdulsalam Ahmed Asbahi
+
+430.Nashwa Ali Abed Rabbo Qadi
+
+431.Nasr Abdul Ghani al-Shamiri
+
+432.Nasr Hassan Mohamed Nasr Baadani
+
+433.Nasr Taha Mustafa
+
+434.Nasser Bakil Bakil Tmirh
+
+435.Nasser bin Ahmad Abbad Sharif
+
+436.Nasser Hussain Ali Bahabib
+
+437.Nasser Mohammed Abdulaziz Thawaba
+
+438.Nasser Mohammed Ali Bagel
+
+439.Nasser Muhsin Ba'oom
+
+440.Nasser Nasser Abdullah Nasri
+
+441.Nasser Saleh Abdulqawi Salem Al-Taweel
+
+442.Nawal Mohammed Ali Aghili
+
+443.Nazih Abdul Azziz Al-Sha'abi
+
+444.Ne'ama Muawin Sayed 'Ahmed
+
+445.Nelly Qadir Naji Ali
+
+446.Nizar Abdullah Nasser Bazib
+
+447.Nora Ahmed Ali Al-Shami
+
+448.Om al-Khair Ahmed Abdullah Saedi
+
+449.Omar Abdulaziz
+
+450.Omar Dahman Bashraheel
+
+451.Omar Hussein Qaid Megally
+
+452.Oras Sultan Naji Mohammed Naji
+
+453.Osman Mohamed Abdullah Selwi
+
+454.Qaderi Ahmad Haidar
+
+455.Qamila Yassin Kaid Alkotaibi
+
+456.Qasim Ali Qasim Qaban
+
+457.Qasim Mohammad Qasim Alexada
+
+458.Qasim Sallam Saeed
+
+459.Qassem Abdul Rahman Qasim Maflahi
+
+460.Qubla Mohammed Saeed Hussein Al-Huthrey
+
+461.Radi'ia Shamsher Wajid Ali
+
+462.Radwan Mohammed Abdulmalik Al-Hubani
+
+463.Rahman Omar Saqqaf
+
+464.Ramzia Abbas Eryani
+
+465.Rana Ahmed Ghanem
+
+466.Rania Naguib Fadl Ahmad
+
+467.Raqia Abdulkadir Humaidan
+
+468.Rase'a Abdulkarim Yahya
+
+469.Rashad Mohammed Ali Al-Alimi
+
+470.Riad Yassin Abdullah
+
+471.Rima Hussain Ahmed Awad
+
+472.Saad Ali Saad Mkhbal
+
+473.Saad Eddin Ali bin Talib
+
+474.Sabah Abdul Majeed Abdullah Hazza
+
+475.Sadeq Abdullah Hussein al-Ahmar
+
+476.Sadiq Mohammed Ali Al-Jabr
+
+477.Saeed Abdullah Yafe'i
+
+478.Saeed Salem Saad Bahguiba
+
+479.Sahar Mohamed Abdul Jabbar Ghanem
+
+480.Ali Mohammed Ali Al-Ajemia
+
+481.Saif bin Mohammed Fadl Azibi
+
+482.Hossein Abdullah Mohamed al-Ahmed
+
+483.Salahuddin Abdul Fattah Seif Sharabi
+
+484.Saleh Abdalhabib Naseeb Hyabk
+
+485.Saleh Abdul Haq Ali
+
+486.Saleh Abdullah Abu Awja'a
+
+487.Saleh Ahmad Ali Habra
+
+488.Saleh Ahmed Shleyl
+
+489.Saleh Ali Abdullah Baidhani
+
+490.Saleh Ali Omar Ba Surrah
+
+491.Saleh Hussein Ahmed Al-Methab
+
+492.Saleh Mohsen Zaki
+
+493.Saleh Qasim Mundhiri
+
+494.Saleh Taher Saeed Alesayi
+
+495.Saleh Thabet Ahmed al-Qadhi
+
+496.Salim Ahmed Saeed Khanbashi
+
+497.Salma Abdullah Masabi
+
+498.Samah Faisal Mahmoud Radman
+
+499.Samia Rahman Aghbari
+
+500.Samira Ali Qnav Zahra
+
+501.Samira Khamis Obaid Mohammed
+
+502.Samra'a Hussein Muslim Menhali
+
+503.Saqr Abdulaziz Ahmed Al-Samawi
+
+504.Sawsan Ramadan Ali Basnell
+
+505.Sayda Saleh Ali Samin
+
+506.Shafi Mohammed Abed
+
+507.Shafika Ahmed Morshed
+
+508.Shakir Hassan Ahmed Al-Ehtari
+
+509.Sharaf Ali Ahmed Kulaisa
+
+510.Shatha Hussein Abbas Harazi
+
+511.Shifaya Mohammed Saleh Rab'an
+
+512.Shirafa'a Hussein Mohamed Al-Sirbi
+
+513.Siea Bakhit Saad Al-Faqih Balhaf
+
+514.Siham Ahmed Mohamed Ahmed Qasim
+
+515.Siham Hussein Farid Ahmed
+
+516.Small Hamoud Ahmed Aziz bin Aziz
+
+517.Soraya Amin Qasim Damaj
+
+518.Soraya Salem Mujmal
+
+519.Sufian Mohammad Sufian Amari
+
+520.Sultan Muhammad Ali Alrdai
+
+521.Sultan Saeed Abdullah Al-Barakani
+
+522.Sultan the Shamsan Salem Al-Atawana
+
+523.Sumaia abdul Ghani Kassem Shargabi
+
+524.Sumaia Ahmed Saleh Algarmi
+
+525.Sumaya Ahmed Ali Hussam
+
+526.Taha Mohammed Humairi
+
+527.Taiba Mohammed Naji Barakat
+
+528.Tammam Muhammad Ali Basharaheel
+
+529.Tariq Najeeb Ahmad Basha
+
+530.Tawakul Abdel Salam Karman
+
+531.Wadha Murshid Hizam  Rimi
+
+532.Wadih Ahmed Gobain
+
+533.Wafa Abdel Fattah Ismail Ali
+
+534.Wafa Ahmed
+
+535.Wafa Ahmed Al-Khader
+
+536.Wafa Hussein Al-Faiq
+
+537.Wafa'a Al-Sayed Abubakar
+
+538.Wahiba Ahmed Sabra
+
+539.Wahib Hassan Hassan Khaddabish
+
+540.Wahib Muhammad Ali Obaid Alesayi
+
+541.Wajdi Shafeek Aman
+
+542.Wali Mohammad Yahya
+
+543.Walid Saleh Ahmed Saleh
+
+544.Warda Hesham Abdo Suleiman Qaseda
+
+545.Wathiq Ahmed Mohammed Chadli
+
+546.Yahiya Abdullah Saleh Doad
+
+547.Abdullah Ali bin Meaeili
+
+548.Yahiya Mansour Abu Asbo'a
+
+549.Yahiya Mohamed Abdullah Shuaibi
+
+550.Yahiya Mohammed Ali Al-Shami
+
+551.Yahiya Mohammed Al-Shami
+
+552.Yahya Badr al-Din Amir Al-Din Al-Houthi
+
+553.Yameen Saleh Saeed Baymen
+
+554.Yasmine Saleh Mohammed Fatimid
+
+555.Yasser Salem Al-Awadhi
+
+556.Yassin Mohammed Al-Masoudi
+
+557.Yassin Omar Ahmed Makkawi
+
+558.Yassin Sa'eedd Nu’man
+
+559.Yusra Ali Ali Aldhalaa
+
+560.Yusuf Abdo Mohammed Karimi
+
+561.Zaid Ali Ali Salah
+
+562.Zaid Ali Zaid Al-Salami
+
+563.Zaid Mohamed Mohamed Yahya Abu Ali
+
+564.Zakaria Yahya Mohammed Al-Shami
+
+565.Ziad Ahmed Abdullah Al-Abd
+Yehia Mansour Abu Usbaa [chaired the Sa'dah sub-working group for a month]  
+Ms Shrafa Hussain Mohamed Alderbi [withdrew] 
+","the Gulf Cooperation Council (GCC), the League of Arab States, the European Union, the United Nations, the five permanent members of the Security Council (P5), the Friends of Yemen, and ""other supporting States and organizations"". ","Based on the Gulf Cooperation Council (GCC) Initiative and Implementation Mechanism (Transition Agreement signed in Riyadh in November 2011) and Security Council resolutions 2014 and 2051",YEM,,678,,230,,,,3,1,0,1,1,3,1,1,1,0,3,1,1,1,0,3,0,0,1,0,3,0,1,1,0,3,1,1,1,0,0,0,0,0,0,3,0,1,1,0,3,0,1,0,3,1,1,1,0,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,0,0,1,1,1,1,1,0,0,3,2,0,2,0,1,1,1,3,2,1,1,0,0,1,1,0,0,0,3,1,1,0,0,3,1,0,0,2,1,0,1,0,1,3,3,3,1,1,1,1,3,1,1,1,0,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,2,1,0,0,1,1,3,1,1,0,0,3,0,1,0,1,1,1,1,0,1,1,1,1,3,1,0,1,1,1,1,3,3,1,1,0,1,1,0,0,0,1,1,1,1,0,1,1,1,1,1,1,1,1,0,0,0,3,3,2,1,0,3,1,1,3,3,3,1,0,2,1,1,0,0,1,0,1,2,3,0,3,2,3,1,1,2,0,0,0,0,0,1
+Yemen,Inter-group,45,"Yemen Inter-group Agreements","Middle East and North Africa",2215,"Agreement between the Bani Maudhah, Bani al-Shurayfi and Bani Rassam in Utmah, Dhamar",2014-01-20,"Multiparty signed/agreed",1,2405,IntraLocal,Cea,Ceas,"""agreement was reached between the brothers whose names and signatures are listed below, each one of them representing themselves, their side, the families of the victims, and the sheikhs, prominent social figures, dignitaries, and civilians from the Bani Maudhah, Bani al-Shurayfi, and the Bani Rassam, all of whom are from Mikhlaf Himyar in the middle of the Utmah district in the Dhamar governorate ... ""
+
+This truce was written under the knowledge of:
+General Ismael al-Samawi [Signed]
+Judge Hamoud bin Abdulhameed al-Hitar",,,YEM,,678,,230,NA,NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,3,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,1
+Yemen,Inter-group,45,"Yemen Inter-group Agreements","Middle East and North Africa",2063,"Letter to Presidential Mediation Council on Terms of Ceasefire from Sheikh al-Hajuri",2014-01-11,"Unilateral document",1,2048,IntraLocal,Cea,Rel,"Sheikh Yahyā bin ‘Alī al-Hajūrī, Head of the Dar al-Hadith Madrassa in Dammaj. ","Presidential Mediation Council (recipient of the letter)",,YEM,,678,,230,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,1,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,2,0,1,0,0,0,0,0,0,1
+Yemen,Inter-group,45,"Yemen Inter-group Agreements","Middle East and North Africa",2004,"Ceasefire between Salafists and Houthis in Dammaj",2014-01-06,"Multiparty signed/agreed",1,1894,IntraLocal,Cea,Rel,"Houthis (Ansar Allah);
+
+Salafists at Dar al-Hadith Centre in Dammaj.","Under the generous sponsorship of His Excellency Brother ‘Abd Rabbu Mansur Hadi, President of the Republic, the Supreme Commander of the Armed Forces and Security","Page 1, Seventh: This agreement is a commitment to the previous agreements signed by both parties, whether from the Presidential Committee, the Parliamentary Committee or the Tribal Committee. ",YEM,,678,,230,NA,NA,NA,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1
+Yemen,Government,138,"Yemen peace process","Middle East and North Africa",1399,"Decree No. (184) for the year 2011, to Form a Government of National Reconciliation, 7 December 2011",2011-12-07,"Unilateral document",2,3345,Intra,Imp,ImpMod,"Presidential office of the Republic of Yemen",,"Gulf Cooperation Council and the operational mechanism signed in Riyadh on November 23rd 2011; ",YEM,,678,,230,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+Yemen,Government,138,"Yemen peace process","Middle East and North Africa",1401,"Agreement/Gulf Cooperation Council (GCC) Initiative",2011-11-23,"Multiparty signed/agreed",4,4350,Intra,SubPar,MultIss,"Ali Abdullah Saleh, President of the Republic, Chair of the General People's Congress, (Signed); 
+Abdulkarim Ali Al-Iryani, Second Deputy Chair of the General People's Congress (Signed); 
+Sadiq Amin Abu Ras, Assistant General Secretary of the General People's Congress (Signed);  
+Amat Al-Razzaq Hamad, Assistant General Secretary of the General People's Congress (Signed);  
+Ahmad Ubayd Bin Daghr, Assistant General Secretary of the General People's Congress (Signed); 
+Qasim Salam, Chair of the Council of the National Democratic Alliance (Signed); 
+Mohamed Salem Basendwah, Chair of the Preparatory Committee for National Dialogue (Signed); 
+Yasin Sa'id Nu'man, General Secretary of the Socialist Party and Temporary Chair of the Joint Meeting Parties (Signed);
+Abdulwahhab Ahmad Al-Insi, General Secretary of the Yemeni Congregation for Reform (Signed);
+Hasan Muhammad Zayd, General Secretary of the Al-Haqq Party (Signed); 
+Sakhr Ahmad Al-Wajih, Representative of the Solidarity Council and the Freedom Bloc (Signed);","In the presence of:
+Abdul-Latif Bin Rashid Al-Zayani, Secretary-General of the Gulf Cooperation Council (Signed);
+Sheikh Abdullah Bin Zayed Al Nahyan, Minister for Foreign Affairs of the United
+Arab Emirates, Chair of the current session of the Ministerial Council of the Gulf Cooperation Council (Signed)",,YEM,,678,,230,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,0,0,0,0,0,1,1,0,0,0,2,2,0,0,0,0,1,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1
+Yemen,Government,138,"Yemen peace process","Middle East and North Africa",758,"Agreement on the Implementation Mechanism for the Transition Process in Yemen in Accordance with the Initiative of the Gulf Cooperation Council (GCC Implementation Mechanism)",2011-11-23,"Multiparty signed/agreed",9,21323,Intra,SubPar,MultIss,"Not signed, agreement mentions the following parties as having produced it: the National Coalition (General People’s Congress and its allies), the National Council (Joint Meeting Parties their partners). ","Not signed, agreement invites the following parties to sign: the the Secretary-General of the GCC and the Secretary-General of the United Nations or their representatives, the representatives of the States members of the GCC, the permanent members of the United Nations Security Council, the European Union and the League of Arab States.  ",,YEM,,678,,230,,,,3,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,3,3,2,0,0,0,1,0,1,3,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,2,0,1,0,0,0,0,0,0,0,0,0,0,2,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,2,1,1,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,0,0,0,0,1
+Yemen,Government,138,"Yemen peace process","Middle East and North Africa",1402,"Presidential Decree No. (24) FY 2011, 12 September 2011",2011-09-12,"Unilateral document",1,1873,Intra,SubPar,Iss,"President of the Republic, Ali Abdullah Saleh",,,YEM,,678,,230,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+Yemen,Government,138,"Yemen peace process","Middle East and North Africa",1434,"Six-Point Government of Yemen-Houthi Ceasefire Agreement",2010-02-12,"Multiparty signed/agreed",1,627,Intra,Cea,Ceas,"Unsigned, source lists parties as: Government of Yemen; Huthi representatives ",,,YEM,,678,,230,,,941,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,0,0,0,2,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1
+Yemen,Government,138,"Yemen peace process","Middle East and North Africa",1433,"Doha Agreement",2008-02-01,"Multiparty signed/agreed",1,2125,Intra,Cea,Ceas,"Unsigned copy of agreement, supplementary text states that representatives of the Government of Yemen and Huthi representatives signed the agreement. ","Unsigned, supplementary text states 'Text of agreement produced by Qatari mediation' ",,YEM,,678,,230,,,941,0,0,0,0,0,2,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,0,0,0,1,1,0,0,1,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,1,0,2,1,2,0,1,0,0,0,0,0,0,1
+Yemen,Government/territory,137,"Yemen unification process","Middle East and North Africa",250,"Agreement on a Ceasefire in the Republic of Yemen",1994-06-30,"Multiparty signed/agreed",1,1210,Intra,Cea,Ceas,"Minister for Foreign Affairs: M. Basendwah, Member of the Presidential Council: S. Muhammed","Minister for Foreign Affairs of the Russian Federation: Andrei V. Kozyrev",,YEM,,678,,402,,,885,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1
+Yemen,Territory,137,"Yemen unification process","Middle East and North Africa",264,"Agreement Establishing a Union between the State of the Yemen Arab Republic and the State of the People's Democratic Republic of Yemen",1990-04-22,"Multiparty signed/agreed",2,4524,InterIntra,SubPar,Iss,"Colonel Ali Abdallah Saleh, President of the Republic Commander-in-Chief of the Armed Forces, Secretary-General of the General People's Congress. 
+
+Ali Salem A1-Beidh, Secretary-General of the Central Committee of the Yemeni Socialist Party",,,YEM,,678,,402,1534,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,1,0,1,0,0,1,0,0,1,0,3,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1

@@ -158,6 +158,10 @@ function parseData(d) {
 		date: parseDate(d.Dat),
 		id: +d.AgtId,
 		con: splitConNames(d.Con),
+		local: parseBool(d.Local),
+		localLon: d.LocalLon,
+		localLat: d.LocalLat,
+		localComment: d.Comment,
 		status: d.Status,
 		type: d.Agtp,
 		stage: d.Stage,
@@ -174,6 +178,16 @@ function parseData(d) {
 		HrFra: +d.HrFra,
 		TjMech: +d.TjMech
 	};
+}
+
+function parseBool(str) {
+	if (str === "TRUE") {
+		return true;
+	} else if (str === "FALSE") {
+		return false;
+	} else {
+		return undefined;
+	}
 }
 
 // split con names into array when loading in data

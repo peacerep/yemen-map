@@ -373,7 +373,7 @@ var timeSlider = initSlider();
 // Load data
 ////////////////////////////////////////////////////////////////////////////////
 
-d3.csv("data/pa-x.csv", parseData)
+d3.csv("data/yemen_merge.csv", parseData)
 	.then(function(data) {
 		console.log(data);
 
