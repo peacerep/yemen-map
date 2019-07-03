@@ -322,6 +322,7 @@ labG
 	.data(countryLabels)
 	.enter()
 	.append("text")
+	.classed("countryLabel", true)
 	.text(d => d.label)
 	.attr(
 		"transform",
@@ -330,3 +331,24 @@ labG
 			d3.zoomTransform(svg.node()).apply(projection([d.lon, d.lat])) +
 			")"
 	);
+
+var cities = labG
+	.selectAll("g")
+	.data(cityLabels)
+	.enter()
+	.append("g")
+	.classed("cityLabel", true)
+	.attr(
+		"transform",
+		d =>
+			"translate(" +
+			d3.zoomTransform(svg.node()).apply(projection([d.lon, d.lat])) +
+			")"
+	);
+
+cities.append("circle").attr("r", 2);
+
+cities
+	.append("text")
+	.text(d => d.label_en)
+	.attr("x", 5);

@@ -77,3 +77,16 @@ const countryLabels = [
 	{ label: "Oman", lon: 53.8, lat: 18.4 },
 	{ label: "Ethiopia", lon: 40.5, lat: 12.5 }
 ];
+
+const cityLabels = [
+	{ label_en: "Sanaa", lon: 44.207, lat: 15.355 },
+	{ label_en: "Al Hudaydah", lon: 42.955, lat: 14.798 },
+	{ label_en: "Ta‘izz", lon: 44.021, lat: 13.58 },
+	{ label_en: "Aden", lon: 45.037, lat: 12.779 },
+	{ label_en: "Mukalla", lon: 49.124, lat: 14.542 },
+	{ label_en: "Ibb", lon: 44.183, lat: 13.967 },
+	{ label_en: "Dhamār", lon: 44.405, lat: 14.543 },
+	{ label_en: "‘Amrān", lon: 43.944, lat: 15.659 },
+	{ label_en: "Sayyān", lon: 44.324, lat: 15.172 },
+	{ label_en: "Zabīd", lon: 43.315, lat: 14.195 }
+];

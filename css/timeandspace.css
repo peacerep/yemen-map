@@ -198,3 +198,18 @@
 	text-anchor: middle;
 	font-size: 16px;
 }
+
+.cityLabel {
+	fill: #666;
+}
+
+.cityLabel text {
+	font-size: 12px;
+	dominant-baseline: central;
+}
+
+.countryLabel {
+	font-size: 15px;
+	font-weight: bold;
+	fill: #333;
+}
