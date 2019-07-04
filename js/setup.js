@@ -292,21 +292,11 @@ d3.csv("data/yemen_merge.csv", parseData)
 				d3.selectAll(".input").on("change", function() {
 					var filters = {
 						year: timeSlider.getRange(),
-						cons: getSelectedCons(cons),
 						codes: getSelectedCodes()
 					};
 
 					initTimeline(filterData(data, filters), filters.year);
-					drawDotmap(
-						locdata.map(function(d) {
-							return {
-								agts: filterData(d.agts, filters),
-								con: d.con,
-								count: d.count,
-								id: d.id
-							};
-						})
-					);
+					drawYemenMap(filterData(data, filters));
 				});
 			})
 			.catch(function(error) {

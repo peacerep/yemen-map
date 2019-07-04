@@ -259,28 +259,18 @@ function filterData(data, f) {
 					});
 				}
 			}
-
+			// year + codes check passed
 			if (c1) {
-				// codes check passed
-				if (f.cons.cons.length == 0) {
-					return true; // cons check passed
-				} else {
-					if (f.cons.any) {
-						return f.cons.cons.some(function(con) {
-							return d.con.findIndex(c => c == con) != -1;
-						});
-					} else {
-						return f.cons.cons.every(function(con) {
-							return d.con.findIndex(c => c == con) != -1;
-						});
-					}
-				}
-			} else {
+				return true;
+			}
+			// codes check failed
+			else {
 				return false;
-			} // codes check failed
+			}
 		} else {
+			// year check failed
 			return false;
-		} // year check failed
+		}
 	});
 	return filtered;
 }

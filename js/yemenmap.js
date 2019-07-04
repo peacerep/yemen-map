@@ -3,6 +3,7 @@
 function drawYemenMap(data) {
 	console.log(data.filter(d => !d.local));
 	dotG.selectAll("*").remove();
+	natG.selectAll(".glyphContainer").remove();
 
 	var local = dotG
 		.selectAll(".localGlyph")
