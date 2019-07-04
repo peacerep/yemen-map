@@ -675,7 +675,7 @@ function agtDetails(d) {
 			'" target = "_blank">View Coding Detail</a>' +
 			"<table><tr><td>Date Signed:</td><td>" +
 			formatDate(d.date) +
-			// "<table><tr><td>Comment:</td><td>" +
+			// "<table><tr><td>" +
 			// d.localComment +
 			"</td></tr><tr><td>Country/Entity:</td><td>" +
 			printArray(d.con) +

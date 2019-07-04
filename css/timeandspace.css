@@ -59,6 +59,9 @@
 	margin: 0;
 	border-bottom: 1px solid #999;
 	z-index: 0;
+
+	/*light blue water*/
+	background-color: #e0e7ec;
 }
 
 /*#mapsidebar {
@@ -84,8 +87,7 @@
 ------------------------------------------------------------------------------*/
 
 .land {
-	fill: #fff;
-	/*stroke: #555;*/
+	fill: #f4f4f3; /*#fff;*/
 	stroke: #9f9f9f;
 }
 
@@ -188,8 +190,8 @@
 }
 
 #natG rect {
-	fill: #ccc;
-	opacity: 0.6;
+	fill: #fff; /*#ccc;*/
+	opacity: 0.7;
 }
 
 #natG text {
@@ -215,8 +217,13 @@
 	dominant-baseline: central;
 }
 
-.countryLabel {
+.countryLabel text {
 	font-size: 15px;
 	font-weight: bold;
 	fill: #333;
+	text-anchor: middle;
+}
+
+#pathYEM {
+	fill: #fff;
 }
