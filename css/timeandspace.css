@@ -185,10 +185,6 @@
 	text-shadow: 0 1px 0 #eee, 1px 0 0 #eee, 0 -1px 0 #eee, -1px 0 0 #eee;
 }
 
-.popup.land {
-	fill: #768ead;
-}
-
 #natG rect {
 	fill: #fff; /*#ccc;*/
 	opacity: 0.7;
@@ -227,3 +223,14 @@
 #pathYEM {
 	fill: #fff;
 }
+
+/*path.governorate {
+	fill: transparent;
+	stroke: #bbb;
+	stroke-dasharray: 2px;
+}
+*/
+/*path.yemen {
+	stroke: red;
+}
+*/

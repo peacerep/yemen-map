@@ -97,7 +97,7 @@ var path = d3.geoPath().projection(projection);
 // set up zoom
 var zoom = d3
 	.zoom()
-	.scaleExtent([0.7, 50])
+	.scaleExtent([1, 50])
 	.on("zoom", zooming);
 
 svg.call(zoom);
@@ -107,6 +107,26 @@ svg.on("click", selectedAgt.clear);
 function zooming() {
 	mapG.style("stroke-width", 1 / d3.event.transform.k + "px");
 	mapG.attr("transform", d3.event.transform);
+
+	// // constrain zoom to initially visible viewport
+	// // http://bl.ocks.org/shawnbot/6518285
+	// var e = d3.event.transform;
+	// console.log(e);
+	// // now, constrain the x and y components of the translation by the
+	// // dimensions of the viewport
+	// var tx = Math.min(0, Math.max(e.x, w_map - w_map * e.k));
+	// var ty = Math.min(0, Math.max(e.y, h_map - h_map * e.k));
+	// // then, update the zoom behavior's internal translation, so that
+	// // it knows how to properly manipulate it on the next movement
+	// zoom.transform.x = tx;
+	// zoom.transform.y = ty;
+	// // zoom.translate([tx, ty]);
+	// // and finally, update the <g> element's transform attribute with the
+	// // correct translation and scale (in reverse order)
+	// mapG.attr(
+	// 	"transform",
+	// 	["translate(" + [tx, ty] + ")", "scale(" + e.k + ")"].join(" ")
+	// );
 
 	// semantic zoom
 	dotG
@@ -246,8 +266,10 @@ d3.csv("data/yemen_merge.csv", parseData)
 		initTimeline(data);
 
 		// Load geojson world map
+		// d3.json("data/small_world.json")
 		d3.json("data/world-110m-custom.geojson")
 			.then(function(world) {
+				console.log(world);
 				// draw map
 				mapG
 					.append("g")
@@ -259,35 +281,8 @@ d3.csv("data/yemen_merge.csv", parseData)
 						return "path" + d.id;
 					})
 					.attr("d", path)
-					.classed("land", true);
-				// .on("mouseover", function(d) {
-				// 	mouseoverCountry(this, d);
-				// })
-				// .on("mouseout", function(d) {
-				// 	mouseoutCountry(this, d);
-				// })
-				// .on("click", function(d) {
-				// 	var filters = {
-				// 		year: timeSlider.getRange(),
-				// 		cons: { any: true, cons: [d.properties.name] },
-				// 		codes: getSelectedCodes()
-				// 	};
-				// 	clickCountry(
-				// 		d.properties.name,
-				// 		filterData(
-				// 			locdata[locdata.findIndex(e => e.con == d.properties.name)]
-				// 				.agts,
-				// 			filters
-				// 		),
-				// 		world
-				// 	);
-				// 	// update timeline
-				// 	initTimeline(filterData(data, filters), filters.year);
-				// });
-
-				// Match data points with locations on the map and draw dot map
-				// const locdata = makeDotmapData(data, world);
-				// drawDotmap(locdata);
+					.classed("land", true)
+					.classed("yemen", d => d.properties.admin == "Yemen");
 
 				// Draw all agreements
 				drawYemenMap(data);
@@ -302,6 +297,29 @@ d3.csv("data/yemen_merge.csv", parseData)
 					initTimeline(filterData(data, filters), filters.year);
 					drawYemenMap(filterData(data, filters));
 				});
+
+				// d3.json("data/yemen.json")
+				// 	.then(function(yemen) {
+				// 		console.log(yemen);
+				// 		var yemen1 = yemen.features.filter(
+				// 			d => d.properties.admin == "Yemen"
+				// 		);
+
+				// 		// var mesh = topojson.mesh(yemen, yemen.features, function(a, b) {
+				// 		// 	return a !== b;
+				// 		// });
+
+				// 		mapG
+				// 			.selectAll(".governorate")
+				// 			.data(yemen1)
+				// 			.enter()
+				// 			.append("path")
+				// 			.attr("d", path)
+				// 			.classed("governorate", true);
+				// 	})
+				// 	.catch(function(error) {
+				// 		throw error;
+				// 	});
 			})
 			.catch(function(error) {
 				throw error;
