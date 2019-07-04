@@ -94,12 +94,12 @@
 }*/
 
 /*glyph inner circle*/
-#dotG circle {
-	fill: #555; /*#888*/
-	fill-opacity: 1;
+.glyphContainer circle {
+	fill: #667a8a;
+	fill-opacity: 0.8;
 }
 
-.glyphHighlightCircle {
+.glyphContainer circle.glyphHighlightCircle {
 	fill: transparent;
 }
 
@@ -199,11 +199,18 @@
 	font-size: 16px;
 }
 
-.cityLabel {
+.cityLabel circle {
 	fill: #666;
 }
 
+.cityLabel.major circle {
+	stroke: #666;
+	stroke-width: 2px;
+	fill: transparent;
+}
+
 .cityLabel text {
+	fill: #666;
 	font-size: 12px;
 	dominant-baseline: central;
 }

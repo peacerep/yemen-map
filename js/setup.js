@@ -116,7 +116,7 @@ function zooming() {
 		);
 
 	labG
-		.selectAll("text")
+		.selectAll("g")
 		.attr(
 			"transform",
 			d =>
@@ -318,26 +318,28 @@ d3.csv("data/yemen_merge.csv", parseData)
 	});
 
 labG
-	.selectAll("text")
+	.selectAll(".countryLabel")
 	.data(countryLabels)
 	.enter()
-	.append("text")
+	.append("g")
 	.classed("countryLabel", true)
-	.text(d => d.label)
 	.attr(
 		"transform",
 		d =>
 			"translate(" +
 			d3.zoomTransform(svg.node()).apply(projection([d.lon, d.lat])) +
 			")"
-	);
+	)
+	.append("text")
+	.text(d => d.label);
 
 var cities = labG
-	.selectAll("g")
+	.selectAll(".cityLabel")
 	.data(cityLabels)
 	.enter()
 	.append("g")
 	.classed("cityLabel", true)
+	.classed("major", d => d.size == "major")
 	.attr(
 		"transform",
 		d =>
@@ -346,9 +348,9 @@ var cities = labG
 			")"
 	);
 
-cities.append("circle").attr("r", 2);
+cities.append("circle").attr("r", d => (d.size == "major" ? 4 : 3));
 
 cities
 	.append("text")
 	.text(d => d.label_en)
-	.attr("x", 5);
+	.attr("x", 6);
