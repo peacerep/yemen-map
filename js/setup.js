@@ -58,10 +58,14 @@ var projection = d3
 
 // zoom to Yemen
 var yemenBox = {
-	l: 38,
-	r: 60,
-	t: 22,
-	b: 10
+	l: 40.8,
+	r: 58.4,
+	t: 20.3,
+	b: 11.3
+	// l: 38,
+	// r: 60,
+	// t: 22,
+	// b: 10
 };
 
 var bbox_yemen = {
