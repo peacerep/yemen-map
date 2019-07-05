@@ -2,3 +2,4 @@
 .DS_Store
 pax.sublime-project
 pax.sublime-workspace
+*.Rhistory
