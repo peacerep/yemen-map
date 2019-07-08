@@ -12,7 +12,8 @@ const natBoxW = 250; // width of national level agreements box
 const natBoxN = 4; // number of agreements in one row in the nat. level agt. box
 // 25 national level agreements
 const natBoxT = 30; // top margin
-const natBoxH = natBoxT + (natBoxW / natBoxN) * Math.ceil(25 / 4); // height
+const natBoxDist = natBoxW / (natBoxN + 1);
+const natBoxH = natBoxT + natBoxDist * Math.ceil(25 / natBoxN); // height
 
 // Year range of the data
 const minYear = 1990;
@@ -301,6 +302,12 @@ function petalData(d) {
 		}
 		return obj;
 	}
+}
+
+function sortByDate(a, b) {
+	// writing a.date doesn't work in chrome
+	// probably because it's bad practice to name things 'date'
+	return a["date"] > b["date"];
 }
 
 var arcMin = d3

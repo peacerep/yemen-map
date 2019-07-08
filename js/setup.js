@@ -42,6 +42,14 @@ natG
 	.attr("y", 10)
 	.text("National Level Agreements");
 
+var innerNatG = natG
+	.append("g")
+	.attr("id", "innerNatG")
+	.attr(
+		"transform",
+		"translate(" + natBoxDist + "," + (30 + natBoxDist / 2) + ")"
+	);
+
 ////////////////////////////////////////////////////////////////////////////////
 // Set up map
 ////////////////////////////////////////////////////////////////////////////////
@@ -62,10 +70,6 @@ var yemenBox = {
 	r: 58.4,
 	t: 20.3,
 	b: 11.3
-	// l: 38,
-	// r: 60,
-	// t: 22,
-	// b: 10
 };
 
 var bbox_yemen = {
@@ -85,14 +89,6 @@ projection.fitSize([w_map, h_map], bbox_yemen);
 
 // define path generator
 var path = d3.geoPath().projection(projection);
-
-// tooltip for country names
-// var tooltipMap = labG
-// 	.attr("transform", "translate(-100,-100)")
-// 	.attr("id", "tooltipMap")
-// 	.style("pointer-events", "none")
-// 	.append("text")
-// 	.attr("class", "tooltipText");
 
 // set up zoom
 var zoom = d3
