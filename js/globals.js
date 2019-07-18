@@ -241,11 +241,8 @@ function getConNames(dat) {
 
 // Filter data based on settings in filter pane
 function filterData(data, f) {
-	// console.log(data);
-
 	var filtered = data.filter(function(d) {
 		if (d.year >= f.year[0] && d.year <= f.year[1]) {
-			// console.log("passed");
 			// year check passed
 			if (f.codes.codes.length == 0) {
 				var c1 = true;
@@ -493,7 +490,6 @@ function initSlider() {
 				return "translate(" + [s[i], -height / 4] + ")";
 			});
 			// update selection
-			// console.log(s.map(d => Math.round(x.invert(d))))
 		})
 		.on("end", function() {
 			if (!d3.event.sourceEvent) return;
@@ -575,8 +571,6 @@ function initSlider() {
 
 // Reset filters and visualisation
 function resetFilters() {
-	console.log("resetting filters");
-
 	// Time
 	timeSlider.resetBrush();
 

@@ -252,8 +252,6 @@ var timeSlider = initSlider();
 
 d3.csv("data/yemen_merge.csv", parseData)
 	.then(function(data) {
-		console.log(data);
-
 		// Initialise reset button for filters
 		d3.select("#reset-filters").on("click", resetFilters);
 		resetFilters();
@@ -265,7 +263,6 @@ d3.csv("data/yemen_merge.csv", parseData)
 		// d3.json("data/small_world.json")
 		d3.json("data/world-110m-custom.geojson")
 			.then(function(world) {
-				console.log(world);
 				// draw map
 				mapG
 					.append("g")

@@ -1,7 +1,6 @@
 "use strict";
 
 function drawYemenMap(data) {
-	console.log(data.filter(d => !d.local));
 	dotG.selectAll("*").remove();
 	natG.selectAll(".glyphContainer").remove();
 
@@ -120,7 +119,6 @@ const cityLabels = [
 ];
 
 function lineGenerator(points) {
-	console.log(points);
 	var path = points
 		.map(function(d, i, arr) {
 			// move to first point
@@ -140,6 +138,5 @@ function lineGenerator(points) {
 			}
 		})
 		.join(" ");
-	console.log(path);
 	return path;
 }
