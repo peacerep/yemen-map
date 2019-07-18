@@ -418,7 +418,7 @@ function initSlider() {
 
 	// set width and height of svg
 	var w = parseInt(
-		window.getComputedStyle(document.getElementById("sidebar")).width
+		window.getComputedStyle(document.getElementById("filterContainer")).width
 	);
 	// var w = 270
 	var h = 65;

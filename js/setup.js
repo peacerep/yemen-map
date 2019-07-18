@@ -185,6 +185,10 @@ d3.select("#expandFilters").on("click", function() {
 
 	// toggle filter visibility
 	d3.select("#filterContainer").classed("hidden", !currentState);
+
+	// enable pointer-events
+	// necessary for scroll to work on Chrome
+	d3.select("#sidebar").classed("visible", currentState);
 });
 
 // Buttons to select all / deselect all in the global filters box
