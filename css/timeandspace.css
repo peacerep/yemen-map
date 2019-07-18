@@ -64,6 +64,10 @@
 	background-color: #e0e7ec;
 }
 
+#labG {
+	pointer-events: none;
+}
+
 /*#mapsidebar {
 	grid-column: 3;
 	grid-row: 1 / span 2;
