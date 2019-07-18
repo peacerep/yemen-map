@@ -36,9 +36,24 @@ natG
 
 natG
 	.append("text")
+	.classed("heading", true)
 	.attr("x", natBoxW / 2)
 	.attr("y", 10)
-	.text("National Level Agreements");
+	.text("National Agreements");
+
+natG
+	.append("text")
+	.selectAll("tspan")
+	.data(["Local agreements are", "shown on the map."]) // ←
+	.enter()
+	.append("tspan")
+	.attr("x", natBoxW / 2)
+	.attr("y", natBoxH - 35)
+	.attr("dy", function(d, i) {
+		return ((i * 2 - 1) * 16) / 2; // font size 16px
+	})
+	.text(d => d)
+	.style("fill", "#333");
 
 var innerNatG = natG
 	.append("g")

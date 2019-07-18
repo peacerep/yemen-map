@@ -200,9 +200,13 @@
 
 #natG text {
 	dominant-baseline: hanging;
+	font-size: 16px;
+	text-anchor: middle;
+}
+
+#natG text.heading {
 	font-weight: bold;
 	text-anchor: middle;
-	font-size: 16px;
 }
 
 #natG text.spiralLabel {

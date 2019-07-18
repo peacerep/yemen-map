@@ -13,7 +13,7 @@ const natBoxN = 4; // number of agreements in one row in the nat. level agt. box
 // 25 national level agreements
 const natBoxT = 30; // top margin
 const natBoxDist = natBoxW / (natBoxN + 1);
-const natBoxH = natBoxT + natBoxDist * Math.ceil(25 / natBoxN); // height
+const natBoxH = natBoxT + natBoxDist * Math.ceil(25 / natBoxN) + 40; // height
 
 // Year range of the data
 const minYear = 1990;
