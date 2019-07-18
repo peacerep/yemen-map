@@ -20,8 +20,6 @@ var svg = d3
 var mapG = svg.append("g").attr("id", "mapG"); // g for the map
 var dotG = svg.append("g").attr("id", "dotG"); // g for dots or anything else we plot on top
 var labG = svg.append("g").attr("id", "labG"); // g for country labels
-// var popG = svg.append("g").attr("id", "popG"); // g for popup circles
-// var popupControlsG = svg.append("g").attr("id", "popupControlsG");
 var natG = svg.append("g").attr("id", "natG"); // g for box with national agreements
 
 natG.attr(
@@ -94,6 +92,8 @@ var path = d3.geoPath().projection(projection);
 var zoom = d3
 	.zoom()
 	.scaleExtent([1, 50])
+	.translateExtent([[0, 0], [w_map, h_map]])
+	.extent([[0, 0], [w_map, h_map]])
 	.on("zoom", zooming);
 
 svg.call(zoom);
@@ -103,26 +103,6 @@ svg.on("click", selectedAgt.clear);
 function zooming() {
 	mapG.style("stroke-width", 1 / d3.event.transform.k + "px");
 	mapG.attr("transform", d3.event.transform);
-
-	// // constrain zoom to initially visible viewport
-	// // http://bl.ocks.org/shawnbot/6518285
-	// var e = d3.event.transform;
-	// console.log(e);
-	// // now, constrain the x and y components of the translation by the
-	// // dimensions of the viewport
-	// var tx = Math.min(0, Math.max(e.x, w_map - w_map * e.k));
-	// var ty = Math.min(0, Math.max(e.y, h_map - h_map * e.k));
-	// // then, update the zoom behavior's internal translation, so that
-	// // it knows how to properly manipulate it on the next movement
-	// zoom.transform.x = tx;
-	// zoom.transform.y = ty;
-	// // zoom.translate([tx, ty]);
-	// // and finally, update the <g> element's transform attribute with the
-	// // correct translation and scale (in reverse order)
-	// mapG.attr(
-	// 	"transform",
-	// 	["translate(" + [tx, ty] + ")", "scale(" + e.k + ")"].join(" ")
-	// );
 
 	// semantic zoom
 	dotG
